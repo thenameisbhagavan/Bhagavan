@@ -3,161 +3,232 @@ import { m } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import '../styles/Resume.css';
 
-// Premium Animation Variants
-const premiumFadeUp = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.6, ease: [0.16, 1, 0.3, 1] } }
+import pdfUrl from '../assets/bhagavanresume.pdf';
+
+// ─── Motion ───────────────────────────────────────────────────────────────────
+const EASE = [0.16, 1, 0.3, 1];
+
+const fadeUp = {
+  hidden:  { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
 };
 
-const premiumFadeUpStagger = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.6, ease: [0.16, 1, 0.3, 1], staggerChildren: 0.2 } }
+const stagger = {
+  hidden:  {},
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
+const resumeReveal = {
+  hidden:  { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: EASE } },
+};
+
+// ─── Reveal helper ────────────────────────────────────────────────────────────
+function Reveal({ children, className }) {
+  return (
+    <m.div
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      variants={stagger}
+    >
+      {children}
+    </m.div>
+  );
+}
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+const HIGHLIGHTS = [
+  "4+ Internships",
+  "5+ AI Systems",
+  "Full Stack Engineering",
+  "Machine Learning",
+  "CareerOS",
+  "ResumeAI"
+];
+
+const FOCUS = [
+  "Artificial Intelligence",
+  "Software Engineering",
+  "Backend Systems",
+  "Full Stack Development",
+  "Career Intelligence",
+  "Product Development"
+];
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Resume() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const pdfUrl = "/Siva_Bhagavan_Resume.pdf";
   const resumeImage = "/bhagavanresume_page-0001.jpg";
 
   return (
-    <div className="resume-container">
-
-      {/* 1. HERO SECTION */}
-      <section className="res-section res-hero full-width">
-        <m.div className="res-content-constrain center-align" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-          <m.h1 className="res-headline-massive" variants={premiumFadeUp}>
-            The Builder.
-          </m.h1>
-          <m.p className="res-subheadline" variants={premiumFadeUp} style={{ marginTop: '40px', maxWidth: '900px' }}>
-            A complete overview of engineering experience, intelligent systems, and continuous learning.
-          </m.p>
-        </m.div>
+    <div className="res-page">
+      
+      {/* ══════════════════════════════════════════════════════
+          SECTION 1 — HERO
+      ══════════════════════════════════════════════════════ */}
+      <section className="res-hero" aria-label="Resume Hero">
+        <m.h1 
+          className="res-hero-headline"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, ease: EASE }}
+        >
+          The Builder.
+        </m.h1>
+        <m.p 
+          className="res-hero-sub"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
+        >
+          Engineering intelligent systems through software, data, and continuous learning.
+        </m.p>
       </section>
 
-      {/* 2. OVERVIEW */}
-      <section className="res-section res-alt-bg">
-        <div className="res-content-constrain center-align">
-          <m.h2 className="res-headline-large" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp}>
-            Designed Through<br/>Experience.
-          </m.h2>
+      {/* ══════════════════════════════════════════════════════
+          SECTION 2 — RESUME PREVIEW
+      ══════════════════════════════════════════════════════ */}
+      <section className="res-preview">
+        <div className="res-constrain center-align">
+          <Reveal>
+            <m.span className="res-eyebrow" variants={fadeUp}>Resume Preview</m.span>
+            <m.div className="res-meta-tags" variants={fadeUp}>
+              <span>Updated 2026</span>
+              <span>PDF Available</span>
+            </m.div>
+          </Reveal>
 
-          <m.div className="res-typographic-list" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            <m.div className="res-type-item" variants={premiumFadeUp}>Software Engineering</m.div>
-            <m.div className="res-type-item" variants={premiumFadeUp}>Artificial Intelligence</m.div>
-            <m.div className="res-type-item" variants={premiumFadeUp}>Full Stack Development</m.div>
-            <m.div className="res-type-item" variants={premiumFadeUp}>Career Intelligence</m.div>
-            <m.div className="res-type-item" variants={premiumFadeUp}>Product Development</m.div>
+          <m.div 
+            className="res-artifact-wrapper"
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-120px" }} 
+            variants={resumeReveal}
+          >
+            <img src={resumeImage} alt="Siva Bhagavan Resume" loading="lazy" />
           </m.div>
         </div>
       </section>
 
-      {/* 3. LIVE RESUME CENTERPIECE */}
-      <section className="res-section">
-        <div className="res-content-constrain center-align">
-          <m.h2 className="res-headline-large" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp}>
-            Experience.<br/>In Detail.
-          </m.h2>
-
-          <m.div className="resume-artifact-wrapper" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp}>
-            <img loading="lazy" 
-              src={resumeImage} 
-              alt="Siva Bhagavan Resume Document" 
-              className="resume-artifact"
-            />
-          </m.div>
-        </div>
-      </section>
-
-      {/* 4. DOWNLOAD EXPERIENCE */}
-      <section className="res-section res-alt-bg">
-        <div className="res-content-constrain center-align">
-          <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            <m.h2 className="res-headline-large" variants={premiumFadeUp}>
+      {/* ══════════════════════════════════════════════════════
+          SECTION 3 — DOWNLOAD EXPERIENCE
+      ══════════════════════════════════════════════════════ */}
+      <section className="res-download res-alt">
+        <div className="res-constrain center-align">
+          <Reveal>
+            <m.h2 className="res-section-headline" variants={fadeUp}>
               Take It With You.
             </m.h2>
-            <m.div variants={premiumFadeUp}>
-              <a href={pdfUrl} download="Siva_Bhagavan_Resume.pdf" className="download-pill">
+            <m.div variants={fadeUp} style={{ marginTop: '40px' }}>
+              <a href={pdfUrl} download="Siva_Bhagavan_Resume.pdf" className="res-pill-btn">
                 Download Resume <span>↓</span>
               </a>
             </m.div>
-          </m.div>
+          </Reveal>
         </div>
       </section>
 
-      {/* 5. HIGHLIGHTS */}
-      <section className="res-section">
-        <div className="res-content-constrain center-align">
-          <m.div className="res-typographic-list" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            <m.div className="res-type-item" variants={premiumFadeUp}>4+ Internships</m.div>
-            <m.div className="res-type-item" variants={premiumFadeUp}>5+ AI Web Systems</m.div>
-            <m.div className="res-type-item" variants={premiumFadeUp}>AI Research</m.div>
-            <m.div className="res-type-item" variants={premiumFadeUp}>Full Stack Platforms</m.div>
-            <m.div className="res-type-item" variants={premiumFadeUp}>CareerOS</m.div>
-            <m.div className="res-type-item" variants={premiumFadeUp}>ResumeAI</m.div>
-          </m.div>
-        </div>
-      </section>
-
-      {/* 6. ENGINEERING JOURNEY */}
-      <section className="res-section res-alt-bg">
-        <div className="res-content-constrain center-align">
-          <m.div className="journey-flow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            <m.div className="journey-node active" variants={premiumFadeUp}>Education</m.div>
-            <m.div className="journey-node active" variants={premiumFadeUp}>Experience</m.div>
-            <m.div className="journey-node active" variants={premiumFadeUp}>Projects</m.div>
-            <m.div className="journey-node active" variants={premiumFadeUp}>Innovation</m.div>
-            <m.div className="journey-node active" variants={premiumFadeUp}>Skills</m.div>
-          </m.div>
-        </div>
-      </section>
-
-      {/* 7. WHAT THE RESUME REPRESENTS */}
-      <section className="res-section">
-        <div className="res-content-constrain center-align">
-          <m.h2 className="res-headline-large" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp}>
-            More Than<br/>A Document.
-          </m.h2>
+      {/* ══════════════════════════════════════════════════════
+          SECTION 4 — HIGHLIGHTS
+      ══════════════════════════════════════════════════════ */}
+      <section className="res-highlights">
+        <div className="res-constrain">
+          <Reveal className="center-align">
+            <m.span className="res-eyebrow" variants={fadeUp}>Experience Highlights</m.span>
+          </Reveal>
           
-          <m.p className="res-body-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp} style={{ maxWidth: '800px', marginTop: '60px' }}>
-            The resume is not a list of experiences. It is a record of learning, experimentation, building, and growth. It is proof of execution.
-          </m.p>
+          <Reveal className="res-large-list">
+            {HIGHLIGHTS.map((item) => (
+              <m.h3 key={item} className="res-large-item" variants={fadeUp}>
+                {item}
+              </m.h3>
+            ))}
+          </Reveal>
         </div>
       </section>
 
-      {/* 8. FINAL STATEMENT */}
-      <section className="res-section final-statement-section res-dark-environment full-width">
-        <div className="res-content-constrain center-align">
-          <m.h1 className="res-headline-massive dark-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp}>
-            Still Building.
-          </m.h1>
-          <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger} style={{ marginTop: '60px', textAlign: 'center' }}>
-            <m.div className="res-subheadline dark-text-sec" variants={premiumFadeUp}>Every project.</m.div>
-            <m.div className="res-subheadline dark-text-sec" variants={premiumFadeUp}>Every internship.</m.div>
-            <m.div className="res-subheadline dark-text-sec" variants={premiumFadeUp}>Every challenge.</m.div>
-            <m.p className="res-body-text dark-text-sec" variants={premiumFadeUp} style={{ maxWidth: '800px', marginTop: '40px' }}>
-              A step toward building intelligent systems that create opportunity.
+      {/* ══════════════════════════════════════════════════════
+          SECTION 5 — PROFESSIONAL FOCUS
+      ══════════════════════════════════════════════════════ */}
+      <section className="res-focus res-alt">
+        <div className="res-constrain">
+          <Reveal className="center-align">
+            <m.span className="res-eyebrow" variants={fadeUp}>Professional Focus</m.span>
+            <m.h2 className="res-section-headline" variants={fadeUp}>
+              Focused On Building.
+            </m.h2>
+          </Reveal>
+          
+          <Reveal className="res-large-list">
+            {FOCUS.map((focus) => (
+              <m.h3 key={focus} className="res-large-item" variants={fadeUp}>
+                {focus}
+              </m.h3>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          SECTION 6 — RESUME PHILOSOPHY
+      ══════════════════════════════════════════════════════ */}
+      <section className="res-philosophy">
+        <div className="res-constrain">
+          <Reveal className="center-align">
+            <m.h2 className="res-section-headline" variants={fadeUp}>
+              More Than A Document.
+            </m.h2>
+          </Reveal>
+
+          <Reveal className="res-constrain--reading">
+            <m.p className="res-body" variants={fadeUp}>
+              A resume is not a list of experiences. It is evidence of learning, execution, and growth.
             </m.p>
-          </m.div>
+            <m.p className="res-body" variants={fadeUp}>
+              Projects built. Problems solved. Systems engineered. Opportunities created.
+            </m.p>
+          </Reveal>
         </div>
       </section>
 
-      {/* 9. FINAL CTA */}
-      <section className="res-section res-dark-environment full-width" style={{ padding: '0 24px 250px' }}>
-        <div className="res-content-constrain center-align">
-          <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={premiumFadeUpStagger}>
-            <m.h2 className="res-headline-large dark-text" variants={premiumFadeUp} style={{ fontSize: 'clamp(32px, 5vw, 64px)' }}>
+      {/* ══════════════════════════════════════════════════════
+          SECTION 7 — CLOSING
+      ══════════════════════════════════════════════════════ */}
+      <section className="res-closing res-dark" aria-label="Closing statement">
+        <div className="res-constrain center-align">
+          <Reveal>
+            <m.h2 className="res-closing-headline" variants={fadeUp}>
+              Still Building.
+            </m.h2>
+            <m.p className="res-closing-sub" variants={fadeUp}>
+              Every internship. Every project. Every challenge. A step toward building intelligent systems that create opportunity.
+            </m.p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          SECTION 8 — EXPLORE THE WORK
+      ══════════════════════════════════════════════════════ */}
+      <section className="res-explore res-dark">
+        <div className="res-constrain center-align">
+          <Reveal>
+            <m.h2 className="res-section-headline res-text-light" variants={fadeUp}>
               Explore The Work.
             </m.h2>
-            <m.div className="explore-grid" variants={premiumFadeUpStagger}>
-              <m.div variants={premiumFadeUp}><Link to="/work" className="explore-pill">Projects</Link></m.div>
-              <m.div variants={premiumFadeUp}><Link to="/experience" className="explore-pill">Experience</Link></m.div>
-              <m.div variants={premiumFadeUp}><Link to="/technology" className="explore-pill">Capabilities</Link></m.div>
-              <m.div variants={premiumFadeUp}><Link to="/connect" className="explore-pill">Contact</Link></m.div>
+            
+            <m.div className="res-nav-actions" variants={fadeUp}>
+              <Link to="/work" className="res-nav-link">Projects <span>↗</span></Link>
+              <Link to="/experience" className="res-nav-link">Experience <span>↗</span></Link>
+              <Link to="/skills" className="res-nav-link">Skills <span>↗</span></Link>
+              <Link to="/connect" className="res-nav-link">Connect <span>↗</span></Link>
             </m.div>
-          </m.div>
+          </Reveal>
         </div>
       </section>
 

@@ -2,347 +2,381 @@ import React, { useEffect } from 'react';
 import { m } from 'framer-motion';
 import '../styles/Innovation.css';
 
-// Premium Artifacts
+// ─── Core Artifacts ───────────────────────────────────────────────────────────
 import vegacodeImg from '../assets/cert-vegacode.png';
 import githubImg from '../assets/profile-github.png';
 import leetcodeImg from '../assets/profile-leetcode.png';
 import linkedInProfileImg from '../assets/link.png';
 import trainingCert from '../assets/training.png';
 
-// Workshop Artifacts
+// ─── Workshop Artifacts ───────────────────────────────────────────────────────
 import aimlWorkshopImg from '../assets/cert-aiml-workshop.jpg';
 import mobileWorkshopImg from '../assets/cert-mobile-workshop.jpg';
 import webWorkshopImg from '../assets/cert-web-workshop.jpg';
 import pythonWorkshopImg from '../assets/cert-ds-workshop.jpg';
 import powerWorkshopImg from '../assets/cert-power-workshop.jpg';
 
-// Animation Variants
-const premiumFadeUp = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } }
+// ─── Motion ───────────────────────────────────────────────────────────────────
+const EASE = [0.16, 1, 0.3, 1];
+
+const fadeUp = {
+  hidden:  { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
 };
 
-const premiumFadeUpStagger = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1], staggerChildren: 0.3 } }
+const stagger = {
+  hidden:  {},
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
-const artifactReveal = {
-  hidden: { opacity: 0, y: 40, scale: 0.96 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } }
+const imgReveal = {
+  hidden:  { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.1, ease: EASE } },
 };
 
-const lineDraw = {
-  hidden: { height: 0, opacity: 0 },
-  visible: { height: '100%', opacity: 1, transition: { duration: 2, ease: [0.16, 1, 0.3, 1] } }
-};
+// ─── Reveal helper ────────────────────────────────────────────────────────────
+function Reveal({ children, className }) {
+  return (
+    <m.div
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      variants={stagger}
+    >
+      {children}
+    </m.div>
+  );
+}
 
+// ─── Data ─────────────────────────────────────────────────────────────────────
+const MINDSET_STEPS = ["Question.", "Experiment.", "Build.", "Learn.", "Repeat."];
+
+const LABS = [
+  { img: aimlWorkshopImg,     title: "Artificial Intelligence" },
+  { img: webWorkshopImg,      title: "Web Development" },
+  { img: mobileWorkshopImg,   title: "Mobile Development" },
+  { img: pythonWorkshopImg,   title: "Python Foundations" },
+  { img: powerWorkshopImg,    title: "Power Automate" }
+];
+
+const FOUNDATION = [
+  "Python Programming",
+  "DSA",
+  "Coding Practice",
+  "Aptitude",
+  "Resume Engineering",
+  "Mock Interviews"
+];
+
+const EXPERIENCES = [
+  "Problem Solving",
+  "AI Engineering",
+  "Full Stack Development",
+  "System Design",
+  "Product Thinking",
+  "Continuous Learning"
+];
+
+const PRINCIPLES = [
+  "Technology should create opportunity.",
+  "Learning should never stop.",
+  "Curiosity should become action.",
+  "Ideas should become products.",
+  "Systems should solve meaningful problems."
+];
+
+const EXPLORATION = [
+  "Agentic AI",
+  "CareerOS Evolution",
+  "Recruiter Intelligence",
+  "Portfolio Intelligence",
+  "AI Career Copilot",
+  "Multi-Agent Systems"
+];
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function InnovationJourney() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="innovation-container">
+    <div className="inn-page">
       
-      {/* 1. HERO SECTION */}
-      <section className="inn-section inn-hero full-width">
-        <div className="atmospheric-hero-bg">
-          <div className="particle-layer layer-1"></div>
-          <div className="particle-layer layer-2"></div>
-        </div>
-        <m.div className="inn-content-constrain center-align" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-          <m.h1 className="inn-headline-massive" variants={premiumFadeUp}>
-            Innovation Begins<br />With A Question.
-          </m.h1>
-          <m.p className="inn-subheadline" variants={premiumFadeUp} style={{ marginTop: '40px', maxWidth: '900px' }}>
-            Every breakthrough starts with curiosity. Every product starts with experimentation. Every system starts with a single idea.
-          </m.p>
-        </m.div>
+      {/* ══════════════════════════════════════════════════════
+          SECTION 1 — HERO
+      ══════════════════════════════════════════════════════ */}
+      <section className="inn-hero" aria-label="Innovation Hero">
+        <m.h1 
+          className="inn-hero-headline"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, ease: EASE }}
+        >
+          Innovation Begins With Curiosity.
+        </m.h1>
+        <m.p 
+          className="inn-hero-sub"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
+        >
+          Every meaningful product starts with a question worth exploring.
+        </m.p>
       </section>
 
-      {/* 2. THE CURIOSITY ENGINE */}
-      <section className="inn-section">
-        <div className="inn-content-constrain center-align">
-          <m.h2 className="inn-headline-large" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp}>
-            Curiosity Creates Everything.
-          </m.h2>
-          <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger} style={{ marginTop: '40px', maxWidth: '800px' }}>
-            <m.p className="inn-body-text" variants={premiumFadeUp} style={{ marginBottom: '32px' }}>
-              Asking better questions leads to building better systems. Why is this process slow? Why does this interface cause friction? What happens if we rebuild this architecture from scratch?
-            </m.p>
-            <m.p className="inn-body-text" variants={premiumFadeUp}>
-              Innovation is not a sudden spark; it is the deliberate practice of challenging assumptions and engineering solutions.
-            </m.p>
-          </m.div>
-        </div>
-      </section>
-
-      {/* 3. THE PRODUCT CHALLENGE (Vegacode 2K25) */}
-      <section className="inn-section inn-alt-bg full-width">
-        <div className="inn-content-constrain">
-          <m.div className="center-align" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            <m.div className="inn-eyebrow" variants={premiumFadeUp}>Vegacode 2K25 Hackathon</m.div>
-            <m.h2 className="inn-headline-large" variants={premiumFadeUp}>24 Hours. One Idea.<br/>One Product.</m.h2>
-            <m.p className="inn-body-text" variants={premiumFadeUp} style={{ maxWidth: '800px', margin: '0 auto' }}>
-              A real-world engineering challenge. It wasn’t about competition; it was a test of decision making under constraints. Architecting, developing, and deploying a functional second-hand electronics marketplace in exactly 24 hours.
-            </m.p>
-          </m.div>
-
-          <m.div className="museum-artifact-presentation" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={artifactReveal}>
-            <div className="premium-floating-frame">
-              <div className="glass-reflection"></div>
-              <img loading="lazy" src={vegacodeImg} alt="Vegacode Hackathon Proof" />
-            </div>
-            <div className="artifact-caption">Proof Of Execution — Product Development Under Constraint</div>
-          </m.div>
+      {/* ══════════════════════════════════════════════════════
+          SECTION 2 — THE MINDSET
+      ══════════════════════════════════════════════════════ */}
+      <section className="inn-mindset">
+        <div className="inn-constrain center-align">
+          <Reveal>
+            <m.span className="inn-eyebrow" variants={fadeUp}>The Mindset</m.span>
+            <m.h2 className="inn-section-headline" variants={fadeUp}>
+              Curiosity Creates Everything.
+            </m.h2>
+          </Reveal>
+          
+          <Reveal className="inn-mindset-sequence">
+            {MINDSET_STEPS.map((step) => (
+              <m.div key={step} className="inn-mindset-step" variants={fadeUp}>
+                {step}
+              </m.div>
+            ))}
+          </Reveal>
         </div>
       </section>
 
-      {/* 4. BUILDING IN PUBLIC (GitHub & LinkedIn) */}
-      <section className="inn-section full-width">
-        <div className="inn-content-constrain">
-          <m.div className="center-align" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            <m.h2 className="inn-headline-large" variants={premiumFadeUp}>Ideas Become Real<br/>When They're Shared.</m.h2>
+      {/* ══════════════════════════════════════════════════════
+          SECTION 3 — VEGACODE HACKATHON
+      ══════════════════════════════════════════════════════ */}
+      <section className="inn-hackathon inn-alt">
+        <div className="inn-constrain">
+          <Reveal className="center-align">
+            <m.span className="inn-eyebrow" variants={fadeUp}>Vegacode 2K25 Hackathon</m.span>
+            <m.h2 className="inn-section-headline" variants={fadeUp}>
+              24 Hours To Build.
+            </m.h2>
+          </Reveal>
+
+          <m.div 
+            className="inn-museum-frame"
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-80px" }} 
+            variants={imgReveal}
+          >
+            <img src={vegacodeImg} alt="Vegacode Hackathon Certificate" loading="lazy" />
           </m.div>
 
-          <m.div className="dual-platform-showcase" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            
-            {/* Left: GitHub */}
-            <m.div className="platform-column" variants={artifactReveal}>
-              <div className="platform-device macbook-frame">
+          <Reveal className="inn-constrain--reading">
+            <m.p className="inn-body" variants={fadeUp}>
+              A test of problem solving under constraints. It requires immediate decision making, rapid product development, and precise execution to build a functional architecture before time runs out.
+            </m.p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          SECTION 4 — BUILDING IN PUBLIC
+      ══════════════════════════════════════════════════════ */}
+      <section className="inn-public">
+        <div className="inn-constrain">
+          <Reveal className="center-align">
+            <m.span className="inn-eyebrow" variants={fadeUp}>Building In Public</m.span>
+            <m.h2 className="inn-section-headline" variants={fadeUp}>
+              Ideas Become Better When Shared.
+            </m.h2>
+          </Reveal>
+
+          <Reveal className="inn-public-grid">
+            <m.div className="inn-public-card" variants={fadeUp}>
+              <div className="inn-public-img-wrap">
                 <a href="https://github.com/bhagavan444" target="_blank" rel="noopener noreferrer">
-                  <img loading="lazy" src={githubImg} alt="GitHub Engineering Journal" />
+                  <img src={githubImg} alt="GitHub Profile" loading="lazy" />
                 </a>
               </div>
-              <div className="platform-info">
-                <h3>Engineering Journal.</h3>
-                <p>A living history of system architecture evolution, public experimentation, and open-source contributions.</p>
-              </div>
+              <h3 className="inn-public-title">GitHub as engineering history.</h3>
             </m.div>
 
-            {/* Right: LinkedIn */}
-            <m.div className="platform-column" variants={artifactReveal}>
-              <div className="platform-device ipad-pro-frame glassmorphism-frame">
-                <div className="glass-glare"></div>
-                <a href="https://www.linkedin.com/in/gsssbhagavan/" target="_blank" rel="noopener noreferrer">
-                  <img loading="lazy" src={linkedInProfileImg} alt="LinkedIn Professional Presence" />
+            <m.div className="inn-public-card" variants={fadeUp}>
+              <div className="inn-public-img-wrap">
+                <a href="https://www.linkedin.com/in/gopalajosyula-siva-satya-sai-bhagavan-1624a027b/" target="_blank" rel="noopener noreferrer">
+                  <img src={linkedInProfileImg} alt="LinkedIn Profile" loading="lazy" />
                 </a>
               </div>
-              <div className="platform-info">
-                <h3>Professional Presence.</h3>
-                <p>Ideas grow through engineering. Impact grows through connection. Building a network around intelligent systems.</p>
-              </div>
+              <h3 className="inn-public-title">LinkedIn as professional growth.</h3>
             </m.div>
-
-          </m.div>
+          </Reveal>
         </div>
       </section>
 
-      {/* 5. TRAINING THE MIND (LeetCode) */}
-      <section className="inn-section inn-alt-bg full-width">
-        <div className="inn-content-constrain">
-          <m.div className="center-align" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            <m.div className="inn-eyebrow" variants={premiumFadeUp}>LeetCode</m.div>
-            <m.h2 className="inn-headline-large" variants={premiumFadeUp}>Learning Through Challenges.</m.h2>
-            <m.p className="inn-body-text" variants={premiumFadeUp} style={{ maxWidth: '800px', margin: '0 auto' }}>
-              Algorithmic problem solving is mental training. It is the rigorous discipline of analytical thinking, reasoning, and system decomposition required to build robust software.
+      {/* ══════════════════════════════════════════════════════
+          SECTION 5 — ALGORITHMIC THINKING
+      ══════════════════════════════════════════════════════ */}
+      <section className="inn-algorithms inn-alt">
+        <div className="inn-constrain">
+          <Reveal className="center-align">
+            <m.span className="inn-eyebrow" variants={fadeUp}>Algorithmic Thinking</m.span>
+            <m.h2 className="inn-section-headline" variants={fadeUp}>
+              Training The Mind.
+            </m.h2>
+          </Reveal>
+
+          <m.div 
+            className="inn-museum-frame inn-museum-frame--narrow"
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-80px" }} 
+            variants={imgReveal}
+          >
+            <a href="https://leetcode.com/u/bhagavan444/" target="_blank" rel="noopener noreferrer">
+              <img src={leetcodeImg} alt="LeetCode Profile" loading="lazy" />
+            </a>
+          </m.div>
+
+          <Reveal className="inn-constrain--reading">
+            <m.p className="inn-body" variants={fadeUp}>
+              Proof of deliberate practice. Training the mind in problem solving, rigorous reasoning, system decomposition, and analytical thinking.
             </m.p>
-          </m.div>
-
-          <m.div className="museum-artifact-presentation" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={artifactReveal}>
-            <div className="premium-floating-frame leetcode-frame">
-              <a href="https://leetcode.com/u/bhagavan444/" target="_blank" rel="noopener noreferrer">
-                <img loading="lazy" src={leetcodeImg} alt="LeetCode Consistency Proof" />
-              </a>
-            </div>
-            <div className="artifact-caption">Proof Of Discipline — Algorithmic Reasoning</div>
-          </m.div>
+          </Reveal>
         </div>
       </section>
 
-      {/* 6. LEARNING LABS */}
-      <section className="inn-section full-width">
-        <div className="inn-content-constrain">
-          <m.div className="center-align" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            <m.h2 className="inn-headline-large" variants={premiumFadeUp}>Every Skill Started<br/>As An Experiment.</m.h2>
-            <m.p className="inn-body-text" variants={premiumFadeUp} style={{ maxWidth: '800px', margin: '0 auto', marginBottom: '80px' }}>
-              Learning Labs: Intense bursts of capability building spanning artificial intelligence to full-stack engineering.
+      {/* ══════════════════════════════════════════════════════
+          SECTION 6 — LEARNING LABS
+      ══════════════════════════════════════════════════════ */}
+      <section className="inn-labs">
+        <div className="inn-constrain">
+          <Reveal className="center-align">
+            <m.span className="inn-eyebrow" variants={fadeUp}>Learning Labs</m.span>
+            <m.h2 className="inn-section-headline" variants={fadeUp}>
+              Every Skill Started As An Experiment.
+            </m.h2>
+          </Reveal>
+
+          <Reveal className="inn-lab-list">
+            {LABS.map((lab, i) => (
+              <m.div key={i} className="inn-lab-card" variants={fadeUp}>
+                <div className="inn-lab-img">
+                  <img src={lab.img} alt={lab.title} loading="lazy" />
+                </div>
+                <h3 className="inn-lab-title">{lab.title}</h3>
+              </m.div>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          SECTION 7 — PROFESSIONAL FOUNDATION
+      ══════════════════════════════════════════════════════ */}
+      <section className="inn-foundation inn-dark">
+        <div className="inn-constrain">
+          <Reveal className="center-align">
+            <m.span className="inn-eyebrow inn-eyebrow--dark" variants={fadeUp}>Professional Foundation</m.span>
+            <m.h2 className="inn-section-headline inn-text-light" variants={fadeUp}>
+              Where Capability Became Confidence.
+            </m.h2>
+          </Reveal>
+
+          <m.div 
+            className="inn-museum-frame inn-museum-frame--dark"
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-80px" }} 
+            variants={imgReveal}
+          >
+            <img src={trainingCert} alt="Ramachandra Special Training Program" loading="lazy" />
+          </m.div>
+
+          <Reveal className="inn-foundation-list center-align">
+            {FOUNDATION.map((item) => (
+              <m.span key={item} className="inn-foundation-item" variants={fadeUp}>{item}</m.span>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          SECTION 8 — WHAT THESE EXPERIENCES CREATED
+      ══════════════════════════════════════════════════════ */}
+      <section className="inn-experiences">
+        <div className="inn-constrain">
+          <Reveal>
+            <m.h2 className="inn-section-headline" variants={fadeUp}>
+              What These Experiences Built.
+            </m.h2>
+          </Reveal>
+          
+          <Reveal className="inn-large-list">
+            {EXPERIENCES.map((exp) => (
+              <m.h3 key={exp} className="inn-large-item" variants={fadeUp}>
+                {exp}
+              </m.h3>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          SECTION 9 — ENGINEERING PRINCIPLES
+      ══════════════════════════════════════════════════════ */}
+      <section className="inn-principles inn-dark">
+        <div className="inn-constrain">
+          <Reveal>
+            <m.span className="inn-eyebrow inn-eyebrow--dark" variants={fadeUp}>Engineering Principles</m.span>
+            <m.h2 className="inn-section-headline inn-text-light" variants={fadeUp}>
+              The Principles That Guide My Work.
+            </m.h2>
+          </Reveal>
+          
+          <Reveal className="inn-large-list">
+            {PRINCIPLES.map((principle) => (
+              <m.h3 key={principle} className="inn-large-item" variants={fadeUp}>
+                {principle}
+              </m.h3>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          SECTION 10 — CURRENT EXPLORATION
+      ══════════════════════════════════════════════════════ */}
+      <section className="inn-explore">
+        <div className="inn-constrain">
+          <Reveal>
+            <m.span className="inn-eyebrow" variants={fadeUp}>Current Exploration</m.span>
+            <m.h2 className="inn-section-headline" variants={fadeUp}>
+              Currently Exploring.
+            </m.h2>
+          </Reveal>
+          
+          <Reveal className="inn-explore-grid">
+            {EXPLORATION.map((topic) => (
+              <m.div key={topic} className="inn-explore-item" variants={fadeUp}>
+                {topic}
+              </m.div>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          SECTION 11 — CLOSING
+      ══════════════════════════════════════════════════════ */}
+      <section className="inn-closing inn-dark" aria-label="Closing statement">
+        <div className="inn-constrain center-align">
+          <Reveal>
+            <m.h2 className="inn-closing-headline" variants={fadeUp}>
+              Every Product Is A Prototype For The Next Idea.
+            </m.h2>
+            <m.p className="inn-closing-sub" variants={fadeUp}>
+              Growth happens through experimentation. Innovation is not a destination. It is a continuous process of learning, building, and improving.
             </m.p>
-          </m.div>
-
-          <m.div className="learning-labs-list" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={premiumFadeUpStagger}>
-            
-            <m.div className="horizontal-learning-lab" variants={artifactReveal}>
-              <div className="lab-visual"><img loading="lazy" src={aimlWorkshopImg} alt="AI Workshop" /></div>
-              <div className="lab-details">
-                <h3>Artificial Intelligence</h3>
-                <p>Neural networks, predictive modeling, and intelligent systems foundation.</p>
-              </div>
-            </m.div>
-
-            <m.div className="horizontal-learning-lab" variants={artifactReveal}>
-              <div className="lab-visual"><img loading="lazy" src={webWorkshopImg} alt="Full Stack Workshop" /></div>
-              <div className="lab-details">
-                <h3>Full Stack Engineering</h3>
-                <p>End-to-end web architecture, APIs, and responsive interface design.</p>
-              </div>
-            </m.div>
-
-            <m.div className="horizontal-learning-lab" variants={artifactReveal}>
-              <div className="lab-visual"><img loading="lazy" src={mobileWorkshopImg} alt="Mobile Workshop" /></div>
-              <div className="lab-details">
-                <h3>Mobile Development</h3>
-                <p>Cross-platform fluid applications bridging logic and touch interactions.</p>
-              </div>
-            </m.div>
-
-            <m.div className="horizontal-learning-lab" variants={artifactReveal}>
-              <div className="lab-visual"><img loading="lazy" src={pythonWorkshopImg} alt="Python Workshop" /></div>
-              <div className="lab-details">
-                <h3>Python Foundations</h3>
-                <p>Data structures, logic algorithms, and functional processing scripts.</p>
-              </div>
-            </m.div>
-
-            <m.div className="horizontal-learning-lab" variants={artifactReveal}>
-              <div className="lab-visual"><img loading="lazy" src={powerWorkshopImg} alt="Power Automate Workshop" /></div>
-              <div className="lab-details">
-                <h3>Power Automate</h3>
-                <p>Enterprise workflow automation and frictionless business logic integration.</p>
-              </div>
-            </m.div>
-
-          </m.div>
-        </div>
-      </section>
-
-      {/* 7. PROFESSIONAL FOUNDATION (Ramachandra Special Training) */}
-      <section className="inn-section inn-dark-environment full-width" style={{ padding: '240px 0' }}>
-        <div className="inn-content-constrain center-align">
-          <m.div className="inn-eyebrow dark-sec" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp}>Ramachandra College Special Training Program</m.div>
-          <m.h2 className="inn-headline-massive dark-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp} style={{ fontSize: 'clamp(50px, 8vw, 100px)' }}>
-            Where Capability Became Confidence.
-          </m.h2>
-          <m.p className="inn-body-text dark-text-sec" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp} style={{ maxWidth: '800px', marginTop: '24px' }}>
-            The definitive bridge between academic learning and professional readiness.
-          </m.p>
-
-          <m.div className="prestigious-artifact-showcase" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={artifactReveal}>
-            <div className="spotlight-effect"></div>
-            <div className="prestigious-frame">
-              <img loading="lazy" src={trainingCert} alt="Ramachandra Special Training Program" />
-            </div>
-          </m.div>
-
-          <m.div className="foundation-stats-grid" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            <m.div className="f-stat" variants={premiumFadeUp}>
-              <div className="f-stat-value">6 Core</div>
-              <div className="f-stat-label">Professional Skills</div>
-            </m.div>
-            <m.div className="f-stat" variants={premiumFadeUp}>
-              <div className="f-stat-value">June 2025</div>
-              <div className="f-stat-label">Awarded</div>
-            </m.div>
-            <m.div className="f-stat" variants={premiumFadeUp}>
-              <div className="f-stat-value">Placement</div>
-              <div className="f-stat-label">Preparation Mastered</div>
-            </m.div>
-          </m.div>
-
-          <m.div className="foundation-tags" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            <m.span variants={premiumFadeUp}>Python Programming</m.span>
-            <m.span variants={premiumFadeUp}>Data Structures & Algorithms</m.span>
-            <m.span variants={premiumFadeUp}>Coding Practice</m.span>
-            <m.span variants={premiumFadeUp}>Aptitude Training</m.span>
-            <m.span variants={premiumFadeUp}>Resume Engineering</m.span>
-            <m.span variants={premiumFadeUp}>Mock Interviews</m.span>
-          </m.div>
-
-        </div>
-      </section>
-
-      {/* 8. THE INNOVATION ENGINE (Ecosystem Visualization) */}
-      <section className="inn-section alt-bg full-width">
-        <div className="inn-content-constrain center-align">
-          <m.h2 className="inn-headline-large" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp}>
-            The Innovation Engine.
-          </m.h2>
-          
-          <m.div className="ecosystem-visualization" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            
-            <m.div className="eco-node" variants={premiumFadeUp}>Workshops</m.div>
-            <m.div className="eco-path" variants={lineDraw}></m.div>
-            
-            <m.div className="eco-node" variants={premiumFadeUp}>Training Programs</m.div>
-            <m.div className="eco-path" variants={lineDraw}></m.div>
-
-            <div className="eco-row">
-              <m.div className="eco-node small" variants={premiumFadeUp}>Hackathons</m.div>
-              <m.div className="eco-node small" variants={premiumFadeUp}>GitHub</m.div>
-              <m.div className="eco-node small" variants={premiumFadeUp}>Problem Solving</m.div>
-            </div>
-            <m.div className="eco-path" variants={lineDraw}></m.div>
-
-            <m.div className="eco-node" variants={premiumFadeUp}>Projects</m.div>
-            <m.div className="eco-path" variants={lineDraw}></m.div>
-
-            <m.div className="eco-node flagship" variants={artifactReveal}>CareerOS</m.div>
-
-          </m.div>
-        </div>
-      </section>
-
-      {/* 9. INNOVATION PRINCIPLES (Manifesto) */}
-      <section className="inn-section full-width manifesto-section">
-        <div className="inn-content-constrain">
-          <m.div className="manifesto-list" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            <m.h2 className="manifesto-statement" variants={premiumFadeUp}>Technology should create opportunity.</m.h2>
-            <m.h2 className="manifesto-statement" variants={premiumFadeUp}>Learning should never stop.</m.h2>
-            <m.h2 className="manifesto-statement" variants={premiumFadeUp}>Curiosity should become action.</m.h2>
-            <m.h2 className="manifesto-statement" variants={premiumFadeUp}>Ideas should become products.</m.h2>
-            <m.h2 className="manifesto-statement" variants={premiumFadeUp}>Systems should solve meaningful problems.</m.h2>
-          </m.div>
-        </div>
-      </section>
-
-      {/* 10. FUTURE EXPERIMENTS */}
-      <section className="inn-section inn-alt-bg full-width">
-        <div className="inn-content-constrain center-align">
-          <m.h2 className="inn-headline-large" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp}>
-            What's Next.
-          </m.h2>
-          
-          <m.div className="future-roadmap" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUpStagger}>
-            <m.div className="future-item" variants={premiumFadeUp}>Agentic AI</m.div>
-            <m.div className="future-item" variants={premiumFadeUp}>CareerOS Evolution</m.div>
-            <m.div className="future-item" variants={premiumFadeUp}>Recruiter Intelligence</m.div>
-            <m.div className="future-item" variants={premiumFadeUp}>Portfolio Intelligence</m.div>
-            <m.div className="future-item" variants={premiumFadeUp}>AI Career Copilot</m.div>
-            <m.div className="future-item" variants={premiumFadeUp}>Multi-Agent Systems</m.div>
-          </m.div>
-        </div>
-      </section>
-
-      {/* 11. THE FUTURE OF INNOVATION */}
-      <section className="inn-section full-width cinematic-future-section">
-        <div className="cinematic-gradient-bg"></div>
-        <div className="inn-content-constrain center-align relative-z">
-          <m.h1 className="inn-headline-massive" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp} style={{ fontSize: 'clamp(50px, 8vw, 120px)' }}>
-            Every Product Is A Prototype<br/>For Something Bigger.
-          </m.h1>
-        </div>
-      </section>
-
-      {/* 12. FINAL SECTION */}
-      <section className="inn-section inn-dark-environment full-width" style={{ minHeight: '100vh', justifyContent: 'center' }}>
-        <div className="inn-content-constrain center-align">
-          <m.h1 className="inn-headline-massive dark-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp}>
-            Innovation Is<br/>Never Finished.
-          </m.h1>
-          <m.p className="inn-subheadline dark-text-sec" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={premiumFadeUp} style={{ marginTop: '40px', maxWidth: '900px', fontSize: 'clamp(24px, 4vw, 36px)', lineHeight: 1.4 }}>
-            The most important breakthroughs are not single moments. They are the result of continuous learning, experimentation, and execution over time.
-          </m.p>
+          </Reveal>
         </div>
       </section>
 

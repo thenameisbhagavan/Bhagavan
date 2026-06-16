@@ -201,22 +201,25 @@ export default function Overview() {
           </m.h2>
           
           <m.div className="capability-grid" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUpStagger}>
-            {/* Devicon Artifacts (Matched to Resume Stack) */}
-            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-react-original"></i></m.div>
-            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-nodejs-plain"></i></m.div>
+            {/* Core Languages */}
             <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-python-plain"></i></m.div>
-            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-tensorflow-original"></i></m.div>
-            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-mongodb-plain"></i></m.div>
-            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-express-original"></i></m.div>
-            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-keras-plain"></i></m.div>
-            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-flask-original"></i></m.div>
-            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-amazonwebservices-plain-wordmark"></i></m.div>
-            <m.div className="devicon-artifact" variants={fadeUp}><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" alt="Scikit-learn" style={{ width: '1em', height: '1em' }} /></m.div>
-            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-git-plain"></i></m.div>
             <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-javascript-plain"></i></m.div>
+            
+            {/* Full Stack Web */}
+            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-react-original"></i></m.div>
+            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-fastapi-plain"></i></m.div>
+            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-flask-original"></i></m.div>
+            
+            {/* Database & Cloud */}
+            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-postgresql-plain"></i></m.div>
+            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-mongodb-plain"></i></m.div>
+            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-amazonwebservices-plain-wordmark"></i></m.div>
+            
+            {/* AI / Machine Learning */}
+            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-pytorch-original"></i></m.div>
+            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-tensorflow-original"></i></m.div>
+            <m.div className="devicon-artifact" variants={fadeUp}><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" alt="Scikit-learn" style={{ width: '1em', height: '1em' }} /></m.div>
             <m.div className="devicon-artifact" variants={fadeUp}><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" alt="Pandas" style={{ width: '1em', height: '1em' }} /></m.div>
-            <m.div className="devicon-artifact" variants={fadeUp}><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg" alt="NumPy" style={{ width: '1em', height: '1em' }} /></m.div>
-            <m.div className="devicon-artifact" variants={fadeUp}><i className="devicon-java-plain"></i></m.div>
           </m.div>
         </div>
       </section>
@@ -259,9 +262,12 @@ export default function Overview() {
           </m.div>
           
           <m.div className="spatial-ui-grid" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            <div className="spatial-frame">
-              <a href="https://github.com/bhagavan444" target="_blank" rel="noopener noreferrer" style={{ cursor: 'pointer', display: 'block' }}>
-                <img loading="lazy" src={githubImg} alt="GitHub Ecosystem" />
+            <div className="spatial-frame" style={{ position: 'relative', height: '100%' }}>
+              <a href="https://github.com/bhagavan444" target="_blank" rel="noopener noreferrer" style={{ cursor: 'pointer', display: 'block', height: '100%' }}>
+                <img loading="lazy" src={githubImg} alt="GitHub Ecosystem" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top left', display: 'block' }} />
+                <div style={{ position: 'absolute', bottom: '32px', left: '24px' }}>
+                  <button className="li-button" style={{ background: '#2da44e' }}>Follow</button>
+                </div>
               </a>
             </div>
             

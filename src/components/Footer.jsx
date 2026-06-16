@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/Footer.css';
 
 const Footer = memo(function Footer() {
   const navigate = useNavigate();
@@ -11,98 +12,86 @@ const Footer = memo(function Footer() {
 
   const columns = [
     {
-      title: "Navigation",
+      title: "Explore",
       links: [
-        { name: "Overview", path: "/" },
-        { name: "Work", path: "/work" },
-        { name: "Experience", path: "/experience" },
-        { name: "Capabilities", path: "/technology" },
-        { name: "Credentials", path: "/credentials" },
-        { name: "Innovation", path: "/innovation" },
-        { name: "Vision", path: "/vision" }
+        { name: "Overview", path: "/overview" },
+        { name: "Projects", path: "/work" },
+        { name: "Journey", path: "/experience" },
+        { name: "Vision", path: "/vision" },
+        { name: "Connect", path: "/connect" }
       ]
     },
     {
-      title: "Projects",
+      title: "Work",
       links: [
-        { name: "CareerOS Intelligence", path: "/work" },
-        { name: "ResumeAI Tooling", path: "/work" },
-        { name: "Heart Intelligence", path: "/work" },
-        { name: "Smart Leave Automation", path: "/work" },
-        { name: "Truth Engine Validation", path: "/work" }
+        { name: "CareerOS", path: "/work" },
+        { name: "ResumeAI", path: "/work" },
+        { name: "Pathora", path: "/work" },
+        { name: "Smart Leave System", path: "/work" },
+        { name: "Research", path: "/innovation" }
       ]
     },
     {
-      title: "Platforms",
+      title: "Capabilities",
       links: [
-        { name: "Frontend Architecture", path: "/technology" },
-        { name: "Backend Architecture", path: "/technology" },
-        { name: "AI & Data Models", path: "/technology" },
-        { name: "Cloud Deployment", path: "/technology" }
+        { name: "AI Engineering", path: "/technology" },
+        { name: "Full Stack Development", path: "/technology" },
+        { name: "Backend Systems", path: "/technology" },
+        { name: "Machine Learning", path: "/technology" },
+        { name: "Cloud & Deployment", path: "/technology" }
       ]
     },
     {
       title: "Profiles",
       links: [
-        { name: "GitHub Repository", url: "https://github.com/bhagavan444", external: true },
-        { name: "LinkedIn Network", url: "https://www.linkedin.com/in/gsssbhagavan/", external: true },
-        { name: "Connect Page", path: "/connect" }
+        { name: "GitHub ↗", url: "https://github.com/bhagavan444", external: true },
+        { name: "LinkedIn ↗", url: "https://www.linkedin.com/in/gsssbhagavan/", external: true },
+        { name: "Resume ↗", path: "/resume" }
       ]
     },
     {
       title: "Contact",
       links: [
-        { name: "g.sivasatysaibhagavan@gmail.com", url: "mailto:g.sivasatysaibhagavan@gmail.com", external: true },
-        { name: "+91 7569205626", url: "tel:+917569205626", external: true },
-        { name: "Gudivada, Andhra Pradesh", path: "/connect" }
+        { name: "Email", url: "mailto:g.sivasatysaibhagavan@gmail.com", external: true },
+        { name: "Phone", url: "tel:+917569205626", external: true },
+        { name: "Location", path: "/connect" }
       ]
     }
   ];
 
   return (
-    <footer style={{ 
-      backgroundColor: '#f5f5f7', 
-      color: '#1d1d1f', 
-      paddingTop: '80px', 
-      paddingBottom: '40px', 
-      borderTop: '1px solid #d2d2d7', 
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif', 
-      fontSize: '12px',
-      WebkitFontSmoothing: 'antialiased'
-    }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 4vw' }}>
+    <footer className="footer-shell">
+      <div className="footer-constrain">
         
-        {/* PREMIUM TOP STATEMENT */}
-        <div style={{ borderBottom: '1px solid #d2d2d7', paddingBottom: '60px', marginBottom: '40px', textAlign: 'left' }}>
-          <h2 style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 700, letterSpacing: '-0.04em', color: '#1d1d1f', margin: '0 0 32px 0' }}>
-            Engineering the future of personal intelligence.
-          </h2>
-          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-            <button onClick={() => window.open('/resume.pdf', '_blank')} style={{ padding: '16px 32px', background: '#1d1d1f', color: '#fff', borderRadius: '100px', fontSize: '15px', fontWeight: 500, letterSpacing: '-0.01em', border: 'none', cursor: 'pointer', transition: 'transform 0.3s ease' }} onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}>
-              Download Official Resume
-            </button>
-            <button onClick={() => handleNavigation('/connect')} style={{ padding: '16px 32px', background: 'rgba(0,0,0,0.05)', color: '#1d1d1f', borderRadius: '100px', fontSize: '15px', fontWeight: 500, letterSpacing: '-0.01em', border: 'none', cursor: 'pointer', transition: 'background 0.3s ease' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.1)'} onMouseOut={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.05)'}>
-              Initiate Contact
-            </button>
-          </div>
+        {/* 1. BREADCRUMB */}
+        <div className="footer-breadcrumb">
+          <span>Bhagavan</span> &gt; Engineering Human Potential
         </div>
 
-        {/* APPLE-STYLE COLUMNS */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '40px', paddingBottom: '40px' }}>
+        {/* 2. NAVIGATION GRID */}
+        <div className="footer-grid">
           {columns.map((col, idx) => (
             <div key={idx}>
-              <h4 style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '-0.01em', color: '#1d1d1f', margin: '0 0 16px 0' }}>{col.title}</h4>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <h4 className="footer-column-title">{col.title}</h4>
+              <ul className="footer-link-list">
                 {col.links.map((link, i) => (
                   <li key={i}>
                     {link.external ? (
-                      <a href={link.url} target="_blank" rel="noopener noreferrer" style={{ color: '#515154', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s', letterSpacing: '-0.01em' }} onMouseOver={(e) => e.target.style.color = '#1d1d1f'} onMouseOut={(e) => e.target.style.color = '#515154'}>
+                      <a 
+                        href={link.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="footer-link"
+                      >
                         {link.name}
                       </a>
                     ) : (
-                      <span onClick={() => handleNavigation(link.path)} style={{ color: '#515154', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s', letterSpacing: '-0.01em' }} onMouseOver={(e) => e.target.style.color = '#1d1d1f'} onMouseOut={(e) => e.target.style.color = '#515154'}>
+                      <button 
+                        onClick={() => handleNavigation(link.path)} 
+                        className="footer-link"
+                      >
                         {link.name}
-                      </span>
+                      </button>
                     )}
                   </li>
                 ))}
@@ -111,20 +100,15 @@ const Footer = memo(function Footer() {
           ))}
         </div>
 
-        {/* BOTTOM SECTION */}
-        <div style={{ borderTop: '1px solid #d2d2d7', paddingTop: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
-            <div style={{ color: '#86868b', letterSpacing: '-0.01em' }}>
-              <span style={{ fontWeight: 600, color: '#1d1d1f' }}>Bhagavan</span>
+        {/* 3 & 4. LEGAL AREA & SIGNATURE */}
+        <div className="footer-legal-area">
+          <div className="footer-legal-row">
+            <div>
+              Copyright © {new Date().getFullYear()} Bhagavan. All rights reserved.
             </div>
-            <div style={{ display: 'flex', gap: '20px', color: '#86868b', flexWrap: 'wrap', letterSpacing: '-0.01em' }}>
-              <span>Systems Engineer</span>
-              <span style={{ borderLeft: '1px solid #d2d2d7', paddingLeft: '20px' }}>Artificial Intelligence</span>
-              <span style={{ borderLeft: '1px solid #d2d2d7', paddingLeft: '20px' }}>Full Stack Architecture</span>
+            <div className="footer-signature">
+              Built with curiosity, engineering, and continuous learning.
             </div>
-          </div>
-          <div style={{ color: '#86868b', paddingTop: '8px', letterSpacing: '-0.01em' }}>
-            Copyright © {new Date().getFullYear()} Bhagavan. All rights reserved.
           </div>
         </div>
 

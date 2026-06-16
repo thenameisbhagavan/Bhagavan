@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { FileText } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { m, AnimatePresence } from "framer-motion";
 
@@ -228,31 +229,55 @@ const CSS = `
     flex-shrink: 0;
   }
 
-  /* ── Resume pill ── */
   .nav-resume-btn {
-    font-size: 11.5px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    color: #fff;
-    background: #1d1d1f;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 100px;
-    cursor: pointer;
-    transition: opacity 0.2s ease, background 0.2s ease;
-    white-space: nowrap;
-    text-decoration: none;
+    position: relative;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    cursor: pointer;
+    color: #1d1d1f;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
     outline: none;
+    flex-shrink: 0;
   }
   .nav-resume-btn:hover {
-    background: #000;
-    opacity: 0.85;
+    opacity: 1;
   }
   .nav-resume-btn:focus-visible {
-    outline: 2px solid rgba(0,102,204,0.5);
+    outline: 2px solid rgba(0, 102, 204, 0.5);
     outline-offset: 2px;
+    border-radius: 4px;
+  }
+  /* Tooltip */
+  .nav-resume-btn::after {
+    content: 'Resume';
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: #1d1d1f;
+    color: #ffffff;
+    font-family: -apple-system, 'SF Pro Text', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    padding: 5px 10px;
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .nav-resume-btn:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 
   /* ── Mobile toggle ── */
@@ -792,8 +817,9 @@ export default function Navbar() {
             <button
               className="nav-resume-btn"
               onClick={() => go("/resume")}
+              aria-label="Resume"
             >
-              Resume
+              <FileText size={18} strokeWidth={1.75} color="#1d1d1f" />
             </button>
 
             {/* Mobile toggle */}
