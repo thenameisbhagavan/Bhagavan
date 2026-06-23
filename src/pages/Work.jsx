@@ -4,7 +4,6 @@ import "../styles/Work.css";
 
 // ─── Images ───────────────────────────────────────────────────────────────────
 import careerOSImg   from "../assets/careeros-new.jpg";
-import resumeImg     from "../assets/resume.jpg";
 import chatImg       from "../assets/aurabot-new.png";
 import heartImg      from "../assets/heart-new.png";
 import leaveImg      from "../assets/leave.jpg";
@@ -69,41 +68,32 @@ const HOW_STEPS = [
 
 // ─── Secondary projects (real data — no exaggeration) ─────────────────────────
 const SECONDARY_PROJECTS = [
- {
-  name: "ResumeAI",
-  eyebrow: "Career Technology",
-  year: "2025",
-  img: resumeImg,
-  desc: "An intelligent resume platform that helps candidates create professional resumes, evaluate ATS compatibility, and improve job application performance through real-time analysis and personalized recommendations.",
-  role: "Founder & Full Stack Developer",
-  tech: [
-    "React",
-    "Node.js",
-    "Express",
-    "MongoDB",
-    "JWT",
-    "Google OAuth",
-    "REST APIs"
-  ],
-  learning: "Architected a complete full-stack application, implementing secure authentication, scalable API design, resume intelligence workflows, and data-driven user experiences.",
-  github: "https://github.com/bhagavan444/Resumebuilderwebapp",
-}, 
 {
-  name: "AuraBot",
-  eyebrow: "Artificial Intelligence",
+  name: "AuraOS",
+  eyebrow: "Personal Intelligence OS",
   year: "2025",
   img: chatImg,
-  desc: "AuraBot reimagines human–AI interaction through a seamless conversational experience powered by advanced language models. Designed with a focus on intelligence, security, and responsiveness, it transforms complex AI capabilities into natural, intuitive conversations that feel effortless and engaging.",
+  desc: "AuraOS is an AI-powered Personal Intelligence Operating System designed to transform conversations, documents, knowledge, and memory into a unified intelligence layer. Unlike traditional chatbots that respond and forget, AuraOS continuously builds contextual understanding through persistent memory, knowledge management, retrieval-augmented intelligence, and reasoning workflows. The platform enables users to organize information, interact with intelligent knowledge systems, and develop a personalized AI companion that evolves over time.",
   role: "Founder & Product Engineer",
   tech: [
     "React",
     "Flask",
-    "Python",
-    "Gemini API",
-    "REST APIs"
+    "MongoDB",
+    "Vector Search",
+    "Google Gemini"
   ],
-  learning: "Designed and engineered a production-oriented AI application, gaining expertise in conversational AI systems, secure model integration, scalable backend architecture, API orchestration, and user-centric experience design.",
-  github: "https://github.com/bhagavan444/chatbotwebapp",
+  features: [
+    "Persistent Memory",
+    "Document Understanding",
+    "Knowledge Graph",
+    "Conversational Reasoning",
+    "Workspace Integration",
+    "Privacy-First Layer",
+    "Personalized Retrieval",
+    "Modern UX"
+  ],
+  learning: "AuraOS represents a vision for the next generation of computing, where intelligence becomes a persistent layer that learns, remembers, understands, and grows alongside its user.",
+  github: "https://github.com/bhagavan444/auraos",
 },
   {
   name: "Health Prediction",
@@ -264,7 +254,7 @@ export default function Work() {
           variants={imgReveal}
         >
           <a
-            href="https://github.com/bhagavan444/Career-Path-Recommendation"
+            href="https://github.com/bhagavan444/careeros"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="CareerOS on GitHub"
@@ -382,6 +372,13 @@ export default function Work() {
                   <span className="work-detail-label">Stack</span>
                   <span className="work-detail-value">{project.tech.join(" · ")}</span>
                 </m.div>
+
+                {project.features && (
+                  <m.div className="work-detail-row" variants={fadeUp}>
+                    <span className="work-detail-label">Features</span>
+                    <span className="work-detail-value">{project.features.join(" · ")}</span>
+                  </m.div>
+                )}
 
                 <m.div className="work-detail-row" variants={fadeUp}>
                   <span className="work-detail-label">Role</span>
