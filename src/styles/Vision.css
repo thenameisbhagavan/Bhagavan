@@ -1,337 +1,260 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   APPLE HIG 2026 — VISION
-   Editorial storytelling. Credible. Personal. Timeless.
-   Typography hierarchy carries the page. Whitespace is the primary element.
-   ═══════════════════════════════════════════════════════════════════════════ */
+/* APPLE WWDC 2026 VISION PAGE REDESIGN */
 
-/* ─── Page shell ─────────────────────────────────────────────────────────── */
 .vision-page {
-  background:              #ffffff;
-  color:                   #1d1d1f;
-  -webkit-font-smoothing:  antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering:          optimizeLegibility;
-  overflow-x:              hidden;
+  background-color: #ffffff;
+  color: #1d1d1f;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ─── Layout constrain ───────────────────────────────────────────────────── */
 .vis-constrain {
-  max-width: 1020px;
-  margin:    0 auto;
-  padding:   0 48px;
-}
-
-.vis-constrain--reading {
-  max-width: 800px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5vw;
 }
 
 .center-align {
   text-align: center;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   SHARED SECTION STYLES
-   ═══════════════════════════════════════════════════════════════════════════ */
-.vis-section-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(34px, 4.5vw, 52px);
-  font-weight:    700;
-  letter-spacing: -0.026em;
-  line-height:    1.08;
-  color:          #1d1d1f;
-  margin:         0 0 44px;
-}
-
-.vis-body {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    19px;
-  font-weight:  400;
-  line-height:  1.68;
-  color:        #86868b;
-  margin:       0 0 24px;
-}
-
-.vis-body:last-child {
-  margin-bottom: 0;
-}
-
-.vis-eyebrow {
-  display:        block;
-  font-family:    var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:      11px;
-  font-weight:    600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color:          #86868b;
-  margin-bottom:  16px;
-}
-
-.vis-dark {
-  background: #1d1d1f;
-  color:      #f5f5f7;
-}
-
-.vis-eyebrow--dark {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   1. HERO
-   ═══════════════════════════════════════════════════════════════════════════ */
-.vis-hero {
-  padding:    24vh 48px 16vh;
-  max-width:  1020px;
-  margin:     0 auto;
-  text-align: center;
-}
-
-.vis-hero-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(52px, 8.5vw, 108px);
-  font-weight:    700;
-  letter-spacing: -0.04em;
-  line-height:    1.02;
-  color:          #1d1d1f;
-  margin:         0 0 28px;
-}
-
-.vis-hero-sub {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:   clamp(18px, 2.4vw, 23px);
-  font-weight: 400;
-  line-height: 1.5;
-  color:       #86868b;
-  max-width:   680px;
-  margin:      0 auto;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   2. THE OBSERVATION
-   ═══════════════════════════════════════════════════════════════════════════ */
-.vis-observation {
-  padding:    160px 0;
-  background: #f5f5f7;
-}
-
-.vis-editorial-stack {
-  display:        flex;
-  flex-direction: column;
-  gap:            16px;
-}
-
-.vis-editorial-large {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(40px, 6vw, 80px);
-  font-weight:    700;
-  letter-spacing: -0.03em;
-  line-height:    1.08;
-  color:          #1d1d1f;
-  margin:         0;
-}
-
-.vis-text-muted {
+.text-muted {
   color: #86868b;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   3 & 4. THE OPPORTUNITY / WHY I BUILD
-   ═══════════════════════════════════════════════════════════════════════════ */
-.vis-opportunity,
-.vis-why {
-  padding:    140px 0;
+/* =========================================
+   HERO
+   ========================================= */
+.vis-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  will-change: transform, opacity;
+  transform-origin: center top;
+}
+
+.vis-hero-headline {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(60px, 12vw, 160px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #1d1d1f;
+  margin-bottom: 24px;
+}
+
+.vis-hero-sub {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: clamp(20px, 3.5vw, 32px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #86868b;
+}
+
+/* =========================================
+   THE OBSERVATION
+   ========================================= */
+.vis-observation {
+  padding: 30vh 0;
+  background: #000000;
+  color: #ffffff;
+}
+
+.vis-editorial-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 15vh;
+}
+
+.vis-statement {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(36px, 7vw, 90px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+/* =========================================
+   THE OPPORTUNITY
+   ========================================= */
+.vis-opportunity {
+  padding: 30vh 0;
   background: #ffffff;
 }
 
-.vis-opportunity {
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
+.vis-statement-massive {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(50px, 10vw, 140px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 2vh;
+}
+.vis-statement-massive:last-child {
+  margin-bottom: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   5. CAREEROS
-   ═══════════════════════════════════════════════════════════════════════════ */
-.vis-careeros {
-  padding:    160px 0;
+/* =========================================
+   WHY I BUILD
+   ========================================= */
+.vis-why {
+  padding: 30vh 0;
   background: #f5f5f7;
 }
 
-.vis-careeros-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(60px, 10vw, 140px);
-  font-weight:    700;
-  letter-spacing: -0.04em;
-  line-height:    1;
-  color:          #1d1d1f;
-  margin:         0 0 16px;
-}
-
-.vis-careeros-sub {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:   clamp(18px, 2.4vw, 24px);
+.vis-why-text {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(28px, 5vw, 64px);
   font-weight: 500;
-  color:       #86868b;
-  margin:      0 0 80px;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   6. ENGINEERING PRINCIPLES
-   ═══════════════════════════════════════════════════════════════════════════ */
-.vis-principles {
-  padding:    160px 0;
-}
-
-.vis-principle-list {
-  display:        flex;
-  flex-direction: column;
-  margin-top:     64px;
-}
-
-.vis-principle-item {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(32px, 5.5vw, 68px);
-  font-weight:    700;
   letter-spacing: -0.02em;
-  line-height:    1.08;
-  color:          #f5f5f7;
-  padding:        32px 0;
-  border-bottom:  0.5px solid rgba(255, 255, 255, 0.08);
-  margin:         0;
+  line-height: 1.3;
+  color: #1d1d1f;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.vis-principle-item:first-child {
-  border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+/* =========================================
+   CAREEROS PROOF
+   ========================================= */
+.vis-proof {
+  padding: 20vh 0 30vh 0;
+  background: #f5f5f7;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   7. THE ROAD AHEAD
-   ═══════════════════════════════════════════════════════════════════════════ */
-.vis-road {
-  padding:    160px 0;
+.vis-proof-image-wrapper {
+  max-width: 1200px;
+  margin: 0 auto 10vh auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.15);
+}
+
+.vis-proof-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.vis-proof-caption {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #86868b;
+}
+
+/* =========================================
+   ENGINEERING PRINCIPLES
+   ========================================= */
+.vis-principles {
+  padding: 30vh 0;
   background: #ffffff;
 }
 
-.vis-road-sequence {
-  display:        flex;
+.principle-screen {
+  min-height: 80vh;
+  display: flex;
   flex-direction: column;
-  align-items:    center;
-  margin-top:     80px;
+  justify-content: center;
+  gap: 15vh;
+  margin-bottom: 30vh;
+}
+.principle-screen:last-child {
+  margin-bottom: 0;
 }
 
-.vis-road-step {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(36px, 6vw, 72px);
-  font-weight:    700;
+.vis-principle {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(36px, 7vw, 90px);
+  font-weight: 600;
   letter-spacing: -0.03em;
-  color:          #1d1d1f;
-  margin:         0;
+  color: #1d1d1f;
 }
 
-/* The last step is the ultimate goal, giving it a slight subtle emphasis */
-.vis-road-step:last-of-type {
-  background:              linear-gradient(90deg, #1d1d1f, #86868b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.vis-road-arrow {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:   32px;
-  color:       #d2d2d7;
-  margin:      24px 0;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   8. CLOSING STATEMENT
-   ═══════════════════════════════════════════════════════════════════════════ */
-.vis-closing {
-  min-height:  90vh;
-  display:     flex;
-  align-items: center;
-  padding:     120px 0;
-}
-
-.vis-closing-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(48px, 8vw, 100px);
-  font-weight:    700;
+.principle-climax {
+  font-size: clamp(50px, 9vw, 120px);
+  font-weight: 700;
   letter-spacing: -0.04em;
-  line-height:    1.02;
-  color:          #f5f5f7;
-  margin:         0 auto 44px;
 }
 
-.vis-closing-sub {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    clamp(18px, 2.4vw, 26px);
-  font-weight:  400;
-  line-height:  1.6;
-  color:        rgba(255, 255, 255, 0.48);
-  max-width:    760px;
-  margin:       0 auto;
+/* =========================================
+   THE ROAD AHEAD
+   ========================================= */
+.vis-road {
+  padding: 30vh 0;
+  background: #f5f5f7;
 }
 
-.vis-cta-link {
-  display:         inline-flex;
-  align-items:     center;
-  font-family:     var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:       20px;
-  font-weight:     500;
-  color:           #f5f5f7;
+.vis-evolution-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12vh;
+}
+
+.vis-evolution-node {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(40px, 8vw, 120px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #1d1d1f;
+}
+
+.vis-evolution-arrow {
+  font-size: clamp(30px, 5vw, 60px);
+  color: #86868b;
+}
+
+/* =========================================
+   CLOSING
+   ========================================= */
+.vis-closing {
+  padding: 40vh 0 20vh 0;
+  background: #000000;
+  color: #ffffff;
+}
+
+.vis-closing-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 25vh;
+}
+
+.vis-closing-thought {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(32px, 6vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.vis-closing-finale {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(40px, 8vw, 100px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.vis-closing-cta {
+  margin-top: 10vh;
+}
+
+.vis-connect-link {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #86868b;
   text-decoration: none;
-  border-bottom:   1px solid rgba(255, 255, 255, 0.3);
-  padding-bottom:  4px;
-  transition:      opacity 0.2s ease, border-color 0.2s ease;
+  transition: color 0.4s ease;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
 }
 
-.vis-cta-link span {
-  margin-left: 8px;
-  font-size:   18px;
-  opacity:     0.5;
-}
-
-.vis-cta-link:hover {
-  border-color: rgba(255, 255, 255, 0.8);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ── Mobile ── */
-@media (max-width: 600px) {
-  .vis-hero {
-    padding: 18vh 24px 12vh;
-  }
-
-  .vis-constrain {
-    padding: 0 24px;
-  }
-
-  .vis-observation,
-  .vis-opportunity,
-  .vis-why,
-  .vis-careeros,
-  .vis-principles,
-  .vis-road {
-    padding: 80px 0;
-  }
-
-  .vis-section-headline {
-    font-size:     clamp(28px, 7vw, 40px);
-    margin-bottom: 32px;
-  }
-
-  .vis-road-arrow {
-    margin: 16px 0;
-    font-size: 24px;
-  }
-
-  .vis-principle-item {
-    font-size: clamp(26px, 7.5vw, 40px);
-    padding:   24px 0;
-  }
-
-  .vis-closing {
-    padding:    80px 0;
-    min-height: 75vh;
-  }
+.vis-connect-link:hover {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
 }

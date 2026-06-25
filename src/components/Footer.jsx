@@ -10,105 +10,104 @@ const Footer = memo(function Footer() {
     window.scrollTo(0, 0);
   };
 
-  const columns = [
-    {
-      title: "Explore",
-      links: [
-        { name: "Overview", path: "/overview" },
-        { name: "Projects", path: "/work" },
-        { name: "Journey", path: "/experience" },
-        { name: "Vision", path: "/vision" },
-        { name: "Connect", path: "/connect" }
-      ]
-    },
-    {
-      title: "Work",
-      links: [
-        { name: "CareerOS", path: "/work" },
-        { name: "ResumeAI", path: "/work" },
-        { name: "Pathora", path: "/work" },
-        { name: "Smart Leave System", path: "/work" },
-        { name: "Research", path: "/innovation" }
-      ]
-    },
-    {
-      title: "Capabilities",
-      links: [
-        { name: "AI Engineering", path: "/technology" },
-        { name: "Full Stack Development", path: "/technology" },
-        { name: "Backend Systems", path: "/technology" },
-        { name: "Machine Learning", path: "/technology" },
-        { name: "Cloud & Deployment", path: "/technology" }
-      ]
-    },
-    {
-      title: "Profiles",
-      links: [
-        { name: "GitHub ↗", url: "https://github.com/bhagavan444", external: true },
-        { name: "LinkedIn ↗", url: "https://www.linkedin.com/in/gsssbhagavan/", external: true },
-        { name: "Resume ↗", path: "/resume" }
-      ]
-    },
-    {
-      title: "Contact",
-      links: [
-        { name: "Email", url: "mailto:g.sivasatysaibhagavan@gmail.com", external: true },
-        { name: "Phone", url: "tel:+917569205626", external: true },
-        { name: "Location", path: "/connect" }
-      ]
-    }
+  const navLinks = [
+    { name: "Explore", path: "/overview" },
+    { name: "Work", path: "/work" },
+    { name: "Capabilities", path: "/technology-ecosystem" },
+    { name: "Connect", path: "/connect" },
+    { name: "Resume", path: "/resume" }
+  ];
+
+  const presenceLinks = [
+    { name: "GitHub", desc: "Engineering in public.", url: "https://github.com/bhagavan444", external: true },
+    { name: "LinkedIn", desc: "Professional collaboration.", url: "https://www.linkedin.com/in/gsssbhagavan/", external: true },
+    { name: "Email", desc: "Start a conversation.", url: "mailto:g.sivasatysaibhagavan@gmail.com", external: true },
+    { name: "Resume", desc: "The complete journey.", path: "/resume", external: false }
   ];
 
   return (
     <footer className="footer-shell">
       <div className="footer-constrain">
         
-        {/* 1. BREADCRUMB */}
-        <div className="footer-breadcrumb">
-          <span>Bhagavan</span> &gt; Engineering Human Potential
+        {/* ══════════════════════════════════════════════════════
+            ZONE 1 — CLOSING STATEMENT
+        ══════════════════════════════════════════════════════ */}
+        <div className="footer-statement-zone">
+          <h2 className="footer-statement">
+            Engineering Human Potential.<br/>
+            <span className="text-muted">
+              Technology should create opportunity.<br/>
+              Not complexity.
+            </span>
+          </h2>
         </div>
 
-        {/* 2. NAVIGATION GRID */}
-        <div className="footer-grid">
-          {columns.map((col, idx) => (
-            <div key={idx}>
-              <h4 className="footer-column-title">{col.title}</h4>
-              <ul className="footer-link-list">
-                {col.links.map((link, i) => (
-                  <li key={i}>
-                    {link.external ? (
-                      <a 
-                        href={link.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="footer-link"
-                      >
-                        {link.name}
-                      </a>
-                    ) : (
-                      <button 
-                        onClick={() => handleNavigation(link.path)} 
-                        className="footer-link"
-                      >
-                        {link.name}
-                      </button>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div className="footer-divider"></div>
+
+        <div className="footer-middle-zones">
+          {/* ══════════════════════════════════════════════════════
+              ZONE 2 — NAVIGATION
+          ══════════════════════════════════════════════════════ */}
+          <div className="footer-nav-zone">
+            <h4 className="footer-zone-title">Navigate</h4>
+            <ul className="footer-nav-list">
+              {navLinks.map((link, i) => (
+                <li key={i}>
+                  <button 
+                    onClick={() => handleNavigation(link.path)} 
+                    className="footer-nav-link"
+                  >
+                    {link.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ══════════════════════════════════════════════════════
+              ZONE 3 — PRESENCE
+          ══════════════════════════════════════════════════════ */}
+          <div className="footer-presence-zone">
+            <h4 className="footer-zone-title">Presence</h4>
+            <ul className="footer-presence-list">
+              {presenceLinks.map((link, i) => (
+                <li key={i} className="presence-item">
+                  {link.external ? (
+                    <a 
+                      href={link.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="footer-presence-link"
+                    >
+                      <span className="presence-name">{link.name} ↗</span>
+                      <span className="presence-desc">{link.desc}</span>
+                    </a>
+                  ) : (
+                    <button 
+                      onClick={() => handleNavigation(link.path)} 
+                      className="footer-presence-link"
+                    >
+                      <span className="presence-name">{link.name}</span>
+                      <span className="presence-desc">{link.desc}</span>
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* 3 & 4. LEGAL AREA & SIGNATURE */}
-        <div className="footer-legal-area">
-          <div className="footer-legal-row">
-            <div>
-              Copyright © {new Date().getFullYear()} Bhagavan. All rights reserved.
-            </div>
-            <div className="footer-signature">
-              Built with curiosity, engineering, and continuous learning.
-            </div>
+        <div className="footer-divider"></div>
+
+        {/* ══════════════════════════════════════════════════════
+            ZONE 4 — SIGNATURE
+        ══════════════════════════════════════════════════════ */}
+        <div className="footer-signature-zone">
+          <div className="footer-signature">
+            Engineering products that create opportunity.
+          </div>
+          <div className="footer-copyright">
+            Copyright © {new Date().getFullYear()} Siva Bhagavan. All rights reserved.
           </div>
         </div>
 

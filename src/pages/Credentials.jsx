@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { m } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { m, useScroll, useTransform } from 'framer-motion';
 import '../styles/Credentials.css';
 
 // ─── 26 Core Certificate Assets ────────────────────────────────────────────────
@@ -33,21 +33,12 @@ import awsCloudCert from '../assets/cert-aws-cloud.png';
 // ─── Special Training Program ─────────────────────────────────────────────────
 import trainingCert from '../assets/training.png';
 
-const ALL_CERTS = [
-  gfgFsCert, gfgJavaCert, gfgPythonCert, geminiStudentCert, geminiFacultyCert,
-  geminiStudentUniCert, infosysAzureCert, infosysDsCert, ibmAiCert, gcpGenAiCert,
-  gcpIntroGenAiCert, infosysMlopsCert, infosysServiceNowCert, infosysJsCert,
-  infosysJavaCert, infosysDjangoCert, infosysMasterPythonCert, infosysDevopsCert,
-  ibmLlmCert, ibmPromptingCert, infosysPythonDsCert, infosysMlPythonCert,
-  infosysIntroDsCert, ucscCCert, infosysAgileCert, awsCloudCert
-];
-
 // ─── Motion ───────────────────────────────────────────────────────────────────
 const EASE = [0.16, 1, 0.3, 1];
 
 const fadeUp = {
-  hidden:  { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
+  hidden:  { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: EASE } },
 };
 
 const stagger = {
@@ -56,8 +47,8 @@ const stagger = {
 };
 
 const imgReveal = {
-  hidden:  { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.1, ease: EASE } },
+  hidden:  { opacity: 0, scale: 0.96 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 1.4, ease: EASE } },
 };
 
 // ─── Reveal helper ────────────────────────────────────────────────────────────
@@ -67,7 +58,7 @@ function Reveal({ children, className }) {
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-100px" }}
       variants={stagger}
     >
       {children}
@@ -75,21 +66,78 @@ function Reveal({ children, className }) {
   );
 }
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-const CAPABILITIES = [
-  "Artificial Intelligence",
-  "Machine Learning",
-  "Cloud Computing",
-  "Full Stack Engineering",
-  "Backend Systems",
-  "Software Architecture",
-  "Problem Solving",
-  "Technical Communication",
-  "Career Preparation"
+// ─── Data Groupings for Engineering Archive ───────────────────────────────────
+const ARCHIVE = [
+  {
+    category: "Artificial Intelligence & Data",
+    certs: [
+      { img: gcpGenAiCert, label: "GCP Generative AI" },
+      { img: gcpIntroGenAiCert, label: "GCP Gen AI Introduction" },
+      { img: ibmAiCert, label: "IBM Artificial Intelligence" },
+      { img: ibmLlmCert, label: "IBM Large Language Models" },
+      { img: ibmPromptingCert, label: "IBM Prompt Engineering" },
+      { img: geminiFacultyCert, label: "Gemini Academy Faculty" },
+      { img: geminiStudentCert, label: "Gemini Academy Student" },
+      { img: geminiStudentUniCert, label: "Gemini Academy University" },
+      { img: infosysDsCert, label: "Infosys Data Science" },
+      { img: infosysPythonDsCert, label: "Infosys Python Data Science" },
+      { img: infosysIntroDsCert, label: "Infosys Intro to Data Science" },
+      { img: infosysMlPythonCert, label: "Infosys ML with Python" },
+      { img: infosysMlopsCert, label: "Infosys MLOps" }
+    ]
+  },
+  {
+    category: "Cloud & Infrastructure",
+    certs: [
+      { img: awsCloudCert, label: "AWS Cloud Foundations" },
+      { img: infosysAzureCert, label: "Infosys Azure Cloud" },
+      { img: infosysDevopsCert, label: "Infosys DevOps" }
+    ]
+  },
+  {
+    category: "Software Engineering",
+    certs: [
+      { img: gfgFsCert, label: "GeeksforGeeks Full Stack" },
+      { img: infosysDjangoCert, label: "Infosys Django Web Dev" },
+      { img: infosysServiceNowCert, label: "Infosys ServiceNow" }
+    ]
+  },
+  {
+    category: "Programming Mastery",
+    certs: [
+      { img: gfgJavaCert, label: "GeeksforGeeks Java" },
+      { img: infosysJavaCert, label: "Infosys Java Foundations" },
+      { img: gfgPythonCert, label: "GeeksforGeeks Python" },
+      { img: infosysMasterPythonCert, label: "Infosys Master Python" },
+      { img: infosysJsCert, label: "Infosys JavaScript" },
+      { img: ucscCCert, label: "UCSC C for Everyone" }
+    ]
+  },
+  {
+    category: "Professional Development",
+    certs: [
+      { img: infosysAgileCert, label: "Infosys Agile Methodology" }
+    ]
+  }
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Credentials() {
+  const { scrollY } = useScroll();
+  const heroScale = useTransform(scrollY, [0, 800], [1, 0.95]);
+  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
+  const heroY = useTransform(scrollY, [0, 800], [0, 100]);
+
+  // Foundation Sequence
+  const foundRef = useRef(null);
+  const { scrollYProgress: foundProgress } = useScroll({ target: foundRef, offset: ["start start", "end end"] });
+  const f1 = useTransform(foundProgress, [0, 0.1, 0.2], [1, 1, 0]);
+  const f2 = useTransform(foundProgress, [0.15, 0.25, 0.35], [0, 1, 0]);
+  const f3 = useTransform(foundProgress, [0.3, 0.4, 0.5], [0, 1, 0]);
+  const f4 = useTransform(foundProgress, [0.45, 0.55, 0.65], [0, 1, 0]);
+  const f5 = useTransform(foundProgress, [0.6, 0.7, 0.8], [0, 1, 0]);
+  const f6 = useTransform(foundProgress, [0.75, 0.85, 1], [0, 1, 1]); // Shows the final Cert
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -98,353 +146,240 @@ export default function Credentials() {
     <div className="cred-page">
       
       {/* ══════════════════════════════════════════════════════
-          SECTION 1 — HERO
+          HERO
       ══════════════════════════════════════════════════════ */}
-      <section className="cred-hero" aria-label="Credentials Hero">
-       <m.h1
-className="cred-hero-headline"
-initial={{ opacity: 0, y: 40 }}
-animate={{ opacity: 1, y: 0 }}
-transition={{ duration: 1.1, ease: EASE }}
+      <m.section className="cred-hero" style={{ scale: heroScale, opacity: heroOpacity, y: heroY }}>
+        <div className="cred-constrain center-align">
+          <m.h1 className="cred-hero-headline" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: EASE }}>
+            Knowledge.<br/><span className="text-muted">Applied.</span>
+          </m.h1>
+        </div>
+      </m.section>
 
->
-
-Knowledge.
-</m.h1>
-
-<m.h1
-className="cred-hero-headline cred-text-muted"
-initial={{ opacity: 0, y: 40 }}
-animate={{ opacity: 1, y: 0 }}
-transition={{ duration: 1.1, delay: 0.05, ease: EASE }}
-
->
-
-Applied.
-</m.h1>
-
-<m.p
-className="cred-hero-sub"
-initial={{ opacity: 0, y: 24 }}
-animate={{ opacity: 1, y: 0 }}
-transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
-
->
-
-A collection of certifications, learning experiences, and technical exploration that continue to shape the way products are designed, built, and improved.
-</m.p>
-
+      {/* ══════════════════════════════════════════════════════
+          FOUNDATION SEQUENCE (Sticky)
+      ══════════════════════════════════════════════════════ */}
+      <section ref={foundRef} className="cred-foundation-container">
+        <div className="cred-foundation-sticky">
+          <m.h2 className="foundation-word" style={{ opacity: f1 }}>Learning.</m.h2>
+          <m.h2 className="foundation-word" style={{ opacity: f2 }}>Practice.</m.h2>
+          <m.h2 className="foundation-word" style={{ opacity: f3 }}>Discipline.</m.h2>
+          <m.h2 className="foundation-word" style={{ opacity: f4 }}>Capability.</m.h2>
+          <m.h2 className="foundation-word" style={{ opacity: f5 }}>Engineering.</m.h2>
+          <m.div className="foundation-artifact" style={{ opacity: f6 }}>
+            <div className="cred-museum-frame massive-artifact">
+              <img src={trainingCert} alt="Comprehensive Engineering Training" loading="lazy" />
+            </div>
+            <div className="artifact-caption">Comprehensive Professional Foundation</div>
+          </m.div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 2 — PROFESSIONAL FOUNDATION
+          AI CHAPTER
       ══════════════════════════════════════════════════════ */}
-      <section className="cred-foundation">
+      <section className="cred-chapter theme-ai">
         <div className="cred-constrain">
-          <Reveal className="center-align">
-            <m.span className="cred-eyebrow" variants={fadeUp}>Professional Foundation</m.span>
-            <m.h2 className="cred-section-headline" variants={fadeUp}>
-              Where Learning Became Capability.
+          <div className="chapter-editorial">
+            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Intelligence isn't built<br/>by models alone.<br/><br/>It is built<br/>through understanding.
             </m.h2>
-          </Reveal>
-
-          <m.div 
-            className="cred-museum-frame"
-            initial="hidden" 
-            whileInView="visible" 
-            viewport={{ once: true, margin: "-80px" }} 
-            variants={imgReveal}
-          >
-            <img src={trainingCert} alt="Ramachandra Special Training Program" loading="lazy" />
-          </m.div>
-
-          <div className="cred-foundation-grid">
-            <Reveal className="cred-foundation-text">
-              <m.p className="cred-body" variants={fadeUp}>
-                The Special Training Program at Ramachandra College of Engineering served as a bridge between learning and application. It transformed foundational concepts into practical capabilities, developing the problem-solving mindset, technical discipline, and engineering fundamentals that continue to shape every product and system built today.
-
-              </m.p>
-            </Reveal>
-
-            <Reveal className="cred-foundation-caps">
-              <m.span className="cred-cap-item" variants={fadeUp}>Python Programming</m.span>
-              <m.span className="cred-cap-item" variants={fadeUp}>DSA</m.span>
-              <m.span className="cred-cap-item" variants={fadeUp}>Coding Practice</m.span>
-              <m.span className="cred-cap-item" variants={fadeUp}>Aptitude</m.span>
-              <m.span className="cred-cap-item" variants={fadeUp}>Resume Engineering</m.span>
-              <m.span className="cred-cap-item" variants={fadeUp}>Mock Interviews</m.span>
-            </Reveal>
+          </div>
+          
+          <div className="chapter-featured-certs">
+            <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
+              <img src={gcpGenAiCert} alt="GCP Gen AI" loading="lazy" />
+            </m.div>
+            <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
+              <img src={ibmAiCert} alt="IBM AI" loading="lazy" />
+            </m.div>
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 3 — ACADEMIC FOUNDATION
+          CLOUD CHAPTER
       ══════════════════════════════════════════════════════ */}
-      <section className="cred-academic cred-alt">
-        <div className="cred-constrain center-align">
-          <Reveal>
-            <m.span className="cred-eyebrow" variants={fadeUp}>Academic Foundation</m.span>
-            <m.h2 className="cred-section-headline" variants={fadeUp}>
-              Artificial Intelligence & Data Science.
+      <section className="cred-chapter theme-cloud">
+        <div className="cred-constrain">
+          <div className="chapter-editorial">
+            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Great products<br/>must also scale.
             </m.h2>
-            <m.p className="cred-body cred-body--center" variants={fadeUp}>
-              The foundation of an engineering journey focused on intelligence, systems, and problem solving. Built through the study of artificial intelligence, data science, software engineering, and computational thinking—forming the knowledge base behind every intelligent product and platform developed since.
-            </m.p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 4 — ARTIFICIAL INTELLIGENCE
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-ai">
-        <div className="cred-constrain">
-          <Reveal className="center-align">
-            <m.h2 className="cred-section-headline" variants={fadeUp}>Where Intelligence Was First Explored..</m.h2>
-            <m.p className="cred-body cred-body--center" variants={fadeUp}>
-A deeper exploration into the technologies powering modern intelligence. From generative AI and machine learning to prompt engineering and large language models, these experiences expanded an understanding of how intelligent systems are designed, trained, and applied in the real world.
-</m.p>
-
-          </Reveal>
-
-          <Reveal className="cred-cert-gallery">
-            <m.div className="cred-cert-item" variants={fadeUp}>
-              <img src={geminiStudentCert} alt="Gemini Student Certification" loading="lazy" />
-            </m.div>
-            <m.div className="cred-cert-item" variants={fadeUp}>
-              <img src={ibmAiCert} alt="IBM AI Certification" loading="lazy" />
-            </m.div>
-            <m.div className="cred-cert-item" variants={fadeUp}>
-              <img src={ibmLlmCert} alt="IBM LLM Certification" loading="lazy" />
-            </m.div>
-            <m.div className="cred-cert-item" variants={fadeUp}>
-              <img src={gcpGenAiCert} alt="Google Cloud GenAI Certification" loading="lazy" />
-            </m.div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 5 — CLOUD & INFRASTRUCTURE
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-cloud cred-alt">
-        <div className="cred-constrain">
-          <Reveal className="center-align">
-            <m.h2 className="cred-section-headline" variants={fadeUp}>Built To Scale.</m.h2>
-            <m.p className="cred-body cred-body--center" variants={fadeUp}>
-Building intelligent systems is only part of the journey. Understanding cloud infrastructure, deployment, and scalability reveals how technology evolves from an idea into a reliable product capable of delivering value at scale.
-</m.p>
-
-          </Reveal>
-
-          <Reveal className="cred-cert-gallery">
-            <m.div className="cred-cert-item" variants={fadeUp}>
-              <img src={awsCloudCert} alt="AWS Cloud Certification" loading="lazy" />
-            </m.div>
-            <m.div className="cred-cert-item" variants={fadeUp}>
-              <img src={infosysAzureCert} alt="Azure Certification" loading="lazy" />
-            </m.div>
-            <m.div className="cred-cert-item" variants={fadeUp}>
-              <img src={infosysMlopsCert} alt="MLOps Certification" loading="lazy" />
-            </m.div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 6 — SOFTWARE ENGINEERING
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-swe">
-        <div className="cred-constrain">
-          <Reveal className="center-align">
-            <m.h2 className="cred-section-headline" variants={fadeUp}>Engineering Foundations.</m.h2>
-            <m.p className="cred-body cred-body--center" variants={fadeUp}>
-Every product begins with fundamentals. Through programming, software engineering, and problem solving, the ability to transform ideas into reliable systems was developed—creating the foundation behind every intelligent product and platform built today.
-</m.p>
-
-          </Reveal>
-
-          <Reveal className="cred-cert-gallery">
-            <m.div className="cred-cert-item" variants={fadeUp}>
-              <img src={gfgPythonCert} alt="Python Certification" loading="lazy" />
-            </m.div>
-            <m.div className="cred-cert-item" variants={fadeUp}>
-              <img src={infosysJavaCert} alt="Java Certification" loading="lazy" />
-            </m.div>
-            <m.div className="cred-cert-item" variants={fadeUp}>
-              <img src={infosysDjangoCert} alt="Django Certification" loading="lazy" />
-            </m.div>
-            <m.div className="cred-cert-item" variants={fadeUp}>
-              <img src={gfgFsCert} alt="Full Stack Certification" loading="lazy" />
-            </m.div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 7 — WHAT THESE EXPERIENCES CREATED
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-created cred-alt">
-        <div className="cred-constrain">
-          <Reveal>
-            <m.h2 className="cred-section-headline" variants={fadeUp}>
-             What Experience Made Possible.
-            </m.h2>
-          </Reveal>
+          </div>
           
-          <Reveal className="cred-large-list">
-            {CAPABILITIES.map((cap) => (
-              <m.h3 key={cap} className="cred-large-item" variants={fadeUp}>
-                {cap}
-              </m.h3>
-            ))}
-          </Reveal>
+          <div className="chapter-featured-certs">
+            <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
+              <img src={awsCloudCert} alt="AWS Cloud" loading="lazy" />
+            </m.div>
+            <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
+              <img src={infosysAzureCert} alt="Azure Cloud" loading="lazy" />
+            </m.div>
+          </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 8 — LEARNING JOURNEY (TIMELINE CHAPTERS)
+          SOFTWARE ENGINEERING CHAPTER
+      ══════════════════════════════════════════════════════ */}
+      <section className="cred-chapter theme-software">
+        <div className="cred-constrain">
+          <div className="chapter-editorial">
+            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Software is more than code.<br/><br/>It is the discipline<br/>of solving problems<br/>reliably.
+            </m.h2>
+          </div>
+          
+          <div className="chapter-featured-certs">
+            <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
+              <img src={gfgFsCert} alt="Full Stack" loading="lazy" />
+            </m.div>
+            <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
+              <img src={infosysDevopsCert} alt="DevOps" loading="lazy" />
+            </m.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          CAPABILITIES REVEAL
+      ══════════════════════════════════════════════════════ */}
+      <section className="cred-capabilities">
+        <div className="cred-constrain center-align">
+          {[
+            "Artificial Intelligence",
+            "Full Stack Engineering",
+            "Cloud Systems",
+            "Software Architecture",
+            "Problem Solving",
+            "Career Intelligence"
+          ].map((cap, i) => (
+            <m.h2 
+              key={i} 
+              className="capability-reveal"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-150px" }}
+              transition={{ duration: 1.2, ease: EASE }}
+            >
+              {cap}
+            </m.h2>
+          ))}
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          LEARNING TIMELINE
       ══════════════════════════════════════════════════════ */}
       <section className="cred-timeline">
-        <div className="cred-constrain">
-          <Reveal className="center-align">
-            <m.h2 className="cred-section-headline" variants={fadeUp}>
-              Learning Never Stops.
-            </m.h2>
-          </Reveal>
-
-          <div className="cred-chapters">
-            
-            <Reveal className="cred-chapter">
-              <m.div className="cred-chapter-year" variants={fadeUp}>2022</m.div>
-              <m.div className="cred-chapter-grid" variants={fadeUp}>
-                <img src={ucscCCert} alt="2022 Certification" loading="lazy" />
-              </m.div>
-            </Reveal>
-
-            <Reveal className="cred-chapter">
-              <m.div className="cred-chapter-year" variants={fadeUp}>2024</m.div>
-              <m.div className="cred-chapter-grid" variants={fadeUp}>
-                <img src={awsCloudCert} alt="2024 Certification" loading="lazy" />
-                <img src={infosysAgileCert} alt="2024 Certification" loading="lazy" />
-                <img src={infosysDevopsCert} alt="2024 Certification" loading="lazy" />
-              </m.div>
-            </Reveal>
-
-            <Reveal className="cred-chapter">
-              <m.div className="cred-chapter-year" variants={fadeUp}>2025</m.div>
-              <m.div className="cred-chapter-grid" variants={fadeUp}>
-                <img src={trainingCert} alt="2025 Certification" loading="lazy" className="cred-chapter-hero" />
-                <img src={ibmAiCert} alt="2025 Certification" loading="lazy" />
-                <img src={infosysMlopsCert} alt="2025 Certification" loading="lazy" />
-                <img src={infosysAzureCert} alt="2025 Certification" loading="lazy" />
-              </m.div>
-            </Reveal>
-
-            <Reveal className="cred-chapter">
-              <m.div className="cred-chapter-year" variants={fadeUp}>2026</m.div>
-              <m.div className="cred-chapter-grid" variants={fadeUp}>
-                <img src={geminiStudentCert} alt="2026 Certification" loading="lazy" />
-                <img src={geminiFacultyCert} alt="2026 Certification" loading="lazy" />
-              </m.div>
-            </Reveal>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 9 — APPLE LEARNING ARCHIVE (ALL CERTS)
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-archive cred-alt">
         <div className="cred-constrain center-align">
-          <Reveal>
-            <m.span className="cred-eyebrow" variants={fadeUp}>Apple Learning Archive</m.span>
-            <m.h2 className="cred-section-headline" variants={fadeUp}>
-              Verified Expertise.
-            </m.h2>
-          </Reveal>
-        </div>
-
-        <div className="cred-archive-constrain">
-          <div className="cred-archive-grid">
-            {ALL_CERTS.map((cert, index) => (
-              <m.div 
-                key={index} 
-                className="cred-archive-item"
-                initial="hidden" 
-                whileInView="visible" 
-                viewport={{ once: true, margin: "200px" }}
-                variants={fadeUp}
-              >
-                <img src={cert} alt={`Verified Credential ${index + 1}`} loading="lazy" />
-              </m.div>
+          <div className="timeline-flow">
+            {[
+              { phase: "Beginning", year: "2022" },
+              { phase: "Exploration", year: "2024" },
+              { phase: "Acceleration", year: "2025" },
+              { phase: "Continuous Learning", year: "2026" }
+            ].map((step, i, arr) => (
+              <React.Fragment key={i}>
+                <m.div 
+                  className="timeline-node"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 1, ease: EASE }}
+                >
+                  <span className="timeline-phase">{step.phase}</span>
+                  <span className="timeline-year">{step.year}</span>
+                </m.div>
+                {i < arr.length - 1 && (
+                  <m.div className="timeline-arrow" initial={{ opacity: 0 }} whileInView={{ opacity: 0.3 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1 }}>
+                    ↓
+                  </m.div>
+                )}
+              </React.Fragment>
             ))}
           </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 10 — BEYOND CREDENTIALS
+          ENGINEERING ARCHIVE
+      ══════════════════════════════════════════════════════ */}
+      <section className="cred-archive">
+        <div className="cred-constrain">
+          <m.h2 className="archive-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            Engineering Archive
+          </m.h2>
+
+          {ARCHIVE.map((group, i) => (
+            <div className="archive-group" key={i}>
+              <m.h3 className="archive-category" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
+                {group.category}
+              </m.h3>
+              <div className="archive-grid">
+                {group.certs.map((cert, j) => (
+                  <m.div 
+                    className="archive-item" 
+                    key={j}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.8, ease: EASE }}
+                  >
+                    <div className="cred-museum-frame">
+                      <img src={cert.img} alt={cert.label} loading="lazy" />
+                    </div>
+                    <div className="archive-item-label">{cert.label}</div>
+                  </m.div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          BEYOND CREDENTIALS
       ══════════════════════════════════════════════════════ */}
       <section className="cred-beyond">
         <div className="cred-constrain center-align">
-          <Reveal>
-  <m.h2 className="cred-section-headline" variants={fadeUp}>
-    Learning Never Stops.
-  </m.h2>
-
-<m.p
-className="cred-body cred-body--center"
-variants={fadeUp}
-style={{ marginTop: '32px' }}
-
->
-
-
-Knowledge creates capability. Execution creates impact.
-
-
-</m.p>
-
-<m.p
-className="cred-body cred-body--center"
-variants={fadeUp}
-
->
-
-
-Every certification, workshop, internship, and project contributed to a
-
-
-deeper understanding of technology, intelligence, and engineering. The
-goal was never to collect credentials, but to build the knowledge required
-to create products that solve meaningful problems and unlock human
-potential.
-
-</m.p> </Reveal>
-
+          <m.div className="beyond-statement" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE }}>
+            Knowledge creates capability.
+          </m.div>
+          <m.div className="beyond-statement" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE }}>
+            Capability creates products.
+          </m.div>
+          <m.div className="beyond-statement beyond-climax" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
+            Products create impact.
+          </m.div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 11 — CLOSING
+          CLOSING
       ══════════════════════════════════════════════════════ */}
-      <section className="cred-closing cred-dark" aria-label="Closing statement">
+      <section className="cred-closing">
         <div className="cred-constrain center-align">
-          <Reveal>
-           
-           <Reveal>
-  <m.h2 className="cred-closing-headline" variants={fadeUp}>
-    Always Learning.
-  </m.h2>
-
-<m.p className="cred-closing-sub" variants={fadeUp}>
-Every achievement is a milestone, not a destination. Growth continues through curiosity, exploration, and the pursuit of building better products.
-</m.p> </Reveal>
-
-          </Reveal>
+          <div className="closing-sequence">
+            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
+              Learning never finishes.
+            </m.div>
+            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
+              Curiosity creates knowledge.
+            </m.div>
+            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
+              Knowledge creates engineering.
+            </m.div>
+            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
+              Engineering creates impact.
+            </m.div>
+            <m.div className="closing-finale" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE, delay: 0.3 }}>
+              Still learning.
+            </m.div>
+            <m.div className="closing-sub-finale" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE, delay: 0.8 }}>
+              Because every product begins with curiosity.
+            </m.div>
+          </div>
         </div>
       </section>
 

@@ -1,514 +1,353 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   APPLE HIG 2026 — WORK / PRODUCTS
-   Editorial storytelling. Minimal. Restrained. Authentic.
-   Typography hierarchy carries the page. Whitespace is the primary element.
-   ═══════════════════════════════════════════════════════════════════════════ */
+/* APPLE WWDC 2026 WORK PAGE REDESIGN */
 
-/* ─── Page shell ─────────────────────────────────────────────────────────── */
-.work-page {
-  background:              #ffffff;
-  color:                   #1d1d1f;
-  -webkit-font-smoothing:  antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering:          optimizeLegibility;
-  overflow-x:              hidden;
+.wwdc-work-page {
+  background-color: #ffffff;
+  color: #1d1d1f;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ─── Layout constrain ───────────────────────────────────────────────────── */
-.work-constrain {
-  max-width: 1020px;
-  margin:    0 auto;
-  padding:   0 48px;
+.work-bounds {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5vw;
 }
 
-.work-constrain--reading {
-  max-width: 800px;
+/* =========================================
+   CHAPTER 1: HERO
+   ========================================= */
+.wwdc-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  will-change: transform, opacity;
+  transform-origin: center top;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   1. HERO
-   ═══════════════════════════════════════════════════════════════════════════ */
-.work-hero {
-  padding:    24vh 48px 16vh;
-  max-width:  1020px;
-  margin:     0 auto;
+.wwdc-hero-headline {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(50px, 9vw, 130px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #1d1d1f;
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   CHAPTER 2: THE CHALLENGE
+   ========================================= */
+.wwdc-challenge-container {
+  height: 400vh;
+  background: #000000;
+  color: #f5f5f7;
+  position: relative;
+}
+
+.wwdc-challenge-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.challenge-text {
+  position: absolute;
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-align: center;
+  will-change: opacity;
+}
+
+.text-careeros-reveal {
+  font-size: clamp(60px, 12vw, 180px);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  background: linear-gradient(135deg, #ffffff, #888888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================================
+   CAREEROS KEYNOTE (CUSTOM FLAGSHIP)
+   ========================================= */
+.careeros-keynote {
+  background: #ffffff;
+  color: #1d1d1f;
+  padding: 20vh 0;
+  position: relative;
+}
+
+.careeros-hero-block {
+  margin-top: 10vh;
+  margin-bottom: 25vh;
+}
+
+.careeros-image-wrapper {
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.15);
+}
+
+.careeros-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform-origin: center center;
+}
+
+.careeros-text-large {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(40px, 6vw, 90px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  max-width: 1100px;
+  margin-bottom: 15vh;
+}
+
+/* =========================================
+   NARRATIVE TRANSITIONS
+   ========================================= */
+.narrative-transition {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000000;
+  color: #ffffff;
   text-align: center;
 }
 
-.work-hero-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(52px, 8.5vw, 108px);
-  font-weight:    700;
-  letter-spacing: -0.04em;
-  line-height:    1.02;
-  color:          #1d1d1f;
-  margin:         0 0 28px;
+.transition-text {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  max-width: 900px;
 }
 
-.work-hero-sub {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:   clamp(18px, 2.4vw, 23px);
-  font-weight: 400;
-  line-height: 1.5;
-  color:       #86868b;
-  max-width:   680px;
-  margin:      0 auto;
+/* =========================================
+   PRODUCT SECTIONS (LAYOUT VARIANTS)
+   ========================================= */
+.product-chapter {
+  padding: 20vh 0;
+  transition: background-color 0.8s ease, color 0.8s ease;
+  position: relative;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   SHARED SECTION STYLES
-   ═══════════════════════════════════════════════════════════════════════════ */
-.work-section-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(34px, 4.5vw, 52px);
-  font-weight:    700;
-  letter-spacing: -0.026em;
-  line-height:    1.08;
-  color:          #1d1d1f;
-  margin:         0 0 44px;
-}
-
-.work-body {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    19px;
-  font-weight:  400;
-  line-height:  1.68;
-  color:        #86868b;
-  margin:       0 0 24px;
-}
-
-.work-body:last-child {
-  margin-bottom: 0;
-}
-
-.work-eyebrow {
-  display:        block;
-  font-family:    var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:      11px;
-  font-weight:    600;
-  letter-spacing: 0.14em;
+.product-label {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color:          #86868b;
-  margin-bottom:  16px;
+  margin-bottom: 24px;
+  opacity: 0.6;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   2. THE APPROACH
-   ═══════════════════════════════════════════════════════════════════════════ */
-.work-approach {
-  padding:    100px 0 120px;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.09);
+.product-problem-text {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   3. CAREEROS (FLAGSHIP)
-   ═══════════════════════════════════════════════════════════════════════════ */
-.work-flagship {
-  padding:    120px 0 140px;
-  background: #f5f5f7;
+.product-vision-text {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
 }
 
-.work-flagship-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(44px, 7vw, 86px);
-  font-weight:    700;
-  letter-spacing: -0.038em;
-  line-height:    1.03;
-  color:          #1d1d1f;
-  margin:         0 0 20px;
+.product-hero-wrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.1);
+  margin: 10vh 0;
 }
 
-.work-flagship-sub {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    clamp(20px, 2.5vw, 26px);
-  font-weight:  500;
-  line-height:  1.4;
-  color:        #86868b;
-  margin:       0 0 60px;
-}
-
-.work-flagship-image {
-  max-width: 1200px;
-  margin:    0 auto 60px;
-  padding:   0 24px;
-}
-
-.work-flagship-image img {
-  width:         100%;
-  height:        auto;
-  border-radius: 12px;
-  box-shadow:    0 4px 24px rgba(0,0,0,0.06);
-  display:       block;
-}
-
-.work-flagship-body {
-  margin-top: 40px;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   4. HOW CAREEROS WORKS
-   ═══════════════════════════════════════════════════════════════════════════ */
-.work-how {
-  padding:    100px 0 120px;
-  background: #ffffff;
-}
-
-.work-steps {
-  display:               grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap:                   40px;
-  margin-top:            60px;
-}
-
-.work-step {
-  display:        flex;
-  flex-direction: column;
-}
-
-.work-step-num {
-  font-family:    var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:      12px;
-  font-weight:    600;
-  color:          #c7c7cc;
-  margin-bottom:  12px;
-}
-
-.work-step-title {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      22px;
-  font-weight:    600;
-  color:          #1d1d1f;
-  margin:         0 0 12px;
-}
-
-.work-step-desc {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    15px;
-  font-weight:  400;
-  line-height:  1.5;
-  color:        #86868b;
-  margin:       0;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   5. PRODUCTS BUILT ALONG THE WAY
-   ═══════════════════════════════════════════════════════════════════════════ */
-.work-products-header {
-  padding:    100px 0 40px;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.09);
-  background: #ffffff;
-}
-
-.work-product {
-  padding:    100px 0;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.05);
-  background: #ffffff;
-}
-
-.work-product--alt {
-  background: #f5f5f7;
-}
-
-.work-product-grid {
-  display:               grid;
-  grid-template-columns: 1fr 1fr;
-  gap:                   80px;
-  align-items:           center;
-}
-
-/* Alternate sides for alternating products */
-.work-product--alt .work-product-image {
-  order: 2;
-}
-
-.work-product--alt .work-product-meta {
-  order: 1;
-}
-
-.work-product-image {
+.product-hero-img {
   width: 100%;
-}
-
-.work-product-img-link {
+  height: auto;
   display: block;
 }
 
-.work-product-image img {
-  width:         100%;
-  height:        auto;
-  border-radius: 8px;
-  box-shadow:    0 4px 20px rgba(0,0,0,0.05);
-  display:       block;
-}
-
-.work-product-meta {
-  display:        flex;
+/* Timeline */
+.product-timeline {
+  display: flex;
   flex-direction: column;
+  gap: 40px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+  padding-left: 40px;
+  margin: 10vh 0 5vh 10px;
 }
-
-.work-product-name {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(32px, 4vw, 44px);
-  font-weight:    700;
-  letter-spacing: -0.02em;
-  color:          #1d1d1f;
-  margin:         0 0 16px;
+.timeline-step { position: relative; }
+.timeline-step::before {
+  content: '';
+  position: absolute; left: -47px; top: 8px; width: 12px; height: 12px; border-radius: 50%;
+  background: currentColor; opacity: 0.3;
 }
+.step-num { font-size: 14px; font-weight: 700; opacity: 0.5; margin-bottom: 8px; display: block; }
+.step-title { font-size: 28px; font-weight: 600; margin-bottom: 8px; }
+.step-desc { font-size: 18px; line-height: 1.5; opacity: 0.8; max-width: 500px; }
 
-.work-product-desc {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    17px;
-  font-weight:  400;
-  line-height:  1.6;
-  color:        #1d1d1f;
-  margin:       0 0 32px;
-}
-
-.work-detail-row {
-  display:       flex;
-  padding:       16px 0;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.09);
-}
-
-.work-detail-row--last {
-  flex-direction: column;
-  align-items:    flex-start;
-  gap:            8px;
-  border-bottom:  none;
-  padding-bottom: 0;
-}
-
-.work-detail-label {
-  font-family:    var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:      13px;
-  font-weight:    600;
-  color:          #1d1d1f;
-  width:          120px;
-  flex-shrink:    0;
-}
-
-.work-detail-value {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    13px;
-  font-weight:  400;
-  color:        #1d1d1f;
-  line-height:  1.4;
-}
-
-.work-detail-value--muted {
-  color: #86868b;
-}
-
-.work-github-link {
-  display:         inline-block;
-  margin-top:      32px;
-  font-family:     var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:       14px;
-  font-weight:     500;
-  color:           #0066cc;
-  text-decoration: none;
-  align-self:      flex-start;
-}
-
-.work-github-link:hover {
-  text-decoration: underline;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   6. CAPABILITIES
-   ═══════════════════════════════════════════════════════════════════════════ */
-.work-capabilities {
-  padding:    100px 0 120px;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.09);
-  background: #ffffff;
-}
-
-.work-cap-list {
-  display:        flex;
-  flex-direction: column;
-}
-
-.work-cap-item {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(30px, 5vw, 60px);
-  font-weight:    300;
-  letter-spacing: -0.02em;
-  line-height:    1.12;
-  color:          #1d1d1f;
-  padding:        22px 0;
-  border-bottom:  0.5px solid rgba(0, 0, 0, 0.09);
-  margin:         0;
-}
-
-.work-cap-item:first-child {
-  border-top: 0.5px solid rgba(0, 0, 0, 0.09);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   7. PROJECT IMPACT
-   ═══════════════════════════════════════════════════════════════════════════ */
-.work-impact {
-  padding:    100px 0 120px;
-  background: #f5f5f7;
-}
-
-.work-stats {
-  display:               grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap:                   40px;
-  margin-top:            60px;
-}
-
-.work-stat {
-  display:        flex;
-  flex-direction: column;
-}
-
-.work-stat-value {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(40px, 6vw, 64px);
-  font-weight:    700;
-  letter-spacing: -0.03em;
-  color:          #1d1d1f;
-  line-height:    1;
-  margin-bottom:  12px;
-}
-
-.work-stat-label {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    15px;
-  font-weight:  500;
-  color:        #86868b;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   8. CONTINUING THE JOURNEY
-   ═══════════════════════════════════════════════════════════════════════════ */
-.work-next {
-  padding:    100px 0 120px;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.09);
-  background: #ffffff;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   9. CLOSING
-   ═══════════════════════════════════════════════════════════════════════════ */
-.work-closing {
-  min-height:  80vh;
-  display:     flex;
-  align-items: center;
-  padding:     120px 0;
-  background:  #1d1d1f;
-  border-top:  0.5px solid rgba(255, 255, 255, 0.06);
-}
-
-.work-closing-inner {
+/* Layout: Centered Immersive */
+.layout-centered .product-problem-text,
+.layout-centered .product-vision-text {
   text-align: center;
-  width:      100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.layout-centered .product-label { text-align: center; }
+.layout-centered .product-timeline { max-width: 600px; margin: 10vh auto; }
+
+/* Layout: Editorial Split */
+.layout-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.layout-split .product-hero-wrapper { margin: 0; }
+.layout-split .product-content { padding-right: 40px; }
+
+/* Layout: Compact Left/Right */
+.layout-compact-left, .layout-compact-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 10vh 0;
+}
+.layout-compact-left .product-hero-wrapper { order: 1; margin: 0; }
+.layout-compact-left .product-content { order: 2; }
+.layout-compact-right .product-hero-wrapper { order: 2; margin: 0; }
+.layout-compact-right .product-content { order: 1; }
+
+.tech-impact-block { margin-top: 15vh; }
+.product-tech-text, .product-impact-text {
+  font-size: clamp(20px, 2.5vw, 28px); line-height: 1.5; max-width: 600px; margin-bottom: 8vh;
 }
 
-.work-closing-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(50px, 9vw, 110px);
-  font-weight:    700;
-  letter-spacing: -0.04em;
-  line-height:    1.02;
-  color:          #f5f5f7;
-  margin:         0 auto 44px;
+.product-explore-cta {
+  font-size: 20px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  padding: 16px 32px; border-radius: 99px; background: currentColor; transition: transform 0.3s ease; margin-top: 5vh;
+}
+.product-explore-cta:hover { transform: translateY(-2px); }
+
+/* =========================================
+   THEMES (Colors)
+   ========================================= */
+.theme-careeros { background-color: #ffffff; color: #1d1d1f; }
+.theme-careeros .product-explore-cta { color: #ffffff; background: #0066cc; }
+.theme-careeros .product-explore-cta:hover { background: #0055b3; }
+
+.theme-auraos { background-color: #000000; color: #f5f5f7; }
+.theme-auraos .product-timeline { border-left-color: rgba(255,255,255,0.2); }
+.theme-auraos .product-explore-cta { color: #000; background: #fff; }
+
+.theme-veritas { background-color: #f5f5f7; color: #1d1d1f; }
+.theme-veritas .product-problem-text { font-family: 'Georgia', serif; font-style: italic; }
+.theme-veritas .product-explore-cta { color: #fff; background: #1d1d1f; }
+
+.theme-health { background-color: #ffffff; color: #1d1d1f; }
+.theme-health .product-explore-cta { color: #fff; background: #000; }
+
+.theme-enterprise { background-color: #e5e5ea; color: #1d1d1f; }
+.theme-enterprise .product-explore-cta { color: #fff; background: #1d1d1f; }
+
+/* =========================================
+   CHAPTER 6: CAPABILITIES
+   ========================================= */
+.wwdc-capabilities { padding: 15vh 0; background: #f5f5f7; }
+.section-title-center {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(40px, 6vw, 80px); font-weight: 700; text-align: center; margin-bottom: 10vh; letter-spacing: -0.03em;
+}
+.capabilities-floating-container {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; max-width: 1000px; margin: 0 auto;
+}
+.cap-capsule {
+  padding: 24px 48px; border-radius: 999px; background: #ffffff; box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  font-size: 24px; font-weight: 600; color: #1d1d1f; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+}
+.cap-capsule:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+
+/* =========================================
+   CHAPTER 7: BY THE NUMBERS
+   ========================================= */
+.wwdc-metrics {
+  padding: 30vh 0;
+  background: #ffffff;
+}
+.metrics-editorial-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25vh;
+  margin-top: 15vh;
+}
+.metric-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.metric-massive {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(100px, 20vw, 300px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  background: linear-gradient(135deg, #1d1d1f, #888888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 24px;
+}
+.metric-sub {
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 500;
+  color: #6e6e73;
 }
 
-.work-closing-sub {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    clamp(18px, 2.4vw, 26px);
-  font-weight:  400;
-  line-height:  1.6;
-  color:        rgba(255, 255, 255, 0.48);
-  max-width:    760px;
-  margin:       0 auto;
-}
+/* =========================================
+   CHAPTER 8: THE FUTURE
+   ========================================= */
+.wwdc-future { padding: 20vh 0; background: #000000; color: #f5f5f7; }
+.wwdc-future .section-title-center { color: #f5f5f7; }
+.roadmap-container { display: flex; flex-direction: column; align-items: center; gap: 40px; margin-top: 10vh; }
+.roadmap-item { font-size: clamp(28px, 4vw, 56px); font-weight: 700; color: #ffffff; display: flex; flex-direction: column; align-items: center; }
+.roadmap-arrow { font-size: 24px; color: #888; margin-top: 40px; opacity: 0.5; }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════════════════════════════════════ */
+/* =========================================
+   CHAPTER 9: CLOSING
+   ========================================= */
+.wwdc-closing { padding: 20vh 0 10vh 0; background: #000000; color: #f5f5f7; }
+.closing-bounds { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.closing-question { font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #888; margin-bottom: 40px; }
+.closing-huge { font-family: var(--font-display, 'SF Pro Display', sans-serif); font-size: clamp(50px, 8vw, 120px); font-weight: 700; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 60px; }
+.closing-line { display: block; }
+.closing-cta { font-size: 24px; font-weight: 600; color: #000; background: #fff; padding: 20px 40px; border-radius: 99px; text-decoration: none; display: inline-flex; align-items: center; gap: 12px; transition: transform 0.3s; }
+.closing-cta:hover { transform: translateY(-2px) scale(1.02); }
 
-/* ── Tablet ── */
-@media (max-width: 900px) {
-  .work-steps {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .work-product-grid {
-    grid-template-columns: 1fr;
-    gap:                   48px;
-  }
-
-  .work-product--alt .work-product-image,
-  .work-product--alt .work-product-meta {
-    order: unset;
-  }
-
-  .work-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ── Mobile ── */
-@media (max-width: 600px) {
-  .work-hero {
-    padding: 18vh 24px 12vh;
-  }
-
-  .work-constrain {
-    padding: 0 24px;
-  }
-
-  .work-approach,
-  .work-how,
-  .work-capabilities,
-  .work-impact,
-  .work-next {
-    padding: 64px 0 80px;
-  }
-
-  .work-flagship {
-    padding: 80px 0 100px;
-  }
-
-  .work-product {
-    padding: 80px 0;
-  }
-
-  .work-section-headline {
-    font-size:     clamp(28px, 7vw, 40px);
-    margin-bottom: 32px;
-  }
-
-  .work-flagship-headline {
-    font-size: clamp(36px, 10vw, 56px);
-  }
-
-  .work-steps {
-    grid-template-columns: 1fr;
-    gap:                   32px;
-  }
-
-  .work-product-name {
-    font-size: clamp(28px, 8vw, 36px);
-  }
-
-  .work-detail-row {
-    flex-direction: column;
-    align-items:    flex-start;
-    gap:            4px;
-  }
-
-  .work-cap-item {
-    font-size: clamp(26px, 7.5vw, 40px);
-    padding:   16px 0;
-  }
-
-  .work-closing {
-    padding:    80px 0;
-    min-height: 70vh;
-  }
+.final-open-ended {
+  margin-top: 20vh;
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 500;
+  color: #888;
+  max-width: 800px;
+  line-height: 1.4;
 }

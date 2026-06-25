@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { m, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import emailjs from '@emailjs/browser';
+import { Link } from 'react-router-dom';
 import '../styles/Connect.css';
+import resumePdf from '../assets/bhagavanresume.pdf';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // PRESERVED EMAILJS CONFIGURATION
@@ -16,12 +18,12 @@ const EASE = [0.16, 1, 0.3, 1];
 
 const fadeUp = {
   hidden:  { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: EASE } },
 };
 
 const stagger = {
   hidden:  {},
-  visible: { transition: { staggerChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.2 } },
 };
 
 // ─── Reveal helper ────────────────────────────────────────────────────────────
@@ -31,39 +33,13 @@ function Reveal({ children, className }) {
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-100px" }}
       variants={stagger}
     >
       {children}
     </m.div>
   );
 }
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
-const CONVERSATIONS = [
-  "Software Engineering",
-  "Artificial Intelligence",
-  "Machine Learning",
-  "Full Stack Development",
-  "Career Technology",
-  "Research & Innovation"
-];
-
-const EXPLORING = [
-  "AI Engineering",
-  "Software Engineering",
-  "Career Intelligence",
-  "RAG Systems",
-  "Developer Tools",
-  "Intelligent Products"
-];
-
-const PHILOSOPHY = [
-  "Technology should empower people.",
-  "Learning should remain accessible.",
-  "Products should create impact.",
-  "Intelligence should guide growth."
-];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Connect() {
@@ -78,6 +54,11 @@ export default function Connect() {
   });
   
   const [status, setStatus] = useState('idle');
+
+  const { scrollY } = useScroll();
+  const heroScale = useTransform(scrollY, [0, 800], [1, 0.95]);
+  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
+  const heroY = useTransform(scrollY, [0, 800], [0, 100]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -154,189 +135,218 @@ export default function Connect() {
             initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -50 }}
             className="con-toast con-toast--error"
           >
-            <div className="con-toast-title">Something went wrong.</div>
-            <div className="con-toast-desc">Please verify your connection or try again later.</div>
+            <div className="con-toast-title">Delivery Failed.</div>
+            <div className="con-toast-desc">There was an issue sending your message.<br/>Please try connecting via LinkedIn or email directly.</div>
           </m.div>
         )}
       </AnimatePresence>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 1 — HERO
+          HERO
       ══════════════════════════════════════════════════════ */}
-      <section className="con-hero" aria-label="Contact Hero">
-        <m.h1 
-          className="con-hero-headline"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, ease: EASE }}
-        >
-          Let's Build Something Meaningful.
-        </m.h1>
-        <m.p 
-          className="con-hero-sub"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
-        >
-          The most important products begin with a conversation.
-        </m.p>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 2 — OPEN TO CONVERSATIONS ABOUT
-      ══════════════════════════════════════════════════════ */}
-      <section className="con-open">
-        <div className="con-constrain">
-          <Reveal className="center-align">
-            <m.span className="con-eyebrow" variants={fadeUp}>Who Reaches Out</m.span>
-            <m.h2 className="con-section-headline" variants={fadeUp}>
-              Open To Conversations About.
-            </m.h2>
-          </Reveal>
-          
-          <Reveal className="con-large-list">
-            {CONVERSATIONS.map((topic) => (
-              <m.h3 key={topic} className="con-large-item" variants={fadeUp}>
-                {topic}
-              </m.h3>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 3 — DIRECT CONTACT
-      ══════════════════════════════════════════════════════ */}
-      <section className="con-direct con-alt">
+      <m.section className="con-hero" style={{ scale: heroScale, opacity: heroOpacity, y: heroY }}>
         <div className="con-constrain center-align">
-          <Reveal>
-            <m.h2 className="con-section-headline" variants={fadeUp}>
-              Reach Out Directly.
-            </m.h2>
-            
-            <m.div className="con-utility-links" variants={fadeUp}>
-              <a href="mailto:g.sivasatysaibhagavan@gmail.com" className="con-utility-link">Email <span>↗</span></a>
-              <a href="https://www.linkedin.com/in/gopalajosyula-siva-satya-sai-bhagavan-1624a027b/" target="_blank" rel="noopener noreferrer" className="con-utility-link">LinkedIn <span>↗</span></a>
-              <a href="https://github.com/bhagavan444" target="_blank" rel="noopener noreferrer" className="con-utility-link">GitHub <span>↗</span></a>
-              <a href="/Siva_Bhagavan_Resume.pdf" target="_blank" rel="noopener noreferrer" className="con-utility-link">Resume <span>↗</span></a>
-            </m.div>
+          <m.h1 className="con-hero-headline" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: EASE }}>
+            Great products begin with<br/>great conversations.
+          </m.h1>
+        </div>
+      </m.section>
+
+      {/* ══════════════════════════════════════════════════════
+          BEFORE THE CONVERSATION
+      ══════════════════════════════════════════════════════ */}
+      <section className="con-before">
+        <div className="con-constrain center-align">
+          <Reveal className="con-editorial-sequence">
+            <m.h2 className="con-statement" variants={fadeUp}>Every meaningful collaboration<br/>begins with curiosity.</m.h2>
+            <m.h2 className="con-statement text-muted" variants={fadeUp}>Ideas become discussions.</m.h2>
+            <m.h2 className="con-statement text-muted" variants={fadeUp}>Discussions become products.</m.h2>
+            <m.h2 className="con-statement" variants={fadeUp}>Products create impact.</m.h2>
           </Reveal>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 4 — CONTACT FORM
+          OPEN TO CONVERSATIONS (Progressive Reveal)
       ══════════════════════════════════════════════════════ */}
-      <section id="conversation-form-section" className="con-form-section">
-        <div className="con-constrain">
-          <Reveal className="center-align">
-            <m.h2 className="con-section-headline" variants={fadeUp}>
-              Start A Conversation.
-            </m.h2>
-          </Reveal>
-
-          <Reveal>
-            <m.div className="con-form-wrapper" variants={fadeUp}>
-              <form onSubmit={handleSubmit} className="con-form">
-                
-                <div className="con-form-row">
-                  <div className="con-form-group">
-                    <label className="con-label">Name</label>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} required className="con-input" placeholder="Your Name" />
-                  </div>
-                  <div className="con-form-group">
-                    <label className="con-label">Email</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} required className="con-input" placeholder="hello@example.com" />
-                  </div>
-                </div>
-
-                <div className="con-form-group">
-                  <label className="con-label">Company (Optional)</label>
-                  <input type="text" name="company" value={formData.company} onChange={handleChange} className="con-input" placeholder="Organization" />
-                </div>
-
-                <div className="con-form-group">
-                  <label className="con-label">Subject</label>
-                  <input type="text" name="subject" value={formData.subject} onChange={handleChange} required className="con-input" placeholder="What is this regarding?" />
-                </div>
-
-                <div className="con-form-group">
-                  <label className="con-label">Message</label>
-                  <textarea name="message" value={formData.message} onChange={handleChange} required className="con-input con-textarea" placeholder="Share your thoughts..." />
-                </div>
-
-                <div className="con-form-action">
-                  <button type="submit" disabled={status === 'loading'} className="con-submit-btn">
-                    {status === 'loading' ? 'Sending...' : 'Send Message'}
-                  </button>
-                </div>
-              </form>
-            </m.div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 5 — CURRENTLY EXPLORING
-      ══════════════════════════════════════════════════════ */}
-      <section className="con-explore con-alt">
-        <div className="con-constrain">
-          <Reveal className="center-align">
-            <m.h2 className="con-section-headline" variants={fadeUp}>
-              Currently Exploring.
-            </m.h2>
-          </Reveal>
-          
-          <Reveal className="con-large-list">
-            {EXPLORING.map((explore) => (
-              <m.h3 key={explore} className="con-large-item" variants={fadeUp}>
-                {explore}
-              </m.h3>
+      <section className="con-topics">
+        <div className="con-constrain center-align">
+          <Reveal className="topics-sequence">
+            {[
+              "Software Engineering",
+              "Artificial Intelligence",
+              "Product Design",
+              "Career Intelligence",
+              "Research",
+              "Innovation"
+            ].map((topic, i) => (
+              <m.div key={i} className="con-topic-line" variants={fadeUp}>{topic}</m.div>
             ))}
           </Reveal>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 6 — PHILOSOPHY
+          DIRECT CONTACT HIERARCHY
+      ══════════════════════════════════════════════════════ */}
+      <section className="con-direct">
+        <div className="con-constrain">
+          <div className="direct-hierarchy">
+            
+            <m.a href="mailto:gsssbhagavan@gmail.com" className="hierarchy-item hierarchy-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <span className="hierarchy-label">Email</span>
+              <span className="hierarchy-value">gsssbhagavan@gmail.com</span>
+              <span className="hierarchy-desc">The fastest way to start a conversation.</span>
+            </m.a>
+
+            <m.a href="https://www.linkedin.com/in/gsssbhagavan/" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-secondary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <span className="hierarchy-label">LinkedIn</span>
+              <span className="hierarchy-value">Professional collaboration.</span>
+            </m.a>
+
+            <m.a href="https://github.com/bhagavan444" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-tertiary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <span className="hierarchy-label">GitHub</span>
+              <span className="hierarchy-value">Engineering in public.</span>
+            </m.a>
+
+            <m.a href={resumePdf} target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-quaternary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <span className="hierarchy-label">Resume</span>
+              <span className="hierarchy-value">Supporting context.</span>
+            </m.a>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          CONTACT FORM (The Emotional Bridge)
+      ══════════════════════════════════════════════════════ */}
+      <section className="con-form-section" id="conversation-form-section">
+        <div className="con-constrain">
+          <m.h2 className="form-editorial center-align" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            Every meaningful collaboration<br/>begins with one message.
+          </m.h2>
+
+          <m.div className="form-container" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <form onSubmit={handleSubmit} className="apple-premium-form">
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="name">Name</label>
+                  <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="Jane Doe" disabled={status === 'loading'} />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="jane@example.com" disabled={status === 'loading'} />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="subject">Subject</label>
+                <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleChange} required placeholder="What would you like to discuss?" disabled={status === 'loading'} />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="message">Message</label>
+                <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Share your thoughts..." rows="6" disabled={status === 'loading'} />
+              </div>
+
+              <div className="form-actions center-align">
+                <button type="submit" className="primary-submit-btn" disabled={status === 'loading' || !formData.name || !formData.email || !formData.message}>
+                  {status === 'loading' ? 'Sending...' : 'Send Message'}
+                </button>
+              </div>
+            </form>
+          </m.div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          CURRENT FOCUS (Momentum)
+      ══════════════════════════════════════════════════════ */}
+      <section className="con-focus">
+        <div className="con-constrain center-align">
+          <div className="momentum-flow">
+            {[
+              "Today",
+              "Building AI Systems",
+              "Exploring Multi-Agent Intelligence",
+              "Designing Human-Centered Products",
+              "Learning Every Day"
+            ].map((node, i, arr) => (
+              <React.Fragment key={i}>
+                <m.div 
+                  className={i === 0 ? "momentum-node momentum-start" : "momentum-node"}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 1.2, ease: EASE }}
+                >
+                  {node}
+                </m.div>
+                {i < arr.length - 1 && (
+                  <m.div className="momentum-arrow" initial={{ opacity: 0 }} whileInView={{ opacity: 0.3 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1 }}>
+                    ↓
+                  </m.div>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          PHILOSOPHY
       ══════════════════════════════════════════════════════ */}
       <section className="con-philosophy">
-        <div className="con-constrain">
-          <Reveal className="center-align">
-            <m.span className="con-eyebrow" variants={fadeUp}>Philosophy</m.span>
-            <m.h2 className="con-section-headline" variants={fadeUp}>
-              Technology Should Create Opportunity.
-            </m.h2>
-          </Reveal>
+        <div className="con-constrain center-align">
           
-          <Reveal className="con-large-list">
-            {PHILOSOPHY.map((statement) => (
-              <m.h3 key={statement} className="con-large-item" variants={fadeUp}>
-                {statement}
-              </m.h3>
-            ))}
-          </Reveal>
+          <div className="philosophy-screen">
+            <m.h2 className="con-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Technology should empower people.
+            </m.h2>
+            <m.h2 className="con-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Learning should remain accessible.
+            </m.h2>
+          </div>
+
+          <div className="philosophy-screen">
+            <m.h2 className="con-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Products should create impact.
+            </m.h2>
+            <m.h2 className="con-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Intelligence should guide growth.
+            </m.h2>
+          </div>
+
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 7 & 8 — CLOSING & CTA
+          CLOSING
       ══════════════════════════════════════════════════════ */}
-      <section className="con-closing con-dark" aria-label="Closing statement">
+      <section className="con-closing">
         <div className="con-constrain center-align">
-          <Reveal>
-            <m.h2 className="con-closing-headline" variants={fadeUp}>
-              The Next Great Idea May Begin Here.
-            </m.h2>
-            <m.p className="con-closing-sub" variants={fadeUp}>
-              Whether you're building a product, exploring an idea, hiring an engineer, or discussing the future of AI, I'd love to hear from you.
-            </m.p>
-            <m.div variants={fadeUp} style={{ marginTop: '80px' }}>
-              <button onClick={handleScrollToForm} className="con-pill-btn">
+          <div className="closing-sequence">
+            
+            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
+              The Next Great Idea<br/>May Begin Here.
+            </m.div>
+            
+            <m.div className="closing-thought text-muted" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
+              Every meaningful product<br/>starts with curiosity.
+            </m.div>
+
+            <m.div className="closing-finale" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
+              Every meaningful collaboration<br/>begins with one conversation.
+            </m.div>
+
+            <m.div className="closing-cta" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 2, ease: EASE, delay: 0.5 }}>
+              <button onClick={handleScrollToForm} className="primary-submit-btn">
                 Let's Talk
               </button>
             </m.div>
-          </Reveal>
+
+          </div>
         </div>
       </section>
 

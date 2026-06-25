@@ -1,464 +1,329 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   APPLE HIG 2026 — EXPERIENCE / JOURNEY
-   Editorial storytelling. Minimal. Restrained. Timeless.
-   Typography hierarchy carries the page. Whitespace is the primary element.
-   ═══════════════════════════════════════════════════════════════════════════ */
+/* APPLE WWDC 2026 EXPERIENCE PAGE REDESIGN */
 
-/* ─── Page shell ─────────────────────────────────────────────────────────── */
 .exp-page {
-  background:              #ffffff;
-  color:                   #1d1d1f;
-  -webkit-font-smoothing:  antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering:          optimizeLegibility;
-  overflow-x:              hidden;
+  background-color: #ffffff;
+  color: #1d1d1f;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ─── Layout constrain ───────────────────────────────────────────────────── */
-/* Used as the inner container inside every section.
-   Handles horizontal padding and centering. */
 .exp-constrain {
-  max-width: 1020px;
-  margin:    0 auto;
-  padding:   0 48px;
-}
-
-/* Reading width — used for prose sections */
-.exp-constrain--reading {
-  max-width: 800px;
-}
-
-/* Wide — used for the two-column certificate gallery */
-.exp-constrain--wide {
   max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5vw;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
+/* =========================================
    HERO
-   Full-page opening statement. Large. Centered. No decoration.
-   ═══════════════════════════════════════════════════════════════════════════ */
+   ========================================= */
 .exp-hero {
-  padding:    24vh 48px 16vh;
-  max-width:  1020px;
-  margin:     0 auto;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  will-change: transform, opacity;
+  transform-origin: center top;
   text-align: center;
 }
 
-/* "Experience Builds Judgment." */
 .exp-hero-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(52px, 8.5vw, 108px);
-  font-weight:    700;
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(50px, 9vw, 130px);
+  font-weight: 700;
   letter-spacing: -0.04em;
-  line-height:    1.02;
-  color:          #1d1d1f;
-  margin:         0 0 28px;
+  line-height: 1.05;
+  color: #1d1d1f;
+  max-width: 1000px;
 }
 
-/* Supporting paragraph */
-.exp-hero-sub {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:   clamp(18px, 2.4vw, 23px);
-  font-weight: 400;
-  line-height: 1.5;
-  color:       #86868b;
-  max-width:   680px;
-  margin:      0 auto;
+/* =========================================
+   INTRODUCTION CASCADING
+   ========================================= */
+.exp-intro-container {
+  height: 500vh;
+  background: #000000;
+  color: #f5f5f7;
+  position: relative;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   INTRODUCTION
-   Reading-width editorial prose section.
-   ═══════════════════════════════════════════════════════════════════════════ */
-.exp-intro {
-  padding:    100px 0 120px;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.09);
+.exp-intro-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-/* Shared section headline — used across multiple light sections */
-.exp-section-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(34px, 4.5vw, 52px);
-  font-weight:    700;
-  letter-spacing: -0.026em;
-  line-height:    1.08;
-  color:          #1d1d1f;
-  margin:         0 0 44px;
+.exp-intro-text {
+  position: absolute;
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-align: center;
+  will-change: opacity;
 }
 
-/* Body prose */
-.exp-body {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    19px;
-  font-weight:  400;
-  line-height:  1.68;
-  color:        #86868b;
-  margin:       0 0 24px;
+.intro-climax {
+  font-size: clamp(80px, 15vw, 200px);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  background: linear-gradient(135deg, #ffffff, #888888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.exp-body:last-child { margin-bottom: 0; }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   CHAPTER — INTERNSHIP SECTIONS
-   Each internship is a full editorial chapter with:
-   eyebrow → headline → meta row → editorial paragraph → certificate image.
-   ═══════════════════════════════════════════════════════════════════════════ */
-.exp-chapter {
-  padding:    100px 0 120px;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.09);
+/* =========================================
+   NARRATIVE TRANSITIONS
+   ========================================= */
+.exp-narrative-transition {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #ffffff;
+  color: #1d1d1f;
+  text-align: center;
 }
 
-/* Helson — dark environment, Apple Vision Pro inspired */
-.exp-chapter--dark {
-  background: #1d1d1f;
-  border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+.exp-transition-text {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #86868b;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* ─── Eyebrow label ───────────────────────────────────────────────────────── */
-/* e.g. "Machine Learning Internship" */
+/* =========================================
+   CHAPTERS (INTERNSHIPS)
+   ========================================= */
+.exp-chapter {
+  padding: 25vh 0;
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+.exp-chapter-header {
+  margin-bottom: 10vh;
+}
+
 .exp-eyebrow {
-  display:        block;
-  font-family:    var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:      11px;
-  font-weight:    600;
-  letter-spacing: 0.14em;
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color:          #86868b;
-  margin-bottom:  16px;
-}
-.exp-chapter--dark .exp-eyebrow {
-  color: rgba(255, 255, 255, 0.38);
+  display: block;
+  margin-bottom: 24px;
+  opacity: 0.6;
 }
 
-/* ─── Chapter headline ────────────────────────────────────────────────────── */
-/* e.g. "Understanding Data." */
-.exp-chapter-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(44px, 7vw, 86px);
-  font-weight:    700;
-  letter-spacing: -0.038em;
-  line-height:    1.03;
-  color:          #1d1d1f;
-  margin:         0 0 28px;
+/* Hierarchical Scaling */
+.scale-normal .exp-chapter-headline {
+  font-size: clamp(40px, 6vw, 80px);
 }
-.exp-chapter--dark .exp-chapter-headline {
+.scale-large .exp-chapter-headline {
+  font-size: clamp(50px, 7vw, 100px);
+}
+.scale-massive .exp-chapter-headline {
+  font-size: clamp(70px, 9vw, 140px);
+}
+
+.exp-chapter-headline {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  max-width: 1000px;
+}
+
+.exp-chapter-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10vh;
+}
+
+.exp-chapter-editorial {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(24px, 3.5vw, 42px);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  max-width: 900px;
+}
+
+/* Inline Supporting Certificate */
+.inline-cert {
+  max-width: 500px; /* Supporting, not dominating */
+  margin-top: 5vh;
+}
+
+.cert-museum-frame {
+  box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.cert-museum-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cert-caption {
+  margin-top: 16px;
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: #86868b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Themes */
+.theme-blackbucks { background-color: #f5f5f7; color: #1d1d1f; }
+.theme-studyowl { background-color: #ffffff; color: #1d1d1f; }
+.theme-smartbridge { background-color: #000000; color: #f5f5f7; }
+.theme-smartbridge .exp-eyebrow { color: #f5f5f7; }
+.theme-smartbridge .cert-museum-frame { box-shadow: 0 40px 100px rgba(255,255,255,0.05); }
+.theme-smartbridge .cert-caption { color: #888; }
+.theme-helson { background-color: #1d1d1f; color: #f5f5f7; }
+.theme-helson .cert-museum-frame { box-shadow: 0 40px 100px rgba(0,0,0,0.5); }
+
+/* =========================================
+   CAPABILITIES
+   ========================================= */
+.exp-capabilities {
+  padding: 30vh 0;
+  background: #ffffff;
+  color: #1d1d1f;
+  text-align: center;
+}
+
+.cap-floating-item {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(40px, 7vw, 100px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 25vh; /* Massive whitespace */
+}
+.cap-floating-item:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================
+   VERIFIED ARTIFACTS (HORIZONTAL GALLERY)
+   ========================================= */
+.exp-gallery-section {
+  padding: 20vh 0;
+  background: #f5f5f7;
+  overflow: hidden;
+}
+
+.exp-horizontal-scroll {
+  padding-left: 5vw;
+}
+
+.gallery-headline-large {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 10vh;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 10vw;
+  padding-bottom: 5vh;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+.gallery-track::-webkit-scrollbar { display: none; } /* Chrome */
+
+.gallery-artifact {
+  flex: 0 0 70vw; /* Very large on mobile, wide on desktop */
+  max-width: 900px;
+}
+
+.artifact-museum-frame {
+  box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.artifact-museum-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.artifact-label {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1f;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* =========================================
+   ENGINEERING PHILOSOPHY
+   ========================================= */
+.exp-philosophy {
+  padding: 30vh 0;
+  background: #000000;
+  color: #ffffff;
+  text-align: center;
+}
+
+.philosophy-statement {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 30vh; /* One idea per screen */
   color: #f5f5f7;
 }
-
-/* ─── Meta row ────────────────────────────────────────────────────────────── */
-/* Company · Role · Year — muted, below the headline */
-.exp-chapter-meta {
-  display:       flex;
-  align-items:   center;
-  flex-wrap:     wrap;
-  gap:           8px;
-  font-family:   var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:     13px;
-  font-weight:   500;
-  letter-spacing: 0.01em;
-  color:         #86868b;
+.philosophy-statement:last-child {
   margin-bottom: 0;
-  padding-bottom: 44px;
-  border-bottom:  0.5px solid rgba(0, 0, 0, 0.09);
-}
-.exp-chapter--dark .exp-chapter-meta {
-  color:        rgba(255, 255, 255, 0.35);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
-}
-.exp-meta-sep {
-  opacity: 0.35;
-  font-size: 10px;
 }
 
-/* ─── Editorial paragraph ─────────────────────────────────────────────────── */
-/* The paragraph that explains WHY this chapter mattered */
-.exp-chapter-editorial {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    clamp(18px, 2.2vw, 21px);
-  font-weight:  400;
-  line-height:  1.7;
-  color:        #86868b;
-  max-width:    760px;
-  margin:       44px 0 72px;
-}
-.exp-chapter--dark .exp-chapter-editorial {
-  color: rgba(255, 255, 255, 0.48);
-}
-
-/* ─── Certificate image ───────────────────────────────────────────────────── */
-/* Displayed as a clean photograph. No card. No shadow. No border.
-   Just the certificate, beautifully presented. */
-.exp-cert-wrap {
-  /* Intentionally empty — no decoration */
-}
-.exp-cert-img {
-  display:    block;
-  width:      100%;
-  max-width:  780px;
-  height:     auto;
-  /* No border-radius, no box-shadow — pure photographic presentation */
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   CAPABILITIES
-   Each capability on its own line — large typographic statements.
-   No cards. No badges. No icons.
-   ═══════════════════════════════════════════════════════════════════════════ */
-.exp-capabilities {
-  padding:    100px 0 120px;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.09);
-  background: #ffffff;
-}
-
-.exp-cap-list {
-  display:        flex;
-  flex-direction: column;
-}
-
-/* Each capability — one per line, large, thin-weight, ruled */
-.exp-cap-item {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(30px, 5vw, 60px);
-  font-weight:    300;
-  letter-spacing: -0.02em;
-  line-height:    1.12;
-  color:          #1d1d1f;
-  padding:        22px 0;
-  border-bottom:  0.5px solid rgba(0, 0, 0, 0.09);
-  margin:         0;
-}
-.exp-cap-item:first-child {
-  border-top: 0.5px solid rgba(0, 0, 0, 0.09);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   VERIFIED EXPERIENCE — CERTIFICATE GALLERY
-   Museum-quality presentation. Large images. Minimal labels. Hover zoom only.
-   No reflections. No glass. No decoration.
-   ═══════════════════════════════════════════════════════════════════════════ */
-.exp-gallery-section {
-  padding:    100px 0 120px;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.09);
-  background: #f5f5f7;
-}
-
-/* Two-column grid at desktop — each item is image + minimal label */
-.exp-gallery {
-  display:               grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap:                   48px 40px;
-  margin-top:            16px;
-}
-
-.exp-gallery-item {
-  display:        flex;
-  flex-direction: column;
-  gap:            16px;
-  cursor:         default;
-}
-
-/* Image wrapper handles the overflow clip for the scale animation */
-.exp-gallery-img-wrap {
-  overflow:   hidden;
-  background: #e8e8ed; /* muted gray fallback while image loads */
-}
-
-.exp-gallery-img-wrap img {
-  display:        block;
-  width:          100%;
-  height:         auto;
-  transition:     transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  transform-origin: center;
-}
-
-/* Hover: subtle zoom — the only interaction on gallery items */
-.exp-gallery-item:hover .exp-gallery-img-wrap img {
-  transform: scale(1.03);
-}
-
-/* Label block below each certificate */
-.exp-gallery-label {
-  display:        flex;
-  flex-direction: column;
-  gap:            3px;
-}
-.exp-gallery-company {
-  font-family:    var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:      14px;
-  font-weight:    600;
-  letter-spacing: -0.01em;
-  color:          #1d1d1f;
-}
-.exp-gallery-role {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:   13px;
-  font-weight: 400;
-  color:       #86868b;
-}
-.exp-gallery-year {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:   12px;
-  font-weight: 400;
-  color:       #c7c7cc;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   ENGINEERING PHILOSOPHY
-   Dark section. Each principle as a full-width typographic statement.
-   Apple Keynote style — massive, minimal, powerful.
-   ═══════════════════════════════════════════════════════════════════════════ */
-.exp-philosophy {
-  padding:    100px 0 120px;
-  border-top: 0.5px solid rgba(255, 255, 255, 0.08);
-  background: #1d1d1f;
-}
-
-/* "Technology Should Create Opportunity." — the setup, muted */
-.exp-philosophy-eyebrow {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(22px, 3vw, 36px);
-  font-weight:    500;
-  letter-spacing: -0.02em;
-  line-height:    1.2;
-  color:          rgba(255, 255, 255, 0.28);
-  margin:         0 0 64px;
-}
-
-.exp-principles {
-  display:        flex;
-  flex-direction: column;
-}
-
-/* Each principle — oversized, bold, ruled */
-.exp-principle {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(36px, 6vw, 72px);
-  font-weight:    700;
-  letter-spacing: -0.032em;
-  line-height:    1.06;
-  color:          #f5f5f7;
-  padding:        32px 0;
-  border-bottom:  0.5px solid rgba(255, 255, 255, 0.07);
-  margin:         0;
-}
-.exp-principle:first-child {
-  border-top: 0.5px solid rgba(255, 255, 255, 0.07);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
+/* =========================================
    CLOSING
-   Nearly full-viewport. Dark. Monumental.
-   "Still Day One." — the emotional apex of the page.
-   ═══════════════════════════════════════════════════════════════════════════ */
+   ========================================= */
 .exp-closing {
-  min-height:      90vh;
-  display:         flex;
-  align-items:     center;
-  padding:         120px 0;
-  background:      #1d1d1f;
-  border-top:      0.5px solid rgba(255, 255, 255, 0.06);
+  padding: 30vh 0 20vh 0;
+  background: #000000;
+  color: #ffffff;
 }
 
-.exp-closing-inner {
+.closing-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 20vh;
+  align-items: center;
   text-align: center;
-  width:      100%;
 }
 
-/* "Still Day One." */
-.exp-closing-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(68px, 13vw, 148px);
-  font-weight:    700;
-  letter-spacing: -0.05em;
-  line-height:    0.94;
-  color:          #f5f5f7;
-  margin:         0 auto 44px;
+.closing-thought {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #86868b;
 }
 
-/* Supporting statement */
-.exp-closing-sub {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    clamp(18px, 2.2vw, 24px);
-  font-weight:  400;
-  line-height:  1.6;
-  color:        rgba(255, 255, 255, 0.38);
-  max-width:    640px;
-  margin:       0 auto;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ── Tablet: collapse gallery to single column ── */
-@media (max-width: 900px) {
-  .exp-gallery {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .exp-gallery-img-wrap img {
-    max-height: 480px;
-    object-fit: contain;
-  }
-}
-
-/* ── Mobile ── */
-@media (max-width: 600px) {
-  .exp-hero {
-    padding: 18vh 24px 12vh;
-  }
-
-  .exp-constrain {
-    padding: 0 24px;
-  }
-
-  .exp-intro,
-  .exp-chapter,
-  .exp-capabilities,
-  .exp-gallery-section,
-  .exp-philosophy {
-    padding: 64px 0 80px;
-  }
-
-  .exp-section-headline {
-    font-size: clamp(28px, 7vw, 40px);
-    margin-bottom: 32px;
-  }
-
-  .exp-chapter-headline {
-    font-size: clamp(36px, 10vw, 56px);
-  }
-
-  .exp-chapter-editorial {
-    font-size: 17px;
-    margin: 32px 0 52px;
-  }
-
-  .exp-cap-item {
-    font-size: clamp(26px, 7.5vw, 40px);
-    padding: 16px 0;
-  }
-
-  .exp-principle {
-    font-size: clamp(28px, 8.5vw, 44px);
-    padding: 24px 0;
-  }
-
-  .exp-philosophy-eyebrow {
-    font-size: clamp(18px, 4.5vw, 26px);
-    margin-bottom: 44px;
-  }
-
-  .exp-closing {
-    padding: 80px 0;
-    min-height: 75vh;
-  }
-
-  .exp-closing-headline {
-    font-size: clamp(54px, 14vw, 88px);
-  }
-
-  .exp-closing-sub {
-    font-size: 17px;
-  }
+.closing-finale {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(60px, 12vw, 160px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin-top: 10vh;
 }

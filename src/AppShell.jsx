@@ -10,7 +10,7 @@ export default function AppShell({ children }) {
   const animDuration2 = isMobile ? 55 : 25;
 
   return (
-    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#fbfbfd', color: '#1d1d1f', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#fbfbfd', color: '#1d1d1f' }}>
       
       {/* Premium Ambient Background System (Apple Light Theme) */}
       {/* Premium Ambient Background System (Apple Light Theme) */}

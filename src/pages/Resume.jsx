@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { m } from 'framer-motion';
+import { m, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import '../styles/Resume.css';
 
@@ -10,17 +10,17 @@ const EASE = [0.16, 1, 0.3, 1];
 
 const fadeUp = {
   hidden:  { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: EASE } },
 };
 
 const stagger = {
   hidden:  {},
-  visible: { transition: { staggerChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.2 } },
 };
 
 const resumeReveal = {
   hidden:  { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: EASE } },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.5, ease: EASE } },
 };
 
 // ─── Reveal helper ────────────────────────────────────────────────────────────
@@ -30,7 +30,7 @@ function Reveal({ children, className }) {
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-100px" }}
       variants={stagger}
     >
       {children}
@@ -38,29 +38,13 @@ function Reveal({ children, className }) {
   );
 }
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-const HIGHLIGHTS = [
-"Artificial Intelligence",
-"Product Engineering",
-"Full-Stack Development",
-"Career Intelligence",
-"5+ AI Systems",
-"4+ Internships"
-];
-
-
-const FOCUS = [
-"Artificial Intelligence",
-"Product Development",
-"Software Engineering",
-"Intelligent Systems",
-"Career Intelligence",
-"Human-Centered Technology"
-];
-
-
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Resume() {
+  const { scrollY } = useScroll();
+  const heroScale = useTransform(scrollY, [0, 800], [1, 0.95]);
+  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
+  const heroY = useTransform(scrollY, [0, 800], [0, 100]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -71,47 +55,39 @@ export default function Resume() {
     <div className="res-page">
       
       {/* ══════════════════════════════════════════════════════
-          SECTION 1 — HERO
+          HERO
       ══════════════════════════════════════════════════════ */}
-      <section className="res-hero" aria-label="Resume Hero">
-        <m.h1 
-       
-className="res-hero-headline"
-initial={{ opacity: 0, y: 40 }}
-animate={{ opacity: 1, y: 0 }}
-transition={{ duration: 1.1, ease: EASE }}
+      <m.section className="res-hero" style={{ scale: heroScale, opacity: heroOpacity, y: heroY }}>
+        <div className="res-constrain center-align">
+          <m.h1 className="res-hero-headline" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: EASE }}>
+            One Page.<br/>Many Years.
+          </m.h1>
+          <m.p className="res-hero-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5, delay: 0.5, ease: EASE }}>
+            Everything built. Everything learned. One document.
+          </m.p>
+        </div>
+      </m.section>
 
->
-
-Building.
-</m.h1>
-
-<m.p
-className="res-hero-sub"
-initial={{ opacity: 0, y: 24 }}
-animate={{ opacity: 1, y: 0 }}
-transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
-
->
-
-Transforming ideas into intelligent products, meaningful experiences, and systems designed to create real-world impact.
-</m.p>
-
+      {/* ══════════════════════════════════════════════════════
+          THE TRANSITION
+      ══════════════════════════════════════════════════════ */}
+      <section className="res-transition">
+        <div className="res-constrain center-align">
+          <Reveal className="res-editorial-sequence">
+            <m.h2 className="res-statement text-muted" variants={fadeUp}>Every project.</m.h2>
+            <m.h2 className="res-statement text-muted" variants={fadeUp}>Every internship.</m.h2>
+            <m.h2 className="res-statement text-muted" variants={fadeUp}>Every experiment.</m.h2>
+            <m.h2 className="res-statement text-muted" variants={fadeUp}>Every lesson.</m.h2>
+            <m.h2 className="res-statement" variants={fadeUp}>One page.</m.h2>
+          </Reveal>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 2 — RESUME PREVIEW
+          THE ARTIFACT
       ══════════════════════════════════════════════════════ */}
-      <section className="res-preview">
+      <section className="res-artifact">
         <div className="res-constrain center-align">
-          <Reveal>
-            <m.span className="res-eyebrow" variants={fadeUp}>Resume Preview</m.span>
-            <m.div className="res-meta-tags" variants={fadeUp}>
-              <span>Updated 2026</span>
-              <span>PDF Available</span>
-            </m.div>
-          </Reveal>
-
           <m.div 
             className="res-artifact-wrapper"
             initial="hidden" 
@@ -119,125 +95,134 @@ Transforming ideas into intelligent products, meaningful experiences, and system
             viewport={{ once: true, margin: "-120px" }} 
             variants={resumeReveal}
           >
-            <img src={resumeImage} alt="Siva Bhagavan Resume" loading="lazy" />
+            <img src={resumeImage} alt="Engineering Artifact" className="res-artifact-img" loading="lazy" />
+          </m.div>
+
+          <m.div className="res-download-sequence" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <div className="res-download-thought">Take the complete journey with you.</div>
+            <a href={pdfUrl} download="Siva_Bhagavan_Resume.pdf" className="primary-download-btn">
+              Download Resume
+            </a>
           </m.div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 3 — DOWNLOAD EXPERIENCE
-      ══════════════════════════════════════════════════════ */}
-      <section className="res-download res-alt">
-        <div className="res-constrain center-align">
-          <Reveal>
-            <m.h2 className="res-section-headline" variants={fadeUp}>
-              Take It With You.
-            </m.h2>
-            <m.div variants={fadeUp} style={{ marginTop: '40px' }}>
-              <a href={pdfUrl} download="Siva_Bhagavan_Resume.pdf" className="res-pill-btn">
-                Download Resume <span>↓</span>
-              </a>
-            </m.div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 4 — HIGHLIGHTS
+          ENGINEERING HIGHLIGHTS
       ══════════════════════════════════════════════════════ */}
       <section className="res-highlights">
-        <div className="res-constrain">
-          <Reveal className="center-align">
-            <m.span className="res-eyebrow" variants={fadeUp}>Experience Highlights</m.span>
-          </Reveal>
-          
-          <Reveal className="res-large-list">
-            {HIGHLIGHTS.map((item) => (
-              <m.h3 key={item} className="res-large-item" variants={fadeUp}>
-                {item}
-              </m.h3>
+        <div className="res-constrain center-align">
+          <Reveal className="highlights-sequence">
+            {[
+              "Artificial Intelligence",
+              "Product Engineering",
+              "Full-Stack Systems",
+              "Career Intelligence",
+              "Intelligent Products",
+              "Engineering Growth"
+            ].map((topic, i) => (
+              <m.div key={i} className="res-highlight-line" variants={fadeUp}>{topic}</m.div>
             ))}
           </Reveal>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 5 — PROFESSIONAL FOCUS
+          PROFESSIONAL EVOLUTION
       ══════════════════════════════════════════════════════ */}
-      <section className="res-focus res-alt">
-        <div className="res-constrain">
-          <Reveal className="center-align">
-            <m.span className="res-eyebrow" variants={fadeUp}>Professional Focus</m.span>
-            <m.h2 className="res-section-headline" variants={fadeUp}>
-              Focused On Building.
-            </m.h2>
-          </Reveal>
-          
-          <Reveal className="res-large-list">
-            {FOCUS.map((focus) => (
-              <m.h3 key={focus} className="res-large-item" variants={fadeUp}>
-                {focus}
-              </m.h3>
+      <section className="res-evolution">
+        <div className="res-constrain center-align">
+          <div className="evolution-flow">
+            {[
+              "Learning",
+              "Engineering",
+              "Systems",
+              "Products",
+              "Intelligence",
+              "Impact"
+            ].map((node, i, arr) => (
+              <React.Fragment key={i}>
+                <m.div 
+                  className="evolution-node"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 1.2, ease: EASE }}
+                >
+                  {node}
+                </m.div>
+                {i < arr.length - 1 && (
+                  <m.div className="evolution-arrow" initial={{ opacity: 0 }} whileInView={{ opacity: 0.3 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1 }}>
+                    ↓
+                  </m.div>
+                )}
+              </React.Fragment>
             ))}
-          </Reveal>
+          </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 6 — RESUME PHILOSOPHY
+          MORE THAN A RESUME
       ══════════════════════════════════════════════════════ */}
-      <section className="res-philosophy">
-        <div className="res-constrain">
-          <Reveal className="center-align">
-            <m.h2 className="res-section-headline" variants={fadeUp}>
-              More Than A Document.
-            </m.h2>
-          </Reveal>
-
-          <Reveal className="res-constrain--reading">
-           <m.p className="res-body" variants={fadeUp}>
-Every project, internship, and challenge contributed to a deeper
-understanding of engineering, intelligence, and product development.
-Together, they tell the story of a builder committed to creating systems
-that solve real problems and create real impact.
-</m.p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 7 — CLOSING
-      ══════════════════════════════════════════════════════ */}
-      <section className="res-closing res-dark" aria-label="Closing statement">
+      <section className="res-reflection">
         <div className="res-constrain center-align">
-          <Reveal>
-            <m.h2 className="res-closing-headline" variants={fadeUp}>
-              Still Building.
-            </m.h2>
-            <m.p className="res-closing-sub" variants={fadeUp}>
-              Every internship. Every project. Every challenge. A step toward building intelligent systems that create opportunity.
-            </m.p>
+          <Reveal className="reflection-sequence">
+            <m.div className="reflection-line" variants={fadeUp}>A resume captures achievements.</m.div>
+            <m.div className="reflection-line" variants={fadeUp}>It cannot capture curiosity.</m.div>
+            <m.div className="reflection-line" variants={fadeUp}>It cannot capture experimentation.</m.div>
+            <m.div className="reflection-line" variants={fadeUp}>It cannot capture persistence.</m.div>
+            <m.div className="reflection-line reflection-strong" variants={fadeUp}>Those experiences shaped<br/>the engineer behind the document.</m.div>
           </Reveal>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 8 — EXPLORE THE WORK
+          CLOSING
       ══════════════════════════════════════════════════════ */}
-      <section className="res-explore res-dark">
+      <section className="res-closing">
         <div className="res-constrain center-align">
-          <Reveal>
-            <m.h2 className="res-section-headline res-text-light" variants={fadeUp}>
-              Explore The Work.
-            </m.h2>
+          <div className="closing-sequence">
             
-            <m.div className="res-nav-actions" variants={fadeUp}>
-              <Link to="/work" className="res-nav-link">Projects <span>↗</span></Link>
-              <Link to="/experience" className="res-nav-link">Experience <span>↗</span></Link>
-              <Link to="/skills" className="res-nav-link">Skills <span>↗</span></Link>
-              <Link to="/connect" className="res-nav-link">Connect <span>↗</span></Link>
+            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
+              Every project<br/>created experience.
             </m.div>
-          </Reveal>
+
+            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
+              Every experience<br/>created perspective.
+            </m.div>
+
+            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
+              Every perspective<br/>created better products.
+            </m.div>
+
+            <m.div className="closing-finale" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
+              The journey continues.
+            </m.div>
+
+            <m.div className="closing-finale text-muted" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE, delay: 0.5 }}>
+              Still Building.
+            </m.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          FINAL NAVIGATION
+      ══════════════════════════════════════════════════════ */}
+      <section className="res-navigation">
+        <div className="res-constrain center-align">
+          <m.div className="nav-editorial" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 1.5, ease: EASE }}>
+            Every story has many chapters.
+          </m.div>
+          
+          <m.div className="nav-links-grid" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 1.5, ease: EASE, delay: 0.2 }}>
+            <Link to="/work" className="nav-link">Projects</Link>
+            <Link to="/experience" className="nav-link">Experience</Link>
+            <Link to="/technology-ecosystem" className="nav-link">Engineering Capabilities</Link>
+            <Link to="/connect" className="nav-link">Connect</Link>
+          </m.div>
         </div>
       </section>
 

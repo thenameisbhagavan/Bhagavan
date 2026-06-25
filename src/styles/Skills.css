@@ -1,410 +1,353 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   APPLE HIG 2026 — TECHNOLOGY ECOSYSTEM
-   Editorial engineering capability experience.
-   Typography hierarchy > logo walls.
-   Whitespace is the primary design element.
-   ═══════════════════════════════════════════════════════════════════════════ */
+/* APPLE WWDC 2026 ENGINEERING CAPABILITIES PAGE REDESIGN */
 
-/* ─── Design Tokens ──────────────────────────────────────────────────────── */
-:root {
-  --eco-text:              #1d1d1f;
-  --eco-text-sec:          #86868b;
-  --eco-text-ter:          #c7c7cc;
-  --eco-rule:              rgba(0, 0, 0, 0.09);
-  --eco-tile-bg:           #ffffff;
-  --eco-tile-border:       rgba(0, 0, 0, 0.07);
-  --eco-tile-shadow:       rgba(0, 0, 0, 0.035);
-  --eco-tile-shadow-hover: rgba(0, 0, 0, 0.07);
-  --eco-cap-tile-bg:       #f5f5f7;
-  --eco-icon-filter:       grayscale(100%) brightness(0);
+.skills-page {
+  background-color: #ffffff;
+  color: #1d1d1f;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Dark mode intentionally not supported — portfolio enforces Apple light theme. */
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   PAGE SHELL
-   ═══════════════════════════════════════════════════════════════════════════ */
-.eco-page {
-  background:              transparent; /* inherits AppShell */
-  color:                   #1d1d1f;
-  overflow-x:              hidden;
-  -webkit-font-smoothing:  antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering:          optimizeLegibility;
-  padding-bottom:          10vh;
+.skills-constrain {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5vw;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
+.center-align {
+  text-align: center;
+}
+
+/* =========================================
    HERO
-   Large centered statement — the page opens with intent, not decoration.
-   ═══════════════════════════════════════════════════════════════════════════ */
-.eco-hero {
-  display:        flex;
-  flex-direction: column;
-  align-items:    center;
-  text-align:     center;
-  padding:        22vh 48px 16vh;
-  max-width:      960px;
-  margin:         0 auto;
+   ========================================= */
+.skills-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  will-change: transform, opacity;
+  transform-origin: center top;
 }
 
-/* "Engineering Capabilities" — quiet label above the headline */
-.eco-hero-eyebrow {
-  font-family:     var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:       12px;
-  font-weight:     600;
-  letter-spacing:  0.12em;
-  text-transform:  uppercase;
-  color:           #c7c7cc;
-  margin-bottom:   20px;
-  display:         block;
-}
-
-/* "Built Through Practice." — the dominant visual element on the page */
-.eco-hero-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(52px, 9vw, 108px);
-  font-weight:    700;
+.skills-hero-headline {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(50px, 10vw, 140px);
+  font-weight: 700;
   letter-spacing: -0.04em;
-  line-height:    1.02;
-  color:          #1d1d1f;
-  margin:         0 0 28px;
+  line-height: 1.05;
+  color: #1d1d1f;
 }
 
-/* Supporting subheadline — editorial, not descriptive */
-.eco-hero-sub {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    clamp(18px, 2.4vw, 23px);
-  font-weight:  400;
-  line-height:  1.5;
-  color:        #86868b;
-  max-width:    580px;
-  margin:       0;
+.text-muted {
+  color: #86868b;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   SECTION — EDITORIAL CHAPTER LAYOUT
-   Desktop: two-column grid — sticky meta left / tile grid right.
-   Mobile:  single column, meta above tiles.
-   Each section is separated by a hairline rule — structure through restraint.
-   ═══════════════════════════════════════════════════════════════════════════ */
-.eco-section {
-  max-width:   1160px;
-  margin:      0 auto;
-  padding:     96px 48px;
-  border-top:  0.5px solid rgba(0, 0, 0, 0.09);
-
-  /* Two-column editorial grid */
-  display:               grid;
-  grid-template-columns: 5fr 7fr;
-  gap:                   80px;
-  align-items:           start;
+/* =========================================
+   INTRODUCTION
+   ========================================= */
+.skills-intro {
+  padding: 20vh 0;
+  background: #000000;
+  color: #ffffff;
 }
 
-/* ─── Section Meta (left column) ─────────────────────────────────────────── */
-/* Sticks in viewport as the user scrolls through the tile grid on the right.
-   This anchors the section context while the content is explored. */
-.eco-section-meta {
-  position:   sticky;
-  top:        108px; /* accounts for ~70px navbar + 38px breathing room */
-  align-self: start;
-}
-
-/* "01" — minimal section counter, purely structural */
-.eco-section-num {
-  display:        block;
-  font-family:    var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:      10px;
-  font-weight:    700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color:          #c7c7cc;
-  margin-bottom:  18px;
-}
-
-/* "Programming Languages" — the chapter title, dominant in its column */
-.eco-section-title {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(26px, 3vw, 40px);
-  font-weight:    700;
-  letter-spacing: -0.022em;
-  line-height:    1.1;
-  color:          #1d1d1f;
-  margin:         0 0 20px;
-}
-
-/* Editorial paragraph — why these technologies matter, not what they are */
-.eco-section-editorial {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    16px;
-  font-weight:  400;
-  line-height:  1.65;
-  color:        #86868b;
-  margin:       0;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   TILE GRID (right column)
-   Technologies are supporting evidence, not the headline.
-   Tiles are compact, refined, and intentionally understated.
-   ═══════════════════════════════════════════════════════════════════════════ */
-.eco-tile-grid {
-  display:             grid;
-  grid-template-columns: repeat(auto-fill, minmax(138px, 1fr));
-  gap:                 12px;
-  align-content:       start;
-}
-
-/* ─── Base Tile ───────────────────────────────────────────────────────────── */
-/* Shared by TechTile and CapTile.
-   Vertical layout: icon / mark at top-left, name anchored to bottom.
-   The tile does NOT dominate — it is a contained, elegant list item. */
-.eco-tile {
-  background:     #ffffff;
-  border:         1px solid rgba(0, 0, 0, 0.07);
-  border-radius:  16px;
-  padding:        22px 16px 18px;
-  display:        flex;
+.intro-sequence {
+  display: flex;
   flex-direction: column;
-  align-items:    flex-start;
-  gap:            0;
-  min-height:     116px;
-  cursor:         default;
-  transition:
-    transform    0.38s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow   0.38s ease,
-    border-color 0.38s ease;
-  box-shadow:  0 1px 8px rgba(0, 0, 0, 0.04);
-  will-change: transform;
+  gap: 12vh;
+}
+
+.intro-line {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(32px, 6vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #f5f5f7;
+}
+
+/* =========================================
+   HIERARCHY GROUPS & THEMES
+   ========================================= */
+.skills-hierarchy-group {
+  padding: 20vh 0;
+  transition: background-color 0.8s ease;
+}
+
+.theme-core {
+  background-color: #ffffff;
+  color: #1d1d1f;
+}
+
+.theme-intelligent {
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.theme-production {
+  background-color: #ffffff;
+  color: #1d1d1f;
+}
+
+/* =========================================
+   ECO SECTION (Reusable Component)
+   ========================================= */
+.eco-section {
+  margin-bottom: 25vh;
+}
+.eco-section:last-child {
+  margin-bottom: 0;
+}
+
+.eco-header {
+  margin-bottom: 10vh;
+  text-align: left;
+}
+
+.eco-title {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #86868b;
+  margin-bottom: 24px;
+}
+
+.eco-editorial {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: inherit;
+  max-width: 900px;
+}
+
+.eco-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+/* Physical Tiles - No Badge Feel */
+.eco-tile {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  cursor: default;
+}
+
+.theme-intelligent .eco-tile {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.03);
 }
 
 .eco-tile:hover {
-  transform:    translateY(-4px);
-  box-shadow:   0 12px 36px rgba(0, 0, 0, 0.09);
-  border-color: transparent;
-}
-
-/* ─── Logo icon wrapper ───────────────────────────────────────────────────── */
-.eco-tile-icon-wrap {
-  width:           28px;
-  height:          28px;
-  display:         flex;
-  align-items:     center;
-  justify-content: center;
-  flex-shrink:     0;
-  margin-bottom:   auto; /* pushes the name to the bottom */
-  padding-bottom:  14px; /* space between icon and name */
-}
-
-/* Monochrome by default — brand color revealed on hover.
-   The logo is a 28 px accent, never the dominant visual. */
-.eco-tile-logo {
-  width:       100%;
-  height:      100%;
-  object-fit:  contain;
-  filter:      grayscale(100%) brightness(0);
-  transition:
-    filter    0.5s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: filter, transform;
-}
-
-.eco-tile:hover .eco-tile-logo {
-  filter:    grayscale(0%) brightness(1) invert(0);
-  transform: scale(1.12);
-}
-
-/* ─── Technology name ─────────────────────────────────────────────────────── */
-/* The NAME is the primary text in every tile — the logo is the accent. */
-.eco-tile-name {
-  font-family:    var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:      13.5px;
-  font-weight:    600;
-  letter-spacing: -0.01em;
-  line-height:    1.3;
-  color:          #1d1d1f;
-  margin-top:     auto; /* anchors to the bottom of the tile */
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   CAPABILITY TILE
-   For concepts and engineering disciplines without official logos.
-   The editorial mark (DSA, API, RAG, OS…) is the visual identity.
-   It is not a fallback — it is a deliberate design choice.
-   ═══════════════════════════════════════════════════════════════════════════ */
-.eco-cap-tile {
-  background:   #f5f5f7;
-  border-color: transparent;
-}
-
-.eco-cap-tile:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   background: #ffffff;
 }
 
-/* Mark + descriptor block — sits where the logo sits on TechTile */
-.eco-cap-mark-wrap {
-  display:        flex;
-  flex-direction: column;
-  gap:            3px;
-  margin-bottom:  auto;
-  padding-bottom: 14px;
+.eco-icon-wrapper {
+  height: 48px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.4s ease;
 }
 
-/* "DSA" — the primary typographic mark.
-   Tracked, bold, SF Pro Display. No icon could say this more precisely. */
-.eco-cap-mark {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      13px;
-  font-weight:    700;
-  letter-spacing: 0.16em;
-  color:          #1d1d1f;
-  line-height:    1;
-  transition:     letter-spacing 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* "CS Foundations" — a muted descriptor beneath the mark */
-.eco-cap-sub {
-  font-family:    var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:      7.5px;
-  font-weight:    500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color:          #86868b;
-  line-height:    1;
-  opacity:        0.55;
-  transition:     opacity 0.35s ease;
-  white-space:    nowrap;
-}
-
-/* Hover: mark spacing opens, descriptor sharpens */
-.eco-cap-tile:hover .eco-cap-mark {
-  letter-spacing: 0.22em;
-}
-
-.eco-cap-tile:hover .eco-cap-sub {
+.eco-tile:hover .eco-icon-wrapper {
   opacity: 1;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   CLOSING STATEMENT
-   Centered. Monumental. Restrained.
-   No decoration — the typography alone carries the weight.
-   ═══════════════════════════════════════════════════════════════════════════ */
-.eco-closing {
-  max-width:  900px;
-  margin:     0 auto;
-  padding:    14vh 48px 12vh;
-  text-align: center;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.09);
+.eco-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(70%);
+  transition: filter 0.4s ease;
 }
 
-/* "The Tools Evolve." — the apex statement */
-.eco-closing-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(44px, 7.5vw, 92px);
-  font-weight:    700;
-  letter-spacing: -0.04em;
-  line-height:    1.01;
-  color:          #1d1d1f;
-  margin:         0 0 6px;
+.eco-tile:hover .eco-icon {
+  filter: grayscale(0%) opacity(100%);
 }
 
-/* "The Fundamentals Remain." — counterpoint in secondary tone */
-.eco-closing-subheadline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(30px, 5vw, 66px);
-  font-weight:    600;
+.eco-typographic-mark {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-weight: 700;
+  font-size: 24px;
+  color: #1d1d1f;
+  letter-spacing: -0.02em;
+}
+
+.eco-name {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.eco-sub {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: 13px;
+  color: #86868b;
+  margin-top: 6px;
+}
+
+/* =========================================
+   TRANSITIONS
+   ========================================= */
+.skills-transition {
+  padding: 30vh 0;
+  background: #000000;
+  color: #ffffff;
+}
+.skills-transition.alt-bg {
+  background: #1d1d1f;
+}
+
+.transition-statement {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(40px, 8vw, 100px);
+  font-weight: 700;
   letter-spacing: -0.03em;
-  line-height:    1.05;
-  color:          #86868b;
-  margin:         0 0 36px;
+  line-height: 1.1;
 }
 
-/* Supporting statement — calm, considered, final */
-.eco-closing-text {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    clamp(16px, 2vw, 19px);
-  font-weight:  400;
-  line-height:  1.65;
-  color:        #86868b;
-  max-width:    520px;
-  margin:       0 auto;
+/* =========================================
+   ORCHESTRATION VISUALIZATION
+   ========================================= */
+.skills-orchestration {
+  padding: 30vh 0;
+  background: #f5f5f7;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ── Tablet: collapse two-column to single ── */
-@media (max-width: 900px) {
-  .eco-section {
-    grid-template-columns: 1fr;
-    gap:                   36px;
-    padding:               64px 32px;
-  }
-
-  /* No longer sticky when stacked — static flow */
-  .eco-section-meta {
-    position: static;
-  }
-
-  .eco-section-title {
-    font-size: clamp(28px, 5vw, 36px);
-  }
+.orchestration-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12vh;
 }
 
-/* ── Mobile ── */
-@media (max-width: 600px) {
-  .eco-hero {
-    padding: 18vh 24px 12vh;
-  }
+.orchestration-node {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(40px, 8vw, 120px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #1d1d1f;
+}
 
-  .eco-hero-headline {
-    font-size: clamp(44px, 12vw, 72px);
-  }
+.orchestration-arrow {
+  font-size: clamp(30px, 5vw, 60px);
+  color: #86868b;
+}
 
-  .eco-section {
-    padding: 52px 20px;
-    gap:     28px;
-  }
+/* =========================================
+   CAPABILITIES COMPOSITION
+   ========================================= */
+.skills-capabilities {
+  padding: 30vh 0;
+  background: #ffffff;
+}
 
-  .eco-tile-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 10px;
-  }
+.capabilities-composition {
+  display: flex;
+  flex-direction: column;
+  gap: 6vh;
+}
 
-  .eco-tile {
-    padding:    18px 14px 14px;
-    min-height: 100px;
-    border-radius: 14px;
-  }
+.capability-line {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(32px, 6vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #1d1d1f;
+}
 
-  .eco-tile-icon-wrap {
-    width:  24px;
-    height: 24px;
-  }
+/* =========================================
+   ROADMAP
+   ========================================= */
+.skills-roadmap {
+  padding: 30vh 0;
+  background: #f5f5f7;
+}
 
-  .eco-tile-name {
-    font-size: 12.5px;
-  }
+.roadmap-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12vh;
+}
 
-  .eco-cap-mark {
-    font-size: 11px;
-  }
+.roadmap-node {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(32px, 6vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #1d1d1f;
+}
 
-  .eco-cap-sub {
-    font-size: 6.5px;
-  }
+.roadmap-start {
+  color: #86868b;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: clamp(16px, 3vw, 24px);
+  font-weight: 700;
+}
 
-  .eco-closing {
-    padding: 10vh 24px 8vh;
-  }
+.roadmap-arrow {
+  font-size: clamp(30px, 5vw, 60px);
+  color: #86868b;
+}
 
-  .eco-closing-headline {
-    font-size: clamp(38px, 10vw, 56px);
-  }
+/* =========================================
+   CLOSING
+   ========================================= */
+.skills-closing {
+  padding: 40vh 0 20vh 0;
+  background: #000000;
+  color: #ffffff;
+}
 
-  .eco-closing-subheadline {
-    font-size: clamp(26px, 7vw, 40px);
-  }
+.closing-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 30vh;
+}
+
+.closing-thought {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(28px, 4.5vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #86868b;
+}
+
+.closing-finale {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(60px, 12vw, 160px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.closing-sub-finale {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: clamp(16px, 2.5vw, 24px);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #86868b;
+  text-transform: uppercase;
+  margin-top: -10vh; /* Pull closer to 'Still building.' */
 }

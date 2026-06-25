@@ -1,534 +1,483 @@
-import React, { useEffect } from "react";
-import { m } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { m, useScroll, useTransform } from "framer-motion";
 import "../styles/Work.css";
 
 // ─── Images ───────────────────────────────────────────────────────────────────
-import careerOSImg   from "../assets/careeros-new.jpg";
-import chatImg       from "../assets/aurabot-new.png";
-import heartImg      from "../assets/heart-new.png";
-import leaveImg      from "../assets/leave.jpg";
-import fakeImg       from "../assets/fake.jpg";
+import careerOSImg from "../assets/careeros-new.jpg";
+import chatImg from "../assets/aurabot-new.png";
+import heartImg from "../assets/heart-new.png";
+import leaveImg from "../assets/leave.jpg";
+import fakeImg from "../assets/fake.jpg";
 
 // ─── Motion ───────────────────────────────────────────────────────────────────
-const EASE = [0.16, 1, 0.3, 1];
+const appleEase = [0.16, 1, 0.3, 1];
 
 const fadeUp = {
-  hidden:  { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.85, ease: EASE } },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: appleEase } },
 };
 
-const stagger = {
-  hidden:  {},
-  visible: { transition: { staggerChildren: 0.13 } },
+const fadeUpStagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
-const imgReveal = {
-  hidden:  { opacity: 0, y: 36 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.1, ease: EASE } },
+// ─── Helper: Animated Counter ─────────────────────────────────────────────────
+function AnimatedCounter({ from = 0, to, duration = 2, suffix = "", delay = 0 }) {
+  const nodeRef = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setInView(true);
+      },
+      { threshold: 0.5 }
+    );
+    if (nodeRef.current) observer.observe(nodeRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (inView) {
+      let start = null;
+      let reqId = null;
+
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / (duration * 1000), 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(from + (to - from) * easeProgress);
+
+        if (nodeRef.current) {
+          nodeRef.current.textContent = current + (progress === 1 ? suffix : "");
+        }
+
+        if (progress < 1) {
+          reqId = requestAnimationFrame(step);
+        }
+      };
+
+      const timeoutId = setTimeout(() => {
+        reqId = requestAnimationFrame(step);
+      }, delay * 1000);
+
+      return () => {
+        clearTimeout(timeoutId);
+        if (reqId) cancelAnimationFrame(reqId);
+      };
+    }
+  }, [from, to, duration, inView, delay, suffix]);
+
+  return <span ref={nodeRef}>{from}</span>;
+}
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+const FLAGSHIP_CAREEROS = {
+  theme: "careeros",
+  name: "CareerOS",
+  eyebrow: "The Career Intelligence Operating System.",
+  problem: "Career progression is currently determined by fragmented data, guesswork, and opaque algorithms.",
+  vision: "To create an intelligence platform that understands your exact career trajectory and reveals precisely what to do next.",
+  productImg: careerOSImg,
+  howItWorks: [
+    { step: "01", title: "Discover", desc: "Captures academic and professional data into a unified profile." },
+    { step: "02", title: "Evaluate", desc: "Analyzes skills against real-time market demands." },
+    { step: "03", title: "Reveal", desc: "Generates tailored career opportunities and skill gaps." },
+    { step: "04", title: "Accelerate", desc: "Provides AI-powered roadmaps for immediate execution." }
+  ],
+  technologyDesc: "A full-stack intelligence engine built to process complex career data into actionable paths.",
+  impact: "Transforms fragmented career decisions into measurable, continuous growth.",
+  github: "https://github.com/bhagavan444/careeros"
 };
 
-// ─── Reveal helper ────────────────────────────────────────────────────────────
-function Reveal({ children, className }) {
+const SECONDARY_PROJECTS = [
+  {
+    layoutVariant: "centered",
+    theme: "auraos",
+    name: "AuraOS",
+    eyebrow: "Personal Intelligence OS.",
+    problem: "Traditional chatbots respond and immediately forget, destroying context and continuity.",
+    vision: "To build a conversational intelligence layer that learns, remembers, and grows alongside you.",
+    productImg: chatImg,
+    howItWorks: [
+      { step: "01", title: "Memory", desc: "Creates a persistent context window across all sessions." },
+      { step: "02", title: "Reasoning", desc: "Connects separate concepts into a unified knowledge graph." },
+      { step: "03", title: "Retrieval", desc: "Pulls exact historical facts instantly when required." }
+    ],
+    technologyDesc: "Powered by vector databases, RAG architectures, and custom short/long-term memory routers.",
+    impact: "Demonstrated true conversational persistence across simulated multi-day interactions.",
+    github: "https://github.com/bhagavan444/auraos",
+    preTransitionText: "Understanding careers led to understanding people."
+  },
+  {
+    layoutVariant: "split",
+    theme: "veritas",
+    name: "VERITAS",
+    eyebrow: "Explainable Intelligence Platform.",
+    problem: "AI generates plausible conclusions without exposing the evidence or reasoning behind them.",
+    vision: "To force AI systems to mathematically prove their conclusions and expose structural bias.",
+    productImg: fakeImg,
+    howItWorks: [
+      { step: "01", title: "Extract", desc: "Pulls factual claims from unstructured text." },
+      { step: "02", title: "Analyze", desc: "Scores claims against known credibility baselines." },
+      { step: "03", title: "Trace", desc: "Maps the exact path from raw text to final judgment." }
+    ],
+    technologyDesc: "A deterministic NLP pipeline built over FastAPI, React, and strict credibility schemas.",
+    impact: "Successfully validated complex intelligence reports with deterministic traceability.",
+    github: "https://github.com/bhagavan444/News-detector",
+    preTransitionText: "Understanding people demanded trustworthy intelligence."
+  },
+  {
+    layoutVariant: "compact-left",
+    theme: "health",
+    name: "Health Prediction",
+    eyebrow: "Machine Learning Analytics.",
+    problem: "Medical data is dense, complex, and inaccessible to patients trying to understand their risks.",
+    vision: "To transform raw clinical datasets into clear, actionable predictive health insights.",
+    productImg: heartImg,
+    howItWorks: [
+      { step: "01", title: "Ingest", desc: "Processes massive, unstructured clinical datasets." },
+      { step: "02", title: "Predict", desc: "Applies trained models to isolate cardiovascular risks." },
+      { step: "03", title: "Inform", desc: "Visualizes the outcome in clear, accessible terminology." }
+    ],
+    technologyDesc: "Engineered with Python, Scikit-learn, and Flask, utilizing optimized predictive algorithms.",
+    impact: "Achieved high-accuracy diagnostic predictions across established cardiovascular datasets.",
+    github: "https://github.com/bhagavan444/Heart-Disease-Prediction",
+    preTransitionText: "Trust also matters in everyday systems."
+  },
+  {
+    layoutVariant: "compact-right",
+    theme: "enterprise",
+    name: "Smart Leave",
+    eyebrow: "Enterprise Automation.",
+    problem: "Administrative workflows are bogged down by manual approvals and fragmented communication.",
+    vision: "To fully automate enterprise operations, ensuring zero delays in administrative execution.",
+    productImg: leaveImg,
+    howItWorks: [
+      { step: "01", title: "Request", desc: "Employee initiates a digital workflow instantaneously." },
+      { step: "02", title: "Route", desc: "The system intelligently directs the request to relevant managers." },
+      { step: "03", title: "Resolve", desc: "Execution and record-keeping happen automatically." }
+    ],
+    technologyDesc: "Built entirely within the Microsoft Power Platform ecosystem, utilizing Power Automate.",
+    impact: "Transformed multi-day approval chains into near-instantaneous digital resolutions.",
+    github: null,
+    preTransitionText: null // Flows naturally from the previous
+  }
+];
+
+export const FLAGSHIP_PROJECTS = [
+  { name: "CareerOS", eyebrow: "Flagship Project", desc: "The intelligence layer for your career trajectory.", img: careerOSImg, link: "/work" },
+  { name: "AuraOS", eyebrow: "Personal Intelligence OS", desc: "Conversational intelligence that understands context.", img: chatImg, link: "/work" },
+  { name: "VERITAS", eyebrow: "Explainable Intelligence Platform", desc: "Data validation and truth extraction engine.", img: fakeImg, link: "/work" }
+];
+
+// ─── Components ───────────────────────────────────────────────────────────────
+
+function NarrativeTransition({ text }) {
+  if (!text) return null;
   return (
-    <m.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-70px" }}
-      variants={stagger}
-    >
-      {children}
-    </m.div>
+    <section className="narrative-transition">
+      <div className="work-bounds">
+        <m.h2 className="transition-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+          {text}
+        </m.h2>
+      </div>
+    </section>
   );
 }
 
-// ─── How CareerOS works ───────────────────────────────────────────────────────
-const HOW_STEPS = [
-  {
-    num: "01",
-    title: "Discover",
-    desc: "Capture your academic profile, skills, projects, and professional experiences to build a complete career intelligence profile.",
-  },
-  {
-    num: "02",
-    title: "Evaluate",
-    desc: "Analyze your resume, GitHub activity, technical depth, and market readiness using proprietary intelligence engines.",
-  },
-  {
-    num: "03",
-    title: "Reveal",
-    desc: "Generate personalized insights, skill-gap analysis, engineering maturity scores, and career opportunities tailored to your profile.",
-  },
-  {
-    num: "04",
-    title: "Accelerate",
-    desc: "Follow AI-powered roadmaps, interview preparation plans, and growth recommendations designed to maximize career outcomes.",
-  },
-];
+function CareerOSKeynote({ project }) {
+  return (
+    <section className="careeros-keynote theme-careeros">
+      <div className="work-bounds">
+        <m.h3 className="careeros-text-large" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+          {project.problem}
+        </m.h3>
 
-// ─── Secondary projects (real data — no exaggeration) ─────────────────────────
-const SECONDARY_PROJECTS = [
-{
-  name: "AuraOS",
-  eyebrow: "Personal Intelligence OS",
-  year: "2025",
-  img: chatImg,
-  desc: "AuraOS is an AI-powered Personal Intelligence Operating System designed to transform conversations, documents, knowledge, and memory into a unified intelligence layer. Unlike traditional chatbots that respond and forget, AuraOS continuously builds contextual understanding through persistent memory, knowledge management, retrieval-augmented intelligence, and reasoning workflows. The platform enables users to organize information, interact with intelligent knowledge systems, and develop a personalized AI companion that evolves over time.",
-  role: "Founder & Product Engineer",
-  tech: [
-    "React",
-    "Flask",
-    "MongoDB",
-    "Vector Search",
-    "Google Gemini"
-  ],
-  features: [
-    "Persistent Memory",
-    "Document Understanding",
-    "Knowledge Graph",
-    "Conversational Reasoning",
-    "Workspace Integration",
-    "Privacy-First Layer",
-    "Personalized Retrieval",
-    "Modern UX"
-  ],
-  learning: "AuraOS represents a vision for the next generation of computing, where intelligence becomes a persistent layer that learns, remembers, understands, and grows alongside its user.",
-  github: "https://github.com/bhagavan444/auraos",
-},
-  {
-  name: "Health Prediction",
-  eyebrow: "Machine Learning",
-  year: "2024",
-  img: heartImg,
-  desc: "An intelligent healthcare analytics platform that leverages machine learning to assess cardiovascular risk and support data-driven health insights. Built using clinical datasets and predictive modeling techniques, the system transforms complex medical data into accessible, actionable predictions through an intuitive web experience.",
-  role: "ML Engineer & Developer",
-  tech: [
-    "Python",
-    "Scikit-learn",
-    "Pandas",
-    "Flask",
-    "Machine Learning",
-    "Data Analysis"
-  ],
-  learning: "Developed expertise in predictive modeling, feature engineering, model evaluation, and healthcare data analysis while building reliable machine learning systems for real-world decision support.",
-  github: "https://github.com/bhagavan444/Heart-Disease-Prediction",
-},
- {
-name: "Smart Leave",
-eyebrow: "Enterprise Automation",
-year: "2025",
-img: leaveImg,
-desc: "A digital workflow platform designed to streamline employee leave management through automated approval processes, centralized tracking, and seamless collaboration. Built using Microsoft's low-code ecosystem, Smart Leave transforms traditional administrative workflows into efficient, transparent, and scalable business operations.",
-role: "Workflow Automation Developer",
-tech: [
-"Microsoft PowerApps",
-"SharePoint",
-"Power Automate",
-"Microsoft 365"
-],
-learning: "Designed and implemented enterprise-grade workflow automation solutions, gaining expertise in business process optimization, low-code application development, approval orchestration, and digital transformation strategies.",
-github: null,
-},
- {
-name: "VERITAS",
-eyebrow: "Explainable Intelligence Platform",
-year: "2024",
-img: fakeImg,
-desc: "VERITAS is an AI-powered Explainable Intelligence Platform designed to transform articles into structured intelligence reports through deterministic reasoning. The platform analyzes information across six intelligence layers: Article Processing, Claim Extraction, Credibility Analysis, Bias Detection, Explanation Generation, and Intelligence Report Synthesis. Unlike traditional AI systems that provide opaque answers, VERITAS exposes the reasoning behind every conclusion through Decision Traces, Evidence Analysis, Risk Assessment, and Confidence Metrics. The platform evaluates factual claims, source credibility, narrative framing, and structural bias while maintaining complete transparency and explainability. Built with React, FastAPI, MongoDB, Firebase Authentication, and advanced NLP pipelines, VERITAS includes an Intelligence Library for historical analysis tracking, validation frameworks, research methodology documentation, comparative intelligence reports, and a comprehensive explainable reasoning engine.",
-role: "Full-Stack AI Engineer",
-tech: [
-  "React",
-  "FastAPI",
-  "Python",
-  "MongoDB",
-  "Firebase",
-  "spaCy",
-  "NLP",
-  "Framer Motion"
-],
-features: [
-  "Multi-layer Intelligence Pipeline",
-  "Claim Extraction & Evidence Analysis",
-  "Credibility Scoring Engine",
-  "Bias Detection Framework",
-  "Decision Trace & Explainability Layer",
-  "Intelligence Report Generator",
-  "Research & Validation Framework",
-  "Personal Intelligence Library"
-],
-learning: "Developed expertise in natural language processing, text representation, machine learning pipelines, feature engineering, and intelligent content analysis while building systems capable of extracting meaning from large-scale textual data.",
-github: "https://github.com/bhagavan444/News-detector",
+        <m.h3 className="careeros-text-large" style={{ color: "#6e6e73" }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+          {project.vision}
+        </m.h3>
+
+        <div className="careeros-hero-block">
+          <m.div className="careeros-image-wrapper" initial={{ opacity: 0, scale: 0.95, y: 50 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1.2, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
+            <img src={project.productImg} alt={project.name} className="careeros-image" />
+          </m.div>
+        </div>
+
+        <div className="product-block block-works">
+          <m.p className="product-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>The Experience</m.p>
+          <div className="product-timeline">
+            {project.howItWorks.map((step, i) => (
+              <m.div key={i} className="timeline-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
+                <span className="step-num">{step.step}</span>
+                <div className="step-content">
+                  <h5 className="step-title">{step.title}</h5>
+                  <p className="step-desc">{step.desc}</p>
+                </div>
+              </m.div>
+            ))}
+          </div>
+        </div>
+
+        <div className="product-block block-tech-impact">
+          <div className="impact-col">
+            <m.p className="product-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>Real Impact</m.p>
+            <m.p className="product-impact-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>{project.impact}</m.p>
+          </div>
+          <div className="tech-col">
+            <m.p className="product-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>Engineering Decisions</m.p>
+            <m.p className="product-tech-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>{project.technologyDesc}</m.p>
+          </div>
+        </div>
+
+        {project.github && (
+          <div className="product-block block-explore">
+            <m.a href={project.github} target="_blank" rel="noopener noreferrer" className="product-explore-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Explore {project.name} <span className="cta-arrow">→</span>
+            </m.a>
+          </div>
+        )}
+      </div>
+    </section>
+  );
 }
-];
 
-// ─── Engineering capabilities ─────────────────────────────────────────────────
-const CAPABILITIES = [
-  "Career Intelligence Systems",
-  "Artificial Intelligence",
-  "Full-Stack Engineering",
-  "Machine Learning",
-  "Conversational AI",
-  "Data Intelligence",
-  "Product Architecture",
-  "Experience Design",
-];
+function ProductSection({ project }) {
+  return (
+    <section className={`product-chapter theme-${project.theme} layout-${project.layoutVariant}`}>
+      <div className="work-bounds">
+        
+        {project.layoutVariant === 'split' || project.layoutVariant.includes('compact') ? (
+          <>
+            <m.div className="product-hero-wrapper" initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 1, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
+              <img src={project.productImg} alt={project.name} className="product-hero-img" />
+            </m.div>
+            <div className="product-content">
+              <m.p className="product-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>The Problem</m.p>
+              <m.h3 className="product-problem-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>{project.problem}</m.h3>
+              
+              <div style={{ marginTop: '5vh' }}>
+                <m.p className="product-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>The Vision</m.p>
+                <m.h4 className="product-vision-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>{project.vision}</m.h4>
+              </div>
 
-// ─── Verified impact numbers ──────────────────────────────────────────────────
-const STATS = [
-  { value: "6+", label: "Products & Platforms Built" },
-  { value: "3",  label: "Industry Internships" },
-  { value: "15+", label: "Technologies Mastered" },
-  { value: "4+", label: "AI-Powered Solutions" },
-];
-// ─── Page ─────────────────────────────────────────────────────────────────────
+              <div className="product-timeline">
+                {project.howItWorks.map((step, i) => (
+                  <m.div key={i} className="timeline-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
+                    <span className="step-num">{step.step}</span>
+                    <div className="step-content">
+                      <h5 className="step-title">{step.title}</h5>
+                      <p className="step-desc">{step.desc}</p>
+                    </div>
+                  </m.div>
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="product-block block-problem">
+              <m.p className="product-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>The Problem</m.p>
+              <m.h3 className="product-problem-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>{project.problem}</m.h3>
+            </div>
+            <div className="product-block block-vision">
+              <m.p className="product-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>The Vision</m.p>
+              <m.h4 className="product-vision-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>{project.vision}</m.h4>
+            </div>
+            <div className="product-block block-hero">
+              <m.div className="product-hero-wrapper" initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 1, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
+                <img src={project.productImg} alt={project.name} className="product-hero-img" />
+              </m.div>
+            </div>
+            <div className="product-block block-works">
+              <m.p className="product-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>The Experience</m.p>
+              <div className="product-timeline">
+                {project.howItWorks.map((step, i) => (
+                  <m.div key={i} className="timeline-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
+                    <span className="step-num">{step.step}</span>
+                    <div className="step-content">
+                      <h5 className="step-title">{step.title}</h5>
+                      <p className="step-desc">{step.desc}</p>
+                    </div>
+                  </m.div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Tech & Impact is at the end for all layouts */}
+        <div className={`product-block tech-impact-block ${project.layoutVariant === 'centered' ? 'block-tech-impact' : ''}`}>
+          <div>
+            <m.p className="product-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>The Outcome</m.p>
+            <m.p className="product-impact-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>{project.impact}</m.p>
+          </div>
+          <div>
+            <m.p className="product-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>Engineering</m.p>
+            <m.p className="product-tech-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>{project.technologyDesc}</m.p>
+          </div>
+        </div>
+
+        {project.github && (
+          <m.a href={project.github} target="_blank" rel="noopener noreferrer" className="product-explore-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
+            Explore {project.name} <span className="cta-arrow">→</span>
+          </m.a>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// ─── Main Page Component ──────────────────────────────────────────────────────
+
 export default function Work() {
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  // Hero Parallax (Dominant Animation: Parallax)
+  const { scrollY } = useScroll();
+  const heroScale = useTransform(scrollY, [0, 600], [1, 0.95]);
+  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const heroY = useTransform(scrollY, [0, 600], [0, 100]);
+
+  // Challenge Sequence (Dominant Animation: Fade cross-fading)
+  const challengeRef = useRef(null);
+  const { scrollYProgress: challengeProgress } = useScroll({
+    target: challengeRef,
+    offset: ["start start", "end end"]
+  });
+
+  const challengeOpacity1 = useTransform(challengeProgress, [0, 0.15, 0.25], [1, 1, 0]);
+  const challengeOpacity2 = useTransform(challengeProgress, [0.15, 0.25, 0.45, 0.55], [0, 1, 1, 0]);
+  const challengeOpacity3 = useTransform(challengeProgress, [0.45, 0.55, 0.75, 0.85], [0, 1, 1, 0]);
+  const challengeOpacity4 = useTransform(challengeProgress, [0.75, 0.85, 1], [0, 1, 1]); // CareerOS text reveal
+
+  // Future Roadmap (Dominant Animation: Opacity cascade)
+  const roadmapItems = [
+    "Today",
+    "Career Intelligence",
+    "Personal Intelligence",
+    "Developer Intelligence",
+    "Human Intelligence"
+  ];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <div className="work-page">
+    <div className="wwdc-work-page">
+      
+      {/* CHAPTER 1: HERO */}
+      <m.section className="wwdc-hero" style={{ scale: heroScale, opacity: heroOpacity, y: heroY }}>
+        <div className="work-bounds">
+          <m.h1 className="wwdc-hero-headline" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: appleEase }}>
+            Technology Designed To Amplify Human Potential.
+          </m.h1>
+        </div>
+      </m.section>
 
-      {/* ══════════════════════════════════════════════════════
-          SECTION 1 — HERO
-      ══════════════════════════════════════════════════════ */}
-      <section className="work-hero" aria-label="Products hero">
-        <m.h1
-          className="work-hero-headline"
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: EASE }}
-        >
-         Technology Designed To Amplify Human Potential.
-        </m.h1>
-        <m.p
-          className="work-hero-sub"
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.18, ease: EASE }}
-        >
-          A portfolio of intelligent systems, AI-powered products, and digital experiences designed to transform complex data into meaningful decisions.
-        </m.p>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 2 — THE APPROACH
-      ══════════════════════════════════════════════════════ */}
-      <section className="work-approach" aria-labelledby="approach-headline">
-        <div className="work-constrain work-constrain--reading">
-          <m.h2
-            id="approach-headline"
-            className="work-section-headline"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-          >
-           Build. Innovate. Evolve.
+      {/* CHAPTER 2: THE CHALLENGE (Sticky Crossfade) */}
+      <section ref={challengeRef} className="wwdc-challenge-container">
+        <div className="wwdc-challenge-sticky">
+          <m.h2 className="challenge-text" style={{ opacity: challengeOpacity1 }}>
+            Technology creates<br/>more information<br/>than ever before.
           </m.h2>
-          <Reveal>
-            <m.p className="work-body" variants={fadeUp}>
-             Every product began with a challenge worth solving. Not as an experiment, but as an opportunity to create something useful. Each project became a step toward understanding how intelligent systems are designed, how data becomes insight, and how technology can simplify complex decisions. From full-stack platforms to AI-powered applications, the focus has always remained the same: building products that create meaningful impact.
-
-            </m.p>
-            <m.p className="work-body" variants={fadeUp}>
-              Every project became an opportunity to move beyond theory and learn through execution. Each challenge deepened an understanding of software systems, artificial intelligence, and product engineering—revealing what it truly takes to design, build, and scale solutions that are reliable, impactful, and built to last.
-
-            </m.p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 3 — CAREEROS (FLAGSHIP)
-      ══════════════════════════════════════════════════════ */}
-      <section className="work-flagship" aria-labelledby="careeros-headline">
-        <div className="work-constrain">
-          <Reveal>
-            <m.span className="work-eyebrow" variants={fadeUp}>Flagship Project</m.span>
-            <m.h2
-              id="careeros-headline"
-              className="work-flagship-headline"
-              variants={fadeUp}
-            >
-              CareerOS.
-            </m.h2>
-            <m.p className="work-flagship-sub" variants={fadeUp}>
-              Engineering intelligence to help people unlock their potential.
-            </m.p>
-          </Reveal>
-        </div>
-
-        {/* Full-width image — the project as the hero */}
-        <m.div
-          className="work-flagship-image"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={imgReveal}
-        >
-          <a
-            href="https://github.com/bhagavan444/careeros"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="CareerOS on GitHub"
-          >
-            <img
-              src={careerOSImg}
-              alt="CareerOS AI Career Platform interface"
-              loading="lazy"
-            />
-          </a>
-        </m.div>
-
-        <div className="work-constrain work-constrain--reading work-flagship-body">
-          <Reveal>
-            <m.p className="work-body" variants={fadeUp}>
-              CareerOS is an AI-powered Career Intelligence Operating System designed to help individuals understand, evaluate, and accelerate their professional growth. By combining resume intelligence, GitHub analytics, career insights, and AI-driven guidance, the platform transforms fragmented career data into actionable recommendations. What began as a machine learning experiment evolved into a comprehensive intelligence platform built with modern full-stack technologies, advanced analytics engines, and conversational AI to support informed career decisions at every stage of growth.
-
-            </m.p>
-            <m.p className="work-body" variants={fadeUp}>
-             The vision for CareerOS extends beyond career recommendations. The goal is to create an intelligence platform that helps individuals understand their strengths, identify growth opportunities, measure professional readiness, and navigate their careers with confidence. By combining AI, data, and personalized insights, CareerOS aims to transform career development from a series of uncertain decisions into a clear, measurable journey of continuous growth.
-
-            </m.p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 4 — HOW CAREEROS WORKS
-      ══════════════════════════════════════════════════════ */}
-      <section className="work-how" aria-labelledby="how-headline">
-        <div className="work-constrain">
-          <m.h2
-            id="how-headline"
-            className="work-section-headline"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-          >
-            How CareerOS Works.
+          <m.h2 className="challenge-text" style={{ opacity: challengeOpacity2 }}>
+            But information<br/>doesn't create<br/>understanding.
           </m.h2>
-          <Reveal className="work-steps">
-            {HOW_STEPS.map(({ num, title, desc }) => (
-              <m.div key={num} className="work-step" variants={fadeUp}>
-                <span className="work-step-num">{num}</span>
-                <h3   className="work-step-title">{title}</h3>
-                <p    className="work-step-desc">{desc}</p>
-              </m.div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 5 — PRODUCTS BUILT ALONG THE WAY
-      ══════════════════════════════════════════════════════ */}
-      <div className="work-products-header">
-        <div className="work-constrain">
-          <m.h2
-            className="work-section-headline"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-          >
-            Built Along The Way.
+          <m.h2 className="challenge-text" style={{ opacity: challengeOpacity3 }}>
+            Understanding<br/>creates opportunity.
+          </m.h2>
+          <m.h2 className="challenge-text text-careeros-reveal" style={{ opacity: challengeOpacity4 }}>
+            CareerOS.
           </m.h2>
         </div>
-      </div>
+      </section>
 
-      {SECONDARY_PROJECTS.map((project, i) => (
-        <article
-          key={project.name}
-          className={`work-product${i % 2 !== 0 ? " work-product--alt" : ""}`}
-          aria-label={project.name}
-        >
-          <div className="work-constrain">
-            <div className="work-product-grid">
+      {/* CHAPTER 3: CAREEROS KEYNOTE (CUSTOM FLAGSHIP) */}
+      <CareerOSKeynote project={FLAGSHIP_CAREEROS} />
 
-              {/* Product image */}
-              <m.div
-                className="work-product-image"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-60px" }}
-                variants={imgReveal}
-              >
-                {project.github ? (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="work-product-img-link"
-                  >
-                    <img src={project.img} alt={`${project.name} project screenshot`} loading="lazy" />
-                  </a>
-                ) : (
-                  <img src={project.img} alt={`${project.name} project screenshot`} loading="lazy" />
-                )}
-              </m.div>
-
-              {/* Product meta */}
-              <Reveal className="work-product-meta">
-                <m.span className="work-eyebrow" variants={fadeUp}>
-                  {project.eyebrow} · {project.year}
-                </m.span>
-                <m.h3 className="work-product-name" variants={fadeUp}>
-                  {project.name}
-                </m.h3>
-                <m.p className="work-product-desc" variants={fadeUp}>
-                  {project.desc}
-                </m.p>
-
-                <m.div className="work-detail-row" variants={fadeUp}>
-                  <span className="work-detail-label">Stack</span>
-                  <span className="work-detail-value">{project.tech.join(" · ")}</span>
-                </m.div>
-
-                {project.features && (
-                  <m.div className="work-detail-row" variants={fadeUp}>
-                    <span className="work-detail-label">Features</span>
-                    <span className="work-detail-value">{project.features.join(" · ")}</span>
-                  </m.div>
-                )}
-
-                <m.div className="work-detail-row" variants={fadeUp}>
-                  <span className="work-detail-label">Role</span>
-                  <span className="work-detail-value">{project.role}</span>
-                </m.div>
-
-                <m.div className="work-detail-row work-detail-row--last" variants={fadeUp}>
-                  <span className="work-detail-label">Key Learning</span>
-                  <span className="work-detail-value work-detail-value--muted">{project.learning}</span>
-                </m.div>
-
-                {project.github && (
-                  <m.a
-                    className="work-github-link"
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variants={fadeUp}
-                  >
-                    View on GitHub →
-                  </m.a>
-                )}
-              </Reveal>
-
-            </div>
-          </div>
-        </article>
+      {/* CHAPTER 4: OTHER PRODUCTS W/ NARRATIVE TRANSITIONS */}
+      {SECONDARY_PROJECTS.map((project, index) => (
+        <React.Fragment key={project.name}>
+          <NarrativeTransition text={project.preTransitionText} />
+          <ProductSection project={project} />
+        </React.Fragment>
       ))}
 
-      {/* ══════════════════════════════════════════════════════
-          SECTION 6 — CAPABILITIES
-      ══════════════════════════════════════════════════════ */}
-      <section className="work-capabilities" aria-labelledby="cap-headline">
-        <div className="work-constrain">
-          <m.h2
-            id="cap-headline"
-            className="work-section-headline"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-          >
-            Capabilities Shaped Through Execution.
+      {/* CHAPTER 5: ENGINEERING CAPABILITIES */}
+      <section className="wwdc-capabilities">
+        <div className="work-bounds">
+          <m.h2 className="section-title-center" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            How do you think?
           </m.h2>
-          <Reveal className="work-cap-list">
-            {CAPABILITIES.map((cap) => (
-              <m.p key={cap} className="work-cap-item" variants={fadeUp}>
+          <div className="capabilities-floating-container">
+            {[
+              "Career Intelligence", "Artificial Intelligence", "Full Stack Engineering",
+              "Machine Learning", "Conversational AI", "Data Intelligence",
+              "Product Architecture", "Experience Design"
+            ].map((cap, i) => (
+              <m.div key={cap} className="cap-capsule" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6, delay: i * 0.05, ease: appleEase }}>
                 {cap}
-              </m.p>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 7 — PROJECT IMPACT
-      ══════════════════════════════════════════════════════ */}
-      <section className="work-impact" aria-labelledby="impact-headline">
-        <div className="work-constrain">
-          <m.h2
-            id="impact-headline"
-            className="work-section-headline"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-          >
-            By The Numbers.
-          </m.h2>
-          <Reveal className="work-stats">
-            {STATS.map(({ value, label }) => (
-              <m.div key={label} className="work-stat" variants={fadeUp}>
-                <span className="work-stat-value">{value}</span>
-                <span className="work-stat-label">{label}</span>
               </m.div>
             ))}
-          </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          SECTION 8 — CONTINUING THE JOURNEY
-      ══════════════════════════════════════════════════════ */}
-      <section className="work-next" aria-labelledby="next-headline">
-        <div className="work-constrain work-constrain--reading">
-          <m.h2
-            id="next-headline"
-            className="work-section-headline"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-          >
-            Continuing The Journey.
-          </m.h2>
-          <Reveal>
-            <m.p className="work-body" variants={fadeUp}>
-             Today, the focus is on creating intelligence that is practical, accessible, and genuinely useful. Every system is designed to turn information into insight, complexity into clarity, and uncertainty into confident action. The goal is not simply to build AI, but to build products that help people make better decisions and unlock greater potential.
-
-            </m.p>
-            <m.p className="work-body" variants={fadeUp}>
-             The work centers on career intelligence and human potential. Building systems that help people understand where they stand, what opportunities lie ahead, and how to grow with purpose. Beyond career technology, the focus extends to developer platforms and intelligent products that remove complexity, streamline workflows, and make technology feel more intuitive and empowering.
-
-            </m.p>
-            <m.p className="work-body" variants={fadeUp}>
-             The objective is not to create more technology, but to create technology that matters. Software should do more than function—it should simplify complexity, unlock opportunity, and help people achieve outcomes that were previously out of reach.
-
-            </m.p>
-          </Reveal>
+      {/* CHAPTER 6: BY THE NUMBERS (MASSIVE EDITORIAL REVEAL) */}
+      <section className="wwdc-metrics">
+        <div className="work-bounds">
+          <div className="metrics-editorial-container">
+            {[
+              { to: 6, suffix: "+", label: "Products Built" },
+              { to: 3, suffix: "", label: "Industry Internships" },
+              { to: 15, suffix: "+", label: "Technologies" },
+              { to: 4, suffix: "+", label: "AI Systems" }
+            ].map((metric, i) => (
+              <m.div key={i} className="metric-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-150px" }} variants={fadeUp}>
+                <div className="metric-massive"><AnimatedCounter to={metric.to} suffix={metric.suffix} duration={1.5} /></div>
+                <div className="metric-sub">{metric.label}</div>
+              </m.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          SECTION 9 — CLOSING
-      ══════════════════════════════════════════════════════ */}
-      <section className="work-closing" aria-label="Closing statement">
-        <div className="work-constrain work-closing-inner">
-          <m.h2
-            className="work-closing-headline"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-          >
-           Engineering Technology That Unlocks Human Potential.
+      {/* CHAPTER 7: THE FUTURE */}
+      <section className="wwdc-future">
+        <div className="work-bounds">
+          <m.h2 className="section-title-center" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            Where are you going?
           </m.h2>
-          <m.p
-            className="work-closing-sub"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={fadeUp}
-          >
-           The purpose of every project is not simply to build software. It is to transform ideas into products that create clarity, unlock opportunity, and make a meaningful impact on people's lives.
+          <div className="roadmap-container">
+            {roadmapItems.map((item, i) => (
+              <m.div key={item} className="roadmap-item" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, delay: i * 0.2, ease: appleEase }}>
+                {item}
+                {i !== roadmapItems.length - 1 && <span className="roadmap-arrow">↓</span>}
+              </m.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <br />
-           The purpose is to build products that empower people to learn continuously, grow with confidence, and unlock opportunities that move them closer to their potential.
+      {/* CHAPTER 8: CLOSING */}
+      <section className="wwdc-closing">
+        <div className="work-bounds closing-bounds">
+          <m.p className="closing-question" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            Why should someone remember you?
+          </m.p>
+          <m.h1 className="closing-huge" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
+            <m.span className="closing-line" variants={fadeUp}>Engineering Technology</m.span>
+            <m.span className="closing-line" variants={fadeUp}>That Unlocks</m.span>
+            <m.span className="closing-line" variants={fadeUp}>Human Potential.</m.span>
+          </m.h1>
+          <m.a href="/experience" className="closing-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            Explore My Journey <span className="cta-arrow">→</span>
+          </m.a>
 
+          {/* FINAL OPEN-ENDED STATEMENT */}
+          <m.p className="final-open-ended" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            The journey continues with every product, every experiment, and every iteration.
           </m.p>
         </div>
       </section>

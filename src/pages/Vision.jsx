@@ -1,19 +1,22 @@
 import React, { useEffect } from 'react';
-import { m } from 'framer-motion';
+import { m, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import '../styles/Vision.css';
+
+// ─── Assets ───────────────────────────────────────────────────────────────────
+import careerOSHero from '../assets/careeros-new.jpg'; // Using the polished one from Work page
 
 // ─── Motion ───────────────────────────────────────────────────────────────────
 const EASE = [0.16, 1, 0.3, 1];
 
 const fadeUp = {
-  hidden:  { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
+  hidden:  { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.5, ease: EASE } },
 };
 
 const stagger = {
   hidden:  {},
-  visible: { transition: { staggerChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.2 } },
 };
 
 // ─── Reveal helper ────────────────────────────────────────────────────────────
@@ -23,7 +26,7 @@ function Reveal({ children, className }) {
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-100px" }}
       variants={stagger}
     >
       {children}
@@ -31,26 +34,13 @@ function Reveal({ children, className }) {
   );
 }
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-const ENGINEERING_PRINCIPLES = [
-  "Technology should feel human.",
-  "Complexity should feel simple.",
-  "Intelligence should be useful.",
-  "Products should create impact.",
-  "Potential should have no limits."
-];
-
-const THE_ROAD_AHEAD = [
-  "Learn",
-  "Build",
-  "Improve",
-  "Innovate",
-  "Lead",
-  "Create Impact"
-];
-
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Vision() {
+  const { scrollY } = useScroll();
+  const heroScale = useTransform(scrollY, [0, 800], [1, 0.95]);
+  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
+  const heroY = useTransform(scrollY, [0, 800], [0, 100]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -61,64 +51,44 @@ export default function Vision() {
       {/* ══════════════════════════════════════════════════════
           SECTION 1 — HERO
       ══════════════════════════════════════════════════════ */}
-      <section className="vis-hero" aria-label="Vision Hero">
-  <m.h1
-    className="vis-hero-headline"
-    initial={{ opacity: 0, y: 40 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1.1, ease: EASE }}
-  >
-    Engineering Human Potential.
-  </m.h1>
-
-  <m.p
-    className="vis-hero-sub"
-    initial={{ opacity: 0, y: 24 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
-  >
-    Building intelligent systems that help people understand themselves,
-    navigate complexity, and realize more of what they are capable of
-    becoming.
-  </m.p>
-</section>
+      <m.section className="vis-hero" style={{ scale: heroScale, opacity: heroOpacity, y: heroY }}>
+        <div className="vis-constrain center-align">
+          <m.h1 className="vis-hero-headline" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: EASE }}>
+            Engineering<br/>Human Potential.
+          </m.h1>
+          <m.p className="vis-hero-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5, delay: 0.5, ease: EASE }}>
+            Technology is not the goal.
+          </m.p>
+        </div>
+      </m.section>
 
       {/* ══════════════════════════════════════════════════════
           SECTION 2 — THE OBSERVATION
       ══════════════════════════════════════════════════════ */}
       <section className="vis-observation">
-  <div className="vis-constrain">
-    <Reveal className="vis-editorial-stack">
-      <m.h2 className="vis-editorial-large" variants={fadeUp}>
-        We have more information than ever before.
-      </m.h2>
-
-      <m.h2
-        className="vis-editorial-large vis-text-muted"
-        variants={fadeUp}
-      >
-        Understanding remains the real challenge.
-      </m.h2>
-    </Reveal>
-  </div>
-</section>
+        <div className="vis-constrain center-align">
+          <div className="vis-editorial-sequence">
+            <m.h2 className="vis-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              We have more information<br/>than ever before.
+            </m.h2>
+            <m.h2 className="vis-statement text-muted" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Understanding remains<br/>the real challenge.
+            </m.h2>
+          </div>
+        </div>
+      </section>
 
       {/* ══════════════════════════════════════════════════════
           SECTION 3 — THE OPPORTUNITY
       ══════════════════════════════════════════════════════ */}
       <section className="vis-opportunity">
-        <div className="vis-constrain vis-constrain--reading">
-          <Reveal>
-            <m.span className="vis-eyebrow" variants={fadeUp}>The Opportunity</m.span>
-            <m.h2 className="vis-section-headline" variants={fadeUp}>
-              Intelligence as Guidance.
-            </m.h2>
-            <m.p className="vis-body" variants={fadeUp}>
-              Artificial intelligence represents more than a technological shift. It creates the possibility of software that can understand context, recognize patterns, and transform information into meaningful insight. The focus moves beyond storing knowledge toward helping people make better use of it.
-            </m.p>
-            <m.p className="vis-body" variants={fadeUp}>
-             Applied thoughtfully, intelligence can help people learn faster, navigate complexity, identify opportunities, and make more informed decisions. Not by replacing human judgment, but by providing the clarity, context, and guidance needed to exercise it with greater confidence.
-            </m.p>
+        <div className="vis-constrain center-align">
+          <Reveal className="vis-editorial-sequence">
+            <m.h2 className="vis-statement-massive" variants={fadeUp}>Intelligence</m.h2>
+            <m.h2 className="vis-statement-massive" variants={fadeUp}>should create</m.h2>
+            <m.h2 className="vis-statement-massive" variants={fadeUp}>understanding.</m.h2>
+            <m.h2 className="vis-statement-massive text-muted" variants={fadeUp}>Not</m.h2>
+            <m.h2 className="vis-statement-massive text-muted" variants={fadeUp}>overwhelm.</m.h2>
           </Reveal>
         </div>
       </section>
@@ -127,91 +97,63 @@ export default function Vision() {
           SECTION 4 — WHY I BUILD
       ══════════════════════════════════════════════════════ */}
       <section className="vis-why">
-        <div className="vis-constrain vis-constrain--reading">
-          <Reveal>
-            <m.span className="vis-eyebrow" variants={fadeUp}>The Journey</m.span>
-            <Reveal>
-  <m.span className="vis-eyebrow" variants={fadeUp}>
-  
-  </m.span>
-
-<m.h2 className="vis-section-headline" variants={fadeUp}>
-Why I Build.
-</m.h2>
-
-<m.p className="vis-body" variants={fadeUp}>
-Every project began with a simple observation: people often face important
-decisions without the clarity they need to move forward confidently.
-Whether the challenge involves learning, careers, or personal growth, the
-gap is rarely information—it is understanding.
-</m.p>
-
-<m.p className="vis-body" variants={fadeUp}>
-Building software became a way to bridge that gap. Through artificial
-intelligence, intelligent systems, and product engineering, the goal has
-remained consistent: transform complexity into clarity and create tools
-that help people learn, make better decisions, and unlock new
-opportunities. CareerOS emerged from this vision, but the mission extends
-far beyond any single product.
-</m.p> </Reveal>
-
-          </Reveal>
+        <div className="vis-constrain center-align">
+          <m.div className="vis-why-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            People face critical decisions every day.<br/>
+            The gap is rarely a lack of data.<br/>
+            The gap is clarity.<br/><br/>
+            Intelligent systems exist to bridge that gap.
+          </m.div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 5 — CAREEROS
+          SECTION 5 — CAREEROS PROOF
       ══════════════════════════════════════════════════════ */}
-      <section className="vis-careeros">
-        <div className="vis-constrain center-align">
-          <Reveal>
-            <m.h2 className="vis-careeros-headline" variants={fadeUp}>
-CareerOS.
-</m.h2>
-
-<m.p className="vis-careeros-sub" variants={fadeUp}>
-An Intelligence Platform For Human Growth.
-</m.p> </Reveal>
-
-</div>
-
-<div className="vis-constrain vis-constrain--reading">
-  <Reveal>
-    <m.p className="vis-body" variants={fadeUp}>
-      CareerOS began with a simple question: what if technology could do more
-      than store information? What if it could help people better understand
-      their strengths, opportunities, and future possibilities?
-    </m.p>
-<m.p className="vis-body" variants={fadeUp}>
-  Built at the intersection of artificial intelligence, software
-  engineering, and career development, CareerOS is an ongoing effort to
-  transform complex career data into meaningful insight. It represents a
-  vision for technology that helps people learn, grow, make better
-  decisions, and unlock their full potential.
-</m.p>
-
-
-  </Reveal>
-</div>
-
-          
+      <section className="vis-proof">
+        <div className="vis-constrain">
+          <m.div className="vis-proof-image-wrapper" initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
+            <img src={careerOSHero} alt="CareerOS Interface" className="vis-proof-img" loading="lazy" />
+          </m.div>
+          <m.div className="vis-proof-caption center-align" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.2 }}>
+            Applied philosophy becomes product capability.
+          </m.div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
           SECTION 6 — ENGINEERING PRINCIPLES
       ══════════════════════════════════════════════════════ */}
-      <section className="vis-principles vis-dark">
-        <div className="vis-constrain">
-          <Reveal>
-            <m.span className="vis-eyebrow vis-eyebrow--dark" variants={fadeUp}>Engineering Principles</m.span>
-          </Reveal>
-          <Reveal className="vis-principle-list">
-            {ENGINEERING_PRINCIPLES.map((principle, index) => (
-              <m.h3 key={index} className="vis-principle-item" variants={fadeUp}>
-                {principle}
-              </m.h3>
-            ))}
-          </Reveal>
+      <section className="vis-principles">
+        <div className="vis-constrain center-align">
+          
+          {/* Screen 1 */}
+          <div className="principle-screen">
+            <m.h2 className="vis-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Technology should feel human.
+            </m.h2>
+            <m.h2 className="vis-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Complexity should feel simple.
+            </m.h2>
+          </div>
+
+          {/* Screen 2 */}
+          <div className="principle-screen">
+            <m.h2 className="vis-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Intelligence should be useful.
+            </m.h2>
+            <m.h2 className="vis-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Products should create impact.
+            </m.h2>
+          </div>
+
+          {/* Screen 3 */}
+          <div className="principle-screen">
+            <m.h2 className="vis-principle principle-climax" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Potential should have no limits.
+            </m.h2>
+          </div>
+
         </div>
       </section>
 
@@ -220,45 +162,62 @@ An Intelligence Platform For Human Growth.
       ══════════════════════════════════════════════════════ */}
       <section className="vis-road">
         <div className="vis-constrain center-align">
-          <Reveal>
-            <m.span className="vis-eyebrow" variants={fadeUp}>The Road Ahead</m.span>
-          </Reveal>
-          
-          <Reveal className="vis-road-sequence">
-            {THE_ROAD_AHEAD.map((step, index) => (
-              <React.Fragment key={step}>
-                <m.div className="vis-road-step" variants={fadeUp}>
-                  {step}
+          <div className="vis-evolution-flow">
+            {[
+              "Curiosity",
+              "Learning",
+              "Engineering",
+              "Products",
+              "People",
+              "Human Potential"
+            ].map((node, i, arr) => (
+              <React.Fragment key={i}>
+                <m.div 
+                  className="vis-evolution-node"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 1.2, ease: EASE }}
+                >
+                  {node}
                 </m.div>
-                {index < THE_ROAD_AHEAD.length - 1 && (
-                  <m.div className="vis-road-arrow" variants={fadeUp}>
+                {i < arr.length - 1 && (
+                  <m.div className="vis-evolution-arrow" initial={{ opacity: 0 }} whileInView={{ opacity: 0.3 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1 }}>
                     ↓
                   </m.div>
                 )}
               </React.Fragment>
             ))}
-          </Reveal>
+          </div>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          SECTION 8 — CLOSING STATEMENT
+          SECTION 8 — CLOSING
       ══════════════════════════════════════════════════════ */}
-      <section className="vis-closing vis-dark">
+      <section className="vis-closing">
         <div className="vis-constrain center-align">
-          <Reveal>
-            <m.h2 className="vis-closing-headline" variants={fadeUp}>
-              The Future Is Human-Centered Intelligence.
-            </m.h2>
-            <m.p className="vis-closing-sub" variants={fadeUp}>
-              The most important technology of the next decade will not be the most powerful. It will be the technology that helps people become more capable versions of themselves.
-            </m.p>
-            <m.div variants={fadeUp} style={{ marginTop: '80px' }}>
-              <Link to="/connect" className="vis-cta-link">
-                Connect <span>↗</span>
+          <div className="vis-closing-sequence">
+            
+            <m.div className="vis-closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
+              Technology should expand<br/>human potential.
+            </m.div>
+            
+            <m.div className="vis-closing-thought text-muted" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
+              Not replace it.
+            </m.div>
+
+            <m.div className="vis-closing-finale" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
+              The future belongs to engineers<br/>who build intelligence<br/>with purpose.
+            </m.div>
+
+            <m.div className="vis-closing-cta" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 2, ease: EASE, delay: 0.5 }}>
+              <Link to="/connect" className="vis-connect-link">
+                Connect ↗
               </Link>
             </m.div>
-          </Reveal>
+
+          </div>
         </div>
       </section>
 

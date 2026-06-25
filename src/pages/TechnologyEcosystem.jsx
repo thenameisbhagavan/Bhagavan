@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
-import { m } from 'framer-motion';
+import { m, useScroll, useTransform } from 'framer-motion';
 import '../styles/Skills.css';
 
 // ─── CDN Source ───────────────────────────────────────────────────────────────
 const getSimpleIcon = (slug) => `https://cdn.simpleicons.org/${slug}`;
 
 // ─── Capability Editorial Marks ───────────────────────────────────────────────
-// For every skill without an official logo, a curated typographic mark
-// replaces the icon area. The mark IS the visual identity — not a fallback.
 const CAPABILITY_MARKS = {
   'REST APIs':                    { mark: 'API',  sub: 'Protocol Layer' },
   'RAG Systems':                  { mark: 'RAG',  sub: 'Retrieval Augmented' },
@@ -25,302 +23,391 @@ const CAPABILITY_MARKS = {
   'SDLC':                         { mark: 'SDLC', sub: 'Dev Lifecycle' },
 };
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-// Each group has an editorial description written as a statement of capability,
-// not a list of features. The text explains WHY these technologies matter.
-const SKILL_GROUPS = [
+// ─── Data: Core Engineering ───────────────────────────────────────────────────
+const CORE_ENGINEERING = [
   {
-title: 'Programming Languages',
-editorial:
-'The building blocks of modern software. These technologies make it possible to create intelligent systems, engineer scalable platforms, process data, and deliver digital experiences that solve real-world problems.',
-items: [
-{ name: 'Python',     icon: getSimpleIcon('python') },
-{ name: 'Java',       icon: getSimpleIcon('openjdk') },
-{ name: 'JavaScript', icon: getSimpleIcon('javascript') },
-{ name: 'TypeScript', icon: getSimpleIcon('typescript') },
-{ name: 'SQL',        icon: getSimpleIcon('postgresql') },
-],
-},
- {
-title: 'Frontend Engineering',
-editorial:
-'Where technology becomes experience. Modern frontend engineering combines performance, accessibility, and thoughtful design to create interfaces that feel intuitive, responsive, and effortless to use.',
-items: [
-{ name: 'React',        icon: getSimpleIcon('react') },
-{ name: 'Next.js',      icon: getSimpleIcon('nextdotjs') },
-{ name: 'HTML5',        icon: getSimpleIcon('html5') },
-{ name: 'CSS3',         icon: getSimpleIcon('css3') },
-{ name: 'Tailwind CSS', icon: getSimpleIcon('tailwindcss') },
-],
-}
-,
+    title: 'Programming Languages',
+    editorial: 'The language of logic.',
+    items: [
+      { name: 'Python',     icon: getSimpleIcon('python') },
+      { name: 'Java',       icon: getSimpleIcon('openjdk') },
+      { name: 'JavaScript', icon: getSimpleIcon('javascript') },
+      { name: 'TypeScript', icon: getSimpleIcon('typescript') },
+      { name: 'SQL',        icon: getSimpleIcon('postgresql') },
+    ]
+  },
   {
-title: 'Backend Engineering',
-editorial:
-'Invisible to the user, essential to the experience. Backend systems provide the intelligence, reliability, and scalability required to transform ideas into products that work seamlessly at every interaction.',
-items: [
-{ name: 'Node.js',    icon: getSimpleIcon('nodedotjs') },
-{ name: 'Express.js', icon: getSimpleIcon('express') },
-{ name: 'Flask',      icon: getSimpleIcon('flask') },
-{ name: 'FastAPI',    icon: getSimpleIcon('fastapi') },
-{ name: 'REST APIs',  icon: null },
-],
-}
-,
+    title: 'Frontend Engineering',
+    editorial: 'Where engineering becomes experience.',
+    items: [
+      { name: 'React',        icon: getSimpleIcon('react') },
+      { name: 'Next.js',      icon: getSimpleIcon('nextdotjs') },
+      { name: 'HTML5',        icon: getSimpleIcon('html5') },
+      { name: 'CSS3',         icon: getSimpleIcon('css3') },
+      { name: 'Tailwind CSS', icon: getSimpleIcon('tailwindcss') },
+    ]
+  },
   {
-title: 'Artificial Intelligence & Machine Learning',
-editorial:
-'Intelligence is most powerful when it creates clarity. These technologies enable the development of systems that analyze information, uncover insights, and transform complex data into meaningful action.',
-items: [
-{ name: 'NumPy',        icon: getSimpleIcon('numpy') },
-{ name: 'Pandas',       icon: getSimpleIcon('pandas') },
-{ name: 'Scikit-learn', icon: getSimpleIcon('scikitlearn') },
-{ name: 'PyTorch',      icon: getSimpleIcon('pytorch') },
-{ name: 'LangChain',    icon: getSimpleIcon('langchain') },
-{ name: 'RAG Systems',  icon: null },
-{ name: 'XGBoost',      icon: null },
-{ name: 'LightGBM',     icon: null },
-],
-}
-,{
-title: 'LLM & AI Systems',
-editorial:
-'A new generation of intelligence. By combining large language models, retrieval systems, and AI orchestration frameworks, these technologies make it possible to build experiences that understand context, assist decision-making, and transform information into actionable insight.',
-items: [
-{ name: 'LangGraph',        icon: null },
-{ name: 'LlamaIndex',       icon: getSimpleIcon('llamaindex') },
-{ name: 'OpenAI API',       icon: getSimpleIcon('openai') },
-{ name: 'Gemini API',       icon: getSimpleIcon('googlegemini') },
-{ name: 'Anthropic API',    icon: getSimpleIcon('anthropic') },
-{ name: 'Vector Databases', icon: null },
-],
-}
-,
-  {
-title: 'Databases & Data Infrastructure',
-editorial:
-'Every intelligent product begins with data. From traditional databases to modern vector search systems, these technologies provide the foundation for storing knowledge, uncovering insights, and powering experiences that scale with confidence.',
-items: [
-{ name: 'MongoDB',    icon: getSimpleIcon('mongodb') },
-{ name: 'PostgreSQL', icon: getSimpleIcon('postgresql') },
-{ name: 'MySQL',      icon: getSimpleIcon('mysql') },
-{ name: 'Redis',      icon: getSimpleIcon('redis') },
-],
-}
-,
-  {
-title: 'Cloud & DevOps',
-editorial:
-'Great products must be reliable, maintainable, and ready to grow. These technologies support deployment, automation, collaboration, and cloud infrastructure—helping transform ideas into products that can evolve with confidence.',
-items: [
-{ name: 'Docker',         icon: getSimpleIcon('docker') },
-{ name: 'AWS',            icon: getSimpleIcon('amazonaws') },
-{ name: 'Git',            icon: getSimpleIcon('git') },
-{ name: 'GitHub',         icon: getSimpleIcon('github') },
-{ name: 'GitHub Actions', icon: getSimpleIcon('githubactions') },
-{ name: 'Vercel',         icon: getSimpleIcon('vercel') },
-{ name: 'Render',         icon: getSimpleIcon('render') },
-],
-}
-,
-  {
-title: 'Java Ecosystem',
-editorial:
-'Built on principles of reliability and scalability, the Java ecosystem offers a deeper understanding of modern backend engineering. From application architecture to security and data management, it provides the foundation for building systems designed to grow and endure.',
-items: [
-{ name: 'Java',            icon: getSimpleIcon('openjdk') },
-{ name: 'Spring Boot',     icon: getSimpleIcon('springboot') },
-
-],
-}
-,
-  {
-title: 'Engineering Foundations',
-editorial:
-'Every great system is built on timeless principles. These fundamentals shape the way problems are approached, architectures are designed, and products are engineered—providing the foundation behind every intelligent application and platform.',
-items: [
-{ name: 'Data Structures & Algorithms', icon: null },
-{ name: 'Object-Oriented Programming',  icon: null },
-{ name: 'DBMS',                         icon: null },
-{ name: 'Operating Systems',            icon: null },
-{ name: 'Computer Networks',            icon: null },
-{ name: 'System Design',                icon: null },
-{ name: 'SDLC',                         icon: null },
-],
-},
+    title: 'Backend Engineering',
+    editorial: 'Where systems become reliable.',
+    items: [
+      { name: 'Node.js',    icon: getSimpleIcon('nodedotjs') },
+      { name: 'Express.js', icon: getSimpleIcon('express') },
+      { name: 'Flask',      icon: getSimpleIcon('flask') },
+      { name: 'FastAPI',    icon: getSimpleIcon('fastapi') },
+      { name: 'REST APIs',  icon: null },
+    ]
+  }
 ];
 
-// ─── Motion Variants ──────────────────────────────────────────────────────────
-const APPLE_EASE = [0.16, 1, 0.3, 1];
+// ─── Data: Intelligent Systems ────────────────────────────────────────────────
+const INTELLIGENT_SYSTEMS = [
+  {
+    title: 'Artificial Intelligence',
+    editorial: 'Where information becomes understanding.',
+    items: [
+      { name: 'NumPy',        icon: getSimpleIcon('numpy') },
+      { name: 'Pandas',       icon: getSimpleIcon('pandas') },
+      { name: 'Scikit-learn', icon: getSimpleIcon('scikitlearn') },
+      { name: 'PyTorch',      icon: getSimpleIcon('pytorch') },
+      { name: 'LangChain',    icon: getSimpleIcon('langchain') },
+      { name: 'RAG Systems',  icon: null },
+      { name: 'XGBoost',      icon: null },
+      { name: 'LightGBM',     icon: null },
+    ]
+  },
+  {
+    title: 'LLM & AI Systems',
+    editorial: 'Where intelligence becomes collaboration.',
+    items: [
+      { name: 'LangGraph',        icon: null },
+      { name: 'LlamaIndex',       icon: getSimpleIcon('llamaindex') },
+      { name: 'OpenAI API',       icon: getSimpleIcon('openai') },
+      { name: 'Gemini API',       icon: getSimpleIcon('googlegemini') },
+      { name: 'Anthropic API',    icon: getSimpleIcon('anthropic') },
+      { name: 'Vector Databases', icon: null },
+    ]
+  },
+  {
+    title: 'Data Infrastructure',
+    editorial: 'Where knowledge becomes scalable.',
+    items: [
+      { name: 'MongoDB',    icon: getSimpleIcon('mongodb') },
+      { name: 'PostgreSQL', icon: getSimpleIcon('postgresql') },
+      { name: 'MySQL',      icon: getSimpleIcon('mysql') },
+      { name: 'Redis',      icon: getSimpleIcon('redis') },
+    ]
+  }
+];
 
-// Section meta and headings
+// ─── Data: Production Systems ─────────────────────────────────────────────────
+const PRODUCTION_SYSTEMS = [
+  {
+    title: 'Cloud Engineering',
+    editorial: 'Where products become resilient.',
+    items: [
+      { name: 'Docker',         icon: getSimpleIcon('docker') },
+      { name: 'AWS',            icon: getSimpleIcon('amazonaws') },
+      { name: 'Git',            icon: getSimpleIcon('git') },
+      { name: 'GitHub',         icon: getSimpleIcon('github') },
+      { name: 'GitHub Actions', icon: getSimpleIcon('githubactions') },
+      { name: 'Vercel',         icon: getSimpleIcon('vercel') },
+      { name: 'Render',         icon: getSimpleIcon('render') },
+    ]
+  },
+  {
+    title: 'Java Ecosystem',
+    editorial: 'Where architecture becomes maintainable.',
+    items: [
+      { name: 'Java',            icon: getSimpleIcon('openjdk') },
+      { name: 'Spring Boot',     icon: getSimpleIcon('springboot') },
+    ]
+  },
+  {
+    title: 'Engineering Foundations',
+    editorial: 'Where every decision begins.',
+    items: [
+      { name: 'Data Structures & Algorithms', icon: null },
+      { name: 'Object-Oriented Programming',  icon: null },
+      { name: 'DBMS',                         icon: null },
+      { name: 'Operating Systems',            icon: null },
+      { name: 'Computer Networks',            icon: null },
+      { name: 'System Design',                icon: null },
+      { name: 'SDLC',                         icon: null },
+    ]
+  }
+];
+
+// ─── Motion ───────────────────────────────────────────────────────────────────
+const EASE = [0.16, 1, 0.3, 1];
+
 const fadeUp = {
-  hidden:  { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: APPLE_EASE } },
+  hidden:  { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: EASE } },
 };
 
-// Stagger wrapper for entire section
-const sectionStagger = {
+const stagger = {
   hidden:  {},
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
-// Individual tile entry
 const tileReveal = {
-  hidden:  { opacity: 0, y: 14, scale: 0.97 },
-  visible: { opacity: 1, y: 0,  scale: 1,    transition: { duration: 0.45, ease: APPLE_EASE } },
+  hidden:  { opacity: 0, y: 15 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
 };
 
-// Stagger the tile grid independently
-const tileGridStagger = {
-  hidden:  {},
-  visible: { transition: { staggerChildren: 0.05, delayChildren: 0.15 } },
-};
-
-// ─── TechTile ─────────────────────────────────────────────────────────────────
-// Used for technologies with an official Simple Icons SVG.
-// The logo is small (28 px), monochrome by default, reveals brand color on hover.
-// The technology NAME is the primary text — the logo is a quiet accent.
-const TechTile = ({ item }) => (
-  <m.div className="eco-tile" variants={tileReveal} role="listitem">
-    <div className="eco-tile-icon-wrap">
-      <img
-        src={item.icon}
-        alt={item.name}
-        loading="lazy"
-        className="eco-tile-logo"
-      />
-    </div>
-    <span className="eco-tile-name">{item.name}</span>
-  </m.div>
-);
-
-// ─── CapTile ──────────────────────────────────────────────────────────────────
-// Used for engineering concepts and capabilities without official logos.
-// The editorial mark (e.g. "DSA") IS the visual identity — not a fallback.
-const CapTile = ({ item }) => {
-  const cap = CAPABILITY_MARKS[item.name] ?? {
-    mark: item.name.slice(0, 3).toUpperCase(),
-    sub:  'Concept',
-  };
-
+// ─── Reusable EcoSection Component ────────────────────────────────────────────
+function EcoSection({ group }) {
   return (
-    <m.div className="eco-tile eco-cap-tile" variants={tileReveal} role="listitem">
-      <div className="eco-cap-mark-wrap">
-        <span className="eco-cap-mark">{cap.mark}</span>
-        <span className="eco-cap-sub">{cap.sub}</span>
-      </div>
-      <span className="eco-tile-name">{item.name}</span>
-    </m.div>
-  );
-};
+    <div className="eco-section">
+      <m.div className="eco-header" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+        <h3 className="eco-title">{group.title}</h3>
+        <p className="eco-editorial">{group.editorial}</p>
+      </m.div>
 
-// ─── EcoSection ───────────────────────────────────────────────────────────────
-// Each section is an editorial chapter.
-// Desktop: two-column grid — left (sticky meta) | right (tile grid).
-// Mobile: stacked vertical, meta above tiles.
-const EcoSection = ({ group, index }) => (
-  <m.section
-    className="eco-section"
-    aria-labelledby={`eco-section-${index}`}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, margin: '-80px' }}
-    variants={sectionStagger}
-  >
-    {/* Left column: section number, title, editorial description */}
-    <div className="eco-section-meta">
-      <m.span className="eco-section-num" variants={fadeUp} aria-hidden="true">
-        {String(index + 1).padStart(2, '0')}
-      </m.span>
-      <m.h2
-        id={`eco-section-${index}`}
-        className="eco-section-title"
-        variants={fadeUp}
-      >
-        {group.title}
-      </m.h2>
-      <m.p className="eco-section-editorial" variants={fadeUp}>
-        {group.editorial}
-      </m.p>
+      <m.div className="eco-grid" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={stagger}>
+        {group.items.map((item, idx) => {
+          const markData = CAPABILITY_MARKS[item.name];
+          return (
+            <m.div className="eco-tile" key={idx} variants={tileReveal} whileHover="hover">
+              <div className="eco-icon-wrapper">
+                {item.icon ? (
+                  <img src={item.icon} alt={`${item.name} icon`} className="eco-icon" loading="lazy" />
+                ) : (
+                  <div className="eco-typographic-mark">
+                    <span className="mark-main">{markData?.mark || 'SYS'}</span>
+                  </div>
+                )}
+              </div>
+              <div className="eco-name">{item.name}</div>
+              {markData && <div className="eco-sub">{markData.sub}</div>}
+            </m.div>
+          );
+        })}
+      </m.div>
     </div>
-
-    {/* Right column: technology + capability tiles */}
-    <m.div
-      className="eco-tile-grid"
-      role="list"
-      variants={tileGridStagger}
-    >
-      {group.items.map((item) =>
-        item.icon
-          ? <TechTile  key={item.name} item={item} />
-          : <CapTile   key={item.name} item={item} />
-      )}
-    </m.div>
-  </m.section>
-);
+  );
+}
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function TechnologyEcosystem() {
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  const { scrollY } = useScroll();
+  const heroScale = useTransform(scrollY, [0, 800], [1, 0.95]);
+  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
+  const heroY = useTransform(scrollY, [0, 800], [0, 100]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <div className="eco-page">
+    <div className="skills-page">
+      
+      {/* ══════════════════════════════════════════════════════
+          HERO
+      ══════════════════════════════════════════════════════ */}
+      <m.section className="skills-hero" style={{ scale: heroScale, opacity: heroOpacity, y: heroY }}>
+        <div className="skills-constrain center-align">
+          <m.h1 className="skills-hero-headline" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: EASE }}>
+            Technology alone<br/>changes nothing.<br/>
+            <span className="text-muted">Engineering creates impact.</span>
+          </m.h1>
+        </div>
+      </m.section>
 
-      {/* ── HERO ── */}
-      <section className="eco-hero" aria-label="Technology Ecosystem Hero">
-        <m.span
-          className="eco-hero-eyebrow"
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: APPLE_EASE }}
-        >
-          Engineering Capabilities
-        </m.span>
-
-        <m.h1
-          className="eco-hero-headline"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.1, ease: APPLE_EASE }}
-        >
-          Built Through Practice.
-        </m.h1>
-
-        <m.p
-          className="eco-hero-sub"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.22, ease: APPLE_EASE }}
-        >
-        Every skill, system, and capability was developed through continuous learning, experimentation, and real-world execution. Progress came not from theory alone, but from building, testing, failing, improving, and building again.
-        </m.p>
+      {/* ══════════════════════════════════════════════════════
+          INTRODUCTION
+      ══════════════════════════════════════════════════════ */}
+      <section className="skills-intro">
+        <div className="skills-constrain center-align">
+          <m.h2 className="intro-sequence" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={stagger}>
+            <m.span className="intro-line" variants={fadeUp}>Ideas require tools.</m.span>
+            <m.span className="intro-line" variants={fadeUp}>Tools require understanding.</m.span>
+            <m.span className="intro-line" variants={fadeUp}>Understanding creates engineering.</m.span>
+          </m.h2>
+        </div>
       </section>
 
-      {/* ── CHAPTERS ── */}
-      {SKILL_GROUPS.map((group, index) => (
-        <EcoSection key={group.title} group={group} index={index} />
-      ))}
+      {/* ══════════════════════════════════════════════════════
+          CORE ENGINEERING
+      ══════════════════════════════════════════════════════ */}
+      <section className="skills-hierarchy-group theme-core">
+        <div className="skills-constrain">
+          {CORE_ENGINEERING.map((group, idx) => (
+            <EcoSection key={idx} group={group} />
+          ))}
+        </div>
+      </section>
 
-      {/* ── CLOSING ── */}
-      <m.section
-        className="eco-closing"
-        aria-label="Closing statement"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-80px' }}
-        variants={sectionStagger}
-      >
-        <m.h2 className="eco-closing-headline" variants={fadeUp}>
-          Technology Changes
-        </m.h2>
-        <m.h3 className="eco-closing-subheadline" variants={fadeUp}>
-          The Fundamentals Remain.
-        </m.h3>
-        <m.p className="eco-closing-text" variants={fadeUp}>
-          Technologies change. Great engineering principles do not. The pursuit of solving problems, designing systems, and creating meaningful products remains constant.
-        </m.p>
-      </m.section>
+      {/* ══════════════════════════════════════════════════════
+          TRANSITION 1
+      ══════════════════════════════════════════════════════ */}
+      <section className="skills-transition">
+        <div className="skills-constrain center-align">
+          <m.h2 className="transition-statement" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
+            Great products are more than interfaces.
+          </m.h2>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          INTELLIGENT SYSTEMS
+      ══════════════════════════════════════════════════════ */}
+      <section className="skills-hierarchy-group theme-intelligent">
+        <div className="skills-constrain">
+          {INTELLIGENT_SYSTEMS.map((group, idx) => (
+            <EcoSection key={idx} group={group} />
+          ))}
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          TRANSITION 2
+      ══════════════════════════════════════════════════════ */}
+      <section className="skills-transition alt-bg">
+        <div className="skills-constrain center-align">
+          <m.h2 className="transition-statement" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
+            Intelligence is only useful when it can scale.
+          </m.h2>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          PRODUCTION SYSTEMS
+      ══════════════════════════════════════════════════════ */}
+      <section className="skills-hierarchy-group theme-production">
+        <div className="skills-constrain">
+          {PRODUCTION_SYSTEMS.map((group, idx) => (
+            <EcoSection key={idx} group={group} />
+          ))}
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          ORCHESTRATION VISUALIZATION
+      ══════════════════════════════════════════════════════ */}
+      <section className="skills-orchestration">
+        <div className="skills-constrain center-align">
+          <div className="orchestration-flow">
+            {[
+              "Ideas",
+              "Programming",
+              "Systems",
+              "Intelligence",
+              "Products",
+              "Human Impact"
+            ].map((node, i, arr) => (
+              <React.Fragment key={i}>
+                <m.div 
+                  className="orchestration-node"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 1, ease: EASE }}
+                >
+                  {node}
+                </m.div>
+                {i < arr.length - 1 && (
+                  <m.div className="orchestration-arrow" initial={{ opacity: 0 }} whileInView={{ opacity: 0.3 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1 }}>
+                    ↓
+                  </m.div>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          CAPABILITIES REVEAL (Progressive Single Section)
+      ══════════════════════════════════════════════════════ */}
+      <section className="skills-capabilities">
+        <div className="skills-constrain center-align">
+          <div className="capabilities-composition">
+            {[
+              "Intelligent Products",
+              "AI Platforms",
+              "Developer Tools",
+              "Automation Systems",
+              "Career Intelligence"
+            ].map((cap, i) => (
+              <m.div 
+                key={i} 
+                className="capability-line"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 1, delay: i * 0.15, ease: EASE }}
+              >
+                {cap}
+              </m.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          ROADMAP
+      ══════════════════════════════════════════════════════ */}
+      <section className="skills-roadmap">
+        <div className="skills-constrain center-align">
+          <div className="roadmap-flow">
+            {[
+              "Today",
+              "AI Engineering",
+              "Multi-Agent Systems",
+              "Intelligent Platforms",
+              "Developer Intelligence",
+              "Human-Centered AI"
+            ].map((node, i, arr) => (
+              <React.Fragment key={i}>
+                <m.div 
+                  className={i === 0 ? "roadmap-node roadmap-start" : "roadmap-node"}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 1, ease: EASE }}
+                >
+                  {node}
+                </m.div>
+                {i < arr.length - 1 && (
+                  <m.div className="roadmap-arrow" initial={{ opacity: 0 }} whileInView={{ opacity: 0.3 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 1 }}>
+                    ↓
+                  </m.div>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          CLOSING
+      ══════════════════════════════════════════════════════ */}
+      <section className="skills-closing">
+        <div className="skills-constrain center-align">
+          <div className="closing-sequence">
+            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
+              Technology evolves.<br/>Engineering endures.
+            </m.div>
+            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
+              Every language changes.
+            </m.div>
+            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
+              Every framework evolves.
+            </m.div>
+            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
+              Curiosity remains.
+            </m.div>
+            <m.div className="closing-finale" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE, delay: 0.3 }}>
+              Still building.
+            </m.div>
+            <m.div className="closing-sub-finale" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE, delay: 0.8 }}>
+              Because every meaningful product begins with understanding.
+            </m.div>
+          </div>
+        </div>
+      </section>
 
     </div>
   );

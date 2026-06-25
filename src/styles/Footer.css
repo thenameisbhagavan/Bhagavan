@@ -1,125 +1,181 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   APPLE HIG 2026 — FOOTER
-   Infrastructure. Quiet. Trustworthy. Organized.
-   ═══════════════════════════════════════════════════════════════════════════ */
+/* APPLE WWDC 2026 FOOTER REDESIGN */
 
 .footer-shell {
-  background-color: #f5f5f7;
-  color:            #1d1d1f;
-  border-top:       1px solid #d2d2d7;
-  font-family:      var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+  background-color: #ffffff;
+  color: #1d1d1f;
   -webkit-font-smoothing: antialiased;
+  padding: 20vh 0 10vh 0;
+  border-top: 1px solid rgba(0,0,0,0.05); /* very soft hairline */
 }
 
 .footer-constrain {
-  max-width: 980px;
-  margin:    0 auto;
-  padding:   40px 24px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5vw;
 }
 
-/* ─── Breadcrumb ─────────────────────────────────────────────────────────── */
-.footer-breadcrumb {
-  font-size:      12px;
-  font-weight:    400;
-  color:          #6e6e73;
-  margin-bottom:  20px;
-  letter-spacing: -0.01em;
-  padding-bottom: 20px;
-  border-bottom:  1px solid #d2d2d7;
+.text-muted {
+  color: #86868b;
 }
 
-.footer-breadcrumb span {
+/* =========================================
+   ZONE 1 — CLOSING STATEMENT
+   ========================================= */
+.footer-statement-zone {
+  margin-bottom: 12vh;
+}
+
+.footer-statement {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(32px, 6vw, 70px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
   color: #1d1d1f;
 }
 
-/* ─── Navigation Grid ────────────────────────────────────────────────────── */
-.footer-grid {
-  display:               grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap:                   48px;
-  margin-bottom:         32px;
+/* =========================================
+   DIVIDERS
+   ========================================= */
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0,0,0,0.08);
+  margin: 6vh 0;
 }
 
-.footer-column-title {
-  font-size:      12px;
-  font-weight:    600;
-  color:          #1d1d1f;
-  margin:         0 0 12px 0;
-  letter-spacing: -0.01em;
-}
-
-.footer-link-list {
-  list-style: none;
-  padding:    0;
-  margin:     0;
-  display:    flex;
-  flex-direction: column;
-  gap:        8px;
-}
-
-.footer-link {
-  font-size:       12px;
-  font-weight:     400;
-  color:           #6e6e73;
-  text-decoration: none;
-  letter-spacing:  -0.01em;
-  cursor:          pointer;
-  transition:      color 0.2s ease;
-  background:      none;
-  border:          none;
-  padding:         0;
-  text-align:      left;
-}
-
-.footer-link:hover {
-  color: #1d1d1f;
-}
-
-/* ─── Legal Area & Signature ─────────────────────────────────────────────── */
-.footer-legal-area {
-  border-top:      1px solid #d2d2d7;
-  padding-top:     16px;
-  display:         flex;
-  flex-direction:  column;
-  gap:             8px;
-  font-size:       12px;
-  font-weight:     400;
-  color:           #6e6e73;
-  letter-spacing:  -0.01em;
-}
-
-.footer-legal-row {
-  display:         flex;
+/* =========================================
+   MIDDLE ZONES (NAV & PRESENCE)
+   ========================================= */
+.footer-middle-zones {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items:     center;
-  flex-wrap:       wrap;
-  gap:             16px;
+  gap: 8vw;
+}
+@media (max-width: 768px) {
+  .footer-middle-zones {
+    flex-direction: column;
+    gap: 8vh;
+  }
+}
+
+.footer-zone-title {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #86868b;
+  margin-bottom: 32px;
+}
+
+/* Zone 2 — Navigation */
+.footer-nav-zone {
+  flex: 1;
+}
+
+.footer-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-nav-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #1d1d1f;
+  text-align: left;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform;
+}
+
+.footer-nav-link:hover {
+  transform: translateY(-2px);
+  opacity: 0.6;
+}
+
+/* Zone 3 — Presence */
+.footer-presence-zone {
+  flex: 1.5;
+}
+
+.footer-presence-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.presence-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-presence-link {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  will-change: transform;
+}
+
+.footer-presence-link:hover {
+  transform: translateY(-2px);
+  opacity: 0.6;
+}
+
+.presence-name {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #1d1d1f;
+  margin-bottom: 4px;
+}
+
+.presence-desc {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: 15px;
+  color: #86868b;
+}
+
+/* =========================================
+   ZONE 4 — SIGNATURE
+   ========================================= */
+.footer-signature-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 2vh;
 }
 
 .footer-signature {
-  color: #6e6e73;
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
 }
 
-/* ─── Responsive ─────────────────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .footer-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-}
-
-@media (max-width: 600px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  
-  .footer-column-title {
-    margin-bottom: 8px;
-  }
-  
-  .footer-legal-row {
-    flex-direction: column;
-    align-items:    flex-start;
-  }
+.footer-copyright {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: 14px;
+  color: #86868b;
 }

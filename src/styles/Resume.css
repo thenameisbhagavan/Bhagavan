@@ -1,324 +1,282 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   APPLE HIG 2026 — RESUME
-   Editorial storytelling. Clean. Singular focus.
-   The resume is the product. Everything else is context.
-   ═══════════════════════════════════════════════════════════════════════════ */
+/* APPLE WWDC 2026 RESUME PAGE REDESIGN */
 
-/* ─── Page shell ─────────────────────────────────────────────────────────── */
 .res-page {
-  background:              #ffffff;
-  color:                   #1d1d1f;
-  -webkit-font-smoothing:  antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering:          optimizeLegibility;
-  overflow-x:              hidden;
+  background-color: #ffffff;
+  color: #1d1d1f;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ─── Layout constrain ───────────────────────────────────────────────────── */
 .res-constrain {
-  max-width: 1020px;
-  margin:    0 auto;
-  padding:   0 48px;
-}
-
-.res-constrain--reading {
-  max-width:  800px;
-  margin:     0 auto;
-  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5vw;
 }
 
 .center-align {
   text-align: center;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   SHARED SECTION STYLES
-   ═══════════════════════════════════════════════════════════════════════════ */
-.res-section-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(34px, 4.5vw, 52px);
-  font-weight:    700;
-  letter-spacing: -0.026em;
-  line-height:    1.08;
-  color:          #1d1d1f;
-  margin:         0 0 44px;
+.text-muted {
+  color: #86868b;
 }
 
-.res-body {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    19px;
-  font-weight:  400;
-  line-height:  1.68;
-  color:        #86868b;
-  margin:       0 0 24px;
-}
-
-.res-body:last-child {
-  margin-bottom: 0;
-}
-
-.res-eyebrow {
-  display:        block;
-  font-family:    var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:      11px;
-  font-weight:    600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color:          #86868b;
-  margin-bottom:  16px;
-}
-
-.res-alt {
-  background: #f5f5f7;
-}
-
-.res-dark {
-  background: #1d1d1f;
-  color:      #f5f5f7;
-}
-
-.res-text-light {
-  color: #f5f5f7;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   1. HERO
-   ═══════════════════════════════════════════════════════════════════════════ */
+/* =========================================
+   HERO
+   ========================================= */
 .res-hero {
-  padding:    24vh 48px 16vh;
-  max-width:  1020px;
-  margin:     0 auto;
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  will-change: transform, opacity;
+  transform-origin: center top;
 }
 
 .res-hero-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(52px, 8.5vw, 108px);
-  font-weight:    700;
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(60px, 12vw, 160px);
+  font-weight: 700;
   letter-spacing: -0.04em;
-  line-height:    1.02;
-  color:          #1d1d1f;
-  margin:         0 0 28px;
+  line-height: 1.05;
+  color: #1d1d1f;
+  margin-bottom: 24px;
 }
 
 .res-hero-sub {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:   clamp(18px, 2.4vw, 23px);
-  font-weight: 400;
-  line-height: 1.5;
-  color:       #86868b;
-  max-width:   680px;
-  margin:      0 auto;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   2. RESUME PREVIEW
-   ═══════════════════════════════════════════════════════════════════════════ */
-.res-preview {
-  padding: 160px 0;
-}
-
-.res-meta-tags {
-  display:         flex;
-  justify-content: center;
-  gap:             12px;
-  margin-bottom:   60px;
-}
-
-.res-meta-tags span {
-  font-family:    var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:      12px;
-  font-weight:    500;
-  color:          #86868b;
-  padding:        6px 12px;
-  border-radius:  20px;
-  background:     #f5f5f7;
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: clamp(20px, 3.5vw, 32px);
+  font-weight: 500;
   letter-spacing: 0.02em;
+  color: #86868b;
+}
+
+/* =========================================
+   THE TRANSITION
+   ========================================= */
+.res-transition {
+  padding: 30vh 0;
+  background: #000000;
+  color: #ffffff;
+}
+
+.res-editorial-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 12vh;
+}
+
+.res-statement {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(36px, 7vw, 90px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+/* =========================================
+   THE ARTIFACT
+   ========================================= */
+.res-artifact {
+  padding: 30vh 0 20vh 0;
+  background: #f5f5f7;
 }
 
 .res-artifact-wrapper {
   max-width: 900px;
-  margin:    0 auto;
-  padding:   0;
+  margin: 0 auto 15vh auto;
+  border-radius: 4px; /* Physical paper edge */
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.15), 0 10px 30px rgba(0,0,0,0.05);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
-.res-artifact-wrapper img {
-  display:       block;
-  width:         100%;
-  height:        auto;
-  border-radius: 8px;
-  box-shadow:    0 20px 60px rgba(0, 0, 0, 0.08);
-  /* Pure presentation, no device mockups, no heavy borders */
+.res-artifact-wrapper:hover {
+  transform: translateY(-10px) scale(1.01);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   3. DOWNLOAD EXPERIENCE
-   ═══════════════════════════════════════════════════════════════════════════ */
-.res-download {
-  padding: 160px 0;
+.res-artifact-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-.res-pill-btn {
-  display:         inline-flex;
-  align-items:     center;
-  background:      #1d1d1f;
-  color:           #ffffff;
-  font-family:     var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:       17px;
-  font-weight:     500;
-  padding:         16px 32px;
-  border-radius:   40px;
-  text-decoration: none;
-  transition:      transform 0.2s ease, background 0.2s ease;
-}
-
-.res-pill-btn span {
-  margin-left: 8px;
-  font-size:   16px;
-  opacity:     0.7;
-}
-
-.res-pill-btn:hover {
-  background: #000000;
-  transform:  scale(1.02);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   4 & 5. HIGHLIGHTS & FOCUS (TYPOGRAPHIC LISTS)
-   ═══════════════════════════════════════════════════════════════════════════ */
-.res-highlights,
-.res-focus {
-  padding: 160px 0;
-}
-
-.res-large-list {
-  display:        flex;
+.res-download-sequence {
+  display: flex;
   flex-direction: column;
-  margin-top:     64px;
+  align-items: center;
+  gap: 32px;
 }
 
-.res-large-item {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(30px, 5vw, 60px);
-  font-weight:    500;
+.res-download-thought {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #86868b;
+}
+
+.primary-download-btn {
+  display: inline-block;
+  background: #1d1d1f;
+  color: #ffffff;
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 20px 48px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.primary-download-btn:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+/* =========================================
+   ENGINEERING HIGHLIGHTS
+   ========================================= */
+.res-highlights {
+  padding: 30vh 0;
+  background: #ffffff;
+}
+
+.highlights-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 6vh;
+}
+
+.res-highlight-line {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(40px, 8vw, 100px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #1d1d1f;
+}
+
+/* =========================================
+   PROFESSIONAL EVOLUTION
+   ========================================= */
+.res-evolution {
+  padding: 30vh 0;
+  background: #f5f5f7;
+}
+
+.evolution-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12vh;
+}
+
+.evolution-node {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(40px, 8vw, 100px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #1d1d1f;
+}
+
+.evolution-arrow {
+  font-size: clamp(30px, 5vw, 60px);
+  color: #86868b;
+}
+
+/* =========================================
+   MORE THAN A RESUME
+   ========================================= */
+.res-reflection {
+  padding: 30vh 0;
+  background: #ffffff;
+}
+
+.reflection-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+}
+
+.reflection-line {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(28px, 5vw, 60px);
+  font-weight: 500;
   letter-spacing: -0.02em;
-  line-height:    1.12;
-  color:          #1d1d1f;
-  padding:        24px 0;
-  border-bottom:  0.5px solid rgba(0, 0, 0, 0.09);
-  margin:         0;
-  text-align:     center;
+  color: #86868b;
 }
 
-.res-large-item:first-child {
-  border-top: 0.5px solid rgba(0, 0, 0, 0.09);
+.reflection-strong {
+  margin-top: 6vh;
+  font-weight: 600;
+  color: #1d1d1f;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   6. RESUME PHILOSOPHY
-   ═══════════════════════════════════════════════════════════════════════════ */
-.res-philosophy {
-  padding: 180px 0;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   7. CLOSING
-   ═══════════════════════════════════════════════════════════════════════════ */
+/* =========================================
+   CLOSING
+   ========================================= */
 .res-closing {
-  display:        flex;
+  padding: 40vh 0 20vh 0;
+  background: #000000;
+  color: #ffffff;
+}
+
+.closing-sequence {
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding:        160px 0 100px;
+  gap: 25vh;
 }
 
-.res-closing-headline {
-  font-family:    var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size:      clamp(60px, 10vw, 120px);
-  font-weight:    700;
-  letter-spacing: -0.04em;
-  line-height:    1.02;
-  color:          #f5f5f7;
-  margin:         0 auto 44px;
+.closing-thought {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(32px, 6vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
-.res-closing-sub {
-  font-family:  var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:    clamp(18px, 2.4vw, 26px);
-  font-weight:  400;
-  line-height:  1.6;
-  color:        rgba(255, 255, 255, 0.48);
-  max-width:    760px;
-  margin:       0 auto;
+.closing-finale {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(40px, 8vw, 120px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #ffffff;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   8. EXPLORE THE WORK
-   ═══════════════════════════════════════════════════════════════════════════ */
-.res-explore {
-  padding: 0 0 160px;
+/* =========================================
+   FINAL NAVIGATION
+   ========================================= */
+.res-navigation {
+  padding: 20vh 0;
+  background: #ffffff;
 }
 
-.res-nav-actions {
-  display:         flex;
-  flex-wrap:       wrap;
-  justify-content: center;
-  gap:             32px;
-  margin-top:      60px;
+.nav-editorial {
+  font-family: var(--font-system, 'SF Pro Text', sans-serif);
+  font-size: clamp(20px, 4vw, 32px);
+  font-weight: 600;
+  color: #86868b;
+  margin-bottom: 10vh;
 }
 
-.res-nav-link {
-  display:         inline-flex;
-  align-items:     center;
-  font-family:     var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size:       20px;
-  font-weight:     500;
-  color:           #f5f5f7;
+.nav-links-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.nav-link {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
   text-decoration: none;
-  border-bottom:   1px solid rgba(255, 255, 255, 0.3);
-  padding-bottom:  4px;
-  transition:      opacity 0.2s ease, border-color 0.2s ease;
+  transition: opacity 0.3s ease;
 }
 
-.res-nav-link span {
-  margin-left: 8px;
-  font-size:   18px;
-  opacity:     0.5;
-}
-
-.res-nav-link:hover {
-  border-color: rgba(255, 255, 255, 0.8);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ── Mobile ── */
-@media (max-width: 600px) {
-  .res-hero {
-    padding: 18vh 24px 12vh;
-  }
-
-  .res-constrain {
-    padding: 0 24px;
-  }
-
-  .res-preview,
-  .res-download,
-  .res-highlights,
-  .res-focus,
-  .res-philosophy {
-    padding: 80px 0;
-  }
-
-  .res-section-headline {
-    font-size:     clamp(28px, 7vw, 40px);
-    margin-bottom: 32px;
-  }
-
-  .res-nav-actions {
-    flex-direction: column;
-    gap:            24px;
-    align-items:    center;
-  }
+.nav-link:hover {
+  opacity: 0.5;
 }
