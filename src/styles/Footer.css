@@ -1,80 +1,79 @@
-/* APPLE WWDC 2026 FOOTER REDESIGN */
-
-.footer-shell {
-  background-color: #ffffff;
+/* APPLE 2026 OVERVIEW REDESIGN — CINEMATIC FOOTER */
+.footer-cinematic {
+  background-color: #fbfbfd;
   color: #1d1d1f;
+  padding: 15vh 6vw 8vh 6vw;
+  font-family: var(--font-system, 'SF Pro Display', -apple-system, sans-serif);
   -webkit-font-smoothing: antialiased;
-  padding: 20vh 0 10vh 0;
-  border-top: 1px solid rgba(0,0,0,0.05); /* very soft hairline */
+  position: relative;
+  z-index: 10;
 }
 
-.footer-constrain {
+.footer-content-bounds {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 5vw;
 }
 
-.text-muted {
-  color: #86868b;
-}
-
-/* =========================================
-   ZONE 1 — CLOSING STATEMENT
-   ========================================= */
-.footer-statement-zone {
+/* Zone 1: Closing Statement */
+.footer-zone-statement {
   margin-bottom: 12vh;
 }
 
-.footer-statement {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(32px, 6vw, 70px);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+.footer-huge-text {
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin: 0 0 24px 0;
   color: #1d1d1f;
 }
 
-/* =========================================
-   DIVIDERS
-   ========================================= */
-.footer-divider {
-  width: 100%;
-  height: 1px;
-  background-color: rgba(0,0,0,0.08);
-  margin: 6vh 0;
+.footer-statement-sub {
+  font-size: clamp(24px, 3.5vw, 48px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: #1d1d1f;
+  margin: 0;
 }
 
-/* =========================================
-   MIDDLE ZONES (NAV & PRESENCE)
-   ========================================= */
-.footer-middle-zones {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 8vw;
+.footer-muted {
+  color: #86868b;
 }
+
+/* Hairline */
+.footer-hairline {
+  height: 1px;
+  width: 100%;
+  background: rgba(0,0,0,0.06);
+  margin-bottom: 10vh;
+}
+
+/* Zones Grid */
+.footer-zones-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 8vw;
+  margin-bottom: 15vh;
+}
+
 @media (max-width: 768px) {
-  .footer-middle-zones {
-    flex-direction: column;
+  .footer-zones-grid {
+    grid-template-columns: 1fr;
     gap: 8vh;
   }
 }
 
 .footer-zone-title {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: #86868b;
-  margin-bottom: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 32px 0;
 }
 
-/* Zone 2 — Navigation */
-.footer-nav-zone {
-  flex: 1;
-}
-
+/* Navigation List */
 .footer-nav-list {
   list-style: none;
   padding: 0;
@@ -84,98 +83,148 @@
   gap: 20px;
 }
 
-.footer-nav-link {
+.footer-quiet-link {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1d1d1f;
+  text-decoration: none;
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: #1d1d1f;
-  text-align: left;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  will-change: transform;
+  transition: all 0.4s ease;
+  opacity: 0.75;
+  display: inline-flex;
+  align-items: center;
 }
 
-.footer-nav-link:hover {
+.footer-quiet-link:hover {
+  opacity: 1;
   transform: translateY(-2px);
-  opacity: 0.6;
 }
 
-/* Zone 3 — Presence */
-.footer-presence-zone {
-  flex: 1.5;
+.nav-arrow {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.4s ease;
+  font-weight: 400;
+  color: #86868b;
+  margin-left: 8px;
+  font-size: 0.9em;
 }
 
+.footer-quiet-link:hover .nav-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* Presence List */
 .footer-presence-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 40px 24px;
 }
 
 .presence-item {
   display: flex;
-  flex-direction: column;
 }
 
-.footer-presence-link {
+.presence-link {
   display: flex;
   flex-direction: column;
+  gap: 8px;
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  text-align: left;
   text-decoration: none;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  will-change: transform;
+  text-align: left;
+  transition: all 0.4s ease;
+  opacity: 0.75;
 }
 
-.footer-presence-link:hover {
+.presence-link:hover {
+  opacity: 1;
   transform: translateY(-2px);
-  opacity: 0.6;
 }
 
 .presence-name {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
-  letter-spacing: -0.01em;
   color: #1d1d1f;
-  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
 }
 
 .presence-desc {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
   font-size: 15px;
+  font-weight: 400;
   color: #86868b;
 }
 
-/* =========================================
-   ZONE 4 — SIGNATURE
-   ========================================= */
-.footer-signature-zone {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 2vh;
+.presence-arrow {
+  display: inline-block;
+  opacity: 0;
+  transition: all 0.4s ease;
+  font-weight: 400;
+  color: #86868b;
+  margin-left: 6px;
+  font-size: 0.9em;
 }
 
-.footer-signature {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(24px, 4vw, 40px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: #1d1d1f;
+.external-arrow {
+  transform: translate(-4px, 4px);
+}
+
+.internal-arrow {
+  transform: translateX(-4px);
+}
+
+.presence-link:hover .external-arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+.presence-link:hover .internal-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+
+/* Signature Zone */
+.footer-zone-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding-top: 6vh;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+@media (min-width: 768px) {
+  .footer-zone-signature {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.footer-editorial {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 500;
+  color: #6e6e73;
+  max-width: 600px;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
 }
 
 .footer-copyright {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: 14px;
-  color: #86868b;
+  font-size: 12px;
+  font-weight: 400;
+  color: #a1a1a6;
+  letter-spacing: 0.02em;
 }

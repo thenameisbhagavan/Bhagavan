@@ -401,8 +401,8 @@
 
 .phi-light-topleft {
   position: absolute;
-  top: -20%;
-  left: -10%;
+  top: -10vh;
+  left: -10vw;
   width: 60vw;
   height: 60vw;
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%);
@@ -413,8 +413,8 @@
 
 .phi-light-bottomright {
   position: absolute;
-  bottom: -20%;
-  right: -10%;
+  bottom: 0;
+  right: -10vw;
   width: 50vw;
   height: 50vw;
   background: radial-gradient(circle, rgba(0,102,204,1) 0%, rgba(0,102,204,0) 70%);
