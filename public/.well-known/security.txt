@@ -1,0 +1,4 @@
+Contact: mailto:security@thenameisbhagavan.vercel.app
+Expires: 2027-07-12T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://thenameisbhagavan.vercel.app/.well-known/security.txt

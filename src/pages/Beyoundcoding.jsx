@@ -863,8 +863,8 @@ export default function BeyondCoding() {
                   </p>
                 </div>
                 <div style={{display:"flex",flexDirection:"column",gap:"10px",minWidth:"230px"}}>
-                  <FooterCTA label="Schedule Interview" sub="Primary" href="mailto:g.sivasatyasaibhagavan@gmail.com" accent visible={fV} delay={0.16}/>
-                  <FooterCTA label="View Projects"      sub="GitHub"  href="https://github.com/bhagavan444"                  accent={false} visible={fV} delay={0.22}/>
+                  <FooterCTA label="Schedule Interview" sub="Primary" href="mailto:thenameisbhagavan@gmail.com" accent visible={fV} delay={0.16}/>
+                  <FooterCTA label="View Projects"      sub="GitHub"  href="https://github.com/thenameisbhagavan"                  accent={false} visible={fV} delay={0.22}/>
                   <FooterCTA label="View Portfolio"     sub="Work"    href="/"                                               accent={false} visible={fV} delay={0.28}/>
                 </div>
               </div>
@@ -881,9 +881,9 @@ export default function BeyondCoding() {
                 </p>
                 <div style={{display:"flex",gap:"6px"}}>
                   {[
-                    {l:"GH",h:"https://github.com/bhagavan444"},
-                    {l:"LI",h:"https://www.linkedin.com/in/gopalajosyula-siva-satya-sai-bhagavan-1624a027b/"},
-                    {l:"✉", h:"mailto:g.sivasatyasaibhagavan@gmail.com"},
+                    {l:"GH",h:"https://github.com/thenameisbhagavan"},
+                    {l:"LI",h:"https://www.linkedin.com/in/thenameisbhagavan/"},
+                    {l:"✉", h:"mailto:thenameisbhagavan@gmail.com"},
                   ].map((s,i)=>(
                     <a key={i} href={s.h} data-magnetic target={s.h.startsWith("http")?"_blank":undefined} rel={s.h.startsWith("http")?"noopener noreferrer":undefined}
                       style={{width:"32px",height:"32px",borderRadius:"7px",background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'DM Mono',monospace",color:"rgba(255,255,255,0.35)",textDecoration:"none",fontSize:"11px"}}
@@ -899,14 +899,14 @@ export default function BeyondCoding() {
               </div>
               <div>
                 <ML color="rgba(255,255,255,0.18)" style={{marginBottom:"18px"}}>Work</ML>
-                {[{l:"All Projects",h:"/projects"},{l:"GitHub",h:"https://github.com/bhagavan444"},{l:"Skills Page",h:"/skills"},{l:"Resume / CV",h:"#"}].map((l,i)=>(
+                {[{l:"All Projects",h:"/projects"},{l:"GitHub",h:"https://github.com/thenameisbhagavan"},{l:"Skills Page",h:"/skills"},{l:"Resume / CV",h:"#"}].map((l,i)=>(
                   <a key={i} href={l.h} style={{display:"block",fontSize:"13px",color:"rgba(255,255,255,0.32)",textDecoration:"none",marginBottom:"10px"}}>{l.l}</a>
                 ))}
               </div>
               <div>
                 <ML color="rgba(255,255,255,0.18)" style={{marginBottom:"18px"}}>Contact</ML>
                 {[
-                  {lb:"Email",    v:"g.sivasatyasaibhagavan@gmail.com"},
+                  {lb:"Email",    v:"thenameisbhagavan@gmail.com"},
                   {lb:"Phone",    v:"+91 7569205626"},
                   {lb:"Location", v:"Andhra Pradesh, IN"},
                   {lb:"Status",   v:"Available · Immediate",bright:true},

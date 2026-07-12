@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React, { useEffect } from 'react';
 import { m, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -46,6 +47,9 @@ export default function Vision() {
   }, []);
 
   return (
+    <>
+      <SEO title="Vision | TheNameIsBhagavan" description="Bhagavan's vision for the future of Artificial Intelligence and technology." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+
     <div className="vision-page">
       
       {/* ══════════════════════════════════════════════════════
@@ -222,5 +226,7 @@ export default function Vision() {
       </section>
 
     </div>
+  
+    </>
   );
 }

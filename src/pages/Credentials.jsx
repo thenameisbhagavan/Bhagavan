@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React, { useEffect, useRef } from 'react';
 import { m, useScroll, useTransform } from 'framer-motion';
 import '../styles/Credentials.css';
@@ -143,6 +144,9 @@ export default function Credentials() {
   }, []);
 
   return (
+    <>
+      <SEO title="Credentials & Certifications | TheNameIsBhagavan" description="Professional certifications and educational credentials of Bhagavan." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+
     <div className="cred-page">
       
       {/* ══════════════════════════════════════════════════════
@@ -384,5 +388,7 @@ export default function Credentials() {
       </section>
 
     </div>
+  
+    </>
   );
 }

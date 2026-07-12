@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React, { useEffect, useRef } from 'react';
 import { m, useScroll, useTransform } from 'framer-motion';
 import '../styles/Innovation.css';
@@ -75,6 +76,9 @@ export default function InnovationJourney() {
   }, []);
 
   return (
+    <>
+      <SEO title="Innovation Journey | TheNameIsBhagavan" description="Track the continuous innovation and learning journey of Bhagavan in AI." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+
     <div className="inn-page">
       
       {/* ══════════════════════════════════════════════════════
@@ -376,5 +380,7 @@ export default function InnovationJourney() {
       </section>
 
     </div>
+  
+    </>
   );
 }

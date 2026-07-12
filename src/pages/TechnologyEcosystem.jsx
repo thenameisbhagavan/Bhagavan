@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React, { useEffect } from 'react';
 import { m, useScroll, useTransform } from 'framer-motion';
 import '../styles/Skills.css';
@@ -201,6 +202,9 @@ export default function TechnologyEcosystem() {
   }, []);
 
   return (
+    <>
+      <SEO title="Technology Ecosystem & Skills | TheNameIsBhagavan" description="The tools, languages, and frameworks Bhagavan uses to build intelligent systems." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+
     <div className="skills-page">
       
       {/* ══════════════════════════════════════════════════════
@@ -410,5 +414,7 @@ export default function TechnologyEcosystem() {
       </section>
 
     </div>
+  
+    </>
   );
 }

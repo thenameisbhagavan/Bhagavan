@@ -1,0 +1,11 @@
+/* TEAM */
+Engineer: Bhagavan
+Role: AI Engineer & Full Stack Developer
+Site: https://thenameisbhagavan.vercel.app
+
+/* SITE */
+Last update: 2026-07-12
+Language: English
+Doctype: HTML5
+IDE: Cursor / VSCode
+Technologies: React 19, Vite, Tailwind CSS, Framer Motion, GSAP, Three.js

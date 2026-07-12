@@ -1,7 +1,9 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { AnimatePresence, LayoutGroup, MotionConfig } from "framer-motion";
+import { HelmetProvider } from "react-helmet-async";
 import AppShell from "./AppShell";
+import NotFound from "./components/NotFound";
 
 // LAZY-LOADED CORE EXPERIENCES
 const Overview = lazy(() => import("./pages/Overview"));
@@ -37,36 +39,43 @@ function App() {
   const location = useLocation();
 
   return (
-    <MotionConfig reducedMotion="user">
-      <AppShell>
-      <ScrollToTop />
-      <LayoutGroup>
-        <Suspense fallback={<PageLoader />}>
-          <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-              {/* Redirects */}
-              <Route path="/" element={<Navigate to="/overview" replace />} />
-              <Route path="/home" element={<Navigate to="/overview" replace />} />
-              
-              {/* 5 Core Experiences */}
-              <Route path="/overview" element={<Overview />} />
-              <Route path="/work" element={<Work />} />
-              <Route path="/experience" element={<Experience />} />
-              <Route path="/vision" element={<Vision />} />
-              <Route path="/connect" element={<Connect />} />
-              <Route path="/innovation" element={<InnovationJourney />} />
-              <Route path="/credentials" element={<Credentials />} />
-              <Route path="/ecosystem" element={<TechnologyEcosystem />} />
-              <Route path="/resume" element={<Resume />} />
-              
-              {/* Catch-all redirect to ensure ecosystem continuity */}
-              <Route path="*" element={<Navigate to="/overview" replace />} />
-            </Routes>
-          </AnimatePresence>
-        </Suspense>
-      </LayoutGroup>
-    </AppShell>
-    </MotionConfig>
+    <HelmetProvider>
+      <MotionConfig reducedMotion="user">
+        <AppShell>
+        <ScrollToTop />
+        <LayoutGroup>
+          <Suspense fallback={<PageLoader />}>
+            <AnimatePresence mode="wait">
+              <Routes location={location} key={location.pathname}>
+                {/* Redirects */}
+                <Route path="/" element={<Navigate to="/overview" replace />} />
+                <Route path="/home" element={<Navigate to="/overview" replace />} />
+                
+                {/* SEO-friendly Aliases */}
+                <Route path="/projects" element={<Navigate to="/work" replace />} />
+                <Route path="/skills" element={<Navigate to="/ecosystem" replace />} />
+                <Route path="/contact" element={<Navigate to="/connect" replace />} />
+                
+                {/* 5 Core Experiences */}
+                <Route path="/overview" element={<Overview />} />
+                <Route path="/work" element={<Work />} />
+                <Route path="/experience" element={<Experience />} />
+                <Route path="/vision" element={<Vision />} />
+                <Route path="/connect" element={<Connect />} />
+                <Route path="/innovation" element={<InnovationJourney />} />
+                <Route path="/credentials" element={<Credentials />} />
+                <Route path="/ecosystem" element={<TechnologyEcosystem />} />
+                <Route path="/resume" element={<Resume />} />
+                
+                {/* 404 Route */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </AnimatePresence>
+          </Suspense>
+        </LayoutGroup>
+      </AppShell>
+      </MotionConfig>
+    </HelmetProvider>
   );
 }
 

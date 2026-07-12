@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React, { useEffect, useRef } from "react";
 import { m, useScroll, useTransform } from "framer-motion";
 import "../styles/Experience.css";
@@ -131,6 +132,9 @@ export default function Experience() {
   }, []);
 
   return (
+    <>
+      <SEO title="Experience | TheNameIsBhagavan" description="Professional experience and career journey of Bhagavan." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+
     <div className="exp-page">
 
       {/* ══════════════════════════════════════════════════════
@@ -368,5 +372,7 @@ export default function Experience() {
       </section>
 
     </div>
+  
+    </>
   );
 }

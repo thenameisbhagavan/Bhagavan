@@ -20,9 +20,9 @@ const Footer = memo(function Footer() {
   ];
 
   const presenceLinks = [
-    { name: "GitHub", desc: "Engineering in public.", url: "https://github.com/bhagavan444", external: true },
-    { name: "LinkedIn", desc: "Professional collaboration.", url: "https://www.linkedin.com/in/gsssbhagavan/", external: true },
-    { name: "Email", desc: "Start a conversation.", url: "mailto:g.sivasatysaibhagavan@gmail.com", external: true },
+    { name: "GitHub", desc: "Engineering in public.", url: "https://github.com/thenameisbhagavan", external: true },
+    { name: "LinkedIn", desc: "Professional collaboration.", url: "https://www.linkedin.com/in/thenameisbhagavan/", external: true },
+    { name: "Email", desc: "Start a conversation.", url: "mailto:thenameisbhagavan@gmail.com", external: true },
     { name: "Location", desc: "Connect in the real world.", path: "/connect", external: false },
     { name: "Resume", desc: "The complete journey.", path: "/resume", external: false }
   ];

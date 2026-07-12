@@ -1,4 +1,10 @@
 {
+  "redirects": [
+    { "source": "/projects", "destination": "/work", "permanent": true },
+    { "source": "/skills", "destination": "/ecosystem", "permanent": true },
+    { "source": "/contact", "destination": "/connect", "permanent": true },
+    { "source": "/home", "destination": "/overview", "permanent": true }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

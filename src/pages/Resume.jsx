@@ -1,9 +1,11 @@
+import SEO from "../components/SEO";
 import React, { useEffect } from 'react';
 import { m, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import '../styles/Resume.css';
 
 import pdfUrl from '../assets/bhagavanresume.pdf';
+import resumeImageSrc from '../assets/bhagavanresumepage_001.jpg';
 
 // ─── Motion ───────────────────────────────────────────────────────────────────
 const EASE = [0.16, 1, 0.3, 1];
@@ -49,9 +51,12 @@ export default function Resume() {
     window.scrollTo(0, 0);
   }, []);
 
-  const resumeImage = "/bhagavanresume_page-0001.jpg";
+  const resumeImage = resumeImageSrc;
 
   return (
+    <>
+      <SEO title="Resume | AI Engineer | TheNameIsBhagavan" description="View and download the professional resume of Bhagavan." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+
     <div className="res-page">
       
       {/* ══════════════════════════════════════════════════════
@@ -227,5 +232,7 @@ export default function Resume() {
       </section>
 
     </div>
+  
+    </>
   );
 }

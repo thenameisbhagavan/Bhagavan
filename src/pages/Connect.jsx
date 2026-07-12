@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React, { useState, useEffect } from 'react';
 import { m, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import emailjs from '@emailjs/browser';
@@ -80,8 +81,8 @@ export default function Connect() {
       subject: formData.subject,
       message: formData.message,
       portfolio_link: window.location.origin,
-      linkedin_link: "https://www.linkedin.com/in/gsssbhagavan/",
-      github_link: "https://github.com/bhagavan444"
+      linkedin_link: "https://www.linkedin.com/in/thenameisbhagavan/",
+      github_link: "https://github.com/thenameisbhagavan"
     };
 
     try {
@@ -117,6 +118,9 @@ export default function Connect() {
   };
 
   return (
+    <>
+      <SEO title="Connect & Contact | TheNameIsBhagavan" description="Get in touch with Bhagavan for collaborations, opportunities, or just to say hi." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+
     <div className="con-page">
 
       {/* PRESERVED NOTIFICATIONS */}
@@ -193,18 +197,18 @@ export default function Connect() {
         <div className="con-constrain">
           <div className="direct-hierarchy">
             
-            <m.a href="mailto:gsssbhagavan@gmail.com" className="hierarchy-item hierarchy-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <m.a href="mailto:thenameisbhagavan@gmail.com" className="hierarchy-item hierarchy-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <span className="hierarchy-label">Email</span>
-              <span className="hierarchy-value">gsssbhagavan@gmail.com</span>
+              <span className="hierarchy-value">thenameisbhagavan@gmail.com</span>
               <span className="hierarchy-desc">The fastest way to start a conversation.</span>
             </m.a>
 
-            <m.a href="https://www.linkedin.com/in/gsssbhagavan/" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-secondary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <m.a href="https://www.linkedin.com/in/thenameisbhagavan/" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-secondary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <span className="hierarchy-label">LinkedIn</span>
               <span className="hierarchy-value">Professional collaboration.</span>
             </m.a>
 
-            <m.a href="https://github.com/bhagavan444" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-tertiary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <m.a href="https://github.com/thenameisbhagavan" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-tertiary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <span className="hierarchy-label">GitHub</span>
               <span className="hierarchy-value">Engineering in public.</span>
             </m.a>
@@ -351,5 +355,7 @@ export default function Connect() {
       </section>
 
     </div>
+  
+    </>
   );
 }

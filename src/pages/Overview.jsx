@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { m, useScroll, useTransform, animate } from "framer-motion";
+import SEO from "../components/SEO";
 import "../styles/Overview.css";
 
 // Existing images from hero
@@ -84,6 +85,12 @@ export default function Overview() {
   }, []);
 
   return (
+    <>
+      <SEO 
+        title="TheNameIsBhagavan | AI Engineer Portfolio"
+        description="Explore the portfolio of Bhagavan, an AI Engineer specializing in Artificial Intelligence, Machine Learning, Deep Learning, and Full Stack Development."
+        keywords="AI Engineer, Artificial Intelligence, Machine Learning, Deep Learning, NLP, Generative AI, Full Stack Developer, Python, React, Portfolio"
+      />
     <div className="apple-overview">
       {/* Background Noise overlay */}
       <div className="phi-noise-overlay"></div>
@@ -500,7 +507,7 @@ export default function Overview() {
         {/* Minimal Profile Cards */}
         <div className="minimal-cards-container">
           <m.a 
-            href="https://github.com/bhagavan444" 
+            href="https://github.com/thenameisbhagavan" 
             target="_blank" 
             rel="noreferrer" 
             className="minimal-profile-card"
@@ -520,7 +527,7 @@ export default function Overview() {
           </m.a>
 
           <m.a 
-            href="https://www.linkedin.com/in/gsssbhagavan/" 
+            href="https://www.linkedin.com/in/thenameisbhagavan/" 
             target="_blank" 
             rel="noreferrer" 
             className="minimal-profile-card"
@@ -666,5 +673,6 @@ export default function Overview() {
       </div>
 
     </div>
+    </>
   );
 }
