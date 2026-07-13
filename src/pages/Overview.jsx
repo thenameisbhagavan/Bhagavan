@@ -116,13 +116,15 @@ export default function Overview() {
           </m.p>
 
           {/* Headline — Staggered Fade + translateY */}
-          <m.h1 className="phi-headline" style={{ y: headlineY }}>
-            <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: appleEase }}>Building</m.span>
-            <br />
-            <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3, ease: appleEase }}>Intelligent</m.span>
-            <br />
-            <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5, ease: appleEase }}>Futures.</m.span>
-          </m.h1>
+          <m.div style={{ y: headlineY }}>
+            <h1 className="phi-headline">
+              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: appleEase }}>Building</m.span>
+              <br />
+              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3, ease: appleEase }}>Intelligent</m.span>
+              <br />
+              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5, ease: appleEase }}>Futures.</m.span>
+            </h1>
+          </m.div>
 
           {/* Identity & Body Stack */}
           <m.div className="phi-identity-stack" variants={fadeUp} style={{ opacity: elementsOpacity }}>
