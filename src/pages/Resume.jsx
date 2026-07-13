@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { m, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import '../styles/Resume.css';
+import ResumeCenter from '../components/ResumeCenter';
 
 import pdfUrl from '../assets/bhagavanresume.pdf';
 import resumeImageSrc from '../assets/bhagavanresumepage_001.jpg';
@@ -111,6 +112,8 @@ export default function Resume() {
           </m.div>
         </div>
       </section>
+
+      <ResumeCenter />
 
       {/* ══════════════════════════════════════════════════════
           ENGINEERING HIGHLIGHTS

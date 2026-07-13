@@ -1,0 +1,453 @@
+/* ResumeCenter.css - Premium Apple-Style Resume Hub */
+
+.resume-center-section {
+  padding: 8rem 0;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+
+.rc-header {
+  text-align: center;
+  margin-bottom: 5rem;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.rc-label {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #71717a;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.rc-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rc-subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  color: #a1a1aa;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Grid Layout */
+.rc-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
+  width: 100%;
+  max-width: 1600px;
+  padding: 0 2rem;
+}
+
+@media (max-width: 1500px) {
+  .rc-grid {
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+  }
+  .rc-grid > :nth-child(4) {
+    grid-column: 1 / span 1;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1500px) {
+  .rc-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .rc-card-wrapper {
+    flex: 0 0 calc(33.333% - 1.33rem);
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .rc-grid {
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+  }
+  .rc-card-wrapper {
+    max-width: unset;
+  }
+  .rc-grid > :nth-child(5) {
+    grid-column: span 2;
+    justify-self: center;
+    width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .rc-grid {
+    grid-template-columns: 1fr;
+  }
+  .rc-grid > :nth-child(5) {
+    grid-column: span 1;
+    width: 100%;
+  }
+}
+
+/* Premium Card Design */
+.rc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(25, 25, 25, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 1.5rem;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              background 0.6s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.rc-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
+              0 0 0 1px rgba(255, 255, 255, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: rgba(30, 30, 30, 0.6);
+  z-index: 2;
+}
+
+/* PDF Preview Window */
+.rc-preview-container {
+  width: 100%;
+  aspect-ratio: 1 / 1.414; /* A4 Ratio */
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+
+/* Very subtle hover on the PDF itself */
+.rc-card:hover .rc-preview-container {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.rc-preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.03) 100%);
+  pointer-events: none;
+}
+
+.react-pdf__Page {
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.react-pdf__Page__canvas {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+/* Skeleton Loading State */
+.rc-skeleton {
+  width: 100%;
+  height: 100%;
+  background: #e5e5ea;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.rc-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: rc-shimmer 2s infinite ease-in-out;
+}
+
+@keyframes rc-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Error State */
+.rc-error-state {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fbfbfd;
+  color: #a1a1aa;
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 1rem;
+}
+.rc-error-state svg {
+  margin-bottom: 0.5rem;
+  opacity: 0.5;
+}
+
+/* Typography */
+.rc-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.25rem;
+  color: #fff;
+}
+
+.rc-card-subtitle {
+  font-size: 0.875rem;
+  color: #a1a1aa;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.rc-card-desc {
+  font-size: 0.875rem;
+  color: #71717a;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+/* Button Group */
+.rc-btn-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.rc-btn {
+  flex: 1;
+  padding: 0.75rem 0;
+  border-radius: 99px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  outline: none;
+}
+
+/* Focus States for Accessibility */
+.rc-btn:focus-visible, .rc-zoom-btn:focus-visible, .rc-modal-close:focus-visible {
+  box-shadow: 0 0 0 2px #0a84ff; /* Apple Blue Focus Ring */
+}
+
+.rc-btn-primary {
+  background: #fff;
+  color: #000;
+  border: 1px solid transparent;
+}
+
+.rc-btn-primary:hover {
+  background: #f4f4f5;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.rc-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.rc-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Active State for buttons */
+.rc-btn:active, .rc-zoom-btn:active {
+  transform: scale(0.96) !important;
+}
+
+/* Modal Styles */
+.rc-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rc-modal-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10001;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.rc-modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.rc-modal-content {
+  width: 100%;
+  max-width: 1000px;
+  height: 85vh;
+  background: #fbfbfd;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.rc-modal-pdf-wrapper {
+  flex-grow: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background: #e5e5ea;
+  scroll-behavior: smooth;
+}
+
+.rc-modal-pdf-wrapper .react-pdf__Document {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.rc-modal-page {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1) !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.rc-modal-controls {
+  padding: 1rem 2rem;
+  background: #1d1d1f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.rc-modal-title {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.rc-modal-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.rc-zoom-text {
+  color: #a1a1aa;
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-width: 3.5rem;
+  text-align: center;
+}
+
+.rc-zoom-btn {
+  background: transparent;
+  border: none;
+  color: #a1a1aa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.rc-zoom-btn:hover:not(:disabled) {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.rc-zoom-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  .rc-card {
+    transition: none;
+  }
+  .rc-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .rc-card:hover .rc-preview-container {
+    transform: none;
+    box-shadow: none;
+  }
+  .rc-btn {
+    transition: none;
+  }
+  .rc-btn:hover, .rc-btn:active, .rc-zoom-btn:active {
+    transform: none !important;
+  }
+  .rc-skeleton::after {
+    animation: none;
+    background: rgba(255, 255, 255, 0.2); /* Static placeholder */
+  }
+}
