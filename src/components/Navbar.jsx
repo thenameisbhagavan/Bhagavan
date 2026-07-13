@@ -26,6 +26,8 @@ const PRIMARY_NAV = [
 
   { label: "Vision", path: "/vision" },
 
+  { label: "Insights", path: "/insights" },
+
   { label: "Connect", path: "/connect" },
 ];
 
@@ -38,6 +40,7 @@ const MOBILE_NAV = [
 { label: "Technology",    path: "/ecosystem" },
 { label: "Vision",        path: "/vision" },
 { label: "Resume",        path: "/resume" },
+{ label: "Insights",      path: "/insights" },
 { label: "Connect",       path: "/connect" },
 ];
 
@@ -54,6 +57,7 @@ const SEARCH_PAGES = [
   { title: "Credentials",           path: "/credentials", keywords: "certifications awards achievements badges" },
   { title: "Technology Ecosystem",  path: "/ecosystem",   keywords: "stack architecture tools frameworks react node python mongodb" },
   { title: "Resume",                path: "/resume",      keywords: "cv download pdf curriculum vitae" },
+  { title: "Insights",              path: "/insights",    keywords: "blog articles engineering writing insights posts" },
 ];
 
 // Quick links shown when search is empty
@@ -88,16 +92,16 @@ const CSS = `
     border-bottom: 1px solid transparent;
   }
   .nav-shell.scrolled {
-    background: rgba(255,255,255,0.72);
+    background: var(--nav-scrolled-bg, rgba(255,255,255,0.72));
     backdrop-filter: blur(40px) saturate(180%);
     -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border-color: rgba(0,0,0,0.06);
+    border-bottom: 1px solid var(--nav-border-color, rgba(0,0,0,0.06));
   }
   .nav-shell.panel-open {
     background: rgba(255,255,255,0.96);
     backdrop-filter: blur(40px) saturate(180%);
     -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border-color: transparent;
+    border-bottom: 1px solid transparent;
   }
 
   /* ── Inner row ── */
@@ -118,12 +122,6 @@ const CSS = `
     font-size: 14.5px;
     font-weight: 600;
     letter-spacing: 0.14em;
-    color: #1d1d1f;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    text-transform: uppercase;
     transition: opacity 0.2s ease;
     flex-shrink: 0;
     outline: none;
@@ -158,10 +156,9 @@ const CSS = `
     font-size: 12px;
     font-weight: 400;
     letter-spacing: -0.01em;
-    color: #1d1d1f;
     cursor: pointer;
     white-space: nowrap;
-    transition: opacity 0.2s ease, font-weight 0.2s ease;
+    transition: opacity 0.2s ease, font-weight 0.2s ease, color 0.35s ease;
     position: relative;
     outline: none;
   }
@@ -247,9 +244,8 @@ const CSS = `
     border-radius: 0;
     padding: 0;
     cursor: pointer;
-    color: #1d1d1f;
     opacity: 0.8;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, color 0.35s ease;
     outline: none;
     flex-shrink: 0;
   }
@@ -293,8 +289,7 @@ const CSS = `
     border: none;
     padding: 0;
     cursor: pointer;
-    color: #1d1d1f;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, color 0.35s ease;
   }
   .nav-mobile-btn:hover { opacity: 0.55; }
   @media (max-width: 900px) { .nav-mobile-btn { display: flex; align-items: center; } }
@@ -370,10 +365,9 @@ const CSS = `
     border: none;
     padding: 0;
     cursor: pointer;
-    color: #1d1d1f;
     display: flex;
     align-items: center;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, color 0.35s ease;
   }
   .nav-search-icon:hover { opacity: 0.5; }
 
@@ -510,6 +504,51 @@ const CSS = `
     color: #86868b;
     padding: 12px 0;
   }
+
+  /* ── Dark Mode Overrides for Specific Pages (e.g. Insights) ── */
+  .nav-shell.nav-dark-mode {
+    --nav-text-color: #f5f5f7;
+    --nav-scrolled-bg: rgba(26,26,31,0.72);
+    --nav-border-color: rgba(255,255,255,0.1);
+  }
+  
+  .nav-shell:not(.nav-dark-mode) {
+    --nav-text-color: #1d1d1f;
+    --nav-scrolled-bg: rgba(255,255,255,0.72);
+    --nav-border-color: rgba(0,0,0,0.06);
+  }
+
+  /* Apply the variables */
+  .nav-shell .nav-wordmark,
+  .nav-shell .nav-btn,
+  .nav-shell .nav-search-icon,
+  .nav-shell .nav-mobile-btn,
+  .nav-shell .nav-resume-btn {
+    color: var(--nav-text-color);
+  }
+  
+  /* Make the logo wordmark white on dark mode */
+  .nav-shell.nav-dark-mode .nav-wordmark img {
+    filter: invert(1);
+  }
+
+  /* Adjust scrolled background for dark mode */
+  .nav-shell.nav-dark-mode.scrolled {
+    background: var(--nav-scrolled-bg);
+    border-color: var(--nav-border-color);
+  }
+  
+  /* When panel is open, revert to light mode temporarily so dropdowns are readable */
+  .nav-shell.nav-dark-mode.panel-open .nav-wordmark,
+  .nav-shell.nav-dark-mode.panel-open .nav-btn,
+  .nav-shell.nav-dark-mode.panel-open .nav-search-icon,
+  .nav-shell.nav-dark-mode.panel-open .nav-mobile-btn,
+  .nav-shell.nav-dark-mode.panel-open .nav-resume-btn {
+    color: #1d1d1f;
+  }
+  .nav-shell.nav-dark-mode.panel-open .nav-wordmark img {
+    filter: none;
+  }
 `;
 
 // ─────────────────────────────────────────────
@@ -596,8 +635,11 @@ export default function Navbar() {
   };
   const handleDDEnter = () => clearTimeout(ddTimer.current);
 
+  const isDarkPage = location.pathname.startsWith("/insights");
+
   const shellClass = [
     "nav-shell",
+    isDarkPage ? "nav-dark-mode" : "",
     scrolled && !activeDD && !searchOpen ? "scrolled" : "",
     (activeDD || searchOpen)             ? "panel-open" : "",
   ].filter(Boolean).join(" ");
@@ -825,7 +867,7 @@ export default function Navbar() {
               onClick={() => go("/resume")}
               aria-label="Resume"
             >
-              <FileText size={18} strokeWidth={1.75} color="#1d1d1f" />
+              <FileText size={18} strokeWidth={1.75} color="currentColor" />
             </button>
 
             {/* Mobile toggle */}
@@ -835,7 +877,7 @@ export default function Navbar() {
               aria-label="Open menu"
             >
               <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
-                <path d="M1 1H21M1 8H21M1 15H21" stroke="#1d1d1f" strokeWidth="1.8" strokeLinecap="round"/>
+                <path d="M1 1H21M1 8H21M1 15H21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
               </svg>
             </button>
           </div>

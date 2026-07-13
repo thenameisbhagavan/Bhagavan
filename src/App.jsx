@@ -15,6 +15,8 @@ const InnovationJourney = lazy(() => import("./pages/InnovationJourney"));
 const Credentials = lazy(() => import("./pages/Credentials"));
 const TechnologyEcosystem = lazy(() => import("./pages/TechnologyEcosystem"));
 const Resume = lazy(() => import("./pages/Resume"));
+const Insights = lazy(() => import("./pages/Insights"));
+const ArticlePage = lazy(() => import("./pages/ArticlePage"));
 
 // Minimal Apple-style loader
 function PageLoader() {
@@ -66,6 +68,8 @@ function App() {
                 <Route path="/credentials" element={<Credentials />} />
                 <Route path="/ecosystem" element={<TechnologyEcosystem />} />
                 <Route path="/resume" element={<Resume />} />
+                <Route path="/insights" element={<Insights />} />
+                <Route path="/insights/:slug" element={<ArticlePage />} />
                 
                 {/* 404 Route */}
                 <Route path="*" element={<NotFound />} />
