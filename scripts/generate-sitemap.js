@@ -4,16 +4,15 @@ import path from 'path';
 const routes = [
   '/',
   '/overview',
-  '/work',
   '/experience',
-  '/vision',
-  '/innovation',
+  '/projects',
+  '/skills',
   '/credentials',
+  '/innovation',
+  '/vision',
   '/ecosystem',
   '/resume',
   '/connect',
-  '/projects',
-  '/skills',
   '/contact'
 ];
 
