@@ -1,4 +1,6 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
     { "source": "/projects", "destination": "/work", "permanent": true },
     { "source": "/skills", "destination": "/ecosystem", "permanent": true },
@@ -8,7 +10,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/"
+      "destination": "/index.html"
     }
   ]
 }
