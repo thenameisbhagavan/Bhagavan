@@ -41,16 +41,30 @@ async function prerender() {
 
     console.log('Launching browser...');
     const isVercel = process.env.VERCEL === '1';
-    const puppeteerOptions = {
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
-    };
+    let browser;
     
-    if (!isVercel && process.platform === 'win32') {
-      puppeteerOptions.channel = 'chrome';
+    if (isVercel) {
+      const puppeteerCore = require('puppeteer-core');
+      const chromium = require('@sparticuz/chromium');
+      
+      browser = await puppeteerCore.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+      });
+    } else {
+      const puppeteerOptions = {
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
+      };
+      
+      if (process.platform === 'win32') {
+        puppeteerOptions.channel = 'chrome';
+      }
+      
+      browser = await puppeteer.launch(puppeteerOptions);
     }
-
-    const browser = await puppeteer.launch(puppeteerOptions);
 
     const page = await browser.newPage();
     
