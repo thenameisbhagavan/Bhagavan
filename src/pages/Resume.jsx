@@ -56,7 +56,7 @@ export default function Resume() {
 
   return (
     <>
-      <SEO title="Resume | AI Engineer | TheNameIsBhagavan" description="View and download the professional resume of Bhagavan." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO title="Resume | Bhagavan AI Engineer & Software Developer" description="View and download the professional resume of Bhagavan. Comprehensive overview of skills, education, professional experience, and AI engineering products." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
 
     <div className="res-page">
       

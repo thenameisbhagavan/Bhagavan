@@ -367,8 +367,8 @@ export default function Work() {
   return (
     <>
       <SEO 
-        title="Work & Projects | TheNameIsBhagavan"
-        description="Discover the AI and Full Stack projects developed by Bhagavan."
+        title="Work & Projects | Bhagavan AI Engineer Portfolio"
+        description="Discover the AI and Full Stack projects engineered by Bhagavan, including CareerOS, AuraOS, and other intelligent systems designed for human potential."
         keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack"
       />
     <div className="wwdc-work-page">
@@ -473,11 +473,11 @@ export default function Work() {
           <m.p className="closing-question" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             Why should someone remember you?
           </m.p>
-          <m.h1 className="closing-huge" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
+          <m.h2 className="closing-huge" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
             <m.span className="closing-line" variants={fadeUp}>Engineering Technology</m.span>
             <m.span className="closing-line" variants={fadeUp}>That Unlocks</m.span>
             <m.span className="closing-line" variants={fadeUp}>Human Potential.</m.span>
-          </m.h1>
+          </m.h2>
           <m.a href="/experience" className="closing-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             Explore My Journey <span className="cta-arrow">→</span>
           </m.a>

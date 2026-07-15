@@ -203,7 +203,7 @@ export default function TechnologyEcosystem() {
 
   return (
     <>
-      <SEO title="Technology Ecosystem & Skills | TheNameIsBhagavan" description="The tools, languages, and frameworks Bhagavan uses to build intelligent systems." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO title="Technology Ecosystem | Bhagavan AI Engineer Portfolio" description="Explore the comprehensive technology ecosystem, tools, languages, and frameworks Bhagavan utilizes to build intelligent systems and full stack applications." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
 
     <div className="skills-page">
       

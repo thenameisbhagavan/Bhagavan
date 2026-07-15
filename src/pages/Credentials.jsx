@@ -145,7 +145,7 @@ export default function Credentials() {
 
   return (
     <>
-      <SEO title="Credentials & Certifications | TheNameIsBhagavan" description="Professional certifications and educational credentials of Bhagavan." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO title="Credentials & Certifications | Bhagavan AI Engineer" description="Explore the professional certifications, educational credentials, and continuous learning achievements of Bhagavan, specializing in AI, Machine Learning & Cloud." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
 
     <div className="cred-page">
       

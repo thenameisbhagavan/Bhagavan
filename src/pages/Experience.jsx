@@ -133,7 +133,7 @@ export default function Experience() {
 
   return (
     <>
-      <SEO title="Experience | TheNameIsBhagavan" description="Professional experience and career journey of Bhagavan." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO title="Professional Experience | Bhagavan AI Engineer Portfolio" description="Discover the professional experience and career journey of Bhagavan. Explore roles in AI Engineering, Data Science, and Full Stack Software Development." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
 
     <div className="exp-page">
 

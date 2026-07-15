@@ -77,7 +77,7 @@ export default function InnovationJourney() {
 
   return (
     <>
-      <SEO title="Innovation Journey | TheNameIsBhagavan" description="Track the continuous innovation and learning journey of Bhagavan in AI." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO title="Innovation Journey | Bhagavan AI Engineer Portfolio" description="Track the continuous innovation and learning journey of Bhagavan in Artificial Intelligence. Follow the evolution of complex systems and new technologies." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
 
     <div className="inn-page">
       

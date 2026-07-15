@@ -119,7 +119,7 @@ export default function Connect() {
 
   return (
     <>
-      <SEO title="Connect & Contact | TheNameIsBhagavan" description="Get in touch with Bhagavan for collaborations, opportunities, or just to say hi." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO title="Connect with Bhagavan | AI Engineer Portfolio" description="Get in touch with Bhagavan to discuss AI engineering, full stack development, product design, and new opportunities. Let's build intelligent systems together." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
 
     <div className="con-page">
 

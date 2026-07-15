@@ -87,7 +87,7 @@ export default function Overview() {
   return (
     <>
       <SEO 
-        title="TheNameIsBhagavan | AI Engineer Portfolio"
+        title="Bhagavan | AI Engineer & Full Stack Developer Portfolio"
         description="Explore the portfolio of Bhagavan, an AI Engineer specializing in Artificial Intelligence, Machine Learning, Deep Learning, and Full Stack Development."
         keywords="AI Engineer, Artificial Intelligence, Machine Learning, Deep Learning, NLP, Generative AI, Full Stack Developer, Python, React, Portfolio"
       />

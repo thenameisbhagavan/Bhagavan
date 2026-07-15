@@ -48,7 +48,7 @@ export default function Vision() {
 
   return (
     <>
-      <SEO title="Vision | TheNameIsBhagavan" description="Bhagavan's vision for the future of Artificial Intelligence and technology." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO title="Engineering Vision | Bhagavan AI Engineer Portfolio" description="Explore Bhagavan's engineering vision for the future of Artificial Intelligence, product development, human potential, and technology systems architecture." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
 
     <div className="vision-page">
       
