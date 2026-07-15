@@ -45,7 +45,7 @@ async function prerender() {
     
     if (isVercel) {
       const puppeteerCore = require('puppeteer-core');
-      const chromium = require('@sparticuz/chromium');
+      const chromium = require('@sparticuz/chromium').default;
       
       browser = await puppeteerCore.launch({
         args: chromium.args,
