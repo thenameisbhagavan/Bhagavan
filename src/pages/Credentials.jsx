@@ -4,6 +4,8 @@ import { m, useScroll, useTransform } from 'framer-motion';
 import '../styles/Credentials.css';
 
 // ─── 26 Core Certificate Assets ────────────────────────────────────────────────
+import googleEduCert from '../assets/google_page-0001.jpg';
+import githubActionsCert from '../assets/git.jpg';
 import gfgFsCert from '../assets/cert-gfg-fs.png';
 import gfgJavaCert from '../assets/cert-gfg-java.png';
 import gfgPythonCert from '../assets/cert-gfg-python.png';
@@ -72,6 +74,7 @@ const ARCHIVE = [
   {
     category: "Artificial Intelligence & Data",
     certs: [
+      { img: googleEduCert, label: "Google • Generative AI with Gemini" },
       { img: gcpGenAiCert, label: "GCP Generative AI" },
       { img: gcpIntroGenAiCert, label: "GCP Gen AI Introduction" },
       { img: ibmAiCert, label: "IBM Artificial Intelligence" },
@@ -99,6 +102,7 @@ const ARCHIVE = [
     category: "Software Engineering",
     certs: [
       { img: gfgFsCert, label: "GeeksforGeeks Full Stack" },
+      { img: githubActionsCert, label: "LinkedIn • Practical GitHub Actions" },
       { img: infosysDjangoCert, label: "Infosys Django Web Dev" },
       { img: infosysServiceNowCert, label: "Infosys ServiceNow" }
     ]
@@ -145,7 +149,7 @@ export default function Credentials() {
 
   return (
     <>
-      <SEO title="Credentials & Certifications | Bhagavan AI Engineer" description="Explore the professional certifications, educational credentials, and continuous learning achievements of Bhagavan, specializing in AI, Machine Learning & Cloud." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO title="Credentials & Certifications | Bhagavan AI Engineer" description="Explore the professional certifications, educational credentials, and continuous learning achievements of Bhagavan, specializing in AI, Machine Learning & Cloud." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack, GitHub Actions, CI/CD, Workflow Automation, LinkedIn Learning, DevOps, Software Engineering, Automation" />
 
     <div className="cred-page">
       
@@ -159,6 +163,81 @@ export default function Credentials() {
           </m.h1>
         </div>
       </m.section>
+
+      {/* ══════════════════════════════════════════════════════
+          GOOGLE AI PREMIUM SECTION
+      ══════════════════════════════════════════════════════ */}
+      <section className="cred-premium-section">
+        <div className="cred-constrain">
+          <div className="premium-editorial">
+            <m.div className="premium-label" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1, ease: EASE }}>
+              GOOGLE AI
+            </m.div>
+            <m.h2 className="premium-headline" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.1 }}>
+              Learning directly from the people building modern AI.
+            </m.h2>
+            <m.p className="premium-subheading" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.2 }}>
+              Artificial Intelligence evolves rapidly.<br/>
+              Continuous learning is part of engineering.<br/><br/>
+              This Google credential represents another step toward designing intelligent systems that are useful, reliable and human-centered.
+            </m.p>
+          </div>
+
+          <m.div 
+            className="premium-glass-card"
+            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.4, ease: EASE }}
+            style={{ y: useTransform(scrollY, [0, 1500], [100, -100]) }}
+          >
+            <div className="premium-card-left">
+              <m.div className="cred-museum-frame" initial={{ y: 20 }} whileInView={{ y: 0 }} transition={{ duration: 2, ease: EASE, repeat: Infinity, repeatType: 'reverse' }}>
+                <img src={googleEduCert} alt="Google for Education AI Certificate" loading="lazy" />
+              </m.div>
+            </div>
+            <div className="premium-card-right">
+              <div className="premium-card-section">
+                <span className="premium-data-label">Google for Education</span>
+                <span className="premium-data-value large">Generative AI for Educators with Gemini</span>
+              </div>
+              
+              <div className="premium-card-section">
+                <span className="premium-data-label">Completed</span>
+                <span className="premium-data-value">July 2026</span>
+              </div>
+              
+              <div className="premium-card-section">
+                <span className="premium-data-label">Score</span>
+                <span className="premium-data-value">100 / 100</span>
+              </div>
+
+              <div className="premium-card-section">
+                <span className="premium-data-label">Skills Developed</span>
+                <div className="premium-skills-list">
+                  {["Prompt Engineering", "Responsible AI", "Generative AI", "Gemini", "Human-Centered AI", "AI Productivity"].map((skill, idx) => (
+                    <span key={idx} className="premium-skill-tag">{skill}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </m.div>
+
+          <m.div 
+            className="premium-quote"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: EASE, delay: 0.4 }}
+          >
+            <div className="premium-quote-text">
+              "Every intelligent system begins with understanding.<br/>
+              Every great engineer remains a lifelong learner."
+            </div>
+            <div className="premium-quote-author">— TheNameIsBhagavan</div>
+          </m.div>
+        </div>
+      </section>
 
       {/* ══════════════════════════════════════════════════════
           FOUNDATION SEQUENCE (Sticky)
@@ -238,10 +317,33 @@ export default function Credentials() {
             <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
               <img src={gfgFsCert} alt="Full Stack" loading="lazy" />
             </m.div>
+
+            <m.div className="chapter-cert-with-details" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
+              <div className="cred-museum-frame">
+                <img src={githubActionsCert} alt="Practical GitHub Actions" loading="lazy" />
+              </div>
+              <div className="chapter-cert-details">
+                <span className="premium-data-label">LinkedIn Learning</span>
+                <span className="premium-data-value large">Practical GitHub Actions</span>
+                <span className="premium-data-value" style={{ marginTop: '12px' }}>July 2026</span>
+                <div className="premium-skills-list">
+                  {["GitHub Actions", "CI/CD Automation", "Workflow Automation", "YAML", "GitHub Pages", "DevOps Fundamentals"].map((skill, idx) => (
+                    <span key={idx} className="premium-skill-tag">{skill}</span>
+                  ))}
+                </div>
+              </div>
+            </m.div>
+
             <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
               <img src={infosysDevopsCert} alt="DevOps" loading="lazy" />
             </m.div>
           </div>
+
+          <m.div className="software-editorial-paragraph" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            Modern software engineering is no longer just about writing code.<br/><br/>
+            Reliable software is built through automation, continuous integration, deployment pipelines, and engineering workflows.<br/><br/>
+            Learning GitHub Actions strengthens my ability to build production-ready software systems.
+          </m.div>
         </div>
       </section>
 
@@ -282,7 +384,19 @@ export default function Credentials() {
               { phase: "Beginning", year: "2022" },
               { phase: "Exploration", year: "2024" },
               { phase: "Acceleration", year: "2025" },
-              { phase: "Continuous Learning", year: "2026" }
+              { 
+                phase: "AI Systems Engineering", 
+                year: "2026",
+                details: [
+                  "Google AI",
+                  "IBM AI",
+                  "Google Cloud AI",
+                  "Generative AI",
+                  "LLMs",
+                  "Prompt Engineering",
+                  "Continuous Product Development"
+                ]
+              }
             ].map((step, i, arr) => (
               <React.Fragment key={i}>
                 <m.div 
@@ -293,6 +407,13 @@ export default function Credentials() {
                   transition={{ duration: 1, ease: EASE }}
                 >
                   <span className="timeline-phase">{step.phase}</span>
+                  {step.details && (
+                    <div className="timeline-details">
+                      {step.details.map((detail, idx) => (
+                        <span key={idx} className="timeline-detail-item">{detail}</span>
+                      ))}
+                    </div>
+                  )}
                   <span className="timeline-year">{step.year}</span>
                 </m.div>
                 {i < arr.length - 1 && (
