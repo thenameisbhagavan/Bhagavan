@@ -6,6 +6,7 @@ import '../styles/Credentials.css';
 // ─── 26 Core Certificate Assets ────────────────────────────────────────────────
 import googleEduCert from '../assets/google_page-0001.jpg';
 import githubActionsCert from '../assets/git.jpg';
+import deepLearningPythonCert from '../assets/deep.jpg';
 import gfgFsCert from '../assets/cert-gfg-fs.png';
 import gfgJavaCert from '../assets/cert-gfg-java.png';
 import gfgPythonCert from '../assets/cert-gfg-python.png';
@@ -75,6 +76,7 @@ const ARCHIVE = [
     category: "Artificial Intelligence & Data",
     certs: [
       { img: googleEduCert, label: "Google • Generative AI with Gemini" },
+      { img: deepLearningPythonCert, label: "LinkedIn • Deep Learning with Python" },
       { img: gcpGenAiCert, label: "GCP Generative AI" },
       { img: gcpIntroGenAiCert, label: "GCP Gen AI Introduction" },
       { img: ibmAiCert, label: "IBM Artificial Intelligence" },
@@ -240,6 +242,85 @@ export default function Credentials() {
       </section>
 
       {/* ══════════════════════════════════════════════════════
+          DEEP LEARNING PREMIUM SECTION
+      ══════════════════════════════════════════════════════ */}
+      <section className="cred-premium-section">
+        <div className="cred-constrain">
+          <div className="premium-editorial">
+            <m.div className="premium-label" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1, ease: EASE }}>
+              LINKEDIN LEARNING
+            </m.div>
+            <m.h2 className="premium-headline" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.1 }}>
+              Deep Learning for Modern AI Systems
+            </m.h2>
+            <m.p className="premium-subheading" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.2 }}>
+              Modern AI is no longer limited to traditional machine learning.<br/><br/>
+              Sequence Models, Recurrent Neural Networks and Transformers power today's intelligent systems—from language models to speech recognition and generative AI.<br/><br/>
+              This learning strengthened my understanding of temporal reasoning, attention mechanisms, neural architectures, and production-ready deep learning workflows.
+            </m.p>
+          </div>
+
+          <m.div 
+            className="premium-glass-card"
+            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.4, ease: EASE }}
+            style={{ y: useTransform(scrollY, [0, 1500], [100, -100]) }}
+          >
+            <div className="premium-card-left">
+              <m.div className="cred-museum-frame" initial={{ y: 20 }} whileInView={{ y: 0 }} transition={{ duration: 2, ease: EASE, repeat: Infinity, repeatType: 'reverse' }}>
+                <img src={deepLearningPythonCert} alt="Deep Learning with Python Certificate" loading="lazy" />
+              </m.div>
+            </div>
+            <div className="premium-card-right">
+              <div className="premium-card-section">
+                <span className="premium-data-label">Provider</span>
+                <span className="premium-data-value large">LinkedIn Learning</span>
+              </div>
+              
+              <div className="premium-card-section">
+                <span className="premium-data-label">Completed</span>
+                <span className="premium-data-value">July 2026</span>
+              </div>
+              
+              <div className="premium-card-section">
+                <span className="premium-data-label">Duration</span>
+                <span className="premium-data-value">1 Hour 26 Minutes</span>
+              </div>
+              
+              <div className="premium-card-section">
+                <span className="premium-data-label">Category</span>
+                <span className="premium-data-value">Deep Learning</span>
+              </div>
+
+              <div className="premium-card-section">
+                <span className="premium-data-label">Skills Developed</span>
+                <div className="premium-skills-list">
+                  {["Sequence Models", "Transformers", "Deep Learning", "Python", "Keras", "RNN", "LSTM", "Artificial Intelligence", "NLP"].map((skill, idx) => (
+                    <span key={idx} className="premium-skill-tag">{skill}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </m.div>
+
+          <m.div 
+            className="premium-quote"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: EASE, delay: 0.4 }}
+          >
+            <div className="premium-quote-text">
+              "The future of AI belongs to engineers who understand both the mathematics behind intelligence and the systems that bring it to life."
+            </div>
+            <div className="premium-quote-author">— TheNameIsBhagavan</div>
+          </m.div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
           FOUNDATION SEQUENCE (Sticky)
       ══════════════════════════════════════════════════════ */}
       <section ref={foundRef} className="cred-foundation-container">
@@ -354,6 +435,7 @@ export default function Credentials() {
         <div className="cred-constrain center-align">
           {[
             "Artificial Intelligence",
+            "Transformer Architectures",
             "Full Stack Engineering",
             "Cloud Systems",
             "Software Architecture",
@@ -394,6 +476,10 @@ export default function Credentials() {
                   "Generative AI",
                   "LLMs",
                   "Prompt Engineering",
+                  "LinkedIn Learning",
+                  "Deep Learning",
+                  "Transformers",
+                  "Sequence Models",
                   "Continuous Product Development"
                 ]
               }
