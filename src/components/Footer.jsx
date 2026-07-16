@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { m } from 'framer-motion';
+import { socialLinks } from '../constants/socialLinks';
 import '../styles/Footer.css';
 
 const Footer = memo(function Footer() {
@@ -20,11 +21,14 @@ const Footer = memo(function Footer() {
   ];
 
   const presenceLinks = [
-    { name: "GitHub", desc: "Engineering in public.", url: "https://github.com/thenameisbhagavan", external: true },
-    { name: "LinkedIn", desc: "Professional collaboration.", url: "https://www.linkedin.com/in/thenameisbhagavan/", external: true },
-    { name: "Email", desc: "Start a conversation.", url: "mailto:thenameisbhagavan@gmail.com", external: true },
-    { name: "Location", desc: "Connect in the real world.", path: "/connect", external: false },
-    { name: "Resume", desc: "The complete journey.", path: "/resume", external: false }
+    { name: socialLinks.github.platform, desc: socialLinks.github.desc, url: socialLinks.github.url, external: true },
+    { name: socialLinks.linkedin.platform, desc: socialLinks.linkedin.desc, url: socialLinks.linkedin.url, external: true },
+    { name: socialLinks.portfolio.platform, desc: socialLinks.portfolio.desc, url: socialLinks.portfolio.url, external: true },
+    { name: socialLinks.instagram.platform, desc: socialLinks.instagram.desc, url: socialLinks.instagram.url, external: true },
+    { name: socialLinks.twitter.platform, desc: socialLinks.twitter.desc, url: socialLinks.twitter.url, external: true },
+    { name: socialLinks.facebook.platform, desc: socialLinks.facebook.desc, url: socialLinks.facebook.url, external: true },
+    { name: socialLinks.youtube.platform, desc: socialLinks.youtube.desc, url: socialLinks.youtube.url, external: true },
+    { name: socialLinks.email.platform, desc: socialLinks.email.desc, url: socialLinks.email.url, external: true },
   ];
 
   return (
@@ -40,7 +44,7 @@ const Footer = memo(function Footer() {
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true, amount: 0.5 }}
           >
-            Engineering Human Potential.
+            TheNameIsBhagavan
           </m.h2>
           <m.p 
             className="footer-statement-sub"
@@ -49,8 +53,8 @@ const Footer = memo(function Footer() {
             transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true, amount: 0.5 }}
           >
-            Technology should create opportunity.<br/>
-            <span className="footer-muted">Not complexity.</span>
+            Engineering intelligent systems that expand human potential.<br/>
+            <span className="footer-muted">Learning continuously. Building relentlessly. Shipping thoughtfully.</span>
           </m.p>
         </div>
 
@@ -109,10 +113,10 @@ const Footer = memo(function Footer() {
              transition={{ duration: 2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
              viewport={{ once: true }}
            >
-             Designed with curiosity. Built through engineering. Focused on human potential.
+             Building intelligent systems that solve real-world problems.
            </m.div>
            <div className="footer-copyright">
-             © {new Date().getFullYear()} Bhagavan.
+             © {new Date().getFullYear()} TheNameIsBhagavan.
            </div>
         </div>
 

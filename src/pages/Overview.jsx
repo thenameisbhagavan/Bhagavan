@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { m, useScroll, useTransform, animate } from "framer-motion";
+import { Github, Linkedin, Mail, Globe } from "lucide-react";
 import SEO from "../components/SEO";
+import { socialLinks } from "../constants/socialLinks";
 import "../styles/Overview.css";
 
 // Existing images from hero
@@ -101,7 +103,6 @@ export default function Overview() {
 
       {/* ===== HERO (PRESERVED EXACTLY) ===== */}
       <m.section className="phi-hero" style={{ scale: heroScale }}>
-
         {/* LEFT — CONTENT */}
         <m.div
           className="phi-content"
@@ -115,79 +116,49 @@ export default function Overview() {
             AI • SOFTWARE • PRODUCT ENGINEERING
           </m.p>
 
-          {/* Headline — Staggered Fade + translateY */}
+          {/* Headline */}
           <m.div style={{ y: headlineY }}>
             <h1 className="phi-headline">
               <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: appleEase }}>Building</m.span>
-              <br />
               <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3, ease: appleEase }}>Intelligent</m.span>
-              <br />
-              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5, ease: appleEase }}>Futures.</m.span>
+              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5, ease: appleEase }}>Systems.</m.span>
             </h1>
           </m.div>
 
-          {/* Identity & Body Stack */}
-          <m.div className="phi-identity-stack" variants={fadeUp} style={{ opacity: elementsOpacity }}>
-            <span className="phi-identity-title">AI Engineer</span>
-            <p className="phi-identity-body">
-              Building AI products,<br/>
-              software systems,<br/>
-              and digital experiences.
-            </p>
-          </m.div>
-
-          {/* Premium Divider & CareerOS Text */}
-          <m.div className="phi-premium-detail" variants={fadeUp} style={{ opacity: elementsOpacity }}>
-            <div className="phi-hairline-sep"></div>
-            <span className="phi-premium-text">Currently building CareerOS · AI Career Intelligence Operating System</span>
-          </m.div>
-
-          {/* Signature */}
-          <m.p className="phi-signature" variants={fadeUp} style={{ opacity: elementsOpacity }}>
-           Engineering the future of opportunity through intelligence.
+          {/* Description */}
+          <m.p className="phi-description" variants={fadeUp} style={{ opacity: elementsOpacity }}>
+            I build AI-powered products, intelligent software systems, and engineering experiences designed to solve meaningful real-world problems.
           </m.p>
 
-          {/* Credibility metadata — Apple spec-row style */}
-          <m.div className="phi-meta" variants={fadeUp} style={{ opacity: elementsOpacity }}>
-            <span className="phi-meta-item">CareerOS Creator</span>
-            <span className="phi-meta-sep"></span>
-            <span className="phi-meta-item">5+ AI Products Built</span>
-            <span className="phi-meta-sep"></span>
-            <span className="phi-meta-item">4 Internships</span>
-            <span className="phi-meta-sep"></span>
-            <span className="phi-meta-item">AI &amp; Intelligent Systems Engineer</span>
-          </m.div>
-
           {/* CTAs */}
-          <m.div className="phi-ctas" variants={fadeUp} style={{ opacity: elementsOpacity }}>
+          <m.div className="phi-ctas" variants={fadeUp} style={{ opacity: elementsOpacity, display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
             <a href="/work" className="phi-cta-primary">Explore CareerOS</a>
-            <a href="/work" className="phi-cta-textlink">View My Work <span className="phi-cta-arrow">→</span></a>
-            <a href="/experience" className="phi-cta-textlink">Journey <span className="phi-cta-arrow">→</span></a>
+            <a href="/work" className="phi-cta-secondary">View Products</a>
           </m.div>
 
-          {/* Featured builds */}
-          <m.div className="phi-products" variants={fadeUp} style={{ opacity: elementsOpacity }}>
-            <span className="phi-products-label">Featured</span>
-            {[
-              { name: "CareerOS",   desc: "AI Career Intelligence", primary: true },
-              { name: "AuraOS",    desc: "Conversational AI", primary: false },
-              { name: "ResumeAI",   desc: "Intelligent Resume", primary: false },
-              { name: "Smart Leave",desc: "Workflow Automation", primary: false },
-            ].map((p) => (
-              <a key={p.name} href="/work" className={`phi-product-capsule ${p.primary ? 'phi-capsule-primary' : ''}`}>
-                <span className="phi-product-name">{p.name}</span>
-                <span className="phi-product-desc">{p.desc}</span>
-              </a>
-            ))}
+          {/* Minimal Social Icons */}
+          <m.div className="phi-hero-socials" variants={fadeUp} style={{ opacity: elementsOpacity, display: 'flex', gap: '24px', marginTop: '32px' }}>
+            <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" style={{ color: '#86868b', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.color = '#1d1d1f'; e.currentTarget.style.transform = 'scale(1.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.color = '#86868b'; e.currentTarget.style.transform = 'scale(1)'; }}>
+              <Github size={20} strokeWidth={1.5} />
+            </a>
+            <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" style={{ color: '#86868b', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.color = '#1d1d1f'; e.currentTarget.style.transform = 'scale(1.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.color = '#86868b'; e.currentTarget.style.transform = 'scale(1)'; }}>
+              <Linkedin size={20} strokeWidth={1.5} />
+            </a>
+            <a href={socialLinks.email.url} aria-label="Email" title="Email" style={{ color: '#86868b', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.color = '#1d1d1f'; e.currentTarget.style.transform = 'scale(1.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.color = '#86868b'; e.currentTarget.style.transform = 'scale(1)'; }}>
+              <Mail size={20} strokeWidth={1.5} />
+            </a>
+            <a href={socialLinks.portfolio.url} aria-label="Portfolio" title="Portfolio" style={{ color: '#86868b', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.color = '#1d1d1f'; e.currentTarget.style.transform = 'scale(1.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.color = '#86868b'; e.currentTarget.style.transform = 'scale(1)'; }}>
+              <Globe size={20} strokeWidth={1.5} />
+            </a>
           </m.div>
         </m.div>
 
         {/* RIGHT — PORTRAIT */}
         <m.div
           className="portrait-wrapper"
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.0, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           style={{ y: portraitY, opacity: elementsOpacity }}
         >
           <div className="portrait-glow"></div>
@@ -200,8 +171,45 @@ export default function Overview() {
             />
           </div>
         </m.div>
-
       </m.section>
+
+      {/* =========================================
+          OVERVIEW CREDENTIALS STRIP (BELOW FOLD)
+          ========================================= */}
+      <section className="overview-credentials-strip">
+        <div className="overview-strip-grid">
+          <div className="overview-strip-item">
+            <h4>Current Role</h4>
+            <p>AI Engineer</p>
+          </div>
+          <div className="overview-strip-item">
+            <h4>Current Mission</h4>
+            <p>Building intelligent systems that solve real-world problems.</p>
+          </div>
+          <div className="overview-strip-item">
+            <h4>Current Focus</h4>
+            <p>CareerOS, Agentic AI, LLMs, Engineering Systems</p>
+          </div>
+        </div>
+
+        <div className="trust-pills-row">
+          <span className="trust-pill">AI Engineer</span>
+          <span className="trust-pill">Software Developer</span>
+          <span className="trust-pill">Product Builder</span>
+          <span className="trust-pill">Open Source</span>
+          <span className="trust-pill">Google Certified</span>
+          <span className="trust-pill">LinkedIn Learning</span>
+        </div>
+        
+        <div style={{ textAlign: 'center', marginTop: '16px' }}>
+           <p className="phi-signature" style={{ margin: '0 auto' }}>
+             ──────────────────<br/><br/>
+             TheNameIsBhagavan<br/>
+             Engineering Intelligent Systems<br/><br/>
+             ──────────────────
+           </p>
+        </div>
+      </section>
 
       {/* =========================================
           SECTION 1: WHY I BUILD

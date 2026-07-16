@@ -1,17 +1,18 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import { socialLinks } from '../constants/socialLinks';
 
 const SEO = ({ 
-  title = "Gopala Josyula Siva Satya Sai Bhagavan | AI Engineer | TheNameIsBhagavan", 
-  description = "Official portfolio of Gopala Josyula Siva Satya Sai Bhagavan (TheNameIsBhagavan), an AI Engineer specializing in Intelligent Systems, Agentic AI, Full Stack Development, Machine Learning, Deep Learning, Computer Vision, CareerOS, AuraOS, and AI-powered software engineering. Explore projects, research, experience, technical expertise, certifications, and professional achievements.", 
+  title = "TheNameIsBhagavan | AI Engineer", 
+  description = "Official portfolio of TheNameIsBhagavan, an AI Engineer specializing in Intelligent Systems, Agentic AI, Full Stack Development, Machine Learning, Deep Learning, Computer Vision, CareerOS, AuraOS, and AI-powered software engineering. Explore projects, research, experience, technical expertise, certifications, and professional achievements.", 
   type = "website", 
   image = "/og-image.jpg" 
 }) => {
   const { pathname } = useLocation();
   const canonicalUrl = `https://thenameisbhagavan.vercel.app${pathname === '/' ? '' : pathname}`;
   
-  const keywords = "Gopala Josyula Siva Satya Sai Bhagavan, TheNameIsBhagavan, Bhagavan, Bhagavan AI Engineer, AI Engineer, Artificial Intelligence Engineer, Machine Learning Engineer, Deep Learning Engineer, Intelligent Systems Engineer, Agentic AI, Full Stack Developer, React Developer, Python Developer, MERN Stack Developer, Software Engineer, CareerOS, AuraOS, Portfolio, Developer Portfolio, India, Andhra Pradesh, JNTUK, Ramachandra College of Engineering";
+  const keywords = "TheNameIsBhagavan, Bhagavan, Bhagavan AI Engineer, AI Engineer, Artificial Intelligence Engineer, Machine Learning Engineer, Deep Learning Engineer, Intelligent Systems Engineer, Agentic AI, Full Stack Developer, React Developer, Python Developer, MERN Stack Developer, Software Engineer, CareerOS, AuraOS, Portfolio, Developer Portfolio, India, Andhra Pradesh, JNTUK, Ramachandra College of Engineering";
 
   // Person Schema
   const personSchema = {
@@ -29,12 +30,12 @@ const SEO = ({
       "name": "Ramachandra College of Engineering"
     },
     "sameAs": [
-      "https://www.linkedin.com/in/thenameisbhagavan/",
-      "https://github.com/thenameisbhagavan",
-      "https://www.instagram.com/thenameisbhagavan_/",
-      "https://www.facebook.com/thenameisbhagavan",
-      "https://x.com/nameisbhagavan",
-      "https://www.youtube.com/@TheNameIsBhagavan"
+      socialLinks.linkedin.url,
+      socialLinks.github.url,
+      socialLinks.instagram.url,
+      socialLinks.facebook.url,
+      socialLinks.twitter.url,
+      socialLinks.youtube.url
     ],
     "knowsAbout": [
       "Artificial Intelligence", "Machine Learning", "Deep Learning", "Computer Vision", 

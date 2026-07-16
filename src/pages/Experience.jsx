@@ -1,6 +1,10 @@
 import SEO from "../components/SEO";
 import React, { useEffect, useRef } from "react";
 import { m, useScroll, useTransform } from "framer-motion";
+import { Linkedin, Github, Globe } from "lucide-react";
+import SectionDivider from "../components/SectionDivider";
+import BrandSignature from "../components/BrandSignature";
+import { socialLinks } from "../constants/socialLinks";
 import "../styles/Experience.css";
 
 // ─── Certificate Artifacts ────────────────────────────────────────────────────
@@ -133,7 +137,7 @@ export default function Experience() {
 
   return (
     <>
-      <SEO title="Professional Experience | Bhagavan AI Engineer Portfolio" description="Discover the professional experience and career journey of Bhagavan. Explore roles in AI Engineering, Data Science, and Full Stack Software Development." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO title="TheNameIsBhagavan | Journey" description="Discover the professional experience and career journey of Bhagavan. Explore roles in AI Engineering, Data Science, and Full Stack Software Development." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
 
     <div className="exp-page">
 
@@ -177,8 +181,27 @@ export default function Experience() {
       </section>
 
       {/* ══════════════════════════════════════════════════════
+          PROFESSIONAL PROFILES
+      ══════════════════════════════════════════════════════ */}
+      <section className="exp-professional-presence" style={{ textAlign: 'center', padding: '10vh 20px', background: '#fff' }}>
+        <m.h3 style={{ fontSize: '12px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#86868b', marginBottom: '24px' }} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>Professional Profiles</m.h3>
+        <m.div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+          <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 20px', background: '#f5f5f7', color: '#1d1d1f', borderRadius: '20px', textDecoration: 'none', fontWeight: 500, fontSize: '14px', transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.background = '#e5e5ea'} onMouseLeave={(e) => e.currentTarget.style.background = '#f5f5f7'} aria-label="LinkedIn Profile" title="LinkedIn Profile">
+             <Linkedin size={16} /> LinkedIn
+          </a>
+          <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 20px', background: '#f5f5f7', color: '#1d1d1f', borderRadius: '20px', textDecoration: 'none', fontWeight: 500, fontSize: '14px', transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.background = '#e5e5ea'} onMouseLeave={(e) => e.currentTarget.style.background = '#f5f5f7'} aria-label="GitHub Profile" title="GitHub Profile">
+             <Github size={16} /> GitHub
+          </a>
+          <a href={socialLinks.portfolio.url} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 20px', background: '#f5f5f7', color: '#1d1d1f', borderRadius: '20px', textDecoration: 'none', fontWeight: 500, fontSize: '14px', transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.background = '#e5e5ea'} onMouseLeave={(e) => e.currentTarget.style.background = '#f5f5f7'} aria-label="Portfolio" title="Portfolio">
+             <Globe size={16} /> Portfolio
+          </a>
+        </m.div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
           CHAPTER: BLACKBUCKS (Foundation)
       ══════════════════════════════════════════════════════ */}
+      <SectionDivider />
       <Chapter
         theme="blackbucks"
         scale="normal"
@@ -371,6 +394,8 @@ export default function Experience() {
         </div>
       </section>
 
+      {/* BRAND SIGNATURE */}
+      <BrandSignature />
     </div>
   
     </>

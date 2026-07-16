@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { m, useScroll, useTransform } from "framer-motion";
+import { Link } from 'react-router-dom';
 import SEO from "../components/SEO";
+import SectionDivider from "../components/SectionDivider";
+import BrandSignature from "../components/BrandSignature";
+import { socialLinks } from '../constants/socialLinks';
 import "../styles/Work.css";
 
 // ─── Images ───────────────────────────────────────────────────────────────────
@@ -89,7 +93,7 @@ const FLAGSHIP_CAREEROS = {
   ],
   technologyDesc: "A full-stack intelligence engine built to process complex career data into actionable paths.",
   impact: "Transforms fragmented career decisions into measurable, continuous growth.",
-  github: "https://github.com/thenameisbhagavan/careeros"
+  github: `${socialLinks.github.url}/careeros`
 };
 
 const SECONDARY_PROJECTS = [
@@ -108,7 +112,7 @@ const SECONDARY_PROJECTS = [
     ],
     technologyDesc: "Powered by vector databases, RAG architectures, and custom short/long-term memory routers.",
     impact: "Demonstrated true conversational persistence across simulated multi-day interactions.",
-    github: "https://github.com/thenameisbhagavan/auraos",
+    github: `${socialLinks.github.url}/auraos`,
     preTransitionText: "Understanding careers led to understanding people."
   },
   {
@@ -126,7 +130,7 @@ const SECONDARY_PROJECTS = [
     ],
     technologyDesc: "A deterministic NLP pipeline built over FastAPI, React, and strict credibility schemas.",
     impact: "Successfully validated complex intelligence reports with deterministic traceability.",
-    github: "https://github.com/thenameisbhagavan/News-detector",
+    github: `${socialLinks.github.url}/News-detector`,
     preTransitionText: "Understanding people demanded trustworthy intelligence."
   },
   {
@@ -144,7 +148,7 @@ const SECONDARY_PROJECTS = [
     ],
     technologyDesc: "Engineered with Python, Scikit-learn, and Flask, utilizing optimized predictive algorithms.",
     impact: "Achieved high-accuracy diagnostic predictions across established cardiovascular datasets.",
-    github: "https://github.com/thenameisbhagavan/Heart-Disease-Prediction",
+    github: `${socialLinks.github.url}/Heart-Disease-Prediction`,
     preTransitionText: "Trust also matters in everyday systems."
   },
   {
@@ -367,7 +371,7 @@ export default function Work() {
   return (
     <>
       <SEO 
-        title="Work & Projects | Bhagavan AI Engineer Portfolio"
+        title="TheNameIsBhagavan | Projects"
         description="Discover the AI and Full Stack projects engineered by Bhagavan, including CareerOS, AuraOS, and other intelligent systems designed for human potential."
         keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack"
       />
@@ -401,6 +405,7 @@ export default function Work() {
       </section>
 
       {/* CHAPTER 3: CAREEROS KEYNOTE (CUSTOM FLAGSHIP) */}
+      <SectionDivider />
       <CareerOSKeynote project={FLAGSHIP_CAREEROS} />
 
       {/* CHAPTER 4: OTHER PRODUCTS W/ NARRATIVE TRANSITIONS */}
@@ -489,6 +494,8 @@ export default function Work() {
         </div>
       </section>
 
+      {/* BRAND SIGNATURE */}
+      <BrandSignature />
     </div>
     </>
   );

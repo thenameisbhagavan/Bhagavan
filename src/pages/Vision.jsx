@@ -1,10 +1,12 @@
 import SEO from "../components/SEO";
 import React, { useEffect } from 'react';
 import { m, useScroll, useTransform } from 'framer-motion';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import '../styles/Vision.css';
-
-// ─── Assets ───────────────────────────────────────────────────────────────────
+import SectionDivider from "../components/SectionDivider";
+import BrandSignature from "../components/BrandSignature";
+import { socialLinks } from '../constants/socialLinks';
+import '../styles/Vision.css';// ─── Assets ───────────────────────────────────────────────────────────────────
 import careerOSHero from '../assets/careeros-new.jpg'; // Using the polished one from Work page
 
 // ─── Motion ───────────────────────────────────────────────────────────────────
@@ -48,7 +50,7 @@ export default function Vision() {
 
   return (
     <>
-      <SEO title="Engineering Vision | Bhagavan AI Engineer Portfolio" description="Explore Bhagavan's engineering vision for the future of Artificial Intelligence, product development, human potential, and technology systems architecture." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO title="TheNameIsBhagavan | Vision" description="Explore Bhagavan's engineering vision for the future of Artificial Intelligence, product development, human potential, and technology systems architecture." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
 
     <div className="vision-page">
       
@@ -69,6 +71,7 @@ export default function Vision() {
       {/* ══════════════════════════════════════════════════════
           SECTION 2 — THE OBSERVATION
       ══════════════════════════════════════════════════════ */}
+      <SectionDivider />
       <section className="vis-observation">
         <div className="vis-constrain center-align">
           <div className="vis-editorial-sequence">
@@ -221,10 +224,24 @@ export default function Vision() {
               </Link>
             </m.div>
 
+            <m.div className="vis-closing-socials" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 2, ease: EASE, delay: 0.7 }} style={{ display: 'flex', gap: '24px', justifyContent: 'center', marginTop: '32px' }}>
+              <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer" style={{ color: '#86868b', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#fff'} onMouseLeave={(e) => e.currentTarget.style.color = '#86868b'} aria-label="GitHub">
+                <Github size={24} strokeWidth={1.5} />
+              </a>
+              <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer" style={{ color: '#86868b', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#fff'} onMouseLeave={(e) => e.currentTarget.style.color = '#86868b'} aria-label="LinkedIn">
+                <Linkedin size={24} strokeWidth={1.5} />
+              </a>
+              <a href={socialLinks.email.url} style={{ color: '#86868b', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#fff'} onMouseLeave={(e) => e.currentTarget.style.color = '#86868b'} aria-label="Email">
+                <Mail size={24} strokeWidth={1.5} />
+              </a>
+            </m.div>
+
           </div>
         </div>
       </section>
 
+      {/* BRAND SIGNATURE */}
+      <BrandSignature />
     </div>
   
     </>

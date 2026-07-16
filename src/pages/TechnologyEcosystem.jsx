@@ -1,6 +1,8 @@
 import SEO from "../components/SEO";
 import React, { useEffect } from 'react';
 import { m, useScroll, useTransform } from 'framer-motion';
+import SectionDivider from "../components/SectionDivider";
+import BrandSignature from "../components/BrandSignature";
 import '../styles/Skills.css';
 
 // ─── CDN Source ───────────────────────────────────────────────────────────────
@@ -203,7 +205,7 @@ export default function TechnologyEcosystem() {
 
   return (
     <>
-      <SEO title="Technology Ecosystem | Bhagavan AI Engineer Portfolio" description="Explore the comprehensive technology ecosystem, tools, languages, and frameworks Bhagavan utilizes to build intelligent systems and full stack applications." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO title="TheNameIsBhagavan | Engineering Stack" description="Explore the comprehensive technology ecosystem, tools, languages, and frameworks Bhagavan utilizes to build intelligent systems and full stack applications." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
 
     <div className="skills-page">
       
@@ -235,6 +237,7 @@ export default function TechnologyEcosystem() {
       {/* ══════════════════════════════════════════════════════
           CORE ENGINEERING
       ══════════════════════════════════════════════════════ */}
+      <SectionDivider />
       <section className="skills-hierarchy-group theme-core">
         <div className="skills-constrain">
           {CORE_ENGINEERING.map((group, idx) => (
@@ -412,9 +415,9 @@ export default function TechnologyEcosystem() {
           </div>
         </div>
       </section>
-
+      {/* BRAND SIGNATURE */}
+      <BrandSignature />
     </div>
-  
     </>
   );
 }

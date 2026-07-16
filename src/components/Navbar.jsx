@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { FileText } from "lucide-react";
+import { FileText, Github, Linkedin, Mail, Twitter, Youtube, Instagram } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { m, AnimatePresence } from "framer-motion";
 import logoImg from "../assets/logo.png";
+import { socialLinks } from "../constants/socialLinks";
 
 // ─────────────────────────────────────────────
 // NAVIGATION ARCHITECTURE
@@ -232,7 +233,7 @@ const CSS = `
     flex-shrink: 0;
   }
 
-  .nav-resume-btn {
+  .nav-resume-btn, .nav-social-btn {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -248,18 +249,19 @@ const CSS = `
     transition: opacity 0.2s ease, color 0.35s ease;
     outline: none;
     flex-shrink: 0;
+    text-decoration: none;
+    color: inherit;
   }
-  .nav-resume-btn:hover {
+  .nav-resume-btn:hover, .nav-social-btn:hover {
     opacity: 1;
   }
-  .nav-resume-btn:focus-visible {
+  .nav-resume-btn:focus-visible, .nav-social-btn:focus-visible {
     outline: 2px solid rgba(0, 102, 204, 0.5);
     outline-offset: 2px;
     border-radius: 4px;
   }
   /* Tooltip */
-  .nav-resume-btn::after {
-    content: 'Resume';
+  .nav-resume-btn::after, .nav-social-btn::after {
     position: absolute;
     bottom: calc(100% + 8px);
     left: 50%;
@@ -277,9 +279,20 @@ const CSS = `
     opacity: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
-  .nav-resume-btn:hover::after {
+  .nav-resume-btn::after { content: 'Resume'; }
+  .nav-social-btn[data-social="github"]::after { content: 'GitHub'; }
+  .nav-social-btn[data-social="linkedin"]::after { content: 'LinkedIn'; }
+  .nav-social-btn[data-social="email"]::after { content: 'Email'; }
+
+  .nav-resume-btn:hover::after, .nav-social-btn:hover::after {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    .nav-actions .nav-social-btn {
+      display: none;
+    }
   }
 
   /* ── Mobile toggle ── */
@@ -523,7 +536,8 @@ const CSS = `
   .nav-shell .nav-btn,
   .nav-shell .nav-search-icon,
   .nav-shell .nav-mobile-btn,
-  .nav-shell .nav-resume-btn {
+  .nav-shell .nav-resume-btn,
+  .nav-shell .nav-social-btn {
     color: var(--nav-text-color);
   }
   
@@ -543,7 +557,8 @@ const CSS = `
   .nav-shell.nav-dark-mode.panel-open .nav-btn,
   .nav-shell.nav-dark-mode.panel-open .nav-search-icon,
   .nav-shell.nav-dark-mode.panel-open .nav-mobile-btn,
-  .nav-shell.nav-dark-mode.panel-open .nav-resume-btn {
+  .nav-shell.nav-dark-mode.panel-open .nav-resume-btn,
+  .nav-shell.nav-dark-mode.panel-open .nav-social-btn {
     color: #1d1d1f;
   }
   .nav-shell.nav-dark-mode.panel-open .nav-wordmark img {
@@ -771,6 +786,21 @@ export default function Navbar() {
                 {item.label}
               </m.button>
             ))}
+
+            <m.div 
+              className="nav-mobile-socials"
+              style={{ display: 'flex', gap: '24px', marginTop: '40px', flexWrap: 'wrap' }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.4, ease }}
+            >
+              <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer" style={{ color: '#1d1d1f' }}><Github size={24} strokeWidth={1.5} /></a>
+              <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer" style={{ color: '#1d1d1f' }}><Linkedin size={24} strokeWidth={1.5} /></a>
+              <a href={socialLinks.twitter.url} target="_blank" rel="noopener noreferrer" style={{ color: '#1d1d1f' }}><Twitter size={24} strokeWidth={1.5} /></a>
+              <a href={socialLinks.youtube.url} target="_blank" rel="noopener noreferrer" style={{ color: '#1d1d1f' }}><Youtube size={24} strokeWidth={1.5} /></a>
+              <a href={socialLinks.instagram.url} target="_blank" rel="noopener noreferrer" style={{ color: '#1d1d1f' }}><Instagram size={24} strokeWidth={1.5} /></a>
+              <a href={socialLinks.email.url} style={{ color: '#1d1d1f' }}><Mail size={24} strokeWidth={1.5} /></a>
+            </m.div>
           </m.div>
         )}
       </AnimatePresence>
@@ -780,8 +810,9 @@ export default function Navbar() {
         <div className="nav-inner">
 
           {/* Logo */}
-          <button className="nav-wordmark" onClick={() => go("/overview")} style={{ display: 'flex', alignItems: 'center' }}>
-            <img src={logoImg} alt="Logo" style={{ height: '28px', width: '28px', borderRadius: '6px' }} />
+          <button className="nav-wordmark" onClick={() => go("/overview")} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <img src={logoImg} alt="Logo" style={{ height: '24px', width: '24px', borderRadius: '6px' }} />
+            <span style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--nav-text-color)' }}>TheNameIsBhagavan</span>
           </button>
 
           {/* Desktop links */}
@@ -861,6 +892,66 @@ export default function Navbar() {
             >
               <SearchSVG />
             </button>
+
+            {/* Social Icons */}
+            <a
+              href={socialLinks.github.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-social-btn"
+              data-social="github"
+              aria-label="GitHub Profile"
+            >
+              <Github size={18} strokeWidth={1.75} color="currentColor" />
+            </a>
+            <a
+              href={socialLinks.linkedin.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-social-btn"
+              data-social="linkedin"
+              aria-label="LinkedIn Profile"
+            >
+              <Linkedin size={18} strokeWidth={1.75} color="currentColor" />
+            </a>
+            <a
+              href={socialLinks.twitter.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-social-btn"
+              data-social="twitter"
+              aria-label="X (Twitter) Profile"
+            >
+              <Twitter size={18} strokeWidth={1.75} color="currentColor" />
+            </a>
+            <a
+              href={socialLinks.youtube.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-social-btn"
+              data-social="youtube"
+              aria-label="YouTube Channel"
+            >
+              <Youtube size={18} strokeWidth={1.75} color="currentColor" />
+            </a>
+            <a
+              href={socialLinks.instagram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-social-btn"
+              data-social="instagram"
+              aria-label="Instagram Profile"
+            >
+              <Instagram size={18} strokeWidth={1.75} color="currentColor" />
+            </a>
+            <a
+              href={socialLinks.email.url}
+              className="nav-social-btn"
+              data-social="email"
+              aria-label="Send Email"
+            >
+              <Mail size={18} strokeWidth={1.75} color="currentColor" />
+            </a>
 
             <button
               className="nav-resume-btn"

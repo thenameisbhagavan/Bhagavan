@@ -21,8 +21,12 @@ const ArticlePage = lazy(() => import("./pages/ArticlePage"));
 // Minimal Apple-style loader
 function PageLoader() {
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fbfbfd' }}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center', justifyContent: 'center', background: '#fbfbfd' }}>
       <div style={{ width: '28px', height: '28px', border: '2px solid rgba(0,0,0,0.05)', borderTopColor: 'rgba(0,0,0,0.6)', borderRadius: '50%', animation: 'spin 0.6s linear infinite' }} />
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
+        <span style={{ fontSize: '13px', fontWeight: 600, color: '#1d1d1f', letterSpacing: '-0.01em' }}>TheNameIsBhagavan</span>
+        <span style={{ fontSize: '11px', color: '#86868b', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 500 }}>Building Intelligence...</span>
+      </div>
       <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
     </div>
   );

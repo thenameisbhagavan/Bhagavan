@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { m, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
+import SectionDivider from "../components/SectionDivider";
+import BrandSignature from "../components/BrandSignature";
 import '../styles/Connect.css';
 import resumePdf from '../assets/bhagavanresume.pdf';
 
@@ -119,7 +121,7 @@ export default function Connect() {
 
   return (
     <>
-      <SEO title="Connect with Bhagavan | AI Engineer Portfolio" description="Get in touch with Bhagavan to discuss AI engineering, full stack development, product design, and new opportunities. Let's build intelligent systems together." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO title="Connect | TheNameIsBhagavan" description="Connect with Bhagavan to discuss AI engineering, full stack development, and innovative digital product design." keywords="AI Engineer, Software Developer, Contact Bhagavan, Tech Collaboration" />
 
     <div className="con-page">
 
@@ -193,6 +195,7 @@ export default function Connect() {
       {/* ══════════════════════════════════════════════════════
           DIRECT CONTACT HIERARCHY
       ══════════════════════════════════════════════════════ */}
+      <SectionDivider />
       <section className="con-direct">
         <div className="con-constrain">
           <div className="direct-hierarchy">
@@ -203,14 +206,16 @@ export default function Connect() {
               <span className="hierarchy-desc">The fastest way to start a conversation.</span>
             </m.a>
 
-            <m.a href="https://www.linkedin.com/in/thenameisbhagavan/" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-secondary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <m.a href="https://www.linkedin.com/in/thenameisbhagavan/" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <span className="hierarchy-label">LinkedIn</span>
-              <span className="hierarchy-value">Professional collaboration.</span>
+              <span className="hierarchy-value">linkedin.com/in/thenameisbhagavan</span>
+              <span className="hierarchy-desc">Professional collaboration.</span>
             </m.a>
 
-            <m.a href="https://github.com/thenameisbhagavan" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-tertiary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <m.a href="https://github.com/thenameisbhagavan" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <span className="hierarchy-label">GitHub</span>
-              <span className="hierarchy-value">Engineering in public.</span>
+              <span className="hierarchy-value">github.com/thenameisbhagavan</span>
+              <span className="hierarchy-desc">Engineering in public.</span>
             </m.a>
 
             <m.a href={resumePdf} target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-quaternary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
@@ -354,6 +359,8 @@ export default function Connect() {
         </div>
       </section>
 
+      {/* BRAND SIGNATURE */}
+      <BrandSignature />
     </div>
   
     </>
