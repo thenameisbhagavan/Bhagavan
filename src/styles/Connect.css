@@ -166,11 +166,13 @@
 
 .hierarchy-primary .hierarchy-value {
   font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(32px, 6vw, 80px);
+  font-size: clamp(24px, 6vw, 80px);
   font-weight: 700;
   letter-spacing: -0.03em;
   color: #0066cc; /* Apple Blue */
   margin-bottom: 16px;
+  word-break: break-all;
+  max-width: 100%;
 }
 
 .hierarchy-primary .hierarchy-desc {
@@ -190,13 +192,15 @@
 .hierarchy-tertiary .hierarchy-label,
 .hierarchy-quaternary .hierarchy-label {
   font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(28px, 4vw, 50px);
+  font-size: clamp(24px, 4vw, 50px);
   font-weight: 600;
   letter-spacing: -0.02em;
   color: #1d1d1f;
   margin-bottom: 8px;
   border-bottom: 1px solid transparent;
   transition: border-bottom-color 0.4s ease;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .hierarchy-secondary:hover .hierarchy-label,

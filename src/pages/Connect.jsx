@@ -218,6 +218,18 @@ export default function Connect() {
               <span className="hierarchy-desc">Engineering in public.</span>
             </m.a>
 
+            <m.a href="https://x.com/nameisbhagavan" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <span className="hierarchy-label">X</span>
+              <span className="hierarchy-value">x.com/nameisbhagavan</span>
+              <span className="hierarchy-desc">Thoughts and updates.</span>
+            </m.a>
+
+            <m.a href="https://www.instagram.com/thenameisbhagavan_/" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <span className="hierarchy-label">Instagram</span>
+              <span className="hierarchy-value">instagram.com/thenameisbhagavan_</span>
+              <span className="hierarchy-desc">Visual engineering journey.</span>
+            </m.a>
+
             <m.a href={resumePdf} target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-quaternary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <span className="hierarchy-label">Resume</span>
               <span className="hierarchy-value">Supporting context.</span>
