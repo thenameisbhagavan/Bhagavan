@@ -13,25 +13,25 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://thenameisbhagavan.vercel.app/work</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://thenameisbhagavan.vercel.app/experience</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thenameisbhagavan.vercel.app/projects</loc>
+    <loc>https://thenameisbhagavan.vercel.app/vision</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thenameisbhagavan.vercel.app/skills</loc>
-    <lastmod>2026-07-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://thenameisbhagavan.vercel.app/credentials</loc>
+    <loc>https://thenameisbhagavan.vercel.app/connect</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -43,7 +43,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thenameisbhagavan.vercel.app/vision</loc>
+    <loc>https://thenameisbhagavan.vercel.app/credentials</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -61,13 +61,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thenameisbhagavan.vercel.app/connect</loc>
-    <lastmod>2026-07-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://thenameisbhagavan.vercel.app/contact</loc>
+    <loc>https://thenameisbhagavan.vercel.app/insights</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

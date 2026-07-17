@@ -4,16 +4,15 @@ import path from 'path';
 const routes = [
   '/',
   '/overview',
+  '/work',
   '/experience',
-  '/projects',
-  '/skills',
-  '/credentials',
-  '/innovation',
   '/vision',
+  '/connect',
+  '/innovation',
+  '/credentials',
   '/ecosystem',
   '/resume',
-  '/connect',
-  '/contact'
+  '/insights'
 ];
 
 const hostname = 'https://thenameisbhagavan.vercel.app';
