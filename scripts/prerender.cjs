@@ -7,15 +7,16 @@ const path = require('path');
 const routes = [
   '/',
   '/overview',
-  '/work',
   '/experience',
-  '/vision',
-  '/connect',
-  '/innovation',
+  '/projects',
+  '/skills',
   '/credentials',
+  '/innovation',
+  '/vision',
   '/ecosystem',
   '/resume',
-  '/insights'
+  '/connect',
+  '/contact'
 ];
 
 async function prerender() {

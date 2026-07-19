@@ -38,9 +38,6 @@ import infosysIntroDsCert from '../assets/cert-infosys-intro-ds.png';
 import ucscCCert from '../assets/cert-ucsc-c-everyone.png';
 import infosysAgileCert from '../assets/cert-infosys-agile.png';
 import awsCloudCert from '../assets/cert-aws-cloud.png';
-import awsAiPractitionerCert from '../assets/cert-aws-ai-practitioner.jpg';
-import awsLlmSystemsCert from '../assets/cert-aws-llm-systems.jpg';
-import agenticAiCert from '../assets/cert-agentic-ai-products.jpg';
 
 // ─── Special Training Program ─────────────────────────────────────────────────
 import trainingCert from '../assets/training.png';
@@ -84,7 +81,6 @@ const ARCHIVE = [
     category: "Artificial Intelligence & Data",
     certs: [
       { img: googleEduCert, label: "Google • Generative AI with Gemini" },
-      { img: agenticAiCert, label: "LinkedIn • Designing Agentic AI Products" },
       { img: microsoftPromptWritingCert, label: "Microsoft Copilot • The Art of Prompt Writing" },
       { img: deepLearningPythonCert, label: "LinkedIn • Deep Learning with Python" },
       { img: gcpGenAiCert, label: "GCP Generative AI" },
@@ -105,8 +101,6 @@ const ARCHIVE = [
   {
     category: "Cloud & Infrastructure",
     certs: [
-      { img: awsLlmSystemsCert, label: "LinkedIn • AI Engineering on AWS: Production-Grade LLM Systems" },
-      { img: awsAiPractitionerCert, label: "LinkedIn • AWS Certified AI Practitioner (AIF-C01)" },
       { img: awsCloudCert, label: "AWS Cloud Foundations" },
       { img: infosysAzureCert, label: "Infosys Azure Cloud" },
       { img: infosysDevopsCert, label: "Infosys DevOps" }
@@ -163,7 +157,7 @@ export default function Credentials() {
 
   return (
     <>
-      <SEO title="TheNameIsBhagavan | Credentials" description="Explore the professional certifications, educational credentials, and continuous learning achievements of Bhagavan, specializing in AI, Machine Learning & Cloud." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack, GitHub Actions, CI/CD, Workflow Automation, LinkedIn Learning, DevOps, Software Engineering, Automation, Microsoft Copilot, Prompt Engineering, AI Prompting, Generative AI, Large Language Models, Copilot, LLMs, AI Productivity, AWS AI Engineering, LLM Systems, Production AI, Enterprise AI, Cloud-native AI, Agentic AI, AI Agents, Autonomous Systems, AI Product Design, Intelligent Systems, Future of AI" />
+      <SEO title="TheNameIsBhagavan | Credentials" description="Explore the professional certifications, educational credentials, and continuous learning achievements of Bhagavan, specializing in AI, Machine Learning & Cloud." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack, GitHub Actions, CI/CD, Workflow Automation, LinkedIn Learning, DevOps, Software Engineering, Automation, Microsoft Copilot, Prompt Engineering, AI Prompting, Generative AI, Large Language Models, Copilot, LLMs, AI Productivity" />
 
     <div className="cred-page">
       
@@ -253,91 +247,6 @@ export default function Credentials() {
             <div className="premium-quote-text">
               "Every intelligent system begins with understanding.<br/>
               Every great engineer remains a lifelong learner."
-            </div>
-            <div className="premium-quote-author">— TheNameIsBhagavan</div>
-          </m.div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          AGENTIC AI PREMIUM SECTION
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-premium-section">
-        <div className="cred-constrain">
-          <div className="premium-editorial">
-            <m.div className="premium-label" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1, ease: EASE }}>
-              LINKEDIN LEARNING
-            </m.div>
-            <m.h2 className="premium-headline" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.1 }}>
-              Designing the Next Generation of Agentic AI Systems
-            </m.h2>
-            <m.p className="premium-subheading" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.2 }}>
-              Artificial Intelligence is evolving from passive assistants into autonomous, goal-oriented systems capable of reasoning, planning, memory, and tool usage.<br/><br/>
-              Understanding Agentic AI requires more than building models—it requires thinking about product design, user experience, decision-making workflows, and human-AI collaboration.<br/><br/>
-              This LinkedIn Learning course strengthened my understanding of AI agents, autonomous workflows, agentic product thinking, and the design principles behind modern intelligent applications.<br/><br/>
-              These concepts directly influence how I architect products like CareerOS and future AI-native software.
-            </m.p>
-          </div>
-
-          <m.div 
-            className="premium-glass-card"
-            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.4, ease: EASE }}
-            style={{ y: useTransform(scrollY, [0, 1500], [100, -100]) }}
-          >
-            <div className="premium-card-left">
-              <m.div className="cred-museum-frame" initial={{ y: 20 }} whileInView={{ y: 0 }} transition={{ duration: 2, ease: EASE, repeat: Infinity, repeatType: 'reverse' }}>
-                <img src={agenticAiCert} alt="Agentic AI Certificate" loading="lazy" />
-              </m.div>
-            </div>
-            <div className="premium-card-right">
-              <div className="premium-card-section">
-                <span className="premium-data-label">Provider</span>
-                <span className="premium-data-value large">LinkedIn Learning</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Course</span>
-                <span className="premium-data-value large" style={{ fontSize: '18px', lineHeight: '1.2' }}>Designing Agentic AI Products</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Completed</span>
-                <span className="premium-data-value">July 2026</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Duration</span>
-                <span className="premium-data-value">1 Hour 4 Minutes</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Category</span>
-                <span className="premium-data-value">Agentic AI</span>
-              </div>
-
-              <div className="premium-card-section">
-                <span className="premium-data-label">Skills Developed</span>
-                <div className="premium-skills-list">
-                  {["AI Agents", "Agentic AI", "AI Product Design", "Autonomous Systems", "Human-AI Interaction", "AI Workflows", "Product Thinking", "Intelligent Systems", "AI Experience Design", "Future AI Products"].map((skill, idx) => (
-                    <span key={idx} className="premium-skill-tag">{skill}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </m.div>
-
-          <m.div 
-            className="premium-quote"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: EASE, delay: 0.4 }}
-          >
-            <div className="premium-quote-text">
-              "The next generation of software will not simply respond—it will reason, plan, and collaborate."
             </div>
             <div className="premium-quote-author">— TheNameIsBhagavan</div>
           </m.div>
@@ -509,91 +418,6 @@ export default function Credentials() {
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          AWS LLM SYSTEMS PREMIUM SECTION
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-premium-section">
-        <div className="cred-constrain">
-          <div className="premium-editorial">
-            <m.div className="premium-label" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1, ease: EASE }}>
-              LINKEDIN LEARNING
-            </m.div>
-            <m.h2 className="premium-headline" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.1 }}>
-              Building Production-Grade AI Systems on AWS
-            </m.h2>
-            <m.p className="premium-subheading" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.2 }}>
-              Artificial Intelligence becomes valuable only when it solves real-world problems reliably at scale.<br/><br/>
-              Modern AI Engineering extends beyond model development—it includes system architecture, cloud infrastructure, deployment strategies, and production-ready Large Language Model applications.<br/><br/>
-              This LinkedIn Learning course explored practical AI engineering workflows on Amazon Web Services, demonstrating how production-grade LLM systems are designed, deployed, and maintained for real business applications.<br/><br/>
-              It strengthened my understanding of cloud-native AI engineering, scalable AI architectures, and enterprise-ready intelligent systems.
-            </m.p>
-          </div>
-
-          <m.div 
-            className="premium-glass-card"
-            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.4, ease: EASE }}
-            style={{ y: useTransform(scrollY, [0, 1500], [100, -100]) }}
-          >
-            <div className="premium-card-left">
-              <m.div className="cred-museum-frame" initial={{ y: 20 }} whileInView={{ y: 0 }} transition={{ duration: 2, ease: EASE, repeat: Infinity, repeatType: 'reverse' }}>
-                <img src={awsLlmSystemsCert} alt="AWS LLM Systems Certificate" loading="lazy" />
-              </m.div>
-            </div>
-            <div className="premium-card-right">
-              <div className="premium-card-section">
-                <span className="premium-data-label">Provider</span>
-                <span className="premium-data-value large">LinkedIn Learning</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Course</span>
-                <span className="premium-data-value large" style={{ fontSize: '18px', lineHeight: '1.2' }}>AI Engineering Use Cases and Projects on AWS:<br/>Production-Grade LLM Systems</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Completed</span>
-                <span className="premium-data-value">July 2026</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Duration</span>
-                <span className="premium-data-value">46 Minutes</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Category</span>
-                <span className="premium-data-value">AI Engineering</span>
-              </div>
-
-              <div className="premium-card-section">
-                <span className="premium-data-label">Skills Developed</span>
-                <div className="premium-skills-list">
-                  {["Production LLM Systems", "AI Engineering", "AWS AI", "Cloud AI", "Large Language Models", "Generative AI", "AI Software Development", "Scalable AI Applications", "Enterprise AI", "Production Deployment"].map((skill, idx) => (
-                    <span key={idx} className="premium-skill-tag">{skill}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </m.div>
-
-          <m.div 
-            className="premium-quote"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: EASE, delay: 0.4 }}
-          >
-            <div className="premium-quote-text">
-              "Artificial intelligence creates possibilities. Engineering transforms those possibilities into production."
-            </div>
-            <div className="premium-quote-author">— TheNameIsBhagavan</div>
-          </m.div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
           FOUNDATION SEQUENCE (Sticky)
       ══════════════════════════════════════════════════════ */}
       <section ref={foundRef} className="cred-foundation-container">
@@ -754,14 +578,7 @@ export default function Credentials() {
                   "Transformers",
                   "Sequence Models",
                   "GitHub Actions",
-                  "Continuous Product Development",
-                  "AWS AI Practitioner",
-                  "Production LLM Systems",
-                  "AWS AI Engineering",
-                  "Cloud-native AI",
-                  "Agentic AI",
-                  "AI Agents",
-                  "Autonomous Systems"
+                  "Continuous Product Development"
                 ]
               }
             ].map((step, i, arr) => (

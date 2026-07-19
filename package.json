@@ -7,9 +7,7 @@
     "dev": "vite",
     "build": "node scripts/generate-sitemap.js && vite build && node scripts/prerender.cjs",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "indexnow": "node scripts/indexnow.js",
-    "postdeploy:indexnow": "npm run indexnow"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.23.0",
