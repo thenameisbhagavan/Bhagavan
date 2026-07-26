@@ -3,8 +3,10 @@ import careerOsImg from '../assets/careeros-ui.png';
 import auraOsImg from '../assets/auraos-ui.png';
 import seoImg from '../assets/gsc-ui.png';
 import aiSysImg from '../assets/ai-arch-diagram.jpg';
+import voltDriveImg from '../assets/ev.png';
 
 // Import raw markdown content
+import voltdriveMd from '../content/voltdrive.md?raw';
 import careerosMd from '../content/careeros.md?raw';
 import auraosMd from '../content/auraos.md?raw';
 import portfolioSeoMd from '../content/portfolio-seo.md?raw';
@@ -13,6 +15,25 @@ import reactFlaskAiMd from '../content/react-flask-ai.md?raw';
 import engineeringJourneyMd from '../content/engineering-journey.md?raw';
 
 export const ARTICLES = [
+  {
+    slug: 'engineering-voltdrive',
+    title: 'Engineering VoltDrive',
+    subtitle: 'Building a Premium Automotive Experience with React and Modern Frontend Engineering',
+    summary: 'An engineering deep dive into building VoltDrive, focusing on cinematic digital experiences, Framer Motion, and responsive architecture.',
+    category: 'Frontend Engineering',
+    tags: ['React', 'Vite', 'Framer Motion', 'Responsive Design', 'Frontend Architecture', 'Performance', 'JavaScript', 'UI Engineering', 'UX', 'Web Performance'],
+    author: 'Bhagavan',
+    publishedDate: '2026-07-26',
+    updatedDate: '2026-07-26',
+    readingTime: '8 min read',
+    layoutVariant: 'hero',
+    assetType: 'image-ui',
+    heroImage: voltDriveImg,
+    seoTitle: 'Engineering VoltDrive: Premium Automotive UI | Bhagavan',
+    seoDescription: 'An engineering deep dive into building a premium automotive experience using React, Vite, and Framer Motion.',
+    canonicalUrl: 'https://thenameisbhagavan.vercel.app/insights/engineering-voltdrive',
+    markdownContent: voltdriveMd
+  },
   {
     slug: 'building-auraos-personal-intelligence',
     title: 'Building AuraOS: A Personal Intelligence Operating System',

@@ -9,6 +9,7 @@ import "../styles/Work.css";
 
 // ─── Images ───────────────────────────────────────────────────────────────────
 import careerOSImg from "../assets/careeros-new.jpg";
+import voltDriveImg from "../assets/ev.png";
 import chatImg from "../assets/aurabot-new.png";
 import heartImg from "../assets/heart-new.png";
 import leaveImg from "../assets/leave.jpg";
@@ -97,6 +98,26 @@ const FLAGSHIP_CAREEROS = {
 };
 
 const SECONDARY_PROJECTS = [
+  {
+    theme: "voltdrive",
+    layoutVariant: "centered",
+    name: "VoltDrive",
+    eyebrow: "Luxury Electric Vehicle Experience",
+    problem: "Most automotive websites present specifications instead of creating emotion. Modern electric vehicles deserve immersive digital experiences that communicate performance, innovation, and luxury.",
+    vision: "To design a premium automotive web experience that blends cinematic storytelling, responsive engineering, and interactive user experiences into a production-ready digital product.",
+    productImg: voltDriveImg,
+    howItWorks: [
+      { step: "01", title: "Discover", desc: "Explore the future of luxury electric mobility through immersive storytelling." },
+      { step: "02", title: "Experience", desc: "Navigate premium sections with fluid animations, responsive layouts, and cinematic transitions." },
+      { step: "03", title: "Customize", desc: "Interact with a modern vehicle configurator built for seamless user engagement." },
+      { step: "04", title: "Drive", desc: "Deliver a production-quality frontend experience inspired by leading automotive brands." }
+    ],
+    technologyDesc: "Built using React, Vite, JavaScript, Framer Motion, modern CSS architecture, responsive design principles, smooth motion systems, and performance-first frontend engineering.",
+    impact: "Successfully transformed a concept into a production-deployed luxury automotive website featuring unique hero experiences, responsive layouts, interactive UI, and premium visual storytelling.",
+    github: "https://github.com/thenameisbhagavan/voltdrive",
+    liveLink: "https://voltdrive-showcase.vercel.app/",
+    preTransitionText: "Intelligence is only as powerful as the experience that delivers it."
+  },
   {
     layoutVariant: "centered",
     theme: "auraos",
@@ -324,10 +345,19 @@ function ProductSection({ project }) {
           </div>
         </div>
 
-        {project.github && (
-          <m.a href={project.github} target="_blank" rel="noopener noreferrer" className="product-explore-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-            Explore {project.name} <span className="cta-arrow">→</span>
-          </m.a>
+        {(project.github || project.liveLink) && (
+          <div className="product-cta-group" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+            {project.liveLink && (
+              <m.a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="product-explore-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
+                Explore {project.name} <span className="cta-arrow">↗</span>
+              </m.a>
+            )}
+            {project.github && (
+              <m.a href={project.github} target="_blank" rel="noopener noreferrer" className="product-explore-cta" style={{ opacity: project.liveLink ? 0.8 : 1 }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
+                {project.liveLink ? "View Source" : `Explore ${project.name}`} <span className="cta-arrow">→</span>
+              </m.a>
+            )}
+          </div>
         )}
       </div>
     </section>

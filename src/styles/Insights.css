@@ -162,7 +162,7 @@
       0 10px 20px rgba(0,0,0,0.4),
       0 0 0 1px rgba(255,255,255,0.08),
       inset 0 1px 0 rgba(255,255,255,0.12);
-    transform: perspective(1000px) rotateX(2deg);
+    transform: perspective(1000px) rotateX(0deg);
     transition: transform 0.8s var(--spring-curve), box-shadow 0.8s var(--spring-curve);
     will-change: transform, box-shadow;
   }
@@ -455,7 +455,7 @@
   .variant-landscape-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+    background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 35%, rgba(0,0,0,0.3) 70%, transparent 100%);
     z-index: 1;
   }
   

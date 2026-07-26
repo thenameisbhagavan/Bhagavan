@@ -5,8 +5,6 @@ import { RenderAsset } from './EditorialAssets';
 
 export const HeroLayout = ({ article }) => {
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const rotateX = useTransform(scrollYProgress, [0, 1], [0, 5]);
 
   return (
     <div className="variant-hero">
@@ -17,7 +15,7 @@ export const HeroLayout = ({ article }) => {
         <Link to={`/insights/${article.slug}`} className="btn-read-story">Read Story</Link>
       </m.div>
       
-      <m.div className="variant-hero-visual" style={{ y, rotateX }} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }} viewport={{ once: true }}>
+      <m.div className="variant-hero-visual" initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }} viewport={{ once: true }}>
         <Link to={`/insights/${article.slug}`} style={{ width: '100%', display: 'block' }}>
           <RenderAsset article={article} />
         </Link>
@@ -49,9 +47,15 @@ export const LandscapeLayout = ({ article }) => {
           <RenderAsset article={article} />
         </div>
         <div className="variant-landscape-overlay"></div>
-        <div className="variant-landscape-content">
-          <h3 className="variant-landscape-title">{article.title}</h3>
-          <p className="variant-hero-summary" style={{ color: '#fff', marginBottom: 0 }}>{article.summary}</p>
+        <div className="variant-landscape-content" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-start' }}>
+          <div>
+            <span style={{ fontSize: '13px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.7)', display: 'block', marginBottom: '8px' }}>{article.category}</span>
+            <h3 className="variant-landscape-title">{article.title}</h3>
+            <p className="variant-hero-summary" style={{ color: 'rgba(255,255,255,0.9)', marginBottom: 0, maxWidth: '800px', fontSize: '1.25rem', lineHeight: 1.5 }}>{article.summary}</p>
+          </div>
+          <div style={{ marginTop: '0.5rem', background: '#ffffff', color: '#000000', padding: '12px 28px', borderRadius: '999px', fontSize: '1rem', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '8px', transition: 'transform 0.3s ease' }}>
+            Read Story <span style={{ fontSize: '1.2em', lineHeight: 1 }}>→</span>
+          </div>
         </div>
       </Link>
     </m.div>
