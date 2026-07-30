@@ -1,0 +1,877 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   VOLTDRIVE — LUXURY ELECTRIC VEHICLE EXPERIENCE
+   Apple Keynote / Porsche / Lucid Motors Editorial Design System
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Foundation & Obsidian Atmosphere ── */
+.vd-page {
+  position: relative;
+  background-color: #000000;
+  color: #fbfbfd;
+  font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
+  overflow-x: hidden;
+  padding-top: 50px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.vd-bounds {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+  .vd-bounds {
+    padding: 0 24px;
+  }
+}
+
+/* ── Apple Keynote Typography Hierarchy ── */
+.vd-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #86868b;
+  margin-bottom: 20px;
+}
+
+.vd-eyebrow-accent {
+  color: #2997ff;
+}
+
+.vd-display-title {
+  font-size: clamp(44px, 8vw, 96px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.04;
+  color: #ffffff;
+  margin-bottom: 28px;
+}
+
+.vd-section-title {
+  font-size: clamp(34px, 5.5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.vd-editorial-statement {
+  font-size: clamp(26px, 4vw, 48px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.vd-editorial-body {
+  font-size: clamp(18px, 2.1vw, 24px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: #a1a1a6;
+  max-width: 760px;
+  letter-spacing: -0.015em;
+}
+
+.vd-body {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #86868b;
+  font-weight: 400;
+}
+
+/* ── Breadcrumb Navigation ── */
+.vd-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #86868b;
+}
+
+.vd-breadcrumb-link {
+  color: #86868b;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.vd-breadcrumb-link:hover {
+  color: #ffffff;
+}
+
+.vd-breadcrumb-sep {
+  opacity: 0.4;
+}
+
+.vd-breadcrumb-current {
+  color: #ffffff;
+}
+
+/* ─────────────────────────────────────────────
+   1. FULL VIEWPORT CINEMATIC HERO
+   ───────────────────────────────────────────── */
+.vd-hero-section {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 0 60px;
+}
+
+.vd-hero-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.vd-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2997ff;
+  margin-bottom: 28px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.vd-hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ── Luxury Floating Product Photography Container ── */
+.vd-hero-showcase {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto 0;
+  border-radius: 32px;
+  overflow: hidden;
+  background: #0d0d11;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 50px 140px -20px rgba(0, 0, 0, 0.95),
+    0 0 100px -15px rgba(0, 102, 204, 0.22);
+}
+
+.vd-hero-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.vd-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform-origin: center center;
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.vd-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0.75) 100%);
+  pointer-events: none;
+}
+
+.vd-hero-caption-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  background: rgba(13, 13, 17, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Sleek Apple Scroll Indicator ── */
+.vd-scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 36px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.vd-scroll-indicator:hover {
+  opacity: 1;
+}
+
+.vd-scroll-pill {
+  width: 26px;
+  height: 42px;
+  border-radius: 99px;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.vd-scroll-dot {
+  width: 4px;
+  height: 8px;
+  border-radius: 4px;
+  background: #2997ff;
+}
+
+/* ─────────────────────────────────────────────
+   2. PRODUCT PHILOSOPHY (Apple Keynote Quote)
+   ───────────────────────────────────────────── */
+.vd-philosophy-section {
+  padding: 140px 0;
+  position: relative;
+  background: #060608;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vd-quote-box {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.vd-keynote-quote {
+  font-size: clamp(32px, 5vw, 58px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 24px 0 20px;
+}
+
+.vd-quote-author {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: #86868b;
+}
+
+/* ─────────────────────────────────────────────
+   3. PURPOSE / WHY BUILT (Editorial Blocks)
+   ───────────────────────────────────────────── */
+.vd-why-section {
+  padding: 150px 0;
+  position: relative;
+}
+
+.vd-editorial-list {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.vd-editorial-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 1.6fr;
+  gap: 40px;
+  padding: 48px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  align-items: baseline;
+}
+
+.vd-editorial-num {
+  font-size: 24px;
+  font-weight: 400;
+  color: #2997ff;
+  font-feature-settings: 'tnum';
+}
+
+.vd-editorial-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.vd-editorial-desc {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #a1a1a6;
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .vd-editorial-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   4. PREMIUM EXPERIENCE WALKTHROUGH
+   ───────────────────────────────────────────── */
+.vd-experience-section {
+  padding: 150px 0;
+  background: #050507;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vd-tabs-nav {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 6px 0 24px;
+  margin-bottom: 40px;
+  scrollbar-width: none;
+}
+
+.vd-tabs-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.vd-tab-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #a1a1a6;
+  padding: 12px 24px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.vd-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.vd-tab-btn.active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.vd-experience-panel {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 60px;
+  align-items: center;
+  background: #0d0d11;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 32px;
+  padding: 56px;
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.85);
+}
+
+@media (max-width: 1024px) {
+  .vd-experience-panel {
+    grid-template-columns: 1fr;
+    padding: 36px;
+  }
+}
+
+.vd-exp-step-num {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2997ff;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.vd-exp-title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+
+.vd-exp-desc {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #a1a1a6;
+  margin-bottom: 32px;
+}
+
+.vd-exp-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #15151b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ─────────────────────────────────────────────
+   5. FEATURE HIGHLIGHTS (Apple Vision Bento Grid)
+   ───────────────────────────────────────────── */
+.vd-features-section {
+  padding: 150px 0;
+}
+
+.vd-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  margin-top: 70px;
+}
+
+.vd-bento-card {
+  background: #0b0b0f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  padding: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.vd-bento-card:hover {
+  border-color: rgba(41, 151, 255, 0.45);
+  box-shadow: 0 20px 60px -15px rgba(0, 102, 204, 0.15);
+}
+
+.vd-bento-8 {
+  grid-column: span 8;
+}
+
+.vd-bento-4 {
+  grid-column: span 4;
+}
+
+.vd-bento-6 {
+  grid-column: span 6;
+}
+
+@media (max-width: 960px) {
+  .vd-bento-8,
+  .vd-bento-6,
+  .vd-bento-4 {
+    grid-column: span 12;
+  }
+}
+
+.vd-bento-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(41, 151, 255, 0.12);
+  color: #2997ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.vd-bento-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+/* ─────────────────────────────────────────────
+   6. ENGINEERING ARCHITECTURE (Editorial Blocks)
+   ───────────────────────────────────────────── */
+.vd-architecture-section {
+  padding: 150px 0;
+  background: #060608;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vd-arch-editorial-grid {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 1024px) {
+  .vd-arch-editorial-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .vd-arch-editorial-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vd-arch-editorial-card {
+  padding: 36px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+}
+
+.vd-arch-step-num {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #2997ff;
+  margin-bottom: 24px;
+}
+
+.vd-arch-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+.vd-arch-desc {
+  font-size: 16px;
+  color: #86868b;
+  line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────────
+   7. TECHNOLOGY STACK (Apple Keynote Specs List)
+   ───────────────────────────────────────────── */
+.vd-tech-section {
+  padding: 150px 0;
+}
+
+.vd-tech-specs-list {
+  margin-top: 70px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.vd-tech-spec-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 48px;
+  align-items: center;
+  padding: 36px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .vd-tech-spec-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.vd-tech-spec-name {
+  font-size: 26px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.vd-tech-spec-role {
+  font-size: 18px;
+  color: #a1a1a6;
+  line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────
+   8. DESIGN SYSTEM & COLOR HARMONY
+   ───────────────────────────────────────────── */
+.vd-design-section {
+  padding: 150px 0;
+  background: #060608;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vd-palette-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  margin-top: 70px;
+}
+
+@media (max-width: 900px) {
+  .vd-palette-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .vd-palette-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vd-swatch-card {
+  background: #0e0e12;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.vd-swatch-card:hover {
+  transform: translateY(-4px);
+}
+
+.vd-swatch-preview {
+  width: 100%;
+  height: 140px;
+}
+
+.vd-swatch-info {
+  padding: 20px 24px;
+}
+
+.vd-swatch-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.vd-swatch-hex {
+  font-size: 14px;
+  color: #86868b;
+  margin-top: 4px;
+  font-family: monospace;
+}
+
+/* ─────────────────────────────────────────────
+   9. PERFORMANCE TELEMETRY
+   ───────────────────────────────────────────── */
+.vd-perf-section {
+  padding: 150px 0;
+}
+
+.vd-perf-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-top: 70px;
+}
+
+@media (max-width: 1024px) {
+  .vd-perf-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .vd-perf-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vd-perf-card {
+  padding: 40px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.vd-perf-num {
+  font-size: clamp(48px, 6vw, 76px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 16px;
+  font-feature-settings: 'tnum';
+}
+
+.vd-perf-label {
+  font-size: 19px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.vd-perf-sub {
+  font-size: 15px;
+  color: #86868b;
+}
+
+/* ─────────────────────────────────────────────
+   10. CHALLENGES & PROBLEM SOLVING (Editorial Narrative)
+   ───────────────────────────────────────────── */
+.vd-challenges-section {
+  padding: 150px 0;
+  background: #060608;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vd-challenge-list {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.vd-challenge-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr;
+  gap: 60px;
+  padding: 56px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .vd-challenge-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.vd-challenge-left h4 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.vd-challenge-right h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2997ff;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ─────────────────────────────────────────────
+   11. SHOWROOM GALLERY
+   ───────────────────────────────────────────── */
+.vd-gallery-section {
+  padding: 150px 0;
+}
+
+.vd-gallery-showcase {
+  border-radius: 32px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0d0d11;
+  box-shadow: 0 40px 120px -20px rgba(0, 0, 0, 0.9);
+}
+
+.vd-gallery-img {
+  width: 100%;
+  max-height: 720px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─────────────────────────────────────────────
+   12, 13, 14. CALLS TO ACTION
+   ───────────────────────────────────────────── */
+.vd-cta-section {
+  padding: 60px 0;
+}
+
+.vd-cta-banner {
+  border-radius: 32px;
+  padding: 80px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 768px) {
+  .vd-cta-banner {
+    padding: 56px 28px;
+  }
+}
+
+.vd-banner-live {
+  background: radial-gradient(circle at 50% 0%, rgba(0, 102, 204, 0.25) 0%, rgba(13, 13, 17, 1) 75%);
+}
+
+.vd-banner-github {
+  background: #09090c;
+}
+
+.vd-banner-next {
+  background: radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.08) 0%, rgba(10, 10, 13, 1) 80%);
+}
+
+.vd-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 36px;
+  border-radius: 99px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-top: 32px;
+}
+
+.vd-btn-primary {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+}
+
+.vd-btn-primary:hover {
+  background: #f5f5f7;
+  transform: scale(1.02);
+  box-shadow: 0 12px 36px -10px rgba(255, 255, 255, 0.4);
+}
+
+.vd-btn-dark {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.vd-btn-dark:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: scale(1.02);
+}
+
+.vd-btn-outline {
+  background: transparent;
+  color: #86868b;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.vd-btn-outline:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}

@@ -116,6 +116,7 @@ const SECONDARY_PROJECTS = [
     impact: "Successfully transformed a concept into a production-deployed luxury automotive website featuring unique hero experiences, responsive layouts, interactive UI, and premium visual storytelling.",
     github: "https://github.com/thenameisbhagavan/voltdrive",
     liveLink: "https://voltdrive-showcase.vercel.app/",
+    internalLink: "/work/voltdrive",
     preTransitionText: "Intelligence is only as powerful as the experience that delivers it."
   },
   {
@@ -277,7 +278,13 @@ function ProductSection({ project }) {
         {project.layoutVariant === 'split' || project.layoutVariant.includes('compact') ? (
           <>
             <m.div className="product-hero-wrapper" initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 1, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
-              <img src={project.productImg} alt={project.name} className="product-hero-img" />
+              {project.internalLink ? (
+                <Link to={project.internalLink} style={{ display: 'block', cursor: 'pointer' }}>
+                  <img src={project.productImg} alt={project.name} className="product-hero-img" />
+                </Link>
+              ) : (
+                <img src={project.productImg} alt={project.name} className="product-hero-img" />
+              )}
             </m.div>
             <div className="product-content">
               <m.p className="product-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>The Problem</m.p>
@@ -313,7 +320,13 @@ function ProductSection({ project }) {
             </div>
             <div className="product-block block-hero">
               <m.div className="product-hero-wrapper" initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 1, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
-                <img src={project.productImg} alt={project.name} className="product-hero-img" />
+                {project.internalLink ? (
+                  <Link to={project.internalLink} style={{ display: 'block', cursor: 'pointer' }}>
+                    <img src={project.productImg} alt={project.name} className="product-hero-img" />
+                  </Link>
+                ) : (
+                  <img src={project.productImg} alt={project.name} className="product-hero-img" />
+                )}
               </m.div>
             </div>
             <div className="product-block block-works">
@@ -345,16 +358,22 @@ function ProductSection({ project }) {
           </div>
         </div>
 
-        {(project.github || project.liveLink) && (
+        {(project.github || project.liveLink || project.internalLink) && (
           <div className="product-cta-group" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-            {project.liveLink && (
+            {project.internalLink ? (
+              <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
+                <Link to={project.internalLink} className="product-explore-cta">
+                  Explore {project.name} <span className="cta-arrow">→</span>
+                </Link>
+              </m.div>
+            ) : project.liveLink ? (
               <m.a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="product-explore-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
                 Explore {project.name} <span className="cta-arrow">↗</span>
               </m.a>
-            )}
+            ) : null}
             {project.github && (
-              <m.a href={project.github} target="_blank" rel="noopener noreferrer" className="product-explore-cta" style={{ opacity: project.liveLink ? 0.8 : 1 }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                {project.liveLink ? "View Source" : `Explore ${project.name}`} <span className="cta-arrow">→</span>
+              <m.a href={project.github} target="_blank" rel="noopener noreferrer" className="product-explore-cta" style={{ opacity: (project.liveLink || project.internalLink) ? 0.8 : 1 }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
+                {(project.liveLink || project.internalLink) ? "View Source" : `Explore ${project.name}`} <span className="cta-arrow">→</span>
               </m.a>
             )}
           </div>

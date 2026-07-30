@@ -8,6 +8,7 @@ import NotFound from "./components/NotFound";
 // LAZY-LOADED CORE EXPERIENCES
 const Overview = lazy(() => import("./pages/Overview"));
 const Work = lazy(() => import("./pages/Work"));
+const VoltDrive = lazy(() => import("./pages/work/VoltDrive"));
 const Experience = lazy(() => import("./pages/Experience"));
 const Vision = lazy(() => import("./pages/Vision"));
 const Connect = lazy(() => import("./pages/Connect"));
@@ -65,6 +66,7 @@ function App() {
                 {/* 5 Core Experiences */}
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/work" element={<Work />} />
+                <Route path="/work/voltdrive" element={<VoltDrive />} />
                 <Route path="/experience" element={<Experience />} />
                 <Route path="/vision" element={<Vision />} />
                 <Route path="/connect" element={<Connect />} />

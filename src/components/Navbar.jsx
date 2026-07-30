@@ -51,6 +51,7 @@ const MOBILE_NAV = [
 const SEARCH_PAGES = [
   { title: "Overview",              path: "/overview",    keywords: "home about profile introduction" },
   { title: "Products",              path: "/work",        keywords: "projects work portfolio careeros aurabot resume smart leave" },
+  { title: "VoltDrive - EV Experience", path: "/work/voltdrive", keywords: "voltdrive electric vehicle ev automotive showroom frontend key note apple" },
   { title: "Journey",               path: "/experience",  keywords: "experience career timeline internships education" },
   { title: "Vision",                path: "/vision",      keywords: "future goals mission direction roadmap" },
   { title: "Connect",               path: "/connect",     keywords: "contact email message hire collaboration" },
@@ -638,7 +639,8 @@ export default function Navbar() {
   }, [searchQuery]);
 
   const isActive = (path) => location.pathname === path ||
-    (path === "/overview" && (location.pathname === "/" || location.pathname === "/home"));
+    (path === "/overview" && (location.pathname === "/" || location.pathname === "/home")) ||
+    (path === "/work" && location.pathname.startsWith("/work/"));
 
   // Dropdown hover handlers
   const handleItemEnter = (label) => {
@@ -650,7 +652,7 @@ export default function Navbar() {
   };
   const handleDDEnter = () => clearTimeout(ddTimer.current);
 
-  const isDarkPage = location.pathname.startsWith("/insights");
+  const isDarkPage = location.pathname.startsWith("/insights") || location.pathname.startsWith("/work/voltdrive");
 
   const shellClass = [
     "nav-shell",
