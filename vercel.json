@@ -8,9 +8,10 @@
     { "source": "/home", "destination": "/overview", "permanent": true }
   ],
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/work/voltdrive", "destination": "/index.html" },
+    { "source": "/work", "destination": "/index.html" },
+    { "source": "/insights", "destination": "/index.html" },
+    { "source": "/insights/(.*)", "destination": "/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

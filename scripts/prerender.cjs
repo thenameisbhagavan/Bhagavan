@@ -7,15 +7,18 @@ const path = require('path');
 const routes = [
   '/',
   '/overview',
+  '/work',
+  '/work/voltdrive',
   '/experience',
-  '/projects',
-  '/skills',
-  '/credentials',
-  '/innovation',
   '/vision',
+  '/connect',
+  '/innovation',
+  '/credentials',
   '/ecosystem',
   '/resume',
-  '/connect',
+  '/insights',
+  '/projects',
+  '/skills',
   '/contact'
 ];
 
