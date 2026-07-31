@@ -1,0 +1,258 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   GLOBAL WELCOME EXPERIENCE — STYLES
+   Principal Motion Designer & UX Architect Specification
+   ─────────────────────────────────────────────────────────────────────────────
+
+   LAYOUT: Vertical flex column — portrait top-center, text below.
+   No overlap. Both fully visible. Blueprint grid behind everything.
+
+   ENGINEERING CONSTRAINTS:
+   1. Only GPU-composited properties: opacity, transform, filter. No reflow.
+   2. Portrait: smaller than text to keep typography primary (Issue 5).
+   3. Blueprint: 7% opacity with radial mask — engineering identity, not decoration.
+   4. Rule: transform-origin left — draws left→right like a precision pen stroke.
+   5. All font-size values use clamp() for responsive scaling without JS.
+   6. 8pt optical grid governs all vertical spacing (8, 16, 24, 32…).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ── OVERLAY ─────────────────────────────────────────────────────────────── */
+.wl-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  overflow: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  will-change: opacity, filter;
+  pointer-events: auto;
+}
+.wl-overlay.wl-dissolving {
+  pointer-events: none;
+}
+
+/* ── PORTRAIT ────────────────────────────────────────────────────────────── */
+/*
+ * Portrait is a flex item — sits above the text in the column.
+ * Deliberately SMALLER than the typography so text remains primary (Issue 5).
+ * B&W via CSS filter; restores to color in Stage 8 via CSS transition.
+ */
+.wl-portrait-wrap {
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.wl-portrait {
+  /* Sized to stay secondary to typography — editorial portrait, not hero shot */
+  width: clamp(96px, 16vmin, 160px);
+  height: clamp(96px, 16vmin, 160px);
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  will-change: opacity, filter, transform;
+  /* Subtle ring — 1px black at 8% opacity, whisper-thin */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+/* ── BLUEPRINT GRID ──────────────────────────────────────────────────────── */
+/*
+ * Position absolute — behind portrait and text.
+ * 7% opacity — clearly present without decorating.
+ * Radial mask: grid at full strength at center, fades at viewport edges.
+ * Gives the impression of an engineering coordinate system at origin (0,0).
+ */
+.wl-blueprint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.075) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.075) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center center;
+  mask-image: radial-gradient(
+    ellipse 72% 72% at center,
+    black 0%, rgba(0,0,0,0.5) 55%, transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 72% 72% at center,
+    black 0%, rgba(0,0,0,0.5) 55%, transparent 100%
+  );
+  will-change: opacity;
+  z-index: 0;
+}
+
+/* Crosshair at viewport center */
+.wl-crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.wl-crosshair-x {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0,0,0,0.11);
+  transform-origin: left center;   /* grows left → right */
+  will-change: transform;
+}
+.wl-crosshair-y {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(0,0,0,0.11);
+  transform-origin: top center;    /* grows top → bottom */
+  will-change: transform;
+}
+
+/* Precision coordinate tick marks */
+.wl-tick   { position: absolute; background-color: rgba(0,0,0,0.15); }
+.wl-tick-h { width: 1px; height: 7px; top: calc(50% - 3.5px); }
+.wl-tick-v { width: 7px; height: 1px; left: calc(50% - 3.5px); }
+
+/* ── CONTENT STAGE ───────────────────────────────────────────────────────── */
+/*
+ * Flex item — sits below portrait. Text lives on white background at all
+ * times — black typography is always perfectly legible. No scrim needed.
+ */
+.wl-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+  /* Fixed height prevents layout shift when words change */
+  min-height: 112px;
+  will-change: transform, opacity;
+}
+
+/* Word container — fixed height prevents layout shift */
+.wl-word-slot {
+  position: relative;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Stage 4: Narrative editorial words — LARGER than brand for visual punch */
+.wl-word {
+  position: absolute;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: #000000;
+  line-height: 1;
+  white-space: nowrap;
+  will-change: transform, opacity, filter;
+}
+
+/* Stage 5: Brand title — slightly smaller than words for calm confidence */
+.wl-brand {
+  position: absolute;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+  font-size: clamp(24px, 3.2vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.032em;
+  color: #000000;
+  margin: 0;
+  line-height: 1.1;
+  white-space: nowrap;
+  will-change: transform, opacity, filter;
+}
+
+/* ── TAGLINE + RULE ──────────────────────────────────────────────────────── */
+.wl-tagline-wrap {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  min-height: 48px;
+}
+
+/* Stage 6: Tagline — calm, premium, uppercase small caps */
+.wl-tagline {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: clamp(9px, 1.1vw, 11px);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5a5a5a;
+  margin: 0;
+  will-change: opacity, transform;
+}
+
+/*
+ * Stage 7: 1px precision horizontal rule — the signature ending.
+ * transform-origin: left center  →  scaleX 0→1 draws left→right.
+ * Gradient tapers at ends — precise, not harsh.
+ */
+.wl-rule {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0,0,0,0.20) 15%,
+    rgba(0,0,0,0.20) 85%,
+    transparent 100%
+  );
+  transform-origin: left center;
+  will-change: transform, opacity;
+}
+
+/* ── ACCESSIBILITY ───────────────────────────────────────────────────────── */
+.wl-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .wl-overlay      { gap: 20px; }
+  .wl-crosshair    { width: 200px; height: 200px; }
+  .wl-content      { min-height: 96px; padding: 0 16px; }
+  .wl-tagline-wrap { margin-top: 12px; gap: 12px; }
+  .wl-rule         { width: 96px; }
+  .wl-word-slot    { height: 54px; }
+}
+
+/* Short landscape screens */
+@media (max-height: 560px) {
+  .wl-overlay  { gap: 16px; }
+  .wl-portrait { width: clamp(64px, 12vmin, 96px); height: clamp(64px, 12vmin, 96px); }
+}

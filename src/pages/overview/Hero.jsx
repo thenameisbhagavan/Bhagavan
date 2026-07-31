@@ -15,6 +15,29 @@ export default function Hero() {
   const yText = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const opacityHero = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
+  // ── Fix 2 + 4: Layered hero reveal after welcome screen dissolves ─────────
+  //
+  // The welcome screen dispatches 'welcomeComplete' when its dissolve finishes.
+  // Until that event fires, the hero portrait stays at opacity 0 — this creates
+  // the illusion that the loading portrait IS the homepage portrait (Fix 4).
+  //
+  // Cascade order after welcomeComplete:
+  //   Portrait orb  → immediate (opacity 0→1 over 600ms)
+  //   Label         → 190ms delay
+  //   Headline      → 310ms delay
+  //   Description   → 430ms delay
+  //   Founder stmt  → 550ms delay
+  //   CTA buttons   → 660ms delay
+  //   Trust stats   → 760ms delay
+  //
+  const [heroReady, setHeroReady] = useState(false);
+
+  useEffect(() => {
+    const onWelcomeDone = () => setHeroReady(true);
+    window.addEventListener('welcomeComplete', onWelcomeDone);
+    return () => window.removeEventListener('welcomeComplete', onWelcomeDone);
+  }, []);
+
   const nodes = [
     { label: "Resume Intelligence Engine", angle: 0 },
     { label: "GitHub Intelligence Engine", angle: 60 },
@@ -136,11 +159,11 @@ export default function Hero() {
         <m.div 
           style={{ flex: '1 1 550px', maxWidth: '700px', zIndex: 20, y: yText, opacity: opacityHero }}
         >
-          {/* Label */}
-          <m.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          {/* Label — appears 190ms after portrait */}
+          <m.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={{ duration: 0.65, delay: 0.19, ease: [0.16, 1, 0.3, 1] }}
             style={{
               fontSize: '0.75rem',
               fontWeight: 600,
@@ -153,11 +176,11 @@ export default function Hero() {
             AI Systems Engineer &bull; Builder &bull; Researcher
           </m.div>
 
-          {/* Massive Headline */}
-          <m.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          {/* Headline — appears 310ms after portrait */}
+          <m.h1
+            initial={{ opacity: 0, y: 28 }}
+            animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+            transition={{ duration: 0.85, delay: 0.31, ease: [0.16, 1, 0.3, 1] }}
             style={{
               fontSize: 'clamp(3.5rem, 6vw, 6rem)',
               fontWeight: 700,
@@ -170,11 +193,11 @@ export default function Hero() {
             Building The Future<br/>Of Human Potential.
           </m.h1>
 
-          {/* Subheadline */}
-          <m.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          {/* Description — appears 430ms after portrait */}
+          <m.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={{ duration: 0.75, delay: 0.43, ease: [0.16, 1, 0.3, 1] }}
             style={{
               fontSize: 'clamp(1.2rem, 1.8vw, 1.5rem)',
               fontWeight: 400,
@@ -187,11 +210,11 @@ export default function Hero() {
             I build intelligent systems that transform resumes, careers, skills, and human potential into measurable opportunities.
           </m.p>
 
-          {/* Founder Statement */}
-          <m.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          {/* Founder statement — appears 550ms after portrait */}
+          <m.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={{ duration: 0.75, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
             style={{
               fontSize: '1.1rem',
               fontWeight: 500,
@@ -204,11 +227,11 @@ export default function Hero() {
             Creator of CareerOS — an intelligence platform that helps people understand, improve, and accelerate their careers through AI-powered insights.
           </m.p>
 
-          {/* Buttons */}
-          <m.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          {/* CTA Buttons — appears 660ms after portrait */}
+          <m.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={{ duration: 0.7, delay: 0.66, ease: [0.16, 1, 0.3, 1] }}
             style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '60px' }}
           >
             <m.button
@@ -250,11 +273,11 @@ export default function Hero() {
             </m.button>
           </m.div>
 
-          {/* Trust Indicators (Moved to the left column) */}
+          {/* Trust stats — appears last, 760ms after portrait */}
           <m.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={{ duration: 0.7, delay: 0.76, ease: [0.16, 1, 0.3, 1] }}
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
@@ -433,11 +456,20 @@ export default function Hero() {
             })}
           </m.div>
 
-          {/* Central Portrait Orb (Vision Pro Depth Style) */}
+          {/* Central Portrait Orb
+           * Fix 4: Portrait continuity
+           * Starts at opacity:0. When welcomeComplete fires, fades to opacity:1
+           * over 600ms. This creates the illusion that the loading portrait
+           * seamlessly BECOMES the homepage portrait — one continuous image.
+           * No cut. No duplicate. Perfect synchronization.
+           */}
           <m.div
-            initial={{ scale: 0.7, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ scale: 0.92, opacity: 0 }}
+            animate={heroReady
+              ? { scale: 1, opacity: 1 }
+              : { scale: 0.92, opacity: 0 }
+            }
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             style={{
               position: 'relative',
               width: `${portraitSize}px`,

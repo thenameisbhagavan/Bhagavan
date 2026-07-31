@@ -4,6 +4,8 @@ import { AnimatePresence, LayoutGroup, MotionConfig } from "framer-motion";
 import { HelmetProvider } from "react-helmet-async";
 import AppShell from "./AppShell";
 import NotFound from "./components/NotFound";
+import GlobalLoader from "./components/GlobalLoader";
+import useInitialLoad from "./hooks/useInitialLoad";
 
 // LAZY-LOADED CORE EXPERIENCES
 const Overview = lazy(() => import("./pages/Overview"));
@@ -22,16 +24,75 @@ const Resume = lazy(() => import("./pages/Resume"));
 const Insights = lazy(() => import("./pages/Insights"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));
 
-// Minimal Apple-style loader
+// Signature Apple Human Interface Designer editorial blueprint loader for page Suspense fallback
 function PageLoader() {
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center', justifyContent: 'center', background: '#fbfbfd' }}>
-      <div style={{ width: '28px', height: '28px', border: '2px solid rgba(0,0,0,0.05)', borderTopColor: 'rgba(0,0,0,0.6)', borderRadius: '50%', animation: 'spin 0.6s linear infinite' }} />
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-        <span style={{ fontSize: '13px', fontWeight: 600, color: '#1d1d1f', letterSpacing: '-0.01em' }}>TheNameIsBhagavan</span>
-        <span style={{ fontSize: '11px', color: '#86868b', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 500 }}>Building Intelligence...</span>
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 99999,
+        backgroundColor: "#FFFFFF",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
+        userSelect: "none",
+        backgroundImage:
+          "linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px)",
+        backgroundSize: "64px 64px",
+        backgroundPosition: "center center",
+      }}
+    >
+      <div
+        style={{
+          position: "relative",
+          zIndex: 10,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+          padding: "0 24px",
+        }}
+      >
+        <span
+          style={{
+            fontFamily:
+              '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", serif, sans-serif',
+            fontSize: "clamp(36px, 5.5vw, 56px)",
+            fontWeight: 600,
+            letterSpacing: "-0.035em",
+            color: "#000000",
+            lineHeight: 1.1,
+            margin: 0,
+          }}
+        >
+          TheNameIsBhagavan
+        </span>
+        <span
+          style={{
+            marginTop: "20px",
+            fontFamily:
+              '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif',
+            fontSize: "clamp(13px, 1.6vw, 15px)",
+            fontWeight: 500,
+            letterSpacing: "0.07em",
+            textTransform: "uppercase",
+            color: "#666666",
+          }}
+        >
+          Engineering Intelligent Systems.
+        </span>
+        <div
+          style={{
+            marginTop: "22px",
+            width: "160px",
+            height: "1px",
+            backgroundColor: "#000000",
+          }}
+        />
       </div>
-      <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
     </div>
   );
 }
@@ -47,10 +108,22 @@ const ScrollToTop = () => {
 
 function App() {
   const location = useLocation();
+  const { shouldPlay, isComplete, markComplete, prefersReducedMotion } = useInitialLoad(location.pathname);
 
   return (
     <HelmetProvider>
       <MotionConfig reducedMotion="user">
+        {/* ── Welcome Experience — plays on every page load and every navbar click ── */}
+        <AnimatePresence mode="wait">
+          {shouldPlay && !isComplete && (
+            <GlobalLoader
+              key={location.pathname}
+              onComplete={markComplete}
+              prefersReducedMotion={prefersReducedMotion}
+            />
+          )}
+        </AnimatePresence>
+
         <AppShell>
         <ScrollToTop />
         <LayoutGroup>
@@ -60,13 +133,13 @@ function App() {
                 {/* Redirects */}
                 <Route path="/" element={<Navigate to="/overview" replace />} />
                 <Route path="/home" element={<Navigate to="/overview" replace />} />
-                
+
                 {/* SEO-friendly Aliases */}
                 <Route path="/projects" element={<Navigate to="/work" replace />} />
                 <Route path="/skills" element={<Navigate to="/ecosystem" replace />} />
                 <Route path="/contact" element={<Navigate to="/connect" replace />} />
-                
-                {/* 5 Core Experiences */}
+
+                {/* Core Experiences */}
                 <Route path="/overview" element={<Overview />} />
                 <Route path="/work" element={<Work />} />
                 <Route path="/work/careeros" element={<CareerOS />} />
@@ -82,8 +155,8 @@ function App() {
                 <Route path="/resume" element={<Resume />} />
                 <Route path="/insights" element={<Insights />} />
                 <Route path="/insights/:slug" element={<ArticlePage />} />
-                
-                {/* 404 Route */}
+
+                {/* 404 */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </AnimatePresence>
