@@ -94,7 +94,8 @@ const FLAGSHIP_CAREEROS = {
   ],
   technologyDesc: "A full-stack intelligence engine built to process complex career data into actionable paths.",
   impact: "Transforms fragmented career decisions into measurable, continuous growth.",
-  github: `${socialLinks.github.url}/careeros`
+  github: `${socialLinks.github.url}/careeros`,
+  internalLink: "/work/careeros"
 };
 
 const SECONDARY_PROJECTS = [
@@ -135,6 +136,7 @@ const SECONDARY_PROJECTS = [
     technologyDesc: "Powered by vector databases, RAG architectures, and custom short/long-term memory routers.",
     impact: "Demonstrated true conversational persistence across simulated multi-day interactions.",
     github: `${socialLinks.github.url}/auraos`,
+    internalLink: "/work/auraos",
     preTransitionText: "Understanding careers led to understanding people."
   },
   {
@@ -153,6 +155,7 @@ const SECONDARY_PROJECTS = [
     technologyDesc: "A deterministic NLP pipeline built over FastAPI, React, and strict credibility schemas.",
     impact: "Successfully validated complex intelligence reports with deterministic traceability.",
     github: `${socialLinks.github.url}/News-detector`,
+    internalLink: "/work/veritas",
     preTransitionText: "Understanding people demanded trustworthy intelligence."
   },
   {
@@ -194,9 +197,9 @@ const SECONDARY_PROJECTS = [
 ];
 
 export const FLAGSHIP_PROJECTS = [
-  { name: "CareerOS", eyebrow: "Flagship Project", desc: "The intelligence layer for your career trajectory.", img: careerOSImg, link: "/work" },
-  { name: "AuraOS", eyebrow: "Personal Intelligence OS", desc: "Conversational intelligence that understands context.", img: chatImg, link: "/work" },
-  { name: "VERITAS", eyebrow: "Explainable Intelligence Platform", desc: "Data validation and truth extraction engine.", img: fakeImg, link: "/work" }
+  { name: "CareerOS", eyebrow: "Flagship Project", desc: "The intelligence layer for your career trajectory.", img: careerOSImg, link: "/work/careeros" },
+  { name: "AuraOS", eyebrow: "Personal Intelligence OS", desc: "Conversational intelligence that understands context.", img: chatImg, link: "/work/auraos" },
+  { name: "VERITAS", eyebrow: "Explainable Intelligence Platform", desc: "Data validation and truth extraction engine.", img: fakeImg, link: "/work/veritas" }
 ];
 
 // ─── Components ───────────────────────────────────────────────────────────────
@@ -228,7 +231,13 @@ function CareerOSKeynote({ project }) {
 
         <div className="careeros-hero-block">
           <m.div className="careeros-image-wrapper" initial={{ opacity: 0, scale: 0.95, y: 50 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1.2, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
-            <img src={project.productImg} alt={project.name} className="careeros-image" />
+            {project.internalLink ? (
+              <Link to={project.internalLink} style={{ display: 'block', cursor: 'pointer' }}>
+                <img src={project.productImg} alt={project.name} className="careeros-image" />
+              </Link>
+            ) : (
+              <img src={project.productImg} alt={project.name} className="careeros-image" />
+            )}
           </m.div>
         </div>
 
@@ -258,11 +267,20 @@ function CareerOSKeynote({ project }) {
           </div>
         </div>
 
-        {project.github && (
-          <div className="product-block block-explore">
-            <m.a href={project.github} target="_blank" rel="noopener noreferrer" className="product-explore-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Explore {project.name} <span className="cta-arrow">→</span>
-            </m.a>
+        {(project.github || project.internalLink) && (
+          <div className="product-block block-explore" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+            {project.internalLink && (
+              <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <Link to={project.internalLink} className="product-explore-cta">
+                  Explore {project.name} <span className="cta-arrow">→</span>
+                </Link>
+              </m.div>
+            )}
+            {project.github && (
+              <m.a href={project.github} target="_blank" rel="noopener noreferrer" className="product-explore-cta" style={{ opacity: project.internalLink ? 0.8 : 1 }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                {project.internalLink ? "View Source" : `Explore ${project.name}`} <span className="cta-arrow">→</span>
+              </m.a>
+            )}
           </div>
         )}
       </div>

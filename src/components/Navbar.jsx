@@ -652,7 +652,7 @@ export default function Navbar() {
   };
   const handleDDEnter = () => clearTimeout(ddTimer.current);
 
-  const isDarkPage = location.pathname.startsWith("/insights") || location.pathname.startsWith("/work/voltdrive");
+  const isDarkPage = location.pathname.startsWith("/insights") || location.pathname.startsWith("/work/voltdrive") || location.pathname.startsWith("/work/careeros") || location.pathname.startsWith("/work/auraos") || location.pathname.startsWith("/work/veritas");
 
   const shellClass = [
     "nav-shell",
