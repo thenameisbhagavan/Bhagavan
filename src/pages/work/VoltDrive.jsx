@@ -57,14 +57,14 @@ export default function VoltDrive() {
     "author": {
       "@type": "Person",
       "name": "Gopala Josyula Siva Satya Sai Bhagavan",
-      "url": "https://thenameisbhagavan.vercel.app/"
+      "url": "https://thenameisbhagavan.in/"
     },
-    "url": "https://thenameisbhagavan.vercel.app/work/voltdrive",
+    "url": "https://thenameisbhagavan.in/work/voltdrive",
     "sameAs": [
       "https://github.com/thenameisbhagavan/voltdrive",
       "https://voltdrive-showcase.vercel.app/"
     ],
-    "image": "https://thenameisbhagavan.vercel.app/assets/ev.png"
+    "image": "https://thenameisbhagavan.in/assets/ev.png"
   };
 
   return (

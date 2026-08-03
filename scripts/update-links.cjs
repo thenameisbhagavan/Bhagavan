@@ -14,7 +14,10 @@ const replacements = [
   { regex: /g\.sivasatyasaibhagavan@gmail\.com/g, replacement: 'thenameisbhagavan@gmail.com' },
   { regex: /g\.sivasatysaibhagavan@gmail\.com/g, replacement: 'thenameisbhagavan@gmail.com' },
   { regex: /gsssbhagavan@gmail\.com/g, replacement: 'thenameisbhagavan@gmail.com' },
-  { regex: /security@thenameisbhagavan\.vercel\.app/g, replacement: 'thenameisbhagavan@gmail.com' }, // update SEO.jsx email too if any
+  { regex: /security@thenameisbhagavan\.(vercel\.app|in)/g, replacement: 'thenameisbhagavan@gmail.com' }, // update SEO.jsx email too if any
+  
+  // Domain replacements
+  { regex: /https:\/\/thenameisbhagavan\.vercel\.app/g, replacement: 'https://thenameisbhagavan.in' },
   
   // LinkedIn replacements
   { regex: /https:\/\/www\.linkedin\.com\/in\/gsssbhagavan\/?/g, replacement: 'https://www.linkedin.com/in/thenameisbhagavan/' },

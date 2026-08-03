@@ -46,7 +46,7 @@ export default function Veritas() {
     "@graph": [
       {
         "@type": "SoftwareApplication",
-        "@id": "https://thenameisbhagavan.vercel.app/work/veritas#software",
+        "@id": "https://thenameisbhagavan.in/work/veritas#software",
         "name": "VERITAS",
         "applicationCategory": "AI Explainability Platform",
         "operatingSystem": "Web, Cloud, Enterprise",
@@ -54,7 +54,7 @@ export default function Veritas() {
         "creator": {
           "@type": "Person",
           "name": "TheNameIsBhagavan",
-          "url": "https://thenameisbhagavan.vercel.app"
+          "url": "https://thenameisbhagavan.in"
         },
         "offers": {
           "@type": "Offer",
@@ -69,19 +69,19 @@ export default function Veritas() {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://thenameisbhagavan.vercel.app"
+            "item": "https://thenameisbhagavan.in"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Work",
-            "item": "https://thenameisbhagavan.vercel.app/work"
+            "item": "https://thenameisbhagavan.in/work"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": "VERITAS",
-            "item": "https://thenameisbhagavan.vercel.app/work/veritas"
+            "item": "https://thenameisbhagavan.in/work/veritas"
           }
         ]
       },
@@ -133,15 +133,15 @@ export default function Veritas() {
           name="description"
           content="Transform opaque AI decisions into transparent, explainable, evidence-backed intelligence with auditable provenance and credibility scoring."
         />
-        <link rel="canonical" href="https://thenameisbhagavan.vercel.app/work/veritas" />
+        <link rel="canonical" href="https://thenameisbhagavan.in/work/veritas" />
         <meta property="og:title" content="VERITAS — The Explainable Intelligence Platform | Bhagavan" />
         <meta
           property="og:description"
           content="Transform opaque AI decisions into transparent, explainable, evidence-backed intelligence with auditable provenance and credibility scoring."
         />
-        <meta property="og:url" content="https://thenameisbhagavan.vercel.app/work/veritas" />
+        <meta property="og:url" content="https://thenameisbhagavan.in/work/veritas" />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content="https://thenameisbhagavan.vercel.app/og-veritas.png" />
+        <meta property="og:image" content="https://thenameisbhagavan.in/og-veritas.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="VERITAS — The Explainable Intelligence Platform" />
         <meta

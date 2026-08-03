@@ -75,14 +75,14 @@ export default function ArticlePage() {
             "author": {
               "@type": "Person",
               "name": article.author,
-              "url": "https://thenameisbhagavan.vercel.app"
+              "url": "https://thenameisbhagavan.in"
             },
             "publisher": {
               "@type": "Organization",
               "name": "Bhagavan",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://thenameisbhagavan.vercel.app/logo.png"
+                "url": "https://thenameisbhagavan.in/logo.png"
               }
             },
             "datePublished": article.publishedDate,

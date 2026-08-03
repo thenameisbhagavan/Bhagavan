@@ -48,7 +48,7 @@ export default function CareerOS() {
   const heroOpacity = useTransform(scrollY, [0, 600], [1, 0.15]);
 
   // Production-Grade Enterprise JSON-LD Structured Data
-  const canonicalUrl = "https://thenameisbhagavan.vercel.app/work/careeros";
+  const canonicalUrl = "https://thenameisbhagavan.in/work/careeros";
 
   const softwareApplicationSchema = {
     "@context": "https://schema.org",
@@ -63,7 +63,7 @@ export default function CareerOS() {
       "@type": "Person",
       "name": "Gopala Josyula Siva Satya Sai Bhagavan",
       "alternateName": "TheNameIsBhagavan",
-      "url": "https://thenameisbhagavan.vercel.app/"
+      "url": "https://thenameisbhagavan.in/"
     },
     "creator": {
       "@type": "Person",
@@ -72,14 +72,14 @@ export default function CareerOS() {
     "publisher": {
       "@type": "Organization",
       "name": "TheNameIsBhagavan",
-      "url": "https://thenameisbhagavan.vercel.app/"
+      "url": "https://thenameisbhagavan.in/"
     },
     "url": canonicalUrl,
     "sameAs": [
       "https://github.com/thenameisbhagavan/Career-Path-Recommendation",
       "https://github.com/thenameisbhagavan"
     ],
-    "image": "https://thenameisbhagavan.vercel.app/assets/careeros-new.jpg",
+    "image": "https://thenameisbhagavan.in/assets/careeros-new.jpg",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -155,7 +155,7 @@ export default function CareerOS() {
   const imageObjectSchema = {
     "@context": "https://schema.org",
     "@type": "ImageObject",
-    "contentUrl": "https://thenameisbhagavan.vercel.app/assets/careeros-new.jpg",
+    "contentUrl": "https://thenameisbhagavan.in/assets/careeros-new.jpg",
     "description": "CareerOS Dashboard and Career Intelligence Operating System Showcase",
     "name": "CareerOS Product Image",
     "author": {

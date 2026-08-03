@@ -1,7 +1,7 @@
 /* TEAM */
 Engineer: Bhagavan
 Role: AI Engineer & Full Stack Developer
-Site: https://thenameisbhagavan.vercel.app
+Site: https://thenameisbhagavan.in
 
 /* SITE */
 Last update: 2026-07-12

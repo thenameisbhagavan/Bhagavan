@@ -37,7 +37,7 @@ export default function AuraOS() {
   }, []);
 
   /* Enterprise Technical SEO & Structured Data JSON-LD */
-  const siteUrl = "https://thenameisbhagavan.vercel.app";
+  const siteUrl = "https://thenameisbhagavan.in";
   const canonicalUrl = `${siteUrl}/work/auraos`;
 
   const structuredDataGraph = {

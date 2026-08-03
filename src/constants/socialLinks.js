@@ -14,7 +14,7 @@ export const socialLinks = {
   portfolio: {
     platform: "Portfolio",
     handle: "TheNameIsBhagavan",
-    url: "https://thenameisbhagavan.vercel.app",
+    url: "https://thenameisbhagavan.in",
     desc: "The digital ecosystem.",
   },
   email: {

@@ -22,7 +22,7 @@ const routes = [
   '/contact'
 ];
 
-const hostname = 'https://thenameisbhagavan.vercel.app';
+const hostname = 'https://thenameisbhagavan.in';
 const lastmod = new Date().toISOString().split('T')[0];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

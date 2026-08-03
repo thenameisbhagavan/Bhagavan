@@ -10,7 +10,7 @@ const SEO = ({
   image = "/og-image.jpg" 
 }) => {
   const { pathname } = useLocation();
-  const canonicalUrl = `https://thenameisbhagavan.vercel.app${pathname === '/' ? '' : pathname}`;
+  const canonicalUrl = `https://thenameisbhagavan.in${pathname === '/' ? '' : pathname}`;
   
   const keywords = "TheNameIsBhagavan, Bhagavan, Bhagavan AI Engineer, AI Engineer, Artificial Intelligence Engineer, Machine Learning Engineer, Deep Learning Engineer, Intelligent Systems Engineer, Agentic AI, Full Stack Developer, React Developer, Python Developer, MERN Stack Developer, Software Engineer, CareerOS, AuraOS, Portfolio, Developer Portfolio, India, Andhra Pradesh, JNTUK, Ramachandra College of Engineering";
 
@@ -20,8 +20,8 @@ const SEO = ({
     "@type": "Person",
     "name": "Gopala Josyula Siva Satya Sai Bhagavan",
     "alternateName": "TheNameIsBhagavan",
-    "url": "https://thenameisbhagavan.vercel.app/",
-    "image": "https://thenameisbhagavan.vercel.app/og-image.jpg",
+    "url": "https://thenameisbhagavan.in/",
+    "image": "https://thenameisbhagavan.in/og-image.jpg",
     "jobTitle": "AI Engineer",
     "description": "AI Engineer specializing in Intelligent Systems, Agentic AI, Machine Learning, Deep Learning, Full Stack Development, AI Products, and Software Engineering.",
     "email": "thenameisbhagavan@gmail.com",
@@ -55,14 +55,14 @@ const SEO = ({
       "@type": "Person",
       "name": "Gopala Josyula Siva Satya Sai Bhagavan"
     },
-    "url": "https://thenameisbhagavan.vercel.app/"
+    "url": "https://thenameisbhagavan.in/"
   };
 
   // WebSite Schema
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "url": "https://thenameisbhagavan.vercel.app/",
+    "url": "https://thenameisbhagavan.in/",
     "name": "TheNameIsBhagavan",
     "publisher": {
       "@type": "Organization",
@@ -70,7 +70,7 @@ const SEO = ({
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://thenameisbhagavan.vercel.app/search?q={search_term_string}",
+      "target": "https://thenameisbhagavan.in/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -94,14 +94,14 @@ const SEO = ({
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://thenameisbhagavan.vercel.app/"
+        "item": "https://thenameisbhagavan.in/"
       }
     ] : [
       {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://thenameisbhagavan.vercel.app/"
+        "item": "https://thenameisbhagavan.in/"
       },
       ...pathnames.map((value, index) => {
         const to = `/${pathnames.slice(0, index + 1).join('/')}`;
@@ -109,7 +109,7 @@ const SEO = ({
           "@type": "ListItem",
           "position": index + 2,
           "name": value.charAt(0).toUpperCase() + value.slice(1),
-          "item": `https://thenameisbhagavan.vercel.app${to}`
+          "item": `https://thenameisbhagavan.in${to}`
         };
       })
     ]
@@ -135,7 +135,7 @@ const SEO = ({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="TheNameIsBhagavan" />
-      <meta property="og:image" content={`https://thenameisbhagavan.vercel.app${image}`} />
+      <meta property="og:image" content={`https://thenameisbhagavan.in${image}`} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:type" content="image/jpeg" />
@@ -144,7 +144,7 @@ const SEO = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`https://thenameisbhagavan.vercel.app${image}`} />
+      <meta name="twitter:image" content={`https://thenameisbhagavan.in${image}`} />
       <meta name="twitter:creator" content="@nameisbhagavan" />
 
       {/* Structured Data (JSON-LD) */}

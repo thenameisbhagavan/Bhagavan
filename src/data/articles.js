@@ -31,7 +31,7 @@ export const ARTICLES = [
     heroImage: voltDriveImg,
     seoTitle: 'Engineering VoltDrive: Premium Automotive UI | Bhagavan',
     seoDescription: 'An engineering deep dive into building a premium automotive experience using React, Vite, and Framer Motion.',
-    canonicalUrl: 'https://thenameisbhagavan.vercel.app/insights/engineering-voltdrive',
+    canonicalUrl: 'https://thenameisbhagavan.in/insights/engineering-voltdrive',
     markdownContent: voltdriveMd
   },
   {
@@ -50,7 +50,7 @@ export const ARTICLES = [
     heroImage: auraOsImg,
     seoTitle: 'Building AuraOS: Personal Intelligence OS | Bhagavan',
     seoDescription: 'An engineering deep dive into the creation of AuraOS and intelligent agent orchestration.',
-    canonicalUrl: 'https://thenameisbhagavan.vercel.app/insights/building-auraos-personal-intelligence',
+    canonicalUrl: 'https://thenameisbhagavan.in/insights/building-auraos-personal-intelligence',
     markdownContent: auraosMd
   },
   {
@@ -69,7 +69,7 @@ export const ARTICLES = [
     heroImage: careerOsImg,
     seoTitle: 'How I Built CareerOS | AI Engineering Insights',
     seoDescription: 'Discover the architecture, engineering decisions, and AI integration strategies behind CareerOS.',
-    canonicalUrl: 'https://thenameisbhagavan.vercel.app/insights/how-i-built-careeros',
+    canonicalUrl: 'https://thenameisbhagavan.in/insights/how-i-built-careeros',
     markdownContent: careerosMd
   },
   {
@@ -88,7 +88,7 @@ export const ARTICLES = [
     heroImage: aiSysImg,
     seoTitle: 'Designing AI Systems with Context Memory (RAG)',
     seoDescription: 'Technical breakdown of implementing RAG and context retention in generative AI systems.',
-    canonicalUrl: 'https://thenameisbhagavan.vercel.app/insights/designing-ai-systems-remember-context',
+    canonicalUrl: 'https://thenameisbhagavan.in/insights/designing-ai-systems-remember-context',
     markdownContent: contextSystemsMd
   },
   {
@@ -107,7 +107,7 @@ export const ARTICLES = [
     heroImage: seoImg,
     seoTitle: 'React SEO Optimization Strategies | Bhagavan Insights',
     seoDescription: 'Learn how to optimize a React Vite SPA for Google Search using JSON-LD, semantic HTML, and metadata.',
-    canonicalUrl: 'https://thenameisbhagavan.vercel.app/insights/optimizing-portfolio-google-search',
+    canonicalUrl: 'https://thenameisbhagavan.in/insights/optimizing-portfolio-google-search',
     markdownContent: portfolioSeoMd
   },
   {
@@ -125,7 +125,7 @@ export const ARTICLES = [
     assetType: 'NeuralNetwork', // Maps to custom SVG/CSS visualizer
     seoTitle: 'React and Flask Full Stack AI Applications',
     seoDescription: 'Guide to building full-stack AI platforms using React for the frontend and Flask for the machine learning backend.',
-    canonicalUrl: 'https://thenameisbhagavan.vercel.app/insights/building-production-ai-react-flask',
+    canonicalUrl: 'https://thenameisbhagavan.in/insights/building-production-ai-react-flask',
     markdownContent: reactFlaskAiMd
   },
   {
@@ -143,7 +143,7 @@ export const ARTICLES = [
     assetType: 'LiquidGlass', // Maps to custom liquid glass gradient
     seoTitle: 'My Journey: From Student to AI Engineer | Bhagavan',
     seoDescription: 'Lessons learned, technologies mastered, and the mindset shift required to become a production AI engineer.',
-    canonicalUrl: 'https://thenameisbhagavan.vercel.app/insights/from-student-to-ai-engineer',
+    canonicalUrl: 'https://thenameisbhagavan.in/insights/from-student-to-ai-engineer',
     markdownContent: engineeringJourneyMd
   }
 ];

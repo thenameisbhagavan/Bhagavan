@@ -60,7 +60,7 @@ export default function Insights() {
       <Helmet>
         <title>TheNameIsBhagavan | Insights</title>
         <meta name="description" content="Engineering deep dives, architecture patterns, and lessons learned from building production AI systems." />
-        <link rel="canonical" href="https://thenameisbhagavan.vercel.app/insights" />
+        <link rel="canonical" href="https://thenameisbhagavan.in/insights" />
       </Helmet>
 
       {/* SECTION 1: 100vh Liquid Hero */}
