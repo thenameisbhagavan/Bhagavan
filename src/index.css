@@ -4,6 +4,7 @@
    144Hz PERFORMANCE ENGINE — imported first for cascade priority
    ═══════════════════════════════════════════════════════════ */
 @import "./styles/performance.css";
+@import "./styles/AppleMotionSystem.css";
 
 /* ═══════════════════════════════════════════════════════════
    GLOBAL RESET & BASE — APPLE TYPOGRAPHY SYSTEM

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { m } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight, ArrowDown, ArrowUpRight } from "lucide-react";
 
 import "../../styles/Veritas.css";
 import veritasHeroImg from "../../assets/fake.jpg";
@@ -218,7 +218,16 @@ export default function Veritas() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.85, delay: 0.36, ease }}
             >
-              <a href="#pipeline" className="vrt-btn-primary">
+              <a
+                href="https://veritas-thenameisbhagavan.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="vrt-btn-primary"
+                aria-label="Visit VERITAS Live Demo"
+              >
+                Live Demo <ArrowUpRight size={18} />
+              </a>
+              <a href="#pipeline" className="vrt-btn-secondary" aria-label="Explore VERITAS system architecture">
                 Explore Architecture
                 <ArrowRight size={18} />
               </a>
@@ -227,6 +236,7 @@ export default function Veritas() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="vrt-btn-secondary"
+                aria-label="View VERITAS source code on GitHub"
               >
                 Inspect Source Code
               </a>

@@ -3,7 +3,6 @@ import path from 'path';
 
 const routes = [
   '/',
-  '/overview',
   '/work',
   '/work/voltdrive',
   '/work/careeros',
@@ -33,7 +32,7 @@ ${routes
     <loc>${hostname}${route}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>${route === '/' || route === '/overview' ? '1.0' : '0.8'}</priority>
+    <priority>${route === '/' ? '1.0' : '0.8'}</priority>
   </url>`
   )
   .join('\n')}

@@ -62,7 +62,7 @@ export default function VoltDrive() {
     "url": "https://thenameisbhagavan.in/work/voltdrive",
     "sameAs": [
       "https://github.com/thenameisbhagavan/voltdrive",
-      "https://voltdrive-showcase.vercel.app/"
+      "https://voltdrive-thenameisbhagavan.vercel.app/"
     ],
     "image": "https://thenameisbhagavan.in/assets/ev.png"
   };
@@ -137,11 +137,12 @@ export default function VoltDrive() {
                 transition={{ duration: 1.2, delay: 0.3, ease }}
               >
                 <a
-                  href="https://voltdrive-showcase.vercel.app/"
+                  href="https://voltdrive-thenameisbhagavan.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="vd-cta-btn vd-btn-primary"
                   style={{ marginTop: 0 }}
+                  aria-label="Experience VoltDrive Live Demo"
                 >
                   Explore Showcase Live <ArrowUpRight size={18} />
                 </a>
@@ -151,6 +152,7 @@ export default function VoltDrive() {
                   rel="noopener noreferrer"
                   className="vd-cta-btn vd-btn-dark"
                   style={{ marginTop: 0 }}
+                  aria-label="View VoltDrive source code on GitHub"
                 >
                   <Github size={18} /> Inspect Engineering <ArrowRight size={18} />
                 </a>
@@ -325,10 +327,11 @@ export default function VoltDrive() {
                 Explore the production-deployed interactive VoltDrive showcase. Experience the Framer Motion choreography and responsive architecture live.
               </p>
               <a
-                href="https://voltdrive-showcase.vercel.app/"
+                href="https://voltdrive-thenameisbhagavan.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="vd-cta-btn vd-btn-primary"
+                aria-label="Experience VoltDrive Live Demo"
               >
                 Explore VoltDrive Live <ArrowUpRight size={18} />
               </a>
@@ -363,6 +366,7 @@ export default function VoltDrive() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="vd-cta-btn vd-btn-dark"
+                aria-label="View VoltDrive source code on GitHub"
               >
                 <Github size={18} /> View Source Code <ArrowUpRight size={18} />
               </a>

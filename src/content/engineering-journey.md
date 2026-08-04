@@ -29,3 +29,9 @@ I realized early on that my resume alone wouldn't speak for my abilities. I need
 The release of GPT-3 changed everything. I shifted my entire focus toward Generative AI, RAG architectures, and intelligent agents. I stopped thinking of software as static logical loops and started architecting systems that could reason, remember context, and execute workflows autonomously.
 
 To any student reading this: stop building to-do apps. Build systems that solve real problems, deploy them to the cloud, and document the architecture. That is how you become an engineer.
+
+---
+
+Explore the products born from this journey:
+
+**[Open CareerOS →](https://careeros-thenameisbhagavan.vercel.app/)** · **[Launch AuraOS →](https://aura-os-thenameisbhagavan.vercel.app/)** · **[Explore VERITAS →](https://veritas-thenameisbhagavan.vercel.app/)** · **[Experience VoltDrive →](https://voltdrive-thenameisbhagavan.vercel.app/)**

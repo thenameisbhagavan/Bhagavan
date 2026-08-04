@@ -6,7 +6,6 @@ const path = require('path');
 // Defined directly from the sitemap generator
 const routes = [
   '/',
-  '/overview',
   '/work',
   '/work/voltdrive',
   '/work/careeros',

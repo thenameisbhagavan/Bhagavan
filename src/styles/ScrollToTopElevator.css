@@ -1,0 +1,141 @@
+/* ==========================================================================
+   APPLE 2026 HUMAN INTERFACE SYSTEM - VISIONOS SCROLL ELEVATOR
+   ========================================================================== */
+
+.apple-scroll-elevator {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 99990;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+@media (max-width: 767px) {
+  .apple-scroll-elevator {
+    bottom: 24px;
+    right: 20px;
+  }
+}
+
+.scroll-elevator-wrapper {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .scroll-elevator-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Circular SVG Progress Ring */
+.scroll-progress-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  pointer-events: none;
+  overflow: visible;
+}
+
+.scroll-progress-ring circle {
+  transition: stroke-dashoffset 0.15s ease-out;
+}
+
+/* Apple 2026 High-Contrast Floating Elevator Button */
+.scroll-elevator-btn {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #1d1d1f;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.22),
+    0 4px 12px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: 
+    background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 767px) {
+  .scroll-elevator-btn {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* Ambient blue glow under the button */
+.scroll-elevator-glow {
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 113, 227, 0.55) 0%, transparent 70%);
+  filter: blur(14px);
+  opacity: 0.7;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Hover & Active States */
+.apple-scroll-elevator:hover .scroll-elevator-btn {
+  background: #000000;
+  box-shadow: 
+    0 14px 38px rgba(0, 0, 0, 0.3),
+    0 6px 16px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.apple-scroll-elevator:hover .scroll-elevator-glow {
+  opacity: 1;
+}
+
+.apple-scroll-elevator:active .scroll-elevator-btn {
+  background: #333336;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+/* Arrow Icon Motion */
+.scroll-elevator-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-scroll-elevator:hover .scroll-elevator-icon {
+  transform: translateY(-3px);
+}
+
+/* Dark Mode adaptation */
+:root[data-theme="dark"] .scroll-elevator-btn,
+.apple-overview[data-theme="dark"] .scroll-elevator-btn {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #1d1d1f;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}

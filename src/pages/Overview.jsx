@@ -89,9 +89,9 @@ export default function Overview() {
   return (
     <>
       <SEO 
-        title="Bhagavan | AI Engineer & Full Stack Developer Portfolio"
-        description="Explore the portfolio of Bhagavan, an AI Engineer specializing in Artificial Intelligence, Machine Learning, Deep Learning, and Full Stack Development."
-        keywords="AI Engineer, Artificial Intelligence, Machine Learning, Deep Learning, NLP, Generative AI, Full Stack Developer, Python, React, Portfolio"
+        title="Bhagavan | Engineering the 2026 Intelligence Ecosystem"
+        description="Explore the portfolio of Bhagavan — architecting an interconnected ecosystem of intelligent software: CareerOS, AuraOS, VERITAS, and VoltDrive."
+        keywords="AI Engineer, Artificial Intelligence, CareerOS, AuraOS, VERITAS, VoltDrive, Machine Learning, Full Stack Developer, React, Portfolio"
       />
     <div className="apple-overview">
       {/* Background Noise overlay */}
@@ -113,27 +113,85 @@ export default function Overview() {
           {/* Eyebrow */}
           <m.p className="phi-eyebrow" variants={fadeUp} style={{ opacity: elementsOpacity }}>
             <span className="phi-eyebrow-dot" />
-            AI • SOFTWARE • PRODUCT ENGINEERING
+            FLAGSHIP ECOSYSTEM • AI &amp; PRODUCT ENGINEERING
           </m.p>
 
           {/* Headline */}
           <m.div style={{ y: headlineY }}>
             <h1 className="phi-headline">
-              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: appleEase }}>Building</m.span>
-              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3, ease: appleEase }}>Intelligent</m.span>
-              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5, ease: appleEase }}>Systems.</m.span>
+              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: appleEase }}>Engineering the</m.span>
+              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3, ease: appleEase }}>Intelligence</m.span>
+              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5, ease: appleEase }}>Ecosystem.</m.span>
             </h1>
           </m.div>
 
           {/* Description */}
-          <m.p className="phi-description" variants={fadeUp} style={{ opacity: elementsOpacity }}>
-            I build AI-powered products, intelligent software systems, and engineering experiences designed to solve meaningful real-world problems.
+          <m.p className="phi-description" variants={fadeUp} style={{ opacity: elementsOpacity, maxWidth: '640px' }}>
+            Architecting an interconnected ecosystem of production-grade intelligence—from deterministic career intelligence (<span style={{ color: '#1d1d1f', fontWeight: 500 }}>CareerOS</span>) and persistent conversational memory (<span style={{ color: '#1d1d1f', fontWeight: 500 }}>AuraOS</span>) to explainable AI systems (<span style={{ color: '#1d1d1f', fontWeight: 500 }}>VERITAS</span>) and cinematic automotive experiences (<span style={{ color: '#1d1d1f', fontWeight: 500 }}>VoltDrive</span>).
           </m.p>
+
+          {/* Apple 2026 Keynote Ecosystem Pills Bar */}
+          <m.div 
+            variants={fadeUp} 
+            style={{ 
+              opacity: elementsOpacity, 
+              display: 'flex', 
+              gap: '10px', 
+              flexWrap: 'wrap', 
+              marginBottom: '36px',
+              maxWidth: '640px'
+            }}
+          >
+            {[
+              { name: "CareerOS", tag: "Career Intelligence", url: "https://careeros-thenameisbhagavan.vercel.app/" },
+              { name: "AuraOS", tag: "Personal OS", url: "https://aura-os-thenameisbhagavan.vercel.app/" },
+              { name: "VERITAS", tag: "Explainable AI", url: "https://veritas-thenameisbhagavan.vercel.app/" },
+              { name: "VoltDrive", tag: "EV Showroom", url: "https://voltdrive-thenameisbhagavan.vercel.app/" }
+            ].map((item, idx) => (
+              <a
+                key={idx}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Launch ${item.name} (${item.tag})`}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '8px 14px',
+                  borderRadius: '980px',
+                  background: 'rgba(0, 0, 0, 0.04)',
+                  border: '1px solid rgba(0, 0, 0, 0.08)',
+                  fontSize: '13px',
+                  fontWeight: 500,
+                  color: '#1d1d1f',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(0, 102, 204, 0.08)';
+                  e.currentTarget.style.borderColor = 'rgba(0, 102, 204, 0.25)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 102, 204, 0.12)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(0, 0, 0, 0.04)';
+                  e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.08)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <span>{item.name}</span>
+                <span style={{ color: '#86868b', fontSize: '12px', fontWeight: 400 }}>• {item.tag}</span>
+                <span style={{ color: '#0066cc', fontSize: '11px', marginLeft: '2px' }}>↗</span>
+              </a>
+            ))}
+          </m.div>
 
           {/* CTAs */}
           <m.div className="phi-ctas" variants={fadeUp} style={{ opacity: elementsOpacity, display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-            <a href="/work" className="phi-cta-primary">Explore CareerOS</a>
-            <a href="/work" className="phi-cta-secondary">View Products</a>
+            <a href="/work" className="phi-cta-primary apple-pressable">Explore The Ecosystem</a>
+            <a href="#products" onClick={(e) => { e.preventDefault(); const el = document.querySelector('.product-fullscreen'); if (el) el.scrollIntoView({ behavior: 'smooth' }); else window.location.href = '/work'; }} className="phi-cta-secondary apple-pressable">View All Products &#8250;</a>
           </m.div>
 
           {/* Minimal Social Icons */}
@@ -162,7 +220,7 @@ export default function Overview() {
           style={{ y: portraitY, opacity: elementsOpacity }}
         >
           <div className="portrait-glow"></div>
-          <div className="portrait-card">
+          <div className="portrait-card apple-magnetic-card">
             <img
               src={profileHeroImg}
               alt="Bhagavan — Full Stack AI Engineer & Product Builder"
@@ -180,15 +238,15 @@ export default function Overview() {
         <div className="overview-strip-grid">
           <div className="overview-strip-item">
             <h4>Current Role</h4>
-            <p>AI Engineer</p>
+            <p>AI Engineer &amp; Full Stack Builder</p>
           </div>
           <div className="overview-strip-item">
             <h4>Current Mission</h4>
-            <p>Building intelligent systems that solve real-world problems.</p>
+            <p>Architecting an interconnected ecosystem of intelligent software and cinematic web products.</p>
           </div>
           <div className="overview-strip-item">
             <h4>Current Focus</h4>
-            <p>CareerOS, Agentic AI, LLMs, Engineering Systems</p>
+            <p>CareerOS • AuraOS • VERITAS • VoltDrive • AI Systems</p>
           </div>
         </div>
 
@@ -266,8 +324,8 @@ export default function Overview() {
         {[
           "CareerOS",
           "AuraOS",
-          "Human Potential",
-          "Intelligence."
+          "VERITAS",
+          "VoltDrive"
         ].map((word, i) => (
           <div key={word} className="sticky-stack-item bg-dark">
             <m.div
@@ -342,7 +400,7 @@ export default function Overview() {
         {FLAGSHIP_PROJECTS.map((product, i) => (
           <div key={product.name} className="product-fullscreen">
             <m.div
-              className="product-image-large"
+              className="product-image-large apple-magnetic-card"
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, ease: appleEase }}
@@ -375,9 +433,12 @@ export default function Overview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.4, ease: appleEase }}
                 viewport={{ once: true }}
-                style={{ marginTop: '24px' }}
+                style={{ marginTop: '24px', display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}
               >
-                <a href={product.link} className="phi-cta-ghost" style={{ fontSize: '18px' }}>Explore Product &#8250;</a>
+                <a href={product.link} className="phi-cta-ghost apple-pressable apple-underline-slide" style={{ fontSize: '18px' }}>Explore Project &#8250;</a>
+                {product.live && (
+                  <a href={product.live} target="_blank" rel="noopener noreferrer" className="phi-cta-ghost apple-pressable apple-underline-slide" style={{ fontSize: '18px' }} aria-label={`Visit ${product.name} Live Demo`}>Live Demo ↗</a>
+                )}
               </m.div>
             </div>
           </div>
@@ -639,7 +700,7 @@ export default function Overview() {
       {/* =========================================
           SECTION 10: CLOSING
           ========================================= */}
-      <div className="bg-light cinematic-block" style={{ flexDirection: 'column' }}>
+      <div className="bg-light" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '12vh 5vw 4vh 5vw' }}>
         <m.div
           className="keynote-text-huge text-center"
           initial={{ opacity: 0, y: 30 }}

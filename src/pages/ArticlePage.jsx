@@ -19,7 +19,8 @@ export default function ArticlePage() {
 
   useEffect(() => {
     if (!article) return;
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    const timer = setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }), 50);
 
     // Generate TOC
     const elements = Array.from(document.querySelectorAll('.doc-content h2, .doc-content h3'));
@@ -126,6 +127,25 @@ export default function ArticlePage() {
           <ReactMarkdown 
             remarkPlugins={[remarkGfm]} 
             rehypePlugins={[rehypeHighlight]}
+            components={{
+              a: ({ href, children, ...props }) => {
+                const isExternal = href && (href.startsWith('http') || href.startsWith('//'));
+                if (isExternal) {
+                  return (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: '#2997ff', fontWeight: 500 }}
+                      {...props}
+                    >
+                      {children}
+                    </a>
+                  );
+                }
+                return <a href={href} {...props}>{children}</a>;
+              }
+            }}
           >
             {article.markdownContent}
           </ReactMarkdown>

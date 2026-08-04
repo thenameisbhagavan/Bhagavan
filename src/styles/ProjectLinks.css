@@ -1,0 +1,160 @@
+/* =========================================
+   ProjectLinks — Reusable Button Group
+   Three variants: full, compact, inline
+   ========================================= */
+
+.project-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ── Base Button ── */
+.project-links-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'SF Pro Display', -apple-system, system-ui, sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+}
+
+.project-links-btn:focus-visible {
+  outline: 2px solid #2997ff;
+  outline-offset: 2px;
+}
+
+/* =========================================
+   Variant: Full (default)
+   Used in Work page, project footers
+   ========================================= */
+.project-links-full .project-links-btn {
+  padding: 14px 28px;
+  border-radius: 980px;
+  font-size: 0.95rem;
+}
+
+.project-links-full .project-links-explore {
+  background: #2997ff;
+  color: #ffffff;
+}
+.project-links-full .project-links-explore:hover {
+  background: #0077ed;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(41, 151, 255, 0.3);
+}
+
+.project-links-full .project-links-live {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f5f5f7;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.project-links-full .project-links-live:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.project-links-full .project-links-github {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.project-links-full .project-links-github:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f5f5f7;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   Variant: Compact
+   Used in cards, Overview sections
+   ========================================= */
+.project-links-compact .project-links-btn {
+  padding: 10px 20px;
+  border-radius: 980px;
+  font-size: 0.85rem;
+}
+
+.project-links-compact .project-links-explore {
+  background: #2997ff;
+  color: #ffffff;
+}
+.project-links-compact .project-links-explore:hover {
+  background: #0077ed;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(41, 151, 255, 0.25);
+}
+
+.project-links-compact .project-links-live {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f5f5f7;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.project-links-compact .project-links-live:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.project-links-compact .project-links-github {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+}
+.project-links-compact .project-links-github:hover {
+  color: #f5f5f7;
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   Variant: Inline
+   Used in articles, contextual mentions
+   ========================================= */
+.project-links-inline {
+  display: inline-flex;
+  gap: 16px;
+}
+
+.project-links-inline .project-links-btn {
+  padding: 0;
+  background: transparent;
+  color: #2997ff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 0;
+}
+
+.project-links-inline .project-links-btn:hover {
+  color: #0077ed;
+}
+
+.project-links-inline .project-links-btn:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.project-links-inline .project-links-btn svg {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================================
+   Responsive
+   ========================================= */
+@media (max-width: 768px) {
+  .project-links-full {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .project-links-full .project-links-btn {
+    justify-content: center;
+    padding: 12px 24px;
+  }
+  .project-links-compact {
+    gap: 8px;
+  }
+}

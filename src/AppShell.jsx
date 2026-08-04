@@ -1,6 +1,8 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTopElevator from './components/ScrollToTopElevator';
+import AppleScrollEngine from './components/AppleScrollEngine';
 import { m } from 'framer-motion';
 import useIsMobile from './hooks/useIsMobile';
 
@@ -11,8 +13,8 @@ export default function AppShell({ children }) {
 
   return (
     <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#fbfbfd', color: '#1d1d1f' }}>
+      <AppleScrollEngine />
       
-      {/* Premium Ambient Background System (Apple Light Theme) */}
       {/* Premium Ambient Background System (Apple Light Theme) */}
       <div style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
         {/* Soft light diffusion top left - NO CSS BLUR FOR PERFORMANCE */}
@@ -54,6 +56,9 @@ export default function AppShell({ children }) {
         {children}
         <Footer />
       </main>
+
+      {/* 2026 Apple VisionOS Scroll Elevator — displays on every page when scrolled down */}
+      <ScrollToTopElevator />
     </div>
   );
 }

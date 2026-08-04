@@ -35,3 +35,7 @@ The interface is deeply inspired by Apple's visionOS and macOS. It features:
 ### The Future of AuraOS
 
 The next major milestone is integrating multimodal inputs natively. Allowing the system to "see" the screen via continuous image processing and "hear" via local Whisper models will push AuraOS from a helpful tool into a true personal intelligence layer.
+
+---
+
+**[Launch AuraOS →](https://aura-os-thenameisbhagavan.vercel.app/)** — Experience the intelligence layer.

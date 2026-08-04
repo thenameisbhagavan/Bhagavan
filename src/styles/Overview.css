@@ -6,7 +6,7 @@
   color: #1d1d1f;
   
   /* Use clip instead of hidden to prevent breaking position: sticky */
-  overflow-x: clip;
+  overflow: clip;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -389,10 +389,13 @@
 
 @media (min-width: 960px) {
   .portrait-wrapper {
-    width: 90%; /* Max 45% of viewport width implicitly via grid */
-    height: 85%; 
+    width: 94%;
+    height: 92%; 
+    min-height: 560px;
     margin: 0 auto;
-    padding: 48px; 
+    padding: 16px 32px 0 32px;
+    align-self: flex-start;
+    margin-top: 12px;
   }
 }
 
@@ -405,8 +408,8 @@
 
 @media (max-width: 767px) {
   .portrait-wrapper {
-    max-height: 420px;
-    padding: 32px 24px;
+    max-height: 500px;
+    padding: 16px 20px;
   }
 }
 
@@ -459,10 +462,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 10%;
+  object-position: center top;
   display: block;
-  transform: scale(1.18); /* Internal image scale increased slightly */
-  transform-origin: center 15%;
+  transform: scale(1.02);
+  transform-origin: center top;
 }
 
 /* Dynamic Lighting & Noise Overlay */
@@ -488,7 +491,7 @@
 
 .phi-light-bottomright {
   position: absolute;
-  bottom: -20vh;
+  top: 60vh;
   right: -20vw;
   width: 70vw;
   height: 70vw;

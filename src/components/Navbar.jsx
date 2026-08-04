@@ -10,7 +10,7 @@ import { socialLinks } from "../constants/socialLinks";
 // ─────────────────────────────────────────────
 
 const PRIMARY_NAV = [
-  { label: "Overview", path: "/overview" },
+  { label: "Overview", path: "/" },
 
   { label: "Products", path: "/work" },
 
@@ -33,7 +33,7 @@ const PRIMARY_NAV = [
 ];
 
 const MOBILE_NAV = [
-{ label: "Overview",      path: "/overview" },
+{ label: "Overview",      path: "/" },
 { label: "Products",      path: "/work" },
 { label: "Journey",       path: "/experience" },
 { label: "Innovation",    path: "/innovation" },
@@ -49,7 +49,7 @@ const MOBILE_NAV = [
 // SEARCH INDEX — every page is searchable
 // ─────────────────────────────────────────────
 const SEARCH_PAGES = [
-  { title: "Overview",              path: "/overview",    keywords: "home about profile introduction" },
+  { title: "Overview",              path: "/",    keywords: "home about profile introduction" },
   { title: "Products",              path: "/work",        keywords: "projects work portfolio careeros aurabot resume smart leave" },
   { title: "VoltDrive - EV Experience", path: "/work/voltdrive", keywords: "voltdrive electric vehicle ev automotive showroom frontend key note apple" },
   { title: "Journey",               path: "/experience",  keywords: "experience career timeline internships education" },
@@ -130,6 +130,9 @@ const CSS = `
   }
   .nav-wordmark:hover { opacity: 0.55; }
   .nav-wordmark:focus-visible { outline: 2px solid rgba(0,102,204,0.5); outline-offset: 4px; border-radius: 4px; }
+  @media (max-width: 767px) {
+    .nav-wordmark-text { display: none; }
+  }
 
   /* ── Desktop links ── */
   .nav-links {
@@ -639,7 +642,7 @@ export default function Navbar() {
   }, [searchQuery]);
 
   const isActive = (path) => location.pathname === path ||
-    (path === "/overview" && (location.pathname === "/" || location.pathname === "/home")) ||
+    (path === "/" && (location.pathname === "/overview" || location.pathname === "/home")) ||
     (path === "/work" && location.pathname.startsWith("/work/"));
 
   // Dropdown hover handlers
@@ -812,9 +815,9 @@ export default function Navbar() {
         <div className="nav-inner">
 
           {/* Logo */}
-          <button className="nav-wordmark" onClick={() => go("/overview")} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <button className="nav-wordmark apple-pressable" onClick={() => go("/")} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <img src={logoImg} alt="Logo" style={{ height: '24px', width: '24px', borderRadius: '6px' }} />
-            <span style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--nav-text-color)' }}>TheNameIsBhagavan</span>
+            <span className="nav-wordmark-text" style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--nav-text-color)' }}>TheNameIsBhagavan</span>
           </button>
 
           {/* Desktop links */}
@@ -830,7 +833,7 @@ export default function Navbar() {
                     onMouseLeave={handleItemLeave}
                   >
                     <button
-                      className={`nav-btn ${open ? "active" : ""}`}
+                      className={`nav-btn apple-pressable ${open ? "active" : ""}`}
                       onClick={() => go(item.dropdown[0].path)}
                     >
                       {item.label}
@@ -855,7 +858,7 @@ export default function Navbar() {
                             <React.Fragment key={sub.label}>
                               {idx > 0 && <div className="nav-dropdown-divider" />}
                               <button
-                                className="nav-dropdown-item"
+                                className="nav-dropdown-item apple-pressable"
                                 onClick={() => go(sub.path)}
                               >
                                 <span className="nav-dropdown-label">{sub.label}</span>
@@ -873,7 +876,7 @@ export default function Navbar() {
               return (
                 <div key={item.label} className="nav-item">
                   <button
-                    className={`nav-btn ${isActive(item.path) ? "active" : ""}`}
+                    className={`nav-btn apple-pressable ${isActive(item.path) ? "active" : ""}`}
                     onClick={() => go(item.path)}
                     onMouseEnter={() => setActiveDD(null)}
                   >
@@ -888,7 +891,7 @@ export default function Navbar() {
           <div className="nav-actions">
             {/* Search icon */}
             <button
-              className="nav-search-icon"
+              className="nav-search-icon apple-pressable"
               onClick={() => setSearchOpen(true)}
               aria-label="Search"
             >

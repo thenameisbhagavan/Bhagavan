@@ -13,7 +13,7 @@ const Footer = memo(function Footer() {
   };
 
   const navLinks = [
-    { name: "Explore", path: "/overview" },
+    { name: "Explore", path: "/" },
     { name: "Work", path: "/work" },
     { name: "Capabilities", path: "/ecosystem" },
     { name: "Connect", path: "/connect" },
@@ -70,6 +70,29 @@ const Footer = memo(function Footer() {
                    <button onClick={() => handleNavigation(link.path)} className="footer-quiet-link">
                      {link.name} <span className="nav-arrow">→</span>
                    </button>
+                 </li>
+               ))}
+             </ul>
+          </div>
+
+          {/* Zone: Products */}
+          <div className="footer-zone-products">
+             <h3 className="footer-zone-title">Products</h3>
+             <ul className="footer-presence-list">
+               {[
+                 { name: "CareerOS", desc: "Career Intelligence.", url: "https://careeros-thenameisbhagavan.vercel.app/" },
+                 { name: "AuraOS", desc: "Personal Intelligence.", url: "https://aura-os-thenameisbhagavan.vercel.app/" },
+                 { name: "VERITAS", desc: "Explainable Intelligence.", url: "https://veritas-thenameisbhagavan.vercel.app/" },
+                 { name: "VoltDrive", desc: "Automotive Experience.", url: "https://voltdrive-thenameisbhagavan.vercel.app/" },
+               ].map((product, idx) => (
+                 <li key={idx} className="presence-item">
+                   <a href={product.url} target="_blank" rel="noopener noreferrer" className="presence-link" aria-label={`Launch ${product.name}`}>
+                     <span className="presence-name">
+                       {product.name}
+                       <span className="presence-arrow external-arrow">↗</span>
+                     </span>
+                     <span className="presence-desc">{product.desc}</span>
+                   </a>
                  </li>
                ))}
              </ul>

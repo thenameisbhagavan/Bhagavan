@@ -97,12 +97,42 @@ function PageLoader() {
   );
 }
 
-// Scroll restoration
+// Apple 2026 Instant Scroll Restoration — prevents layout shifts and scroll persistence across page changes
 const ScrollToTop = () => {
   const { pathname } = useLocation();
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  useEffect(() => {
+    // Instant scroll reset
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+    // Multi-stage verification to ensure scroll is top after Framer Motion exit & Suspense mount
+    const rAF = requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    });
+    const t1 = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 40);
+    const t2 = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 150);
+    const t3 = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 350);
+
+    return () => {
+      cancelAnimationFrame(rAF);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
   }, [pathname]);
+
   return null;
 };
 
@@ -130,9 +160,10 @@ function App() {
           <Suspense fallback={<PageLoader />}>
             <AnimatePresence mode="wait">
               <Routes location={location} key={location.pathname}>
-                {/* Redirects */}
-                <Route path="/" element={<Navigate to="/overview" replace />} />
-                <Route path="/home" element={<Navigate to="/overview" replace />} />
+                {/* Core Landing Experience */}
+                <Route path="/" element={<Overview />} />
+                <Route path="/overview" element={<Navigate to="/" replace />} />
+                <Route path="/home" element={<Navigate to="/" replace />} />
 
                 {/* SEO-friendly Aliases */}
                 <Route path="/projects" element={<Navigate to="/work" replace />} />
@@ -140,7 +171,6 @@ function App() {
                 <Route path="/contact" element={<Navigate to="/connect" replace />} />
 
                 {/* Core Experiences */}
-                <Route path="/overview" element={<Overview />} />
                 <Route path="/work" element={<Work />} />
                 <Route path="/work/careeros" element={<CareerOS />} />
                 <Route path="/work/voltdrive" element={<VoltDrive />} />

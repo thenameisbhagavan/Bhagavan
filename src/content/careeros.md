@@ -33,3 +33,7 @@ Moving forward, I plan to integrate:
 - **Automated Interview Prep** using WebRTC audio and real-time speech-to-text.
 
 Building CareerOS taught me that the hardest part of AI engineering isn't calling an API—it's building the reliable, scalable infrastructure around it.
+
+---
+
+**[Open CareerOS →](https://careeros-thenameisbhagavan.vercel.app/)** — Experience the live platform.

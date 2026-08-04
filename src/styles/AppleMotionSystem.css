@@ -1,0 +1,197 @@
+/* ==========================================================================
+   APPLE 2026 HUMAN INTERFACE SYSTEM - KEYNOTE MOTION & MICRO-INTERACTIONS
+   ==========================================================================
+   Act as a Senior Apple Human Interface Engineer, Frontend Architect, 
+   Motion Designer, and AI UX Engineer. Buttery-smooth 60fps scrolling, 
+   GPU-accelerated animations, layered parallax, and reduced-motion support.
+   ========================================================================== */
+
+/* ── 1. BUTTERY-SMOOTH 60FPS / 144Hz KEYNOTE SCROLLING ───────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── 2. APPLE VISION PRO SPECULAR SHEEN & CARD ELEVATION ─────────────────── */
+.apple-magnetic-card {
+  position: relative;
+  transition: 
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.apple-magnetic-card:hover {
+  transform: translateY(-6px) scale(1.008);
+  box-shadow: 
+    0 28px 56px rgba(0, 0, 0, 0.18),
+    0 8px 24px rgba(0, 0, 0, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* ── 3. SPECULAR AMBIENT LIGHT HIGHLIGHT ON HOVER ────────────────────────── */
+.apple-magnetic-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.12),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.apple-magnetic-card:hover::after {
+  opacity: 1;
+}
+
+/* ── 4. APPLE KEYNOTE UNDERLINE TRANSITION (WWDC / APPLE.COM STYLE) ──────── */
+.apple-underline-slide {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.apple-underline-slide::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 1px;
+}
+
+.apple-underline-slide:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* ── 5. TACTILE APPLE BUTTON & ACTIVE FEEDBACK ───────────────────────────── */
+.apple-pressable {
+  transition: 
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.apple-pressable:hover {
+  transform: translateY(-2px);
+}
+
+.apple-pressable:active {
+  transform: scale(0.96) !important;
+}
+
+/* ── 6. APPLE STAGGERED KEYNOTE REVEALS ──────────────────────────────────── */
+.apple-stagger-text {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: 
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.apple-stagger-text.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 7. APPLE KEYNOTE SLOW LIVE WOW SCROLL SYSTEM (ALL PAGES) ───────────── */
+.apple-scroll-wow-item {
+  transition:
+    opacity 1.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.35s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.apple-scroll-wow-hidden {
+  opacity: 0 !important;
+  transform: translateY(48px) scale(0.968) !important;
+  filter: blur(8px) !important;
+}
+
+.apple-scroll-wow-visible {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  filter: blur(0px) !important;
+}
+
+/* Optional subtle stagger delays for child cards */
+.apple-scroll-wow-delay-1 { transition-delay: 0.12s; }
+.apple-scroll-wow-delay-2 { transition-delay: 0.24s; }
+.apple-scroll-wow-delay-3 { transition-delay: 0.36s; }
+.apple-scroll-wow-delay-4 { transition-delay: 0.48s; }
+
+/* ── 8. PREFERS-REDUCED-MOTION SUPPORT (ACCESSIBILITY & HARDWARE ENG) ─────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  
+  .apple-magnetic-card:hover {
+    transform: none !important;
+  }
+
+  .apple-pressable:hover,
+  .apple-pressable:active {
+    transform: none !important;
+  }
+
+  .apple-scroll-wow-hidden {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+/* ── 9. MOBILE OPTIMIZATION (TOUCH GESTURES & HIGH-END PERF) ─────────────── */
+@media (max-width: 767px) {
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  .apple-magnetic-card:hover {
+    transform: translateY(-2px) scale(1.002);
+  }
+  
+  /* Optimize touch feedback */
+  .apple-pressable:active {
+    transform: scale(0.97) !important;
+  }
+
+  /* Shorter travel distance on mobile for crisp wow feel */
+  .apple-scroll-wow-hidden {
+    transform: translateY(28px) scale(0.98) !important;
+    filter: blur(4px) !important;
+  }
+}

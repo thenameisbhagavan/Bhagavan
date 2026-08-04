@@ -95,6 +95,7 @@ const FLAGSHIP_CAREEROS = {
   technologyDesc: "A full-stack intelligence engine built to process complex career data into actionable paths.",
   impact: "Transforms fragmented career decisions into measurable, continuous growth.",
   github: `${socialLinks.github.url}/careeros`,
+  liveLink: "https://careeros-thenameisbhagavan.vercel.app/",
   internalLink: "/work/careeros"
 };
 
@@ -116,7 +117,7 @@ const SECONDARY_PROJECTS = [
     technologyDesc: "Built using React, Vite, JavaScript, Framer Motion, modern CSS architecture, responsive design principles, smooth motion systems, and performance-first frontend engineering.",
     impact: "Successfully transformed a concept into a production-deployed luxury automotive website featuring unique hero experiences, responsive layouts, interactive UI, and premium visual storytelling.",
     github: "https://github.com/thenameisbhagavan/voltdrive",
-    liveLink: "https://voltdrive-showcase.vercel.app/",
+    liveLink: "https://voltdrive-thenameisbhagavan.vercel.app/",
     internalLink: "/work/voltdrive",
     preTransitionText: "Intelligence is only as powerful as the experience that delivers it."
   },
@@ -136,6 +137,7 @@ const SECONDARY_PROJECTS = [
     technologyDesc: "Powered by vector databases, RAG architectures, and custom short/long-term memory routers.",
     impact: "Demonstrated true conversational persistence across simulated multi-day interactions.",
     github: `${socialLinks.github.url}/auraos`,
+    liveLink: "https://aura-os-thenameisbhagavan.vercel.app/",
     internalLink: "/work/auraos",
     preTransitionText: "Understanding careers led to understanding people."
   },
@@ -155,6 +157,7 @@ const SECONDARY_PROJECTS = [
     technologyDesc: "A deterministic NLP pipeline built over FastAPI, React, and strict credibility schemas.",
     impact: "Successfully validated complex intelligence reports with deterministic traceability.",
     github: `${socialLinks.github.url}/News-detector`,
+    liveLink: "https://veritas-thenameisbhagavan.vercel.app/",
     internalLink: "/work/veritas",
     preTransitionText: "Understanding people demanded trustworthy intelligence."
   },
@@ -197,9 +200,10 @@ const SECONDARY_PROJECTS = [
 ];
 
 export const FLAGSHIP_PROJECTS = [
-  { name: "CareerOS", eyebrow: "Flagship Project", desc: "The intelligence layer for your career trajectory.", img: careerOSImg, link: "/work/careeros" },
-  { name: "AuraOS", eyebrow: "Personal Intelligence OS", desc: "Conversational intelligence that understands context.", img: chatImg, link: "/work/auraos" },
-  { name: "VERITAS", eyebrow: "Explainable Intelligence Platform", desc: "Data validation and truth extraction engine.", img: fakeImg, link: "/work/veritas" }
+  { name: "CareerOS", eyebrow: "Flagship Project", desc: "The intelligence layer for your career trajectory.", img: careerOSImg, link: "/work/careeros", live: "https://careeros-thenameisbhagavan.vercel.app/" },
+  { name: "AuraOS", eyebrow: "Personal Intelligence OS", desc: "Conversational intelligence that understands context.", img: chatImg, link: "/work/auraos", live: "https://aura-os-thenameisbhagavan.vercel.app/" },
+  { name: "VERITAS", eyebrow: "Explainable Intelligence Platform", desc: "Data validation and truth extraction engine.", img: fakeImg, link: "/work/veritas", live: "https://veritas-thenameisbhagavan.vercel.app/" },
+  { name: "VoltDrive", eyebrow: "Automotive Digital Showroom", desc: "Cinematic EV experience and precision frontend architecture.", img: voltDriveImg, link: "/work/voltdrive", live: "https://voltdrive-thenameisbhagavan.vercel.app/" }
 ];
 
 // ─── Components ───────────────────────────────────────────────────────────────
@@ -275,6 +279,11 @@ function CareerOSKeynote({ project }) {
                   Explore {project.name} <span className="cta-arrow">→</span>
                 </Link>
               </m.div>
+            )}
+            {project.liveLink && (
+              <m.a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="product-explore-cta" aria-label={`Visit ${project.name} Live Demo`} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                Live Demo <span className="cta-arrow">↗</span>
+              </m.a>
             )}
             {project.github && (
               <m.a href={project.github} target="_blank" rel="noopener noreferrer" className="product-explore-cta" style={{ opacity: project.internalLink ? 0.8 : 1 }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
@@ -378,19 +387,20 @@ function ProductSection({ project }) {
 
         {(project.github || project.liveLink || project.internalLink) && (
           <div className="product-cta-group" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-            {project.internalLink ? (
+            {project.internalLink && (
               <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                <Link to={project.internalLink} className="product-explore-cta">
+                <Link to={project.internalLink} className="product-explore-cta" aria-label={`Explore ${project.name} project`}>
                   Explore {project.name} <span className="cta-arrow">→</span>
                 </Link>
               </m.div>
-            ) : project.liveLink ? (
-              <m.a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="product-explore-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                Explore {project.name} <span className="cta-arrow">↗</span>
+            )}
+            {project.liveLink && (
+              <m.a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="product-explore-cta" style={{ opacity: project.internalLink ? 0.85 : 1 }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp} aria-label={`Visit ${project.name} Live Demo`}>
+                Live Demo <span className="cta-arrow">↗</span>
               </m.a>
-            ) : null}
+            )}
             {project.github && (
-              <m.a href={project.github} target="_blank" rel="noopener noreferrer" className="product-explore-cta" style={{ opacity: (project.liveLink || project.internalLink) ? 0.8 : 1 }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
+              <m.a href={project.github} target="_blank" rel="noopener noreferrer" className="product-explore-cta" style={{ opacity: (project.liveLink || project.internalLink) ? 0.8 : 1 }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp} aria-label={`View ${project.name} source code on GitHub`}>
                 {(project.liveLink || project.internalLink) ? "View Source" : `Explore ${project.name}`} <span className="cta-arrow">→</span>
               </m.a>
             )}

@@ -68,14 +68,27 @@ export default function Philosophy() {
             <img loading="lazy" src={careerOSImg} alt="CareerOS Environment" style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.9, filter: 'contrast(1.05)' }} />
           </m.div>
 
-          <button 
-            onClick={() => { window.scrollTo(0,0); navigate('/work'); }}
-            style={{ padding: '16px 36px', background: '#1d1d1f', color: '#fff', borderRadius: '999px', fontSize: '1.1rem', fontWeight: 500, border: 'none', cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)', marginTop: '24px' }}
-            onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.02)'; e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)'; }}
-            onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = 'none'; }}
-          >
-            Explore The Architecture
-          </button>
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '24px' }}>
+            <button 
+              onClick={() => { window.scrollTo(0,0); navigate('/work'); }}
+              style={{ padding: '16px 36px', background: '#1d1d1f', color: '#fff', borderRadius: '999px', fontSize: '1.1rem', fontWeight: 500, border: 'none', cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
+              onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.02)'; e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)'; }}
+              onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = 'none'; }}
+            >
+              Explore The Architecture
+            </button>
+            <a
+              href="https://careeros-thenameisbhagavan.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Launch CareerOS Live Demo"
+              style={{ padding: '16px 36px', background: 'transparent', color: '#1d1d1f', borderRadius: '999px', fontSize: '1.1rem', fontWeight: 500, border: '1px solid #d2d2d7', cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.02)'; e.currentTarget.style.borderColor = '#86868b'; }}
+              onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.borderColor = '#d2d2d7'; }}
+            >
+              Launch CareerOS ↗
+            </a>
+          </div>
         </m.div>
 
       </div>

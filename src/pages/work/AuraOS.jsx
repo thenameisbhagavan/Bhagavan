@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { m } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Sparkles, ArrowRight, Github } from "lucide-react";
+import { Sparkles, ArrowRight, Github, ArrowUpRight } from "lucide-react";
 
 import "../../styles/AuraOS.css";
 import auraOSHeroImg from "../../assets/aurabot-new.png";
@@ -274,16 +274,27 @@ export default function AuraOS() {
             variants={fadeUp}
           >
             <a
-              href="https://github.com/thenameisbhagavan/auraos"
+              href="https://aura-os-thenameisbhagavan.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="aos-btn-primary"
+              aria-label="Visit AuraOS Live Demo"
+            >
+              Live Demo <ArrowUpRight size={18} />
+            </a>
+
+            <a
+              href="https://github.com/thenameisbhagavan/auraos"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="aos-btn-secondary"
+              aria-label="View AuraOS source code on GitHub"
             >
               <Github size={18} />
               Inspect Codebase on GitHub
             </a>
 
-            <a href="#architecture" className="aos-btn-secondary">
+            <a href="#architecture" className="aos-btn-secondary" aria-label="Explore AuraOS system architecture">
               Explore System Architecture
               <ArrowRight size={16} />
             </a>

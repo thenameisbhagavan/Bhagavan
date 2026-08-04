@@ -2,7 +2,7 @@
 .footer-cinematic {
   background-color: #fbfbfd;
   color: #1d1d1f;
-  padding: 15vh 6vw 8vh 6vw;
+  padding: 10vh 6vw 5vh 6vw;
   font-family: var(--font-system, 'SF Pro Display', -apple-system, sans-serif);
   -webkit-font-smoothing: antialiased;
   position: relative;

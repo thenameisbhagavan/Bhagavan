@@ -279,14 +279,24 @@ export default function CareerOS() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, delay: 0.4, ease }}
               >
-                <a href="#architecture" className="cos-btn-primary">
+                <a href="#architecture" className="cos-btn-primary" aria-label="Explore CareerOS system architecture">
                   Explore Architecture <ArrowUpRight size={18} />
+                </a>
+                <a
+                  href="https://careeros-thenameisbhagavan.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cos-btn-primary"
+                  aria-label="Visit CareerOS Live Demo"
+                >
+                  Live Demo <ArrowUpRight size={18} />
                 </a>
                 <a
                   href="https://github.com/thenameisbhagavan/Career-Path-Recommendation"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cos-btn-secondary"
+                  aria-label="View CareerOS source code on GitHub"
                 >
                   <Github size={18} /> View Source Code
                 </a>

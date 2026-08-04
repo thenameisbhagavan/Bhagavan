@@ -45,3 +45,7 @@ For advanced systems, vector search isn't enough. I often implement a hybrid app
 - **Knowledge Graphs** (using Neo4j or similar) for hard entity relationships (e.g., User -> works at -> Apple). 
 
 By combining these, the AI system achieves both fluid conversational memory and rigid factual accuracy.
+
+---
+
+**[Explore VERITAS →](https://veritas-thenameisbhagavan.vercel.app/)** — See how these concepts power explainable intelligence.

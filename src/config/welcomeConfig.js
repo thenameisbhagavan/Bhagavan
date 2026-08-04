@@ -6,8 +6,8 @@
  *
  * NARRATIVE:
  *   Silence → Portrait (B&W, introduced) → Blueprint (drawn) →
- *   Ideas → Architecture → Intelligence → Systems →
- *   TheNameIsBhagavan (held) → Engineering Intelligent Systems. →
+ *   Intelligence (CareerOS/AuraOS) → Evidence (VERITAS) → Experience (VoltDrive) → Ecosystem →
+ *   TheNameIsBhagavan (held) → Engineering the Intelligence Ecosystem. →
  *   1px rule (left → right → fade) → Dissolve → Homepage
  *
  * PRECISION TIMELINE — Target: 4.4 seconds total
@@ -30,11 +30,12 @@ export const welcomeConfig = {
 
   // ── Brand Identity ─────────────────────────────────────────────────────────
   brandName:   "TheNameIsBhagavan",
-  tagline:     "Engineering Intelligent Systems.",
-  portraitAlt: "Bhagavan — Engineering Intelligent Systems",
+  tagline:     "Engineering the Intelligence Ecosystem.",
+  portraitAlt: "Bhagavan — Engineering the Intelligence Ecosystem",
 
-  // ── Narrative Word Sequence (FIXED — do not change) ───────────────────────
-  wordSequence: ["Ideas", "Architecture", "Intelligence", "Systems"],
+  // ── Narrative Word Sequence ────────────────────────────────────────────────
+  // Derived from Bhagavan's flagship projects: CareerOS (Intelligence), VERITAS (Evidence), VoltDrive (Experience), and Ecosystem
+  wordSequence: ["Intelligence", "Evidence", "Experience", "Ecosystem"],
 
   // ── Colors ─────────────────────────────────────────────────────────────────
   colors: {
