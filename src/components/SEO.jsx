@@ -16,57 +16,67 @@ const SEO = ({
 
   // Person Schema
   const personSchema = {
-    "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://thenameisbhagavan.in/#person",
     "name": "Gopala Josyula Siva Satya Sai Bhagavan",
     "alternateName": "TheNameIsBhagavan",
-    "url": "https://thenameisbhagavan.in/",
+    "url": "https://thenameisbhagavan.in",
     "image": "https://thenameisbhagavan.in/og-image.jpg",
-    "jobTitle": "AI Engineer",
-    "description": "AI Engineer specializing in Intelligent Systems, Agentic AI, Machine Learning, Deep Learning, Full Stack Development, AI Products, and Software Engineering.",
+    "jobTitle": "AI Engineer & Full Stack Developer",
+    "description": "AI Engineer and Full Stack Developer building intelligent software systems, AI-powered applications, full-stack products, and developer tools.",
     "email": "thenameisbhagavan@gmail.com",
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "Ramachandra College of Engineering"
-    },
     "sameAs": [
-      socialLinks.linkedin.url,
-      socialLinks.github.url,
-      socialLinks.instagram.url,
-      socialLinks.facebook.url,
-      socialLinks.twitter.url,
-      socialLinks.youtube.url
+      "https://www.linkedin.com/in/thenameisbhagavan/",
+      "https://github.com/thenameisbhagavan",
+      "https://x.com/nameisbhagavan",
+      "https://www.instagram.com/thenameisbhagavan_",
+      "https://www.youtube.com/@TheNameIsBhagavan"
     ],
     "knowsAbout": [
-      "Artificial Intelligence", "Machine Learning", "Deep Learning", "Computer Vision", 
-      "Natural Language Processing", "Large Language Models", "Generative AI", "Agentic AI", 
-      "Retrieval Augmented Generation", "React", "Next.js", "Vite", "Python", "JavaScript", 
-      "Java", "SQL", "MongoDB", "Node.js", "Express", "REST APIs", "FastAPI", "TensorFlow", 
-      "PyTorch", "Docker", "Git", "GitHub", "Cloud Computing", "Full Stack Development", "Software Engineering"
+      "Artificial Intelligence",
+      "Generative AI",
+      "Agentic AI",
+      "Machine Learning",
+      "Large Language Models",
+      "Python",
+      "FastAPI",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "JavaScript",
+      "Full Stack Development",
+      "Software Engineering",
+      "System Design",
+      "REST APIs"
     ]
   };
 
   // Organization Schema
   const organizationSchema = {
-    "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://thenameisbhagavan.in/#organization",
     "name": "TheNameIsBhagavan",
+    "url": "https://thenameisbhagavan.in",
     "founder": {
-      "@type": "Person",
-      "name": "Gopala Josyula Siva Satya Sai Bhagavan"
+      "@id": "https://thenameisbhagavan.in/#person"
     },
-    "url": "https://thenameisbhagavan.in/"
+    "sameAs": [
+      "https://www.linkedin.com/in/thenameisbhagavan/",
+      "https://github.com/thenameisbhagavan",
+      "https://x.com/nameisbhagavan",
+      "https://www.instagram.com/thenameisbhagavan_",
+      "https://www.youtube.com/@TheNameIsBhagavan"
+    ]
   };
 
   // WebSite Schema
   const websiteSchema = {
-    "@context": "https://schema.org",
     "@type": "WebSite",
-    "url": "https://thenameisbhagavan.in/",
+    "@id": "https://thenameisbhagavan.in/#website",
+    "url": "https://thenameisbhagavan.in",
     "name": "TheNameIsBhagavan",
     "publisher": {
-      "@type": "Organization",
-      "name": "TheNameIsBhagavan"
+      "@id": "https://thenameisbhagavan.in/#organization"
     },
     "potentialAction": {
       "@type": "SearchAction",
@@ -77,18 +87,24 @@ const SEO = ({
 
   // WebPage Schema
   const webpageSchema = {
-    "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": `${canonicalUrl}/#webpage`,
     "url": canonicalUrl,
     "name": title,
-    "description": description
+    "description": description,
+    "isPartOf": {
+      "@id": "https://thenameisbhagavan.in/#website"
+    },
+    "about": {
+      "@id": "https://thenameisbhagavan.in/#person"
+    }
   };
 
   // Breadcrumb Schema
   const pathnames = pathname.split('/').filter((x) => x);
   const breadcrumbSchema = {
-    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${canonicalUrl}/#breadcrumb`,
     "itemListElement": pathnames.length === 0 ? [
       {
         "@type": "ListItem",
@@ -112,6 +128,66 @@ const SEO = ({
           "item": `https://thenameisbhagavan.in${to}`
         };
       })
+    ]
+  };
+
+  // Link breadcrumb to webpage
+  webpageSchema.breadcrumb = { "@id": `${canonicalUrl}/#breadcrumb` };
+
+  // Software Applications Schemas
+  const softwareApplications = [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://careeros-thenameisbhagavan.vercel.app/#software",
+      "name": "CareerOS",
+      "applicationCategory": "Career Intelligence Platform",
+      "operatingSystem": "Web",
+      "url": "https://careeros-thenameisbhagavan.vercel.app/",
+      "creator": { "@id": "https://thenameisbhagavan.in/#person" },
+      "description": "Career Intelligence Platform"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://aura-os-thenameisbhagavan.vercel.app/#software",
+      "name": "AuraOS",
+      "applicationCategory": "Personal Intelligence Operating System",
+      "operatingSystem": "Web",
+      "url": "https://aura-os-thenameisbhagavan.vercel.app/",
+      "creator": { "@id": "https://thenameisbhagavan.in/#person" },
+      "description": "Personal Intelligence Operating System"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://veritas-thenameisbhagavan.vercel.app/#software",
+      "name": "VERITAS",
+      "applicationCategory": "Explainable AI Platform",
+      "operatingSystem": "Web",
+      "url": "https://veritas-thenameisbhagavan.vercel.app/",
+      "creator": { "@id": "https://thenameisbhagavan.in/#person" },
+      "description": "Explainable AI Platform"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://voltdrive-thenameisbhagavan.vercel.app/#software",
+      "name": "VoltDrive",
+      "applicationCategory": "Electric Vehicle Platform",
+      "operatingSystem": "Web",
+      "url": "https://voltdrive-thenameisbhagavan.vercel.app/",
+      "creator": { "@id": "https://thenameisbhagavan.in/#person" },
+      "description": "Electric Vehicle Platform"
+    }
+  ];
+
+  // Combined Graph for JSON-LD
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      personSchema,
+      organizationSchema,
+      websiteSchema,
+      webpageSchema,
+      breadcrumbSchema,
+      ...softwareApplications
     ]
   };
 
@@ -149,19 +225,7 @@ const SEO = ({
 
       {/* Structured Data (JSON-LD) */}
       <script type="application/ld+json">
-        {JSON.stringify(personSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(organizationSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(websiteSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(webpageSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(breadcrumbSchema)}
+        {JSON.stringify(structuredData)}
       </script>
     </Helmet>
   );
