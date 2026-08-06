@@ -137,6 +137,12 @@ const ScrollToTop = () => {
   return null;
 };
 
+const LazyRoute = ({ children }) => (
+  <Suspense fallback={<PageLoader />}>
+    {children}
+  </Suspense>
+);
+
 function App() {
   const location = useLocation();
   const { shouldPlay, isComplete, markComplete, prefersReducedMotion } = useInitialLoad(location.pathname);
@@ -158,41 +164,39 @@ function App() {
         <AppShell>
         <ScrollToTop />
         <LayoutGroup>
-          <Suspense fallback={<PageLoader />}>
-            <AnimatePresence mode="wait">
-              <Routes location={location} key={location.pathname}>
-                {/* Core Landing Experience */}
-                <Route path="/" element={<Overview />} />
-                <Route path="/overview" element={<Navigate to="/" replace />} />
-                <Route path="/home" element={<Navigate to="/" replace />} />
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+              {/* Core Landing Experience */}
+              <Route path="/" element={<LazyRoute><Overview /></LazyRoute>} />
+              <Route path="/overview" element={<Navigate to="/" replace />} />
+              <Route path="/home" element={<Navigate to="/" replace />} />
 
-                {/* SEO-friendly Aliases */}
-                <Route path="/projects" element={<Navigate to="/work" replace />} />
-                <Route path="/skills" element={<Navigate to="/ecosystem" replace />} />
-                <Route path="/contact" element={<Navigate to="/connect" replace />} />
+              {/* SEO-friendly Aliases */}
+              <Route path="/projects" element={<Navigate to="/work" replace />} />
+              <Route path="/skills" element={<Navigate to="/ecosystem" replace />} />
+              <Route path="/contact" element={<Navigate to="/connect" replace />} />
 
-                {/* Core Experiences */}
-                <Route path="/work" element={<Work />} />
-                <Route path="/work/careeros" element={<CareerOS />} />
-                <Route path="/work/voltdrive" element={<VoltDrive />} />
-                <Route path="/work/auraos" element={<AuraOS />} />
-                <Route path="/work/veritas" element={<Veritas />} />
-                <Route path="/experience" element={<Experience />} />
-                <Route path="/vision" element={<Vision />} />
-                <Route path="/connect" element={<Connect />} />
-                <Route path="/innovation" element={<InnovationJourney />} />
-                <Route path="/credentials" element={<Credentials />} />
-                <Route path="/ecosystem" element={<TechnologyEcosystem />} />
-                <Route path="/resume" element={<Resume />} />
-                <Route path="/journal" element={<EngineeringJournal />} />
-                <Route path="/journal/about" element={<AboutJournal />} />
-                <Route path="/journal/:slug" element={<ArticlePage />} />
+              {/* Core Experiences */}
+              <Route path="/work" element={<LazyRoute><Work /></LazyRoute>} />
+              <Route path="/work/careeros" element={<LazyRoute><CareerOS /></LazyRoute>} />
+              <Route path="/work/voltdrive" element={<LazyRoute><VoltDrive /></LazyRoute>} />
+              <Route path="/work/auraos" element={<LazyRoute><AuraOS /></LazyRoute>} />
+              <Route path="/work/veritas" element={<LazyRoute><Veritas /></LazyRoute>} />
+              <Route path="/experience" element={<LazyRoute><Experience /></LazyRoute>} />
+              <Route path="/vision" element={<LazyRoute><Vision /></LazyRoute>} />
+              <Route path="/connect" element={<LazyRoute><Connect /></LazyRoute>} />
+              <Route path="/innovation" element={<LazyRoute><InnovationJourney /></LazyRoute>} />
+              <Route path="/credentials" element={<LazyRoute><Credentials /></LazyRoute>} />
+              <Route path="/ecosystem" element={<LazyRoute><TechnologyEcosystem /></LazyRoute>} />
+              <Route path="/resume" element={<LazyRoute><Resume /></LazyRoute>} />
+              <Route path="/journal" element={<LazyRoute><EngineeringJournal /></LazyRoute>} />
+              <Route path="/journal/about" element={<LazyRoute><AboutJournal /></LazyRoute>} />
+              <Route path="/journal/:slug" element={<LazyRoute><ArticlePage /></LazyRoute>} />
 
-                {/* 404 */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </AnimatePresence>
-          </Suspense>
+              {/* 404 */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AnimatePresence>
         </LayoutGroup>
       </AppShell>
       </MotionConfig>
