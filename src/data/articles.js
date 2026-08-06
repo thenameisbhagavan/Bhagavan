@@ -1,152 +1,117 @@
-// Import only the exact approved assets
 import careerOsImg from '../assets/careeros-ui.png';
 import auraOsImg from '../assets/auraos-ui.png';
 import seoImg from '../assets/gsc-ui.png';
 import aiSysImg from '../assets/ai-arch-diagram.jpg';
 import voltDriveImg from '../assets/ev.png';
 
-// Import raw markdown content
-import voltdriveMd from '../content/voltdrive.md?raw';
-import careerosMd from '../content/careeros.md?raw';
-import auraosMd from '../content/auraos.md?raw';
-import portfolioSeoMd from '../content/portfolio-seo.md?raw';
-import contextSystemsMd from '../content/context-systems.md?raw';
-import reactFlaskAiMd from '../content/react-flask-ai.md?raw';
-import engineeringJourneyMd from '../content/engineering-journey.md?raw';
+const IMAGE_MAP = {
+  'careeros-ui.png': careerOsImg,
+  'auraos-ui.png': auraOsImg,
+  'gsc-ui.png': seoImg,
+  'ai-arch-diagram.jpg': aiSysImg,
+  'ev.png': voltDriveImg
+};
 
-export const ARTICLES = [
-  {
-    slug: 'engineering-voltdrive',
-    title: 'Engineering VoltDrive',
-    subtitle: 'Building a Premium Automotive Experience with React and Modern Frontend Engineering',
-    summary: 'An engineering deep dive into building VoltDrive, focusing on cinematic digital experiences, Framer Motion, and responsive architecture.',
-    category: 'Frontend Engineering',
-    tags: ['React', 'Vite', 'Framer Motion', 'Responsive Design', 'Frontend Architecture', 'Performance', 'JavaScript', 'UI Engineering', 'UX', 'Web Performance'],
-    author: 'Bhagavan',
-    publishedDate: '2026-07-26',
-    updatedDate: '2026-07-26',
-    readingTime: '8 min read',
-    layoutVariant: 'hero',
-    assetType: 'image-ui',
-    heroImage: voltDriveImg,
-    seoTitle: 'Engineering VoltDrive: Premium Automotive UI | Bhagavan',
-    seoDescription: 'An engineering deep dive into building a premium automotive experience using React, Vite, and Framer Motion.',
-    canonicalUrl: 'https://thenameisbhagavan.in/insights/engineering-voltdrive',
-    markdownContent: voltdriveMd
-  },
-  {
-    slug: 'building-auraos-personal-intelligence',
-    title: 'Building AuraOS: A Personal Intelligence Operating System',
-    subtitle: 'From concept to production: Engineering an autonomous assistant.',
-    summary: 'Exploring the technical challenges of building AuraOS, focusing on context retention, autonomous agents, and fluid UI interactions.',
-    category: 'AuraOS',
-    tags: ['Generative AI', 'RAG', 'Machine Learning', 'React'],
-    author: 'Bhagavan',
-    publishedDate: '2026-05-12',
-    updatedDate: '2026-05-12',
-    readingTime: '12 min read',
-    layoutVariant: 'hero', // The massive Apple Keynote feature
-    assetType: 'image-ui',
-    heroImage: auraOsImg,
-    seoTitle: 'Building AuraOS: Personal Intelligence OS | Bhagavan',
-    seoDescription: 'An engineering deep dive into the creation of AuraOS and intelligent agent orchestration.',
-    canonicalUrl: 'https://thenameisbhagavan.in/insights/building-auraos-personal-intelligence',
-    markdownContent: auraosMd
-  },
-  {
-    slug: 'how-i-built-careeros',
-    title: 'How I Built CareerOS',
-    subtitle: 'Architecting an AI-powered operating system for career intelligence.',
-    summary: 'A deep dive into the system design, frontend architecture, and AI integrations that power CareerOS, an intelligent platform for job seekers.',
-    category: 'CareerOS',
-    tags: ['React', 'System Design', 'AI Agents', 'OpenAI'],
-    author: 'Bhagavan',
-    publishedDate: '2026-06-15',
-    updatedDate: '2026-06-20',
-    readingTime: '8 min read',
-    layoutVariant: 'split', // 50/50 Editorial Split
-    assetType: 'image-ui',
-    heroImage: careerOsImg,
-    seoTitle: 'How I Built CareerOS | AI Engineering Insights',
-    seoDescription: 'Discover the architecture, engineering decisions, and AI integration strategies behind CareerOS.',
-    canonicalUrl: 'https://thenameisbhagavan.in/insights/how-i-built-careeros',
-    markdownContent: careerosMd
-  },
-  {
-    slug: 'designing-ai-systems-remember-context',
-    title: 'Designing AI Systems That Remember Context',
-    subtitle: 'Implementing scalable RAG architectures and vector databases.',
-    summary: 'How to build production-ready memory systems for LLMs using Retrieval-Augmented Generation (RAG) and long-term context windows.',
-    category: 'AI Engineering',
-    tags: ['RAG', 'Generative AI', 'Python', 'Vector DB'],
-    author: 'Bhagavan',
-    publishedDate: '2026-04-20',
-    updatedDate: '2026-04-25',
-    readingTime: '10 min read',
-    layoutVariant: 'split', // 2-column editorial layout
-    assetType: 'image-diagram',
-    heroImage: aiSysImg,
-    seoTitle: 'Designing AI Systems with Context Memory (RAG)',
-    seoDescription: 'Technical breakdown of implementing RAG and context retention in generative AI systems.',
-    canonicalUrl: 'https://thenameisbhagavan.in/insights/designing-ai-systems-remember-context',
-    markdownContent: contextSystemsMd
-  },
-  {
-    slug: 'optimizing-portfolio-google-search',
-    title: 'How I Optimized My Portfolio for Google Search',
-    subtitle: 'Technical SEO strategies for modern Single Page Applications (SPAs).',
-    summary: 'A comprehensive guide on implementing JSON-LD schemas, dynamic OpenGraph routing, and canonical structures in a React + Vite ecosystem.',
-    category: 'Search Engineering',
-    tags: ['SEO', 'React', 'Performance', 'Vite'],
-    author: 'Bhagavan',
-    publishedDate: '2026-07-02',
-    updatedDate: '2026-07-10',
-    readingTime: '6 min read',
-    layoutVariant: 'split', // 2-column editorial layout
-    assetType: 'image-browser',
-    heroImage: seoImg,
-    seoTitle: 'React SEO Optimization Strategies | Bhagavan Insights',
-    seoDescription: 'Learn how to optimize a React Vite SPA for Google Search using JSON-LD, semantic HTML, and metadata.',
-    canonicalUrl: 'https://thenameisbhagavan.in/insights/optimizing-portfolio-google-search',
-    markdownContent: portfolioSeoMd
-  },
-  {
-    slug: 'building-production-ai-react-flask',
-    title: 'Building Production AI Applications with React + Flask',
-    subtitle: 'Bridging the gap between intelligent backends and fluid frontends.',
-    summary: 'A blueprint for architecting full-stack AI applications. Learn how to connect a high-performance React UI with a Python Flask machine learning backend.',
-    category: 'Architecture',
-    tags: ['React', 'Flask', 'Python', 'Machine Learning'],
-    author: 'Bhagavan',
-    publishedDate: '2026-03-05',
-    updatedDate: '2026-03-05',
-    readingTime: '7 min read',
-    layoutVariant: 'split', 
-    assetType: 'NeuralNetwork', // Maps to custom SVG/CSS visualizer
-    seoTitle: 'React and Flask Full Stack AI Applications',
-    seoDescription: 'Guide to building full-stack AI platforms using React for the frontend and Flask for the machine learning backend.',
-    canonicalUrl: 'https://thenameisbhagavan.in/insights/building-production-ai-react-flask',
-    markdownContent: reactFlaskAiMd
-  },
-  {
-    slug: 'from-student-to-ai-engineer',
-    title: 'From Student to AI Engineer',
-    subtitle: 'Lessons learned transitioning from academic theory to production code.',
-    summary: 'A reflection on my path into AI engineering, highlighting the mindset shifts, critical technologies, and projects that bridged the gap.',
-    category: 'System Design',
-    tags: ['Personal Branding', 'Career', 'Learning'],
-    author: 'Bhagavan',
-    publishedDate: '2026-01-15',
-    updatedDate: '2026-02-01',
-    readingTime: '5 min read',
-    layoutVariant: 'editorial', // Massive text-heavy editorial square
-    assetType: 'LiquidGlass', // Maps to custom liquid glass gradient
-    seoTitle: 'My Journey: From Student to AI Engineer | Bhagavan',
-    seoDescription: 'Lessons learned, technologies mastered, and the mindset shift required to become a production AI engineer.',
-    canonicalUrl: 'https://thenameisbhagavan.in/insights/from-student-to-ai-engineer',
-    markdownContent: engineeringJourneyMd
+const getCoverImage = (imageName) => {
+  if (!imageName) return aiSysImg;
+  // If it's a direct match
+  if (IMAGE_MAP[imageName]) return IMAGE_MAP[imageName];
+  
+  // Fuzzy match (e.g. if frontmatter says "careeros")
+  const lowercaseName = imageName.toLowerCase();
+  for (const [key, value] of Object.entries(IMAGE_MAP)) {
+    if (key.includes(lowercaseName)) return value;
   }
-];
+  
+  return aiSysImg; // Default fallback
+};
+
+const calculateReadingTime = (markdown) => {
+  if (!markdown) return '1 min read';
+  const wordCount = markdown.trim().split(/\s+/).length;
+  const minutes = Math.ceil(wordCount / 200);
+  return `${minutes} min read`;
+};
+
+// Basic frontmatter parser for browser compatibility
+function parseFrontmatter(markdown) {
+  const match = markdown.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!match) return { attributes: {}, body: markdown };
+  
+  const frontmatterStr = match[1];
+  const body = match[2];
+  const attributes = {};
+  
+  const lines = frontmatterStr.split('\n');
+  lines.forEach(line => {
+    const colonIdx = line.indexOf(':');
+    if (colonIdx > -1) {
+      const key = line.slice(0, colonIdx).trim();
+      let value = line.slice(colonIdx + 1).trim();
+      
+      if (value.startsWith('"') && value.endsWith('"')) {
+        value = value.slice(1, -1);
+      } else if (value.startsWith("'") && value.endsWith("'")) {
+        value = value.slice(1, -1);
+      } else if (value === 'true') {
+        value = true;
+      } else if (value === 'false') {
+        value = false;
+      } else if (value.startsWith('[') && value.endsWith(']')) {
+        try {
+          // parse JSON array if possible
+          value = JSON.parse(value);
+        } catch(e) {
+          // fallback array parsing
+          value = value.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, ''));
+        }
+      }
+      attributes[key] = value;
+    }
+  });
+  
+  return { attributes, body };
+}
+
+// Dynamically import all markdown files in src/content subdirectories
+const markdownFiles = import.meta.glob('../content/**/*.md', { query: '?raw', import: 'default', eager: true });
+
+export const ARTICLES = Object.entries(markdownFiles).map(([filepath, rawMarkdown]) => {
+  const { attributes, body } = parseFrontmatter(rawMarkdown);
+  
+  // Extract slug from filename if not explicitly provided
+  const filenameSlug = filepath.split('/').pop().replace('.md', '');
+  const slug = attributes.slug || filenameSlug;
+  
+  const coverImage = getCoverImage(attributes.coverImage || attributes.series);
+  
+  return {
+    ...attributes,
+    slug,
+    title: attributes.title || slug,
+    description: attributes.description || 'An engineering deep dive.',
+    published: attributes.published || '2026-08-01',
+    updated: attributes.updated || attributes.published || '2026-08-01',
+    author: attributes.author || 'Bhagavan',
+    series: attributes.series || 'Engineering',
+    category: attributes.category || 'Architecture',
+    tags: attributes.tags || ['Engineering'],
+    featured: attributes.featured === true,
+    coverImage,
+    ogImage: coverImage,
+    canonical: attributes.canonical || `https://thenameisbhagavan.in/journal/${slug}`,
+    markdownContent: body, // The actual markdown body to render
+    get readingTime() { return calculateReadingTime(this.markdownContent); }
+  };
+});
+
+// Sort articles by published date descending
+ARTICLES.sort((a, b) => new Date(b.published) - new Date(a.published));
+
+// If no article is explicitly featured, feature the most recent one
+if (ARTICLES.length > 0 && !ARTICLES.some(a => a.featured)) {
+  ARTICLES[0].featured = true;
+}
 
 export const getArticleBySlug = (slug) => ARTICLES.find(a => a.slug === slug);
 export const getAllArticles = () => ARTICLES;

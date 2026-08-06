@@ -27,7 +27,7 @@ const PRIMARY_NAV = [
 
   { label: "Vision", path: "/vision" },
 
-  { label: "Insights", path: "/insights" },
+  { label: "Engineering Journal", path: "/journal" },
 
   { label: "Connect", path: "/connect" },
 ];
@@ -41,7 +41,7 @@ const MOBILE_NAV = [
 { label: "Technology",    path: "/ecosystem" },
 { label: "Vision",        path: "/vision" },
 { label: "Resume",        path: "/resume" },
-{ label: "Insights",      path: "/insights" },
+{ label: "Journal",       path: "/journal" },
 { label: "Connect",       path: "/connect" },
 ];
 
@@ -59,7 +59,7 @@ const SEARCH_PAGES = [
   { title: "Credentials",           path: "/credentials", keywords: "certifications awards achievements badges" },
   { title: "Technology Ecosystem",  path: "/ecosystem",   keywords: "stack architecture tools frameworks react node python mongodb" },
   { title: "Resume",                path: "/resume",      keywords: "cv download pdf curriculum vitae" },
-  { title: "Insights",              path: "/insights",    keywords: "blog articles engineering writing insights posts" },
+  { title: "Engineering Journal",   path: "/journal",    keywords: "blog articles engineering journal writing insights posts" },
 ];
 
 // Quick links shown when search is empty
@@ -212,7 +212,7 @@ const CSS = `
   .nav-dropdown-label {
     font-size: 14px;
     font-weight: 600;
-    color: #1d1d1f;
+    color: #000000;
     letter-spacing: -0.02em;
   }
 
@@ -270,7 +270,7 @@ const CSS = `
     bottom: calc(100% + 8px);
     left: 50%;
     transform: translateX(-50%) translateY(4px);
-    background: #1d1d1f;
+    background: #000000;
     color: #ffffff;
     font-family: -apple-system, 'SF Pro Text', sans-serif;
     font-size: 11px;
@@ -435,7 +435,7 @@ const CSS = `
     font-size: 17px;
     font-weight: 400;
     letter-spacing: -0.02em;
-    color: #1d1d1f;
+    color: #000000;
     padding: 0;
     caret-color: #0066cc;
   }
@@ -505,7 +505,7 @@ const CSS = `
   .search-result-title {
     font-size: 14px;
     font-weight: 500;
-    color: #1d1d1f;
+    color: #000000;
     letter-spacing: -0.01em;
     flex: 1;
   }
@@ -530,7 +530,7 @@ const CSS = `
   }
   
   .nav-shell:not(.nav-dark-mode) {
-    --nav-text-color: #1d1d1f;
+    --nav-text-color: #000000;
     --nav-scrolled-bg: rgba(255,255,255,0.72);
     --nav-border-color: rgba(0,0,0,0.06);
   }
@@ -563,7 +563,7 @@ const CSS = `
   .nav-shell.nav-dark-mode.panel-open .nav-mobile-btn,
   .nav-shell.nav-dark-mode.panel-open .nav-resume-btn,
   .nav-shell.nav-dark-mode.panel-open .nav-social-btn {
-    color: #1d1d1f;
+    color: #000000;
   }
   .nav-shell.nav-dark-mode.panel-open .nav-wordmark img {
     filter: none;
@@ -653,9 +653,7 @@ export default function Navbar() {
   const handleItemLeave = () => {
     ddTimer.current = setTimeout(() => setActiveDD(null), 180);
   };
-  const handleDDEnter = () => clearTimeout(ddTimer.current);
-
-  const isDarkPage = location.pathname.startsWith("/insights") || location.pathname.startsWith("/work/voltdrive") || location.pathname.startsWith("/work/careeros") || location.pathname.startsWith("/work/auraos") || location.pathname.startsWith("/work/veritas");
+  const isDarkPage = location.pathname.startsWith("/journal") || location.pathname.startsWith("/work/voltdrive") || location.pathname.startsWith("/work/careeros") || location.pathname.startsWith("/work/auraos") || location.pathname.startsWith("/work/veritas");
 
   const shellClass = [
     "nav-shell",
@@ -799,12 +797,12 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.4, ease }}
             >
-              <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer" style={{ color: '#1d1d1f' }}><Github size={24} strokeWidth={1.5} /></a>
-              <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer" style={{ color: '#1d1d1f' }}><Linkedin size={24} strokeWidth={1.5} /></a>
-              <a href={socialLinks.twitter.url} target="_blank" rel="noopener noreferrer" style={{ color: '#1d1d1f' }}><Twitter size={24} strokeWidth={1.5} /></a>
-              <a href={socialLinks.youtube.url} target="_blank" rel="noopener noreferrer" style={{ color: '#1d1d1f' }}><Youtube size={24} strokeWidth={1.5} /></a>
-              <a href={socialLinks.instagram.url} target="_blank" rel="noopener noreferrer" style={{ color: '#1d1d1f' }}><Instagram size={24} strokeWidth={1.5} /></a>
-              <a href={socialLinks.email.url} style={{ color: '#1d1d1f' }}><Mail size={24} strokeWidth={1.5} /></a>
+              <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer" style={{ color: '#000000' }}><Github size={24} strokeWidth={1.5} /></a>
+              <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer" style={{ color: '#000000' }}><Linkedin size={24} strokeWidth={1.5} /></a>
+              <a href={socialLinks.twitter.url} target="_blank" rel="noopener noreferrer" style={{ color: '#000000' }}><Twitter size={24} strokeWidth={1.5} /></a>
+              <a href={socialLinks.youtube.url} target="_blank" rel="noopener noreferrer" style={{ color: '#000000' }}><Youtube size={24} strokeWidth={1.5} /></a>
+              <a href={socialLinks.instagram.url} target="_blank" rel="noopener noreferrer" style={{ color: '#000000' }}><Instagram size={24} strokeWidth={1.5} /></a>
+              <a href={socialLinks.email.url} style={{ color: '#000000' }}><Mail size={24} strokeWidth={1.5} /></a>
             </m.div>
           </m.div>
         )}

@@ -11,7 +11,7 @@ export default function ArticleCard({ article, index }) {
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       style={{ height: '100%', scrollSnapAlign: 'start' }}
     >
-      <Link to={`/insights/${article.slug}`} className="collection-card">
+      <Link to={`/engineering-journal/${article.slug}`} className="collection-card">
         <div className="collection-card-image-wrapper">
           {article.isGradient ? (
             <div className={`abstract-glass-bg ${article.gradientVariant}`}>

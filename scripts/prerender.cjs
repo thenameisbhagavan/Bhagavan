@@ -3,7 +3,14 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 
-// Defined directly from the sitemap generator
+const articlesContent = fs.readFileSync(path.resolve(__dirname, '../src/data/articles.js'), 'utf-8');
+const slugRegex = /slug:\s*'([^']+)'/g;
+const slugs = [];
+let match;
+while ((match = slugRegex.exec(articlesContent)) !== null) {
+  slugs.push(match[1]);
+}
+
 const routes = [
   '/',
   '/work',
@@ -18,10 +25,8 @@ const routes = [
   '/credentials',
   '/ecosystem',
   '/resume',
-  '/insights',
-  '/projects',
-  '/skills',
-  '/contact'
+  '/journal',
+  ...slugs.map(slug => `/journal/${slug}`)
 ];
 
 async function prerender() {

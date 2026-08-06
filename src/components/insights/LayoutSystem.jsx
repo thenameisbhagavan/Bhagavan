@@ -14,11 +14,11 @@ export const HeroLayout = ({ article }) => {
         <div className="variant-hero-meta">{article.category} • {article.readingTime}</div>
         <h2 className="variant-hero-title">{article.title}</h2>
         <p className="variant-hero-summary">{article.summary}</p>
-        <Link to={`/insights/${article.slug}`} onClick={scrollToTopInstant} className="btn-read-story">Read Story</Link>
+        <Link to={`/engineering-journal/${article.slug}`} onClick={scrollToTopInstant} className="btn-read-story">Read Story</Link>
       </m.div>
       
       <m.div className="variant-hero-visual" initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }} viewport={{ once: true }}>
-        <Link to={`/insights/${article.slug}`} onClick={scrollToTopInstant} style={{ width: '100%', display: 'block' }}>
+        <Link to={`/engineering-journal/${article.slug}`} onClick={scrollToTopInstant} style={{ width: '100%', display: 'block' }}>
           <RenderAsset article={article} />
         </Link>
       </m.div>
@@ -32,9 +32,9 @@ export const SplitLayout = ({ article }) => {
       <div className="variant-split-content">
         <h3 className="variant-split-title">{article.title}</h3>
         <p className="variant-split-summary">{article.summary}</p>
-        <Link to={`/insights/${article.slug}`} onClick={scrollToTopInstant} className="btn-read-story" style={{ background: '#333336', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', boxShadow: 'none' }}>Read Story</Link>
+        <Link to={`/engineering-journal/${article.slug}`} onClick={scrollToTopInstant} className="btn-read-story" style={{ background: '#333336', color: '#fff', border: '1px solid rgba(255,255,255,0.1)', boxShadow: 'none' }}>Read Story</Link>
       </div>
-      <Link to={`/insights/${article.slug}`} onClick={scrollToTopInstant} className="variant-split-visual">
+      <Link to={`/engineering-journal/${article.slug}`} onClick={scrollToTopInstant} className="variant-split-visual">
         <RenderAsset article={article} />
       </Link>
     </m.div>
@@ -44,7 +44,7 @@ export const SplitLayout = ({ article }) => {
 export const LandscapeLayout = ({ article }) => {
   return (
     <m.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} viewport={{ once: true }}>
-      <Link to={`/insights/${article.slug}`} onClick={scrollToTopInstant} className="variant-landscape">
+      <Link to={`/engineering-journal/${article.slug}`} onClick={scrollToTopInstant} className="variant-landscape">
         <div className="variant-landscape-visual">
           <RenderAsset article={article} />
         </div>
@@ -67,7 +67,7 @@ export const LandscapeLayout = ({ article }) => {
 export const PortraitLayout = ({ article }) => {
   return (
     <m.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} viewport={{ once: true }} style={{ height: '100%' }}>
-      <Link to={`/insights/${article.slug}`} onClick={scrollToTopInstant} className="variant-portrait">
+      <Link to={`/engineering-journal/${article.slug}`} onClick={scrollToTopInstant} className="variant-portrait">
         <div className="variant-portrait-visual">
           <RenderAsset article={article} />
         </div>
@@ -83,7 +83,7 @@ export const PortraitLayout = ({ article }) => {
 export const EditorialLayout = ({ article }) => {
   return (
     <m.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} viewport={{ once: true }}>
-      <Link to={`/insights/${article.slug}`} onClick={scrollToTopInstant} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Link to={`/engineering-journal/${article.slug}`} onClick={scrollToTopInstant} style={{ textDecoration: 'none', color: 'inherit' }}>
         <div className="variant-editorial">
           <RenderAsset article={article} />
           <div className="variant-editorial-content">

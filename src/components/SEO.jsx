@@ -7,7 +7,8 @@ const SEO = ({
   title = "TheNameIsBhagavan | AI Engineer", 
   description = "Official portfolio of TheNameIsBhagavan, an AI Engineer specializing in Intelligent Systems, Agentic AI, Full Stack Development, Machine Learning, Deep Learning, Computer Vision, CareerOS, AuraOS, and AI-powered software engineering. Explore projects, research, experience, technical expertise, certifications, and professional achievements.", 
   type = "website", 
-  image = "/og-image.jpg" 
+  image = "/og-image.jpg",
+  article = null
 }) => {
   const { pathname } = useLocation();
   const canonicalUrl = `https://thenameisbhagavan.in${pathname === '/' ? '' : pathname}`;
@@ -179,16 +180,41 @@ const SEO = ({
   ];
 
   // Combined Graph for JSON-LD
+  const graph = [
+    personSchema,
+    organizationSchema,
+    websiteSchema,
+    webpageSchema,
+    breadcrumbSchema,
+    ...softwareApplications
+  ];
+
+  if (article) {
+    graph.push({
+      "@type": "Article",
+      "@id": `${canonicalUrl}/#article`,
+      "headline": article.title,
+      "image": [
+        `https://thenameisbhagavan.in${article.coverImage || image}`
+      ],
+      "datePublished": article.published,
+      "dateModified": article.updated,
+      "author": {
+        "@id": "https://thenameisbhagavan.in/#person"
+      },
+      "publisher": {
+        "@id": "https://thenameisbhagavan.in/#organization"
+      },
+      "description": article.description,
+      "mainEntityOfPage": {
+        "@id": `${canonicalUrl}/#webpage`
+      }
+    });
+  }
+
   const structuredData = {
     "@context": "https://schema.org",
-    "@graph": [
-      personSchema,
-      organizationSchema,
-      websiteSchema,
-      webpageSchema,
-      breadcrumbSchema,
-      ...softwareApplications
-    ]
+    "@graph": graph
   };
 
   return (

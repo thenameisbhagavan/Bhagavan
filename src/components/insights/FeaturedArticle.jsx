@@ -12,7 +12,7 @@ export default function FeaturedArticle({ article }) {
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       className="featured-section"
     >
-      <Link to={`/insights/${article.slug}`} className="featured-keynote-card">
+      <Link to={`/engineering-journal/${article.slug}`} className="featured-keynote-card">
         <div className="featured-keynote-content">
           <div className="featured-keynote-meta">
             {article.category} • {article.readingTime}

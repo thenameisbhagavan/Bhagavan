@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { m, useScroll, useTransform, animate } from "framer-motion";
-import { Github, Linkedin, Mail, Globe } from "lucide-react";
+import { Github, Linkedin, Mail, Globe, ArrowRight } from "lucide-react";
 import SEO from "../components/SEO";
 import { socialLinks } from "../constants/socialLinks";
+import { getAllArticles } from '../data/articles';
 import "../styles/Overview.css";
 
 // Existing images from hero
@@ -71,6 +72,7 @@ function AnimatedCounter({ from, to, duration = 2.5, suffix = "", delay = 0 }) {
 
 export default function Overview() {
   const { scrollY } = useScroll();
+  const recentArticles = getAllArticles().sort((a, b) => new Date(b.published) - new Date(a.published)).slice(0, 3);
   
   // Hero Scroll Parallax & Fades
   const heroScale = useTransform(scrollY, [0, 500], [1, 0.995]);
@@ -443,6 +445,89 @@ export default function Overview() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* =========================================
+          SECTION 6.5: ENGINEERING JOURNAL
+          ========================================= */}
+      <div className="bg-dark cinematic-block" style={{ padding: '15vh 5vw' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '60px' }}>
+            <div>
+              <m.p 
+                className="apple-eyebrow" 
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 1, ease: appleEase }} 
+                viewport={{ once: true }}
+              >
+                Engineering Journal
+              </m.p>
+              <m.h2 
+                className="keynote-text-large" 
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 1, delay: 0.1, ease: appleEase }} 
+                viewport={{ once: true }}
+                style={{ color: '#fff', margin: 0 }}
+              >
+                Documenting the architecture.
+              </m.h2>
+            </div>
+            <m.a 
+              href="/journal"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              viewport={{ once: true }}
+              style={{ color: '#0066cc', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', fontWeight: 500 }}
+              className="apple-pressable"
+            >
+              View Full Journal <ArrowRight size={18} />
+            </m.a>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
+            {recentArticles.map((article, idx) => (
+              <m.a
+                key={article.slug}
+                href={`/journal/${article.slug}`}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: idx * 0.1, ease: appleEase }}
+                viewport={{ once: true, amount: 0.2 }}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  background: '#111113',
+                  border: '1px solid rgba(255,255,255,0.05)',
+                  borderRadius: '24px',
+                  overflow: 'hidden',
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  transition: 'transform 0.4s ease'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)' }}
+                onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)' }}
+              >
+                <div style={{ height: '220px', overflow: 'hidden' }}>
+                  <img src={article.coverImage} alt={article.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                </div>
+                <div style={{ padding: '30px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#86868b', marginBottom: '16px', fontWeight: 600 }}>
+                    {article.category} • {article.readingTime}
+                  </div>
+                  <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#fff', marginBottom: '12px', lineHeight: 1.3 }}>
+                    {article.title}
+                  </h3>
+                  <p style={{ fontSize: '1rem', color: '#a1a1a6', lineHeight: 1.5, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden', margin: 0 }}>
+                    {article.description}
+                  </p>
+                </div>
+              </m.a>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* =========================================

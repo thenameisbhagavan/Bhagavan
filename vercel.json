@@ -5,7 +5,11 @@
     { "source": "/projects", "destination": "/work", "permanent": true },
     { "source": "/skills", "destination": "/ecosystem", "permanent": true },
     { "source": "/contact", "destination": "/connect", "permanent": true },
-    { "source": "/home", "destination": "/overview", "permanent": true }
+    { "source": "/home", "destination": "/overview", "permanent": true },
+    { "source": "/insights", "destination": "/journal", "permanent": true },
+    { "source": "/insights/(.*)", "destination": "/journal/$1", "permanent": true },
+    { "source": "/engineering-journal", "destination": "/journal", "permanent": true },
+    { "source": "/engineering-journal/(.*)", "destination": "/journal/$1", "permanent": true }
   ],
   "rewrites": [
     { "source": "/work/voltdrive", "destination": "/index.html" },
@@ -13,8 +17,8 @@
     { "source": "/work/auraos", "destination": "/index.html" },
     { "source": "/work/veritas", "destination": "/index.html" },
     { "source": "/work", "destination": "/index.html" },
-    { "source": "/insights", "destination": "/index.html" },
-    { "source": "/insights/(.*)", "destination": "/index.html" },
+    { "source": "/journal", "destination": "/index.html" },
+    { "source": "/journal/(.*)", "destination": "/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
