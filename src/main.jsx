@@ -19,7 +19,12 @@ const app = (
 );
 
 if (rootElement.hasChildNodes()) {
-  hydrateRoot(rootElement, app);
-} else {
-  createRoot(rootElement).render(app);
+  // We are dealing with prerendered HTML (from Puppeteer).
+  // Because our app uses a GlobalLoader on initial mount, hydration will fail 
+  // catastrophically (mismatch between prerendered page vs client loader state).
+  // To fix the blank screen crash, we clear the prerendered DOM and use createRoot.
+  // SEO bots will still see the prerendered HTML perfectly before JS executes.
+  rootElement.innerHTML = '';
 }
+
+createRoot(rootElement).render(app);
