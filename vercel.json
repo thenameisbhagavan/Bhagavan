@@ -12,6 +12,6 @@
     { "source": "/engineering-journal/(.*)", "destination": "/journal/$1", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
