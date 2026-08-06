@@ -653,6 +653,9 @@ export default function Navbar() {
   const handleItemLeave = () => {
     ddTimer.current = setTimeout(() => setActiveDD(null), 180);
   };
+  const handleDDEnter = () => {
+    clearTimeout(ddTimer.current);
+  };
   const isDarkPage = location.pathname.startsWith("/journal") || location.pathname.startsWith("/work/voltdrive") || location.pathname.startsWith("/work/careeros") || location.pathname.startsWith("/work/auraos") || location.pathname.startsWith("/work/veritas");
 
   const shellClass = [

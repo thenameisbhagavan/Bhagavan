@@ -137,6 +137,8 @@ const ScrollToTop = () => {
   return null;
 };
 
+import ErrorBoundary from "./components/ErrorBoundary";
+
 const LazyRoute = ({ children }) => (
   <Suspense fallback={<PageLoader />}>
     {children}
@@ -148,7 +150,8 @@ function App() {
   const { shouldPlay, isComplete, markComplete, prefersReducedMotion } = useInitialLoad(location.pathname);
 
   return (
-    <HelmetProvider>
+    <ErrorBoundary>
+      <HelmetProvider>
       <MotionConfig reducedMotion="user">
         {/* ── Welcome Experience — plays on every page load and every navbar click ── */}
         <AnimatePresence mode="wait">
@@ -201,6 +204,7 @@ function App() {
       </AppShell>
       </MotionConfig>
     </HelmetProvider>
+    </ErrorBoundary>
   );
 }
 
