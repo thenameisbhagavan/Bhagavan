@@ -4,7 +4,7 @@ import { m, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import '../styles/Resume.css';
 import ResumeCenter from '../components/ResumeCenter';
-
+import VerificationCenter from '../components/resume/VerificationCenter';
 import pdfUrl from '../assets/bhagavanresume.pdf';
 import resumeImageSrc from '../assets/bhagavanresumepage_001.jpg';
 
@@ -134,6 +134,11 @@ export default function Resume() {
           </Reveal>
         </div>
       </section>
+
+      {/* ══════════════════════════════════════════════════════
+          VERIFICATION CENTER
+      ══════════════════════════════════════════════════════ */}
+      <VerificationCenter />
 
       {/* ══════════════════════════════════════════════════════
           PROFESSIONAL EVOLUTION
