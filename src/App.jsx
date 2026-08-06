@@ -23,6 +23,7 @@ const TechnologyEcosystem = lazy(() => import("./pages/TechnologyEcosystem"));
 const Resume = lazy(() => import("./pages/Resume"));
 const EngineeringJournal = lazy(() => import("./pages/EngineeringJournal"));
 const AboutJournal = lazy(() => import("./pages/AboutJournal"));
+const Platforms = lazy(() => import("./pages/journal/Platforms"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));
 
 // Signature Apple Human Interface Designer editorial blueprint loader for page Suspense fallback
@@ -194,6 +195,7 @@ function App() {
               <Route path="/resume" element={<LazyRoute><Resume /></LazyRoute>} />
               <Route path="/journal" element={<LazyRoute><EngineeringJournal /></LazyRoute>} />
               <Route path="/journal/about" element={<LazyRoute><AboutJournal /></LazyRoute>} />
+              <Route path="/journal/platforms" element={<LazyRoute><Platforms /></LazyRoute>} />
               <Route path="/journal/:slug" element={<LazyRoute><ArticlePage /></LazyRoute>} />
 
               {/* 404 */}

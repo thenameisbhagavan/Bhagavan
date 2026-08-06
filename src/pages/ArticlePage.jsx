@@ -8,6 +8,7 @@ import { m, useScroll, useSpring } from 'framer-motion';
 import { getArticleBySlug, getAllArticles } from '../data/articles';
 import { ChevronRight, ChevronLeft, ArrowRight, Menu } from 'lucide-react';
 import SEO from '../components/SEO';
+import PlatformIcon from '../components/PlatformIcon';
 import 'highlight.js/styles/atom-one-dark.css';
 import '../styles/EngineeringJournal.css';
 
@@ -204,6 +205,34 @@ export default function ArticlePage() {
               {article.markdownContent}
             </ReactMarkdown>
           </article>
+
+          {/* CROSS-PLATFORM DISTRIBUTION */}
+          <div className="article-cross-platform">
+            <h3 className="cross-platform-title">Available on</h3>
+            <div className="cross-platform-links">
+              {article.platforms?.map((platform, idx) => (
+                <a 
+                  key={idx}
+                  href={platform.url}
+                  target={platform.type === 'portfolio' ? '_self' : '_blank'}
+                  rel={platform.type !== 'portfolio' ? 'noopener noreferrer' : ''}
+                  className="platform-link"
+                >
+                  <PlatformIcon type={platform.type} size={18} />
+                  <span>
+                    {platform.type === 'portfolio' ? 'Portfolio' : 
+                     platform.type === 'github' ? 'Engineering Repository' : 
+                     platform.type.charAt(0).toUpperCase() + platform.type.slice(1)}
+                  </span>
+                </a>
+              ))}
+            </div>
+            <div className="cross-platform-canonical">
+              Originally published on<br/>
+              <strong>TheNameIsBhagavan Engineering Journal</strong><br/>
+              <span className="canonical-badge">Canonical Source</span>
+            </div>
+          </div>
 
           {/* ARTICLE FOOTER / NAVIGATION */}
           <footer className="doc-article-footer">

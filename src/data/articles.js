@@ -85,6 +85,18 @@ export const ARTICLES = Object.entries(markdownFiles).map(([filepath, rawMarkdow
   
   const coverImage = getCoverImage(attributes.coverImage || attributes.series);
   
+  const githubPath = filepath.replace('../', '');
+  const githubUrl = `https://github.com/bhagavan444/Bhagavan/tree/main/src/${githubPath}`;
+
+  const platforms = Array.isArray(attributes.platforms) ? [...attributes.platforms] : [];
+  
+  if (!platforms.some(p => p.type === 'portfolio')) {
+    platforms.unshift({ type: 'portfolio', url: `/journal/${slug}` });
+  }
+  if (!platforms.some(p => p.type === 'github')) {
+    platforms.push({ type: 'github', url: githubUrl });
+  }
+  
   return {
     ...attributes,
     slug,
@@ -100,6 +112,7 @@ export const ARTICLES = Object.entries(markdownFiles).map(([filepath, rawMarkdow
     coverImage,
     ogImage: coverImage,
     canonical: attributes.canonical || `https://thenameisbhagavan.in/journal/${slug}`,
+    platforms,
     markdownContent: body, // The actual markdown body to render
     get readingTime() { return calculateReadingTime(this.markdownContent); }
   };

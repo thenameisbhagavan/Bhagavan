@@ -10,6 +10,11 @@ updated: "2026-08-06"
 featured: false
 coverImage: "ev.png"
 canonical: "https://thenameisbhagavan.in/journal/why-i-build-intelligence-instead-of-software"
+platforms:
+  - type: portfolio
+    url: /journal/why-i-build-intelligence-instead-of-software
+  - type: medium
+    url: https://medium.com/@g.sivasatyasaibhagavan/why-im-building-an-engineering-journal-74ad56661427
 author: "Bhagavan"
 ---
 

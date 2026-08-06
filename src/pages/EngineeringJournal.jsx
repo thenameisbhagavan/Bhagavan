@@ -7,6 +7,7 @@ import { getAllArticles } from '../data/articles';
 import BrandSignature from '../components/BrandSignature';
 import JournalSearch from '../components/journal/JournalSearch';
 import FeaturedCarousel from '../components/journal/FeaturedCarousel';
+import PlatformIcon from '../components/PlatformIcon';
 import '../styles/EngineeringJournal.css';
 
 const ease = [0.16, 1, 0.3, 1];
@@ -339,6 +340,58 @@ export default function EngineeringJournal() {
               </div>
             </details>
           ))}
+        </div>
+      </m.section>
+
+      {/* READ ANYWHERE & STATS */}
+      <m.section 
+        className="journal-section read-anywhere-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={sectionVariants}
+      >
+        <div className="read-anywhere-grid">
+          <div className="read-anywhere-card">
+            <h3 className="journal-section-title">Read Anywhere</h3>
+            <div className="platform-links-list">
+              <Link to="/journal/platforms" className="platform-list-item">
+                <PlatformIcon type="portfolio" size={16} /> Portfolio
+              </Link>
+              <Link to="/journal/platforms" className="platform-list-item">
+                <PlatformIcon type="medium" size={16} /> Medium
+              </Link>
+              <Link to="/journal/platforms" className="platform-list-item">
+                <PlatformIcon type="github" size={16} /> Engineering Repository
+              </Link>
+            </div>
+          </div>
+          
+          <div className="journal-stats-card">
+            <h3 className="journal-section-title">Engineering Journal</h3>
+            <div className="stats-list">
+              <div className="stat-item">
+                <span className="stat-value">{articles.length}</span>
+                <span className="stat-label">Articles</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-value">{new Set(articles.map(a => a.category)).size}</span>
+                <span className="stat-label">Categories</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-value">4</span>
+                <span className="stat-label">Flagship Projects</span>
+              </div>
+            </div>
+            <div className="published-across">
+              <span className="published-label">Published Across</span>
+              <div className="published-icons">
+                <PlatformIcon type="portfolio" size={14} />
+                <PlatformIcon type="medium" size={14} />
+                <PlatformIcon type="github" size={14} />
+              </div>
+            </div>
+          </div>
         </div>
       </m.section>
 
