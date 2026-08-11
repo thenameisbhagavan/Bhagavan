@@ -2,6 +2,17 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "thenameisbhagavan.vercel.app"
+        }
+      ],
+      "destination": "https://thenameisbhagavan.in/$1",
+      "permanent": true
+    },
     { "source": "/projects", "destination": "/work", "permanent": true },
     { "source": "/skills", "destination": "/ecosystem", "permanent": true },
     { "source": "/contact", "destination": "/connect", "permanent": true },
