@@ -1,30 +1,62 @@
 import fs from 'fs';
 import path from 'path';
 
-const articlesContent = fs.readFileSync(path.resolve(process.cwd(), 'src/data/articles.js'), 'utf-8');
+// ── Parse frontmatter from markdown files directly ──
+// The previous approach parsed articles.js as text with regex,
+// but articles.js uses import.meta.glob (Vite-only) and doesn't
+// contain hardcoded slugs. This reads the actual markdown files.
 
-const slugRegex = /slug:\s*'([^']+)'/g;
-const titleRegex = /title:\s*'([^']+)'/g;
-const descRegex = /description:\s*'([^']+)'/g;
-const pubRegex = /published:\s*'([^']+)'/g;
+function parseFrontmatter(raw) {
+  const match = raw.match(/^---\n([\s\S]*?)\n---/);
+  if (!match) return {};
+  const attrs = {};
+  match[1].split('\n').forEach(line => {
+    const idx = line.indexOf(':');
+    if (idx > -1) {
+      const key = line.slice(0, idx).trim();
+      let value = line.slice(idx + 1).trim();
+      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+        value = value.slice(1, -1);
+      }
+      attrs[key] = value;
+    }
+  });
+  return attrs;
+}
 
-let match;
-const slugs = [];
-const titles = [];
-const descs = [];
-const pubs = [];
+function findMarkdownFiles(dir) {
+  let results = [];
+  const items = fs.readdirSync(dir, { withFileTypes: true });
+  for (const item of items) {
+    const fullPath = path.join(dir, item.name);
+    if (item.isDirectory()) {
+      results = results.concat(findMarkdownFiles(fullPath));
+    } else if (item.name.endsWith('.md')) {
+      results.push(fullPath);
+    }
+  }
+  return results;
+}
 
-while ((match = slugRegex.exec(articlesContent)) !== null) slugs.push(match[1]);
-while ((match = titleRegex.exec(articlesContent)) !== null) titles.push(match[1]);
-while ((match = descRegex.exec(articlesContent)) !== null) descs.push(match[1]);
-while ((match = pubRegex.exec(articlesContent)) !== null) pubs.push(match[1]);
+function escapeXml(str) {
+  if (!str) return '';
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
 
-const articles = slugs.map((slug, i) => ({
-  slug,
-  title: titles[i],
-  description: descs[i],
-  published: pubs[i] || new Date().toISOString()
-}));
+const contentDir = path.resolve(process.cwd(), 'src/content');
+const mdFiles = findMarkdownFiles(contentDir);
+
+const articles = mdFiles.map(filepath => {
+  const raw = fs.readFileSync(filepath, 'utf-8');
+  const fm = parseFrontmatter(raw);
+  const filenameSlug = path.basename(filepath, '.md');
+  return {
+    slug: fm.slug || filenameSlug,
+    title: fm.title || filenameSlug,
+    description: fm.description || '',
+    published: fm.published || new Date().toISOString().split('T')[0]
+  };
+}).sort((a, b) => new Date(b.published) - new Date(a.published));
 
 const hostname = 'https://thenameisbhagavan.in';
 
@@ -52,4 +84,4 @@ const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
 const publicPath = path.resolve(process.cwd(), 'public', 'rss.xml');
 fs.writeFileSync(publicPath, rssFeed, 'utf8');
 
-console.log('RSS Feed generated at', publicPath);
+console.log(`RSS Feed generated: ${articles.length} articles → ${publicPath}`);

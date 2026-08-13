@@ -1,27 +1,28 @@
 import { useState, useEffect, useCallback } from "react";
 import welcomeConfig from "../config/welcomeConfig";
 
+// Global singleton flag so the loader ONLY plays once per browser session.
+// It will survive route changes within the SPA.
+let hasPlayedGlobalLoader = false;
+
 /**
  * useInitialLoad
  *
  * Triggers the welcome experience on:
  *   1. First page load / hard refresh (browser runtime resets)
- *   2. Every navbar click / SPA route change (pathname changes)
- *   3. ?welcome=true URL override (for QA / review)
+ *   2. ?welcome=true URL override (for QA / review)
  *
- * @param {string} pathname - current route from useLocation().pathname
+ * It NO LONGER plays on internal route changes.
  */
-export default function useInitialLoad(pathname) {
-  const [shouldPlay, setShouldPlay]             = useState(false);
-  const [isComplete, setIsComplete]             = useState(false);
+export default function useInitialLoad() {
+  const [shouldPlay, setShouldPlay] = useState(!hasPlayedGlobalLoader);
+  const [isComplete, setIsComplete] = useState(hasPlayedGlobalLoader);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    // Detect reduced motion preference
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setPrefersReducedMotion(mq.matches);
 
-    // URL force override (?welcome=true or ?loader=true)
     const params = new URLSearchParams(
       typeof window !== "undefined" ? window.location.search : ""
     );
@@ -30,17 +31,14 @@ export default function useInitialLoad(pathname) {
       (params.get("welcome") === "true" || params.get("loader") === "true");
 
     if (forcePlay) {
+      hasPlayedGlobalLoader = false;
       setIsComplete(false);
       setShouldPlay(true);
-      return;
     }
-
-    // Every page — reset and play on every pathname change
-    setIsComplete(false);
-    setShouldPlay(true);
-  }, [pathname]); // ← re-runs on every route change
+  }, []);
 
   const markComplete = useCallback(() => {
+    hasPlayedGlobalLoader = true;
     setIsComplete(true);
   }, []);
 

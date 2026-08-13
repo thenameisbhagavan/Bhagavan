@@ -6,11 +6,18 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import { m, useScroll, useSpring } from 'framer-motion';
 import { getArticleBySlug, getAllArticles } from '../data/articles';
-import { ChevronRight, ChevronLeft, ArrowRight, Menu } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
-import PlatformIcon from '../components/PlatformIcon';
 import 'highlight.js/styles/atom-one-dark.css';
-import '../styles/EngineeringJournal.css';
+import '../styles/ArticlePage.css';
+
+// ─── Motion ───────────────────────────────────────────────────────────────────
+const appleEase = [0.22, 1, 0.36, 1];
+
+const fadeUp = {
+  hidden:  { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.0, ease: appleEase } },
+};
 
 export default function ArticlePage() {
   const { slug } = useParams();
@@ -21,7 +28,6 @@ export default function ArticlePage() {
   
   const [headings, setHeadings] = useState([]);
   const [activeId, setActiveId] = useState('');
-  const [tocOpen, setTocOpen] = useState(false);
 
   useEffect(() => {
     if (!article) return;
@@ -60,14 +66,11 @@ export default function ArticlePage() {
     );
   }
 
-  // Find previous and next articles in the series or in general
-  const seriesArticles = article.series 
-    ? allArticles.filter(a => a.series === article.series).sort((a,b) => new Date(a.published) - new Date(b.published))
-    : allArticles.sort((a,b) => new Date(b.published) - new Date(a.published));
-
-  const currentIndex = seriesArticles.findIndex(a => a.slug === article.slug);
-  const prevArticle = currentIndex > 0 ? seriesArticles[currentIndex - 1] : null;
-  const nextArticle = currentIndex < seriesArticles.length - 1 ? seriesArticles[currentIndex + 1] : null;
+  // Find next articles for the "More from the Journal" footer
+  const recentArticles = allArticles
+    .filter(a => a.slug !== article.slug)
+    .sort((a,b) => new Date(b.published) - new Date(a.published))
+    .slice(0, 3);
 
   return (
     <div className="article-doc-container">
@@ -85,10 +88,78 @@ export default function ArticlePage() {
 
       <div className="doc-layout">
         
-        {/* LEFT SIDEBAR (STICKY TOC - DESKTOP) */}
-        <aside className={`doc-sidebar ${tocOpen ? 'open' : ''}`}>
+        {/* MAIN ARTICLE CONTENT */}
+        <main className="doc-main">
+          
+          <m.nav className="doc-breadcrumbs" initial="hidden" animate="visible" variants={fadeUp}>
+            <Link to="/journal">JOURNAL</Link>
+            <span>/</span>
+            <span className="breadcrumb-current">{article.category}</span>
+          </m.nav>
+
+          <header className="doc-article-hero">
+            <m.h1 className="doc-article-title" initial="hidden" animate="visible" variants={fadeUp}>
+              {article.title}
+            </m.h1>
+            
+            <m.div className="doc-article-meta" initial="hidden" animate="visible" variants={fadeUp}>
+              <div className="dam-item">
+                <span className="dam-label">PUBLISHED</span>
+                <span className="dam-value">{new Date(article.published).toLocaleDateString('en-US', { month: 'long', year: 'numeric', day: 'numeric' })}</span>
+              </div>
+              <div className="dam-item">
+                <span className="dam-label">CATEGORY</span>
+                <span className="dam-value">{article.category}</span>
+              </div>
+              <div className="dam-item">
+                <span className="dam-label">READING TIME</span>
+                <span className="dam-value">{article.readTime}</span>
+              </div>
+              {article.series && (
+                <div className="dam-item">
+                  <span className="dam-label">SERIES</span>
+                  <span className="dam-value">{article.series}</span>
+                </div>
+              )}
+            </m.div>
+          </header>
+
+          <m.div className="doc-hero-image-wrapper" initial="hidden" animate="visible" variants={fadeUp}>
+            <img src={article.coverImage} alt={article.title} className="doc-hero-image" />
+          </m.div>
+
+          <m.article className="doc-content" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeHighlight]}
+            >
+              {article.content}
+            </ReactMarkdown>
+          </m.article>
+
+          {/* MORE FROM JOURNAL */}
+          <footer className="doc-footer">
+            <div className="doc-footer-label">MORE FROM THE JOURNAL</div>
+            <div className="jn-list">
+              {recentArticles.map((relArticle, i) => (
+                <Link key={i} to={`/journal/${relArticle.slug}`} className="jn-row">
+                  <span className="jn-num">0{i + 1}</span>
+                  <span className="jn-title">{relArticle.title}</span>
+                  <span className="jn-cat">{relArticle.category}</span>
+                  <span className="jn-time">{relArticle.readTime} read</span>
+                  <span className="jn-date">{new Date(relArticle.published).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }).toUpperCase()}</span>
+                  <ArrowRight size={16} className="jn-arrow" />
+                </Link>
+              ))}
+            </div>
+          </footer>
+
+        </main>
+
+        {/* RIGHT SIDEBAR (STICKY TOC - DESKTOP) */}
+        <aside className="doc-sidebar">
           <div className="doc-sidebar-inner">
-            <h4 className="doc-sidebar-title">On This Page</h4>
+            <h4 className="doc-sidebar-title">INDEX</h4>
             <nav className="doc-sidebar-nav">
               {headings.map(h => (
                 <a 
@@ -98,7 +169,6 @@ export default function ArticlePage() {
                   onClick={(e) => {
                     e.preventDefault();
                     document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth' });
-                    setTocOpen(false);
                   }}
                 >
                   {h.text}
@@ -108,175 +178,6 @@ export default function ArticlePage() {
           </div>
         </aside>
 
-        {/* MOBILE TOC TOGGLE */}
-        <button className="mobile-toc-toggle" onClick={() => setTocOpen(!tocOpen)}>
-          <Menu size={20} />
-          <span>Contents</span>
-        </button>
-
-        {/* MAIN ARTICLE CONTENT */}
-        <main className="doc-main">
-          
-          {/* BREADCRUMBS */}
-          <nav className="doc-breadcrumbs">
-            <Link to="/">Home</Link>
-            <ChevronRight size={14} />
-            <Link to="/journal">Journal</Link>
-            <ChevronRight size={14} />
-            {article.series && (
-              <>
-                <span className="breadcrumb-series">{article.series}</span>
-                <ChevronRight size={14} />
-              </>
-            )}
-            <span className="breadcrumb-current">{article.title}</span>
-          </nav>
-
-          {/* ARTICLE HERO */}
-          <header className="doc-article-hero">
-            <h1 className="doc-article-title">{article.title}</h1>
-            <p className="doc-article-desc">{article.description}</p>
-            
-            <div className="doc-article-stats">
-              <div className="stat-column">
-                <span className="stat-label">Views</span>
-                <span className="stat-value">--</span>
-              </div>
-              <div className="stat-column">
-                <span className="stat-label">Reading Time</span>
-                <span className="stat-value">{article.readingTime}</span>
-              </div>
-              <div className="stat-column">
-                <span className="stat-label">Published</span>
-                <span className="stat-value">{new Date(article.published).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-              </div>
-              <div className="stat-column">
-                <span className="stat-label">Updated</span>
-                <span className="stat-value">{new Date(article.published).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-              </div>
-              <div className="stat-column">
-                <span className="stat-label">Version</span>
-                <span className="stat-value">1.0</span>
-              </div>
-            </div>
-            
-            <div className="doc-article-actions">
-              <button className="action-btn" onClick={() => navigator.clipboard.writeText(window.location.href)}>Copy Link</button>
-              <button className="action-btn" onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`, '_blank')}>LinkedIn</button>
-              <button className="action-btn" onClick={() => window.open(`https://twitter.com/intent/tweet?url=${window.location.href}&text=${article.title}`, '_blank')}>X</button>
-            </div>
-            
-            <div className="doc-article-cover">
-              <img src={article.coverImage} alt={article.title} />
-            </div>
-          </header>
-
-          {/* MARKDOWN CONTENT */}
-          <article className="doc-content">
-            <ReactMarkdown 
-              remarkPlugins={[remarkGfm]} 
-              rehypePlugins={[rehypeHighlight]}
-              components={{
-                a: ({ href, children, ...props }) => {
-                  const isExternal = href && (href.startsWith('http') || href.startsWith('//'));
-                  if (isExternal) {
-                    return (
-                      <a
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="external-link"
-                        {...props}
-                      >
-                        {children}
-                      </a>
-                    );
-                  }
-                  return <a href={href} {...props}>{children}</a>;
-                },
-                img: ({ src, alt, ...props }) => (
-                  <figure className="doc-image-figure">
-                    <img src={src} alt={alt} loading="lazy" {...props} />
-                    {alt && <figcaption>{alt}</figcaption>}
-                  </figure>
-                )
-              }}
-            >
-              {article.markdownContent}
-            </ReactMarkdown>
-          </article>
-
-          {/* CROSS-PLATFORM DISTRIBUTION */}
-          <div className="article-cross-platform">
-            <h3 className="cross-platform-title">Available on</h3>
-            <div className="cross-platform-links">
-              {article.platforms?.map((platform, idx) => (
-                <a 
-                  key={idx}
-                  href={platform.url}
-                  target={platform.type === 'portfolio' ? '_self' : '_blank'}
-                  rel={platform.type !== 'portfolio' ? 'noopener noreferrer' : ''}
-                  className="platform-link"
-                >
-                  <PlatformIcon type={platform.type} size={18} />
-                  <span>
-                    {platform.type === 'portfolio' ? 'Portfolio' : 
-                     platform.type === 'github' ? 'Engineering Repository' : 
-                     platform.type.charAt(0).toUpperCase() + platform.type.slice(1)}
-                  </span>
-                </a>
-              ))}
-            </div>
-            <div className="cross-platform-canonical">
-              Originally published on<br/>
-              <strong>TheNameIsBhagavan Engineering Journal</strong><br/>
-              <span className="canonical-badge">Canonical Source</span>
-            </div>
-          </div>
-
-          {/* ARTICLE FOOTER / NAVIGATION */}
-          <footer className="doc-article-footer">
-            
-            <div className="article-completion">
-              <div className="completion-status">✓ Finished Reading</div>
-              <div className="article-feedback">
-                <span>Was this article helpful?</span>
-                <button className="feedback-btn">👍</button>
-                <button className="feedback-btn">👎</button>
-              </div>
-            </div>
-            
-            <hr className="doc-footer-divider" />
-            
-            {article.series && (
-              <div className="series-progress">
-                <span className="series-label">Part {currentIndex + 1} of {seriesArticles.length} in <strong>{article.series}</strong></span>
-                <div className="series-bar">
-                  {seriesArticles.map((_, i) => (
-                    <div key={i} className={`series-bar-segment ${i <= currentIndex ? 'completed' : ''}`}></div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <div className="article-navigation">
-              {prevArticle ? (
-                <Link to={`/journal/${prevArticle.slug}`} className="nav-card prev-card">
-                  <span className="nav-label"><ChevronLeft size={16} /> Previous</span>
-                  <span className="nav-title">{prevArticle.title}</span>
-                </Link>
-              ) : <div className="nav-card empty"></div>}
-
-              {nextArticle ? (
-                <Link to={`/journal/${nextArticle.slug}`} className="nav-card next-card">
-                  <span className="nav-label">Next <ArrowRight size={16} /></span>
-                  <span className="nav-title">{nextArticle.title}</span>
-                </Link>
-              ) : <div className="nav-card empty"></div>}
-            </div>
-          </footer>
-
-        </main>
       </div>
     </div>
   );

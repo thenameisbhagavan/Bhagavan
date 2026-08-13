@@ -1,428 +1,673 @@
-/* APPLE WWDC 2026 CONNECT PAGE REDESIGN */
+/* =========================================
+   CONNECT PAGE: 2026 OPEN CHANNEL
+   ========================================= */
 
 .con-page {
-  background-color: #ffffff;
+  background-color: #fbfbfd;
   color: #1d1d1f;
+  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
   -webkit-font-smoothing: antialiased;
-}
-
-.con-constrain {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 5vw;
-}
-
-.center-align {
-  text-align: center;
-}
-
-.text-muted {
-  color: #86868b;
-}
-
-/* =========================================
-   PRESERVED TOAST NOTIFICATIONS
-   ========================================= */
-.con-toast {
-  position: fixed;
-  top: 40px;
-  right: 40px;
-  z-index: 9999;
-  padding: 24px 32px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-  border: 1px solid rgba(0,0,0,0.05);
-}
-
-.con-toast--success {
-  border-left: 4px solid #34c759;
-}
-.con-toast--error {
-  border-left: 4px solid #ff3b30;
-}
-
-.con-toast-title {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: 18px;
-  font-weight: 600;
-  color: #1d1d1f;
-  margin-bottom: 8px;
-}
-
-.con-toast-desc {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: 14px;
-  line-height: 1.4;
-  color: #86868b;
-}
-
-/* =========================================
-   HERO
-   ========================================= */
-.con-hero {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-  will-change: transform, opacity;
-  transform-origin: center top;
+  position: relative;
+  overflow-x: hidden;
 }
 
-.con-hero-headline {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(50px, 10vw, 140px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
+.c-bounds {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 6vw;
+}
+
+@media (min-width: 1024px) {
+  .c-bounds {
+    padding: 0 max(6vw, 40px);
+  }
+}
+
+/* ── Typography & Rules ── */
+.c-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #a1a1a6;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+/* ══════════════════════════════════════════════════════
+   1. HERO — OPEN CHANNEL
+══════════════════════════════════════════════════════ */
+.ch-section {
+  padding: 20vh 0 10vh 0;
+}
+
+.ch-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+}
+
+@media (min-width: 1024px) {
+  .ch-grid {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 80px;
+  }
+}
+
+.ch-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(48px, 7vw, 100px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
   line-height: 1.05;
   color: #1d1d1f;
+  margin: 0 0 40px 0;
 }
 
-/* =========================================
-   BEFORE THE CONVERSATION
-   ========================================= */
-.con-before {
-  padding: 30vh 0;
-  background: #000000;
-  color: #ffffff;
-}
-
-.con-editorial-sequence {
-  display: flex;
-  flex-direction: column;
-  gap: 12vh;
-}
-
-.con-statement {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(32px, 6vw, 80px);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-}
-
-/* =========================================
-   OPEN TO CONVERSATIONS (Topics)
-   ========================================= */
-.con-topics {
-  padding: 30vh 0;
-  background: #ffffff;
-}
-
-.topics-sequence {
-  display: flex;
-  flex-direction: column;
-  gap: 6vh;
-}
-
-.con-topic-line {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(40px, 8vw, 100px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+.ch-sub {
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.5;
   color: #1d1d1f;
+  max-width: 600px;
 }
 
-/* =========================================
-   DIRECT CONTACT HIERARCHY
-   ========================================= */
-.con-direct {
-  padding: 20vh 0;
-  background: #f5f5f7;
-}
-
-.direct-hierarchy {
+.ch-availability {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 40px;
   display: flex;
   flex-direction: column;
-  gap: 15vh;
-  align-items: center;
-  text-align: center;
+  gap: 24px;
 }
 
-.hierarchy-item {
+.cha-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  gap: 4px;
 }
 
-.hierarchy-item:hover {
-  transform: translateY(-4px);
-}
-
-.hierarchy-primary .hierarchy-label {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: 16px;
+.cha-label {
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: #86868b;
-  margin-bottom: 12px;
+  text-transform: uppercase;
 }
 
-.hierarchy-primary .hierarchy-value {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(32px, 6vw, 80px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: #0066cc; /* Apple Blue */
-  margin-bottom: 16px;
-}
-
-.hierarchy-primary .hierarchy-desc {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: 18px;
+.cha-value {
+  font-size: 14px;
+  font-weight: 600;
   color: #1d1d1f;
 }
 
-.hierarchy-secondary, .hierarchy-tertiary, .hierarchy-quaternary {
-  opacity: 0.8;
-}
-.hierarchy-secondary:hover, .hierarchy-tertiary:hover, .hierarchy-quaternary:hover {
-  opacity: 1;
+/* ══════════════════════════════════════════════════════
+   2. CONVERSATION ROUTES
+══════════════════════════════════════════════════════ */
+.cr-section {
+  padding: 10vh 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
 }
 
-.hierarchy-secondary .hierarchy-label,
-.hierarchy-tertiary .hierarchy-label,
-.hierarchy-quaternary .hierarchy-label {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(28px, 4vw, 50px);
+.cr-list {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.cr-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 32px 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  text-align: left;
+  transition: padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+}
+
+@media (min-width: 768px) {
+  .cr-row {
+    grid-template-columns: 60px 300px 1fr 24px;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+.cr-row:hover {
+  background-color: rgba(0,0,0,0.01);
+  padding-left: 12px;
+}
+
+.cr-num {
+  font-size: 14px;
+  font-weight: 500;
+  color: #a1a1a6;
+}
+
+.cr-title {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: 24px;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.01em;
+}
+
+.cr-desc {
+  font-size: 16px;
+  color: #86868b;
+}
+
+.cr-arrow {
+  color: #a1a1a6;
+  opacity: 0;
+  transform: translateX(-4px) translateY(4px);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 767px) {
+  .cr-arrow { display: none; }
+}
+
+.cr-row:hover .cr-arrow {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+/* ══════════════════════════════════════════════════════
+   3. PRIMARY CONTACT
+══════════════════════════════════════════════════════ */
+.cp-section {
+  padding: 10vh 0;
+}
+
+.cp-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cp-email-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 32px 0;
+  border-top: 1px solid #1d1d1f;
+  border-bottom: 1px solid #1d1d1f;
+}
+
+@media (min-width: 768px) {
+  .cp-email-row {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+}
+
+.cp-email {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(28px, 4vw, 56px);
   font-weight: 600;
   letter-spacing: -0.02em;
   color: #1d1d1f;
-  margin-bottom: 8px;
-  border-bottom: 1px solid transparent;
-  transition: border-bottom-color 0.4s ease;
+  text-decoration: none;
 }
 
-.hierarchy-secondary:hover .hierarchy-label,
-.hierarchy-tertiary:hover .hierarchy-label,
-.hierarchy-quaternary:hover .hierarchy-label {
-  border-bottom-color: #1d1d1f;
-}
-
-.hierarchy-secondary .hierarchy-value,
-.hierarchy-tertiary .hierarchy-value,
-.hierarchy-quaternary .hierarchy-value {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: 16px;
-  color: #86868b;
-}
-
-/* =========================================
-   CONTACT FORM (Emotional Center)
-   ========================================= */
-.con-form-section {
-  padding: 30vh 0;
-  background: #ffffff;
-}
-
-.form-editorial {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(36px, 6vw, 80px);
+.cp-copy-btn {
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  letter-spacing: 0.14em;
   color: #1d1d1f;
-  margin-bottom: 15vh;
-}
-
-.form-container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Premium Apple Form Styling */
-.apple-premium-form {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-}
-@media (max-width: 768px) {
-  .form-row { grid-template-columns: 1fr; }
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.form-group label {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: 16px;
-  font-weight: 600;
-  color: #1d1d1f;
-}
-
-.form-group input,
-.form-group textarea {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: 18px;
-  color: #1d1d1f;
-  padding: 20px 24px;
-  background: rgba(245, 245, 247, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  outline: none;
-  transition: all 0.3s ease;
-  resize: vertical;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: #86868b;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  background: #ffffff;
-  border-color: #0066cc;
-  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.15);
-}
-
-.form-group input:disabled,
-.form-group textarea:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Primary Button Styling matched to portfolio */
-.primary-submit-btn {
-  background: #1d1d1f;
-  color: #ffffff;
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: 18px;
-  font-weight: 600;
-  padding: 20px 48px;
-  border-radius: 30px;
+  text-transform: uppercase;
+  background: none;
   border: none;
+  padding: 0;
   cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.cp-copy-btn.copied {
+  color: #34c759; /* Subtle green for success */
+}
+
+.cp-copy-btn:hover {
+  opacity: 0.5;
+}
+
+.cp-note {
+  font-size: 16px;
+  color: #86868b;
+  max-width: 400px;
+}
+
+/* ══════════════════════════════════════════════════════
+   4. FORM AREA & GUIDANCE
+══════════════════════════════════════════════════════ */
+.cf-section {
+  padding: 10vh 0;
+}
+
+.cf-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 80px;
+}
+
+@media (min-width: 1024px) {
+  .cf-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+  }
+}
+
+/* ── The Form ── */
+.cf-form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.cf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   margin-top: 24px;
 }
 
-.primary-submit-btn:hover:not(:disabled) {
-  transform: scale(1.02);
-  opacity: 0.9;
+.cf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.primary-submit-btn:disabled {
-  opacity: 0.5;
+.cf-field label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #86868b;
+  text-transform: uppercase;
+  display: flex;
+  gap: 8px;
+}
+
+.cf-field label span {
+  color: #1d1d1f;
+}
+
+.cf-input, .cf-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-radius: 0;
+  padding: 12px 0;
+  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+  font-size: 20px;
+  color: #1d1d1f;
+  outline: none;
+  transition: border-color 0.3s ease;
+  -webkit-appearance: none;
+}
+
+.cf-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.cf-input:focus, .cf-textarea:focus {
+  border-bottom: 1px solid #1d1d1f;
+}
+
+.cf-input::placeholder, .cf-textarea::placeholder {
+  color: rgba(0,0,0,0.15);
+}
+
+.cf-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #1d1d1f;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  padding: 24px 0;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: opacity 0.3s ease;
+}
+
+.cf-submit:hover:not(:disabled) {
+  opacity: 0.6;
+}
+
+.cf-submit:disabled {
+  opacity: 0.3;
   cursor: not-allowed;
 }
 
-/* =========================================
-   CURRENT FOCUS (Momentum)
-   ========================================= */
-.con-focus {
-  padding: 30vh 0;
-  background: #f5f5f7;
+.cf-submit-arrow {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.momentum-flow {
+.cf-submit:hover:not(:disabled) .cf-submit-arrow {
+  transform: translateX(4px);
+}
+
+/* ── Guidance ── */
+.cf-guidance {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12vh;
 }
 
-.momentum-node {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(32px, 6vw, 80px);
+.cg-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.cg-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cg-title {
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: -0.03em;
+  color: #1d1d1f;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cg-desc {
+  font-size: 16px;
+  color: #86868b;
+}
+
+/* ══════════════════════════════════════════════════════
+   5. PROFESSIONAL CHANNELS & SIGNAL
+══════════════════════════════════════════════════════ */
+.cs-section {
+  padding: 10vh 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.cs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 80px;
+}
+
+@media (min-width: 1024px) {
+  .cs-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+  }
+}
+
+.cs-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 24px;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease;
+}
+
+.cs-row:first-of-type {
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.cs-row:hover {
+  opacity: 0.6;
+}
+
+.cs-row-title {
+  font-size: 14px;
+  font-weight: 600;
   color: #1d1d1f;
 }
 
-.momentum-start {
+.cs-row-desc {
+  font-size: 14px;
+  color: #86868b;
+}
+
+/* ── Signal ── */
+.csig-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 24px;
+}
+
+.csig-item {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.csig-num {
+  font-size: 11px;
+  font-weight: 600;
+  color: #a1a1a6;
+}
+
+.csig-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.csig-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #1d1d1f;
+  text-transform: uppercase;
+}
+
+.csig-desc {
+  font-size: 13px;
   color: #86868b;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: clamp(16px, 3vw, 24px);
-  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
-.momentum-arrow {
-  font-size: clamp(30px, 5vw, 60px);
+/* ══════════════════════════════════════════════════════
+   6. HUMAN LAYER & RESPONSE & FINAL CTA
+══════════════════════════════════════════════════════ */
+.cx-section {
+  padding: 10vh 0 20vh 0;
+}
+
+.cx-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 80px;
+}
+
+@media (min-width: 1024px) {
+  .cx-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+  }
+}
+
+.cx-human {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #1d1d1f;
+  line-height: 1.2;
+  max-width: 600px;
+  margin-bottom: 24px;
+}
+
+.cx-human-sub {
+  font-size: 16px;
   color: #86868b;
 }
 
-/* =========================================
-   PHILOSOPHY
-   ========================================= */
-.con-philosophy {
-  padding: 30vh 0;
-  background: #ffffff;
-}
-
-.philosophy-screen {
-  min-height: 80vh;
+.cx-response {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 15vh;
-  margin-bottom: 30vh;
-}
-.philosophy-screen:last-child {
-  margin-bottom: 0;
+  gap: 16px;
 }
 
-.con-principle {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(36px, 7vw, 90px);
+.cxr-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cxr-label {
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.1em;
+  color: #1d1d1f;
+  text-transform: uppercase;
+}
+
+.cxr-value {
+  font-size: 14px;
+  color: #86868b;
+}
+
+.cx-cta {
+  margin-top: 120px;
+  padding-top: 60px;
+  border-top: 1px solid #1d1d1f;
+}
+
+.cx-cta-title {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #1d1d1f;
+  margin-bottom: 24px;
+}
+
+.cx-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #1d1d1f;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.cx-cta-link:hover {
+  opacity: 0.6;
+}
+
+.cx-explore {
+  margin-top: 120px;
+}
+
+.cxe-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.cxe-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #86868b;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.cxe-link:hover {
   color: #1d1d1f;
 }
 
-/* =========================================
-   CLOSING
-   ========================================= */
-.con-closing {
-  padding: 40vh 0 20vh 0;
-  background: #000000;
-  color: #ffffff;
+.cx-signature {
+  margin-top: 120px;
 }
 
-.closing-sequence {
+.cxs-status {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
-  gap: 25vh;
+  gap: 4px;
 }
 
-.closing-thought {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(32px, 6vw, 80px);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-}
-
-.closing-finale {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(40px, 8vw, 100px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+/* ══════════════════════════════════════════════════════
+   7. TOAST NOTIFICATIONS
+══════════════════════════════════════════════════════ */
+.con-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 16px 24px;
+  background: #1d1d1f;
   color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.closing-cta {
-  margin-top: 5vh;
+.con-toast--error {
+  background: #ff3b30;
 }
 
-.closing-cta .primary-submit-btn {
-  background: #ffffff;
-  color: #1d1d1f;
+.con-toast-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.con-toast-desc {
+  font-size: 13px;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

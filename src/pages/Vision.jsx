@@ -1,48 +1,96 @@
 import SEO from "../components/SEO";
 import React, { useEffect } from 'react';
 import { m, useScroll, useTransform } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import SectionDivider from "../components/SectionDivider";
+import { ArrowRight, ArrowDown } from 'lucide-react';
 import BrandSignature from "../components/BrandSignature";
-import { socialLinks } from '../constants/socialLinks';
-import '../styles/Vision.css';// ─── Assets ───────────────────────────────────────────────────────────────────
-import careerOSHero from '../assets/careeros-new.jpg'; // Using the polished one from Work page
+import '../styles/Vision.css';
 
 // ─── Motion ───────────────────────────────────────────────────────────────────
-const EASE = [0.16, 1, 0.3, 1];
+const appleEase = [0.22, 1, 0.36, 1];
 
 const fadeUp = {
-  hidden:  { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.5, ease: EASE } },
+  hidden:  { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.4, ease: appleEase } },
 };
 
-const stagger = {
-  hidden:  {},
-  visible: { transition: { staggerChildren: 0.2 } },
+const fadeUpSlow = {
+  hidden:  { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.8, ease: appleEase } },
 };
 
-// ─── Reveal helper ────────────────────────────────────────────────────────────
-function Reveal({ children, className }) {
-  return (
-    <m.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={stagger}
-    >
-      {children}
-    </m.div>
-  );
-}
+// ─── Data ─────────────────────────────────────────────────────────────────────
+const PRINCIPLES = [
+  {
+    num: "01",
+    title: "REDUCE FRICTION",
+    desc: "Good software removes unnecessary cognitive and operational complexity."
+  },
+  {
+    num: "02",
+    title: "CREATE CLARITY",
+    desc: "Intelligence should help people understand what matters."
+  },
+  {
+    num: "03",
+    title: "EXTEND CAPABILITY",
+    desc: "Systems should allow people to accomplish things that were previously difficult."
+  },
+  {
+    num: "04",
+    title: "RESPECT HUMAN AGENCY",
+    desc: "Automation should increase control, not quietly take it away."
+  }
+];
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
+const TRANSFORMATION = [
+  {
+    label: "QUESTION",
+    desc: "What problem actually matters?"
+  },
+  {
+    label: "PRINCIPLE",
+    desc: "What should the system optimize for?"
+  },
+  {
+    label: "SYSTEM",
+    desc: "How should intelligence, memory, reasoning, and software interact?"
+  },
+  {
+    label: "PRODUCT",
+    desc: "How should that complexity become understandable?"
+  },
+  {
+    label: "IMPACT",
+    desc: "What becomes possible for the person using it?"
+  }
+];
+
+const PROOF = [
+  { name: "CareerOS", desc: "Intelligence for better career decisions." },
+  { name: "AuraOS", desc: "Memory and context for persistent assistance." },
+  { name: "VERITAS", desc: "Reasoning and evidence for clearer information." },
+  { name: "VoltDrive", desc: "Product experience built around interaction." }
+];
+
+const FUTURE_INDEX = [
+  { num: "01", title: "INTELLIGENT SYSTEMS", desc: "Systems that can reason, remember, and use tools." },
+  { num: "02", title: "HUMAN-CENTERED AI", desc: "Intelligence designed around human decisions and agency." },
+  { num: "03", title: "PRODUCT INTELLIGENCE", desc: "AI capabilities embedded into useful product experiences." },
+  { num: "04", title: "ENGINEERING DEPTH", desc: "Stronger architectures, infrastructure, evaluation, reliability, and deployment." },
+  { num: "05", title: "HUMAN POTENTIAL", desc: "The ultimate objective behind the technology." }
+];
+
+// ─── Page Component ───────────────────────────────────────────────────────────
 export default function Vision() {
-  const { scrollY } = useScroll();
-  const heroScale = useTransform(scrollY, [0, 800], [1, 0.95]);
-  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
-  const heroY = useTransform(scrollY, [0, 800], [0, 100]);
+  const { scrollYProgress } = useScroll();
+  
+  // Subtle scroll-driven color highlights for the Shift sequence
+  const shift1 = useTransform(scrollYProgress, [0.15, 0.25], ["rgba(255,255,255,0.1)", "#fbfbfd"]);
+  const shift2 = useTransform(scrollYProgress, [0.18, 0.28], ["rgba(255,255,255,0.1)", "#fbfbfd"]);
+  const shift3 = useTransform(scrollYProgress, [0.21, 0.31], ["rgba(255,255,255,0.1)", "#fbfbfd"]);
+  const shift4 = useTransform(scrollYProgress, [0.24, 0.34], ["rgba(255,255,255,0.1)", "#fbfbfd"]);
+  const shift5 = useTransform(scrollYProgress, [0.27, 0.37], ["rgba(255,255,255,0.1)", "#fbfbfd"]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -50,200 +98,291 @@ export default function Vision() {
 
   return (
     <>
-      <SEO title="TheNameIsBhagavan | Vision" description="Explore Bhagavan's engineering vision for the future of Artificial Intelligence, product development, human potential, and technology systems architecture." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack" />
+      <SEO 
+        title="TheNameIsBhagavan | Vision" 
+        description="Engineering Human Potential. My philosophy on intelligence, systems, and product engineering." 
+        keywords="AI Philosophy, Engineering Vision, Human-Centered AI, Product Engineering" 
+      />
 
-    <div className="vision-page">
-      
-      {/* ══════════════════════════════════════════════════════
-          SECTION 1 — HERO
-      ══════════════════════════════════════════════════════ */}
-      <m.section className="vis-hero" style={{ scale: heroScale, opacity: heroOpacity, y: heroY }}>
-        <div className="vis-constrain center-align">
-          <m.h1 className="vis-hero-headline" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: EASE }}>
-            Engineering<br/>Human Potential.
-          </m.h1>
-          <m.p className="vis-hero-sub" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5, delay: 0.5, ease: EASE }}>
-            Technology is not the goal.
-          </m.p>
-        </div>
-      </m.section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 2 — THE OBSERVATION
-      ══════════════════════════════════════════════════════ */}
-      <SectionDivider />
-      <section className="vis-observation">
-        <div className="vis-constrain center-align">
-          <div className="vis-editorial-sequence">
-            <m.h2 className="vis-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              We have more information<br/>than ever before.
-            </m.h2>
-            <m.h2 className="vis-statement text-muted" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Understanding remains<br/>the real challenge.
-            </m.h2>
+      <div className="vision-page">
+        
+        {/* ══════════════════════════════════════════════════════
+            1. THE QUESTION (HERO)
+        ══════════════════════════════════════════════════════ */}
+        <section className="vision-hero">
+          <div className="vision-bounds">
+            <m.div className="vision-hero-eyebrow" initial="hidden" animate="visible" variants={fadeUp}>
+              VISION / POINT OF VIEW / 2026
+            </m.div>
+            <m.h1 className="vision-hero-headline" initial="hidden" animate="visible" variants={fadeUpSlow}>
+              What should technology make possible?
+            </m.h1>
+            <m.p className="vision-hero-sub" initial="hidden" animate="visible" variants={fadeUpSlow}>
+              I build to explore that question.
+            </m.p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ══════════════════════════════════════════════════════
-          SECTION 3 — THE OPPORTUNITY
-      ══════════════════════════════════════════════════════ */}
-      <section className="vis-opportunity">
-        <div className="vis-constrain center-align">
-          <Reveal className="vis-editorial-sequence">
-            <m.h2 className="vis-statement-massive" variants={fadeUp}>Intelligence</m.h2>
-            <m.h2 className="vis-statement-massive" variants={fadeUp}>should create</m.h2>
-            <m.h2 className="vis-statement-massive" variants={fadeUp}>understanding.</m.h2>
-            <m.h2 className="vis-statement-massive text-muted" variants={fadeUp}>Not</m.h2>
-            <m.h2 className="vis-statement-massive text-muted" variants={fadeUp}>overwhelm.</m.h2>
-          </Reveal>
-        </div>
-      </section>
+        {/* ══════════════════════════════════════════════════════
+            2. THE BELIEF
+        ══════════════════════════════════════════════════════ */}
+        <section className="vision-belief">
+          <div className="vision-bounds">
+            <m.div className="vision-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              01 — THE BELIEF
+            </m.div>
 
-      {/* ══════════════════════════════════════════════════════
-          SECTION 4 — WHY I BUILD
-      ══════════════════════════════════════════════════════ */}
-      <section className="vis-why">
-        <div className="vis-constrain center-align">
-          <m.div className="vis-why-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            People face critical decisions every day.<br/>
-            The gap is rarely a lack of data.<br/>
-            The gap is clarity.<br/><br/>
-            Intelligent systems exist to bridge that gap.
-          </m.div>
-        </div>
-      </section>
+            <m.h2 className="vb-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
+              More intelligence is not enough.
+            </m.h2>
 
-      {/* ══════════════════════════════════════════════════════
-          SECTION 5 — CAREEROS PROOF
-      ══════════════════════════════════════════════════════ */}
-      <section className="vis-proof">
-        <div className="vis-constrain">
-          <m.div className="vis-proof-image-wrapper" initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
-            <img src={careerOSHero} alt="CareerOS Interface" className="vis-proof-img" loading="lazy" />
-          </m.div>
-          <m.div className="vis-proof-caption center-align" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.2 }}>
-            Applied philosophy becomes product capability.
-          </m.div>
-        </div>
-      </section>
+            <m.h3 className="vb-secondary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
+              Technology becomes meaningful when intelligence becomes useful.
+            </m.h3>
 
-      {/* ══════════════════════════════════════════════════════
-          SECTION 6 — ENGINEERING PRINCIPLES
-      ══════════════════════════════════════════════════════ */}
-      <section className="vis-principles">
-        <div className="vis-constrain center-align">
-          
-          {/* Screen 1 */}
-          <div className="principle-screen">
-            <m.h2 className="vis-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <m.p className="vb-explanation" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              We have access to more information, computation, and automation than ever before.<br/><br/>
+              The harder problem is turning that capability into clarity, context, and meaningful action.
+            </m.p>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            3. THE SHIFT
+        ══════════════════════════════════════════════════════ */}
+        <section className="vision-shift">
+          <div className="vision-bounds">
+            <div className="vision-label">THE PROGRESSION</div>
+            
+            <div className="vs-sequence">
+              <m.div className="vs-word" style={{ color: shift1 }}>INFORMATION</m.div>
+              <ArrowDown className="vs-arrow" style={{ margin: '0 auto' }} />
+              
+              <m.div className="vs-word" style={{ color: shift2 }}>UNDERSTANDING</m.div>
+              <ArrowDown className="vs-arrow" style={{ margin: '0 auto' }} />
+              
+              <m.div className="vs-word" style={{ color: shift3 }}>INTELLIGENCE</m.div>
+              <ArrowDown className="vs-arrow" style={{ margin: '0 auto' }} />
+              
+              <m.div className="vs-word" style={{ color: shift4 }}>CAPABILITY</m.div>
+              <ArrowDown className="vs-arrow" style={{ margin: '0 auto' }} />
+              
+              <m.div className="vs-word" style={{ color: shift5 }}>HUMAN POTENTIAL</m.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            4. WHAT I BELIEVE SOFTWARE SHOULD DO
+        ══════════════════════════════════════════════════════ */}
+        <section className="vision-principles">
+          <div className="vision-bounds">
+            <m.h2 className="vp-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
+              What software should do.
+            </m.h2>
+
+            <div className="vp-grid">
+              {PRINCIPLES.map((p, i) => (
+                <m.div 
+                  key={i} 
+                  className="vp-item"
+                  initial="hidden" 
+                  whileInView="visible" 
+                  viewport={{ once: true, margin: "-100px" }} 
+                  variants={fadeUp}
+                >
+                  <div className="vp-num">{p.num}</div>
+                  <h3 className="vp-title">{p.title}</h3>
+                  <p className="vp-desc">{p.desc}</p>
+                </m.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            5. THE HUMAN SIDE
+        ══════════════════════════════════════════════════════ */}
+        <section className="vision-human">
+          <div className="vision-bounds">
+            <m.h2 className="vh-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
               Technology should feel human.
             </m.h2>
-            <m.h2 className="vis-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Complexity should feel simple.
-            </m.h2>
+
+            <div className="vh-list">
+              <m.p className="vh-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                Complexity should disappear into the experience.
+              </m.p>
+              <m.p className="vh-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                Intelligence should remain understandable.
+              </m.p>
+              <m.p className="vh-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                Power should remain useful.
+              </m.p>
+              <m.p className="vh-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                People should remain in control.
+              </m.p>
+            </div>
           </div>
+        </section>
 
-          {/* Screen 2 */}
-          <div className="principle-screen">
-            <m.h2 className="vis-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Intelligence should be useful.
-            </m.h2>
-            <m.h2 className="vis-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Products should create impact.
-            </m.h2>
-          </div>
+        {/* ══════════════════════════════════════════════════════
+            6. FROM BELIEF TO BUILDING
+        ══════════════════════════════════════════════════════ */}
+        <section className="vision-building">
+          <div className="vision-bounds">
+            <m.div className="vision-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              ENGINEERING METHODOLOGY
+            </m.div>
 
-          {/* Screen 3 */}
-          <div className="principle-screen">
-            <m.h2 className="vis-principle principle-climax" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Potential should have no limits.
-            </m.h2>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION 7 — THE ROAD AHEAD
-      ══════════════════════════════════════════════════════ */}
-      <section className="vis-road">
-        <div className="vis-constrain center-align">
-          <div className="vis-evolution-flow">
-            {[
-              "Curiosity",
-              "Learning",
-              "Engineering",
-              "Products",
-              "People",
-              "Human Potential"
-            ].map((node, i, arr) => (
-              <React.Fragment key={i}>
-                <m.div 
-                  className="vis-evolution-node"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1.2, ease: EASE }}
-                >
-                  {node}
-                </m.div>
-                {i < arr.length - 1 && (
-                  <m.div className="vis-evolution-arrow" initial={{ opacity: 0 }} whileInView={{ opacity: 0.3 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1 }}>
-                    ↓
+            <div className="vb-transform">
+              {TRANSFORMATION.map((step, i) => (
+                <React.Fragment key={i}>
+                  <m.div 
+                    className="vbt-step"
+                    initial="hidden" 
+                    whileInView="visible" 
+                    viewport={{ once: true, margin: "-100px" }} 
+                    variants={fadeUp}
+                  >
+                    <div className="vbt-label">{step.label}</div>
+                    <div className="vbt-desc">{step.desc}</div>
                   </m.div>
-                )}
-              </React.Fragment>
-            ))}
+                  {i < TRANSFORMATION.length - 1 && (
+                    <m.div 
+                      style={{ display: 'flex', alignItems: 'center' }}
+                      initial="hidden" 
+                      whileInView="visible" 
+                      viewport={{ once: true, margin: "-100px" }} 
+                      variants={fadeUp}
+                    >
+                      <ArrowRight size={16} color="#a1a1a6" className="vbt-arrow-desktop" />
+                    </m.div>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ══════════════════════════════════════════════════════
-          SECTION 8 — CLOSING
-      ══════════════════════════════════════════════════════ */}
-      <section className="vis-closing">
-        <div className="vis-constrain center-align">
-          <div className="vis-closing-sequence">
-            
-            <m.div className="vis-closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
-              Technology should expand<br/>human potential.
-            </m.div>
-            
-            <m.div className="vis-closing-thought text-muted" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
-              Not replace it.
-            </m.div>
+        {/* ══════════════════════════════════════════════════════
+            7. PROOF WITHOUT SHOWCASING
+        ══════════════════════════════════════════════════════ */}
+        <section className="vision-proof">
+          <div className="vision-bounds">
+            <m.h2 className="vpr-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
+              Philosophy in practice.
+            </m.h2>
 
-            <m.div className="vis-closing-finale" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
-              The future belongs to engineers<br/>who build intelligence<br/>with purpose.
-            </m.div>
+            <div className="vpr-list">
+              {PROOF.map((item, i) => (
+                <m.div 
+                  key={i} 
+                  className="vpr-item"
+                  initial="hidden" 
+                  whileInView="visible" 
+                  viewport={{ once: true, margin: "-100px" }} 
+                  variants={fadeUp}
+                >
+                  <div className="vpr-name">{item.name}</div>
+                  <div className="vpr-desc">{item.desc}</div>
+                </m.div>
+              ))}
+            </div>
 
-            <m.div className="vis-closing-cta" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 2, ease: EASE, delay: 0.5 }}>
-              <Link to="/connect" className="vis-connect-link">
-                Connect ↗
+            <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <Link to="/work" className="vpr-link">
+                See the systems <ArrowRight size={16} />
               </Link>
             </m.div>
+          </div>
+        </section>
 
-            <m.div className="vis-closing-socials" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 2, ease: EASE, delay: 0.7 }} style={{ display: 'flex', gap: '24px', justifyContent: 'center', marginTop: '32px' }}>
-              <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer" style={{ color: '#86868b', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#fff'} onMouseLeave={(e) => e.currentTarget.style.color = '#86868b'} aria-label="GitHub">
-                <Github size={24} strokeWidth={1.5} />
-              </a>
-              <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer" style={{ color: '#86868b', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#fff'} onMouseLeave={(e) => e.currentTarget.style.color = '#86868b'} aria-label="LinkedIn">
-                <Linkedin size={24} strokeWidth={1.5} />
-              </a>
-              <a href={socialLinks.email.url} style={{ color: '#86868b', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.color = '#fff'} onMouseLeave={(e) => e.currentTarget.style.color = '#86868b'} aria-label="Email">
-                <Mail size={24} strokeWidth={1.5} />
-              </a>
+        {/* ══════════════════════════════════════════════════════
+            8. THE LONG VIEW & 9. WHAT I AM BUILDING TOWARD
+        ══════════════════════════════════════════════════════ */}
+        <section className="vision-future">
+          <div className="vision-bounds">
+            <m.div className="vision-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              THE LONG VIEW
             </m.div>
 
-          </div>
-        </div>
-      </section>
+            <m.h2 className="vf-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
+              I am not building toward more software.
+            </m.h2>
 
-      {/* BRAND SIGNATURE */}
-      <BrandSignature />
-    </div>
-  
+            <m.h3 className="vf-reveal" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
+              I am building toward better systems.
+            </m.h3>
+
+            <div className="vf-list">
+              <m.div className="vf-list-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                Systems that understand context.
+              </m.div>
+              <m.div className="vf-list-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                Systems that reason before acting.
+              </m.div>
+              <m.div className="vf-list-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                Systems that remember.
+              </m.div>
+              <m.div className="vf-list-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                Systems that adapt.
+              </m.div>
+              <m.div className="vf-list-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                Systems that make complexity easier to navigate.
+              </m.div>
+            </div>
+
+            <div className="vf-index">
+              {FUTURE_INDEX.map((item, i) => (
+                <m.div 
+                  key={i} 
+                  className="vfi-item"
+                  initial="hidden" 
+                  whileInView="visible" 
+                  viewport={{ once: true, margin: "-100px" }} 
+                  variants={fadeUp}
+                >
+                  <div className="vfi-num">{item.num}</div>
+                  <div className="vfi-title">{item.title}</div>
+                  <div className="vfi-desc">{item.desc}</div>
+                </m.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            10. FINAL THESIS
+        ══════════════════════════════════════════════════════ */}
+        <section className="vision-closing">
+          <div className="vision-bounds">
+            <m.div className="vision-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              THE VISION / CONTINUING
+            </m.div>
+
+            <m.h2 className="vc-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
+              Technology should expand human potential.
+            </m.h2>
+
+            <m.h3 className="vc-secondary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
+              Not replace it.
+            </m.h3>
+
+            <m.p className="vc-final" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              The future I want to build is one where intelligence makes people more capable, not less.
+            </m.p>
+
+            <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <Link to="/work" className="vc-cta">
+                Build with purpose. <ArrowRight size={16} />
+              </Link>
+            </m.div>
+          </div>
+        </section>
+
+        <BrandSignature />
+      </div>
     </>
   );
 }

@@ -1,27 +1,55 @@
 import fs from 'fs';
 import path from 'path';
 
-// Parse articles.js as text to avoid Vite asset import errors in pure Node
-const articlesContent = fs.readFileSync(path.resolve(process.cwd(), 'src/data/articles.js'), 'utf-8');
+// ── Parse frontmatter from markdown files directly ──
+// The previous approach parsed articles.js as text with regex,
+// but articles.js uses import.meta.glob (Vite-only) and doesn't
+// contain hardcoded slugs. This reads the actual markdown files.
 
-const slugRegex = /slug:\s*'([^']+)'/g;
-const dateRegex = /updated:\s*'([^']+)'/g;
-
-let match;
-const articles = [];
-const slugs = [];
-const dates = [];
-
-while ((match = slugRegex.exec(articlesContent)) !== null) {
-  slugs.push(match[1]);
+function parseFrontmatter(raw) {
+  const match = raw.match(/^---\n([\s\S]*?)\n---/);
+  if (!match) return {};
+  const attrs = {};
+  match[1].split('\n').forEach(line => {
+    const idx = line.indexOf(':');
+    if (idx > -1) {
+      const key = line.slice(0, idx).trim();
+      let value = line.slice(idx + 1).trim();
+      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+        value = value.slice(1, -1);
+      }
+      attrs[key] = value;
+    }
+  });
+  return attrs;
 }
-while ((match = dateRegex.exec(articlesContent)) !== null) {
-  dates.push(match[1]);
+
+function findMarkdownFiles(dir) {
+  let results = [];
+  const items = fs.readdirSync(dir, { withFileTypes: true });
+  for (const item of items) {
+    const fullPath = path.join(dir, item.name);
+    if (item.isDirectory()) {
+      results = results.concat(findMarkdownFiles(fullPath));
+    } else if (item.name.endsWith('.md')) {
+      results.push(fullPath);
+    }
+  }
+  return results;
 }
 
-for(let i=0; i<slugs.length; i++) {
-  articles.push({ slug: slugs[i], updated: dates[i] || new Date().toISOString().split('T')[0] });
-}
+const contentDir = path.resolve(process.cwd(), 'src/content');
+const mdFiles = findMarkdownFiles(contentDir);
+
+const articles = mdFiles.map(filepath => {
+  const raw = fs.readFileSync(filepath, 'utf-8');
+  const fm = parseFrontmatter(raw);
+  const filenameSlug = path.basename(filepath, '.md');
+  return {
+    slug: fm.slug || filenameSlug,
+    updated: fm.updated || fm.published || new Date().toISOString().split('T')[0]
+  };
+});
 
 const hostname = 'https://thenameisbhagavan.in';
 const today = new Date().toISOString().split('T')[0];
@@ -95,4 +123,4 @@ fs.writeFileSync(path.join(publicDir, 'sitemap-products.xml'), sitemapProducts, 
 fs.writeFileSync(path.join(publicDir, 'sitemap-journal.xml'), sitemapJournal, 'utf8');
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemapIndex, 'utf8');
 
-console.log('Split sitemaps generated at', publicDir);
+console.log(`Split sitemaps generated: ${articles.length} journal articles → ${publicDir}`);

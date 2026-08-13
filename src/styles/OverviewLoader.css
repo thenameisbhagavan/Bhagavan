@@ -1,0 +1,81 @@
+/* =========================================
+   OVERVIEW LOADER: 2026 IDENTITY SYSTEM
+   ========================================= */
+
+.ol-container {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: #FAFAF8; /* Warm-white canvas */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto; /* Block interactions until complete */
+}
+
+.ol-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ol-move-up {
+  /* Move toward the navbar position subtly */
+  transform: translateY(-8vh);
+}
+
+.ol-mark-wrapper {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 24px;
+}
+
+.ol-mark {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Assumes original logo.png is black for light mode */
+}
+
+.ol-signal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 240px;
+}
+
+.ol-rule {
+  height: 1px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  transform-origin: center;
+  margin-bottom: 20px;
+}
+
+.ol-metadata {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.ol-metadata span {
+  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #86868b;
+  text-transform: uppercase;
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

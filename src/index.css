@@ -68,6 +68,18 @@ button, input, textarea, select {
   text-rendering: optimizeLegibility;
 }
 
+/* BRAND SIGNATURE TYPOGRAPHY */
+.brand-cursive {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+@keyframes pulse-brand {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
 h1, h2, h3, h4, h5, h6,
 .phi-headline, .section-title, .hero-title {
   font-family: var(--font-display);

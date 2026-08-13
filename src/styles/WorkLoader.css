@@ -1,0 +1,114 @@
+/* =========================================
+   WORK LOADER: THE SYSTEM INDEX
+   ========================================= */
+
+.wl-container {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: #FAFAF8; /* Warm-white canvas */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  pointer-events: auto; /* Block interactions until complete */
+  overflow: hidden;
+  padding: 80px 60px; /* Upper-left padding */
+}
+
+.wl-content {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wl-compress {
+  /* Move toward the upper-left slightly when dissolving into the page */
+  transform: translate(-10px, -20px);
+}
+
+@media (max-width: 768px) {
+  .wl-container {
+    padding: 60px 24px;
+  }
+}
+
+.wl-metadata {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+.wl-metadata span {
+  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #1d1d1f; /* Strong dark color for precision */
+  text-transform: uppercase;
+}
+
+.wl-rule {
+  height: 1px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.15);
+  transform-origin: left center;
+  margin-bottom: 32px;
+}
+
+.wl-systems {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wl-system-row {
+  display: flex;
+  gap: 24px;
+  align-items: baseline;
+}
+
+.wl-sys-id {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+  color: #86868b;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  width: 20px;
+}
+
+.wl-sys-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wl-sys-name {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #1d1d1f;
+  text-transform: uppercase;
+}
+
+.wl-sys-desc {
+  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #86868b;
+  text-transform: uppercase;
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

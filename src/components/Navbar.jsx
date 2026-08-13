@@ -85,22 +85,23 @@ const CSS = `
   .nav-shell {
     position: fixed;
     top: 0; left: 0; right: 0;
-    height: 44px;
+    height: 68px;
     z-index: 9000;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease;
+    transition: background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
     border-bottom: 1px solid transparent;
   }
   .nav-shell.scrolled {
-    background: var(--nav-scrolled-bg, rgba(255,255,255,0.72));
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border-bottom: 1px solid var(--nav-border-color, rgba(0,0,0,0.06));
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
   }
   .nav-shell.panel-open {
-    background: rgba(255,255,255,0.96);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(40px) saturate(180%);
     -webkit-backdrop-filter: blur(40px) saturate(180%);
     border-bottom: 1px solid transparent;
@@ -109,39 +110,59 @@ const CSS = `
   /* ── Inner row ── */
   .nav-inner {
     width: 100%;
-    max-width: 1280px;
-    padding: 0 32px;
+    max-width: 1440px;
+    padding: 0 40px;
     height: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    justify-content: space-between;
     position: relative;
     z-index: 9010;
   }
 
   /* ── Wordmark ── */
   .nav-wordmark {
-    font-size: 14.5px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    transition: opacity 0.2s ease;
-    flex-shrink: 0;
+    justify-self: start;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 1; /* Allow shrinking on narrow screens */
+    min-width: 0; /* Prevent grid blowout */
     outline: none;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
   }
-  .nav-wordmark:hover { opacity: 0.55; }
+  .nav-wordmark img {
+    height: 32px;
+    width: 32px;
+    border-radius: 8px;
+  }
+  .nav-wordmark:hover { transform: scale(1.04); }
   .nav-wordmark:focus-visible { outline: 2px solid rgba(0,102,204,0.5); outline-offset: 4px; border-radius: 4px; }
-  @media (max-width: 767px) {
-    .nav-wordmark-text { display: none; }
-  }
 
   /* ── Desktop links ── */
   .nav-links {
+    justify-self: center;
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 28px;
     height: 100%;
   }
-  @media (max-width: 900px) { .nav-links { display: none; } }
+  @media (max-width: 900px) { 
+    .nav-links { display: none; }
+    .nav-inner { padding: 0 16px; }
+    .nav-wordmark span { 
+      font-size: clamp(14px, 4.5vw, 20px) !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .nav-wordmark {
+      gap: 8px !important;
+    }
+  }
 
   /* ── Single nav item ── */
   .nav-item {
@@ -154,23 +175,28 @@ const CSS = `
   .nav-btn {
     background: none;
     border: none;
-    padding: 0 16px;
+    padding: 0;
     height: 100%;
     display: flex;
     align-items: center;
-    font-size: 12px;
+    font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+    font-size: 14px;
     font-weight: 400;
-    letter-spacing: -0.01em;
+    color: #424245;
+    letter-spacing: 0.01em;
     cursor: pointer;
     white-space: nowrap;
-    transition: opacity 0.2s ease, font-weight 0.2s ease, color 0.35s ease;
+    transition: color 0.18s ease, transform 0.18s ease;
     position: relative;
     outline: none;
   }
-  .nav-btn:hover { opacity: 0.55; }
+  .nav-btn:hover { 
+    color: #1d1d1f;
+    transform: translateY(-1px);
+  }
   .nav-btn.active {
+    color: #1d1d1f;
     font-weight: 500;
-    opacity: 1;
   }
   .nav-btn:focus-visible {
     outline: 2px solid rgba(0,102,204,0.5);
@@ -181,15 +207,15 @@ const CSS = `
   /* ── Intelligence dropdown panel ── */
   .nav-dropdown {
     position: absolute;
-    top: calc(100% + 0px);
+    top: calc(100% + 4px);
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255,255,255,0.98);
+    background: #ffffff;
     border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 18px;
-    padding: 12px;
-    min-width: 300px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    border-radius: 12px;
+    padding: 8px;
+    min-width: 240px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
     z-index: 9020;
   }
 
@@ -197,40 +223,39 @@ const CSS = `
     display: flex;
     flex-direction: column;
     gap: 2px;
-    padding: 12px 16px;
-    border-radius: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
     background: none;
     border: none;
     width: 100%;
     text-align: left;
     cursor: pointer;
-    transition: background 0.18s ease;
+    transition: background 0.15s ease;
     text-decoration: none;
   }
-  .nav-dropdown-item:hover { background: rgba(0,0,0,0.04); }
+  .nav-dropdown-item:hover { background: rgba(0,0,0,0.03); }
 
   .nav-dropdown-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #000000;
-    letter-spacing: -0.02em;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1d1d1f;
   }
 
   .nav-dropdown-sub {
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 400;
     color: #86868b;
-    letter-spacing: 0;
   }
 
   .nav-dropdown-divider {
     height: 1px;
-    background: rgba(0,0,0,0.05);
+    background: rgba(0,0,0,0.04);
     margin: 4px 8px;
   }
 
   /* ── Right actions ── */
   .nav-actions {
+    justify-self: end;
     display: flex;
     align-items: center;
     gap: 16px;
@@ -545,11 +570,6 @@ const CSS = `
     color: var(--nav-text-color);
   }
   
-  /* Make the logo wordmark white on dark mode */
-  .nav-shell.nav-dark-mode .nav-wordmark img {
-    filter: invert(1);
-  }
-
   /* Adjust scrolled background for dark mode */
   .nav-shell.nav-dark-mode.scrolled {
     background: var(--nav-scrolled-bg);
@@ -565,8 +585,6 @@ const CSS = `
   .nav-shell.nav-dark-mode.panel-open .nav-social-btn {
     color: #000000;
   }
-  .nav-shell.nav-dark-mode.panel-open .nav-wordmark img {
-    filter: none;
   }
 `;
 
@@ -656,7 +674,7 @@ export default function Navbar() {
   const handleDDEnter = () => {
     clearTimeout(ddTimer.current);
   };
-  const isDarkPage = location.pathname.startsWith("/journal") || location.pathname.startsWith("/work/voltdrive") || location.pathname.startsWith("/work/careeros") || location.pathname.startsWith("/work/auraos") || location.pathname.startsWith("/work/veritas");
+  const isDarkPage = location.pathname.startsWith("/work/voltdrive") || location.pathname.startsWith("/work/careeros") || location.pathname.startsWith("/work/auraos") || location.pathname.startsWith("/work/veritas");
 
   const shellClass = [
     "nav-shell",
@@ -793,20 +811,6 @@ export default function Navbar() {
               </m.button>
             ))}
 
-            <m.div 
-              className="nav-mobile-socials"
-              style={{ display: 'flex', gap: '24px', marginTop: '40px', flexWrap: 'wrap' }}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.4, ease }}
-            >
-              <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer" style={{ color: '#000000' }}><Github size={24} strokeWidth={1.5} /></a>
-              <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer" style={{ color: '#000000' }}><Linkedin size={24} strokeWidth={1.5} /></a>
-              <a href={socialLinks.twitter.url} target="_blank" rel="noopener noreferrer" style={{ color: '#000000' }}><Twitter size={24} strokeWidth={1.5} /></a>
-              <a href={socialLinks.youtube.url} target="_blank" rel="noopener noreferrer" style={{ color: '#000000' }}><Youtube size={24} strokeWidth={1.5} /></a>
-              <a href={socialLinks.instagram.url} target="_blank" rel="noopener noreferrer" style={{ color: '#000000' }}><Instagram size={24} strokeWidth={1.5} /></a>
-              <a href={socialLinks.email.url} style={{ color: '#000000' }}><Mail size={24} strokeWidth={1.5} /></a>
-            </m.div>
           </m.div>
         )}
       </AnimatePresence>
@@ -815,82 +819,89 @@ export default function Navbar() {
       <nav className={shellClass}>
         <div className="nav-inner">
 
-          {/* Logo */}
-          <button className="nav-wordmark apple-pressable" onClick={() => go("/")} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <img src={logoImg} alt="Logo" style={{ height: '24px', width: '24px', borderRadius: '6px' }} />
-            <span className="nav-wordmark-text" style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--nav-text-color)' }}>TheNameIsBhagavan</span>
+          {/* Master Portrait Identity + Cursive Brand Text */}
+          <button className="nav-wordmark apple-pressable" onClick={() => go("/")} aria-label="TheNameIsBhagavan — Home" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <img src="/identity/bhagavan-icon-32.png" alt="TNB — TheNameIsBhagavan" style={{ height: '32px', width: '32px', borderRadius: '6px', objectFit: 'cover' }} />
+            <span className="brand-cursive" style={{
+              fontSize: '22px',
+              color: 'var(--nav-text-color, #1d1d1f)',
+              lineHeight: 1,
+              marginTop: '4px' // Optical alignment
+            }}>
+              TheNameIsBhagavan
+            </span>
           </button>
 
           {/* Desktop links */}
           <div className="nav-links">
-            {PRIMARY_NAV.map((item) => {
-              if (item.dropdown) {
-                const open = activeDD === item.label;
+              {PRIMARY_NAV.map((item) => {
+                if (item.dropdown) {
+                  const open = activeDD === item.label;
+                  return (
+                    <div
+                      key={item.label}
+                      className="nav-item"
+                      onMouseEnter={() => handleItemEnter(item.label)}
+                      onMouseLeave={handleItemLeave}
+                    >
+                      <button
+                        className={`nav-btn apple-pressable ${open ? "active" : ""}`}
+                        onClick={() => go(item.dropdown[0].path)}
+                      >
+                        {item.label}
+                        {/* tiny chevron */}
+                        <svg style={{ marginLeft: 5, opacity: 0.5, transition: "transform 0.2s", transform: open ? "rotate(180deg)" : "rotate(0deg)" }} width="10" height="6" viewBox="0 0 10 6" fill="none">
+                          <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+
+                      <AnimatePresence>
+                        {open && (
+                          <m.div
+                            className="nav-dropdown"
+                            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                            animate={{ opacity: 1, y: 0,  scale: 1 }}
+                            exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                            transition={{ duration: 0.22, ease }}
+                            onMouseEnter={handleDDEnter}
+                            onMouseLeave={handleItemLeave}
+                          >
+                            {item.dropdown.map((sub, idx) => (
+                              <React.Fragment key={sub.label}>
+                                {idx > 0 && <div className="nav-dropdown-divider" />}
+                                <button
+                                  className="nav-dropdown-item apple-pressable"
+                                  onClick={() => go(sub.path)}
+                                >
+                                  <span className="nav-dropdown-label">{sub.label}</span>
+                                  <span className="nav-dropdown-sub">{sub.sub}</span>
+                                </button>
+                              </React.Fragment>
+                            ))}
+                          </m.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                }
+
                 return (
-                  <div
-                    key={item.label}
-                    className="nav-item"
-                    onMouseEnter={() => handleItemEnter(item.label)}
-                    onMouseLeave={handleItemLeave}
-                  >
+                  <div key={item.label} className="nav-item">
                     <button
-                      className={`nav-btn apple-pressable ${open ? "active" : ""}`}
-                      onClick={() => go(item.dropdown[0].path)}
+                      className={`nav-btn apple-pressable ${isActive(item.path) ? "active" : ""}`}
+                      onClick={() => go(item.path)}
+                      onMouseEnter={() => setActiveDD(null)}
                     >
                       {item.label}
-                      {/* tiny chevron */}
-                      <svg style={{ marginLeft: 5, opacity: 0.5, transition: "transform 0.2s", transform: open ? "rotate(180deg)" : "rotate(0deg)" }} width="10" height="6" viewBox="0 0 10 6" fill="none">
-                        <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
                     </button>
-
-                    <AnimatePresence>
-                      {open && (
-                        <m.div
-                          className="nav-dropdown"
-                          initial={{ opacity: 0, y: -8, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0,  scale: 1 }}
-                          exit={{ opacity: 0, y: -8, scale: 0.98 }}
-                          transition={{ duration: 0.22, ease }}
-                          onMouseEnter={handleDDEnter}
-                          onMouseLeave={handleItemLeave}
-                        >
-                          {item.dropdown.map((sub, idx) => (
-                            <React.Fragment key={sub.label}>
-                              {idx > 0 && <div className="nav-dropdown-divider" />}
-                              <button
-                                className="nav-dropdown-item apple-pressable"
-                                onClick={() => go(sub.path)}
-                              >
-                                <span className="nav-dropdown-label">{sub.label}</span>
-                                <span className="nav-dropdown-sub">{sub.sub}</span>
-                              </button>
-                            </React.Fragment>
-                          ))}
-                        </m.div>
-                      )}
-                    </AnimatePresence>
                   </div>
                 );
-              }
+              })}
+            </div>
 
-              return (
-                <div key={item.label} className="nav-item">
-                  <button
-                    className={`nav-btn apple-pressable ${isActive(item.path) ? "active" : ""}`}
-                    onClick={() => go(item.path)}
-                    onMouseEnter={() => setActiveDD(null)}
-                  >
-                    {item.label}
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Right actions */}
-          <div className="nav-actions">
-            {/* Search icon */}
+            {/* Right actions */}
+            <div className="nav-actions">
+              {/* Search icon */}
             <button
               className="nav-search-icon apple-pressable"
               onClick={() => setSearchOpen(true)}
@@ -899,70 +910,11 @@ export default function Navbar() {
               <SearchSVG />
             </button>
 
-            {/* Social Icons */}
-            <a
-              href={socialLinks.github.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-social-btn"
-              data-social="github"
-              aria-label="GitHub Profile"
-            >
-              <Github size={18} strokeWidth={1.75} color="currentColor" />
-            </a>
-            <a
-              href={socialLinks.linkedin.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-social-btn"
-              data-social="linkedin"
-              aria-label="LinkedIn Profile"
-            >
-              <Linkedin size={18} strokeWidth={1.75} color="currentColor" />
-            </a>
-            <a
-              href={socialLinks.twitter.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-social-btn"
-              data-social="twitter"
-              aria-label="X (Twitter) Profile"
-            >
-              <Twitter size={18} strokeWidth={1.75} color="currentColor" />
-            </a>
-            <a
-              href={socialLinks.youtube.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-social-btn"
-              data-social="youtube"
-              aria-label="YouTube Channel"
-            >
-              <Youtube size={18} strokeWidth={1.75} color="currentColor" />
-            </a>
-            <a
-              href={socialLinks.instagram.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-social-btn"
-              data-social="instagram"
-              aria-label="Instagram Profile"
-            >
-              <Instagram size={18} strokeWidth={1.75} color="currentColor" />
-            </a>
-            <a
-              href={socialLinks.email.url}
-              className="nav-social-btn"
-              data-social="email"
-              aria-label="Send Email"
-            >
-              <Mail size={18} strokeWidth={1.75} color="currentColor" />
-            </a>
-
             <button
               className="nav-resume-btn"
               onClick={() => go("/resume")}
               aria-label="Resume"
+              title="Resume"
             >
               <FileText size={18} strokeWidth={1.75} color="currentColor" />
             </button>

@@ -1,0 +1,125 @@
+/* =========================================
+   ROUTE TRANSITIONS: 2026 EDITORIAL MOTION
+   ========================================= */
+
+/* ── Shared Intro Overlay ── */
+.route-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: #fbfbfd;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 15vh 6vw;
+  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  pointer-events: none;
+}
+
+.route-intro-content {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Intro Metadata ── */
+.intro-metadata {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #86868b;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+/* ── Intro Index Items ── */
+.intro-index-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.intro-index-id {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #86868b;
+}
+
+.intro-index-label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #1d1d1f;
+  text-transform: uppercase;
+}
+
+/* ── Intro Rule (horizontal line) ── */
+.intro-rule {
+  height: 1px;
+  width: 100%;
+  background-color: rgba(0,0,0,0.12);
+  transform-origin: left center;
+}
+
+/* ── Intro Rule Vertical ── */
+.intro-rule-vertical {
+  width: 1px;
+  background-color: rgba(0,0,0,0.12);
+  transform-origin: top center;
+}
+
+/* ── Intro Headline ── */
+.intro-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(18px, 2.5vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+/* ── Intro Subtext ── */
+.intro-subtext {
+  font-size: 13px;
+  font-weight: 400;
+  color: #86868b;
+  line-height: 1.5;
+}
+
+/* ── Vision: Centered ── */
+.route-intro.intro-centered {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.route-intro.intro-centered .route-intro-content {
+  align-items: center;
+}
+
+/* ── Flow Sequence (Ecosystem) ── */
+.intro-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.intro-flow-arrow {
+  font-size: 10px;
+  color: #86868b;
+  letter-spacing: 0.1em;
+  text-align: center;
+  width: 100%;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .route-intro {
+    display: none !important;
+  }
+}

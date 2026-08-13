@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { socialLinks } from '../constants/socialLinks';
 
 const SEO = ({ 
-  title = "TheNameIsBhagavan | AI Engineer", 
+  title: propTitle, 
   description = "Official portfolio of TheNameIsBhagavan, an AI Engineer specializing in Intelligent Systems, Agentic AI, Full Stack Development, Machine Learning, Deep Learning, Computer Vision, CareerOS, AuraOS, and AI-powered software engineering. Explore projects, research, experience, technical expertise, certifications, and professional achievements.", 
   type = "website", 
   image = "/og-image.jpg",
@@ -12,6 +12,25 @@ const SEO = ({
 }) => {
   const { pathname } = useLocation();
   const canonicalUrl = `https://thenameisbhagavan.in${pathname === '/' ? '' : pathname}`;
+  
+  // Enforce TNB Brand Title System
+  const brandTitles = {
+    '/': 'TheNameIsBhagavan — Overview',
+    '/work': 'TheNameIsBhagavan — Work',
+    '/experience': 'TheNameIsBhagavan — Experience',
+    '/innovation': 'TheNameIsBhagavan — Innovation',
+    '/credentials': 'TheNameIsBhagavan — Credentials',
+    '/ecosystem': 'TheNameIsBhagavan — Ecosystem',
+    '/vision': 'TheNameIsBhagavan — Vision',
+    '/journal': 'TheNameIsBhagavan — Engineering Journal',
+    '/connect': 'TheNameIsBhagavan — Connect',
+    '/resume': 'TheNameIsBhagavan — Resume'
+  };
+
+  // Check if it's a specific project or article page to maintain custom titles if needed,
+  // but generally enforce the brand mapping for core pages.
+  const isCorePage = brandTitles[pathname];
+  const finalTitle = isCorePage ? brandTitles[pathname] : (propTitle || 'TheNameIsBhagavan');
   
   const keywords = "TheNameIsBhagavan, Bhagavan, Bhagavan AI Engineer, AI Engineer, Artificial Intelligence Engineer, Machine Learning Engineer, Deep Learning Engineer, Intelligent Systems Engineer, Agentic AI, Full Stack Developer, React Developer, Python Developer, MERN Stack Developer, Software Engineer, CareerOS, AuraOS, Portfolio, Developer Portfolio, India, Andhra Pradesh, JNTUK, Ramachandra College of Engineering";
 
@@ -91,7 +110,7 @@ const SEO = ({
     "@type": "WebPage",
     "@id": `${canonicalUrl}/#webpage`,
     "url": canonicalUrl,
-    "name": title,
+    "name": finalTitle,
     "description": description,
     "isPartOf": {
       "@id": "https://thenameisbhagavan.in/#website"
@@ -220,32 +239,25 @@ const SEO = ({
   return (
     <Helmet>
       {/* Standard Metadata */}
-      <title>{title}</title>
+      <title>{finalTitle}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Gopala Josyula Siva Satya Sai Bhagavan" />
-      <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+      <meta name="author" content="TheNameIsBhagavan" />
       <link rel="canonical" href={canonicalUrl} />
 
-      {/* Theme Options */}
-      <meta name="theme-color" content="#0A0A0A" />
-      <meta name="color-scheme" content="dark" />
-
-      {/* Open Graph */}
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={canonicalUrl} />
+      {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
-      <meta property="og:site_name" content="TheNameIsBhagavan" />
+      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:title" content={finalTitle} />
+      <meta property="og:description" content={description} />
       <meta property="og:image" content={`https://thenameisbhagavan.in${image}`} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:image:type" content="image/jpeg" />
+      <meta property="og:site_name" content="TheNameIsBhagavan" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:url" content={canonicalUrl} />
+      <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:image" content={`https://thenameisbhagavan.in${image}`} />
       <meta name="twitter:creator" content="@nameisbhagavan" />
 

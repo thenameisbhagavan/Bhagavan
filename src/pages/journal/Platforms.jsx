@@ -4,7 +4,6 @@ import { m } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import PlatformIcon from '../../components/PlatformIcon';
 import '../../styles/EngineeringJournal.css';
-import useInitialLoad from '../../hooks/useInitialLoad';
 
 const AVAILABLE_PLATFORMS = [
   { type: 'portfolio', label: 'Portfolio', desc: 'Primary publication', url: '/journal' },
@@ -19,7 +18,7 @@ const COMING_SOON = [
 ];
 
 export default function Platforms() {
-  const { prefersReducedMotion } = useInitialLoad();
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   
   return (
     <div className="platforms-page-container">

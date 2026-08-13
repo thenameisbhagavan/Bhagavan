@@ -4,8 +4,6 @@ import { AnimatePresence, LayoutGroup, MotionConfig } from "framer-motion";
 import { HelmetProvider } from "react-helmet-async";
 import AppShell from "./AppShell";
 import NotFound from "./components/NotFound";
-import GlobalLoader from "./components/GlobalLoader";
-import useInitialLoad from "./hooks/useInitialLoad";
 
 // LAZY-LOADED CORE EXPERIENCES
 const Overview = lazy(() => import("./pages/Overview"));
@@ -26,7 +24,7 @@ const AboutJournal = lazy(() => import("./pages/AboutJournal"));
 const Platforms = lazy(() => import("./pages/journal/Platforms"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));
 
-// Signature Apple Human Interface Designer editorial blueprint loader for page Suspense fallback
+// Cinematic Suspense fallback — dark canvas with brand signature while chunks download
 function PageLoader() {
   return (
     <div
@@ -34,67 +32,23 @@ function PageLoader() {
         position: "fixed",
         inset: 0,
         zIndex: 99999,
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#000000",
         display: "flex",
-        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        overflow: "hidden",
-        userSelect: "none",
-        backgroundImage:
-          "linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px)",
-        backgroundSize: "64px 64px",
-        backgroundPosition: "center center",
       }}
     >
-      <div
+      <h1
+        className="brand-cursive"
         style={{
-          position: "relative",
-          zIndex: 10,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          textAlign: "center",
-          padding: "0 24px",
+          fontSize: 'clamp(32px, 6vw, 56px)',
+          color: 'rgba(255,255,255,0.7)',
+          margin: 0,
+          animation: 'pulse-brand 1.8s ease-in-out infinite'
         }}
       >
-        <span
-          style={{
-            fontFamily:
-              '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", serif, sans-serif',
-            fontSize: "clamp(36px, 5.5vw, 56px)",
-            fontWeight: 600,
-            letterSpacing: "-0.035em",
-            color: "#000000",
-            lineHeight: 1.1,
-            margin: 0,
-          }}
-        >
-          TheNameIsBhagavan
-        </span>
-        <span
-          style={{
-            marginTop: "20px",
-            fontFamily:
-              '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif',
-            fontSize: "clamp(13px, 1.6vw, 15px)",
-            fontWeight: 500,
-            letterSpacing: "0.07em",
-            textTransform: "uppercase",
-            color: "#666666",
-          }}
-        >
-          Engineering Intelligent Systems.
-        </span>
-        <div
-          style={{
-            marginTop: "22px",
-            width: "160px",
-            height: "1px",
-            backgroundColor: "#000000",
-          }}
-        />
-      </div>
+        TheNameIsBhagavan
+      </h1>
     </div>
   );
 }
@@ -139,6 +93,8 @@ const ScrollToTop = () => {
 };
 
 import ErrorBoundary from "./components/ErrorBoundary";
+import { RouteTransitionProvider } from "./components/transitions/RouteTransition";
+import PageIntro, { TRANSITION_CONFIGS } from "./components/transitions/PageIntro";
 
 const LazyRoute = ({ children }) => (
   <Suspense fallback={<PageLoader />}>
@@ -148,28 +104,21 @@ const LazyRoute = ({ children }) => (
 
 function App() {
   const location = useLocation();
-  const { shouldPlay, isComplete, markComplete, prefersReducedMotion } = useInitialLoad(location.pathname);
+  const introConfig = TRANSITION_CONFIGS[location.pathname];
 
   return (
     <ErrorBoundary>
       <HelmetProvider>
       <MotionConfig reducedMotion="user">
-        {/* ── Welcome Experience — plays on every page load and every navbar click ── */}
-        <AnimatePresence mode="wait">
-          {shouldPlay && !isComplete && (
-            <GlobalLoader
-              key={location.pathname}
-              onComplete={markComplete}
-              prefersReducedMotion={prefersReducedMotion}
-            />
-          )}
-        </AnimatePresence>
+        <RouteTransitionProvider>
+          {/* Route-specific intro overlay (first visit only) */}
+          {introConfig && <PageIntro config={introConfig} key={location.pathname + '-intro'} />}
 
-        <AppShell>
-        <ScrollToTop />
-        <LayoutGroup>
-          <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
+          <AppShell>
+            <ScrollToTop />
+            <LayoutGroup>
+              <AnimatePresence mode="wait">
+                <Routes location={location} key={location.pathname}>
               {/* Core Landing Experience */}
               <Route path="/" element={<LazyRoute><Overview /></LazyRoute>} />
               <Route path="/overview" element={<Navigate to="/" replace />} />
@@ -204,6 +153,7 @@ function App() {
           </AnimatePresence>
         </LayoutGroup>
       </AppShell>
+      </RouteTransitionProvider>
       </MotionConfig>
     </HelmetProvider>
     </ErrorBoundary>

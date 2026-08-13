@@ -1,133 +1,50 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { m, AnimatePresence } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, ChevronRight, BookOpen, Clock, Calendar } from 'lucide-react';
+import { ArrowRight, ArrowDown } from 'lucide-react';
 import { getAllArticles } from '../data/articles';
 import BrandSignature from '../components/BrandSignature';
 import JournalSearch from '../components/journal/JournalSearch';
-import FeaturedCarousel from '../components/journal/FeaturedCarousel';
-import PlatformIcon from '../components/PlatformIcon';
 import '../styles/EngineeringJournal.css';
 
-const ease = [0.16, 1, 0.3, 1];
-const sectionEase = [0.22, 1, 0.36, 1];
+// ─── Motion ───────────────────────────────────────────────────────────────────
+const appleEase = [0.22, 1, 0.36, 1];
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: sectionEase } }
+const fadeUp = {
+  hidden:  { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.0, ease: appleEase } },
 };
 
+// ─── Data ─────────────────────────────────────────────────────────────────────
+const FROM_THE_BUILD = [
+  { num: "01", name: "CareerOS", desc: "Career Intelligence", trace: ["Why I Built It", "The Architecture", "What Changed"] },
+  { num: "02", name: "AuraOS", desc: "Persistent AI Memory", trace: ["The Core Problem", "Memory Layer", "Product Experience"] },
+  { num: "03", name: "VERITAS", desc: "Reasoning & Evidence", trace: ["Information Gap", "Evidence Networks", "Explainable Output"] },
+  { num: "04", name: "VoltDrive", desc: "Digital Product Experience", trace: ["The Interface", "State Management", "Performance"] }
+];
+
+const FIELD_NOTES = [
+  "A good abstraction removes complexity. A bad abstraction hides it.",
+  "AI without context is autocomplete with better marketing.",
+  "The interface is part of the system.",
+  "Shipping exposes assumptions that architecture diagrams cannot."
+];
+
+// ─── Page Component ───────────────────────────────────────────────────────────
 export default function EngineeringJournal() {
   const articles = getAllArticles();
   const navigate = useNavigate();
   const [searchOpen, setSearchOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('All');
 
-  const featuredEcosystemData = useMemo(() => [
-    {
-      category: "Career Intelligence",
-      headline: "Engineering CareerOS",
-      subtitle: "AI Career Intelligence Platform.",
-      link: "/journal/why-i-built-careeros",
-      image: "/images/journal/featured/careeros-hero.jpg",
-      objectPosition: "center"
-    },
-    {
-      category: "Personal Intelligence",
-      headline: "Engineering AuraOS",
-      subtitle: "Persistent AI memory and reasoning systems.",
-      link: "/journal/building-auraos",
-      image: "/images/journal/featured/auraos-hero.jpg",
-      objectPosition: "center"
-    },
-    {
-      category: "Explainable AI",
-      headline: "Engineering VERITAS",
-      subtitle: "Explainable AI and evidence networks.",
-      link: "/journal/why-veritas-exists",
-      image: "/images/journal/featured/veritas-hero.jpg",
-      objectPosition: "center"
-    },
-    {
-      category: "Frontend Engineering",
-      headline: "Engineering VoltDrive",
-      subtitle: "Premium automotive frontend experience.",
-      link: "/journal/designing-voltdrive",
-      image: "/images/journal/featured/voltdrive-hero.jpg",
-      objectPosition: "65% center"
-    },
-    {
-      category: "Engineering Ecosystem",
-      headline: "Engineering the Intelligence Ecosystem",
-      subtitle: "The architecture behind the products.",
-      link: "/work",
-      image: "/images/journal/featured/ecosystem-hero.jpg",
-      objectPosition: "center"
-    }
-  ], []);
-
-  const categories = useMemo(() => {
-    const cats = new Set(articles.map(a => a.category));
-    return ['All', ...Array.from(cats)];
-  }, [articles]);
-
-  const series = useMemo(() => {
-    const seriesMap = new Map();
-    articles.forEach(a => {
-      if (a.series) {
-        if (!seriesMap.has(a.series)) seriesMap.set(a.series, []);
-        seriesMap.get(a.series).push(a);
-      }
-    });
-    
-    // Enforce equal visual importance and correct ordering as requested
-    const expectedOrder = [
-      "CareerOS", 
-      "AuraOS", 
-      "VERITAS", 
-      "VoltDrive",
-      "Engineering Philosophy",
-      "Engineering Journey",
-      "Python Engineering",
-      "Building in Public",
-      "Engineering Leadership",
-      "Career & Learning",
-      "Research & Opinions"
-    ];
-    
-    return Array.from(seriesMap.entries()).sort((a, b) => {
-      let indexA = expectedOrder.indexOf(a[0]);
-      let indexB = expectedOrder.indexOf(b[0]);
-      if (indexA === -1) indexA = 999;
-      if (indexB === -1) indexB = 999;
-      return indexA - indexB;
-    });
-  }, [articles]);
-
-  const filteredArticles = useMemo(() => {
-    let res = articles.filter(a => !a.featured);
-    if (activeCategory !== 'All') {
-      res = res.filter(a => a.category === activeCategory);
-    }
-    return res.sort((a, b) => new Date(b.published) - new Date(a.published));
-  }, [articles, activeCategory]);
-
-  const archiveByMonth = useMemo(() => {
-    const grouped = {};
-    articles.forEach(a => {
-      const date = new Date(a.published);
-      const monthYear = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-      if (!grouped[monthYear]) grouped[monthYear] = [];
-      grouped[monthYear].push(a);
-    });
-    return Object.entries(grouped).sort((a, b) => new Date(b[0]) - new Date(a[0]));
-  }, [articles]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Keyboard shortcut for search
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Allow / or CMD+K / CTRL+K
       if ((e.key === '/' || ((e.metaKey || e.ctrlKey) && e.key === 'k')) && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) {
         e.preventDefault();
         setSearchOpen(true);
@@ -137,6 +54,61 @@ export default function EngineeringJournal() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  const categories = useMemo(() => {
+    const cats = new Set(articles.map(a => a.category));
+    return ['All', ...Array.from(cats)];
+  }, [articles]);
+
+  const filteredArticles = useMemo(() => {
+    let res = articles;
+    if (activeCategory !== 'All') {
+      res = res.filter(a => a.category === activeCategory);
+    }
+    return res.sort((a, b) => new Date(b.published) - new Date(a.published));
+  }, [articles, activeCategory]);
+
+  const series = useMemo(() => {
+    const seriesMap = new Map();
+    articles.forEach(a => {
+      if (a.series) {
+        if (!seriesMap.has(a.series)) seriesMap.set(a.series, []);
+        seriesMap.get(a.series).push(a);
+      }
+    });
+    const expectedOrder = ["CareerOS", "AuraOS", "VERITAS", "VoltDrive", "Engineering Philosophy", "Python Engineering"];
+    return Array.from(seriesMap.entries()).sort((a, b) => {
+      let indexA = expectedOrder.indexOf(a[0]);
+      let indexB = expectedOrder.indexOf(b[0]);
+      if (indexA === -1) indexA = 999;
+      if (indexB === -1) indexB = 999;
+      return indexA - indexB;
+    });
+  }, [articles]);
+
+  const archiveByYearMonth = useMemo(() => {
+    const grouped = {};
+    articles.forEach(a => {
+      const date = new Date(a.published);
+      const year = date.getFullYear();
+      const month = date.toLocaleDateString('en-US', { month: 'long' });
+      if (!grouped[year]) grouped[year] = {};
+      if (!grouped[year][month]) grouped[year][month] = [];
+      grouped[year][month].push(a);
+    });
+    // Sort years descending
+    const sortedYears = Object.keys(grouped).sort((a, b) => b - a);
+    return sortedYears.map(year => {
+      // Sort months within year (dummy sort assuming recent articles naturally order well, or write a month-index sort)
+      const months = Object.keys(grouped[year]).sort((a, b) => {
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        return monthNames.indexOf(b) - monthNames.indexOf(a);
+      });
+      return { year, months: months.map(m => ({ month: m, articles: grouped[year][m] })) };
+    });
+  }, [articles]);
+
+  const currentIssue = articles.find(a => a.featured) || articles[0];
+
   return (
     <div className="journal-page">
       <Helmet>
@@ -145,274 +117,377 @@ export default function EngineeringJournal() {
         <link rel="canonical" href="https://thenameisbhagavan.in/journal" />
       </Helmet>
 
-      {/* COMMAND PALETTE SEARCH */}
       {searchOpen && <JournalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} articles={articles} />}
 
-      {/* COMMAND PALETTE TRIGGER */}
-      <div className="journal-search-trigger-container">
-        <button className="journal-search-trigger" onClick={() => setSearchOpen(true)} aria-label="Search Journal (Cmd+K)">
-          <span className="trigger-left"><Search size={16} /> Search Journal...</span>
-          <span className="trigger-right"><kbd>⌘K</kbd></span>
-        </button>
+      <div className="j-bounds">
+        
+        {/* ══════════════════════════════════════════════════════
+            1. HERO
+        ══════════════════════════════════════════════════════ */}
+        <section className="j-hero">
+          <m.div className="jh-meta" initial="hidden" animate="visible" variants={fadeUp}>
+            ENGINEERING JOURNAL / 2026<br/>
+            SYSTEMS · ARCHITECTURE · AI · PRODUCT ENGINEERING
+          </m.div>
+
+          <div className="jh-grid">
+            <div className="jh-main">
+              <m.h1 className="jh-headline" initial="hidden" animate="visible" variants={fadeUp}>
+                I write about what happens between an idea and a system.
+              </m.h1>
+              <m.p className="jh-sub" initial="hidden" animate="visible" variants={fadeUp}>
+                Architecture decisions, experiments, failures, reasoning patterns, and the engineering lessons behind the products I build.
+              </m.p>
+            </div>
+            <m.div className="jh-index" initial="hidden" animate="visible" variants={fadeUp}>
+              <div className="jhi-item">
+                <span className="jhi-num">01</span>
+                <span className="jhi-title">SYSTEMS</span>
+              </div>
+              <div className="jhi-item">
+                <span className="jhi-num">02</span>
+                <span className="jhi-title">ARCHITECTURE</span>
+              </div>
+              <div className="jhi-item">
+                <span className="jhi-num">03</span>
+                <span className="jhi-title">EXPERIMENTS</span>
+              </div>
+              <div className="jhi-item">
+                <span className="jhi-num">04</span>
+                <span className="jhi-title">PERSPECTIVE</span>
+              </div>
+            </m.div>
+          </div>
+        </section>
+
       </div>
 
-      {/* HERO SECTION */}
-      <section className="journal-hero">
-        <m.h1 
-          className="journal-hero-title"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease }}
-        >
-          Engineering<br/>Journal.
-        </m.h1>
-        <m.p 
-          className="journal-hero-subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease }}
-        >
-          Architecture, algorithms, and the pursuit of intelligent systems.
-        </m.p>
-        
-        <m.div 
-          className="journal-hero-stats"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease }}
-        >
-          <div className="stat-item">
-            <span className="stat-label">Latest Update</span>
-            <span className="stat-value">August 2026</span>
+      {/* ══════════════════════════════════════════════════════
+          2. CONTROL BAR
+      ══════════════════════════════════════════════════════ */}
+      <div className="j-control-bar">
+        <div className="j-bounds">
+          <div className="jcb-inner">
+            <div className="jcb-left">THE JOURNAL</div>
+            <div className="jcb-center">
+              {categories.map((cat, i) => (
+                <button 
+                  key={i} 
+                  className={`jcb-cat ${activeCategory === cat ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(cat)}
+                >
+                  [{cat.toUpperCase()}]
+                </button>
+              ))}
+            </div>
+            <button className="jcb-right" onClick={() => setSearchOpen(true)}>
+              SEARCH / ⌘K
+            </button>
           </div>
-          <div className="stat-divider" />
-          <div className="stat-item">
-            <span className="stat-value">{articles.length} Articles</span>
-          </div>
-          <div className="stat-divider" />
-          <div className="stat-item">
-            <span className="stat-value">{series.length} Series</span>
-          </div>
-        </m.div>
-      </section>
-
-      {/* FEATURED ARTICLE (CINEMATIC SHOWCASE) */}
-      <m.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={sectionVariants}
-      >
-        <FeaturedCarousel items={featuredEcosystemData} />
-      </m.div>
-
-      {/* ENGINEERING SERIES */}
-      <m.section 
-        className="journal-section"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={sectionVariants}
-      >
-        <div className="journal-section-header">
-          <h3 className="journal-section-title">Engineering Series</h3>
         </div>
-        <div className="journal-series-grid">
-          {series.map(([seriesName, seriesArticles], idx) => {
-            // Calculate a fake progress for the visual (in real life this would be user progress)
-            // Just for the Apple Books premium feel, we'll show completion of 0 or a fixed value for now,
-            // or simply just a static "0 / N" for a new visitor.
-            const total = seriesArticles.length;
-            const completed = 0; // Assume 0 for static site visitor
-            const fillCount = Math.round((completed / total) * 10) || 0;
-            const emptyCount = 10 - fillCount;
-            const progressBar = '█'.repeat(fillCount) + '░'.repeat(emptyCount);
+      </div>
 
-            return (
-              <m.div 
-                key={seriesName} 
-                className="journal-series-card"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.6, ease }}
-              >
-                <div className="series-header">
-                  <BookOpen size={24} className="series-icon" />
-                  <h4 className="series-title">{seriesName}</h4>
-                </div>
-                <div className="series-progress-container">
-                  <span className="series-progress-bar">{progressBar}</span>
-                  <span className="series-count">{completed} / {total}</span>
-                </div>
-                <div className="series-list">
-                  {seriesArticles.slice(0, 3).map(a => (
-                    <Link key={a.slug} to={`/journal/${a.slug}`} className="series-item">
-                      {a.title}
-                    </Link>
-                  ))}
-                </div>
+      <div className="j-bounds">
+
+        {/* ══════════════════════════════════════════════════════
+            3. CURRENT ISSUE
+        ══════════════════════════════════════════════════════ */}
+        <section className="j-current">
+          <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            CURRENT ISSUE
+          </m.div>
+
+          <Link to={`/journal/${currentIssue.slug}`} className="jc-container">
+            <m.div className="jc-info" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <div className="jc-meta">
+                <span className="jcm-item">ISSUE 0{articles.indexOf(currentIssue) + 1}</span>
+                <span className="jcm-item">{currentIssue.category}</span>
+                <span className="jcm-item">{new Date(currentIssue.published).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
+                <span className="jcm-item">{currentIssue.readTime} read</span>
+              </div>
+              <h2 className="jc-title">{currentIssue.title}</h2>
+              <p className="jc-thesis">{currentIssue.excerpt}</p>
+              <div className="jc-read">
+                READ ARTICLE <ArrowRight size={16} className="jc-arrow" />
+              </div>
+            </m.div>
+
+            <m.div className="jc-image-wrapper" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <img src={currentIssue.image || '/images/journal/featured/careeros-hero.jpg'} alt={currentIssue.title} className="jc-image" />
+            </m.div>
+          </Link>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            4. THE NOTEBOOK (ARTICLE LIST)
+        ══════════════════════════════════════════════════════ */}
+        <section className="j-notebook">
+          <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            THE NOTEBOOK
+          </m.div>
+
+          <div className="jn-list">
+            {filteredArticles.slice(0, 10).map((article, i) => (
+              <m.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <Link to={`/journal/${article.slug}`} className="jn-row">
+                  <span className="jn-num">{(filteredArticles.length - i).toString().padStart(2, '0')}</span>
+                  <span className="jn-title">{article.title}</span>
+                  <span className="jn-cat">{article.category}</span>
+                  <span className="jn-time">{article.readTime} read</span>
+                  <span className="jn-date">{new Date(article.published).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }).toUpperCase()}</span>
+                  <ArrowRight size={16} className="jn-arrow" />
+                </Link>
               </m.div>
-            );
-          })}
-        </div>
-      </m.section>
+            ))}
+          </div>
+        </section>
 
-      {/* LATEST RESEARCH (GRID) */}
-      <m.section 
-        className="journal-section"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={sectionVariants}
-      >
-        <div className="journal-section-header">
-          <h3 className="journal-section-title">Collections</h3>
-          
-          <div className="journal-filters">
-            {categories.map(cat => (
-              <button 
-                key={cat} 
-                className={`journal-filter-chip ${activeCategory === cat ? 'active' : ''}`}
-                onClick={() => setActiveCategory(cat)}
-              >
-                {cat}
-              </button>
+      </div>
+
+      {/* ══════════════════════════════════════════════════════
+          5. SERIES INDEX
+      ══════════════════════════════════════════════════════ */}
+      <section className="j-series">
+        <div className="j-bounds">
+          <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            SERIES / INDEX
+          </m.div>
+
+          <div className="js-list">
+            {series.map(([seriesName, seriesArticles], i) => (
+              <m.div key={i} className="js-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <span className="js-num">{(i + 1).toString().padStart(2, '0')}</span>
+                <span className="js-title">{seriesName}</span>
+                <span className="js-desc">{seriesArticles[0]?.category || 'Engineering'}</span>
+                <span className="js-count">{(seriesArticles.length).toString().padStart(2, '0')} essays</span>
+              </m.div>
             ))}
           </div>
         </div>
+      </section>
 
-        <div className="journal-grid">
-          {filteredArticles.map((article, idx) => (
-            <m.div 
-              key={article.slug}
-              className="journal-grid-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: (idx % 3) * 0.1, duration: 0.6, ease }}
-              onClick={() => navigate(`/journal/${article.slug}`)}
-            >
-              <div className="grid-card-visual">
-                <img src={article.coverImage} alt={article.title} loading="lazy" />
-              </div>
-              <div className="grid-card-content">
-                <div className="grid-card-meta">
-                  <span className="grid-card-cat">{article.category}</span>
-                  <span className="grid-card-time"><Clock size={12}/> {article.readingTime}</span>
+      <div className="j-bounds">
+
+        {/* ══════════════════════════════════════════════════════
+            6. FROM THE BUILD
+        ══════════════════════════════════════════════════════ */}
+        <section className="j-build">
+          <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            FROM THE BUILD
+          </m.div>
+          <m.h2 className="jb-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            Some ideas are easier to understand when you can see the system they came from.
+          </m.h2>
+
+          <div className="jb-grid">
+            {FROM_THE_BUILD.map((sys, i) => (
+              <m.div key={i} className="jb-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="jbi-header">
+                  <div className="jbi-num">{sys.num}</div>
+                  <div className="jbi-name">{sys.name}</div>
+                  <div className="jbi-desc">{sys.desc}</div>
                 </div>
-                <h4 className="grid-card-title">{article.title}</h4>
-                <p className="grid-card-desc">{article.description}</p>
-              </div>
+                <div className="jbi-trace">
+                  {sys.trace.map((node, j) => (
+                    <React.Fragment key={j}>
+                      <div className="jbi-node">{node}</div>
+                      {j < sys.trace.length - 1 && <ArrowDown size={14} className="jbi-arrow" />}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </m.div>
+            ))}
+          </div>
+        </section>
+
+      </div>
+
+      {/* ══════════════════════════════════════════════════════
+          7. FIELD NOTES
+      ══════════════════════════════════════════════════════ */}
+      <section className="j-notes">
+        <div className="j-bounds">
+          <div className="jn-grid">
+            <m.div className="jn-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <div className="j-label">FIELD NOTES</div>
+              <p className="jn-left-desc">
+                Short observations from building software, studying systems, and learning what breaks.
+              </p>
             </m.div>
-          ))}
-        </div>
-      </m.section>
-
-      {/* TIMELINE ARCHIVE */}
-      <m.section 
-        className="journal-section journal-archive"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={sectionVariants}
-      >
-        <div className="journal-section-header">
-          <h3 className="journal-section-title">Timeline</h3>
-        </div>
-        <div className="archive-timeline">
-          {archiveByMonth.map(([monthYear, monthArticles]) => (
-            <details key={monthYear} className="archive-month-group" open={monthYear === archiveByMonth[0][0]}>
-              <summary className="archive-month-header">
-                <span className="archive-month-title">{monthYear}</span>
-                <span className="archive-month-count">{monthArticles.length} Articles</span>
-              </summary>
-              <div className="archive-month-content">
-                {monthArticles.map((article) => (
-                  <Link key={article.slug} to={`/journal/${article.slug}`} className="archive-row">
-                    <div className="archive-date">
-                      {new Date(article.published).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                    </div>
-                    <div className="archive-title">{article.title}</div>
-                    <div className="archive-category">{article.category}</div>
-                  </Link>
-                ))}
-              </div>
-            </details>
-          ))}
-        </div>
-      </m.section>
-
-      {/* READ ANYWHERE & STATS */}
-      <m.section 
-        className="journal-section read-anywhere-section"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={sectionVariants}
-      >
-        <div className="read-anywhere-grid">
-          <div className="read-anywhere-card">
-            <h3 className="journal-section-title">Read Anywhere</h3>
-            <div className="platform-links-list">
-              <Link to="/journal/platforms" className="platform-list-item">
-                <PlatformIcon type="portfolio" size={16} /> Portfolio
-              </Link>
-              <Link to="/journal/platforms" className="platform-list-item">
-                <PlatformIcon type="medium" size={16} /> Medium
-              </Link>
-              <Link to="/journal/platforms" className="platform-list-item">
-                <PlatformIcon type="github" size={16} /> Engineering Repository
-              </Link>
+            
+            <div className="jn-right-list">
+              {FIELD_NOTES.map((note, i) => (
+                <m.div key={i} className="jnr-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                  <div className="jnr-num">0{i + 1}</div>
+                  <div className="jnr-text">{note}</div>
+                </m.div>
+              ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      <div className="j-bounds">
+
+        {/* ══════════════════════════════════════════════════════
+            8. ARCHITECTURE NOTES
+        ══════════════════════════════════════════════════════ */}
+        <section className="j-arch">
+          <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            ARCHITECTURE NOTES
+          </m.div>
+
+          <div className="ja-grid">
+            <m.div className="ja-diagram" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <span className="jad-node">INPUT</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">CONTEXT</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">REASONING</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">DECISION</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">OUTPUT</span>
+            </m.div>
+
+            <m.div className="ja-diagram" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <span className="jad-node">QUESTION</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">EVIDENCE</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">MODEL</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">SYSTEM</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">PRODUCT</span>
+            </m.div>
+
+            <m.div className="ja-diagram" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <span className="jad-node">USER</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">INTERFACE</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">API</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">INTELLIGENCE</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">DATA</span>
+              <ArrowDown className="jad-arrow" size={14} />
+              <span className="jad-node">OUTCOME</span>
+            </m.div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            9. PUBLICATION ARCHIVE
+        ══════════════════════════════════════════════════════ */}
+        <section className="j-archive">
+          <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            ARCHIVE
+          </m.div>
+
+          {archiveByYearMonth.map((yearData, yIdx) => (
+            <div key={yIdx} className="jarch-group">
+              <m.div className="jarch-year" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                {yearData.year}
+              </m.div>
+
+              {yearData.months.map((monthData, mIdx) => (
+                <div key={mIdx}>
+                  <m.div className="jarch-month" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                    {monthData.month}
+                  </m.div>
+                  <div className="jarch-list">
+                    {monthData.articles.map((article, aIdx) => (
+                      <m.div key={aIdx} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                        <Link to={`/journal/${article.slug}`} className="jn-row">
+                          <span className="jn-num">{(monthData.articles.length - aIdx).toString().padStart(2, '0')}</span>
+                          <span className="jn-title">{article.title}</span>
+                          <span className="jn-cat">{article.category}</span>
+                          <span className="jn-time">{article.readTime} read</span>
+                          <span className="jn-date">{new Date(article.published).toLocaleDateString('en-US', { day: 'numeric', month: 'short' }).toUpperCase()}</span>
+                          <ArrowRight size={16} className="jn-arrow" />
+                        </Link>
+                      </m.div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </section>
+
+      </div>
+
+      {/* ══════════════════════════════════════════════════════
+          10. WHAT I WRITE ABOUT
+      ══════════════════════════════════════════════════════ */}
+      <section className="j-topics">
+        <div className="j-bounds">
+          <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            WHAT I WRITE ABOUT
+          </m.div>
           
-          <div className="journal-stats-card">
-            <h3 className="journal-section-title">Engineering Journal</h3>
-            <div className="stats-list">
-              <div className="stat-item">
-                <span className="stat-value">{articles.length}</span>
-                <span className="stat-label">Articles</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-value">{new Set(articles.map(a => a.category)).size}</span>
-                <span className="stat-label">Categories</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-value">4</span>
-                <span className="stat-label">Flagship Projects</span>
-              </div>
-            </div>
-            <div className="published-across">
-              <span className="published-label">Published Across</span>
-              <div className="published-icons">
-                <PlatformIcon type="portfolio" size={14} />
-                <PlatformIcon type="medium" size={14} />
-                <PlatformIcon type="github" size={14} />
-              </div>
-            </div>
+          <div className="jt-grid">
+            <m.div className="jt-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <div className="jt-title">AI SYSTEMS</div>
+              <div className="jt-desc">Building systems that reason, remember, retrieve, and act.</div>
+            </m.div>
+            <m.div className="jt-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <div className="jt-title">ARCHITECTURE</div>
+              <div className="jt-desc">The structures that make intelligent software reliable.</div>
+            </m.div>
+            <m.div className="jt-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <div className="jt-title">PRODUCT ENGINEERING</div>
+              <div className="jt-desc">Turning technical systems into usable products.</div>
+            </m.div>
+            <m.div className="jt-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <div className="jt-title">ENGINEERING PHILOSOPHY</div>
+              <div className="jt-desc">The principles that influence what I build and why.</div>
+            </m.div>
           </div>
         </div>
-      </m.section>
+      </section>
 
-      {/* JOURNAL FOOTER */}
-      <footer className="journal-footer">
-        <div className="journal-footer-content">
-          <div className="journal-footer-stats">
-            <span>{articles.length} Articles</span>
-            <span>{series.length} Series</span>
-            <span>Updated Weekly</span>
-          </div>
-          <div className="journal-footer-links">
-            <Link to="/journal/about">About Journal</Link>
-            <a href="/rss.xml" target="_blank" rel="noopener noreferrer">RSS</a>
-            <a href="https://github.com/TheNameIsBhagavan" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://linkedin.com/in/thenameisbhagavan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
-        </div>
-      </footer>
+      <div className="j-bounds">
 
-      <BrandSignature />
+        {/* ══════════════════════════════════════════════════════
+            11. PUBLICATION STATUS & CLOSING
+        ══════════════════════════════════════════════════════ */}
+        <section className="j-closing">
+          
+          <m.div className="j-status-block" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <div className="jsb-label">FORMAT</div><div className="jsb-value">ENGINEERING JOURNAL</div>
+            <div className="jsb-label">FOCUS</div><div className="jsb-value">AI SYSTEMS + PRODUCT ENGINEERING</div>
+            <div className="jsb-label">UPDATED</div><div className="jsb-value">2026</div>
+            <div className="jsb-label">STYLE</div><div className="jsb-value">LONG-FORM + FIELD NOTES</div>
+            <div className="jsb-label">STATUS</div><div className="jsb-value">ACTIVELY BUILDING</div>
+          </m.div>
+
+          <m.h2 className="jc-thesis-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            Build it.<br/>
+            Understand it.<br/>
+            Write it down.
+          </m.h2>
+
+          <m.p className="jc-sub" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            The systems change.<br/>
+            The engineering principles keep evolving.
+          </m.p>
+
+          <m.div className="jc-links" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <Link to="/work" className="jc-link">
+              EXPLORE THE SYSTEMS <ArrowRight size={16} />
+            </Link>
+            <Link to="/vision" className="jc-link">
+              EXPLORE THE VISION <ArrowRight size={16} />
+            </Link>
+          </m.div>
+
+        </section>
+
+        <BrandSignature />
+      </div>
     </div>
   );
 }

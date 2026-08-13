@@ -1,10 +1,10 @@
 import SEO from "../components/SEO";
 import React, { useState, useEffect } from 'react';
-import { m, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
-import SectionDivider from "../components/SectionDivider";
 import BrandSignature from "../components/BrandSignature";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import '../styles/Connect.css';
 import resumePdf from '../assets/bhagavanresume.pdf';
 
@@ -17,34 +17,18 @@ const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_bdwrdmc";
 const EMAILJS_PUBLIC_KEY = "GOTwySQukEpQEuRa5";
 
 // ─── Motion ───────────────────────────────────────────────────────────────────
-const EASE = [0.16, 1, 0.3, 1];
+const appleEase = [0.22, 1, 0.36, 1];
 
 const fadeUp = {
-  hidden:  { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: EASE } },
+  hidden:  { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.0, ease: appleEase } },
 };
 
 const stagger = {
   hidden:  {},
-  visible: { transition: { staggerChildren: 0.2 } },
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
-// ─── Reveal helper ────────────────────────────────────────────────────────────
-function Reveal({ children, className }) {
-  return (
-    <m.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={stagger}
-    >
-      {children}
-    </m.div>
-  );
-}
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function Connect() {
   
   // PRESERVED EMAILJS STATE
@@ -57,11 +41,7 @@ export default function Connect() {
   });
   
   const [status, setStatus] = useState('idle');
-
-  const { scrollY } = useScroll();
-  const heroScale = useTransform(scrollY, [0, 800], [1, 0.95]);
-  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
-  const heroY = useTransform(scrollY, [0, 800], [0, 100]);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -119,250 +99,352 @@ export default function Connect() {
     }
   };
 
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("thenameisbhagavan@gmail.com").then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
   return (
     <>
-      <SEO title="Connect | TheNameIsBhagavan" description="Connect with Bhagavan to discuss AI engineering, full stack development, and innovative digital product design." keywords="AI Engineer, Software Developer, Contact Bhagavan, Tech Collaboration" />
+      <SEO 
+        title="Connect | TheNameIsBhagavan" 
+        description="Connect with Bhagavan to discuss AI engineering, full stack development, and ambitious technical problems." 
+        keywords="AI Engineer, Software Developer, Contact Bhagavan, Tech Collaboration" 
+      />
 
-    <div className="con-page">
+      <div className="con-page">
 
-      {/* PRESERVED NOTIFICATIONS */}
-      <AnimatePresence>
-        {status === 'success' && (
-          <m.div 
-            initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -50 }}
-            className="con-toast con-toast--success"
-          >
-            <div className="con-toast-title">Message Sent Successfully.</div>
-            <div className="con-toast-desc">Thank you for reaching out.<br/>I will respond as soon as possible.</div>
-          </m.div>
-        )}
-        {status === 'error' && (
-          <m.div 
-            initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -50 }}
-            className="con-toast con-toast--error"
-          >
-            <div className="con-toast-title">Delivery Failed.</div>
-            <div className="con-toast-desc">There was an issue sending your message.<br/>Please try connecting via LinkedIn or email directly.</div>
-          </m.div>
-        )}
-      </AnimatePresence>
+        {/* PRESERVED NOTIFICATIONS */}
+        <AnimatePresence>
+          {status === 'success' && (
+            <m.div 
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 16 }}
+              transition={{ duration: 0.4, ease: appleEase }}
+              className="con-toast con-toast--success"
+            >
+              <div className="con-toast-title">MESSAGE DELIVERED</div>
+              <div className="con-toast-desc">Thank you for reaching out. I will respond as soon as possible.</div>
+            </m.div>
+          )}
+          {status === 'error' && (
+            <m.div 
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 16 }}
+              transition={{ duration: 0.4, ease: appleEase }}
+              className="con-toast con-toast--error"
+            >
+              <div className="con-toast-title">DELIVERY FAILED — TRY DIRECT EMAIL</div>
+              <div className="con-toast-desc">There was an issue sending your message. Please try connecting via LinkedIn or email directly.</div>
+            </m.div>
+          )}
+        </AnimatePresence>
 
-      {/* ══════════════════════════════════════════════════════
-          HERO
-      ══════════════════════════════════════════════════════ */}
-      <m.section className="con-hero" style={{ scale: heroScale, opacity: heroOpacity, y: heroY }}>
-        <div className="con-constrain center-align">
-          <m.h1 className="con-hero-headline" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, ease: EASE }}>
-            Great products begin with<br/>great conversations.
-          </m.h1>
-        </div>
-      </m.section>
+        <div className="c-bounds">
+          
+          {/* ══════════════════════════════════════════════════════
+              1. HERO
+          ══════════════════════════════════════════════════════ */}
+          <section className="ch-section">
+            <div className="ch-grid">
+              
+              <m.div className="ch-left" initial="hidden" animate="visible" variants={fadeUp}>
+                <div className="c-label">OPEN CHANNEL / 2026</div>
+                <h1 className="ch-headline">
+                  Let's build something<br/>worth discussing.
+                </h1>
+                <p className="ch-sub">
+                  Open to conversations around AI systems, software engineering, intelligent products, and ambitious technical problems.
+                </p>
+              </m.div>
 
-      {/* ══════════════════════════════════════════════════════
-          BEFORE THE CONVERSATION
-      ══════════════════════════════════════════════════════ */}
-      <section className="con-before">
-        <div className="con-constrain center-align">
-          <Reveal className="con-editorial-sequence">
-            <m.h2 className="con-statement" variants={fadeUp}>Every meaningful collaboration<br/>begins with curiosity.</m.h2>
-            <m.h2 className="con-statement text-muted" variants={fadeUp}>Ideas become discussions.</m.h2>
-            <m.h2 className="con-statement text-muted" variants={fadeUp}>Discussions become products.</m.h2>
-            <m.h2 className="con-statement" variants={fadeUp}>Products create impact.</m.h2>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          OPEN TO CONVERSATIONS (Progressive Reveal)
-      ══════════════════════════════════════════════════════ */}
-      <section className="con-topics">
-        <div className="con-constrain center-align">
-          <Reveal className="topics-sequence">
-            {[
-              "Software Engineering",
-              "Artificial Intelligence",
-              "Product Design",
-              "Career Intelligence",
-              "Research",
-              "Innovation"
-            ].map((topic, i) => (
-              <m.div key={i} className="con-topic-line" variants={fadeUp}>{topic}</m.div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          DIRECT CONTACT HIERARCHY
-      ══════════════════════════════════════════════════════ */}
-      <SectionDivider />
-      <section className="con-direct">
-        <div className="con-constrain">
-          <div className="direct-hierarchy">
-            
-            <m.a href="mailto:thenameisbhagavan@gmail.com" className="hierarchy-item hierarchy-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <span className="hierarchy-label">Email</span>
-              <span className="hierarchy-value">thenameisbhagavan@gmail.com</span>
-              <span className="hierarchy-desc">The fastest way to start a conversation.</span>
-            </m.a>
-
-            <m.a href="https://www.linkedin.com/in/thenameisbhagavan/" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <span className="hierarchy-label">LinkedIn</span>
-              <span className="hierarchy-value">linkedin.com/in/thenameisbhagavan</span>
-              <span className="hierarchy-desc">Professional collaboration.</span>
-            </m.a>
-
-            <m.a href="https://github.com/thenameisbhagavan" target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <span className="hierarchy-label">GitHub</span>
-              <span className="hierarchy-value">github.com/thenameisbhagavan</span>
-              <span className="hierarchy-desc">Engineering in public.</span>
-            </m.a>
-
-            <m.a href={resumePdf} target="_blank" rel="noreferrer" className="hierarchy-item hierarchy-quaternary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <span className="hierarchy-label">Resume</span>
-              <span className="hierarchy-value">Supporting context.</span>
-            </m.a>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          CONTACT FORM (The Emotional Bridge)
-      ══════════════════════════════════════════════════════ */}
-      <section className="con-form-section" id="conversation-form-section">
-        <div className="con-constrain">
-          <m.h2 className="form-editorial center-align" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            Every meaningful collaboration<br/>begins with one message.
-          </m.h2>
-
-          <m.div className="form-container" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            <form onSubmit={handleSubmit} className="apple-premium-form">
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="name">Name</label>
-                  <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="Jane Doe" disabled={status === 'loading'} />
+              <m.div className="ch-right" initial="hidden" animate="visible" variants={fadeUp}>
+                <div className="c-label">CURRENTLY</div>
+                <div className="ch-availability">
+                  <div className="cha-item">
+                    <span className="cha-label">BUILDING</span>
+                    <span className="cha-value">AI SYSTEMS</span>
+                  </div>
+                  <div className="cha-item">
+                    <span className="cha-label">EXPLORING</span>
+                    <span className="cha-value">AGENTIC INTELLIGENCE</span>
+                  </div>
+                  <div className="cha-item">
+                    <span className="cha-label">INTERESTED IN</span>
+                    <span className="cha-value">PRODUCT ENGINEERING</span>
+                  </div>
+                  <div className="cha-item">
+                    <span className="cha-label">AVAILABLE FOR</span>
+                    <span className="cha-value">SELECT CONVERSATIONS</span>
+                  </div>
                 </div>
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="jane@example.com" disabled={status === 'loading'} />
-                </div>
-              </div>
+              </m.div>
 
-              <div className="form-group">
-                <label htmlFor="subject">Subject</label>
-                <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleChange} required placeholder="What would you like to discuss?" disabled={status === 'loading'} />
-              </div>
+            </div>
+          </section>
 
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Share your thoughts..." rows="6" disabled={status === 'loading'} />
-              </div>
+          {/* ══════════════════════════════════════════════════════
+              2. CONVERSATION ROUTES
+          ══════════════════════════════════════════════════════ */}
+          <section className="cr-section">
+            <m.div className="c-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              CHOOSE A ROUTE
+            </m.div>
 
-              <div className="form-actions center-align">
-                <button type="submit" className="primary-submit-btn" disabled={status === 'loading' || !formData.name || !formData.email || !formData.message}>
-                  {status === 'loading' ? 'Sending...' : 'Send Message'}
+            <m.div className="cr-list" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={stagger}>
+              <button className="cr-row" onClick={handleScrollToForm}>
+                <span className="cr-num">01</span>
+                <span className="cr-title">BUILD</span>
+                <span className="cr-desc">Turn a technical problem into a working system.</span>
+                <ArrowUpRight size={20} className="cr-arrow" />
+              </button>
+              <button className="cr-row" onClick={handleScrollToForm}>
+                <span className="cr-num">02</span>
+                <span className="cr-title">COLLABORATE</span>
+                <span className="cr-desc">Bring engineering, product, or AI work together.</span>
+                <ArrowUpRight size={20} className="cr-arrow" />
+              </button>
+              <button className="cr-row" onClick={handleScrollToForm}>
+                <span className="cr-num">03</span>
+                <span className="cr-title">DISCUSS</span>
+                <span className="cr-desc">Talk through an idea, architecture, or direction.</span>
+                <ArrowUpRight size={20} className="cr-arrow" />
+              </button>
+              <button className="cr-row" onClick={handleScrollToForm}>
+                <span className="cr-num">04</span>
+                <span className="cr-title">CONNECT</span>
+                <span className="cr-desc">Start a conversation.</span>
+                <ArrowUpRight size={20} className="cr-arrow" />
+              </button>
+            </m.div>
+          </section>
+
+          {/* ══════════════════════════════════════════════════════
+              3. PRIMARY CONTACT
+          ══════════════════════════════════════════════════════ */}
+          <section className="cp-section">
+            <m.div className="cp-container" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <div className="c-label">PRIMARY CHANNEL</div>
+              
+              <div className="cp-email-row">
+                <a href="mailto:thenameisbhagavan@gmail.com" className="cp-email">
+                  thenameisbhagavan@gmail.com
+                </a>
+                <button 
+                  className={`cp-copy-btn ${copied ? 'copied' : ''}`} 
+                  onClick={handleCopyEmail}
+                  aria-label="Copy email address"
+                >
+                  {copied ? 'COPIED' : 'COPY'}
                 </button>
               </div>
-            </form>
-          </m.div>
-        </div>
-      </section>
 
-      {/* ══════════════════════════════════════════════════════
-          CURRENT FOCUS (Momentum)
-      ══════════════════════════════════════════════════════ */}
-      <section className="con-focus">
-        <div className="con-constrain center-align">
-          <div className="momentum-flow">
-            {[
-              "Today",
-              "Building AI Systems",
-              "Exploring Multi-Agent Intelligence",
-              "Designing Human-Centered Products",
-              "Learning Every Day"
-            ].map((node, i, arr) => (
-              <React.Fragment key={i}>
-                <m.div 
-                  className={i === 0 ? "momentum-node momentum-start" : "momentum-node"}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1.2, ease: EASE }}
-                >
-                  {node}
-                </m.div>
-                {i < arr.length - 1 && (
-                  <m.div className="momentum-arrow" initial={{ opacity: 0 }} whileInView={{ opacity: 0.3 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1 }}>
-                    ↓
-                  </m.div>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          PHILOSOPHY
-      ══════════════════════════════════════════════════════ */}
-      <section className="con-philosophy">
-        <div className="con-constrain center-align">
-          
-          <div className="philosophy-screen">
-            <m.h2 className="con-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Technology should empower people.
-            </m.h2>
-            <m.h2 className="con-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Learning should remain accessible.
-            </m.h2>
-          </div>
-
-          <div className="philosophy-screen">
-            <m.h2 className="con-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Products should create impact.
-            </m.h2>
-            <m.h2 className="con-principle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Intelligence should guide growth.
-            </m.h2>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          CLOSING
-      ══════════════════════════════════════════════════════ */}
-      <section className="con-closing">
-        <div className="con-constrain center-align">
-          <div className="closing-sequence">
-            
-            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
-              The Next Great Idea<br/>May Begin Here.
+              <div className="cp-note">
+                Email is the fastest way to start a conversation.
+              </div>
             </m.div>
-            
-            <m.div className="closing-thought text-muted" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
-              Every meaningful product<br/>starts with curiosity.
-            </m.div>
+          </section>
 
-            <m.div className="closing-finale" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE }}>
-              Every meaningful collaboration<br/>begins with one conversation.
-            </m.div>
+          {/* ══════════════════════════════════════════════════════
+              4. START A CONVERSATION & GUIDANCE
+          ══════════════════════════════════════════════════════ */}
+          <section id="conversation-form-section" className="cf-section">
+            <div className="cf-grid">
+              
+              <m.div className="cf-form-wrapper" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="c-label">START A CONVERSATION</div>
+                
+                <form className="cf-form" onSubmit={handleSubmit}>
+                  <div className="cf-field">
+                    <label htmlFor="name"><span>01 /</span> NAME</label>
+                    <input type="text" id="name" name="name" className="cf-input" value={formData.name} onChange={handleChange} required />
+                  </div>
+                  
+                  <div className="cf-field">
+                    <label htmlFor="email"><span>02 /</span> EMAIL</label>
+                    <input type="email" id="email" name="email" className="cf-input" value={formData.email} onChange={handleChange} required />
+                  </div>
+                  
+                  <div className="cf-field">
+                    <label htmlFor="company"><span>03 /</span> COMPANY / ORGANIZATION</label>
+                    <input type="text" id="company" name="company" className="cf-input" value={formData.company} onChange={handleChange} />
+                  </div>
+                  
+                  <div className="cf-field">
+                    <label htmlFor="subject"><span>04 /</span> SUBJECT</label>
+                    <input type="text" id="subject" name="subject" className="cf-input" value={formData.subject} onChange={handleChange} required />
+                  </div>
+                  
+                  <div className="cf-field">
+                    <label htmlFor="message"><span>05 /</span> MESSAGE</label>
+                    <textarea id="message" name="message" className="cf-textarea" value={formData.message} onChange={handleChange} required />
+                  </div>
 
-            <m.div className="closing-cta" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 2, ease: EASE, delay: 0.5 }}>
-              <button onClick={handleScrollToForm} className="primary-submit-btn">
-                Let's Talk
+                  <button type="submit" className="cf-submit" disabled={status === 'loading'}>
+                    {status === 'loading' ? 'SENDING' : 'SEND MESSAGE'}
+                    {status !== 'loading' && <ArrowRight size={16} className="cf-submit-arrow" />}
+                  </button>
+                </form>
+              </m.div>
+
+              <m.div className="cf-guidance" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="c-label">GOOD CONVERSATIONS USUALLY HAVE:</div>
+                <div className="cg-list">
+                  <div className="cg-item">
+                    <div className="cg-title">A PROBLEM</div>
+                    <div className="cg-desc">What are you trying to solve?</div>
+                  </div>
+                  <div className="cg-item">
+                    <div className="cg-title">A CONTEXT</div>
+                    <div className="cg-desc">What already exists?</div>
+                  </div>
+                  <div className="cg-item">
+                    <div className="cg-title">A DIRECTION</div>
+                    <div className="cg-desc">What are you hoping to build?</div>
+                  </div>
+                  <div className="cg-item">
+                    <div className="cg-title">A QUESTION</div>
+                    <div className="cg-desc">What would you like to discuss?</div>
+                  </div>
+                </div>
+              </m.div>
+
+            </div>
+          </section>
+
+          {/* ══════════════════════════════════════════════════════
+              5. PROFESSIONAL CHANNELS & SIGNAL
+          ══════════════════════════════════════════════════════ */}
+          <section className="cs-section">
+            <div className="cs-grid">
+              
+              <m.div className="cs-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="c-label">OTHER CHANNELS</div>
+                <div className="cs-list">
+                  <a href="https://github.com/thenameisbhagavan" target="_blank" rel="noopener noreferrer" className="cs-row">
+                    <span className="cs-row-title">GitHub</span>
+                    <span className="cs-row-desc">Engineering in public</span>
+                    <ArrowUpRight size={16} className="cs-row-icon" />
+                  </a>
+                  <a href="https://www.linkedin.com/in/thenameisbhagavan/" target="_blank" rel="noopener noreferrer" className="cs-row">
+                    <span className="cs-row-title">LinkedIn</span>
+                    <span className="cs-row-desc">Professional network</span>
+                    <ArrowUpRight size={16} className="cs-row-icon" />
+                  </a>
+                  <a href={resumePdf} target="_blank" rel="noopener noreferrer" className="cs-row">
+                    <span className="cs-row-title">Resume</span>
+                    <span className="cs-row-desc">Professional context</span>
+                    <ArrowUpRight size={16} className="cs-row-icon" />
+                  </a>
+                  <Link to="/work" className="cs-row">
+                    <span className="cs-row-title">Portfolio</span>
+                    <span className="cs-row-desc">The broader system</span>
+                    <ArrowRight size={16} className="cs-row-icon" />
+                  </Link>
+                </div>
+              </m.div>
+
+              <m.div className="cs-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="c-label">CURRENT SIGNAL</div>
+                <div className="csig-list">
+                  <div className="csig-item">
+                    <span className="csig-num">01 /</span>
+                    <div className="csig-content">
+                      <span className="csig-title">BUILDING</span>
+                      <span className="csig-desc">AI SYSTEMS + PRODUCT ENGINEERING</span>
+                    </div>
+                  </div>
+                  <div className="csig-item">
+                    <span className="csig-num">02 /</span>
+                    <div className="csig-content">
+                      <span className="csig-title">EXPLORING</span>
+                      <span className="csig-desc">AGENTIC INTELLIGENCE + SYSTEM DESIGN</span>
+                    </div>
+                  </div>
+                  <div className="csig-item">
+                    <span className="csig-num">03 /</span>
+                    <div className="csig-content">
+                      <span className="csig-title">DOCUMENTING</span>
+                      <span className="csig-desc">ENGINEERING THROUGH THE JOURNAL</span>
+                    </div>
+                  </div>
+                  <div className="csig-item">
+                    <span className="csig-num">04 /</span>
+                    <div className="csig-content">
+                      <span className="csig-title">SHIPPING</span>
+                      <span className="csig-desc">CAREEROS · AURAOS · VERITAS · VOLTDRIVE</span>
+                    </div>
+                  </div>
+                </div>
+              </m.div>
+
+            </div>
+          </section>
+
+          {/* ══════════════════════════════════════════════════════
+              6. HUMAN LAYER & FINAL CTA
+          ══════════════════════════════════════════════════════ */}
+          <section className="cx-section">
+            <div className="cx-grid">
+              
+              <m.div className="cx-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="cx-human">
+                  Behind every system is a conversation about what should exist.
+                </div>
+                <div className="cx-human-sub">
+                  Start with the problem. The rest can be figured out together.
+                </div>
+              </m.div>
+
+              <m.div className="cx-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="c-label">RESPONSE</div>
+                <div className="cx-response">
+                  <div className="cxr-item">
+                    <span className="cxr-label">EMAIL</span>
+                    <span className="cxr-value">Preferred channel</span>
+                  </div>
+                  <div className="cxr-item">
+                    <span className="cxr-label">LINKEDIN</span>
+                    <span className="cxr-value">Professional conversations</span>
+                  </div>
+                  <div className="cxr-item">
+                    <span className="cxr-label">REPLY</span>
+                    <span className="cxr-value">As soon as reasonably possible</span>
+                  </div>
+                </div>
+              </m.div>
+              
+            </div>
+
+            <m.div className="cx-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <div className="cx-cta-title">Have a problem worth solving?</div>
+              <button className="cx-cta-link" onClick={handleScrollToForm}>
+                START THE CONVERSATION <ArrowRight size={16} />
               </button>
             </m.div>
 
-          </div>
-        </div>
-      </section>
+            <m.div className="cx-explore" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <div className="c-label">EXPLORE THE SYSTEMS →</div>
+              <div className="cxe-links">
+                <Link to="/work/careeros" className="cxe-link">CareerOS</Link>
+                <Link to="/work/auraos" className="cxe-link">AuraOS</Link>
+                <Link to="/work/veritas" className="cxe-link">VERITAS</Link>
+                <Link to="/work/voltdrive" className="cxe-link">VoltDrive</Link>
+              </div>
+            </m.div>
 
-      {/* BRAND SIGNATURE */}
-      <BrandSignature />
-    </div>
-  
+            <m.div className="cx-signature" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <div className="cxs-status">
+                <span>CHANNEL STATUS / OPEN</span>
+                <span>SYSTEM SIGNATURE / TNB — 2026</span>
+              </div>
+              <BrandSignature />
+            </m.div>
+
+          </section>
+
+        </div>
+      </div>
     </>
   );
 }

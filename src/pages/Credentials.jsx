@@ -1,13 +1,12 @@
 import SEO from "../components/SEO";
-import React, { useState, useEffect, useRef } from 'react';
-import { m, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Linkedin } from 'lucide-react';
-import SectionDivider from "../components/SectionDivider";
+import React, { useState, useEffect } from 'react';
+import { m, AnimatePresence } from 'framer-motion';
+import { ArrowRight, ArrowDown } from 'lucide-react';
 import BrandSignature from "../components/BrandSignature";
-import { socialLinks } from '../constants/socialLinks';
 import '../styles/Credentials.css';
+import { Link } from 'react-router-dom';
 
-// ─── 26 Core Certificate Assets ────────────────────────────────────────────────
+// ─── Core Certificate Assets ────────────────────────────────────────────────
 import googleEduCert from '../assets/google_page-0001.jpg';
 import githubActionsCert from '../assets/git.jpg';
 import microsoftPromptWritingCert from '../assets/prompt.jpg';
@@ -38,664 +37,618 @@ import infosysIntroDsCert from '../assets/cert-infosys-intro-ds.png';
 import ucscCCert from '../assets/cert-ucsc-c-everyone.png';
 import infosysAgileCert from '../assets/cert-infosys-agile.png';
 import awsCloudCert from '../assets/cert-aws-cloud.png';
-
-// ─── Special Training Program ─────────────────────────────────────────────────
 import trainingCert from '../assets/training.png';
 
 // ─── Motion ───────────────────────────────────────────────────────────────────
-const EASE = [0.16, 1, 0.3, 1];
+const appleEase = [0.22, 1, 0.36, 1];
 
 const fadeUp = {
-  hidden:  { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: EASE } },
+  hidden:  { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: appleEase } },
 };
-
-const stagger = {
-  hidden:  {},
-  visible: { transition: { staggerChildren: 0.15 } },
-};
-
-const imgReveal = {
-  hidden:  { opacity: 0, scale: 0.96 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 1.4, ease: EASE } },
-};
-
-// ─── Reveal helper ────────────────────────────────────────────────────────────
-function Reveal({ children, className }) {
-  return (
-    <m.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={stagger}
-    >
-      {children}
-    </m.div>
-  );
-}
 
 // ─── Data Groupings for Engineering Archive ───────────────────────────────────
 const ARCHIVE = [
   {
+    id: "ai-data",
     category: "Artificial Intelligence & Data",
     certs: [
-      { img: googleEduCert, label: "Google • Generative AI with Gemini" },
-      { img: microsoftPromptWritingCert, label: "Microsoft Copilot • The Art of Prompt Writing" },
-      { img: deepLearningPythonCert, label: "LinkedIn • Deep Learning with Python" },
-      { img: gcpGenAiCert, label: "GCP Generative AI" },
-      { img: gcpIntroGenAiCert, label: "GCP Gen AI Introduction" },
-      { img: ibmAiCert, label: "IBM Artificial Intelligence" },
-      { img: ibmLlmCert, label: "IBM Large Language Models" },
-      { img: ibmPromptingCert, label: "IBM Prompt Engineering" },
-      { img: geminiFacultyCert, label: "Gemini Academy Faculty" },
-      { img: geminiStudentCert, label: "Gemini Academy Student" },
-      { img: geminiStudentUniCert, label: "Gemini Academy University" },
-      { img: infosysDsCert, label: "Infosys Data Science" },
-      { img: infosysPythonDsCert, label: "Infosys Python Data Science" },
-      { img: infosysIntroDsCert, label: "Infosys Intro to Data Science" },
-      { img: infosysMlPythonCert, label: "Infosys ML with Python" },
-      { img: infosysMlopsCert, label: "Infosys MLOps" }
+      { img: googleEduCert, provider: "Google", label: "Generative AI with Gemini" },
+      { img: microsoftPromptWritingCert, provider: "Microsoft Copilot", label: "The Art of Prompt Writing" },
+      { img: deepLearningPythonCert, provider: "LinkedIn", label: "Deep Learning with Python" },
+      { img: gcpGenAiCert, provider: "Google Cloud", label: "Generative AI" },
+      { img: gcpIntroGenAiCert, provider: "Google Cloud", label: "Gen AI Introduction" },
+      { img: ibmAiCert, provider: "IBM", label: "Artificial Intelligence" },
+      { img: ibmLlmCert, provider: "IBM", label: "Large Language Models" },
+      { img: ibmPromptingCert, provider: "IBM", label: "Prompt Engineering" },
+      { img: geminiFacultyCert, provider: "Google", label: "Gemini Academy Faculty" },
+      { img: geminiStudentCert, provider: "Google", label: "Gemini Academy Student" },
+      { img: geminiStudentUniCert, provider: "Google", label: "Gemini Academy University" },
+      { img: infosysDsCert, provider: "Infosys", label: "Data Science" },
+      { img: infosysPythonDsCert, provider: "Infosys", label: "Python Data Science" },
+      { img: infosysIntroDsCert, provider: "Infosys", label: "Intro to Data Science" },
+      { img: infosysMlPythonCert, provider: "Infosys", label: "ML with Python" },
+      { img: infosysMlopsCert, provider: "Infosys", label: "MLOps" }
     ]
   },
   {
+    id: "cloud",
     category: "Cloud & Infrastructure",
     certs: [
-      { img: awsCloudCert, label: "AWS Cloud Foundations" },
-      { img: infosysAzureCert, label: "Infosys Azure Cloud" },
-      { img: infosysDevopsCert, label: "Infosys DevOps" }
+      { img: awsCloudCert, provider: "AWS", label: "Cloud Foundations" },
+      { img: infosysAzureCert, provider: "Infosys", label: "Azure Cloud" },
+      { img: infosysDevopsCert, provider: "Infosys", label: "DevOps" }
     ]
   },
   {
+    id: "software",
     category: "Software Engineering",
     certs: [
-      { img: gfgFsCert, label: "GeeksforGeeks Full Stack" },
-      { img: githubActionsCert, label: "LinkedIn • Practical GitHub Actions" },
-      { img: infosysDjangoCert, label: "Infosys Django Web Dev" },
-      { img: infosysServiceNowCert, label: "Infosys ServiceNow" }
+      { img: gfgFsCert, provider: "GeeksforGeeks", label: "Full Stack Development" },
+      { img: githubActionsCert, provider: "LinkedIn", label: "Practical GitHub Actions" },
+      { img: infosysDjangoCert, provider: "Infosys", label: "Django Web Dev" },
+      { img: infosysServiceNowCert, provider: "Infosys", label: "ServiceNow" }
     ]
   },
   {
+    id: "programming",
     category: "Programming Mastery",
     certs: [
-      { img: gfgJavaCert, label: "GeeksforGeeks Java" },
-      { img: infosysJavaCert, label: "Infosys Java Foundations" },
-      { img: gfgPythonCert, label: "GeeksforGeeks Python" },
-      { img: infosysMasterPythonCert, label: "Infosys Master Python" },
-      { img: infosysJsCert, label: "Infosys JavaScript" },
-      { img: ucscCCert, label: "UCSC C for Everyone" }
+      { img: gfgJavaCert, provider: "GeeksforGeeks", label: "Java" },
+      { img: infosysJavaCert, provider: "Infosys", label: "Java Foundations" },
+      { img: gfgPythonCert, provider: "GeeksforGeeks", label: "Python" },
+      { img: infosysMasterPythonCert, provider: "Infosys", label: "Master Python" },
+      { img: infosysJsCert, provider: "Infosys", label: "JavaScript" },
+      { img: ucscCCert, provider: "UCSC", label: "C for Everyone" }
     ]
   },
   {
+    id: "professional",
     category: "Professional Development",
     certs: [
-      { img: infosysAgileCert, label: "Infosys Agile Methodology" }
+      { img: infosysAgileCert, provider: "Infosys", label: "Agile Methodology" }
     ]
   }
 ];
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
-export default function Credentials() {
-  const { scrollY } = useScroll();
-  const heroScale = useTransform(scrollY, [0, 800], [1, 0.95]);
-  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
-  const heroY = useTransform(scrollY, [0, 800], [0, 100]);
+// ─── Modal Component ────────────────────────────────────────────────────────
+const ArtifactViewer = ({ src, alt, onClose }) => {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'auto';
+    };
+  }, [onClose]);
 
-  // Foundation Sequence
-  const foundRef = useRef(null);
-  const { scrollYProgress: foundProgress } = useScroll({ target: foundRef, offset: ["start start", "end end"] });
-  const f1 = useTransform(foundProgress, [0, 0.1, 0.2], [1, 1, 0]);
-  const f2 = useTransform(foundProgress, [0.15, 0.25, 0.35], [0, 1, 0]);
-  const f3 = useTransform(foundProgress, [0.3, 0.4, 0.5], [0, 1, 0]);
-  const f4 = useTransform(foundProgress, [0.45, 0.55, 0.65], [0, 1, 0]);
-  const f5 = useTransform(foundProgress, [0.6, 0.7, 0.8], [0, 1, 0]);
-  const f6 = useTransform(foundProgress, [0.75, 0.85, 1], [0, 1, 1]); // Shows the final Cert
+  return (
+    <m.div 
+      className="cred-modal-overlay"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4, ease: appleEase }}
+      onClick={onClose}
+    >
+      <button className="cred-modal-close" onClick={onClose} aria-label="Close viewer">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <m.div 
+        className="cred-modal-content"
+        initial={{ scale: 0.96, opacity: 0, y: 10 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.98, opacity: 0, y: -10 }}
+        transition={{ duration: 0.5, ease: appleEase }}
+        onClick={e => e.stopPropagation()}
+      >
+        <div className="cred-modal-header">ENGINEERING ARTIFACT</div>
+        <img src={src} alt={alt} className="cred-modal-img" />
+      </m.div>
+    </m.div>
+  );
+};
+
+// ─── Page Component ───────────────────────────────────────────────────────────
+export default function Credentials() {
+  const [selectedArtifact, setSelectedArtifact] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const handleScrollTo = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
-      <SEO title="TheNameIsBhagavan | Credentials" description="Explore the professional certifications, educational credentials, and continuous learning achievements of Bhagavan, specializing in AI, Machine Learning & Cloud." keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack, GitHub Actions, CI/CD, Workflow Automation, LinkedIn Learning, DevOps, Software Engineering, Automation, Microsoft Copilot, Prompt Engineering, AI Prompting, Generative AI, Large Language Models, Copilot, LLMs, AI Productivity" />
+      <SEO 
+        title="TheNameIsBhagavan | Credentials" 
+        description="An evolving record of the systems, technologies, and disciplines I have studied, practiced, and applied." 
+        keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, Engineering Record, Certificates, Credentials" 
+      />
 
-    <div className="cred-page">
-      
-      {/* ══════════════════════════════════════════════════════
-          HERO
-      ══════════════════════════════════════════════════════ */}
-      <m.section className="cred-hero" style={{ scale: heroScale, opacity: heroOpacity, y: heroY }}>
-        <div className="cred-constrain center-align">
-          <m.h1 className="cred-hero-headline" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: EASE }}>
-            Knowledge.<br/><span className="text-muted">Applied.</span>
-          </m.h1>
-          <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.2, ease: EASE }} style={{ marginTop: '32px' }}>
-             <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 28px', background: '#1d1d1f', color: '#fff', borderRadius: '30px', textDecoration: 'none', fontWeight: 500, fontSize: '15px', letterSpacing: '-0.01em', transition: 'transform 0.2s ease' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'} aria-label="View LinkedIn Profile" title="View LinkedIn Profile">
-                <Linkedin size={18} /> View LinkedIn Profile
-             </a>
-          </m.div>
-        </div>
-      </m.section>
+      <AnimatePresence>
+        {selectedArtifact && (
+          <ArtifactViewer 
+            src={selectedArtifact.src} 
+            alt={selectedArtifact.alt} 
+            onClose={() => setSelectedArtifact(null)} 
+          />
+        )}
+      </AnimatePresence>
 
-      {/* ══════════════════════════════════════════════════════
-          GOOGLE AI PREMIUM SECTION
-      ══════════════════════════════════════════════════════ */}
-      <SectionDivider />
-      <section className="cred-premium-section">
-        <div className="cred-constrain">
-          <div className="premium-editorial">
-            <m.div className="premium-label" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1, ease: EASE }}>
-              GOOGLE AI
-            </m.div>
-            <m.h2 className="premium-headline" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.1 }}>
-              Learning directly from the people building modern AI.
+      <div className="cred-page">
+        
+        {/* ══════════════════════════════════════════════════════
+            1. HERO
+        ══════════════════════════════════════════════════════ */}
+        <section className="cred-hero">
+          <div className="cred-bounds">
+            <div className="cred-hero-grid">
+              <div className="ch-left">
+                <m.div className="cred-hero-eyebrow" initial="hidden" animate="visible" variants={fadeUp}>
+                  CREDENTIALS / ENGINEERING RECORD / 2026
+                </m.div>
+                <m.h1 className="cred-hero-headline" initial="hidden" animate="visible" variants={fadeUp}>
+                  Knowledge becomes<br />evidence.
+                </m.h1>
+                <m.p className="cred-hero-sub" initial="hidden" animate="visible" variants={fadeUp}>
+                  An evolving record of the systems, technologies, and disciplines I have studied, practiced, and applied.
+                </m.p>
+              </div>
+              <div className="ch-right">
+                <m.div className="cred-hero-index" initial="hidden" animate="visible" variants={fadeUp}>
+                  <div className="chi-item">
+                    <span className="chi-num">01</span>
+                    <span className="chi-cat">AI & DATA</span>
+                    <span className="chi-count">16 credentials</span>
+                  </div>
+                  <div className="chi-item">
+                    <span className="chi-num">02</span>
+                    <span className="chi-cat">SOFTWARE</span>
+                    <span className="chi-count">04 credentials</span>
+                  </div>
+                  <div className="chi-item">
+                    <span className="chi-num">03</span>
+                    <span className="chi-cat">CLOUD</span>
+                    <span className="chi-count">03 credentials</span>
+                  </div>
+                  <div className="chi-item">
+                    <span className="chi-num">04</span>
+                    <span className="chi-cat">PROGRAMMING</span>
+                    <span className="chi-count">06 credentials</span>
+                  </div>
+                  <div className="chi-item">
+                    <span className="chi-num">05</span>
+                    <span className="chi-cat">PROFESSIONAL</span>
+                    <span className="chi-count">01 credential</span>
+                  </div>
+                </m.div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            2. CORE IDEA
+        ══════════════════════════════════════════════════════ */}
+        <section className="cred-core-idea">
+          <div className="cred-bounds">
+            <m.h2 className="cci-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Credentials matter only when they change what you can build.
             </m.h2>
-            <m.p className="premium-subheading" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.2 }}>
-              Artificial Intelligence evolves rapidly.<br/>
-              Continuous learning is part of engineering.<br/><br/>
-              This Google credential represents another step toward designing intelligent systems that are useful, reliable and human-centered.
+            <m.p className="cci-body" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Courses document exposure.<br/>
+              Projects demonstrate application.<br/>
+              Engineering sits between the two.
             </m.p>
           </div>
+        </section>
 
-          <m.div 
-            className="premium-glass-card"
-            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.4, ease: EASE }}
-            style={{ y: useTransform(scrollY, [0, 1500], [100, -100]) }}
-          >
-            <div className="premium-card-left">
-              <m.div className="cred-museum-frame" initial={{ y: 20 }} whileInView={{ y: 0 }} transition={{ duration: 2, ease: EASE, repeat: Infinity, repeatType: 'reverse' }}>
-                <img src={googleEduCert} alt="Google for Education AI Certificate" loading="lazy" />
-              </m.div>
-            </div>
-            <div className="premium-card-right">
-              <div className="premium-card-section">
-                <span className="premium-data-label">Google for Education</span>
-                <span className="premium-data-value large">Generative AI for Educators with Gemini</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Completed</span>
-                <span className="premium-data-value">July 2026</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Score</span>
-                <span className="premium-data-value">100 / 100</span>
-              </div>
-
-              <div className="premium-card-section">
-                <span className="premium-data-label">Skills Developed</span>
-                <div className="premium-skills-list">
-                  {["Prompt Engineering", "Responsible AI", "Generative AI", "Gemini", "Human-Centered AI", "AI Productivity"].map((skill, idx) => (
-                    <span key={idx} className="premium-skill-tag">{skill}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </m.div>
-
-          <m.div 
-            className="premium-quote"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: EASE, delay: 0.4 }}
-          >
-            <div className="premium-quote-text">
-              "Every intelligent system begins with understanding.<br/>
-              Every great engineer remains a lifelong learner."
-            </div>
-            <div className="premium-quote-author">— TheNameIsBhagavan</div>
-          </m.div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          MICROSOFT COPILOT PREMIUM SECTION
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-premium-section">
-        <div className="cred-constrain">
-          <div className="premium-editorial">
-            <m.div className="premium-label" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1, ease: EASE }}>
-              MICROSOFT
+        {/* ══════════════════════════════════════════════════════
+            3. CREDENTIAL MAP
+        ══════════════════════════════════════════════════════ */}
+        <section className="cred-map">
+          <div className="cred-bounds">
+            <m.div className="cred-section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              THE RECORD
             </m.div>
-            <m.h2 className="premium-headline" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.1 }}>
-              The Art of Prompt Engineering.
-            </m.h2>
-            <m.p className="premium-subheading" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.2 }}>
-              Modern AI is no longer defined only by models.<br/><br/>
-              The quality of intelligent systems increasingly depends on how humans communicate with them.<br/><br/>
-              This Microsoft Copilot course strengthened my understanding of prompt engineering principles, structured prompting techniques, AI productivity, and designing high-quality instructions for modern large language models.<br/><br/>
-              As AI evolves, prompt engineering becomes an essential engineering skill alongside software development and machine learning.
-            </m.p>
-          </div>
-
-          <m.div 
-            className="premium-glass-card"
-            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.4, ease: EASE }}
-            style={{ y: useTransform(scrollY, [0, 1500], [100, -100]) }}
-          >
-            <div className="premium-card-left">
-              <m.div className="cred-museum-frame" initial={{ y: 20 }} whileInView={{ y: 0 }} transition={{ duration: 2, ease: EASE, repeat: Infinity, repeatType: 'reverse' }}>
-                <img src={microsoftPromptWritingCert} alt="Microsoft Copilot Prompt Writing Certificate" loading="lazy" />
-              </m.div>
-            </div>
-            <div className="premium-card-right">
-              <div className="premium-card-section">
-                <span className="premium-data-label">Provider</span>
-                <span className="premium-data-value large">LinkedIn Learning</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Course</span>
-                <span className="premium-data-value large" style={{ fontSize: '18px', lineHeight: '1.2' }}>Microsoft Copilot:<br/>The Art of Prompt Writing</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Completed</span>
-                <span className="premium-data-value">July 2026</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Duration</span>
-                <span className="premium-data-value">44 Minutes</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Category</span>
-                <span className="premium-data-value">Prompt Engineering</span>
-              </div>
-
-              <div className="premium-card-section">
-                <span className="premium-data-label">Skills Developed</span>
-                <div className="premium-skills-list">
-                  {["Prompt Engineering", "AI Prompt Design", "Microsoft Copilot", "Generative AI", "LLMs", "AI Productivity", "Instruction Design", "Prompt Optimization", "Structured Prompting", "Human-AI Collaboration"].map((skill, idx) => (
-                    <span key={idx} className="premium-skill-tag">{skill}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </m.div>
-
-          <m.div 
-            className="premium-quote"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: EASE, delay: 0.4 }}
-          >
-            <div className="premium-quote-text">
-              "The intelligence of an AI system depends not only on the model—but also on the quality of the questions we ask."
-            </div>
-            <div className="premium-quote-author">— TheNameIsBhagavan</div>
-          </m.div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          DEEP LEARNING PREMIUM SECTION
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-premium-section">
-        <div className="cred-constrain">
-          <div className="premium-editorial">
-            <m.div className="premium-label" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1, ease: EASE }}>
-              LINKEDIN LEARNING
-            </m.div>
-            <m.h2 className="premium-headline" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.1 }}>
-              Deep Learning for Modern AI Systems
-            </m.h2>
-            <m.p className="premium-subheading" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE, delay: 0.2 }}>
-              Modern AI is no longer limited to traditional machine learning.<br/><br/>
-              Sequence Models, Recurrent Neural Networks and Transformers power today's intelligent systems—from language models to speech recognition and generative AI.<br/><br/>
-              This learning strengthened my understanding of temporal reasoning, attention mechanisms, neural architectures, and production-ready deep learning workflows.
-            </m.p>
-          </div>
-
-          <m.div 
-            className="premium-glass-card"
-            initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
-            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.4, ease: EASE }}
-            style={{ y: useTransform(scrollY, [0, 1500], [100, -100]) }}
-          >
-            <div className="premium-card-left">
-              <m.div className="cred-museum-frame" initial={{ y: 20 }} whileInView={{ y: 0 }} transition={{ duration: 2, ease: EASE, repeat: Infinity, repeatType: 'reverse' }}>
-                <img src={deepLearningPythonCert} alt="Deep Learning with Python Certificate" loading="lazy" />
-              </m.div>
-            </div>
-            <div className="premium-card-right">
-              <div className="premium-card-section">
-                <span className="premium-data-label">Provider</span>
-                <span className="premium-data-value large">LinkedIn Learning</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Completed</span>
-                <span className="premium-data-value">July 2026</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Duration</span>
-                <span className="premium-data-value">1 Hour 26 Minutes</span>
-              </div>
-              
-              <div className="premium-card-section">
-                <span className="premium-data-label">Category</span>
-                <span className="premium-data-value">Deep Learning</span>
-              </div>
-
-              <div className="premium-card-section">
-                <span className="premium-data-label">Skills Developed</span>
-                <div className="premium-skills-list">
-                  {["Sequence Models", "Transformers", "Deep Learning", "Python", "Keras", "RNN", "LSTM", "Artificial Intelligence", "NLP"].map((skill, idx) => (
-                    <span key={idx} className="premium-skill-tag">{skill}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </m.div>
-
-          <m.div 
-            className="premium-quote"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: EASE, delay: 0.4 }}
-          >
-            <div className="premium-quote-text">
-              "The future of AI belongs to engineers who understand both the mathematics behind intelligence and the systems that bring it to life."
-            </div>
-            <div className="premium-quote-author">— TheNameIsBhagavan</div>
-          </m.div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          FOUNDATION SEQUENCE (Sticky)
-      ══════════════════════════════════════════════════════ */}
-      <section ref={foundRef} className="cred-foundation-container">
-        <div className="cred-foundation-sticky">
-          <m.h2 className="foundation-word" style={{ opacity: f1 }}>Learning.</m.h2>
-          <m.h2 className="foundation-word" style={{ opacity: f2 }}>Practice.</m.h2>
-          <m.h2 className="foundation-word" style={{ opacity: f3 }}>Discipline.</m.h2>
-          <m.h2 className="foundation-word" style={{ opacity: f4 }}>Capability.</m.h2>
-          <m.h2 className="foundation-word" style={{ opacity: f5 }}>Engineering.</m.h2>
-          <m.div className="foundation-artifact" style={{ opacity: f6 }}>
-            <div className="cred-museum-frame massive-artifact">
-              <img src={trainingCert} alt="Comprehensive Engineering Training" loading="lazy" />
-            </div>
-            <div className="artifact-caption">Comprehensive Professional Foundation</div>
-          </m.div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          AI CHAPTER
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-chapter theme-ai">
-        <div className="cred-constrain">
-          <div className="chapter-editorial">
-            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Intelligence isn't built<br/>by models alone.<br/><br/>It is built<br/>through understanding.
-            </m.h2>
-          </div>
-          
-          <div className="chapter-featured-certs">
-            <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
-              <img src={gcpGenAiCert} alt="GCP Gen AI" loading="lazy" />
-            </m.div>
-            <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
-              <img src={ibmAiCert} alt="IBM AI" loading="lazy" />
+            
+            <m.div className="cred-map-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              {ARCHIVE.map((group, i) => (
+                <button key={group.id} className="cred-map-item" onClick={() => handleScrollTo(group.id)}>
+                  <span className="cmi-num">0{i + 1}</span>
+                  <span className="cmi-title">{group.category}</span>
+                  <ArrowDown className="cmi-arrow" size={16} />
+                </button>
+              ))}
             </m.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ══════════════════════════════════════════════════════
-          CLOUD CHAPTER
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-chapter theme-cloud">
-        <div className="cred-constrain">
-          <div className="chapter-editorial">
-            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Great products<br/>must also scale.
-            </m.h2>
-          </div>
-          
-          <div className="chapter-featured-certs">
-            <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
-              <img src={awsCloudCert} alt="AWS Cloud" loading="lazy" />
+        {/* ══════════════════════════════════════════════════════
+            4. FEATURED EVIDENCE
+        ══════════════════════════════════════════════════════ */}
+        <section className="cred-featured">
+          <div className="cred-bounds">
+            <m.div className="cred-section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              FEATURED EVIDENCE
             </m.div>
-            <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
-              <img src={infosysAzureCert} alt="Azure Cloud" loading="lazy" />
-            </m.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SOFTWARE ENGINEERING CHAPTER
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-chapter theme-software">
-        <div className="cred-constrain">
-          <div className="chapter-editorial">
-            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Software is more than code.<br/><br/>It is the discipline<br/>of solving problems<br/>reliably.
-            </m.h2>
-          </div>
-          
-          <div className="chapter-featured-certs">
-            <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
-              <img src={gfgFsCert} alt="Full Stack" loading="lazy" />
-            </m.div>
-
-            <m.div className="chapter-cert-with-details" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
-              <div className="cred-museum-frame">
-                <img src={githubActionsCert} alt="Practical GitHub Actions" loading="lazy" />
-              </div>
-              <div className="chapter-cert-details">
-                <span className="premium-data-label">LinkedIn Learning</span>
-                <span className="premium-data-value large">Practical GitHub Actions</span>
-                <span className="premium-data-value" style={{ marginTop: '12px' }}>July 2026</span>
-                <div className="premium-skills-list">
-                  {["GitHub Actions", "CI/CD Automation", "Workflow Automation", "YAML", "GitHub Pages", "DevOps Fundamentals"].map((skill, idx) => (
-                    <span key={idx} className="premium-skill-tag">{skill}</span>
-                  ))}
-                </div>
-              </div>
-            </m.div>
-
-            <m.div className="cred-museum-frame" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={imgReveal}>
-              <img src={infosysDevopsCert} alt="DevOps" loading="lazy" />
-            </m.div>
-          </div>
-
-          <m.div className="software-editorial-paragraph" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            Modern software engineering is no longer just about writing code.<br/><br/>
-            Reliable software is built through automation, continuous integration, deployment pipelines, and engineering workflows.<br/><br/>
-            Learning GitHub Actions strengthens my ability to build production-ready software systems.
-          </m.div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          CAPABILITIES REVEAL
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-capabilities">
-        <div className="cred-constrain center-align">
-          {[
-            "Artificial Intelligence",
-            "Transformer Architectures",
-            "Full Stack Engineering",
-            "Cloud Systems",
-            "Software Architecture",
-            "Problem Solving",
-            "Career Intelligence"
-          ].map((cap, i) => (
-            <m.h2 
-              key={i} 
-              className="capability-reveal"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-150px" }}
-              transition={{ duration: 1.2, ease: EASE }}
-            >
-              {cap}
-            </m.h2>
-          ))}
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          LEARNING TIMELINE
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-timeline">
-        <div className="cred-constrain center-align">
-          <div className="timeline-flow">
-            {[
-              { phase: "Beginning", year: "2022" },
-              { phase: "Exploration", year: "2024" },
-              { phase: "Acceleration", year: "2025" },
-              { 
-                phase: "AI Systems Engineering", 
-                year: "2026",
-                details: [
-                  "Google AI",
-                  "Microsoft Copilot",
-                  "Prompt Engineering",
-                  "IBM AI",
-                  "Google Cloud AI",
-                  "Generative AI",
-                  "LLMs",
-                  "Deep Learning",
-                  "Transformers",
-                  "Sequence Models",
-                  "GitHub Actions",
-                  "Continuous Product Development"
-                ]
-              }
-            ].map((step, i, arr) => (
-              <React.Fragment key={i}>
-                <m.div 
-                  className="timeline-node"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1, ease: EASE }}
-                >
-                  <span className="timeline-phase">{step.phase}</span>
-                  {step.details && (
-                    <div className="timeline-details">
-                      {step.details.map((detail, idx) => (
-                        <span key={idx} className="timeline-detail-item">{detail}</span>
+            
+            <div className="featured-list">
+              
+              {/* Feature 1: Google Gen AI */}
+              <m.div className="featured-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="fi-meta">
+                  <div className="fi-provider">GOOGLE</div>
+                  <h3 className="fi-title">Generative AI with Gemini</h3>
+                  
+                  <div className="fi-detail" style={{ marginTop: '24px' }}>
+                    <span className="fi-detail-label">DOMAIN</span>
+                    <span className="fi-detail-value">Artificial Intelligence</span>
+                  </div>
+                  
+                  <div className="fi-detail" style={{ marginTop: '16px' }}>
+                    <span className="fi-detail-label">SKILLS</span>
+                    <div className="fi-skills">
+                      {["Prompt Engineering", "Responsible AI", "Generative AI", "Gemini", "Human-Centered AI"].map((skill, idx) => (
+                        <span key={idx} className="fi-skill">{skill}</span>
                       ))}
                     </div>
-                  )}
-                  <span className="timeline-year">{step.year}</span>
+                  </div>
+                </div>
+                <div className="fi-artifact">
+                  <button className="cred-artifact-btn" onClick={() => setSelectedArtifact({ src: googleEduCert, alt: "Google Generative AI Certificate" })}>
+                    <img src={googleEduCert} alt="Google Generative AI Certificate" loading="lazy" />
+                    <span className="cred-artifact-hover">VIEW ARTIFACT ↗</span>
+                  </button>
+                </div>
+              </m.div>
+
+              {/* Feature 2: Microsoft Prompting */}
+              <m.div className="featured-item reverse" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="fi-meta">
+                  <div className="fi-provider">MICROSOFT</div>
+                  <h3 className="fi-title">The Art of Prompt Writing</h3>
+                  
+                  <div className="fi-detail" style={{ marginTop: '24px' }}>
+                    <span className="fi-detail-label">DOMAIN</span>
+                    <span className="fi-detail-value">Generative AI</span>
+                  </div>
+                  
+                  <div className="fi-detail" style={{ marginTop: '16px' }}>
+                    <span className="fi-detail-label">SKILLS</span>
+                    <div className="fi-skills">
+                      {["AI Prompt Design", "LLMs", "AI Productivity", "Instruction Design", "Structured Prompting"].map((skill, idx) => (
+                        <span key={idx} className="fi-skill">{skill}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="fi-artifact">
+                  <button className="cred-artifact-btn" onClick={() => setSelectedArtifact({ src: microsoftPromptWritingCert, alt: "Microsoft Prompt Writing Certificate" })}>
+                    <img src={microsoftPromptWritingCert} alt="Microsoft Prompt Writing Certificate" loading="lazy" />
+                    <span className="cred-artifact-hover">VIEW ARTIFACT ↗</span>
+                  </button>
+                </div>
+              </m.div>
+
+              {/* Feature 3: Deep Learning */}
+              <m.div className="featured-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="fi-meta">
+                  <div className="fi-provider">LINKEDIN LEARNING</div>
+                  <h3 className="fi-title">Deep Learning with Python</h3>
+                  
+                  <div className="fi-detail" style={{ marginTop: '24px' }}>
+                    <span className="fi-detail-label">DOMAIN</span>
+                    <span className="fi-detail-value">Machine Learning</span>
+                  </div>
+                  
+                  <div className="fi-detail" style={{ marginTop: '16px' }}>
+                    <span className="fi-detail-label">SKILLS</span>
+                    <div className="fi-skills">
+                      {["Sequence Models", "Transformers", "Deep Learning", "Keras", "RNN", "LSTM", "NLP"].map((skill, idx) => (
+                        <span key={idx} className="fi-skill">{skill}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="fi-artifact">
+                  <button className="cred-artifact-btn" onClick={() => setSelectedArtifact({ src: deepLearningPythonCert, alt: "Deep Learning Certificate" })}>
+                    <img src={deepLearningPythonCert} alt="Deep Learning Certificate" loading="lazy" />
+                    <span className="cred-artifact-hover">VIEW ARTIFACT ↗</span>
+                  </button>
+                </div>
+              </m.div>
+
+              {/* Feature 4: Full Stack */}
+              <m.div className="featured-item reverse" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="fi-meta">
+                  <div className="fi-provider">GEEKSFORGEEKS</div>
+                  <h3 className="fi-title">Full Stack Development</h3>
+                  
+                  <div className="fi-detail" style={{ marginTop: '24px' }}>
+                    <span className="fi-detail-label">DOMAIN</span>
+                    <span className="fi-detail-value">Software Engineering</span>
+                  </div>
+                  
+                  <div className="fi-detail" style={{ marginTop: '16px' }}>
+                    <span className="fi-detail-label">SKILLS</span>
+                    <div className="fi-skills">
+                      {["React", "Node.js", "Express", "MongoDB", "REST APIs", "Frontend Development"].map((skill, idx) => (
+                        <span key={idx} className="fi-skill">{skill}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="fi-artifact">
+                  <button className="cred-artifact-btn" onClick={() => setSelectedArtifact({ src: gfgFsCert, alt: "Full Stack Certificate" })}>
+                    <img src={gfgFsCert} alt="Full Stack Certificate" loading="lazy" />
+                    <span className="cred-artifact-hover">VIEW ARTIFACT ↗</span>
+                  </button>
+                </div>
+              </m.div>
+              
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            5. KNOWLEDGE DOMAINS
+        ══════════════════════════════════════════════════════ */}
+        <section className="cred-domains">
+          <div className="cred-bounds">
+            <m.div className="cred-section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              KNOWLEDGE DOMAINS
+            </m.div>
+            
+            <div className="domain-stack">
+              <m.div className="domain-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="dr-num">01</div>
+                <div className="dr-info">
+                  <h3 className="dr-title">INTELLIGENCE</h3>
+                  <p className="dr-desc">Generative AI · LLMs · Deep Learning · Data Science</p>
+                </div>
+                <div className="dr-creds">
+                  <div className="dr-cred-item">Google — Generative AI with Gemini</div>
+                  <div className="dr-cred-item">IBM — Artificial Intelligence</div>
+                  <div className="dr-cred-item">Infosys — Data Science</div>
+                </div>
+              </m.div>
+
+              <m.div className="domain-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="dr-num">02</div>
+                <div className="dr-info">
+                  <h3 className="dr-title">SYSTEMS</h3>
+                  <p className="dr-desc">Cloud · DevOps · CI/CD · Infrastructure</p>
+                </div>
+                <div className="dr-creds">
+                  <div className="dr-cred-item">AWS — Cloud Foundations</div>
+                  <div className="dr-cred-item">Infosys — DevOps</div>
+                  <div className="dr-cred-item">LinkedIn — GitHub Actions</div>
+                </div>
+              </m.div>
+
+              <m.div className="domain-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="dr-num">03</div>
+                <div className="dr-info">
+                  <h3 className="dr-title">SOFTWARE</h3>
+                  <p className="dr-desc">Full Stack · Django · JavaScript · ServiceNow</p>
+                </div>
+                <div className="dr-creds">
+                  <div className="dr-cred-item">GeeksforGeeks — Full Stack</div>
+                  <div className="dr-cred-item">Infosys — Django Web Dev</div>
+                  <div className="dr-cred-item">Infosys — ServiceNow</div>
+                </div>
+              </m.div>
+
+              <m.div className="domain-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="dr-num">04</div>
+                <div className="dr-info">
+                  <h3 className="dr-title">COMPUTATION</h3>
+                  <p className="dr-desc">Python · Java · C · Problem Solving</p>
+                </div>
+                <div className="dr-creds">
+                  <div className="dr-cred-item">Infosys — Master Python</div>
+                  <div className="dr-cred-item">GeeksforGeeks — Java</div>
+                  <div className="dr-cred-item">UCSC — C for Everyone</div>
+                </div>
+              </m.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            6. ENGINEERING RECORD TIMELINE
+        ══════════════════════════════════════════════════════ */}
+        <section className="cred-record">
+          <div className="cred-bounds">
+            <m.div className="cred-section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              THE ENGINEERING RECORD
+            </m.div>
+            
+            <div className="record-timeline">
+              <m.div className="rt-node" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="rt-year">2022</div>
+                <div className="rt-phase">Beginning</div>
+              </m.div>
+
+              <m.div className="rt-node" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="rt-year">2024</div>
+                <div className="rt-phase">Exploration</div>
+              </m.div>
+
+              <m.div className="rt-node" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="rt-year">2025</div>
+                <div className="rt-phase">Acceleration</div>
+              </m.div>
+
+              <m.div className="rt-node rt-current" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="rt-year">2026</div>
+                <div className="rt-phase">AI SYSTEMS ENGINEERING</div>
+                <div className="rt-details">
+                  {["Google AI", "Generative AI", "LLMs", "Deep Learning", "Transformers", "GitHub Actions", "Continuous Product Development"].map((detail, idx) => (
+                    <span key={idx} className="rt-detail">{detail}</span>
+                  ))}
+                </div>
+              </m.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            7. THE ARCHIVE
+        ══════════════════════════════════════════════════════ */}
+        <section className="cred-archive">
+          <div className="cred-bounds">
+            <m.h2 className="archive-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Complete Archive
+            </m.h2>
+
+            {ARCHIVE.map((group, i) => (
+              <div className="archive-group" key={group.id} id={group.id}>
+                <m.div className="ag-category" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                  {group.category}
                 </m.div>
-                {i < arr.length - 1 && (
-                  <m.div className="timeline-arrow" initial={{ opacity: 0 }} whileInView={{ opacity: 0.3 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1 }}>
-                    ↓
-                  </m.div>
-                )}
-              </React.Fragment>
+                <div className="archive-rows">
+                  {group.certs.map((cert, j) => (
+                    <m.div 
+                      key={j}
+                      className="archive-row"
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, margin: "-100px" }}
+                      variants={fadeUp}
+                      onClick={() => setSelectedArtifact({ src: cert.img, alt: cert.label })}
+                    >
+                      <span className="ar-num">{(j + 1).toString().padStart(2, '0')}</span>
+                      <span className="ar-provider">{cert.provider}</span>
+                      <span className="ar-label">{cert.label}</span>
+                      <span className="ar-view">VIEW ↗</span>
+                      
+                      {/* Desktop hover preview */}
+                      <div className="ar-preview">
+                        <img src={cert.img} alt={cert.label} loading="lazy" />
+                      </div>
+                      
+                      {/* Mobile inline image */}
+                      <div className="ar-mobile-img">
+                        <img src={cert.img} alt={cert.label} loading="lazy" />
+                      </div>
+                    </m.div>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ══════════════════════════════════════════════════════
-          ENGINEERING ARCHIVE
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-archive">
-        <div className="cred-constrain">
-          <m.h2 className="archive-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-            Engineering Archive
-          </m.h2>
+        {/* ══════════════════════════════════════════════════════
+            8. APPLICATION BRIDGE
+        ══════════════════════════════════════════════════════ */}
+        <section className="cred-bridge">
+          <div className="cred-bounds">
+            <m.h2 className="bridge-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Learning is only useful when<br/>it changes what gets built.
+            </m.h2>
 
-          {ARCHIVE.map((group, i) => (
-            <div className="archive-group" key={i}>
-              <m.h3 className="archive-category" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                {group.category}
-              </m.h3>
-              <div className="archive-grid">
-                {group.certs.map((cert, j) => (
-                  <m.div 
-                    className="archive-item" 
-                    key={j}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.8, ease: EASE }}
-                  >
-                    <div className="cred-museum-frame">
-                      <img src={cert.img} alt={cert.label} loading="lazy" />
-                    </div>
-                    <div className="archive-item-label">{cert.label}</div>
-                  </m.div>
-                ))}
+            <m.div className="bridge-flow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <span className="bf-word">LEARNED</span>
+              <ArrowRight className="bf-arrow" />
+              <span className="bf-word">PRACTICED</span>
+              <ArrowRight className="bf-arrow" />
+              <span className="bf-word">APPLIED</span>
+              <ArrowRight className="bf-arrow" />
+              <span className="bf-word">SHIPPED</span>
+            </m.div>
+
+            <m.div className="bridge-connections" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <div className="bc-group">
+                <div className="bc-domain">AI / ML</div>
+                <ArrowDown className="bc-arrow" size={16} />
+                <div className="bc-systems">
+                  <span className="bc-system">CareerOS</span>
+                  <span className="bc-system">AuraOS</span>
+                  <span className="bc-system">VERITAS</span>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* ══════════════════════════════════════════════════════
-          BEYOND CREDENTIALS
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-beyond">
-        <div className="cred-constrain center-align">
-          <m.div className="beyond-statement" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE }}>
-            Knowledge creates capability.
-          </m.div>
-          <m.div className="beyond-statement" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: EASE }}>
-            Capability creates products.
-          </m.div>
-          <m.div className="beyond-statement beyond-climax" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
-            Products create impact.
-          </m.div>
-        </div>
-      </section>
+              <div className="bc-group">
+                <div className="bc-domain">Software Engineering</div>
+                <ArrowDown className="bc-arrow" size={16} />
+                <div className="bc-systems">
+                  <span className="bc-system">CareerOS</span>
+                  <span className="bc-system">AuraOS</span>
+                </div>
+              </div>
 
-      {/* ══════════════════════════════════════════════════════
-          CLOSING
-      ══════════════════════════════════════════════════════ */}
-      <section className="cred-closing">
-        <div className="cred-constrain center-align">
-          <div className="closing-sequence">
-            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
-              Learning never finishes.
+              <div className="bc-group">
+                <div className="bc-domain">Product Engineering</div>
+                <ArrowDown className="bc-arrow" size={16} />
+                <div className="bc-systems">
+                  <span className="bc-system">VoltDrive</span>
+                  <span className="bc-system">CareerOS</span>
+                </div>
+              </div>
             </m.div>
-            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
-              Curiosity creates knowledge.
+
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            9. PHILOSOPHY
+        ══════════════════════════════════════════════════════ */}
+        <section className="cred-philosophy">
+          <div className="cred-bounds">
+            <m.h2 className="cp-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Certificates don't define an engineer.
+            </m.h2>
+            <m.p className="cp-secondary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              They document what I chose to learn.<br/>
+              The systems I build show what I learned to do with it.
+            </m.p>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            10. CLOSING
+        ══════════════════════════════════════════════════════ */}
+        <section className="cred-closing">
+          <div className="cred-bounds">
+            <m.h2 className="cc-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              THE RECORD CONTINUES.
+            </m.h2>
+            <m.p className="cc-body" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Learning is not a completed section of the portfolio.<br/>
+              It is part of the engineering process.
+            </m.p>
+
+            <m.div className="cc-focus" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <div className="cc-focus-label">CURRENT FOCUS</div>
+              <div className="cc-focus-tags">AI SYSTEMS · AGENTIC SYSTEMS · RAG · MEMORY · PRODUCT ENGINEERING</div>
             </m.div>
-            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
-              Knowledge creates engineering.
-            </m.div>
-            <m.div className="closing-thought" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.5, ease: EASE }}>
-              Engineering creates impact.
-            </m.div>
-            <m.div className="closing-finale" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE, delay: 0.3 }}>
-              Still learning.
-            </m.div>
-            <m.div className="closing-sub-finale" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 2, ease: EASE, delay: 0.8 }}>
-              Because every product begins with curiosity.
+
+            <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <Link to="/work" className="cred-cta">
+                EXPLORE THE SYSTEMS <ArrowRight size={16} />
+              </Link>
             </m.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* BRAND SIGNATURE */}
-      <BrandSignature />
-    </div>
-  
+        <BrandSignature />
+      </div>
     </>
   );
 }

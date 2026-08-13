@@ -1,230 +1,354 @@
-/* APPLE 2026 OVERVIEW REDESIGN — CINEMATIC FOOTER */
-.footer-cinematic {
-  background-color: #fbfbfd;
-  color: #1d1d1f;
-  padding: 10vh 6vw 5vh 6vw;
-  font-family: var(--font-system, 'SF Pro Display', -apple-system, sans-serif);
-  -webkit-font-smoothing: antialiased;
-  position: relative;
-  z-index: 10;
-}
+/* =========================================
+   FOOTER: SYSTEM SIGNATURE (2026 EDITION)
+   ========================================= */
 
-.footer-content-bounds {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+   .footer-signature-container {
+    background-color: #fbfbfd;
+    color: #1d1d1f;
+    padding: 12vh 6vw 6vh 6vw;
+    font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    z-index: 10;
+  }
+  
+  @media (min-width: 960px) {
+    .footer-signature-container {
+      padding: 15vh max(6vw, 40px) 8vh max(6vw, 40px);
+    }
+  }
+  
+  .footer-content-bounds {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  
+  /* ==================== ZONE 0: CINEMATIC VISUAL ==================== */
+  .footer-cinematic-visual {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    border-radius: 40px;
+    overflow: hidden;
+    margin-bottom: 8vh;
+    background-color: #f5f5f7;
+    position: relative;
+    /* Optional: very subtle inner shadow to blend with the light background */
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02);
+  }
+  
+  @media (max-width: 768px) {
+    .footer-cinematic-visual {
+      aspect-ratio: 16 / 9;
+      border-radius: 24px;
+    }
+  }
+  
+  .footer-cinematic-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    will-change: transform, opacity;
+  }
 
-/* Zone 1: Closing Statement */
-.footer-zone-statement {
-  margin-bottom: 12vh;
-}
-
-.footer-huge-text {
-  font-size: clamp(40px, 6vw, 80px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-  margin: 0 0 24px 0;
-  color: #1d1d1f;
-}
-
-.footer-statement-sub {
-  font-size: clamp(24px, 3.5vw, 48px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  color: #1d1d1f;
-  margin: 0;
-}
-
-.footer-muted {
-  color: #86868b;
-}
-
-/* Hairline */
-.footer-hairline {
-  height: 1px;
-  width: 100%;
-  background: rgba(0,0,0,0.06);
-  margin-bottom: 10vh;
-}
-
-/* Zones Grid */
-.footer-zones-grid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 8vw;
-  margin-bottom: 15vh;
-}
-
-@media (max-width: 768px) {
-  .footer-zones-grid {
+  /* ==================== ZONE 1: STATEMENT ==================== */
+  .footer-zone-statement {
+    margin-bottom: 8vh;
+  }
+  
+  .footer-statement-headline {
+    font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+    font-size: clamp(32px, 5vw, 72px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: #1d1d1f;
+    margin: 0 0 24px 0;
+  }
+  
+  .footer-technical-signature {
+    font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+    font-size: clamp(10px, 1.2vw, 13px);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: #86868b;
+    text-transform: uppercase;
+  }
+  
+  /* ==================== DIVIDERS ==================== */
+  .footer-hairline {
+    height: 1px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.06);
+    margin: 6vh 0;
+  }
+  
+  /* ==================== ZONE 2: GRID ==================== */
+  .footer-editorial-grid {
+    display: grid;
     grid-template-columns: 1fr;
     gap: 8vh;
   }
-}
-
-.footer-zone-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: #86868b;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin: 0 0 32px 0;
-}
-
-/* Navigation List */
-.footer-nav-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.footer-quiet-link {
-  font-size: 20px;
-  font-weight: 500;
-  color: #1d1d1f;
-  text-decoration: none;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  opacity: 0.75;
-  display: inline-flex;
-  align-items: center;
-}
-
-.footer-quiet-link:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-}
-
-.nav-arrow {
-  display: inline-block;
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: all 0.4s ease;
-  font-weight: 400;
-  color: #86868b;
-  margin-left: 8px;
-  font-size: 0.9em;
-}
-
-.footer-quiet-link:hover .nav-arrow {
-  opacity: 1;
-  transform: translateX(4px);
-}
-
-/* Presence List */
-.footer-presence-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 40px 24px;
-}
-
-.presence-item {
-  display: flex;
-}
-
-.presence-link {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: left;
-  transition: all 0.4s ease;
-  opacity: 0.75;
-}
-
-.presence-link:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-}
-
-.presence-name {
-  font-size: 20px;
-  font-weight: 500;
-  color: #1d1d1f;
-  display: flex;
-  align-items: center;
-}
-
-.presence-desc {
-  font-size: 15px;
-  font-weight: 400;
-  color: #86868b;
-}
-
-.presence-arrow {
-  display: inline-block;
-  opacity: 0;
-  transition: all 0.4s ease;
-  font-weight: 400;
-  color: #86868b;
-  margin-left: 6px;
-  font-size: 0.9em;
-}
-
-.external-arrow {
-  transform: translate(-4px, 4px);
-}
-
-.internal-arrow {
-  transform: translateX(-4px);
-}
-
-.presence-link:hover .external-arrow {
-  opacity: 1;
-  transform: translate(2px, -2px);
-}
-
-.presence-link:hover .internal-arrow {
-  opacity: 1;
-  transform: translateX(4px);
-}
-
-
-/* Signature Zone */
-.footer-zone-signature {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-  padding-top: 6vh;
-  border-top: 1px solid rgba(0,0,0,0.06);
-}
-
-@media (min-width: 768px) {
-  .footer-zone-signature {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
+  
+  @media (min-width: 768px) {
+    .footer-editorial-grid {
+      grid-template-columns: 1.5fr 2fr 1fr;
+      gap: 4vw;
+    }
   }
-}
-
-.footer-editorial {
-  font-size: clamp(16px, 2vw, 20px);
-  font-weight: 500;
-  color: #6e6e73;
-  max-width: 600px;
-  letter-spacing: -0.01em;
-  line-height: 1.5;
-}
-
-.footer-copyright {
-  font-size: 12px;
-  font-weight: 400;
-  color: #a1a1a6;
-  letter-spacing: 0.02em;
-}
+  
+  .footer-col-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: #86868b;
+    text-transform: uppercase;
+    margin: 0 0 32px 0;
+  }
+  
+  .footer-signature-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* TEXT LINKS (Explore & Connect Primary) */
+  .footer-explore-list,
+  .footer-connect-primary {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .footer-text-link {
+    font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+    font-size: 17px;
+    font-weight: 500;
+    color: #1d1d1f;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    transition: opacity 0.3s ease;
+  }
+  
+  .footer-text-link:hover {
+    opacity: 0.6;
+  }
+  
+  .footer-arrow {
+    font-weight: 400;
+    color: #86868b;
+    margin-left: 6px;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .footer-text-link:hover .footer-arrow {
+    opacity: 1;
+    transform: translateX(2px);
+  }
+  
+  /* SYSTEMS INDEX ROW */
+  .footer-systems-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(0,0,0,0.04);
+  }
+  
+  .footer-system-row {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .fs-id {
+    font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+    font-size: 11px;
+    font-weight: 600;
+    color: #a1a1a6;
+    min-width: 20px;
+  }
+  
+  .fs-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-grow: 1;
+  }
+  
+  .fs-name {
+    font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+    font-size: 20px;
+    font-weight: 500;
+    color: #1d1d1f;
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+  }
+  
+  .fs-desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: #86868b;
+  }
+  
+  .fs-arrow {
+    font-size: 14px;
+    color: #1d1d1f;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .footer-system-row:hover {
+    transform: translateX(6px);
+  }
+  
+  .footer-system-row:hover .fs-name {
+    color: #000000;
+  }
+  
+  .footer-system-row:hover .fs-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* CONNECT SECONDARY */
+  .footer-connect-secondary {
+    margin-top: 40px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #a1a1a6;
+    line-height: 1.8;
+  }
+  
+  .footer-connect-secondary a {
+    color: #86868b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin: 0 4px;
+  }
+  
+  .footer-connect-secondary a:hover {
+    color: #1d1d1f;
+  }
+  
+  /* ==================== ZONE 3: STATUS ==================== */
+  .footer-status-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .status-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #86868b;
+    text-transform: uppercase;
+  }
+  
+  .status-focus {
+    font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+    font-size: clamp(14px, 1.5vw, 18px);
+    font-weight: 500;
+    color: #1d1d1f;
+    letter-spacing: -0.01em;
+  }
+  
+  .status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  
+  .status-title {
+    color: #a1a1a6;
+  }
+  
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #34c759; /* Apple Green */
+  }
+  
+  .status-value {
+    color: #1d1d1f;
+  }
+  
+  /* ==================== ZONE 4: CLOSING ==================== */
+  .footer-zone-closing {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  @media (min-width: 768px) {
+    .footer-zone-closing {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+  
+  .footer-brand-signature {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .brand-name {
+    font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #1d1d1f;
+  }
+  
+  .brand-detail {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #a1a1a6;
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+  
+  .footer-copyright {
+    font-size: 13px;
+    font-weight: 500;
+    color: #a1a1a6;
+    line-height: 1.6;
+    text-align: left;
+  }
+  
+  @media (min-width: 768px) {
+    .footer-copyright {
+      text-align: right;
+    }
+  }
+  
+  /* ==================== REDUCED MOTION ==================== */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+  

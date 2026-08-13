@@ -1,260 +1,486 @@
-/* APPLE WWDC 2026 VISION PAGE REDESIGN */
+/* =========================================
+   VISION PAGE: THE ENGINEERING POINT OF VIEW
+   ========================================= */
 
 .vision-page {
-  background-color: #ffffff;
+  background-color: #fbfbfd;
   color: #1d1d1f;
+  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-.vis-constrain {
-  max-width: 1200px;
+.vision-bounds {
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 5vw;
+  padding: 0 6vw;
 }
 
-.center-align {
-  text-align: center;
+@media (min-width: 960px) {
+  .vision-bounds {
+    padding: 0 max(6vw, 40px);
+  }
 }
 
-.text-muted {
+/* ── Global Label ── */
+.vision-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   color: #86868b;
-}
-
-/* =========================================
-   HERO
-   ========================================= */
-.vis-hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-  will-change: transform, opacity;
-  transform-origin: center top;
-}
-
-.vis-hero-headline {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(60px, 12vw, 160px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-  color: #1d1d1f;
+  text-transform: uppercase;
   margin-bottom: 24px;
 }
 
-.vis-hero-sub {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: clamp(20px, 3.5vw, 32px);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: #86868b;
-}
-
-/* =========================================
-   THE OBSERVATION
-   ========================================= */
-.vis-observation {
-  padding: 30vh 0;
-  background: #000000;
-  color: #ffffff;
-}
-
-.vis-editorial-sequence {
-  display: flex;
-  flex-direction: column;
-  gap: 15vh;
-}
-
-.vis-statement {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(36px, 7vw, 90px);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-}
-
-/* =========================================
-   THE OPPORTUNITY
-   ========================================= */
-.vis-opportunity {
-  padding: 30vh 0;
-  background: #ffffff;
-}
-
-.vis-statement-massive {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(50px, 10vw, 140px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-  margin-bottom: 2vh;
-}
-.vis-statement-massive:last-child {
-  margin-bottom: 0;
-}
-
-/* =========================================
-   WHY I BUILD
-   ========================================= */
-.vis-why {
-  padding: 30vh 0;
-  background: #f5f5f7;
-}
-
-.vis-why-text {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(28px, 5vw, 64px);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
-  color: #1d1d1f;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* =========================================
-   CAREEROS PROOF
-   ========================================= */
-.vis-proof {
-  padding: 20vh 0 30vh 0;
-  background: #f5f5f7;
-}
-
-.vis-proof-image-wrapper {
-  max-width: 1200px;
-  margin: 0 auto 10vh auto;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.15);
-}
-
-.vis-proof-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.vis-proof-caption {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: clamp(18px, 3vw, 24px);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #86868b;
-}
-
-/* =========================================
-   ENGINEERING PRINCIPLES
-   ========================================= */
-.vis-principles {
-  padding: 30vh 0;
-  background: #ffffff;
-}
-
-.principle-screen {
+/* ==================== 1. THE QUESTION (HERO) ==================== */
+.vision-hero {
+  padding: 25vh 0 20vh 0;
   min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 15vh;
-  margin-bottom: 30vh;
-}
-.principle-screen:last-child {
-  margin-bottom: 0;
 }
 
-.vis-principle {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(36px, 7vw, 90px);
+.vision-hero-eyebrow {
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: -0.03em;
-  color: #1d1d1f;
+  letter-spacing: 0.15em;
+  color: #a1a1a6;
+  text-transform: uppercase;
+  margin-bottom: 60px;
 }
 
-.principle-climax {
-  font-size: clamp(50px, 9vw, 120px);
-  font-weight: 700;
+.vision-hero-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(48px, 8vw, 120px);
+  font-weight: 600;
   letter-spacing: -0.04em;
-}
-
-/* =========================================
-   THE ROAD AHEAD
-   ========================================= */
-.vis-road {
-  padding: 30vh 0;
-  background: #f5f5f7;
-}
-
-.vis-evolution-flow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12vh;
-}
-
-.vis-evolution-node {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(40px, 8vw, 120px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
+  line-height: 1.05;
   color: #1d1d1f;
+  margin: 0 0 60px 0;
+  max-width: 900px;
 }
 
-.vis-evolution-arrow {
-  font-size: clamp(30px, 5vw, 60px);
+.vision-hero-sub {
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 500;
   color: #86868b;
+  line-height: 1.4;
+  max-width: 600px;
 }
 
-/* =========================================
-   CLOSING
-   ========================================= */
-.vis-closing {
-  padding: 40vh 0 20vh 0;
-  background: #000000;
-  color: #ffffff;
+/* ==================== 2. THE BELIEF ==================== */
+.vision-belief {
+  padding: 20vh 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
 }
 
-.vis-closing-sequence {
-  display: flex;
-  flex-direction: column;
-  gap: 25vh;
-}
-
-.vis-closing-thought {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(32px, 6vw, 80px);
+.vb-primary {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(40px, 6vw, 96px);
   font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-}
-
-.vis-closing-finale {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(40px, 8vw, 100px);
-  font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.1;
-  color: #ffffff;
+  color: #1d1d1f;
+  margin-bottom: 80px;
 }
 
-.vis-closing-cta {
+.vb-secondary {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
+  line-height: 1.2;
+  margin-bottom: 80px;
+  max-width: 800px;
+  margin-left: auto;
+}
+
+.vb-explanation {
+  font-size: clamp(18px, 2vw, 24px);
+  color: #86868b;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+}
+
+/* ==================== 3. THE SHIFT ==================== */
+.vision-shift {
+  padding: 20vh 0;
+  background-color: #1d1d1f;
+  color: #fbfbfd;
+  text-align: center;
+}
+
+.vision-shift .vision-label {
+  color: #a1a1a6;
+}
+
+.vs-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 8vh;
   margin-top: 10vh;
 }
 
-.vis-connect-link {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: clamp(18px, 3vw, 24px);
+.vs-word {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(32px, 5vw, 80px);
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: #86868b;
-  text-decoration: none;
-  transition: color 0.4s ease;
-  padding-bottom: 4px;
-  border-bottom: 1px solid transparent;
+  color: rgba(255,255,255,0.1);
+  transition: color 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.vis-connect-link:hover {
-  color: #ffffff;
-  border-bottom-color: #ffffff;
+.vs-word.active {
+  color: #fbfbfd;
+}
+
+.vs-arrow {
+  font-size: 24px;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ==================== 4. PRINCIPLES ==================== */
+.vision-principles {
+  padding: 20vh 0;
+}
+
+.vp-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
+  margin-bottom: 100px;
+}
+
+.vp-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 80px;
+}
+
+@media (min-width: 768px) {
+  .vp-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 100px 80px;
+  }
+}
+
+.vp-item {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.vp-num {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #a1a1a6;
+}
+
+.vp-title {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #1d1d1f;
+}
+
+.vp-desc {
+  font-size: clamp(16px, 2vw, 21px);
+  color: #86868b;
+  line-height: 1.5;
+}
+
+/* ==================== 5. THE HUMAN SIDE ==================== */
+.vision-human {
+  padding: 20vh 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.vh-primary {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(32px, 5vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
+  margin-bottom: 100px;
+}
+
+.vh-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+
+.vh-item {
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 500;
+  color: #86868b;
+  line-height: 1.4;
+  max-width: 700px;
+}
+
+/* ==================== 6. FROM BELIEF TO BUILDING ==================== */
+.vision-building {
+  padding: 20vh 0;
+  background-color: #f5f5f7;
+}
+
+.vb-transform {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+@media (min-width: 960px) {
+  .vb-transform {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
+
+.vbt-step {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.vbt-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #1d1d1f;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.vbt-desc {
+  font-size: 15px;
+  color: #86868b;
+  line-height: 1.5;
+}
+
+/* ==================== 7. PROOF ==================== */
+.vision-proof {
+  padding: 15vh 0;
+}
+
+.vpr-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
+  margin-bottom: 80px;
+}
+
+.vpr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.vpr-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+@media (min-width: 768px) {
+  .vpr-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 60px;
+  }
+}
+
+.vpr-item:last-child {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.vpr-name {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  color: #1d1d1f;
+  min-width: 200px;
+}
+
+.vpr-desc {
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 500;
+  color: #86868b;
+}
+
+.vpr-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d1d1f;
+  text-decoration: none;
+  margin-top: 60px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  transition: border-color 0.4s ease;
+}
+
+.vpr-link:hover {
+  border-color: rgba(0,0,0,0.6);
+}
+
+/* ==================== 8. THE LONG VIEW & 9. FUTURE INDEX ==================== */
+.vision-future {
+  padding: 20vh 0;
+  background-color: #1d1d1f;
+  color: #fbfbfd;
+}
+
+.vision-future .vision-label {
+  color: #a1a1a6;
+}
+
+.vf-primary {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #a1a1a6;
+  margin-bottom: 40px;
+}
+
+.vf-reveal {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #fbfbfd;
+  margin-bottom: 80px;
+}
+
+.vf-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 15vh;
+}
+
+.vf-list-item {
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 500;
+  color: #a1a1a6;
+}
+
+.vf-index {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.vfi-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+@media (min-width: 768px) {
+  .vfi-item {
+    grid-template-columns: 80px 300px 1fr;
+    gap: 40px;
+    align-items: baseline;
+  }
+}
+
+.vfi-num {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #86868b;
+}
+
+.vfi-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #fbfbfd;
+  text-transform: uppercase;
+}
+
+.vfi-desc {
+  font-size: 16px;
+  color: #86868b;
+  line-height: 1.5;
+}
+
+/* ==================== 10. FINAL THESIS ==================== */
+.vision-closing {
+  padding: 30vh 0 25vh 0;
+  text-align: center;
+}
+
+.vc-primary {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
+  margin-bottom: 120px;
+}
+
+.vc-secondary {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 500;
+  color: #86868b;
+  margin-bottom: 120px;
+}
+
+.vc-final {
+  font-size: clamp(18px, 2.5vw, 28px);
+  font-weight: 500;
+  color: #1d1d1f;
+  line-height: 1.5;
+  max-width: 700px;
+  margin: 0 auto 100px auto;
+}
+
+.vc-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d1d1f;
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  transition: border-color 0.4s ease;
+}
+
+.vc-cta:hover {
+  border-color: rgba(0,0,0,0.6);
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

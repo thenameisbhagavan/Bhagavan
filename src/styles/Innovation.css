@@ -1,379 +1,840 @@
-/* APPLE WWDC 2026 INNOVATION PAGE REDESIGN */
+/* =========================================
+   INNOVATION PAGE: 2026 ENGINEERING LAB
+   ========================================= */
 
-.inn-page {
-  background-color: #ffffff;
+.lab-page {
+  background-color: #fbfbfd;
   color: #1d1d1f;
+  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-.inn-constrain {
-  max-width: 1200px;
+.lab-bounds {
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 5vw;
+  padding: 0 6vw;
 }
 
-.center-align {
-  text-align: center;
+@media (min-width: 960px) {
+  .lab-bounds {
+    padding: 0 max(6vw, 40px);
+  }
 }
 
-/* =========================================
-   HERO
-   ========================================= */
-.inn-hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-  will-change: transform, opacity;
-  transform-origin: center top;
+/* ── Global Label ── */
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #86868b;
+  text-transform: uppercase;
+  margin-bottom: 24px;
 }
 
-.inn-hero-headline {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(50px, 9vw, 130px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-  color: #1d1d1f;
-  max-width: 1000px;
-}
-
-/* =========================================
-   CURIOSITY MINDSET (STICKY SCROLL)
-   ========================================= */
-.inn-mindset-container {
-  height: 600vh;
-  background: #000000;
-  color: #ffffff;
+/* ==================== 1. HERO ==================== */
+.lab-hero {
+  padding: 20vh 0 12vh 0;
   position: relative;
 }
 
-.inn-mindset-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+.lab-hero-meta {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.mindset-word {
-  position: absolute;
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(60px, 12vw, 180px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  will-change: opacity;
-}
-
-.mindset-climax {
-  font-weight: 800;
-  background: linear-gradient(135deg, #ffffff, #888888);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* =========================================
-   MUSEUM ARTIFACT (CERTIFICATES / EVIDENCE)
-   ========================================= */
-.inn-museum-artifact {
-  box-shadow: 0 40px 100px rgba(0,0,0,0.1);
-  border-radius: 16px;
-  overflow: hidden;
-  margin-top: 10vh;
-}
-
-.inn-museum-artifact img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.artifact-caption {
-  padding: 24px;
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: 16px;
+  gap: 32px;
+  font-size: 10px;
   font-weight: 600;
-  color: #86868b;
+  letter-spacing: 0.15em;
+  color: #a1a1a6;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  text-align: center;
-  background: #ffffff;
+  margin-bottom: 48px;
 }
 
-/* Scale Variants */
-.massive-artifact {
-  border-radius: 24px;
-}
-.small-artifact {
-  max-width: 600px;
-  margin-top: 6vh;
-}
-
-/* =========================================
-   INNOVATION UNDER PRESSURE (HACKATHON)
-   ========================================= */
-.inn-pressure {
-  padding: 30vh 0;
-  background: #f5f5f7;
+.lab-hero-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(48px, 8vw, 112px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
   color: #1d1d1f;
-  text-align: center;
-}
-
-.inn-pressure-story {
-  margin-bottom: 20vh;
-}
-
-.pressure-headline {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(50px, 8vw, 120px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  color: #86868b;
-}
-
-.climax-headline {
-  color: #1d1d1f;
-  margin-bottom: 6vh;
-}
-
-.pressure-editorial {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(24px, 4vw, 42px);
-  font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
+  margin: 0 0 40px 0;
   max-width: 900px;
-  margin: 0 auto;
 }
 
-/* =========================================
-   BUILDING IN PUBLIC
-   ========================================= */
-.inn-public {
-  padding: 20vh 0;
-  background: #ffffff;
-}
-
-.public-chapter {
-  margin-bottom: 30vh;
-  text-align: center;
-}
-.public-chapter:last-child {
-  margin-bottom: 0;
-}
-
-.public-headline {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(40px, 6vw, 90px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  margin-bottom: 4vh;
-}
-
-.public-editorial {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(24px, 3.5vw, 40px);
+.lab-hero-sub {
+  font-size: clamp(16px, 2vw, 24px);
   font-weight: 500;
   color: #86868b;
-  max-width: 800px;
-  margin: 0 auto;
+  line-height: 1.5;
+  max-width: 640px;
+  margin-bottom: 60px;
+}
+
+.lab-hero-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #a1a1a6;
+}
+
+/* ==================== 2. LAB LOOP ==================== */
+.lab-loop-section {
+  padding: 12vh 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.lab-loop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 80px;
+}
+
+@media (min-width: 768px) {
+  .lab-loop {
+    flex-direction: row;
+    justify-content: center;
+    gap: 32px;
+  }
+}
+
+.loop-word {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(20px, 3vw, 36px);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #1d1d1f;
+}
+
+.loop-arrow {
+  color: #a1a1a6;
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  .loop-arrow {
+    transform: rotate(-90deg);
+  }
+}
+
+.lab-loop-statement {
+  text-align: center;
+  font-size: clamp(18px, 2vw, 28px);
+  font-weight: 500;
+  color: #86868b;
   line-height: 1.4;
 }
 
-/* =========================================
-   EVOLUTION OF LEARNING
-   ========================================= */
-.inn-learning {
-  padding: 30vh 0;
-  background: #000000;
-  color: #ffffff;
+/* ==================== 3. THE LAB INTRO ==================== */
+.lab-intro-section {
+  padding: 15vh 0;
 }
 
-.learning-intro {
-  text-align: center;
-  margin-bottom: 20vh;
-}
-
-.learning-headline {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(40px, 7vw, 100px);
-  font-weight: 600;
-  letter-spacing: -0.03em;
+.lab-intro-text {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 500;
   color: #86868b;
+  line-height: 1.3;
+  margin-bottom: 100px;
+  max-width: 700px;
 }
 
-.learning-headline.climax-headline {
-  color: #ffffff;
+.lab-areas {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
 }
 
-.learning-journey {
+@media (min-width: 768px) {
+  .lab-areas {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+}
+
+.lab-area {
   display: flex;
   flex-direction: column;
-  gap: 25vh;
-  align-items: center;
-  text-align: center;
+  gap: 16px;
 }
 
-.learning-step-title {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(32px, 5vw, 64px);
+.la-num {
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  color: #a1a1a6;
 }
 
-/* =========================================
-   PROFESSIONAL FOUNDATION
-   ========================================= */
-.inn-foundation {
-  padding: 30vh 0;
-  background: #f5f5f7;
-  text-align: center;
-}
-
-.foundation-headline {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(40px, 6vw, 90px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  margin-bottom: 20vh;
-}
-
-.foundation-topics {
-  margin-bottom: 20vh;
-}
-
-.foundation-topic {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(32px, 5vw, 64px);
+.la-title {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(20px, 2.5vw, 28px);
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  color: #1d1d1f;
+}
+
+.la-desc {
+  font-size: 15px;
   color: #86868b;
-  margin-bottom: 10vh;
-}
-.foundation-topic:last-child {
-  margin-bottom: 0;
+  line-height: 1.5;
 }
 
-/* =========================================
-   INNOVATION OUTCOMES
-   ========================================= */
-.inn-outcomes {
-  padding: 30vh 0;
-  background: #ffffff;
-  text-align: center;
+/* ==================== 4. CONSTRAINT (HACKATHON) ==================== */
+.lab-constraint {
+  padding: 15vh 0;
+  background-color: #1d1d1f;
+  color: #fbfbfd;
 }
 
-.outcomes-headline {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: 16px;
+.lab-constraint .section-label {
+  color: #a1a1a6;
+}
+
+.constraint-time {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(64px, 10vw, 160px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 40px;
+}
+
+.constraint-thesis {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(24px, 3.5vw, 48px);
+  font-weight: 500;
+  color: #fbfbfd;
+  margin-bottom: 32px;
+}
+
+.constraint-body {
+  font-size: clamp(16px, 1.8vw, 21px);
+  color: #a1a1a6;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-bottom: 80px;
+}
+
+.constraint-artifact {
+  max-width: 700px;
+}
+
+.ca-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #a1a1a6;
+  margin-bottom: 16px;
+}
+
+.ca-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   color: #86868b;
-  margin-bottom: 30vh;
+  margin-top: 16px;
 }
 
-.outcomes-list {
+/* ==================== 5. ENGINEERING IN PUBLIC ==================== */
+.lab-public {
+  padding: 15vh 0;
+}
+
+.public-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 80px;
+  max-width: 700px;
+}
+
+.pub-grid {
   display: flex;
   flex-direction: column;
-  gap: 30vh;
+  gap: 0;
+}
+
+.pub-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding: 48px 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+@media (min-width: 768px) {
+  .pub-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+}
+
+.pub-row:last-child {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.pub-row-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pub-num {
+  font-size: 12px;
+  font-weight: 600;
+  color: #a1a1a6;
+  letter-spacing: 0.1em;
+}
+
+.pub-cat {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #86868b;
+}
+
+.pub-title {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.01em;
+}
+
+.pub-desc {
+  font-size: 16px;
+  color: #86868b;
+  line-height: 1.5;
+  max-width: 400px;
+}
+
+/* ==================== 6. LAB NOTEBOOK ==================== */
+.lab-notebook {
+  padding: 15vh 0;
+  background-color: #f5f5f7;
+}
+
+.notebook-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
+  margin-bottom: 80px;
+}
+
+.notebook-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-bottom: 80px;
+}
+
+.nb-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.nb-entry-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nb-num {
+  font-size: 14px;
+  font-weight: 600;
+  color: #a1a1a6;
+}
+
+.nb-rule {
+  color: #d2d2d7;
+}
+
+.nb-title {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.nb-entry-artifact {
+  max-width: 500px;
+}
+
+.nb-foundation {
+  padding-top: 60px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.nb-foundation .lab-artifact-btn {
+  max-width: 500px;
+}
+
+/* ==================== ARTIFACT BUTTONS (shared) ==================== */
+.lab-artifact-btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 24px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lab-constraint .lab-artifact-btn {
+  background: #252527;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.lab-artifact-btn img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lab-artifact-hover {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #1d1d1f;
+  background: rgba(255,255,255,0.92);
+  padding: 6px 14px;
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  backdrop-filter: blur(10px);
+}
+
+.lab-constraint .lab-artifact-hover {
+  color: #fbfbfd;
+  background: rgba(30,30,30,0.92);
+}
+
+.lab-artifact-btn:hover {
+  border-color: rgba(0,0,0,0.15);
+}
+
+.lab-constraint .lab-artifact-btn:hover {
+  border-color: rgba(255,255,255,0.15);
+}
+
+.lab-artifact-btn:hover img {
+  transform: scale(1.015);
+}
+
+.lab-artifact-btn:hover .lab-artifact-hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.artifact-notebook {
+  background: #ffffff;
+}
+
+/* ==================== ARTIFACT VIEWER MODAL ==================== */
+.lab-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(251, 251, 253, 0.98);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.lab-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: #1d1d1f;
+  cursor: pointer;
+  z-index: 10000;
+  padding: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.lab-modal-close:hover {
+  opacity: 0.6;
+}
+
+.lab-modal-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lab-modal-header {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #86868b;
+  margin-bottom: 24px;
+}
+
+.lab-modal-img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.06);
+  background: #ffffff;
+}
+
+/* ==================== 7. RESEARCH → BUILD BRIDGE ==================== */
+.lab-bridge {
+  padding: 20vh 0;
+  text-align: center;
+}
+
+.bridge-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #1d1d1f;
+  margin-bottom: 80px;
+}
+
+.bridge-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 80px;
+}
+
+@media (min-width: 768px) {
+  .bridge-flow {
+    flex-direction: row;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .bridge-flow .bf-arrow {
+    transform: rotate(-90deg);
+  }
+}
+
+.bf-word {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #86868b;
+}
+
+.bf-arrow {
+  color: #a1a1a6;
+  font-size: 18px;
+}
+
+.bridge-systems {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.bs-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bs-name {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1f;
+  min-width: 120px;
+  text-align: right;
+}
+
+.bs-arrow {
+  color: #a1a1a6;
+  font-size: 16px;
+}
+
+.bs-focus {
+  font-size: 16px;
+  color: #86868b;
+  text-align: left;
+}
+
+.bridge-statement {
+  font-size: clamp(16px, 2vw, 21px);
+  color: #86868b;
+  line-height: 1.5;
+}
+
+/* ==================== 8. OUTCOMES ==================== */
+.lab-outcomes {
+  padding: 15vh 0;
+  background-color: #f5f5f7;
+}
+
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+  margin-top: 60px;
+}
+
+@media (min-width: 768px) {
+  .outcomes-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
 }
 
 .outcome-item {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(40px, 8vw, 120px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.oi-title {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: #1d1d1f;
 }
 
-/* =========================================
-   ENGINEERING PRINCIPLES
-   ========================================= */
-.inn-principles {
-  padding: 30vh 0;
-  background: #000000;
-  color: #ffffff;
-  text-align: center;
+.oi-desc {
+  font-size: 16px;
+  color: #86868b;
+  line-height: 1.5;
 }
 
-.principle-item {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(32px, 6vw, 80px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 35vh;
-  color: #f5f5f7;
-}
-.principle-item:last-child {
-  margin-bottom: 0;
+/* ==================== 9. LAB PRINCIPLES ==================== */
+.lab-principles {
+  padding: 15vh 0;
 }
 
-/* =========================================
-   CURRENT EXPLORATION (ROADMAP)
-   ========================================= */
-.inn-roadmap {
-  padding: 30vh 0;
-  background: #f5f5f7;
-}
-
-.roadmap-path {
+.principles-stack {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 15vh;
+  gap: 0;
+  margin-top: 60px;
 }
 
-.roadmap-node {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(32px, 5vw, 64px);
+.principle-row {
+  display: flex;
+  gap: 32px;
+  padding: 40px 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  align-items: baseline;
+}
+
+.principle-row:last-child {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.pr-num {
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  color: #a1a1a6;
+  min-width: 32px;
+  flex-shrink: 0;
+}
+
+.pr-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pr-title {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: #1d1d1f;
 }
 
-.node-today {
+.pr-desc {
+  font-size: 16px;
   color: #86868b;
+  line-height: 1.5;
 }
 
-.roadmap-arrow {
-  font-size: 40px;
-  color: #86868b;
+/* ==================== 10. CURRENT EXPLORATION ==================== */
+.lab-exploration {
+  padding: 15vh 0;
+  background-color: #f5f5f7;
 }
 
-/* =========================================
-   CLOSING
-   ========================================= */
-.inn-closing {
-  padding: 40vh 0 20vh 0;
-  background: #000000;
-  color: #ffffff;
-  text-align: center;
-}
-
-.closing-sequence {
-  display: flex;
-  flex-direction: column;
-  gap: 30vh;
-}
-
-.closing-thought {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(28px, 4.5vw, 56px);
+.exploration-sub {
+  font-size: clamp(18px, 2.5vw, 28px);
   font-weight: 500;
-  letter-spacing: -0.02em;
   color: #86868b;
+  margin-bottom: 60px;
 }
 
-.closing-finale {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(50px, 9vw, 140px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
+.exploration-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+@media (min-width: 768px) {
+  .exploration-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+}
+
+.eg-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eg-area {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.eg-tags {
+  font-size: 15px;
+  color: #86868b;
+  letter-spacing: 0.02em;
+}
+
+/* ==================== 11. LAB STATUS ==================== */
+.lab-status-section {
+  padding: 10vh 0;
+}
+
+.lab-status-block {
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 32px;
+}
+
+.ls-header {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #86868b;
+  margin-bottom: 24px;
+}
+
+.ls-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .ls-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+.ls-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ls-key {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #a1a1a6;
+}
+
+.ls-val {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: 0.05em;
+}
+
+/* ==================== 12. CLOSING ==================== */
+.lab-closing {
+  padding: 15vh 0 20vh 0;
+  background-color: #1d1d1f;
+  color: #fbfbfd;
+}
+
+.lab-closing-primary {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
   line-height: 1.1;
-  color: #ffffff;
+  margin-bottom: 40px;
+}
+
+.lab-closing-secondary {
+  font-size: clamp(20px, 2.5vw, 32px);
+  font-weight: 500;
+  color: #a1a1a6;
+  line-height: 1.4;
+  margin-bottom: 100px;
+}
+
+.lab-closing-sig {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #86868b;
+  line-height: 1.8;
+  margin-bottom: 60px;
+}
+
+.lab-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fbfbfd;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  transition: border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lab-cta:hover {
+  border-color: rgba(255,255,255,0.6);
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

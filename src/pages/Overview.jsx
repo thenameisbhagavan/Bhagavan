@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { m, useScroll, useTransform, animate } from "framer-motion";
+import { m, useScroll, useTransform, animate, useAnimation } from "framer-motion";
 import { Github, Linkedin, Mail, Globe, ArrowRight } from "lucide-react";
 import SEO from "../components/SEO";
 import { socialLinks } from "../constants/socialLinks";
@@ -18,16 +18,16 @@ import leetcodeProfileImg from "../assets/leetcode-profile.png";
 import { FLAGSHIP_PROJECTS } from "./Work";
 
 // Apple-precise easing
-const appleEase = [0.16, 1, 0.3, 1];
+const appleEase = [0.22, 1, 0.36, 1];
 
 const fadeUp = {
-  hidden:  { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.0, ease: appleEase } }
+  hidden:  { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: appleEase } }
 };
 
 const fadeUpStagger = {
   hidden:  {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } }
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } }
 };
 
 function AnimatedCounter({ from, to, duration = 2.5, suffix = "", delay = 0 }) {
@@ -72,17 +72,23 @@ function AnimatedCounter({ from, to, duration = 2.5, suffix = "", delay = 0 }) {
 
 export default function Overview() {
   const { scrollY } = useScroll();
+  const controls = useAnimation();
   const recentArticles = getAllArticles().sort((a, b) => new Date(b.published) - new Date(a.published)).slice(0, 3);
   
   // Hero Scroll Parallax & Fades
-  const heroScale = useTransform(scrollY, [0, 500], [1, 0.995]);
-  const elementsOpacity = useTransform(scrollY, [100, 400], [1, 0]);
-  const headlineY = useTransform(scrollY, [0, 500], [0, -40]);
-  const portraitY = useTransform(scrollY, [0, 800], [0, -20]);
+  const heroScale = useTransform(scrollY, [0, 500], [1, 1]);
+  const elementsOpacity = useTransform(scrollY, [50, 300], [1, 0]);
+  const headlineY = useTransform(scrollY, [0, 500], [0, -12]);
+  const portraitY = useTransform(scrollY, [0, 800], [0, -16]);
   
   // Dynamic Lighting Parallax
-  const lightDriftX = useTransform(scrollY, [0, 500], [0, 40]);
-  const lightDriftY = useTransform(scrollY, [0, 500], [0, 20]);
+  const lightDriftX = useTransform(scrollY, [0, 500], [0, 16]);
+  const lightDriftY = useTransform(scrollY, [0, 500], [0, 8]);
+
+  // Start animations immediately (no old loader dependency)
+  useEffect(() => {
+    controls.start("visible");
+  }, [controls]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -103,171 +109,155 @@ export default function Overview() {
       <m.div className="phi-light-topleft" style={{ x: lightDriftX, y: lightDriftY }}></m.div>
       <m.div className="phi-light-bottomright" style={{ x: useTransform(lightDriftX, v => -v), y: useTransform(lightDriftY, v => -v) }}></m.div>
 
-      {/* ===== HERO (PRESERVED EXACTLY) ===== */}
-      <m.section className="phi-hero" style={{ scale: heroScale }}>
-        {/* LEFT — CONTENT */}
+      {/* ===== FLAGSHIP HERO: THE ENGINEER + THE WORK ===== */}
+      <m.section className="editorial-hero" style={{ scale: heroScale }}>
+        
+        {/* RIGHT: PORTRAIT OVERLAP */}
         <m.div
-          className="phi-content"
+          className="editorial-portrait-wrapper"
           initial="hidden"
-          animate="visible"
-          variants={fadeUpStagger}
+          animate={controls}
+          variants={{
+            hidden: { opacity: 0, filter: "blur(8px)" },
+            visible: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.9, delay: 0.2, ease: appleEase } }
+          }}
+          style={{ y: portraitY, opacity: elementsOpacity }}
         >
-          {/* Eyebrow */}
-          <m.p className="phi-eyebrow" variants={fadeUp} style={{ opacity: elementsOpacity }}>
-            <span className="phi-eyebrow-dot" />
-            FLAGSHIP ECOSYSTEM • AI &amp; PRODUCT ENGINEERING
+          <div className="editorial-portrait-mask">
+            <img
+              src={profileHeroImg}
+              alt="Bhagavan — AI Product Engineer"
+              className="editorial-portrait-img"
+              loading="eager"
+            />
+          </div>
+        </m.div>
+
+        {/* LEFT/CENTER: CONTENT */}
+        <m.div
+          className="editorial-content"
+          initial="hidden"
+          animate={controls}
+          variants={fadeUpStagger}
+          style={{ opacity: elementsOpacity }}
+        >
+          {/* Eyebrow Identity */}
+          <m.p className="editorial-eyebrow" variants={fadeUp}>
+            AI PRODUCT ENGINEER
           </m.p>
 
-          {/* Headline */}
+          {/* Thesis Headline */}
           <m.div style={{ y: headlineY }}>
-            <h1 className="phi-headline">
-              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.1, ease: appleEase }}>Engineering the</m.span>
-              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3, ease: appleEase }}>Intelligence</m.span>
-              <m.span className="headline-line" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5, ease: appleEase }}>Ecosystem.</m.span>
+            <h1 className="editorial-headline">
+              <m.span className="editorial-headline-line" variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.1, ease: appleEase } } }}>
+                I engineer AI<br />
+                systems<br />
+              </m.span>
+              <m.span className="editorial-headline-line" variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.18, ease: appleEase } } }}>
+                and products that<br />
+                ship.
+              </m.span>
             </h1>
           </m.div>
 
-          {/* Description */}
-          <m.p className="phi-description" variants={fadeUp} style={{ opacity: elementsOpacity, maxWidth: '640px' }}>
-            Architecting an interconnected ecosystem of production-grade intelligence—from deterministic career intelligence (<span style={{ color: '#1d1d1f', fontWeight: 500 }}>CareerOS</span>) and persistent conversational memory (<span style={{ color: '#1d1d1f', fontWeight: 500 }}>AuraOS</span>) to explainable AI systems (<span style={{ color: '#1d1d1f', fontWeight: 500 }}>VERITAS</span>) and cinematic automotive experiences (<span style={{ color: '#1d1d1f', fontWeight: 500 }}>VoltDrive</span>).
+          {/* Supporting Thesis */}
+          <m.p className="editorial-subthesis" variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.26, ease: appleEase } } }}>
+            Career intelligence · AI memory &amp; context <br />
+            Reasoning &amp; evidence · Digital product experiences
           </m.p>
 
-          {/* Apple 2026 Keynote Ecosystem Pills Bar */}
-          <m.div 
-            variants={fadeUp} 
-            style={{ 
-              opacity: elementsOpacity, 
-              display: 'flex', 
-              gap: '10px', 
-              flexWrap: 'wrap', 
-              marginBottom: '36px',
-              maxWidth: '640px'
-            }}
-          >
-            {[
-              { name: "CareerOS", tag: "Career Intelligence", url: "https://careeros-thenameisbhagavan.vercel.app/" },
-              { name: "AuraOS", tag: "Personal OS", url: "https://aura-os-thenameisbhagavan.vercel.app/" },
-              { name: "VERITAS", tag: "Explainable AI", url: "https://veritas-thenameisbhagavan.vercel.app/" },
-              { name: "VoltDrive", tag: "EV Showroom", url: "https://voltdrive-thenameisbhagavan.vercel.app/" }
-            ].map((item, idx) => (
-              <a
-                key={idx}
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Launch ${item.name} (${item.tag})`}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '8px 14px',
-                  borderRadius: '980px',
-                  background: 'rgba(0, 0, 0, 0.04)',
-                  border: '1px solid rgba(0, 0, 0, 0.08)',
-                  fontSize: '13px',
-                  fontWeight: 500,
-                  color: '#1d1d1f',
-                  textDecoration: 'none',
-                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(0, 102, 204, 0.08)';
-                  e.currentTarget.style.borderColor = 'rgba(0, 102, 204, 0.25)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 102, 204, 0.12)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(0, 0, 0, 0.04)';
-                  e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.08)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
-              >
-                <span>{item.name}</span>
-                <span style={{ color: '#86868b', fontSize: '12px', fontWeight: 400 }}>• {item.tag}</span>
-                <span style={{ color: '#0066cc', fontSize: '11px', marginLeft: '2px' }}>↗</span>
-              </a>
-            ))}
-          </m.div>
-
-          {/* CTAs */}
-          <m.div className="phi-ctas" variants={fadeUp} style={{ opacity: elementsOpacity, display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-            <a href="/work" className="phi-cta-primary apple-pressable">Explore The Ecosystem</a>
-            <a href="#products" onClick={(e) => { e.preventDefault(); const el = document.querySelector('.product-fullscreen'); if (el) el.scrollIntoView({ behavior: 'smooth' }); else window.location.href = '/work'; }} className="phi-cta-secondary apple-pressable">View All Products &#8250;</a>
-          </m.div>
-
-          {/* Minimal Social Icons */}
-          <m.div className="phi-hero-socials" variants={fadeUp} style={{ opacity: elementsOpacity, display: 'flex', gap: '24px', marginTop: '32px' }}>
-            <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" style={{ color: '#86868b', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.color = '#1d1d1f'; e.currentTarget.style.transform = 'scale(1.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.color = '#86868b'; e.currentTarget.style.transform = 'scale(1)'; }}>
-              <Github size={20} strokeWidth={1.5} />
-            </a>
-            <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" style={{ color: '#86868b', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.color = '#1d1d1f'; e.currentTarget.style.transform = 'scale(1.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.color = '#86868b'; e.currentTarget.style.transform = 'scale(1)'; }}>
-              <Linkedin size={20} strokeWidth={1.5} />
-            </a>
-            <a href={socialLinks.email.url} aria-label="Email" title="Email" style={{ color: '#86868b', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.color = '#1d1d1f'; e.currentTarget.style.transform = 'scale(1.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.color = '#86868b'; e.currentTarget.style.transform = 'scale(1)'; }}>
-              <Mail size={20} strokeWidth={1.5} />
-            </a>
-            <a href={socialLinks.portfolio.url} aria-label="Portfolio" title="Portfolio" style={{ color: '#86868b', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.color = '#1d1d1f'; e.currentTarget.style.transform = 'scale(1.1)'; }} onMouseLeave={(e) => { e.currentTarget.style.color = '#86868b'; e.currentTarget.style.transform = 'scale(1)'; }}>
-              <Globe size={20} strokeWidth={1.5} />
-            </a>
-          </m.div>
-        </m.div>
-
-        {/* RIGHT — PORTRAIT */}
-        <m.div
-          className="portrait-wrapper"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.0, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          style={{ y: portraitY, opacity: elementsOpacity }}
-        >
-          <div className="portrait-glow"></div>
-          <div className="portrait-card apple-magnetic-card">
-            <img
-              src={profileHeroImg}
-              alt="Bhagavan — Full Stack AI Engineer & Product Builder"
-              className="portrait-img"
-              loading="eager"
-            />
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '6px' }}>
+            <m.a 
+              href="/work" 
+              className="editorial-cta-quiet apple-pressable"
+              variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.34, ease: appleEase } } }}
+            >
+              Explore the systems <ArrowRight size={14} />
+            </m.a>
+            <m.span 
+              style={{ fontSize: '11px', color: '#a1a1a6', letterSpacing: '0.02em', fontWeight: 500 }}
+              variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.42, ease: appleEase } } }}
+            >
+              CareerOS · AuraOS · VERITAS · VoltDrive
+            </m.span>
           </div>
         </m.div>
       </m.section>
 
       {/* =========================================
-          OVERVIEW CREDENTIALS STRIP (BELOW FOLD)
+          SYSTEMS INDEX SECTION (BELOW HERO)
           ========================================= */}
-      <section className="overview-credentials-strip">
-        <div className="overview-strip-grid">
-          <div className="overview-strip-item">
-            <h4>Current Role</h4>
-            <p>AI Engineer &amp; Full Stack Builder</p>
-          </div>
-          <div className="overview-strip-item">
-            <h4>Current Mission</h4>
-            <p>Architecting an interconnected ecosystem of intelligent software and cinematic web products.</p>
-          </div>
-          <div className="overview-strip-item">
-            <h4>Current Focus</h4>
-            <p>CareerOS • AuraOS • VERITAS • VoltDrive • AI Systems</p>
-          </div>
-        </div>
+      <section className="systems-index-section">
+        <div className="systems-index-inner">
+          <m.h2 
+            className="systems-index-title"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: appleEase }}
+            viewport={{ once: true, amount: 0.15 }}
+          >
+            THE SYSTEMS I BUILD
+          </m.h2>
 
-        <div className="trust-pills-row">
-          <span className="trust-pill">AI Engineer</span>
-          <span className="trust-pill">Software Developer</span>
-          <span className="trust-pill">Product Builder</span>
-          <span className="trust-pill">Open Source</span>
-          <span className="trust-pill">Google Certified</span>
-          <span className="trust-pill">LinkedIn Learning</span>
+          <div className="systems-index-list">
+            {[
+              { num: "01", name: "CareerOS", tag: "Career Intelligence", url: "https://careeros-thenameisbhagavan.vercel.app/", colorKey: "blue" },
+              { num: "02", name: "AuraOS", tag: "AI Memory & Context", url: "https://aura-os-thenameisbhagavan.vercel.app/", colorKey: "amber" },
+              { num: "03", name: "VERITAS", tag: "Reasoning & Evidence", url: "https://veritas-thenameisbhagavan.vercel.app/", colorKey: "cyan" },
+              { num: "04", name: "VoltDrive", tag: "Digital Product Experience", url: "https://voltdrive-thenameisbhagavan.vercel.app/", colorKey: "indigo" }
+            ].map((item, idx) => (
+              <m.a
+                key={idx}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`system-row hover-${item.colorKey}`}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: idx * 0.08, ease: appleEase }}
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                <div className="system-row-left">
+                  <span className="system-row-num">{item.num}</span>
+                  <span className="system-row-name">{item.name}</span>
+                </div>
+                <div className="system-row-right">
+                  <span className="system-row-tag">{item.tag}</span>
+                  <span className="system-row-arrow"><ArrowRight size={14} /></span>
+                </div>
+              </m.a>
+            ))}
+          </div>
+
+          <m.div 
+            className="systems-signature"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: appleEase }}
+            viewport={{ once: true, amount: 0.15 }}
+          >
+            PYTHON · FASTAPI · REACT · AI SYSTEMS · FULL STACK
+          </m.div>
         </div>
-        
-        <div style={{ textAlign: 'center', marginTop: '16px' }}>
-           <p className="phi-signature" style={{ margin: '0 auto' }}>
-             ──────────────────<br/><br/>
-             TheNameIsBhagavan<br/>
-             Engineering Intelligent Systems<br/><br/>
-             ──────────────────
-           </p>
+      </section>
+
+      {/* =========================================
+          ENGINEERING CONTEXT STRIP (BELOW FOLD)
+          ========================================= */}
+      <section className="overview-context-strip">
+        <div className="overview-context-grid">
+          <div className="overview-context-item">
+            <h4 className="context-eyebrow">ROLE</h4>
+            <p className="context-body">AI Systems Engineer</p>
+          </div>
+          <div className="overview-context-item">
+            <h4 className="context-eyebrow">MISSION</h4>
+            <p className="context-body">Architecting interconnected ecosystems of intelligent software and premium digital products.</p>
+          </div>
+          <div className="overview-context-item">
+            <h4 className="context-eyebrow">FOCUS</h4>
+            <p className="context-body">Deep reasoning, context memory, and product design.</p>
+          </div>
         </div>
       </section>
 
@@ -276,17 +266,17 @@ export default function Overview() {
           ========================================= */}
       <div className="bg-light">
         {[
-          "I don't build software.",
-          "I build intelligence.",
-          "That helps people make better decisions."
+          "Software automates.",
+          "Intelligence empowers.",
+          "I engineer the latter."
         ].map((text, i) => (
           <div key={i} className="cinematic-block">
             <m.div
               className="keynote-text-huge text-center"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: appleEase }}
-              viewport={{ once: false, amount: 0.6 }}
+              initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 1.0, ease: appleEase }}
+              viewport={{ once: true, amount: 0.15 }}
             >
               {text}
             </m.div>
@@ -299,18 +289,18 @@ export default function Overview() {
           ========================================= */}
       <div className="bg-light sticky-stack-container">
         {[
-          { text: "People generate more information than ever.", highlight: false },
-          { text: "But understand less.", highlight: false },
-          { text: "Careers become more complex.", highlight: false },
-          { text: "Technology should create clarity.", highlight: true },
+          { text: "Data is infinite.", highlight: false },
+          { text: "Context is scarce.", highlight: false },
+          { text: "Complexity is compounding.", highlight: false },
+          { text: "Clarity must be engineered.", highlight: true },
         ].map((item, i) => (
           <div key={i} className="sticky-stack-item bg-light">
             <m.div
               className={`keynote-text-large text-center ${item.highlight ? 'keynote-text-highlight' : 'keynote-text-muted'}`}
-              initial={{ opacity: 0, filter: 'blur(10px)' }}
-              whileInView={{ opacity: 1, filter: 'blur(0px)' }}
-              transition={{ duration: 1, ease: appleEase }}
-              viewport={{ once: false, amount: 0.5 }}
+              initial={{ opacity: 0, filter: 'blur(8px)', y: 16 }}
+              whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+              transition={{ duration: 0.9, ease: appleEase }}
+              viewport={{ once: true, amount: 0.15 }}
             >
               {item.text}
             </m.div>
@@ -333,10 +323,10 @@ export default function Overview() {
             <m.div
               className="particle-word"
               style={{ position: 'relative' }}
-              initial={{ opacity: 0, filter: 'blur(40px)', scale: 1.3 }}
+              initial={{ opacity: 0, filter: 'blur(12px)', scale: 1.05 }}
               whileInView={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
-              transition={{ duration: 1.5, ease: appleEase }}
-              viewport={{ once: false, amount: 0.6 }}
+              transition={{ duration: 1.0, ease: appleEase }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               {word.includes(" ") ? (
                 <>
@@ -356,13 +346,13 @@ export default function Overview() {
       <div className="bg-light cinematic-block" style={{ padding: '20vh 5vw' }}>
         <m.div
           className="keynote-text-large text-center"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, ease: appleEase }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 1.0, ease: appleEase }}
+          viewport={{ once: true, amount: 0.15 }}
         >
-          Information isn't intelligence. <br/>
-          <span className="keynote-text-muted">Patterns create intelligence. Understanding creates confidence. Confidence creates opportunity.</span>
+          Engineering at the intersection of <br/>
+          <span className="keynote-text-muted" style={{ fontSize: '0.8em', display: 'inline-block', marginTop: '16px' }}>deep reasoning and human intuition.</span>
         </m.div>
       </div>
 
@@ -373,21 +363,19 @@ export default function Overview() {
         <div className="pipeline-container">
           <div className="pipeline-line" />
           {[
-            "Human Problem",
-            "Research",
-            "Data",
-            "AI",
+            "Observation",
+            "Architecture",
             "Reasoning",
-            "Product",
+            "Execution",
             "Impact"
           ].map((node, i) => (
             <m.div
               key={node}
-              className={`pipeline-node ${i === 0 || i === 6 ? 'highlight' : ''}`}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: appleEase, delay: i * 0.1 }}
-              viewport={{ once: true, amount: 0.5 }}
+              className={`pipeline-node ${i === 0 || i === 4 ? 'highlight' : ''}`}
+              initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.8, ease: appleEase, delay: i * 0.08 }}
+              viewport={{ once: true, amount: 0.15 }}
             >
               {node}
             </m.div>
@@ -403,19 +391,19 @@ export default function Overview() {
           <div key={product.name} className="product-fullscreen">
             <m.div
               className="product-image-large apple-magnetic-card"
-              initial={{ opacity: 0, y: 100 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: appleEase }}
-              viewport={{ once: true, amount: 0.3 }}
+              initial={{ opacity: 0, y: 24, filter: 'blur(12px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.9, ease: appleEase }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               <img src={product.img} alt={product.name} className="product-hero-img" loading="lazy" />
             </m.div>
             <div className="product-text-center">
               <m.h3
                 className="keynote-text-huge"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.2, ease: appleEase }}
+                initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
+                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration: 0.8, delay: 0.08, ease: appleEase }}
                 viewport={{ once: true }}
               >
                 {product.name}
@@ -423,17 +411,17 @@ export default function Overview() {
               <m.p
                 className="apple-body-large"
                 style={{ marginTop: '16px' }}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.3, ease: appleEase }}
+                transition={{ duration: 0.8, delay: 0.16, ease: appleEase }}
                 viewport={{ once: true }}
               >
                 {product.desc}
               </m.p>
               <m.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.4, ease: appleEase }}
+                transition={{ duration: 0.8, delay: 0.24, ease: appleEase }}
                 viewport={{ once: true }}
                 style={{ marginTop: '24px', display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}
               >
@@ -456,18 +444,18 @@ export default function Overview() {
             <div>
               <m.p 
                 className="apple-eyebrow" 
-                initial={{ opacity: 0, y: 20 }} 
+                initial={{ opacity: 0, y: 12 }} 
                 whileInView={{ opacity: 1, y: 0 }} 
-                transition={{ duration: 1, ease: appleEase }} 
+                transition={{ duration: 0.8, ease: appleEase }} 
                 viewport={{ once: true }}
               >
                 Engineering Journal
               </m.p>
               <m.h2 
                 className="keynote-text-large" 
-                initial={{ opacity: 0, y: 20 }} 
+                initial={{ opacity: 0, y: 16 }} 
                 whileInView={{ opacity: 1, y: 0 }} 
-                transition={{ duration: 1, delay: 0.1, ease: appleEase }} 
+                transition={{ duration: 0.8, delay: 0.08, ease: appleEase }} 
                 viewport={{ once: true }}
                 style={{ color: '#fff', margin: 0 }}
               >
@@ -476,9 +464,9 @@ export default function Overview() {
             </div>
             <m.a 
               href="/journal"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.16, ease: appleEase }}
               viewport={{ once: true }}
               style={{ color: '#0066cc', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', fontWeight: 500 }}
               className="apple-pressable"
@@ -487,40 +475,28 @@ export default function Overview() {
             </m.a>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
             {recentArticles.map((article, idx) => (
               <m.a
                 key={article.slug}
                 href={`/journal/${article.slug}`}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: idx * 0.1, ease: appleEase }}
-                viewport={{ once: true, amount: 0.2 }}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  background: '#111113',
-                  border: '1px solid rgba(255,255,255,0.05)',
-                  borderRadius: '24px',
-                  overflow: 'hidden',
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  transition: 'transform 0.4s ease'
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)' }}
+                className="apple-journal-card"
+                initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration: 0.8, delay: idx * 0.08, ease: appleEase }}
+                viewport={{ once: true, amount: 0.15 }}
               >
-                <div style={{ height: '220px', overflow: 'hidden' }}>
-                  <img src={article.coverImage} alt={article.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                <div className="apple-journal-image-wrapper">
+                  <img src={article.coverImage} alt={article.title} className="apple-journal-image" loading="lazy" />
                 </div>
-                <div style={{ padding: '30px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#86868b', marginBottom: '16px', fontWeight: 600 }}>
+                <div className="apple-journal-content">
+                  <div className="apple-journal-meta">
                     {article.category} • {article.readingTime}
                   </div>
-                  <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#fff', marginBottom: '12px', lineHeight: 1.3 }}>
+                  <h3 className="apple-journal-title">
                     {article.title}
                   </h3>
-                  <p style={{ fontSize: '1rem', color: '#a1a1a6', lineHeight: 1.5, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden', margin: 0 }}>
+                  <p className="apple-journal-desc">
                     {article.description}
                   </p>
                 </div>
@@ -538,65 +514,65 @@ export default function Overview() {
         <div className="cinematic-metric-container" style={{ minHeight: '60vh' }}>
           <m.p 
             className="apple-eyebrow text-center"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: appleEase }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: appleEase }}
+            viewport={{ once: true, amount: 0.15 }}
           >
-            Beyond the Products
+            Metrics of Velocity
           </m.p>
           <m.h2 
             className="keynote-text-huge text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: appleEase }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.8, delay: 0.08, ease: appleEase }}
+            viewport={{ once: true, amount: 0.15 }}
           >
-            Engineering Leaves Evidence.
+            Empirical Evidence.
           </m.h2>
           <m.p 
             className="apple-body-large text-center keynote-text-muted"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: appleEase }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.16, ease: appleEase }}
+            viewport={{ once: true, amount: 0.15 }}
             style={{ maxWidth: '800px', margin: '32px auto 0' }}
           >
-            Every product tells a story. Every engineer leaves measurable evidence behind.
+            Engineering is measured by execution. Every product leaves a trace of velocity.
           </m.p>
         </div>
 
         {/* 3 Cinematic Hero Metrics */}
         {[
-          { num: 5, suffix: "+", label: "AI Products", caption: "Building intelligent systems from concept to deployment." },
-          { num: 4, suffix: "", label: "Professional Internships", caption: "Learning through real engineering environments." },
-          { num: 181, suffix: "+", label: "Problems Solved", caption: "Developing analytical thinking through consistent problem solving." }
+          { num: 5, suffix: "+", label: "Deployed AI Systems", caption: "Architected and shipped from concept to production." },
+          { num: 4, suffix: "", label: "Engineering Internships", caption: "Professional environments. Production codebases." },
+          { num: 181, suffix: "+", label: "Algorithmic Solutions", caption: "Continuous optimization and problem solving." }
         ].map((metric, i) => (
           <div key={metric.label} className="cinematic-metric-container">
             <m.div 
               className="metric-number-huge"
-              initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+              initial={{ opacity: 0, scale: 0.98, filter: 'blur(8px)' }}
               whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-              transition={{ duration: 1.5, ease: appleEase }}
-              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.9, ease: appleEase }}
+              viewport={{ once: true, amount: 0.2 }}
             >
-              <AnimatedCounter from={0} to={metric.num} suffix={metric.suffix} delay={0.2} />
+              <AnimatedCounter from={0} to={metric.num} suffix={metric.suffix} delay={0.1} />
             </m.div>
             <m.div
               className="keynote-text-large text-center"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.6, ease: appleEase }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.08, ease: appleEase }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               {metric.label}
             </m.div>
             <m.div
               className="metric-caption"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.0, ease: appleEase }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.16, ease: appleEase }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               {metric.caption}
             </m.div>
@@ -607,30 +583,30 @@ export default function Overview() {
         <div className="editorial-metrics-grid">
           <m.div
             className="editorial-metric"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: appleEase }}
-            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, ease: appleEase }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <div className="editorial-number"><AnimatedCounter from={0} to={8} suffix="+" /></div>
             <div className="editorial-label">Public Repositories</div>
           </m.div>
           <m.div
             className="editorial-metric"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: appleEase }}
-            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.08, ease: appleEase }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <div className="editorial-number">2022–2026</div>
             <div className="editorial-label">Continuous Learning</div>
           </m.div>
           <m.div
             className="editorial-metric"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: appleEase }}
-            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.16, ease: appleEase }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <div className="editorial-number"><AnimatedCounter from={0} to={100} suffix="%" /></div>
             <div className="editorial-label">Built in Public</div>
@@ -641,20 +617,20 @@ export default function Overview() {
         <div className="cinematic-metric-container" style={{ minHeight: '80vh' }}>
           <m.div
             className="keynote-text-large text-center"
-            initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
+            initial={{ opacity: 0, filter: 'blur(8px)', y: 12 }}
             whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            transition={{ duration: 1.5, ease: appleEase }}
-            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.9, ease: appleEase }}
+            viewport={{ once: true, amount: 0.2 }}
             style={{ marginBottom: '2vh' }}
           >
             Products demonstrate ability.
           </m.div>
           <m.div
             className="keynote-text-large text-center keynote-text-muted"
-            initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
+            initial={{ opacity: 0, filter: 'blur(8px)', y: 12 }}
             whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            transition={{ duration: 1.5, delay: 1, ease: appleEase }}
-            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: appleEase }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             Consistency builds trust.
           </m.div>
@@ -667,10 +643,10 @@ export default function Overview() {
             target="_blank" 
             rel="noreferrer" 
             className="minimal-profile-card"
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: appleEase }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: appleEase }}
+            viewport={{ once: true, amount: 0.15 }}
           >
             <div className="minimal-card-thumb">
               <img src={githubProfileImg} alt="GitHub" className="minimal-img github-crop" loading="lazy" />
@@ -687,10 +663,10 @@ export default function Overview() {
             target="_blank" 
             rel="noreferrer" 
             className="minimal-profile-card"
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.2, ease: appleEase }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.08, ease: appleEase }}
+            viewport={{ once: true, amount: 0.15 }}
           >
             <div className="minimal-card-thumb">
               <img src={linkedinProfileImg} alt="LinkedIn" className="minimal-img linkedin-crop" loading="lazy" />
@@ -707,10 +683,10 @@ export default function Overview() {
             target="_blank" 
             rel="noreferrer" 
             className="minimal-profile-card"
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: appleEase }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.16, ease: appleEase }}
+            viewport={{ once: true, amount: 0.15 }}
           >
             <div className="minimal-card-thumb">
               <img src={leetcodeProfileImg} alt="LeetCode" className="minimal-img leetcode-crop" loading="lazy" />
@@ -729,27 +705,27 @@ export default function Overview() {
           ========================================= */}
       <div className="bg-light">
         {[
-          { year: "2023", topic: "Learned to write software." },
-          { year: "2024", topic: "Learned to build systems." },
-          { year: "2025", topic: "Learned to build intelligence." },
-          { year: "2026", topic: "Building products for human potential." }
+          { year: "2023", topic: "Algorithmic Foundation." },
+          { year: "2024", topic: "Full-Stack Architecture." },
+          { year: "2025", topic: "AI & Data Systems." },
+          { year: "2026", topic: "Intelligent Product Experiences." }
         ].map((item, i) => (
           <div key={item.year} className="learning-block">
             <m.div
               className="learning-year"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, ease: appleEase }}
-              viewport={{ once: false, amount: 0.5 }}
+              initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)' }}
+              whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+              transition={{ duration: 0.9, ease: appleEase }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               {item.year}
             </m.div>
             <m.div
               className="learning-topic text-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: appleEase }}
-              viewport={{ once: false, amount: 0.5 }}
+              initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.9, delay: 0.08, ease: appleEase }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               {item.topic}
             </m.div>
@@ -762,19 +738,18 @@ export default function Overview() {
           ========================================= */}
       <div className="bg-dark sticky-stack-container">
         {[
-          "Build with purpose.",
-          "Design for clarity.",
-          "Intelligence should explain itself.",
-          "Every decision deserves evidence.",
-          "Technology should empower people."
+          "1. Clarity above all.",
+          "2. Intelligence must explain itself.",
+          "3. Performance is a feature.",
+          "4. Design is how it works."
         ].map((principle, i) => (
           <div key={principle} className="sticky-stack-item bg-dark">
             <m.div
               className="keynote-text-large text-center"
-              initial={{ opacity: 0, filter: 'blur(10px)' }}
-              whileInView={{ opacity: 1, filter: 'blur(0px)' }}
-              transition={{ duration: 1.2, ease: appleEase }}
-              viewport={{ once: false, amount: 0.6 }}
+              initial={{ opacity: 0, filter: 'blur(8px)', y: 12 }}
+              whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+              transition={{ duration: 0.9, ease: appleEase }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               {principle}
             </m.div>
@@ -788,17 +763,17 @@ export default function Overview() {
       <div className="bg-light" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '12vh 5vw 4vh 5vw' }}>
         <m.div
           className="keynote-text-huge text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: appleEase }}
+          initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.9, ease: appleEase }}
           viewport={{ once: true }}
           style={{ marginBottom: '24px' }}
         >
-          The future won't be built by software alone.<br/>
+          The future won't be built by software.<br/>
           <m.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8, ease: appleEase }}
+            initial={{ opacity: 0, filter: 'blur(8px)' }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)' }}
+            transition={{ duration: 0.9, delay: 0.4, ease: appleEase }}
             viewport={{ once: true }}
           >
             It will be built by intelligence.
@@ -808,20 +783,20 @@ export default function Overview() {
         <m.div
           className="keynote-text-muted"
           style={{ fontSize: 'clamp(18px, 2vw, 24px)' }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.6, ease: appleEase }}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.8, ease: appleEase }}
           viewport={{ once: true }}
         >
-          This is where my journey begins.
+          This is where the work begins.
         </m.div>
 
         <m.a
           href="/work"
           className="cta-button"
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 2, ease: appleEase }}
+          transition={{ duration: 0.9, delay: 1.2, ease: appleEase }}
           viewport={{ once: true }}
         >
           Explore My Work

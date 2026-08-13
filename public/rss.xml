@@ -6,6 +6,587 @@
     <link>https://thenameisbhagavan.in/journal</link>
     <atom:link href="https://thenameisbhagavan.in/rss.xml" rel="self" type="application/rss+xml" />
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Aug 2026 08:02:09 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2026 18:43:51 GMT</lastBuildDate>
+    <item>
+      <title><![CDATA[VoltDrive: Engineering a Digital Automotive Experience]]></title>
+      <description><![CDATA[A frontend engineering case study exploring product thinking, React architecture, interaction design, responsive systems, and deployment through VoltDrive.]]></description>
+      <link>https://thenameisbhagavan.in/journal/voltdrive-engineering-a-digital-automotive-experience</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/voltdrive-engineering-a-digital-automotive-experience</guid>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Building AuraOS]]></title>
+      <description><![CDATA[An overview of the engineering philosophy behind AuraOS, an operating system designed around fluid personal intelligence.]]></description>
+      <link>https://thenameisbhagavan.in/journal/building-auraos</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/building-auraos</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Conversation Intelligence]]></title>
+      <description><![CDATA[The mechanics of fluid, context-aware dialogue generation within AuraOS.]]></description>
+      <link>https://thenameisbhagavan.in/journal/conversation-intelligence</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/conversation-intelligence</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Future of Personal Intelligence Systems]]></title>
+      <description><![CDATA[A visionary look at where personal operating systems are heading and the architectural shifts required to get there.]]></description>
+      <link>https://thenameisbhagavan.in/journal/future-of-personal-intelligence-systems</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/future-of-personal-intelligence-systems</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Knowledge Vault Design]]></title>
+      <description><![CDATA[Architecting a secure, local-first storage system for unstructured documents within AuraOS.]]></description>
+      <link>https://thenameisbhagavan.in/journal/knowledge-vault-design</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/knowledge-vault-design</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Persistent Memory Architecture]]></title>
+      <description><![CDATA[How AuraOS utilizes a hybrid vector and relational database architecture to achieve indefinite contextual memory.]]></description>
+      <link>https://thenameisbhagavan.in/journal/persistent-memory-architecture</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/persistent-memory-architecture</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Reasoning Pipeline]]></title>
+      <description><![CDATA[Deconstructing the agentic loop that allows AuraOS to use tools, browse the web, and solve complex problems autonomously.]]></description>
+      <link>https://thenameisbhagavan.in/journal/reasoning-pipeline</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/reasoning-pipeline</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Building My Engineering Portfolio]]></title>
+      <description><![CDATA[Architectural decisions and component design in building a high-performance technical portfolio.]]></description>
+      <link>https://thenameisbhagavan.in/journal/building-my-engineering-portfolio</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/building-my-engineering-portfolio</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Engineering Through Personal Branding]]></title>
+      <description><![CDATA[Deconstructing personal branding as a mechanism for knowledge distribution and technical leadership.]]></description>
+      <link>https://thenameisbhagavan.in/journal/engineering-through-personal-branding</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/engineering-through-personal-branding</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Open Source Changed How I Engineer]]></title>
+      <description><![CDATA[Examining the systemic impact of open-source methodologies on individual software engineering practices.]]></description>
+      <link>https://thenameisbhagavan.in/journal/open-source-changed-how-i-engineer</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/open-source-changed-how-i-engineer</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[The Value of Consistency in Engineering]]></title>
+      <description><![CDATA[Examining how rigid adherence to engineering standards reduces cognitive load and operational risk.]]></description>
+      <link>https://thenameisbhagavan.in/journal/the-value-of-consistency-in-engineering</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/the-value-of-consistency-in-engineering</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[What Google Indexing Taught Me]]></title>
+      <description><![CDATA[Analyzing system observability through the lens of search engine indexing mechanisms.]]></description>
+      <link>https://thenameisbhagavan.in/journal/what-google-indexing-taught-me</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/what-google-indexing-taught-me</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Why Documentation Matters]]></title>
+      <description><![CDATA[An analysis of documentation as asynchronous infrastructure and its impact on system scalability.]]></description>
+      <link>https://thenameisbhagavan.in/journal/why-documentation-matters</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/why-documentation-matters</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Why I Build in Public]]></title>
+      <description><![CDATA[An architectural exploration of transparency in the software engineering lifecycle.]]></description>
+      <link>https://thenameisbhagavan.in/journal/why-i-build-in-public</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/why-i-build-in-public</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Writing Technical Articles]]></title>
+      <description><![CDATA[The systemic framework for structuring, writing, and distributing high-fidelity technical documentation.]]></description>
+      <link>https://thenameisbhagavan.in/journal/writing-technical-articles</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/writing-technical-articles</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Becoming an AI Systems Engineer]]></title>
+      <description><![CDATA[The systemic requirements, mindset shifts, and technical competencies necessary to architect production-grade AI systems.]]></description>
+      <link>https://thenameisbhagavan.in/journal/becoming-an-ai-systems-engineer</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/becoming-an-ai-systems-engineer</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[From Python to AI Systems Engineering]]></title>
+      <description><![CDATA[Navigating the technical transition from general-purpose Python development to specialized AI systems architecture.]]></description>
+      <link>https://thenameisbhagavan.in/journal/from-python-to-ai-systems-engineering</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/from-python-to-ai-systems-engineering</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[How I Learn New Technologies]]></title>
+      <description><![CDATA[A systematic approach to internalizing new frameworks and paradigms in software engineering.]]></description>
+      <link>https://thenameisbhagavan.in/journal/how-i-learn-new-technologies</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/how-i-learn-new-technologies</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[How I Read Technical Documentation]]></title>
+      <description><![CDATA[A systematic method for extracting critical engineering constraints and architectural patterns from technical documentation.]]></description>
+      <link>https://thenameisbhagavan.in/journal/how-i-read-technical-documentation</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/how-i-read-technical-documentation</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Learning Beyond College]]></title>
+      <description><![CDATA[A framework for continuous, self-directed engineering education in a post-academic environment.]]></description>
+      <link>https://thenameisbhagavan.in/journal/learning-beyond-college</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/learning-beyond-college</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[My AI Learning Roadmap]]></title>
+      <description><![CDATA[A structured curriculum for transitioning from traditional software engineering to AI systems design.]]></description>
+      <link>https://thenameisbhagavan.in/journal/my-ai-learning-roadmap</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/my-ai-learning-roadmap</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[My Engineering Workflow]]></title>
+      <description><![CDATA[A detailed breakdown of the tools, processes, and philosophies that drive my daily engineering output.]]></description>
+      <link>https://thenameisbhagavan.in/journal/my-engineering-workflow</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/my-engineering-workflow</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Resources That Changed My Engineering Journey]]></title>
+      <description><![CDATA[An evaluation of the foundational texts, tools, and repositories that shaped my systems engineering philosophy.]]></description>
+      <link>https://thenameisbhagavan.in/journal/resources-that-changed-my-engineering-journey</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/resources-that-changed-my-engineering-journey</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[ATS Evaluation Engine]]></title>
+      <description><![CDATA[Inside the deterministic reasoning engine that mimics enterprise Applicant Tracking Systems to evaluate candidate viability.]]></description>
+      <link>https://thenameisbhagavan.in/journal/ats-evaluation-engine</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/ats-evaluation-engine</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[CareerOS Engineering Lessons & Future Roadmap]]></title>
+      <description><![CDATA[A retrospective on building CareerOS, the technical lessons learned, and the architectural vision for the future.]]></description>
+      <link>https://thenameisbhagavan.in/journal/careeros-engineering-lessons-future-roadmap</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/careeros-engineering-lessons-future-roadmap</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[CareerOS System Architecture]]></title>
+      <description><![CDATA[A deep dive into the scalable, microservices-inspired architecture that powers CareerOS, focusing on decoupling the presentation layer from the AI reasoning engine.]]></description>
+      <link>https://thenameisbhagavan.in/journal/careeros-system-architecture</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/careeros-system-architecture</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Resume Intelligence Pipeline]]></title>
+      <description><![CDATA[How CareerOS accurately extracts, normalizes, and structures unstructured PDF resume data into machine-readable JSON using advanced OCR and LLM pipelines.]]></description>
+      <link>https://thenameisbhagavan.in/journal/resume-intelligence-pipeline</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/resume-intelligence-pipeline</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Skill Gap Analysis Engine]]></title>
+      <description><![CDATA[How CareerOS provides actionable career intelligence by dynamically mapping candidate skills against market requirements.]]></description>
+      <link>https://thenameisbhagavan.in/journal/skill-gap-analysis-engine</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/skill-gap-analysis-engine</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Why I Built CareerOS]]></title>
+      <description><![CDATA[An architectural exploration of the motivations, design constraints, and systems thinking behind CareerOS, an intelligent platform for deterministic career growth.]]></description>
+      <link>https://thenameisbhagavan.in/journal/why-i-built-careeros</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/why-i-built-careeros</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Building My First AI Product]]></title>
+      <description><![CDATA[An architectural review of designing, deploying, and scaling an initial AI system.]]></description>
+      <link>https://thenameisbhagavan.in/journal/building-my-first-ai-product</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/building-my-first-ai-product</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Building My Personal Engineering Brand]]></title>
+      <description><![CDATA[The systemic approach to documenting technical expertise and establishing an engineering presence.]]></description>
+      <link>https://thenameisbhagavan.in/journal/building-my-personal-engineering-brand</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/building-my-personal-engineering-brand</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[From Tutorials to Building Real Products]]></title>
+      <description><![CDATA[Bridging the gap between theoretical knowledge and production-grade software engineering.]]></description>
+      <link>https://thenameisbhagavan.in/journal/from-tutorials-to-building-real-products</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/from-tutorials-to-building-real-products</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Lessons After Building Four Engineering Products]]></title>
+      <description><![CDATA[Systemic insights derived from iterating and launching four distinct engineering products.]]></description>
+      <link>https://thenameisbhagavan.in/journal/lessons-after-building-four-engineering-products</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/lessons-after-building-four-engineering-products</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Mistakes That Made Me a Better Engineer]]></title>
+      <description><![CDATA[A post-mortem analysis of critical systemic failures and the engineering lessons they provided.]]></description>
+      <link>https://thenameisbhagavan.in/journal/mistakes-that-made-me-a-better-engineer</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/mistakes-that-made-me-a-better-engineer</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[My Journey from Student to AI Engineer]]></title>
+      <description><![CDATA[A structural breakdown of the transition from academia to applied AI systems engineering.]]></description>
+      <link>https://thenameisbhagavan.in/journal/my-journey-from-student-to-ai-engineer</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/my-journey-from-student-to-ai-engineer</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[What Four Years of Engineering Taught Me]]></title>
+      <description><![CDATA[Core architectural and systemic lessons extracted from four years of engineering practice.]]></description>
+      <link>https://thenameisbhagavan.in/journal/what-four-years-of-engineering-taught-me</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/what-four-years-of-engineering-taught-me</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Why I Chose AI Systems Engineering]]></title>
+      <description><![CDATA[An evaluation of the technical and architectural complexities that define AI systems engineering.]]></description>
+      <link>https://thenameisbhagavan.in/journal/why-i-chose-ai-systems-engineering</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/why-i-chose-ai-systems-engineering</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Building an Engineering Documentation Culture]]></title>
+      <description><![CDATA[Transforming documentation from a chore into a core engineering practice.]]></description>
+      <link>https://thenameisbhagavan.in/journal/building-an-engineering-documentation-culture</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/building-an-engineering-documentation-culture</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Building Products That Last]]></title>
+      <description><![CDATA[Architecting software for longevity, resilience, and sustained business value.]]></description>
+      <link>https://thenameisbhagavan.in/journal/building-products-that-last</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/building-products-that-last</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Code versus Architecture]]></title>
+      <description><![CDATA[Delineating the boundary between implementation details and structural design.]]></description>
+      <link>https://thenameisbhagavan.in/journal/code-versus-architecture</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/code-versus-architecture</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Designing Systems for Scale]]></title>
+      <description><![CDATA[Architectural patterns and principles for highly scalable distributed systems.]]></description>
+      <link>https://thenameisbhagavan.in/journal/designing-systems-for-scale</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/designing-systems-for-scale</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Engineering Trade-offs]]></title>
+      <description><![CDATA[Analyzing the compromises inherent in software architecture.]]></description>
+      <link>https://thenameisbhagavan.in/journal/engineering-trade-offs</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/engineering-trade-offs</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Engineering Without Hype]]></title>
+      <description><![CDATA[Prioritizing stable, proven technologies over transient industry trends.]]></description>
+      <link>https://thenameisbhagavan.in/journal/engineering-without-hype</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/engineering-without-hype</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[How I Approach Technical Decisions]]></title>
+      <description><![CDATA[A framework for systemic engineering decisions based on objective analysis.]]></description>
+      <link>https://thenameisbhagavan.in/journal/how-i-approach-technical-decisions</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/how-i-approach-technical-decisions</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Writing Maintainable Software]]></title>
+      <description><![CDATA[Strategies for codebases that endure organizational scaling and team turnover.]]></description>
+      <link>https://thenameisbhagavan.in/journal/writing-maintainable-software</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/writing-maintainable-software</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Building Systems That Explain Themselves]]></title>
+      <description><![CDATA[The critical importance of observability and self-documenting architectures.]]></description>
+      <link>https://thenameisbhagavan.in/journal/building-systems-that-explain-themselves</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/building-systems-that-explain-themselves</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Design Before Code]]></title>
+      <description><![CDATA[Why upfront architectural design is crucial for scalable engineering.]]></description>
+      <link>https://thenameisbhagavan.in/journal/design-before-code</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/design-before-code</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Engineering Human Potential]]></title>
+      <description><![CDATA[How well-designed tools and platforms multiply developer productivity.]]></description>
+      <link>https://thenameisbhagavan.in/journal/engineering-human-potential</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/engineering-human-potential</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[My Engineering Philosophy]]></title>
+      <description><![CDATA[Core principles guiding scalable, resilient, and maintainable system design.]]></description>
+      <link>https://thenameisbhagavan.in/journal/my-engineering-philosophy</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/my-engineering-philosophy</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Simplicity is the Hardest Engineering Problem]]></title>
+      <description><![CDATA[Why elegant, simple systems require more effort than complex ones.]]></description>
+      <link>https://thenameisbhagavan.in/journal/simplicity-is-the-hardest-engineering-problem</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/simplicity-is-the-hardest-engineering-problem</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[The Cost of Bad Engineering Decisions]]></title>
+      <description><![CDATA[Analyzing the compounding impact of technical debt and architectural missteps.]]></description>
+      <link>https://thenameisbhagavan.in/journal/the-cost-of-bad-engineering-decisions</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/the-cost-of-bad-engineering-decisions</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[The Difference Between Features and Products]]></title>
+      <description><![CDATA[A systems perspective on cohesive product engineering.]]></description>
+      <link>https://thenameisbhagavan.in/journal/the-difference-between-features-and-products</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/the-difference-between-features-and-products</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Thinking Like a Systems Engineer]]></title>
+      <description><![CDATA[Expanding focus from isolated components to holistic system behavior.]]></description>
+      <link>https://thenameisbhagavan.in/journal/thinking-like-a-systems-engineer</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/thinking-like-a-systems-engineer</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Why Every System Needs Explainability]]></title>
+      <description><![CDATA[Ensuring trust and operability in increasingly complex architectures.]]></description>
+      <link>https://thenameisbhagavan.in/journal/why-every-system-needs-explainability</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/why-every-system-needs-explainability</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Why I Build Intelligence Instead of Software]]></title>
+      <description><![CDATA[A systemic examination of the shift from deterministic logic to probabilistic intelligence.]]></description>
+      <link>https://thenameisbhagavan.in/journal/why-i-build-intelligence-instead-of-software</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/why-i-build-intelligence-instead-of-software</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Asynchronous Programming with Asyncio in Production]]></title>
+      <description><![CDATA[Mastering concurrent execution in Python for high-performance I/O-bound systems.]]></description>
+      <link>https://thenameisbhagavan.in/journal/asynchronous-programming-with-asyncio-in-production</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/asynchronous-programming-with-asyncio-in-production</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Clean Architecture in Python Projects]]></title>
+      <description><![CDATA[Implementing Uncle Bob's Clean Architecture principles to create robust Python systems.]]></description>
+      <link>https://thenameisbhagavan.in/journal/clean-architecture-in-python-projects</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/clean-architecture-in-python-projects</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Designing Maintainable Python Applications]]></title>
+      <description><![CDATA[Architectural strategies for building Python applications that scale with the team and the business.]]></description>
+      <link>https://thenameisbhagavan.in/journal/designing-maintainable-python-applications</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/designing-maintainable-python-applications</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Lessons Learned Building AI Systems with Python]]></title>
+      <description><![CDATA[Architectural and operational insights from deploying machine learning models in production.]]></description>
+      <link>https://thenameisbhagavan.in/journal/lessons-learned-building-ai-systems-with-python</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/lessons-learned-building-ai-systems-with-python</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Performance Optimization Techniques in Python]]></title>
+      <description><![CDATA[A systematic approach to profiling and optimizing Python performance bottlenecks.]]></description>
+      <link>https://thenameisbhagavan.in/journal/performance-optimization-techniques-in-python</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/performance-optimization-techniques-in-python</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Python Beyond Syntax: Thinking Like a Python Engineer]]></title>
+      <description><![CDATA[Transitioning from writing Python scripts to engineering robust Python applications.]]></description>
+      <link>https://thenameisbhagavan.in/journal/python-beyond-syntax-thinking-like-a-python-engineer</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/python-beyond-syntax-thinking-like-a-python-engineer</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Artificial Intelligence in Education]]></title>
+      <description><![CDATA[Architecting adaptive learning systems at scale.]]></description>
+      <link>https://thenameisbhagavan.in/journal/artificial-intelligence-in-education</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/artificial-intelligence-in-education</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Building Trustworthy AI Systems]]></title>
+      <description><![CDATA[Architecting for reliability, security, and alignment.]]></description>
+      <link>https://thenameisbhagavan.in/journal/building-trustworthy-ai-systems</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/building-trustworthy-ai-systems</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Engineering for the Next Decade]]></title>
+      <description><![CDATA[Adapting system architecture for an AI-native future.]]></description>
+      <link>https://thenameisbhagavan.in/journal/engineering-for-the-next-decade</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/engineering-for-the-next-decade</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Human-Centered AI]]></title>
+      <description><![CDATA[Designing systems that amplify rather than replace human agency.]]></description>
+      <link>https://thenameisbhagavan.in/journal/human-centered-ai</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/human-centered-ai</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Memory Systems for AI]]></title>
+      <description><![CDATA[Architectural strategies for long-term context retention.]]></description>
+      <link>https://thenameisbhagavan.in/journal/memory-systems-for-ai</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/memory-systems-for-ai</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Multi-Agent Systems Explained]]></title>
+      <description><![CDATA[Designing robust, distributed architectures for interacting AI agents.]]></description>
+      <link>https://thenameisbhagavan.in/journal/multi-agent-systems-explained</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/multi-agent-systems-explained</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[The Future of Agentic AI]]></title>
+      <description><![CDATA[A systematic exploration of agentic architecture and its trajectory.]]></description>
+      <link>https://thenameisbhagavan.in/journal/the-future-of-agentic-ai</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/the-future-of-agentic-ai</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[The Future of AI Product Engineering]]></title>
+      <description><![CDATA[Strategies for integrating non-deterministic models into deterministic products.]]></description>
+      <link>https://thenameisbhagavan.in/journal/the-future-of-ai-product-engineering</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/the-future-of-ai-product-engineering</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[The Future of Career Intelligence]]></title>
+      <description><![CDATA[Architecting data-driven platforms for professional development.]]></description>
+      <link>https://thenameisbhagavan.in/journal/the-future-of-career-intelligence</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/the-future-of-career-intelligence</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Why Explainable AI Matters]]></title>
+      <description><![CDATA[An architectural deep-dive into transparency and interpretability in modern AI.]]></description>
+      <link>https://thenameisbhagavan.in/journal/why-explainable-ai-matters</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/why-explainable-ai-matters</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Engineering Lessons from VERITAS]]></title>
+      <description><![CDATA[A retrospective on building a deterministic, explainable AI pipeline and the technical trade-offs involved.]]></description>
+      <link>https://thenameisbhagavan.in/journal/engineering-lessons-from-veritas</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/engineering-lessons-from-veritas</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Evidence Extraction Engine]]></title>
+      <description><![CDATA[How VERITAS dissects generated text into atomic, verifiable claims before cross-referencing them with source data.]]></description>
+      <link>https://thenameisbhagavan.in/journal/evidence-extraction-engine</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/evidence-extraction-engine</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Explainable Intelligence Architecture]]></title>
+      <description><![CDATA[A technical deep dive into the middleware components that power VERITAS and enforce explainability.]]></description>
+      <link>https://thenameisbhagavan.in/journal/explainable-intelligence-architecture</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/explainable-intelligence-architecture</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Trust and Verification Layer]]></title>
+      <description><![CDATA[The core verification algorithms and semantic matching techniques used in VERITAS to prove or disprove generated claims.]]></description>
+      <link>https://thenameisbhagavan.in/journal/trust-and-verification-layer</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/trust-and-verification-layer</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[VERITAS Reasoning Pipeline]]></title>
+      <description><![CDATA[How VERITAS breaks down complex user queries into verifiable atomic steps before generation.]]></description>
+      <link>https://thenameisbhagavan.in/journal/veritas-reasoning-pipeline</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/veritas-reasoning-pipeline</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Why VERITAS Exists]]></title>
+      <description><![CDATA[Exploring the critical need for explainable AI and the engineering motivations behind building the VERITAS framework.]]></description>
+      <link>https://thenameisbhagavan.in/journal/why-veritas-exists</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/why-veritas-exists</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Building an Apple-Inspired User Interface]]></title>
+      <description><![CDATA[Deconstructing the typography, layout systems, and visual hierarchy required to build a premium, Apple-like product showroom.]]></description>
+      <link>https://thenameisbhagavan.in/journal/building-an-apple-inspired-user-interface</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/building-an-apple-inspired-user-interface</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Designing VoltDrive: Engineering a Premium Luxury EV Web Experience]]></title>
+      <description><![CDATA[Exploring the product vision, user experience goals, and engineering philosophy behind the VoltDrive showroom.]]></description>
+      <link>https://thenameisbhagavan.in/journal/designing-voltdrive</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/designing-voltdrive</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Engineering Lessons from Building VoltDrive]]></title>
+      <description><![CDATA[A retrospective on the challenges, technical debt, and frontend architecture lessons learned from building a luxury EV showroom.]]></description>
+      <link>https://thenameisbhagavan.in/journal/engineering-lessons-from-building-voltdrive</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/engineering-lessons-from-building-voltdrive</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Motion Design Engineering]]></title>
+      <description><![CDATA[How we implemented 60fps scroll-linked animations and purposeful micro-interactions in VoltDrive using Framer Motion.]]></description>
+      <link>https://thenameisbhagavan.in/journal/motion-design-engineering</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/motion-design-engineering</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Performance Engineering for Premium Web Experiences]]></title>
+      <description><![CDATA[Techniques used in VoltDrive to maintain 60fps scrolling and fast load times despite heavy visual assets.]]></description>
+      <link>https://thenameisbhagavan.in/journal/performance-engineering-for-premium-web-experiences</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/performance-engineering-for-premium-web-experiences</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[VoltDrive Frontend Architecture]]></title>
+      <description><![CDATA[A deep dive into the React architecture, component hierarchy, and state management that powers the VoltDrive web experience.]]></description>
+      <link>https://thenameisbhagavan.in/journal/voltdrive-frontend-architecture</link>
+      <guid isPermaLink="true">https://thenameisbhagavan.in/journal/voltdrive-frontend-architecture</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
   </channel>
 </rss>

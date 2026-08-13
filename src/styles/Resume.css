@@ -1,282 +1,685 @@
-/* APPLE WWDC 2026 RESUME PAGE REDESIGN */
+/* =========================================
+   RESUME PAGE: 2026 PROFESSIONAL INSTRUMENT
+   ========================================= */
 
 .res-page {
-  background-color: #ffffff;
+  background-color: #fbfbfd;
   color: #1d1d1f;
+  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
   -webkit-font-smoothing: antialiased;
-}
-
-.res-constrain {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 5vw;
-}
-
-.center-align {
-  text-align: center;
-}
-
-.text-muted {
-  color: #86868b;
-}
-
-/* =========================================
-   HERO
-   ========================================= */
-.res-hero {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-  will-change: transform, opacity;
-  transform-origin: center top;
+  position: relative;
+  overflow-x: hidden;
 }
 
-.res-hero-headline {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(60px, 12vw, 160px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-  color: #1d1d1f;
+.r-bounds {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 6vw;
+}
+
+@media (min-width: 1024px) {
+  .r-bounds {
+    padding: 0 max(6vw, 40px);
+  }
+}
+
+/* ── Typography & Rules ── */
+.r-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #a1a1a6;
+  text-transform: uppercase;
   margin-bottom: 24px;
 }
 
-.res-hero-sub {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: clamp(20px, 3.5vw, 32px);
-  font-weight: 500;
-  letter-spacing: 0.02em;
+.r-divider {
+  height: 1px;
+  background-color: rgba(0,0,0,0.08);
+  margin: 0;
+  border: none;
+}
+
+/* ══════════════════════════════════════════════════════
+   1. HERO — PROFESSIONAL IDENTITY
+══════════════════════════════════════════════════════ */
+.rh-section {
+  padding: 20vh 0 10vh 0;
+}
+
+.rh-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+}
+
+@media (min-width: 1024px) {
+  .rh-grid {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 80px;
+  }
+}
+
+.rh-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #1d1d1f;
+  margin: 0 0 24px 0;
+}
+
+.rh-sub {
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.5;
+  color: #86868b;
+  max-width: 600px;
+}
+
+.rh-metadata {
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rh-meta-item {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #1d1d1f;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════════════════
+   1.5. CINEMATIC ANCHOR
+══════════════════════════════════════════════════════ */
+.r-cinematic-section {
+  padding: 0 4vw 8vh 4vw;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.r-cinematic-visual {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  border-radius: 40px;
+  overflow: hidden;
+  background-color: #f5f5f7;
+  position: relative;
+  /* subtle inner shadow */
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02);
+}
+
+@media (max-width: 768px) {
+  .r-cinematic-section {
+    padding: 0 6vw 6vh 6vw;
+  }
+  .r-cinematic-visual {
+    aspect-ratio: 16 / 9;
+    border-radius: 24px;
+  }
+}
+
+.r-cinematic-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  will-change: transform, opacity;
+}
+
+/* ══════════════════════════════════════════════════════
+   2. PRIMARY PROFILE
+══════════════════════════════════════════════════════ */
+.rp-section {
+  padding: 10vh 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.rp-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.rp-title {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+.rp-sub {
+  font-size: clamp(18px, 2vw, 24px);
+  color: #86868b;
+  max-width: 800px;
+  margin: 0;
+}
+
+.rp-spec-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .rp-spec-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.rp-spec-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rp-spec-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #a1a1a6;
+  text-transform: uppercase;
+}
+
+.rp-spec-val {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #1d1d1f;
+}
+
+.rp-action {
+  margin-top: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #1d1d1f;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rp-action:hover {
+  opacity: 0.6;
+}
+
+/* ══════════════════════════════════════════════════════
+   3. RESUME SELECTOR (ROLE INDEX)
+══════════════════════════════════════════════════════ */
+.rx-section {
+  padding: 10vh 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.rx-list {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.rx-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 24px;
+  gap: 16px;
+  align-items: center;
+  padding: 24px 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  text-align: left;
+  cursor: pointer;
+  transition: padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s ease;
+}
+
+@media (min-width: 768px) {
+  .rx-row {
+    grid-template-columns: 60px 300px 1fr 24px;
+    gap: 24px;
+  }
+}
+
+.rx-row:hover {
+  background-color: rgba(0,0,0,0.02);
+  padding-left: 12px;
+}
+
+.rx-num {
+  font-size: 13px;
+  font-weight: 600;
+  color: #a1a1a6;
+}
+
+.rx-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1d1d1f;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rx-desc {
+  font-size: 15px;
   color: #86868b;
 }
 
-/* =========================================
-   THE TRANSITION
-   ========================================= */
-.res-transition {
-  padding: 30vh 0;
-  background: #000000;
-  color: #ffffff;
+.rx-arrow {
+  color: #a1a1a6;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.res-editorial-sequence {
+@media (max-width: 767px) {
+  .rx-arrow { display: none; }
+  .rx-desc {
+    grid-column: 2 / -1;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .rx-row {
+    grid-template-columns: 40px 1fr;
+    align-items: flex-start;
+  }
+}
+
+.rx-row:hover .rx-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ══════════════════════════════════════════════════════
+   4. PRIMARY PROFESSIONAL RECORD (FEATURED PREVIEW)
+══════════════════════════════════════════════════════ */
+.rf-section {
+  padding: 10vh 0;
+}
+
+.rf-container {
   display: flex;
   flex-direction: column;
-  gap: 12vh;
+  gap: 40px;
 }
 
-.res-statement {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(36px, 7vw, 90px);
+.rf-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rf-title {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(24px, 3vw, 40px);
   font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #1d1d1f;
+  margin: 0;
 }
 
-/* =========================================
-   THE ARTIFACT
-   ========================================= */
-.res-artifact {
-  padding: 30vh 0 20vh 0;
-  background: #f5f5f7;
+.rf-tags {
+  font-size: 16px;
+  color: #86868b;
 }
 
-.res-artifact-wrapper {
-  max-width: 900px;
-  margin: 0 auto 15vh auto;
-  border-radius: 4px; /* Physical paper edge */
-  overflow: hidden;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.15), 0 10px 30px rgba(0,0,0,0.05);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
+.rf-preview-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.res-artifact-wrapper:hover {
-  transform: translateY(-10px) scale(1.01);
+.rf-preview-wrapper:hover {
+  transform: translateY(-4px);
 }
 
-.res-artifact-img {
+.rf-image {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.res-download-sequence {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
+.rf-action {
+  text-align: center;
+  margin-top: 24px;
 }
 
-.res-download-thought {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: clamp(18px, 3vw, 24px);
+/* ══════════════════════════════════════════════════════
+   5. ROLE INTELLIGENCE
+══════════════════════════════════════════════════════ */
+.ri-section {
+  padding: 10vh 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.ri-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .ri-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.ri-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ri-role {
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.05em;
+  color: #1d1d1f;
+  text-transform: uppercase;
+}
+
+.ri-emphasis {
+  font-size: 14px;
   color: #86868b;
 }
 
-.primary-download-btn {
-  display: inline-block;
-  background: #1d1d1f;
-  color: #ffffff;
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: 18px;
+/* ══════════════════════════════════════════════════════
+   6. PROFESSIONAL SIGNAL
+══════════════════════════════════════════════════════ */
+.rs-section {
+  padding: 10vh 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.rs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+@media (min-width: 1024px) {
+  .rs-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+}
+
+.rs-spec-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.rs-spec-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+@media (max-width: 767px) {
+  .rs-spec-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+.rs-spec-label {
+  font-size: 11px;
   font-weight: 600;
-  padding: 20px 48px;
-  border-radius: 30px;
-  text-decoration: none;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  letter-spacing: 0.1em;
+  color: #a1a1a6;
+  text-transform: uppercase;
 }
 
-.primary-download-btn:hover {
-  transform: scale(1.02);
-  opacity: 0.9;
-}
-
-/* =========================================
-   ENGINEERING HIGHLIGHTS
-   ========================================= */
-.res-highlights {
-  padding: 30vh 0;
-  background: #ffffff;
-}
-
-.highlights-sequence {
-  display: flex;
-  flex-direction: column;
-  gap: 6vh;
-}
-
-.res-highlight-line {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(40px, 8vw, 100px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+.rs-spec-val {
+  font-size: 14px;
   color: #1d1d1f;
-}
-
-/* =========================================
-   PROFESSIONAL EVOLUTION
-   ========================================= */
-.res-evolution {
-  padding: 30vh 0;
-  background: #f5f5f7;
-}
-
-.evolution-flow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12vh;
-}
-
-.evolution-node {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(40px, 8vw, 100px);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  color: #1d1d1f;
-}
-
-.evolution-arrow {
-  font-size: clamp(30px, 5vw, 60px);
-  color: #86868b;
-}
-
-/* =========================================
-   MORE THAN A RESUME
-   ========================================= */
-.res-reflection {
-  padding: 30vh 0;
-  background: #ffffff;
-}
-
-.reflection-sequence {
-  display: flex;
-  flex-direction: column;
-  gap: 4vh;
-}
-
-.reflection-line {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(28px, 5vw, 60px);
   font-weight: 500;
-  letter-spacing: -0.02em;
-  color: #86868b;
 }
 
-.reflection-strong {
-  margin-top: 6vh;
-  font-weight: 600;
-  color: #1d1d1f;
+/* ══════════════════════════════════════════════════════
+   7. WHERE I FIT (DIRECTIONS)
+══════════════════════════════════════════════════════ */
+.rd-section {
+  padding: 10vh 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
 }
 
-/* =========================================
-   CLOSING
-   ========================================= */
-.res-closing {
-  padding: 40vh 0 20vh 0;
-  background: #000000;
-  color: #ffffff;
-}
-
-.closing-sequence {
+.rd-list {
   display: flex;
   flex-direction: column;
-  gap: 25vh;
+  gap: 40px;
+  margin-top: 40px;
 }
 
-.closing-thought {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(32px, 6vw, 80px);
+.rd-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rd-title {
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  color: #1d1d1f;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-.closing-finale {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
-  font-size: clamp(40px, 8vw, 120px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  color: #ffffff;
-}
-
-/* =========================================
-   FINAL NAVIGATION
-   ========================================= */
-.res-navigation {
-  padding: 20vh 0;
-  background: #ffffff;
-}
-
-.nav-editorial {
-  font-family: var(--font-system, 'SF Pro Text', sans-serif);
-  font-size: clamp(20px, 4vw, 32px);
-  font-weight: 600;
+.rd-desc {
+  font-size: 16px;
   color: #86868b;
-  margin-bottom: 10vh;
+  max-width: 600px;
 }
 
-.nav-links-grid {
+/* ══════════════════════════════════════════════════════
+   8. VERIFIED RECORD
+══════════════════════════════════════════════════════ */
+.rv-section {
+  padding: 10vh 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.rv-desc {
+  font-size: 16px;
+  color: #86868b;
+  margin-bottom: 40px;
+}
+
+/* ══════════════════════════════════════════════════════
+   9. DOCUMENT ACCESS
+══════════════════════════════════════════════════════ */
+.ra-section {
+  padding: 10vh 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.ra-container {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.nav-link {
-  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+.ra-resume {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.ra-links {
+  display: flex;
+  gap: 24px;
+}
+
+.ra-link {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #1d1d1f;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.ra-link:hover {
+  opacity: 0.6;
+}
+
+/* ══════════════════════════════════════════════════════
+   10. CLOSING
+══════════════════════════════════════════════════════ */
+.rc-section {
+  padding: 15vh 0;
+  border-top: 1px solid #1d1d1f;
+}
+
+.rc-title {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
   font-size: clamp(32px, 5vw, 64px);
   font-weight: 600;
   letter-spacing: -0.02em;
   color: #1d1d1f;
+  line-height: 1.1;
+  margin: 0 0 24px 0;
+}
+
+.rc-sub {
+  font-size: clamp(16px, 2vw, 20px);
+  color: #86868b;
+  max-width: 600px;
+  margin-bottom: 60px;
+}
+
+.rc-links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #1d1d1f;
+  text-transform: uppercase;
   text-decoration: none;
   transition: opacity 0.3s ease;
 }
 
-.nav-link:hover {
-  opacity: 0.5;
+.rc-link:hover {
+  opacity: 0.6;
+}
+
+/* ══════════════════════════════════════════════════════
+   11. RESUME MODAL (DOCUMENT PREVIEW)
+══════════════════════════════════════════════════════ */
+.res-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 31, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.res-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px;
+  transition: opacity 0.3s ease;
+  z-index: 10001;
+}
+
+.res-modal-close:hover {
+  opacity: 0.6;
+}
+
+.res-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: #fbfbfd;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+}
+
+.res-modal-image-container {
+  width: 100%;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.res-modal-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.res-modal-caption {
+  padding: 24px;
+  background: #fbfbfd;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.res-modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin: 0 0 4px 0;
+}
+
+.res-modal-subtitle {
+  font-size: 14px;
+  color: #86868b;
+  margin: 0;
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
