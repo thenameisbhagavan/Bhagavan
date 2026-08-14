@@ -568,6 +568,316 @@
 }
 
 /* =========================================
+   14. PUBLIC SIGNAL (DIGITAL PRESENCE)
+   ========================================= */
+
+.es-public-signal {
+  padding: 140px 24px;
+}
+
+/* Header Composition */
+.es-ps-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 80px;
+}
+
+.es-ps-header-left {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.es-ps-statement {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+.es-ps-subcopy {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #86868b;
+  margin: 0;
+}
+
+.es-ps-header-right {
+  text-align: right;
+}
+
+.es-ps-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #86868b;
+}
+
+.es-ps-status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #34c759; /* subtle active green */
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Editorial Index */
+.es-ps-index {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.es-ps-row-wrapper {
+  display: block;
+}
+
+.es-ps-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  text-decoration: none;
+  position: relative;
+  transition: transform 0.4s var(--ease-apple), border-color 0.4s var(--ease-apple);
+}
+
+.es-ps-row-content {
+  display: flex;
+  align-items: baseline;
+  gap: 64px;
+  flex: 1;
+}
+
+.es-ps-num {
+  font-size: 14px;
+  font-weight: 500;
+  color: #a1a1a6;
+  width: 32px;
+  transition: color 0.4s var(--ease-apple);
+}
+
+.es-ps-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.es-ps-name {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #1d1d1f;
+}
+
+.es-ps-role {
+  font-size: 14px;
+  color: #86868b;
+}
+
+/* Preview Image */
+.es-ps-preview {
+  width: 160px;
+  height: 90px;
+  border-radius: 6px;
+  overflow: hidden;
+  opacity: 0.65;
+  transform: scale(0.98);
+  transition: opacity 0.4s var(--ease-apple), transform 0.4s var(--ease-apple);
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  margin-top: -45px;
+  pointer-events: none;
+}
+
+.es-ps-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: inset(4% 4% 4% 4% round 4px);
+  transition: clip-path 0.5s var(--ease-apple);
+}
+
+.es-ps-arrow {
+  font-size: 20px;
+  color: #1d1d1f;
+  transition: transform 0.4s var(--ease-apple);
+}
+
+.es-ps-mobile-cta {
+  display: none;
+}
+
+/* Hover Interactions */
+.es-ps-row:hover {
+  transform: translateX(8px);
+  border-bottom-color: rgba(0,0,0,0.3);
+}
+
+.es-ps-row:hover .es-ps-num {
+  color: #1d1d1f;
+}
+
+.es-ps-row:hover .es-ps-preview {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.es-ps-row:hover .es-ps-img {
+  clip-path: inset(0% 0% 0% 0% round 6px);
+}
+
+.es-ps-row:hover .es-ps-arrow {
+  transform: translate(4px, -4px);
+}
+
+/* Featured Row (GitHub) */
+.es-ps-featured .es-ps-row {
+  padding: 48px 0;
+}
+
+.es-ps-featured .es-ps-name {
+  font-size: 32px;
+}
+
+.es-ps-featured .es-ps-preview {
+  width: 240px;
+  height: 135px;
+  margin-top: -67px;
+  right: 100px;
+  opacity: 0.8;
+}
+
+/* Footer Transition */
+.es-ps-footer {
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.es-ps-footer-statement {
+  font-size: 14px;
+  color: #86868b;
+  margin: 0;
+}
+
+.es-ps-footer-link {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #1d1d1f;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.es-ps-footer-link:hover {
+  opacity: 0.6;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 1024px) {
+  .es-ps-header {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .es-ps-header-right {
+    text-align: left;
+  }
+  
+  .es-ps-preview {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .es-public-signal {
+    padding: 80px 24px;
+  }
+  
+  .es-ps-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 0;
+    gap: 24px;
+  }
+  
+  .es-ps-row:hover {
+    transform: none;
+  }
+  
+  .es-ps-row-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .es-ps-arrow {
+    display: none;
+  }
+  
+  .es-ps-mobile-cta {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #1d1d1f;
+    border-bottom: 1px solid #1d1d1f;
+    padding-bottom: 4px;
+  }
+  
+  .es-ps-preview {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    right: auto;
+    top: auto;
+    margin-top: 0;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  
+  .es-ps-img {
+    clip-path: none;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  
+  .es-ps-featured .es-ps-row {
+    padding: 32px 0;
+  }
+  
+  .es-ps-featured .es-ps-name {
+    font-size: 24px;
+  }
+  
+  .es-ps-featured .es-ps-preview {
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   15. PORTFOLIO NAVIGATION
+   ========================================= */
+
+/* =========================================
    ACT III — DIRECTION
    ========================================= */
 

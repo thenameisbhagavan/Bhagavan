@@ -6,8 +6,12 @@ import SEO from "../components/SEO";
 import EditorialReveal from "../components/EditorialReveal";
 import "../styles/Overview.css";
 
-// Identity assets
+// ─── Core Assets ──────────────────────────────────────────────────────────────
 import profileHeroImg from "../assets/profile-hero.jpg";
+import linkedinImg from "../assets/linkedin-profile.png";
+import githubImg from "../assets/github-profile.png";
+import leetcodeImg from "../assets/leetcode-profile.png";
+import linkImg from "../assets/link.png";
 
 // Apple-precise easing
 const appleEase = [0.22, 1, 0.36, 1];
@@ -529,7 +533,85 @@ export default function Overview() {
             ACT IV — EXPLORE
             ========================================= */}
 
-        {/* 14 — PORTFOLIO NAVIGATION (MEDIUM) */}
+        {/* 14 — PUBLIC SIGNAL / DIGITAL PRESENCE */}
+        <section className="es-public-signal bg-light" data-nav-theme="light">
+          <div className="es-bounds">
+            
+            {/* Editorial Header */}
+            <div className="es-ps-header">
+              <div className="es-ps-header-left">
+                <EditorialReveal stagger={1}>
+                  <h2 className="es-section-label">PUBLIC SIGNAL</h2>
+                </EditorialReveal>
+                <EditorialReveal stagger={2}>
+                  <p className="es-ps-statement">The work continues outside this interface.</p>
+                </EditorialReveal>
+                <EditorialReveal stagger={3}>
+                  <p className="es-ps-subcopy">
+                    Projects, code, problem solving, and ideas leave a trail.<br/>
+                    These are the places where that trail can be explored.
+                  </p>
+                </EditorialReveal>
+              </div>
+              <div className="es-ps-header-right">
+                <EditorialReveal stagger={2}>
+                  <div className="es-ps-meta">
+                    <span>05 EXTERNAL SURFACES</span>
+                    <span>2026</span>
+                    <span><span className="es-ps-status-dot"></span> PUBLICLY ACCESSIBLE</span>
+                  </div>
+                </EditorialReveal>
+              </div>
+            </div>
+
+            {/* Editorial Index */}
+            <div className="es-ps-index">
+              {[
+                { num: "01", name: "GITHUB", role: "Code & Architecture", img: githubImg, link: "https://github.com/thenameisbhagavan", featured: true },
+                { num: "02", name: "LINKEDIN", role: "Professional Network", img: linkedinImg, link: "https://www.linkedin.com/in/thenameisbhagavan/", featured: false },
+                { num: "03", name: "LEETCODE", role: "Problem Solving", img: leetcodeImg, link: "https://leetcode.com/u/AxZsDhEeto/", featured: false },
+                { num: "04", name: "INSTAGRAM", role: "Visual Journey", img: linkImg, link: "https://www.instagram.com/thenameisbhagavan_/", featured: false },
+                { num: "05", name: "X", role: "Thoughts & Updates", img: linkImg, link: "https://x.com/nameisbhagavan", featured: false }
+              ].map((plat, i) => (
+                <EditorialReveal 
+                  key={plat.num}
+                  className={`es-ps-row-wrapper ${plat.featured ? 'es-ps-featured' : ''}`}
+                  stagger={i + 4}
+                >
+                  <a href={plat.link} target="_blank" rel="noopener noreferrer" className="es-ps-row" aria-label={`View ${plat.name}`}>
+                    <div className="es-ps-row-content">
+                      <span className="es-ps-num">{plat.num}</span>
+                      <div className="es-ps-text">
+                        <span className="es-ps-name">{plat.name}</span>
+                        <span className="es-ps-role">{plat.role}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="es-ps-preview">
+                      <img src={plat.img} alt={`${plat.name} evidence`} className="es-ps-img" loading={plat.featured ? "eager" : "lazy"} />
+                    </div>
+                    
+                    <div className="es-ps-arrow">↗</div>
+                    
+                    {/* Mobile Only CTA */}
+                    <div className="es-ps-mobile-cta">VIEW SURFACE →</div>
+                  </a>
+                </EditorialReveal>
+              ))}
+            </div>
+
+            {/* Ending Transition */}
+            <div className="es-ps-footer">
+              <EditorialReveal stagger={10}>
+                <p className="es-ps-footer-statement">Different surfaces. One body of work.</p>
+                <Link to="/journal" className="es-ps-footer-link">EXPLORE THE ENGINEERING JOURNAL →</Link>
+              </EditorialReveal>
+            </div>
+
+          </div>
+        </section>
+
+        {/* 15 — PORTFOLIO NAVIGATION (MEDIUM) */}
         <section className="es-portfolio-nav bg-dark" data-nav-theme="dark">
           <div className="es-bounds">
             <m.h2 
