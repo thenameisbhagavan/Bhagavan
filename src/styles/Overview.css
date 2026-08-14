@@ -645,7 +645,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 32px 0;
+  padding: 40px 0;
   border-bottom: 1px solid rgba(0,0,0,0.1);
   text-decoration: none;
   position: relative;
@@ -687,26 +687,21 @@
 
 /* Preview Image */
 .es-ps-preview {
-  width: 160px;
-  height: 90px;
-  border-radius: 6px;
+  width: 280px;
+  height: 157px;
+  border-radius: 8px;
   overflow: hidden;
-  opacity: 0.65;
-  transform: scale(0.98);
-  transition: opacity 0.4s var(--ease-apple), transform 0.4s var(--ease-apple);
-  position: absolute;
-  right: 80px;
-  top: 50%;
-  margin-top: -45px;
-  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.5s var(--ease-apple), transform 0.5s var(--ease-apple), box-shadow 0.5s var(--ease-apple);
+  margin-right: 48px; /* space between image and arrow */
 }
 
 .es-ps-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  clip-path: inset(4% 4% 4% 4% round 4px);
-  transition: clip-path 0.5s var(--ease-apple);
+  object-position: top center;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .es-ps-arrow {
@@ -731,11 +726,12 @@
 
 .es-ps-row:hover .es-ps-preview {
   opacity: 1;
-  transform: scale(1.02);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
 }
 
 .es-ps-row:hover .es-ps-img {
-  clip-path: inset(0% 0% 0% 0% round 6px);
+  transform: scale(1.04);
 }
 
 .es-ps-row:hover .es-ps-arrow {
@@ -744,7 +740,7 @@
 
 /* Featured Row (GitHub) */
 .es-ps-featured .es-ps-row {
-  padding: 48px 0;
+  padding: 56px 0;
 }
 
 .es-ps-featured .es-ps-name {
@@ -752,11 +748,9 @@
 }
 
 .es-ps-featured .es-ps-preview {
-  width: 240px;
-  height: 135px;
-  margin-top: -67px;
-  right: 100px;
-  opacity: 0.8;
+  width: 400px;
+  height: 225px;
+  opacity: 0.9;
 }
 
 /* Footer Transition */

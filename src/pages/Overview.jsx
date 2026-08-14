@@ -11,7 +11,8 @@ import profileHeroImg from "../assets/profile-hero.jpg";
 import linkedinImg from "../assets/linkedin-profile.png";
 import githubImg from "../assets/github-profile.png";
 import leetcodeImg from "../assets/leetcode-profile.png";
-import linkImg from "../assets/link.png";
+import instagramImg from "../assets/instagram.png";
+import xImg from "../assets/x.png";
 
 // Apple-precise easing
 const appleEase = [0.22, 1, 0.36, 1];
@@ -570,8 +571,8 @@ export default function Overview() {
                 { num: "01", name: "GITHUB", role: "Code & Architecture", img: githubImg, link: "https://github.com/thenameisbhagavan", featured: true },
                 { num: "02", name: "LINKEDIN", role: "Professional Network", img: linkedinImg, link: "https://www.linkedin.com/in/thenameisbhagavan/", featured: false },
                 { num: "03", name: "LEETCODE", role: "Problem Solving", img: leetcodeImg, link: "https://leetcode.com/u/AxZsDhEeto/", featured: false },
-                { num: "04", name: "INSTAGRAM", role: "Visual Journey", img: linkImg, link: "https://www.instagram.com/thenameisbhagavan_/", featured: false },
-                { num: "05", name: "X", role: "Thoughts & Updates", img: linkImg, link: "https://x.com/nameisbhagavan", featured: false }
+                { num: "04", name: "INSTAGRAM", role: "Visual Journey", img: instagramImg, link: "https://www.instagram.com/thenameisbhagavan_/", featured: false },
+                { num: "05", name: "X", role: "Thoughts & Updates", img: xImg, link: "https://x.com/nameisbhagavan", featured: false }
               ].map((plat, i) => (
                 <EditorialReveal 
                   key={plat.num}
