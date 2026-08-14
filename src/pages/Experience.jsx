@@ -70,7 +70,7 @@ function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="am-modal-header">VERIFIED ARTIFACT</div>
-            <img src={imgSrc} alt={imgAlt} className="am-modal-img" />
+            <img src={imgSrc} alt={imgAlt} className="am-modal-img"  loading="lazy" />
           </m.div>
         </m.div>
       )}
@@ -114,7 +114,7 @@ export default function Experience() {
       <div className="exp-evolution-page">
         
         {/* ==================== 1. HERO ==================== */}
-        <section className="exp-evolution-hero">
+        <section className="exp-evolution-hero" data-nav-theme="light">
           <div className="evo-bounds hero-bounds">
             <m.div className="hero-eyebrow" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, ease: appleEase }}>
               ENGINEERING EVOLUTION · 2022 — 2026
@@ -138,7 +138,7 @@ export default function Experience() {
         </section>
 
         {/* ==================== 2. EVOLUTION INDEX ==================== */}
-        <section className="evo-index-section">
+        <section className="evo-index-section" data-nav-theme="light">
           <div className="evo-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
               THE EVOLUTION
@@ -173,7 +173,7 @@ export default function Experience() {
         </section>
 
         {/* ==================== 3. CORE NARRATIVE ==================== */}
-        <section className="evo-core-narrative">
+        <section className="evo-core-narrative" data-nav-theme="light">
           <div className="evo-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
               HOW THE WORK CHANGED ME
@@ -204,7 +204,7 @@ export default function Experience() {
         </section>
 
         {/* ==================== 4. CHAPTER 01: BLACKBUCKS ==================== */}
-        <section id="chap-foundation" className="evo-chapter">
+        <section id="chap-foundation" className="evo-chapter" data-nav-theme="light">
           <div className="evo-bounds">
             <m.div className="chapter-meta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <span className="cm-num">CHAPTER 01</span>
@@ -261,7 +261,7 @@ export default function Experience() {
         </section>
 
         {/* ==================== 5. CHAPTER 02: STUDYOWL ==================== */}
-        <section id="chap-product" className="evo-chapter">
+        <section id="chap-product" className="evo-chapter" data-nav-theme="light">
           <div className="evo-bounds">
             <m.div className="chapter-meta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <span className="cm-num">CHAPTER 02</span>
@@ -318,7 +318,7 @@ export default function Experience() {
         </section>
 
         {/* ==================== 6. CHAPTER 03: SMARTBRIDGE ==================== */}
-        <section id="chap-intelligence" className="evo-chapter chapter-dark">
+        <section id="chap-intelligence" className="evo-chapter chapter-dark" data-nav-theme="light">
           <div className="evo-bounds">
             <m.div className="chapter-meta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <span className="cm-num">CHAPTER 03</span>
@@ -375,7 +375,7 @@ export default function Experience() {
         </section>
 
         {/* ==================== 7. CHAPTER 04: HELSON ==================== */}
-        <section id="chap-systems" className="evo-chapter">
+        <section id="chap-systems" className="evo-chapter" data-nav-theme="light">
           <div className="evo-bounds">
             <m.div className="chapter-meta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <span className="cm-num">CHAPTER 04</span>
@@ -443,7 +443,7 @@ export default function Experience() {
         </section>
 
         {/* ==================== 8. THE INFLECTION POINT ==================== */}
-        <section className="evo-inflection">
+        <section className="evo-inflection" data-nav-theme="light">
           <div className="evo-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               THE INFLECTION POINT
@@ -475,7 +475,7 @@ export default function Experience() {
         </section>
 
         {/* ==================== 9. ENGINEERING PERSPECTIVE ==================== */}
-        <section className="evo-perspective">
+        <section className="evo-perspective" data-nav-theme="light">
           <div className="evo-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               WHAT EXPERIENCE TAUGHT ME
@@ -510,7 +510,7 @@ export default function Experience() {
         </section>
 
         {/* ==================== 10. CLOSING ==================== */}
-        <section className="evo-closing">
+        <section className="evo-closing" data-nav-theme="light">
           <div className="evo-bounds">
             <m.h2 className="closing-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               I build differently<br/>

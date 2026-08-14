@@ -6,7 +6,7 @@ export default function VisionClosing() {
   const navigate = useNavigate();
 
   return (
-    <section style={{ padding: '200px 24px', background: '#fff', textAlign: 'center', display: 'flex', justifyContent: 'center' }}>
+    <section style={{ padding: '200px 24px', background: '#fff', textAlign: 'center', display: 'flex', justifyContent: 'center' }} data-nav-theme="light">
       <div style={{ maxWidth: '800px', width: '100%' }}>
         
         <m.div 

@@ -26,7 +26,7 @@ export default function FeaturedProducts() {
   const navigate = useNavigate();
 
   return (
-    <section style={{ padding: '160px 24px', background: '#f5f5f7' }}>
+    <section style={{ padding: '160px 24px', background: '#f5f5f7' }} data-nav-theme="light">
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         
         <m.div 

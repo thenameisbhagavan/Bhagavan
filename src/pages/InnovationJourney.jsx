@@ -81,7 +81,7 @@ function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="lab-modal-header">VERIFIED EXPERIMENT</div>
-            <img src={imgSrc} alt={imgAlt} className="lab-modal-img" />
+            <img src={imgSrc} alt={imgAlt} className="lab-modal-img"  loading="lazy" />
           </m.div>
         </m.div>
       )}
@@ -141,7 +141,7 @@ export default function InnovationJourney() {
       <div className="lab-page">
 
         {/* ==================== 1. HERO ==================== */}
-        <section className="lab-hero">
+        <section className="lab-hero" data-nav-theme="light">
           <div className="lab-bounds">
             <m.div className="lab-hero-meta" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, ease: appleEase }}>
               <span>LAB / 01</span>
@@ -165,7 +165,7 @@ export default function InnovationJourney() {
         </section>
 
         {/* ==================== 2. LAB LOOP ==================== */}
-        <section className="lab-loop-section">
+        <section className="lab-loop-section" data-nav-theme="light">
           <div className="lab-bounds">
             <m.div className="lab-loop" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
               {["QUESTION", "EXPERIMENT", "OBSERVE", "REFINE", "BUILD"].map((word, i, arr) => (
@@ -182,7 +182,7 @@ export default function InnovationJourney() {
         </section>
 
         {/* ==================== 3. THE LAB ==================== */}
-        <section className="lab-intro-section">
+        <section className="lab-intro-section" data-nav-theme="light">
           <div className="lab-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
               THE LAB
@@ -213,7 +213,7 @@ export default function InnovationJourney() {
         </section>
 
         {/* ==================== 4. CONSTRAINT — VEGACODE ==================== */}
-        <section className="lab-constraint">
+        <section className="lab-constraint" data-nav-theme="light">
           <div className="lab-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
               01 / CONSTRAINT
@@ -251,7 +251,7 @@ export default function InnovationJourney() {
         </section>
 
         {/* ==================== 5. ENGINEERING IN PUBLIC ==================== */}
-        <section className="lab-public">
+        <section className="lab-public" data-nav-theme="light">
           <div className="lab-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
               ENGINEERING IN PUBLIC
@@ -293,7 +293,7 @@ export default function InnovationJourney() {
         </section>
 
         {/* ==================== 6. LAB NOTEBOOK — LEARNING ==================== */}
-        <section className="lab-notebook">
+        <section className="lab-notebook" data-nav-theme="light">
           <div className="lab-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
               LAB NOTEBOOK
@@ -348,7 +348,7 @@ export default function InnovationJourney() {
         </section>
 
         {/* ==================== 7. RESEARCH → BUILD BRIDGE ==================== */}
-        <section className="lab-bridge">
+        <section className="lab-bridge" data-nav-theme="light">
           <div className="lab-bounds">
             <m.h2 className="bridge-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
               Learning only matters<br />when it changes what you build.
@@ -386,7 +386,7 @@ export default function InnovationJourney() {
         </section>
 
         {/* ==================== 8. WHAT THE EXPERIMENTS PRODUCED ==================== */}
-        <section className="lab-outcomes">
+        <section className="lab-outcomes" data-nav-theme="light">
           <div className="lab-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
               WHAT THE EXPERIMENTS PRODUCED
@@ -409,7 +409,7 @@ export default function InnovationJourney() {
         </section>
 
         {/* ==================== 9. LAB PRINCIPLES ==================== */}
-        <section className="lab-principles">
+        <section className="lab-principles" data-nav-theme="light">
           <div className="lab-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
               LAB PRINCIPLES
@@ -435,7 +435,7 @@ export default function InnovationJourney() {
         </section>
 
         {/* ==================== 10. CURRENT EXPLORATION ==================== */}
-        <section className="lab-exploration">
+        <section className="lab-exploration" data-nav-theme="light">
           <div className="lab-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
               CURRENT EXPLORATION
@@ -461,7 +461,7 @@ export default function InnovationJourney() {
         </section>
 
         {/* ==================== 11. LAB STATUS ==================== */}
-        <section className="lab-status-section">
+        <section className="lab-status-section" data-nav-theme="light">
           <div className="lab-bounds">
             <m.div className="lab-status-block" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={fadeUp}>
               <div className="ls-header">LAB STATUS</div>
@@ -484,7 +484,7 @@ export default function InnovationJourney() {
         </section>
 
         {/* ==================== 12. CLOSING ==================== */}
-        <section className="lab-closing">
+        <section className="lab-closing" data-nav-theme="light">
           <div className="lab-bounds">
             <m.h2 className="lab-closing-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
               Not every experiment<br />becomes a product.

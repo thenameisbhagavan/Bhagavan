@@ -91,7 +91,7 @@ export default function TechnologyEcosystem() {
         {/* ══════════════════════════════════════════════════════
             1. HERO
         ══════════════════════════════════════════════════════ */}
-        <section className="eco-hero">
+        <section className="eco-hero" data-nav-theme="light">
           <div className="eco-bounds">
             <m.div className="eco-hero-eyebrow" initial="hidden" animate="visible" variants={fadeUp}>
               TECHNOLOGY ECOSYSTEM / ENGINEERING ARCHITECTURE / 2026
@@ -109,7 +109,7 @@ export default function TechnologyEcosystem() {
         {/* ══════════════════════════════════════════════════════
             2. ARCHITECTURE LAYERS
         ══════════════════════════════════════════════════════ */}
-        <section className="eco-layers">
+        <section className="eco-layers" data-nav-theme="light">
           <div className="eco-bounds">
             <m.div className="eco-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               THE LAYERS I WORK ACROSS
@@ -147,7 +147,7 @@ export default function TechnologyEcosystem() {
         {/* ══════════════════════════════════════════════════════
             3. SYSTEM TRACE
         ══════════════════════════════════════════════════════ */}
-        <section className="eco-trace">
+        <section className="eco-trace" data-nav-theme="light">
           <div className="eco-bounds">
             <m.div className="eco-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               FROM IDEA TO SYSTEM
@@ -213,7 +213,7 @@ export default function TechnologyEcosystem() {
         {/* ══════════════════════════════════════════════════════
             4. CONNECT THE ECOSYSTEM TO REAL SYSTEMS
         ══════════════════════════════════════════════════════ */}
-        <section className="eco-systems">
+        <section className="eco-systems" data-nav-theme="light">
           <div className="eco-bounds">
             <m.div className="eco-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               THE STACK CHANGES WITH THE SYSTEM.
@@ -256,7 +256,7 @@ export default function TechnologyEcosystem() {
         {/* ══════════════════════════════════════════════════════
             5. PRINCIPLE
         ══════════════════════════════════════════════════════ */}
-        <section className="eco-principle">
+        <section className="eco-principle" data-nav-theme="light">
           <div className="eco-bounds">
             <m.h2 className="ep-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               I don't choose technology because it is popular.<br/>

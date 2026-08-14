@@ -141,7 +141,7 @@ export function ProblemSection() {
   ];
 
   return (
-    <section id="problem" className="cos-section">
+    <section id="problem" className="cos-section" data-nav-theme="light">
       <div className="cos-bounds">
         <m.span className="cos-eyebrow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           01 / The Challenge
@@ -172,7 +172,7 @@ export function ProblemSection() {
    ───────────────────────────────────────────── */
 export function VisionSection() {
   return (
-    <section id="vision" className="cos-section" style={{ background: "linear-gradient(180deg, #000000 0%, #08080a 100%)" }}>
+    <section id="vision" className="cos-section" style={{ background: "linear-gradient(180deg, #000000 0%, #08080a 100%)" }} data-nav-theme="light">
       <div className="cos-bounds">
         <div className="cos-vision-container">
           <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
@@ -250,7 +250,7 @@ export function IntelligenceEngineSection() {
   ];
 
   return (
-    <section id="intelligence-engine" className="cos-section">
+    <section id="intelligence-engine" className="cos-section" data-nav-theme="light">
       <div className="cos-bounds">
         <m.span className="cos-eyebrow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           03 / Core Process
@@ -336,7 +336,7 @@ export function ProductArchitectureSection() {
   ];
 
   return (
-    <section id="architecture" className="cos-section">
+    <section id="architecture" className="cos-section" data-nav-theme="light">
       <div className="cos-bounds">
         <m.span className="cos-eyebrow cos-eyebrow-accent" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           04 / Technical Architecture
@@ -407,7 +407,7 @@ export function EngineeringDecisionsSection() {
   ];
 
   return (
-    <section id="engineering-decisions" className="cos-section" style={{ background: "#060608" }}>
+    <section id="engineering-decisions" className="cos-section" style={{ background: "#060608" }} data-nav-theme="light">
       <div className="cos-bounds">
         <m.span className="cos-eyebrow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           05 / System Design
@@ -488,7 +488,7 @@ export function FeaturesSection() {
   ];
 
   return (
-    <section id="features" className="cos-section">
+    <section id="features" className="cos-section" data-nav-theme="light">
       <div className="cos-bounds">
         <m.span className="cos-eyebrow cos-eyebrow-accent" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           06 / Platform Capabilities
@@ -546,7 +546,7 @@ export function ScreenshotsSection() {
   ];
 
   return (
-    <section id="screenshots" className="cos-section" style={{ background: "#0a0a0c" }}>
+    <section id="screenshots" className="cos-section" style={{ background: "#0a0a0c" }} data-nav-theme="light">
       <div className="cos-bounds">
         <m.span className="cos-eyebrow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           07 / Visual Experience
@@ -603,7 +603,7 @@ export function ScreenshotsSection() {
                 >
                   <X size={20} />
                 </button>
-                <img src={modalImg.src} alt={modalImg.title} className="cos-modal-img" />
+                <img src={modalImg.src} alt={modalImg.title} className="cos-modal-img"  loading="lazy" />
               </m.div>
             </m.div>
           )}
@@ -625,7 +625,7 @@ export function ImpactSection() {
   ];
 
   return (
-    <section id="impact" className="cos-section">
+    <section id="impact" className="cos-section" data-nav-theme="light">
       <div className="cos-bounds">
         <m.span className="cos-eyebrow cos-eyebrow-accent" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           08 / Real-World Results
@@ -700,7 +700,7 @@ export function TechStackSection() {
   ];
 
   return (
-    <section id="tech-stack" className="cos-section" style={{ background: "#060608" }}>
+    <section id="tech-stack" className="cos-section" style={{ background: "#060608" }} data-nav-theme="light">
       <div className="cos-bounds">
         <m.span className="cos-eyebrow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           09 / Technology Stack
@@ -763,7 +763,7 @@ export function FutureRoadmapSection() {
   ];
 
   return (
-    <section id="roadmap" className="cos-section">
+    <section id="roadmap" className="cos-section" data-nav-theme="light">
       <div className="cos-bounds">
         <m.span className="cos-eyebrow cos-eyebrow-accent" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           10 / The Horizon
@@ -797,7 +797,7 @@ export function FutureRoadmapSection() {
    ───────────────────────────────────────────── */
 export function GitHubSection() {
   return (
-    <section id="github-cta" className="cos-github-section">
+    <section id="github-cta" className="cos-github-section" data-nav-theme="light">
       <div className="cos-bounds">
         <m.div className="cos-github-card" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           <span className="cos-eyebrow" style={{ justifyContent: "center" }}>11 / Source Code</span>
@@ -853,7 +853,7 @@ export function RelatedProductsSection() {
   ];
 
   return (
-    <section id="related-products" className="cos-section">
+    <section id="related-products" className="cos-section" data-nav-theme="light">
       <div className="cos-bounds">
         <m.span className="cos-eyebrow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           12 / Ecosystem
@@ -896,7 +896,7 @@ export function RelatedProductsSection() {
    ───────────────────────────────────────────── */
 export function ClosingSection() {
   return (
-    <section id="closing" className="cos-closing-section">
+    <section id="closing" className="cos-closing-section" data-nav-theme="light">
       <div className="cos-bounds">
         <m.h2 className="cos-closing-quote" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           Engineering Technology<br />

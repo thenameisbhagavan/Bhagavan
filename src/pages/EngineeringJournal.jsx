@@ -124,7 +124,7 @@ export default function EngineeringJournal() {
         {/* ══════════════════════════════════════════════════════
             1. HERO
         ══════════════════════════════════════════════════════ */}
-        <section className="j-hero">
+        <section className="j-hero" data-nav-theme="light">
           <m.div className="jh-meta" initial="hidden" animate="visible" variants={fadeUp}>
             ENGINEERING JOURNAL / 2026<br/>
             SYSTEMS · ARCHITECTURE · AI · PRODUCT ENGINEERING
@@ -192,7 +192,7 @@ export default function EngineeringJournal() {
         {/* ══════════════════════════════════════════════════════
             3. CURRENT ISSUE
         ══════════════════════════════════════════════════════ */}
-        <section className="j-current">
+        <section className="j-current" data-nav-theme="light">
           <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             CURRENT ISSUE
           </m.div>
@@ -213,7 +213,7 @@ export default function EngineeringJournal() {
             </m.div>
 
             <m.div className="jc-image-wrapper" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <img src={currentIssue.image || '/images/journal/featured/careeros-hero.jpg'} alt={currentIssue.title} className="jc-image" />
+              <img src={currentIssue.image || '/images/journal/featured/careeros-hero.jpg'} alt={currentIssue.title} className="jc-image"  loading="lazy" />
             </m.div>
           </Link>
         </section>
@@ -221,7 +221,7 @@ export default function EngineeringJournal() {
         {/* ══════════════════════════════════════════════════════
             4. THE NOTEBOOK (ARTICLE LIST)
         ══════════════════════════════════════════════════════ */}
-        <section className="j-notebook">
+        <section className="j-notebook" data-nav-theme="light">
           <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             THE NOTEBOOK
           </m.div>
@@ -247,7 +247,7 @@ export default function EngineeringJournal() {
       {/* ══════════════════════════════════════════════════════
           5. SERIES INDEX
       ══════════════════════════════════════════════════════ */}
-      <section className="j-series">
+      <section className="j-series" data-nav-theme="light">
         <div className="j-bounds">
           <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             SERIES / INDEX
@@ -271,7 +271,7 @@ export default function EngineeringJournal() {
         {/* ══════════════════════════════════════════════════════
             6. FROM THE BUILD
         ══════════════════════════════════════════════════════ */}
-        <section className="j-build">
+        <section className="j-build" data-nav-theme="light">
           <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             FROM THE BUILD
           </m.div>
@@ -305,7 +305,7 @@ export default function EngineeringJournal() {
       {/* ══════════════════════════════════════════════════════
           7. FIELD NOTES
       ══════════════════════════════════════════════════════ */}
-      <section className="j-notes">
+      <section className="j-notes" data-nav-theme="light">
         <div className="j-bounds">
           <div className="jn-grid">
             <m.div className="jn-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
@@ -332,7 +332,7 @@ export default function EngineeringJournal() {
         {/* ══════════════════════════════════════════════════════
             8. ARCHITECTURE NOTES
         ══════════════════════════════════════════════════════ */}
-        <section className="j-arch">
+        <section className="j-arch" data-nav-theme="light">
           <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             ARCHITECTURE NOTES
           </m.div>
@@ -381,7 +381,7 @@ export default function EngineeringJournal() {
         {/* ══════════════════════════════════════════════════════
             9. PUBLICATION ARCHIVE
         ══════════════════════════════════════════════════════ */}
-        <section className="j-archive">
+        <section className="j-archive" data-nav-theme="light">
           <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             ARCHIVE
           </m.div>
@@ -422,7 +422,7 @@ export default function EngineeringJournal() {
       {/* ══════════════════════════════════════════════════════
           10. WHAT I WRITE ABOUT
       ══════════════════════════════════════════════════════ */}
-      <section className="j-topics">
+      <section className="j-topics" data-nav-theme="light">
         <div className="j-bounds">
           <m.div className="j-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             WHAT I WRITE ABOUT
@@ -454,7 +454,7 @@ export default function EngineeringJournal() {
         {/* ══════════════════════════════════════════════════════
             11. PUBLICATION STATUS & CLOSING
         ══════════════════════════════════════════════════════ */}
-        <section className="j-closing">
+        <section className="j-closing" data-nav-theme="light">
           
           <m.div className="j-status-block" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             <div className="jsb-label">FORMAT</div><div className="jsb-value">ENGINEERING JOURNAL</div>

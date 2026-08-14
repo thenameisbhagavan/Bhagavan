@@ -4,6 +4,7 @@ import { AnimatePresence, LayoutGroup, MotionConfig } from "framer-motion";
 import { HelmetProvider } from "react-helmet-async";
 import AppShell from "./AppShell";
 import NotFound from "./components/NotFound";
+import "./styles/motion.css";
 
 // LAZY-LOADED CORE EXPERIENCES
 const Overview = lazy(() => import("./pages/Overview"));

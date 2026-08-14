@@ -145,7 +145,7 @@ export default function Connect() {
           {/* ══════════════════════════════════════════════════════
               1. HERO
           ══════════════════════════════════════════════════════ */}
-          <section className="ch-section">
+          <section className="ch-section" data-nav-theme="light">
             <div className="ch-grid">
               
               <m.div className="ch-left" initial="hidden" animate="visible" variants={fadeUp}>
@@ -186,7 +186,7 @@ export default function Connect() {
           {/* ══════════════════════════════════════════════════════
               2. CONVERSATION ROUTES
           ══════════════════════════════════════════════════════ */}
-          <section className="cr-section">
+          <section className="cr-section" data-nav-theme="light">
             <m.div className="c-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               CHOOSE A ROUTE
             </m.div>
@@ -222,7 +222,7 @@ export default function Connect() {
           {/* ══════════════════════════════════════════════════════
               3. PRIMARY CONTACT
           ══════════════════════════════════════════════════════ */}
-          <section className="cp-section">
+          <section className="cp-section" data-nav-theme="light">
             <m.div className="cp-container" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <div className="c-label">PRIMARY CHANNEL</div>
               
@@ -248,7 +248,7 @@ export default function Connect() {
           {/* ══════════════════════════════════════════════════════
               4. START A CONVERSATION & GUIDANCE
           ══════════════════════════════════════════════════════ */}
-          <section id="conversation-form-section" className="cf-section">
+          <section id="conversation-form-section" className="cf-section" data-nav-theme="light">
             <div className="cf-grid">
               
               <m.div className="cf-form-wrapper" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
@@ -315,7 +315,7 @@ export default function Connect() {
           {/* ══════════════════════════════════════════════════════
               5. PROFESSIONAL CHANNELS & SIGNAL
           ══════════════════════════════════════════════════════ */}
-          <section className="cs-section">
+          <section className="cs-section" data-nav-theme="light">
             <div className="cs-grid">
               
               <m.div className="cs-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
@@ -384,7 +384,7 @@ export default function Connect() {
           {/* ══════════════════════════════════════════════════════
               6. HUMAN LAYER & FINAL CTA
           ══════════════════════════════════════════════════════ */}
-          <section className="cx-section">
+          <section className="cx-section" data-nav-theme="light">
             <div className="cx-grid">
               
               <m.div className="cx-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>

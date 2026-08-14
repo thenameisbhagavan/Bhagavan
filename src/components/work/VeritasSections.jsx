@@ -97,7 +97,7 @@ const PROBLEMS = [
 
 export function ProblemSection() {
   return (
-    <section className="vrt-section" id="problem" aria-labelledby="problem-title">
+    <section className="vrt-section" id="problem" aria-labelledby="problem-title" data-nav-theme="light">
       <div className="vrt-bounds">
         <m.div
           className="vrt-eyebrow"
@@ -155,7 +155,7 @@ export function ProblemSection() {
    ────────────────────────────────────────────────────────────────────────── */
 export function VisionSection() {
   return (
-    <section className="vrt-section" id="vision" aria-labelledby="vision-title">
+    <section className="vrt-section" id="vision" aria-labelledby="vision-title" data-nav-theme="light">
       <div className="vrt-bounds vrt-vision-container">
         <m.div
           className="vrt-eyebrow vrt-eyebrow-scientific"
@@ -264,7 +264,7 @@ const PIPELINE_STEPS = [
 
 export function ReasoningPipelineSection() {
   return (
-    <section className="vrt-section" id="pipeline" aria-labelledby="pipeline-title">
+    <section className="vrt-section" id="pipeline" aria-labelledby="pipeline-title" data-nav-theme="light">
       <div className="vrt-bounds">
         <m.div
           className="vrt-eyebrow"
@@ -396,7 +396,7 @@ const ARCH_NODES = [
 
 export function SystemArchitectureSection() {
   return (
-    <section className="vrt-section" id="architecture" aria-labelledby="arch-title">
+    <section className="vrt-section" id="architecture" aria-labelledby="arch-title" data-nav-theme="light">
       <div className="vrt-bounds">
         <m.div
           className="vrt-eyebrow"
@@ -517,7 +517,7 @@ const FEATURES = [
 
 export function CoreFeaturesSection() {
   return (
-    <section className="vrt-section" id="features" aria-labelledby="features-title">
+    <section className="vrt-section" id="features" aria-labelledby="features-title" data-nav-theme="light">
       <div className="vrt-bounds">
         <m.div
           className="vrt-eyebrow"
@@ -630,7 +630,7 @@ const DECISIONS = [
 
 export function EngineeringDecisionsSection() {
   return (
-    <section className="vrt-section" id="decisions" aria-labelledby="decisions-title">
+    <section className="vrt-section" id="decisions" aria-labelledby="decisions-title" data-nav-theme="light">
       <div className="vrt-bounds">
         <m.div
           className="vrt-eyebrow"
@@ -746,7 +746,7 @@ const ENGINE_STEPS = [
 
 export function ExplainabilityEngineSection() {
   return (
-    <section className="vrt-section" id="engine" aria-labelledby="engine-title">
+    <section className="vrt-section" id="engine" aria-labelledby="engine-title" data-nav-theme="light">
       <div className="vrt-bounds">
         <m.div
           className="vrt-eyebrow"
@@ -844,7 +844,7 @@ export function ScreenshotsSection() {
   const [selectedImg, setSelectedImg] = useState(null);
 
   return (
-    <section className="vrt-section" id="screenshots" aria-labelledby="gallery-title">
+    <section className="vrt-section" id="screenshots" aria-labelledby="gallery-title" data-nav-theme="light">
       <div className="vrt-bounds">
         <m.div
           className="vrt-eyebrow"
@@ -898,7 +898,7 @@ export function ScreenshotsSection() {
               aria-label={`Inspect ${shot.title} fullscreen`}
             >
               <div className="vrt-retina-frame">
-                <img src={shot.img} alt={shot.title} className="vrt-gallery-img" />
+                <img src={shot.img} alt={shot.title} className="vrt-gallery-img"  loading="lazy" />
               </div>
               <div className="vrt-gallery-caption">
                 <div>
@@ -941,7 +941,7 @@ export function ScreenshotsSection() {
                 src={selectedImg.img}
                 alt={selectedImg.title}
                 className="vrt-modal-img"
-              />
+               loading="lazy" />
             </m.div>
           </m.div>
         )}
@@ -962,7 +962,7 @@ const METRICS = [
 
 export function ImpactSection() {
   return (
-    <section className="vrt-section" id="impact" aria-labelledby="impact-title">
+    <section className="vrt-section" id="impact" aria-labelledby="impact-title" data-nav-theme="light">
       <div className="vrt-bounds">
         <m.div
           className="vrt-eyebrow"
@@ -1061,7 +1061,7 @@ const TECH_PILLS = [
 
 export function TechStackSection() {
   return (
-    <section className="vrt-section" id="stack" aria-labelledby="stack-title">
+    <section className="vrt-section" id="stack" aria-labelledby="stack-title" data-nav-theme="light">
       <div className="vrt-bounds">
         <m.div
           className="vrt-eyebrow"
@@ -1171,7 +1171,7 @@ const ROADMAP_ITEMS = [
 
 export function FutureVisionSection() {
   return (
-    <section className="vrt-section" id="roadmap" aria-labelledby="roadmap-title">
+    <section className="vrt-section" id="roadmap" aria-labelledby="roadmap-title" data-nav-theme="light">
       <div className="vrt-bounds">
         <m.div
           className="vrt-eyebrow"
@@ -1231,7 +1231,7 @@ export function FutureVisionSection() {
    ────────────────────────────────────────────────────────────────────────── */
 export function GitHubSection() {
   return (
-    <section className="vrt-github-section" aria-labelledby="github-title">
+    <section className="vrt-github-section" aria-labelledby="github-title" data-nav-theme="light">
       <div className="vrt-bounds">
         <m.div
           className="vrt-github-card"
@@ -1297,7 +1297,7 @@ const RELATED = [
 
 export function RelatedProductsSection() {
   return (
-    <section className="vrt-section" aria-labelledby="related-title">
+    <section className="vrt-section" aria-labelledby="related-title" data-nav-theme="light">
       <div className="vrt-bounds">
         <m.div
           className="vrt-eyebrow"
@@ -1331,7 +1331,7 @@ export function RelatedProductsSection() {
             <m.div key={idx} variants={fadeUp}>
               <Link to={item.link} className="vrt-related-card">
                 <div className="vrt-related-img-wrap">
-                  <img src={item.img} alt={item.name} className="vrt-related-img" />
+                  <img src={item.img} alt={item.name} className="vrt-related-img"  loading="lazy" />
                 </div>
                 <div className="vrt-related-content">
                   <span className="vrt-related-eyebrow">{item.eyebrow}</span>
@@ -1359,7 +1359,7 @@ export function ClosingSection() {
   };
 
   return (
-    <section className="vrt-closing-section" aria-labelledby="closing-quote">
+    <section className="vrt-closing-section" aria-labelledby="closing-quote" data-nav-theme="light">
       <div className="vrt-closing-ambient" aria-hidden="true" />
 
       <div className="vrt-bounds vrt-closing-content">

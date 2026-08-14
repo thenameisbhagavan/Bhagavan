@@ -8,7 +8,7 @@ export default function Philosophy() {
   const customEase = [0.16, 1, 0.3, 1];
 
   return (
-    <section style={{ padding: '200px 24px', background: '#fff', color: '#1d1d1f', position: 'relative', zIndex: 20 }}>
+    <section style={{ padding: '200px 24px', background: '#fff', color: '#1d1d1f', position: 'relative', zIndex: 20 }} data-nav-theme="light">
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         
         {/* EDITORIAL STORYTELLING */}

@@ -5,7 +5,7 @@ export default function Domains() {
   const containerRef = useRef(null);
   
   return (
-    <section ref={containerRef} style={{ padding: '200px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#fbfbfd', overflow: 'hidden' }}>
+    <section ref={containerRef} style={{ padding: '200px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#fbfbfd', overflow: 'hidden' }} data-nav-theme="light">
       <m.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} style={{ textAlign: 'center', marginBottom: '120px' }}>
         <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 600, letterSpacing: '-0.03em', color: '#1d1d1f' }}>Engineering Across The Stack.</h2>
       </m.div>

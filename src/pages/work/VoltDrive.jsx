@@ -170,7 +170,7 @@ export default function VoltDrive() {
                   src={voltDriveImg}
                   alt="VoltDrive - Luxury Electric Vehicle Digital Showroom"
                   className="vd-hero-img"
-                />
+                 loading="lazy" />
                 <div className="vd-hero-overlay" />
                 <div className="vd-hero-caption-bar">
                   <span style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "0.05em" }}>
@@ -210,7 +210,7 @@ export default function VoltDrive() {
         {/* ─────────────────────────────────────────────
            2. PRODUCT PHILOSOPHY
            ───────────────────────────────────────────── */}
-        <section id="philosophy" className="vd-philosophy-section">
+        <section id="philosophy" className="vd-philosophy-section" data-nav-theme="light">
           <div className="vd-bounds">
             <div className="vd-quote-box">
               <m.span
@@ -305,7 +305,7 @@ export default function VoltDrive() {
         {/* ─────────────────────────────────────────────
            12. LIVE WEBSITE CTA
            ───────────────────────────────────────────── */}
-        <section id="live-cta" className="vd-cta-section">
+        <section id="live-cta" className="vd-cta-section" data-nav-theme="light">
           <div className="vd-bounds">
             <m.div
               className="vd-cta-banner vd-banner-live"
@@ -342,7 +342,7 @@ export default function VoltDrive() {
         {/* ─────────────────────────────────────────────
            13. GITHUB CTA
            ───────────────────────────────────────────── */}
-        <section id="github-cta" className="vd-cta-section" style={{ paddingTop: 0 }}>
+        <section id="github-cta" className="vd-cta-section" style={{ paddingTop: 0 }} data-nav-theme="light">
           <div className="vd-bounds">
             <m.div
               className="vd-cta-banner vd-banner-github"
@@ -377,7 +377,7 @@ export default function VoltDrive() {
         {/* ─────────────────────────────────────────────
            14. NEXT PROJECT CTA
            ───────────────────────────────────────────── */}
-        <section id="next-project" className="vd-cta-section" style={{ paddingBottom: "120px" }}>
+        <section id="next-project" className="vd-cta-section" style={{ paddingBottom: "120px" }} data-nav-theme="light">
           <div className="vd-bounds">
             <m.div
               className="vd-cta-banner vd-banner-next"

@@ -90,16 +90,28 @@ const CSS = `
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    transition: background 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
+                backdrop-filter 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
+                border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
+                box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     border-bottom: 1px solid transparent;
   }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .nav-shell, .nav-wordmark, .nav-btn, .nav-search-icon, .nav-mobile-btn, .nav-resume-btn, .nav-social-btn, .brand-cursive {
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   .nav-shell.scrolled {
-    background: rgba(255, 255, 255, 0.85);
+    background: var(--nav-scrolled-bg, rgba(255, 255, 255, 0.85));
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(0,0,0,0.04);
+    border-bottom: 1px solid var(--nav-border-color, rgba(0,0,0,0.04));
     box-shadow: 0 4px 20px rgba(0,0,0,0.02);
   }
+  
   .nav-shell.panel-open {
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(40px) saturate(180%);
@@ -182,20 +194,21 @@ const CSS = `
     font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
     font-size: 14px;
     font-weight: 400;
-    color: #424245;
+    color: var(--nav-text-color, #111111);
+    opacity: 0.8;
     letter-spacing: 0.01em;
     cursor: pointer;
     white-space: nowrap;
-    transition: color 0.18s ease, transform 0.18s ease;
+    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     outline: none;
   }
   .nav-btn:hover { 
-    color: #1d1d1f;
+    opacity: 1;
     transform: translateY(-1px);
   }
   .nav-btn.active {
-    color: #1d1d1f;
+    opacity: 1;
     font-weight: 500;
   }
   .nav-btn:focus-visible {
@@ -549,41 +562,45 @@ const CSS = `
 
   /* ── Dark Mode Overrides for Specific Pages (e.g. Insights) ── */
   .nav-shell.nav-dark-mode {
-    --nav-text-color: #f5f5f7;
-    --nav-scrolled-bg: rgba(26,26,31,0.72);
-    --nav-border-color: rgba(255,255,255,0.1);
+    --nav-text-color: #FFFFFF;
+    --nav-scrolled-bg: rgba(255, 255, 255, 0.03);
+    --nav-border-color: transparent;
   }
   
   .nav-shell:not(.nav-dark-mode) {
-    --nav-text-color: #000000;
-    --nav-scrolled-bg: rgba(255,255,255,0.72);
-    --nav-border-color: rgba(0,0,0,0.06);
+    --nav-text-color: #111111;
+    --nav-scrolled-bg: rgba(255, 255, 255, 0.85);
+    --nav-border-color: rgba(0,0,0,0.04);
   }
 
-  /* Apply the variables */
-  .nav-shell .nav-wordmark,
+  /* Apply the variables with smooth transition */
+  .nav-shell .nav-wordmark .brand-cursive,
   .nav-shell .nav-btn,
   .nav-shell .nav-search-icon,
   .nav-shell .nav-mobile-btn,
   .nav-shell .nav-resume-btn,
   .nav-shell .nav-social-btn {
     color: var(--nav-text-color);
+    transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
   
   /* Adjust scrolled background for dark mode */
   .nav-shell.nav-dark-mode.scrolled {
     background: var(--nav-scrolled-bg);
     border-color: var(--nav-border-color);
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+    box-shadow: none;
   }
   
   /* When panel is open, revert to light mode temporarily so dropdowns are readable */
-  .nav-shell.nav-dark-mode.panel-open .nav-wordmark,
+  .nav-shell.nav-dark-mode.panel-open .nav-wordmark .brand-cursive,
   .nav-shell.nav-dark-mode.panel-open .nav-btn,
   .nav-shell.nav-dark-mode.panel-open .nav-search-icon,
   .nav-shell.nav-dark-mode.panel-open .nav-mobile-btn,
   .nav-shell.nav-dark-mode.panel-open .nav-resume-btn,
   .nav-shell.nav-dark-mode.panel-open .nav-social-btn {
-    color: #000000;
+    color: #111111;
   }
   }
 `;
@@ -674,13 +691,66 @@ export default function Navbar() {
   const handleDDEnter = () => {
     clearTimeout(ddTimer.current);
   };
-  const isDarkPage = location.pathname.startsWith("/work/voltdrive") || location.pathname.startsWith("/work/careeros") || location.pathname.startsWith("/work/auraos") || location.pathname.startsWith("/work/veritas");
+  
+  // Dynamic theme detection
+  const [activeNavTheme, setActiveNavTheme] = useState("light");
+
+  useEffect(() => {
+    // Give DOM a tick to render
+    const timer = setTimeout(() => {
+      const sections = Array.from(document.querySelectorAll("[data-nav-theme]"));
+      
+      if (sections.length === 0) {
+        // Fallback
+        const isDark = location.pathname.startsWith("/work/voltdrive") || location.pathname.startsWith("/work/careeros") || location.pathname.startsWith("/work/auraos") || location.pathname.startsWith("/work/veritas");
+        setActiveNavTheme(isDark ? "dark" : "light");
+        return;
+      }
+
+      // Initial check based on scroll position (in case load in middle)
+      let initialTheme = "light";
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+          initialTheme = section.getAttribute("data-nav-theme");
+          break;
+        }
+      }
+      setActiveNavTheme(initialTheme);
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visibleEntries = entries.filter(e => e.isIntersecting);
+          if (visibleEntries.length === 0) return;
+          
+          visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+          const topEntry = visibleEntries[0];
+          
+          if (topEntry.intersectionRatio > 0) {
+            setActiveNavTheme(topEntry.target.getAttribute("data-nav-theme") || "light");
+          }
+        },
+        {
+          root: null,
+          rootMargin: "-20% 0px -20% 0px",
+          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+        }
+      );
+
+      sections.forEach(s => observer.observe(s));
+      return () => observer.disconnect();
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
+  const isDarkTheme = activeNavTheme === "dark" || (mobileOpen && activeNavTheme !== "dark"); // Example: if mobile is light, but wait, mobile sheet is white, so force light.
 
   const shellClass = [
     "nav-shell",
-    isDarkPage ? "nav-dark-mode" : "",
+    activeNavTheme === "dark" && !mobileOpen ? "nav-dark-mode" : "",
     scrolled && !activeDD && !searchOpen ? "scrolled" : "",
-    (activeDD || searchOpen)             ? "panel-open" : "",
+    (activeDD || searchOpen) ? "panel-open" : "",
   ].filter(Boolean).join(" ");
 
   // Search icon SVG
@@ -821,7 +891,7 @@ export default function Navbar() {
 
           {/* Master Portrait Identity + Cursive Brand Text */}
           <button className="nav-wordmark apple-pressable" onClick={() => go("/")} aria-label="TheNameIsBhagavan — Home" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <img src="/identity/bhagavan-icon-32.png" alt="TNB — TheNameIsBhagavan" style={{ height: '32px', width: '32px', borderRadius: '6px', objectFit: 'cover' }} />
+            <img src="/identity/bhagavan-icon-32.png" alt="TNB — TheNameIsBhagavan" style={{ height: '32px', width: '32px', borderRadius: '6px', objectFit: 'cover' }}  loading="lazy" />
             <span className="brand-cursive" style={{
               fontSize: '22px',
               color: 'var(--nav-text-color, #1d1d1f)',

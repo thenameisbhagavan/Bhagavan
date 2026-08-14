@@ -225,7 +225,7 @@ export default function AuraOS() {
       {/* ─────────────────────────────────────────────
           CHAPTER 1: HERO SECTION
           ───────────────────────────────────────────── */}
-      <section className="aos-hero-section" aria-labelledby="hero-title">
+      <section className="aos-hero-section" aria-labelledby="hero-title" data-nav-theme="light">
         <div className="aos-hero-ambient-glow" aria-hidden="true" />
         
         <div className="aos-bounds aos-hero-content">
@@ -310,7 +310,7 @@ export default function AuraOS() {
               src={auraOSHeroImg}
               alt="AuraOS Personal Intelligence Operating System Interface"
               className="aos-hero-image"
-            />
+             loading="lazy" />
           </m.div>
 
           <div className="aos-scroll-indicator" aria-hidden="true">

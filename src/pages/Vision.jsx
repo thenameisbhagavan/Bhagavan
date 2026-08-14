@@ -109,7 +109,7 @@ export default function Vision() {
         {/* ══════════════════════════════════════════════════════
             1. THE QUESTION (HERO)
         ══════════════════════════════════════════════════════ */}
-        <section className="vision-hero">
+        <section className="vision-hero" data-nav-theme="light">
           <div className="vision-bounds">
             <m.div className="vision-hero-eyebrow" initial="hidden" animate="visible" variants={fadeUp}>
               VISION / POINT OF VIEW / 2026
@@ -126,7 +126,7 @@ export default function Vision() {
         {/* ══════════════════════════════════════════════════════
             2. THE BELIEF
         ══════════════════════════════════════════════════════ */}
-        <section className="vision-belief">
+        <section className="vision-belief" data-nav-theme="light">
           <div className="vision-bounds">
             <m.div className="vision-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               01 — THE BELIEF
@@ -150,7 +150,7 @@ export default function Vision() {
         {/* ══════════════════════════════════════════════════════
             3. THE SHIFT
         ══════════════════════════════════════════════════════ */}
-        <section className="vision-shift">
+        <section className="vision-shift" data-nav-theme="light">
           <div className="vision-bounds">
             <div className="vision-label">THE PROGRESSION</div>
             
@@ -175,7 +175,7 @@ export default function Vision() {
         {/* ══════════════════════════════════════════════════════
             4. WHAT I BELIEVE SOFTWARE SHOULD DO
         ══════════════════════════════════════════════════════ */}
-        <section className="vision-principles">
+        <section className="vision-principles" data-nav-theme="light">
           <div className="vision-bounds">
             <m.h2 className="vp-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
               What software should do.
@@ -203,7 +203,7 @@ export default function Vision() {
         {/* ══════════════════════════════════════════════════════
             5. THE HUMAN SIDE
         ══════════════════════════════════════════════════════ */}
-        <section className="vision-human">
+        <section className="vision-human" data-nav-theme="light">
           <div className="vision-bounds">
             <m.h2 className="vh-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
               Technology should feel human.
@@ -229,7 +229,7 @@ export default function Vision() {
         {/* ══════════════════════════════════════════════════════
             6. FROM BELIEF TO BUILDING
         ══════════════════════════════════════════════════════ */}
-        <section className="vision-building">
+        <section className="vision-building" data-nav-theme="light">
           <div className="vision-bounds">
             <m.div className="vision-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               ENGINEERING METHODOLOGY
@@ -268,7 +268,7 @@ export default function Vision() {
         {/* ══════════════════════════════════════════════════════
             7. PROOF WITHOUT SHOWCASING
         ══════════════════════════════════════════════════════ */}
-        <section className="vision-proof">
+        <section className="vision-proof" data-nav-theme="light">
           <div className="vision-bounds">
             <m.h2 className="vpr-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
               Philosophy in practice.
@@ -301,7 +301,7 @@ export default function Vision() {
         {/* ══════════════════════════════════════════════════════
             8. THE LONG VIEW & 9. WHAT I AM BUILDING TOWARD
         ══════════════════════════════════════════════════════ */}
-        <section className="vision-future">
+        <section className="vision-future" data-nav-theme="light">
           <div className="vision-bounds">
             <m.div className="vision-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               THE LONG VIEW
@@ -355,7 +355,7 @@ export default function Vision() {
         {/* ══════════════════════════════════════════════════════
             10. FINAL THESIS
         ══════════════════════════════════════════════════════ */}
-        <section className="vision-closing">
+        <section className="vision-closing" data-nav-theme="light">
           <div className="vision-bounds">
             <m.div className="vision-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               THE VISION / CONTINUING

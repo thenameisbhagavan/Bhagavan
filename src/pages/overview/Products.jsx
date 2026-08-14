@@ -9,7 +9,7 @@ const PRODUCTS = [
 
 export default function Products() {
   return (
-    <section style={{ padding: '200px 0', overflow: 'hidden' }}>
+    <section style={{ padding: '200px 0', overflow: 'hidden' }} data-nav-theme="light">
       <m.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} style={{ textAlign: 'center', marginBottom: '160px', padding: '0 24px' }}>
         <h2 style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', fontWeight: 600, letterSpacing: '-0.04em', color: '#1d1d1f' }}>What I Build.</h2>
       </m.div>

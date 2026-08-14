@@ -166,7 +166,7 @@ export default function Work() {
       <div className="work-exhibition-page">
         
         {/* ==================== 1. SYSTEM ASSEMBLY INTRO + HERO ==================== */}
-        <section className="work-exhibition-hero">
+        <section className="work-exhibition-hero" data-nav-theme="light">
           <div className="exhibition-bounds" style={{ position: 'relative' }}>
 
             {/* SYSTEM ASSEMBLY: Metadata */}
@@ -225,7 +225,7 @@ export default function Work() {
         </section>
 
         {/* ==================== 2. EDITORIAL BRIDGE ==================== */}
-        <section className="work-editorial-bridge">
+        <section className="work-editorial-bridge" data-nav-theme="light">
           <div className="exhibition-bounds">
             <m.h2 className="bridge-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               Every system begins with a problem worth solving.
@@ -248,7 +248,7 @@ export default function Work() {
         </section>
 
         {/* ==================== 3. THE FLAGSHIP SYSTEMS INDEX ==================== */}
-        <section className="work-systems-index">
+        <section className="work-systems-index" data-nav-theme="light">
           <div className="exhibition-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               SELECTED SYSTEMS
@@ -275,7 +275,7 @@ export default function Work() {
         </section>
 
         {/* ==================== 4. CAREEROS (FLAGSHIP) ==================== */}
-        <section id="careeros" className="work-chapter chapter-careeros">
+        <section id="careeros" className="work-chapter chapter-careeros" data-nav-theme="light">
           <div className="exhibition-bounds">
             <m.div className="chapter-eyebrow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               01 / CAREEROS
@@ -289,7 +289,7 @@ export default function Work() {
             </m.h2>
 
             <m.div className="chapter-product-artifact" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
-              <img src={FLAGSHIP_CAREEROS.productImg} alt="CareerOS System" />
+              <img src={FLAGSHIP_CAREEROS.productImg} alt="CareerOS System"  loading="lazy" />
             </m.div>
 
             <div className="chapter-spec-grid">
@@ -331,7 +331,7 @@ export default function Work() {
         </section>
 
         {/* ==================== 5. AURAOS ==================== */}
-        <section id="auraos" className="work-chapter chapter-auraos">
+        <section id="auraos" className="work-chapter chapter-auraos" data-nav-theme="light">
           <div className="exhibition-bounds">
             <div className="aura-grid">
               <div className="aura-text-col">
@@ -356,7 +356,7 @@ export default function Work() {
               </div>
               <div className="aura-img-col">
                 <m.div className="aura-artifact" initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
-                  <img src={AURAOS.productImg} alt="AuraOS" />
+                  <img src={AURAOS.productImg} alt="AuraOS"  loading="lazy" />
                 </m.div>
               </div>
             </div>
@@ -364,7 +364,7 @@ export default function Work() {
         </section>
 
         {/* ==================== 6. VERITAS ==================== */}
-        <section id="veritas" className="work-chapter chapter-veritas">
+        <section id="veritas" className="work-chapter chapter-veritas" data-nav-theme="light">
           <div className="exhibition-bounds">
             <m.div className="chapter-eyebrow align-center" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               03 / VERITAS
@@ -374,7 +374,7 @@ export default function Work() {
             </m.h2>
             
             <m.div className="veritas-artifact" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
-              <img src={VERITAS.productImg} alt="VERITAS" />
+              <img src={VERITAS.productImg} alt="VERITAS"  loading="lazy" />
             </m.div>
 
             <div className="veritas-specs-row">
@@ -394,12 +394,12 @@ export default function Work() {
         </section>
 
         {/* ==================== 7. VOLTDRIVE ==================== */}
-        <section id="voltdrive" className="work-chapter chapter-voltdrive">
+        <section id="voltdrive" className="work-chapter chapter-voltdrive" data-nav-theme="light">
           <div className="exhibition-bounds">
             <div className="volt-grid">
               <div className="volt-img-col">
                 <m.div className="volt-artifact" initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1.2, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
-                  <img src={VOLTDRIVE.productImg} alt="VoltDrive" />
+                  <img src={VOLTDRIVE.productImg} alt="VoltDrive"  loading="lazy" />
                 </m.div>
               </div>
               <div className="volt-text-col">
@@ -427,7 +427,7 @@ export default function Work() {
         </section>
 
         {/* ==================== 8. EARLIER SYSTEMS ==================== */}
-        <section className="work-earlier-systems">
+        <section className="work-earlier-systems" data-nav-theme="light">
           <div className="exhibition-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               EARLIER SYSTEMS
@@ -454,7 +454,7 @@ export default function Work() {
         </section>
 
         {/* ==================== 9. ENGINEERING LAYERS ==================== */}
-        <section className="work-layers">
+        <section className="work-layers" data-nav-theme="light">
           <div className="exhibition-bounds">
             <m.div className="section-label align-center" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               ENGINEERING THROUGH DIFFERENT LAYERS
@@ -481,7 +481,7 @@ export default function Work() {
         </section>
 
         {/* ==================== 10. WHAT CHANGED ==================== */}
-        <section className="work-principles">
+        <section className="work-principles" data-nav-theme="light">
           <div className="exhibition-bounds">
             <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               WHAT BUILDING THESE SYSTEMS CHANGED
@@ -513,7 +513,7 @@ export default function Work() {
         </section>
 
         {/* ==================== 11. CLOSING BRIDGE ==================== */}
-        <section className="work-closing">
+        <section className="work-closing" data-nav-theme="light">
           <div className="exhibition-bounds align-center">
             <m.h2 className="closing-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               Work is the evidence.

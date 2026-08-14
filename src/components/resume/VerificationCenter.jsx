@@ -65,7 +65,7 @@ function VerificationCard({ title, description, items }) {
 
 export default function VerificationCenter() {
   return (
-    <section className="verification-center" aria-label="Verification Center">
+    <section className="verification-center" aria-label="Verification Center" data-nav-theme="light">
       <div className="res-constrain">
         
         {/* HEADER */}

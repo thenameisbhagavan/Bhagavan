@@ -125,7 +125,7 @@ export default function ArticlePage() {
           </header>
 
           <m.div className="doc-hero-image-wrapper" initial="hidden" animate="visible" variants={fadeUp}>
-            <img src={article.coverImage} alt={article.title} className="doc-hero-image" />
+            <img src={article.coverImage} alt={article.title} className="doc-hero-image"  loading="lazy" />
           </m.div>
 
           <m.article className="doc-content" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>

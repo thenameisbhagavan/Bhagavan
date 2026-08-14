@@ -3,7 +3,7 @@ import { m } from 'framer-motion';
 
 export default function Mission() {
   return (
-    <section style={{ padding: '200px 24px', display: 'flex', justifyContent: 'center' }}>
+    <section style={{ padding: '200px 24px', display: 'flex', justifyContent: 'center' }} data-nav-theme="light">
       <div style={{ maxWidth: '800px', width: '100%' }}>
         <m.h2 
           initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}

@@ -92,7 +92,7 @@ const PROBLEMS = [
 
 export function ProblemSection() {
   return (
-    <section className="aos-section" id="problem" aria-labelledby="problem-title">
+    <section className="aos-section" id="problem" aria-labelledby="problem-title" data-nav-theme="light">
       <div className="aos-bounds">
         <m.div
           className="aos-eyebrow"
@@ -150,7 +150,7 @@ export function ProblemSection() {
    ────────────────────────────────────────────────────────────────────────── */
 export function VisionSection() {
   return (
-    <section className="aos-section" id="vision" aria-labelledby="vision-title">
+    <section className="aos-section" id="vision" aria-labelledby="vision-title" data-nav-theme="light">
       <div className="aos-bounds aos-vision-container">
         <m.div
           className="aos-eyebrow aos-eyebrow-ai"
@@ -259,7 +259,7 @@ const LOOP_STEPS = [
 
 export function IntelligenceLoopSection() {
   return (
-    <section className="aos-section" id="loop" aria-labelledby="loop-title">
+    <section className="aos-section" id="loop" aria-labelledby="loop-title" data-nav-theme="light">
       <div className="aos-bounds">
         <m.div
           className="aos-eyebrow"
@@ -391,7 +391,7 @@ const ARCH_NODES = [
 
 export function SystemArchitectureSection() {
   return (
-    <section className="aos-section" id="architecture" aria-labelledby="arch-title">
+    <section className="aos-section" id="architecture" aria-labelledby="arch-title" data-nav-theme="light">
       <div className="aos-bounds">
         <m.div
           className="aos-eyebrow"
@@ -512,7 +512,7 @@ const FEATURES = [
 
 export function CoreFeaturesSection() {
   return (
-    <section className="aos-section" id="features" aria-labelledby="features-title">
+    <section className="aos-section" id="features" aria-labelledby="features-title" data-nav-theme="light">
       <div className="aos-bounds">
         <m.div
           className="aos-eyebrow"
@@ -625,7 +625,7 @@ const DECISIONS = [
 
 export function EngineeringDecisionsSection() {
   return (
-    <section className="aos-section" id="decisions" aria-labelledby="decisions-title">
+    <section className="aos-section" id="decisions" aria-labelledby="decisions-title" data-nav-theme="light">
       <div className="aos-bounds">
         <m.div
           className="aos-eyebrow"
@@ -729,7 +729,7 @@ const MEMORY_STEPS = [
 
 export function MemoryArchitectureSection() {
   return (
-    <section className="aos-section" id="memory-arch" aria-labelledby="memory-title">
+    <section className="aos-section" id="memory-arch" aria-labelledby="memory-title" data-nav-theme="light">
       <div className="aos-bounds">
         <m.div
           className="aos-eyebrow"
@@ -832,7 +832,7 @@ export function ScreenshotsSection() {
   const [selectedImg, setSelectedImg] = useState(null);
 
   return (
-    <section className="aos-section" id="screenshots" aria-labelledby="gallery-title">
+    <section className="aos-section" id="screenshots" aria-labelledby="gallery-title" data-nav-theme="light">
       <div className="aos-bounds">
         <m.div
           className="aos-eyebrow"
@@ -886,7 +886,7 @@ export function ScreenshotsSection() {
               aria-label={`Inspect ${shot.title} fullscreen`}
             >
               <div className="aos-retina-frame">
-                <img src={shot.img} alt={shot.title} className="aos-gallery-img" />
+                <img src={shot.img} alt={shot.title} className="aos-gallery-img"  loading="lazy" />
               </div>
               <div className="aos-gallery-caption">
                 <div>
@@ -929,7 +929,7 @@ export function ScreenshotsSection() {
                 src={selectedImg.img}
                 alt={selectedImg.title}
                 className="aos-modal-img"
-              />
+               loading="lazy" />
             </m.div>
           </m.div>
         )}
@@ -950,7 +950,7 @@ const METRICS = [
 
 export function ImpactSection() {
   return (
-    <section className="aos-section" id="impact" aria-labelledby="impact-title">
+    <section className="aos-section" id="impact" aria-labelledby="impact-title" data-nav-theme="light">
       <div className="aos-bounds">
         <m.div
           className="aos-eyebrow"
@@ -1048,7 +1048,7 @@ const TECH_PILLS = [
 
 export function TechStackSection() {
   return (
-    <section className="aos-section" id="stack" aria-labelledby="stack-title">
+    <section className="aos-section" id="stack" aria-labelledby="stack-title" data-nav-theme="light">
       <div className="aos-bounds">
         <m.div
           className="aos-eyebrow"
@@ -1153,7 +1153,7 @@ const ROADMAP_ITEMS = [
 
 export function FutureVisionSection() {
   return (
-    <section className="aos-section" id="roadmap" aria-labelledby="roadmap-title">
+    <section className="aos-section" id="roadmap" aria-labelledby="roadmap-title" data-nav-theme="light">
       <div className="aos-bounds">
         <m.div
           className="aos-eyebrow"
@@ -1213,7 +1213,7 @@ export function FutureVisionSection() {
    ────────────────────────────────────────────────────────────────────────── */
 export function GitHubSection() {
   return (
-    <section className="aos-github-section" aria-labelledby="github-title">
+    <section className="aos-github-section" aria-labelledby="github-title" data-nav-theme="light">
       <div className="aos-bounds">
         <m.div
           className="aos-github-card"
@@ -1279,7 +1279,7 @@ const RELATED = [
 
 export function RelatedProductsSection() {
   return (
-    <section className="aos-section" aria-labelledby="related-title">
+    <section className="aos-section" aria-labelledby="related-title" data-nav-theme="light">
       <div className="aos-bounds">
         <m.div
           className="aos-eyebrow"
@@ -1313,7 +1313,7 @@ export function RelatedProductsSection() {
             <m.div key={idx} variants={fadeUp}>
               <Link to={item.link} className="aos-related-card">
                 <div className="aos-related-img-wrap">
-                  <img src={item.img} alt={item.name} className="aos-related-img" />
+                  <img src={item.img} alt={item.name} className="aos-related-img"  loading="lazy" />
                 </div>
                 <div className="aos-related-content">
                   <span className="aos-related-eyebrow">{item.eyebrow}</span>
@@ -1341,7 +1341,7 @@ export function ClosingSection() {
   };
 
   return (
-    <section className="aos-closing-section" aria-labelledby="closing-quote">
+    <section className="aos-closing-section" aria-labelledby="closing-quote" data-nav-theme="light">
       <div className="aos-closing-ambient" aria-hidden="true" />
 
       <div className="aos-bounds aos-closing-content">

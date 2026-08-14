@@ -80,7 +80,7 @@ function DomainCard({ domain, index }) {
 
 export default function MissionControl({ isMobile }) {
   return (
-    <section id="mission-control" style={{ padding: isMobile ? '5rem 1.5rem' : '8rem 4rem', maxWidth: '1400px', margin: '0 auto', position: 'relative' }}>
+    <section id="mission-control" style={{ padding: isMobile ? '5rem 1.5rem' : '8rem 4rem', maxWidth: '1400px', margin: '0 auto', position: 'relative' }} data-nav-theme="light">
       {/* Section header */}
       <div style={{ marginBottom: '3.5rem' }}>
         <div style={{ fontSize: '.6rem', color: 'rgba(255,255,255,.25)', letterSpacing: '.16em', textTransform: 'uppercase', fontFamily: 'monospace', marginBottom: '1.5rem' }}>Mission Control</div>

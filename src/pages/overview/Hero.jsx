@@ -29,7 +29,7 @@ export default function Hero() {
         background: '#fbfbfd', // Quiet white canvas
         overflow: 'hidden'
       }}
-    >
+     data-nav-theme="light">
       <m.div 
         style={{ 
           y: yText, 
@@ -55,7 +55,7 @@ export default function Hero() {
               src={logoImg} 
               alt="TNB Mark" 
               style={{ width: '32px', height: '32px', borderRadius: '6px', marginBottom: '32px', opacity: 0.9 }} 
-            />
+             loading="lazy" />
           </EditorialFade>
 
           <MaskReveal delay={0.1} duration={1.2}>

@@ -4,7 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center text-white overflow-hidden">
+    <section className="relative min-h-screen w-full flex items-center justify-center text-white overflow-hidden" data-nav-theme="light">
       {/* Animated Gradient Background */}
       <div className="absolute top-0 left-0 w-full h-full animated-gradient-bg z-0" />
 

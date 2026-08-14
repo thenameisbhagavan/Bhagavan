@@ -198,7 +198,7 @@ export default function Resume() {
           {/* ══════════════════════════════════════════════════════
               1. HERO
           ══════════════════════════════════════════════════════ */}
-          <section className="rh-section">
+          <section className="rh-section" data-nav-theme="light">
             <div className="rh-grid">
               <m.div className="rh-left" initial="hidden" animate="visible" variants={fadeUp}>
                 <h1 className="rh-headline">
@@ -224,7 +224,7 @@ export default function Resume() {
           {/* ══════════════════════════════════════════════════════
               2. PRIMARY PROFILE
           ══════════════════════════════════════════════════════ */}
-          <section className="rp-section">
+          <section className="rp-section" data-nav-theme="light">
             <m.div className="rp-container" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <div className="r-label">PRIMARY PROFILE</div>
               <div>
@@ -256,7 +256,7 @@ export default function Resume() {
           {/* ══════════════════════════════════════════════════════
               3. RESUME SELECTOR (ROLE INDEX)
           ══════════════════════════════════════════════════════ */}
-          <section className="rx-section">
+          <section className="rx-section" data-nav-theme="light">
             <m.div className="r-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               SELECT A PROFESSIONAL DIRECTION
             </m.div>
@@ -284,7 +284,7 @@ export default function Resume() {
           {/* ══════════════════════════════════════════════════════
               4. PRIMARY PROFESSIONAL RECORD
           ══════════════════════════════════════════════════════ */}
-          <section className="rf-section">
+          <section className="rf-section" data-nav-theme="light">
             <m.div className="rf-container" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <div className="rf-header">
                 <div className="r-label">PRIMARY PROFESSIONAL RECORD</div>
@@ -314,7 +314,7 @@ export default function Resume() {
           {/* ══════════════════════════════════════════════════════
               5. ROLE INTELLIGENCE
           ══════════════════════════════════════════════════════ */}
-          <section className="ri-section">
+          <section className="ri-section" data-nav-theme="light">
             <m.div className="r-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               ONE FOUNDATION. DIFFERENT EMPHASIS.
             </m.div>
@@ -342,7 +342,7 @@ export default function Resume() {
           {/* ══════════════════════════════════════════════════════
               6. PROFESSIONAL SIGNAL
           ══════════════════════════════════════════════════════ */}
-          <section className="rs-section">
+          <section className="rs-section" data-nav-theme="light">
             <div className="rs-grid">
               
               <m.div className="rs-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
@@ -384,7 +384,7 @@ export default function Resume() {
           {/* ══════════════════════════════════════════════════════
               7. WHERE I FIT (CAREER POSITIONING)
           ══════════════════════════════════════════════════════ */}
-          <section className="rd-section">
+          <section className="rd-section" data-nav-theme="light">
             <m.div className="r-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               WHERE I FIT
             </m.div>
@@ -408,7 +408,7 @@ export default function Resume() {
           {/* ══════════════════════════════════════════════════════
               8. VERIFIED RECORD
           ══════════════════════════════════════════════════════ */}
-          <section className="rv-section">
+          <section className="rv-section" data-nav-theme="light">
             <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <div className="r-label">VERIFIED RECORD</div>
               <p className="rv-desc">Supporting evidence behind the professional profile.</p>
@@ -419,7 +419,7 @@ export default function Resume() {
           {/* ══════════════════════════════════════════════════════
               9. DOCUMENT ACCESS
           ══════════════════════════════════════════════════════ */}
-          <section className="ra-section">
+          <section className="ra-section" data-nav-theme="light">
             <m.div className="ra-container" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <div className="r-label">DOCUMENT ACCESS</div>
               
@@ -442,7 +442,7 @@ export default function Resume() {
           {/* ══════════════════════════════════════════════════════
               10. CLOSING
           ══════════════════════════════════════════════════════ */}
-          <section className="rc-section">
+          <section className="rc-section" data-nav-theme="light">
             <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <h2 className="rc-title">
                 THE DOCUMENT IS SIMPLE.<br/>

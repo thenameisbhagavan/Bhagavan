@@ -69,7 +69,7 @@ export default function OverviewLoader({ onComplete, prefersReducedMotion = fals
           }}
           transition={{ duration: 0.8, ease: appleEase }}
         >
-          <img src={logoImg} alt="TNB Mark" className="ol-mark" />
+          <img src={logoImg} alt="TNB Mark" className="ol-mark"  loading="lazy" />
         </m.div>
 
         {/* PHASE 03 — ENGINEERING SIGNAL */}

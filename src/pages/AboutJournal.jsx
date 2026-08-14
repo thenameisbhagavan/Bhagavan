@@ -20,7 +20,7 @@ export default function AboutJournal() {
         <meta name="description" content="Mission, writing philosophy, and engineering standards for TheNameIsBhagavan Engineering Journal." />
       </Helmet>
 
-      <section className="journal-hero">
+      <section className="journal-hero" data-nav-theme="light">
         <m.h1 
           className="journal-hero-title"
           initial={{ opacity: 0, y: 20 }}

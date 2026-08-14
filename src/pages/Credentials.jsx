@@ -149,7 +149,7 @@ const ArtifactViewer = ({ src, alt, onClose }) => {
         onClick={e => e.stopPropagation()}
       >
         <div className="cred-modal-header">ENGINEERING ARTIFACT</div>
-        <img src={src} alt={alt} className="cred-modal-img" />
+        <img src={src} alt={alt} className="cred-modal-img"  loading="lazy" />
       </m.div>
     </m.div>
   );
@@ -193,7 +193,7 @@ export default function Credentials() {
         {/* ══════════════════════════════════════════════════════
             1. HERO
         ══════════════════════════════════════════════════════ */}
-        <section className="cred-hero">
+        <section className="cred-hero" data-nav-theme="light">
           <div className="cred-bounds">
             <div className="cred-hero-grid">
               <div className="ch-left">
@@ -243,7 +243,7 @@ export default function Credentials() {
         {/* ══════════════════════════════════════════════════════
             2. CORE IDEA
         ══════════════════════════════════════════════════════ */}
-        <section className="cred-core-idea">
+        <section className="cred-core-idea" data-nav-theme="light">
           <div className="cred-bounds">
             <m.h2 className="cci-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               Credentials matter only when they change what you can build.
@@ -259,7 +259,7 @@ export default function Credentials() {
         {/* ══════════════════════════════════════════════════════
             3. CREDENTIAL MAP
         ══════════════════════════════════════════════════════ */}
-        <section className="cred-map">
+        <section className="cred-map" data-nav-theme="light">
           <div className="cred-bounds">
             <m.div className="cred-section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               THE RECORD
@@ -280,7 +280,7 @@ export default function Credentials() {
         {/* ══════════════════════════════════════════════════════
             4. FEATURED EVIDENCE
         ══════════════════════════════════════════════════════ */}
-        <section className="cred-featured">
+        <section className="cred-featured" data-nav-theme="light">
           <div className="cred-bounds">
             <m.div className="cred-section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               FEATURED EVIDENCE
@@ -407,7 +407,7 @@ export default function Credentials() {
         {/* ══════════════════════════════════════════════════════
             5. KNOWLEDGE DOMAINS
         ══════════════════════════════════════════════════════ */}
-        <section className="cred-domains">
+        <section className="cred-domains" data-nav-theme="light">
           <div className="cred-bounds">
             <m.div className="cred-section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               KNOWLEDGE DOMAINS
@@ -472,7 +472,7 @@ export default function Credentials() {
         {/* ══════════════════════════════════════════════════════
             6. ENGINEERING RECORD TIMELINE
         ══════════════════════════════════════════════════════ */}
-        <section className="cred-record">
+        <section className="cred-record" data-nav-theme="light">
           <div className="cred-bounds">
             <m.div className="cred-section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               THE ENGINEERING RECORD
@@ -510,7 +510,7 @@ export default function Credentials() {
         {/* ══════════════════════════════════════════════════════
             7. THE ARCHIVE
         ══════════════════════════════════════════════════════ */}
-        <section className="cred-archive">
+        <section className="cred-archive" data-nav-theme="light">
           <div className="cred-bounds">
             <m.h2 className="archive-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               Complete Archive
@@ -557,7 +557,7 @@ export default function Credentials() {
         {/* ══════════════════════════════════════════════════════
             8. APPLICATION BRIDGE
         ══════════════════════════════════════════════════════ */}
-        <section className="cred-bridge">
+        <section className="cred-bridge" data-nav-theme="light">
           <div className="cred-bounds">
             <m.h2 className="bridge-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               Learning is only useful when<br/>it changes what gets built.
@@ -609,7 +609,7 @@ export default function Credentials() {
         {/* ══════════════════════════════════════════════════════
             9. PHILOSOPHY
         ══════════════════════════════════════════════════════ */}
-        <section className="cred-philosophy">
+        <section className="cred-philosophy" data-nav-theme="light">
           <div className="cred-bounds">
             <m.h2 className="cp-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               Certificates don't define an engineer.
@@ -624,7 +624,7 @@ export default function Credentials() {
         {/* ══════════════════════════════════════════════════════
             10. CLOSING
         ══════════════════════════════════════════════════════ */}
-        <section className="cred-closing">
+        <section className="cred-closing" data-nav-theme="light">
           <div className="cred-bounds">
             <m.h2 className="cc-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               THE RECORD CONTINUES.

@@ -38,7 +38,7 @@ const METRICS = [
 
 export default function RecruiterImpact({ isMobile }) {
   return (
-    <section id="recruiter-impact" style={{ padding: isMobile ? '5rem 1.5rem' : '8rem 4rem', maxWidth: '1400px', margin: '0 auto' }}>
+    <section id="recruiter-impact" style={{ padding: isMobile ? '5rem 1.5rem' : '8rem 4rem', maxWidth: '1400px', margin: '0 auto' }} data-nav-theme="light">
       <div style={{ marginBottom: '3.5rem' }}>
         <div style={{ fontSize: '.6rem', color: 'rgba(255,255,255,.25)', letterSpacing: '.16em', textTransform: 'uppercase', fontFamily: 'monospace', marginBottom: '1.5rem' }}>Recruiter Intelligence Dashboard</div>
         <h2 style={{ fontSize: 'clamp(2rem,3.5vw,3rem)', fontWeight: 500, letterSpacing: '-.04em', color: '#fff', lineHeight: 1.12, maxWidth: '700px', marginBottom: '1.2rem' }}>

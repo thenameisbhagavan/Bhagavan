@@ -806,7 +806,7 @@ export default function BeyondCoding() {
         {/* ─────────────────── HOBBIES ─────────────────── */}
         <section ref={cR} id="hobbies"
           style={{borderTop:"1px solid rgba(255,255,255,0.06)",borderBottom:"1px solid rgba(255,255,255,0.06)",background:"transparent"}}
-        >
+         data-nav-theme="light">
           <div style={W}>
             <div style={{padding:"4rem 0 2.5rem"}}>
               <SH eyebrow="Section 02" title="Interests & Pursuits" sub="Seven domains of intentional life design — each one feeding back into engineering excellence." visible={cV} cursor/>

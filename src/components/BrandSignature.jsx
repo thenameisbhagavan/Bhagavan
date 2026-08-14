@@ -37,7 +37,7 @@ const BrandSignature = () => {
           marginBottom: '20px',
           opacity: 0.9,
         }} 
-      />
+       loading="lazy" />
 
       {/* Brand Name */}
       <div style={{ 

@@ -54,7 +54,7 @@ export function WhyVoltDriveSection() {
   ];
 
   return (
-    <section id="why-built" className="vd-why-section">
+    <section id="why-built" className="vd-why-section" data-nav-theme="light">
       <div className="vd-bounds">
         <m.span className="vd-eyebrow vd-eyebrow-accent" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           03 / Purpose
@@ -114,7 +114,7 @@ export function PremiumExperienceSection({ heroImage }) {
   ];
 
   return (
-    <section id="experience" className="vd-experience-section">
+    <section id="experience" className="vd-experience-section" data-nav-theme="light">
       <div className="vd-bounds">
         <m.span className="vd-eyebrow vd-eyebrow-accent" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           04 / Walkthrough
@@ -164,7 +164,7 @@ export function PremiumExperienceSection({ heroImage }) {
                 filter: activeTab === 0 ? "none" : activeTab === 1 ? "contrast(1.08) brightness(0.95)" : activeTab === 2 ? "saturate(1.2)" : "brightness(0.9)",
                 transition: "filter 0.5s ease"
               }}
-            />
+             loading="lazy" />
           </div>
         </m.div>
       </div>
@@ -216,7 +216,7 @@ export function FeatureHighlightsSection() {
   ];
 
   return (
-    <section id="features" className="vd-features-section">
+    <section id="features" className="vd-features-section" data-nav-theme="light">
       <div className="vd-bounds">
         <m.span className="vd-eyebrow vd-eyebrow-accent" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           05 / Features
@@ -272,7 +272,7 @@ export function EngineeringArchitectureSection() {
   ];
 
   return (
-    <section id="architecture" className="vd-architecture-section">
+    <section id="architecture" className="vd-architecture-section" data-nav-theme="light">
       <div className="vd-bounds">
         <m.span className="vd-eyebrow" style={{ color: "#2997ff" }} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           06 / Architecture
@@ -326,7 +326,7 @@ export function TechnologyStackSection() {
   ];
 
   return (
-    <section id="tech-stack" className="vd-tech-section">
+    <section id="tech-stack" className="vd-tech-section" data-nav-theme="light">
       <div className="vd-bounds">
         <m.span className="vd-eyebrow vd-eyebrow-accent" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           07 / Stack
@@ -366,7 +366,7 @@ export function DesignSystemSection() {
   ];
 
   return (
-    <section id="design-system" className="vd-design-section">
+    <section id="design-system" className="vd-design-section" data-nav-theme="light">
       <div className="vd-bounds">
         <m.span className="vd-eyebrow vd-eyebrow-accent" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           08 / Design Tokens
@@ -412,7 +412,7 @@ export function PerformanceSection() {
   ];
 
   return (
-    <section id="performance" className="vd-perf-section">
+    <section id="performance" className="vd-perf-section" data-nav-theme="light">
       <div className="vd-bounds">
         <m.span className="vd-eyebrow vd-eyebrow-accent" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           09 / Telemetry
@@ -458,7 +458,7 @@ export function ChallengesSection() {
   ];
 
   return (
-    <section id="challenges" className="vd-challenges-section">
+    <section id="challenges" className="vd-challenges-section" data-nav-theme="light">
       <div className="vd-bounds">
         <m.span className="vd-eyebrow vd-eyebrow-accent" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           10 / Problem Solving
@@ -516,7 +516,7 @@ export function GallerySection({ heroImage }) {
   ];
 
   return (
-    <section id="gallery" className="vd-gallery-section">
+    <section id="gallery" className="vd-gallery-section" data-nav-theme="light">
       <div className="vd-bounds">
         <m.span className="vd-eyebrow vd-eyebrow-accent" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
           11 / Gallery
@@ -554,7 +554,7 @@ export function GallerySection({ heroImage }) {
             style={{
               filter: activeGalleryTab === 0 ? "none" : activeGalleryTab === 1 ? "contrast(1.1) brightness(0.92)" : "saturate(1.15)"
             }}
-          />
+           loading="lazy" />
           <div style={{ padding: "24px 32px", background: "#111114", color: "#ffffff", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
             <div style={{ fontSize: "17px", fontWeight: 600 }}>{galleryItems[activeGalleryTab].title}</div>
             <div style={{ fontSize: "14px", color: "#86868b", marginTop: "4px" }}>{galleryItems[activeGalleryTab].caption}</div>

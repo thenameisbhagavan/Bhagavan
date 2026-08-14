@@ -170,7 +170,7 @@ export default function Veritas() {
         {/* ──────────────────────────────────────────────────────────────────────
            CHAPTER 1: HERO SECTION (IBM RESEARCH / APPLE WWDC SCIENTIFIC LUXURY)
            ────────────────────────────────────────────────────────────────────── */}
-        <section className="vrt-hero-section" aria-labelledby="vrt-hero-title">
+        <section className="vrt-hero-section" aria-labelledby="vrt-hero-title" data-nav-theme="light">
           <div className="vrt-hero-ambient-glow" aria-hidden="true" />
 
           <div className="vrt-hero-content">
@@ -253,7 +253,7 @@ export default function Veritas() {
                 src={veritasHeroImg}
                 alt="VERITAS Explainable Intelligence Interface and Verification Dossier"
                 className="vrt-hero-image"
-              />
+               loading="lazy" />
             </m.div>
 
             <m.div
