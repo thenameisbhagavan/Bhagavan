@@ -210,12 +210,16 @@ const SEO = ({
   ];
 
   if (article) {
+    const articleKeywords = article.tags && article.tags.length > 0 
+      ? article.tags.join(', ') 
+      : "Engineering, Architecture, System Design";
+
     graph.push({
-      "@type": "Article",
+      "@type": "TechArticle",
       "@id": `${canonicalUrl}/#article`,
-      "headline": article.title,
+      "headline": article.seoTitle || article.title,
       "image": [
-        `https://thenameisbhagavan.in${article.coverImage || image}`
+        `https://thenameisbhagavan.in${article.heroImage || article.coverImage || image}`
       ],
       "datePublished": article.published,
       "dateModified": article.updated,
@@ -225,7 +229,8 @@ const SEO = ({
       "publisher": {
         "@id": "https://thenameisbhagavan.in/#organization"
       },
-      "description": article.description,
+      "description": article.seoDescription || article.description,
+      "keywords": articleKeywords,
       "mainEntityOfPage": {
         "@id": `${canonicalUrl}/#webpage`
       }
@@ -255,10 +260,25 @@ const SEO = ({
       <meta property="og:image" content={`https://thenameisbhagavan.in${image}`} />
       <meta property="og:site_name" content="TheNameIsBhagavan" />
 
+      {/* Article-specific OG */}
+      {article && article.published && (
+        <meta property="article:published_time" content={article.published} />
+      )}
+      {article && article.updated && (
+        <meta property="article:modified_time" content={article.updated} />
+      )}
+      {article && (
+        <meta property="article:author" content="https://thenameisbhagavan.in" />
+      )}
+      {article && article.tags && article.tags.map((tag, i) => (
+        <meta key={i} property="article:tag" content={tag} />
+      ))}
+
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={canonicalUrl} />
       <meta name="twitter:title" content={finalTitle} />
+      <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`https://thenameisbhagavan.in${image}`} />
       <meta name="twitter:creator" content="@nameisbhagavan" />
 

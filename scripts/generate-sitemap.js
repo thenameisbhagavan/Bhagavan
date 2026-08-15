@@ -7,10 +7,10 @@ import path from 'path';
 // contain hardcoded slugs. This reads the actual markdown files.
 
 function parseFrontmatter(raw) {
-  const match = raw.match(/^---\n([\s\S]*?)\n---/);
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) return {};
   const attrs = {};
-  match[1].split('\n').forEach(line => {
+  match[1].split(/\r?\n/).forEach(line => {
     const idx = line.indexOf(':');
     if (idx > -1) {
       const key = line.slice(0, idx).trim();
@@ -28,6 +28,7 @@ function findMarkdownFiles(dir) {
   let results = [];
   const items = fs.readdirSync(dir, { withFileTypes: true });
   for (const item of items) {
+    if (item.name === 'archive') continue; // Exclude legacy articles
     const fullPath = path.join(dir, item.name);
     if (item.isDirectory()) {
       results = results.concat(findMarkdownFiles(fullPath));

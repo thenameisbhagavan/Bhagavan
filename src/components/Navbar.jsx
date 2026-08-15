@@ -705,7 +705,7 @@ export default function Navbar() {
       
       if (sections.length === 0) {
         // Fallback
-        const isDark = location.pathname.startsWith("/work/voltdrive") || location.pathname.startsWith("/work/careeros") || location.pathname.startsWith("/work/auraos") || location.pathname.startsWith("/work/veritas");
+        const isDark = location.pathname.startsWith("/work/voltdrive") || location.pathname.startsWith("/work/careeros") || location.pathname.startsWith("/work/auraos") || location.pathname.startsWith("/work/veritas") || location.pathname === "/journal";
         setActiveNavTheme(isDark ? "dark" : "light");
         return;
       }

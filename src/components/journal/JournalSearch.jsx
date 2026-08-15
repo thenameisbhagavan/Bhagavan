@@ -39,11 +39,16 @@ export default function JournalSearch({ isOpen, onClose, articles }) {
   const filtered = useMemo(() => {
     if (!query) return articles.slice(0, 5); // Show top 5 by default
     const q = query.toLowerCase();
-    return articles.filter(a => 
-      a.title.toLowerCase().includes(q) || 
-      a.description.toLowerCase().includes(q) ||
-      (a.tags && a.tags.some(t => t.toLowerCase().includes(q)))
-    ).slice(0, 8); // Max 8 results
+    return articles.filter(a => {
+      const titleMatch = (a.title || '').toLowerCase().includes(q);
+      const excerptMatch = (a.excerpt || a.description || '').toLowerCase().includes(q);
+      const seriesMatch = (a.series || '').toLowerCase().includes(q);
+      const typeMatch = (a.articleType || '').toLowerCase().includes(q);
+      const tagsMatch = a.tags && a.tags.some(t => t.toLowerCase().includes(q));
+      const bodyMatch = (a.searchableText || '').toLowerCase().includes(q);
+
+      return titleMatch || excerptMatch || seriesMatch || typeMatch || tagsMatch || bodyMatch;
+    }).slice(0, 8); // Max 8 results
   }, [query, articles]);
 
   const handleSelect = (slug) => {

@@ -32,78 +32,238 @@
   margin-bottom: 24px;
 }
 
-/* ==================== 1. HERO ==================== */
-.j-hero {
-  padding: 15vh 0 10vh 0;
-}
-
-.jh-meta {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: #a1a1a6;
-  text-transform: uppercase;
-  margin-bottom: 40px;
-}
-
-.jh-headline {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(40px, 6vw, 88px);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  color: #1d1d1f;
-  margin: 0 0 40px 0;
-  max-width: 800px;
-}
-
-.jh-sub {
-  font-size: clamp(18px, 2.5vw, 24px);
-  font-weight: 500;
-  color: #86868b;
-  line-height: 1.5;
-  max-width: 640px;
-}
-
-.jh-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 60px;
+/* ==================== 1. HERO 2026 ==================== */
+.j-hero-2026 {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 -6vw 0 -6vw;
+  padding: 0 6vw;
+  overflow: hidden;
+  background-color: #000;
+  color: #fff;
 }
 
 @media (min-width: 960px) {
-  .jh-grid {
-    grid-template-columns: 3fr 1fr;
-    gap: 80px;
-    align-items: start;
+  .j-hero-2026 {
+    margin: 0 calc(-1 * max(6vw, 40px)) 0 calc(-1 * max(6vw, 40px));
   }
 }
 
-.jh-index {
-  display: flex;
-  flex-direction: column;
+/* ── Aurora Background ── */
+.jh26-aurora {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
 }
 
-.jhi-item {
-  display: flex;
-  flex-direction: column;
-  padding: 16px 0;
-  border-top: 1px solid rgba(0,0,0,0.06);
+.aurora-layer {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0;
+  animation: auroraReveal 3s ease-out forwards, auroraPulse 20s ease-in-out infinite;
 }
 
-.jhi-num {
+.aurora-1 {
+  width: 80vw;
+  height: 80vw;
+  max-width: 900px;
+  max-height: 900px;
+  background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0) 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 0s, 0.5s;
+}
+
+.aurora-2 {
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 0.3s, 1s;
+}
+
+.jh26-grain {
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%25" height="100%25" filter="url(%23n)" opacity="0.03"/></svg>');
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes auroraReveal {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes auroraPulse {
+  0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* ── Hero Content ── */
+.jh26-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 24px;
+}
+
+/* ── Horizontal Rules ── */
+.jh26-rule {
+  width: 100%;
+  max-width: 600px;
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+  transform-origin: center;
+  margin-bottom: 40px;
+}
+
+.jh26-rule-bottom {
+  margin-bottom: 0;
+  margin-top: 40px;
+}
+
+/* ── Eyebrow ── */
+.jh26-eyebrow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 6vh;
+}
+
+.jh26-eyebrow-label {
   font-size: 11px;
   font-weight: 600;
-  color: #a1a1a6;
-  margin-bottom: 8px;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.4);
 }
 
-.jhi-title {
-  font-size: 13px;
+.jh26-eyebrow-count {
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  color: #1d1d1f;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.25);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
 }
+
+/* ── Headline ── */
+.jh26-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(44px, 9vw, 120px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  color: #fff;
+  margin: 0 0 5vh 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.jh26-line-1 {
+  display: block;
+}
+
+.jh26-line-2 {
+  display: block;
+}
+
+.jh26-headline em {
+  font-style: italic;
+  color: rgba(255,255,255,0.45);
+  font-weight: 500;
+}
+
+/* ── Subtitle ── */
+.jh26-sub {
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 400;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.55;
+  max-width: 560px;
+  letter-spacing: 0;
+}
+
+/* ── Bottom Strip ── */
+.jh26-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6vh;
+  margin-bottom: 40px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.2);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.jh26-strip-dot {
+  color: rgba(255,255,255,0.12);
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* ── Scroll Cue ── */
+.jh26-scroll-cue {
+  margin-top: 48px;
+}
+
+.jh26-scroll-dot {
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { cy: 7; opacity: 0.6; }
+  50% { cy: 15; opacity: 0.2; }
+}
+
+/* ── Mobile Refinements ── */
+@media (max-width: 767px) {
+  .jh26-eyebrow {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .jh26-strip {
+    gap: 8px;
+  }
+  
+  .jh26-sub br {
+    display: none;
+  }
+}
+
+
+/* Make Control bar adapt to breaking bounds */
+.j-control-bar {
+  border-top: none;
+  background: rgba(251, 251, 253, 0.75);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  margin-top: -1px;
+}
+
 
 /* ==================== 2. CONTROL BAR ==================== */
 .j-control-bar {

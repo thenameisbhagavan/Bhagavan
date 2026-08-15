@@ -2,6 +2,18 @@
    ARTICLE PAGE: 2026 PUBLICATION
    ========================================= */
 
+/* ── Design Tokens for Article Components ── */
+:root {
+  --bg-primary: #fbfbfd;
+  --bg-secondary: #f5f5f7;
+  --text-primary: #1d1d1f;
+  --text-secondary: #86868b;
+  --text-tertiary: #a1a1a6;
+  --border-color: rgba(0,0,0,0.08);
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  --font-sans: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+}
+
 .article-doc-container {
   background-color: #fbfbfd;
   color: #1d1d1f;
@@ -403,4 +415,91 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+/* ── Article Header Editorials ── */
+.doc-article-supra {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.das-series {
+  color: #a1a1a6;
+}
+
+.das-type {
+  color: #1d1d1f;
+  font-weight: 500;
+}
+
+.doc-article-excerpt {
+  font-family: var(--font-display, 'SF Pro Display', sans-serif);
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.4;
+  color: #86868b;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  max-width: 800px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* ── Focus Visible (keyboard accessibility) ── */
+.doc-sidebar-link:focus-visible,
+.jn-row:focus-visible,
+.doc-content a:focus-visible {
+  outline: 2px solid rgba(0,102,204,0.5);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Screen-reader only ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Diagram Fallback ── */
+.diagram-fallback {
+  margin: 2.5rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 2px solid #a1a1a6;
+  background-color: #f5f5f7;
+  border-radius: 0 4px 4px 0;
+}
+
+.df-title {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: #86868b;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.df-text {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #1d1d1f;
+}
+
+/* ── Loading State ── */
+.doc-loading {
+  font-size: 14px;
+  color: #86868b;
+  padding: 60px 0;
+  text-align: center;
+  letter-spacing: 0.05em;
 }

@@ -1,0 +1,416 @@
+/* =========================================================================
+   ARTICLE COMPONENTS CSS
+   ========================================================================= */
+
+/* ─── Technical Callouts ─── */
+.technical-callout {
+  margin: 2.5rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 2px solid var(--text-tertiary);
+  background-color: var(--bg-secondary);
+  border-radius: 0 4px 4px 0;
+}
+
+.tco-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.tco-icon {
+  opacity: 0.7;
+}
+
+.tco-label {
+  font-weight: 500;
+}
+
+.tco-title {
+  color: var(--text-tertiary);
+}
+
+.tco-body {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.tco-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Specific Types */
+.type-decision { border-left-color: #3b82f6; }
+.type-decision .tco-icon { color: #3b82f6; }
+
+.type-trade-off { border-left-color: #eab308; }
+.type-trade-off .tco-icon { color: #eab308; }
+
+.type-warning { border-left-color: #ef4444; }
+.type-warning .tco-icon { color: #ef4444; }
+
+.type-implemented { border-left-color: #10b981; }
+.type-implemented .tco-icon { color: #10b981; }
+
+.type-experimental { border-left-color: #8b5cf6; }
+.type-experimental .tco-icon { color: #8b5cf6; }
+
+
+/* ─── System Status Badge ─── */
+.system-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background-color: var(--bg-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+}
+
+.ssb-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--text-tertiary);
+}
+
+.ssb-version {
+  color: var(--text-tertiary);
+  padding-left: 0.25rem;
+  border-left: 1px solid var(--border-color);
+}
+
+.status-implemented .ssb-dot { background-color: #10b981; }
+.status-experimental .ssb-dot { background-color: #8b5cf6; }
+.status-planned .ssb-dot { background-color: #3b82f6; }
+.status-conceptual .ssb-dot { background-color: #f59e0b; }
+
+/* ─── Metric Cards ─── */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2.5rem 0;
+}
+
+.metric-card {
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  border-radius: 4px;
+}
+
+.mc-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.mc-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.mc-value {
+  font-family: var(--font-sans);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.mc-suffix {
+  font-size: 1rem;
+  color: var(--text-tertiary);
+}
+
+.mc-trend {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+/* ─── Code Presentation Block ─── */
+.editorial-code-block {
+  margin: 2.5rem 0;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #0d1117; /* specific dark bg for code */
+}
+
+.ecb-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.ecb-title {
+  color: #e6edf3;
+}
+
+.ecb-lang {
+  color: #7d8590;
+  text-transform: uppercase;
+}
+
+.ecb-body {
+  padding: 1.25rem;
+  overflow-x: auto;
+}
+
+.ecb-body pre {
+  margin: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* ─── Comparison Table ─── */
+.comparison-table-wrapper {
+  margin: 2.5rem 0;
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.comparison-table th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: normal;
+}
+
+.comparison-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.comparison-table tbody tr:hover td {
+  background-color: var(--bg-secondary);
+}
+
+/* ─── Related Articles Block ─── */
+.related-articles-graph {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.rag-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.rag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.rag-item {
+  display: block;
+  padding: 1.5rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.rag-item:hover {
+  background-color: var(--bg-primary);
+  border-color: var(--border-color);
+}
+
+.ragi-series {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.ragi-title {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+/* ─── Diagrams ─── */
+.architecture-diagram {
+  margin: 3rem 0;
+}
+
+.architecture-diagram .diagram-title,
+.decision-matrix .diagram-title,
+.editorial-timeline .diagram-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.ad-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.architecture-diagram.dir-vertical .ad-container {
+  flex-direction: column;
+}
+
+.ad-node {
+  padding: 1.25rem 2rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  border-radius: 4px;
+  text-align: center;
+  min-width: 200px;
+}
+
+.ad-node.type-highlight {
+  border-color: var(--text-primary);
+}
+
+.adn-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.adn-subtext {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.ad-connector {
+  color: var(--text-tertiary);
+  width: 24px;
+  height: 24px;
+}
+
+.architecture-diagram.dir-vertical .ad-connector {
+  margin: 0.5rem 0;
+}
+
+.architecture-diagram.dir-horizontal .ad-connector {
+  margin: 0 0.5rem;
+}
+
+/* Matrix */
+.decision-matrix {
+  margin: 3rem 0;
+}
+
+.dm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background-color: var(--border-color);
+  border: 1px solid var(--border-color);
+}
+
+.dm-quadrant {
+  background-color: var(--bg-primary);
+  padding: 2rem;
+}
+
+.dmq-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.dmq-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Timeline */
+.editorial-timeline {
+  margin: 3rem 0;
+}
+
+.etl-container {
+  border-left: 1px solid var(--border-color);
+  padding-left: 2rem;
+  position: relative;
+}
+
+.etl-event {
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.etl-event:last-child {
+  margin-bottom: 0;
+}
+
+.etl-marker {
+  position: absolute;
+  left: -2.25rem;
+  top: 0.25rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  border: 2px solid var(--text-tertiary);
+}
+
+.etl-date {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  margin-bottom: 0.5rem;
+}
+
+.etl-title {
+  font-size: 1.125rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.etl-desc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}

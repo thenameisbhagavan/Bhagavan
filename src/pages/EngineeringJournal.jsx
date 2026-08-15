@@ -121,41 +121,53 @@ export default function EngineeringJournal() {
 
       <div className="j-bounds">
         
-        {/* ══════════════════════════════════════════════════════
-            1. HERO
+                {/* ══════════════════════════════════════════════════════
+            1. HERO 2026
         ══════════════════════════════════════════════════════ */}
-        <section className="j-hero" data-nav-theme="light">
-          <m.div className="jh-meta" initial="hidden" animate="visible" variants={fadeUp}>
-            ENGINEERING JOURNAL / 2026<br/>
-            SYSTEMS · ARCHITECTURE · AI · PRODUCT ENGINEERING
-          </m.div>
+        <section className="j-hero-2026" data-nav-theme="dark">
+          <div className="jh26-aurora">
+            <div className="aurora-layer aurora-1"></div>
+            <div className="aurora-layer aurora-2"></div>
+            <div className="jh26-grain"></div>
+          </div>
+          
+          <div className="jh26-content">
+            {/* Top rule */}
+            <m.div className="jh26-rule" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.8, ease: appleEase }} />
+            
+            <m.div className="jh26-eyebrow" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.0, ease: appleEase, delay: 0.2 }}>
+              <span className="jh26-eyebrow-label">THE ENGINEERING JOURNAL</span>
+              <span className="jh26-eyebrow-count">{articles.length} ESSAYS</span>
+            </m.div>
 
-          <div className="jh-grid">
-            <div className="jh-main">
-              <m.h1 className="jh-headline" initial="hidden" animate="visible" variants={fadeUp}>
-                I write about what happens between an idea and a system.
-              </m.h1>
-              <m.p className="jh-sub" initial="hidden" animate="visible" variants={fadeUp}>
-                Architecture decisions, experiments, failures, reasoning patterns, and the engineering lessons behind the products I build.
-              </m.p>
-            </div>
-            <m.div className="jh-index" initial="hidden" animate="visible" variants={fadeUp}>
-              <div className="jhi-item">
-                <span className="jhi-num">01</span>
-                <span className="jhi-title">SYSTEMS</span>
-              </div>
-              <div className="jhi-item">
-                <span className="jhi-num">02</span>
-                <span className="jhi-title">ARCHITECTURE</span>
-              </div>
-              <div className="jhi-item">
-                <span className="jhi-num">03</span>
-                <span className="jhi-title">EXPERIMENTS</span>
-              </div>
-              <div className="jhi-item">
-                <span className="jhi-num">04</span>
-                <span className="jhi-title">PERSPECTIVE</span>
-              </div>
+            <m.h1 className="jh26-headline" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.4, ease: appleEase, delay: 0.15 }}>
+              <span className="jh26-line-1">Where systems</span>
+              <span className="jh26-line-2">meet <em>reality.</em></span>
+            </m.h1>
+
+            <m.p className="jh26-sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5, delay: 0.4, ease: appleEase }}>
+              Architecture decisions, experiments, failures,<br/>and the engineering logic behind intelligent products.
+            </m.p>
+
+            {/* Bottom metadata strip */}
+            <m.div className="jh26-strip" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.6, ease: appleEase }}>
+              <span>SYSTEMS ARCHITECTURE</span>
+              <span className="jh26-strip-dot">·</span>
+              <span>AI ENGINEERING</span>
+              <span className="jh26-strip-dot">·</span>
+              <span>PRODUCT DESIGN</span>
+              <span className="jh26-strip-dot">·</span>
+              <span>2026</span>
+            </m.div>
+
+            <m.div className="jh26-rule jh26-rule-bottom" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.8, ease: appleEase, delay: 0.5 }} />
+
+            {/* Scroll indicator */}
+            <m.div className="jh26-scroll-cue" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.0, delay: 1.2 }}>
+              <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+                <rect x="1" y="1" width="14" height="22" rx="7" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5"/>
+                <circle className="jh26-scroll-dot" cx="8" cy="7" r="2" fill="rgba(255,255,255,0.6)"/>
+              </svg>
             </m.div>
           </div>
         </section>
@@ -165,7 +177,7 @@ export default function EngineeringJournal() {
       {/* ══════════════════════════════════════════════════════
           2. CONTROL BAR
       ══════════════════════════════════════════════════════ */}
-      <div className="j-control-bar">
+      <div className="j-control-bar" data-nav-theme="light">
         <div className="j-bounds">
           <div className="jcb-inner">
             <div className="jcb-left">THE JOURNAL</div>
@@ -227,7 +239,7 @@ export default function EngineeringJournal() {
           </m.div>
 
           <div className="jn-list">
-            {filteredArticles.slice(0, 10).map((article, i) => (
+            {filteredArticles.map((article, i) => (
               <m.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <Link to={`/journal/${article.slug}`} className="jn-row">
                   <span className="jn-num">{(filteredArticles.length - i).toString().padStart(2, '0')}</span>
@@ -305,7 +317,7 @@ export default function EngineeringJournal() {
       {/* ══════════════════════════════════════════════════════
           7. FIELD NOTES
       ══════════════════════════════════════════════════════ */}
-      <section className="j-notes" data-nav-theme="light">
+      <section className="j-notes" data-nav-theme="dark">
         <div className="j-bounds">
           <div className="jn-grid">
             <m.div className="jn-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
