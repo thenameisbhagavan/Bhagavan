@@ -22,6 +22,7 @@ const PAGE_META = {
   '/journal':     { label: 'Engineering Journal', sub: 'Systems & Architecture' },
   '/connect':     { label: 'Connect',             sub: 'Open Channel' },
   '/resume':      { label: 'Resume',              sub: 'Professional Record' },
+  '/signal':      { label: 'Signal',              sub: 'Observations & Workflows' },
   '/work':        { label: 'Products',            sub: 'Digital Experiences' },
 };
 
@@ -214,5 +215,6 @@ export const TRANSITION_CONFIGS = {
   '/journal':     { totalDuration: 1100 },
   '/connect':     { totalDuration: 1100 },
   '/resume':      { totalDuration: 1100 },
+  '/signal':      { totalDuration: 1100 },
   '/work':        { totalDuration: 1100 },
 };

@@ -26,25 +26,35 @@ const PRIMARY_NAV = [
     ],
   },
 
-  { label: "Vision", path: "/vision" },
-
-  { label: "Engineering Journal", path: "/journal" },
+  {
+    label: "Perspective",
+    type: "editorial",
+    dropdown: [
+      { num: "01", label: "VISION", sub: "Direction & Philosophy", path: "/vision", preview: "Direction, philosophy, and the systems I want to build." },
+      { num: "02", label: "ENGINEERING JOURNAL", sub: "Systems, Experiments & Engineering", path: "/journal", preview: "Architecture decisions, experiments, failures, and engineering logic." },
+      { num: "03", label: "SIGNAL", sub: "Observations, Tools & Current Thinking", path: "/signal", preview: "Tools, questions, experiments, and decisions shaping how I build." },
+    ]
+  },
 
   { label: "Connect", path: "/connect" },
 ];
 
 const MOBILE_NAV = [
-{ label: "Overview",      path: "/" },
-{ label: "Products",      path: "/work" },
-{ label: "Journey",       path: "/experience" },
-{ label: "Innovation",    path: "/innovation" },
-{ label: "Credentials",   path: "/credentials" },
-{ label: "Academic Archive", path: "/academic-archive" },
-{ label: "Technology",    path: "/ecosystem" },
-{ label: "Vision",        path: "/vision" },
-{ label: "Resume",        path: "/resume" },
-{ label: "Journal",       path: "/journal" },
-{ label: "Connect",       path: "/connect" },
+  { label: "Overview",      path: "/" },
+  { label: "Products",      path: "/work" },
+  { label: "Journey",       path: "/experience" },
+  { label: "Innovation",    path: "/innovation" },
+  { label: "Credentials",   path: "/credentials" },
+  { label: "Academic Archive", path: "/academic-archive" },
+  { label: "Technology",    path: "/ecosystem" },
+  
+  { isHeader: true, label: "PERSPECTIVE", sub: "VIEW / THINK / BUILD" },
+  { label: "01 Vision", sub: "Direction & Philosophy", path: "/vision", indented: true },
+  { label: "02 Engineering Journal", sub: "Systems, Experiments & Engineering", path: "/journal", indented: true },
+  { label: "03 Signal", sub: "Observations, Tools & Current Thinking", path: "/signal", indented: true },
+
+  { label: "Resume",        path: "/resume" },
+  { label: "Connect",       path: "/connect" },
 ];
 
 // ─────────────────────────────────────────────
@@ -55,14 +65,15 @@ const SEARCH_PAGES = [
   { title: "Products",              path: "/work",        keywords: "projects work portfolio careeros aurabot resume smart leave" },
   { title: "VoltDrive - EV Experience", path: "/work/voltdrive", keywords: "voltdrive electric vehicle ev automotive showroom frontend key note apple" },
   { title: "Journey",               path: "/experience",  keywords: "experience career timeline internships education" },
-  { title: "Vision",                path: "/vision",      keywords: "future goals mission direction roadmap" },
+  { title: "Vision",                path: "/vision",      keywords: "future goals mission direction roadmap perspective" },
   { title: "Connect",               path: "/connect",     keywords: "contact email message hire collaboration" },
   { title: "Innovation",            path: "/innovation",  keywords: "research engineering ai machine learning" },
   { title: "Credentials",           path: "/credentials", keywords: "certifications awards achievements badges" },
   { title: "Academic Archive",      path: "/academic-archive", keywords: "education university school btech certificates diploma" },
   { title: "Technology Ecosystem",  path: "/ecosystem",   keywords: "stack architecture tools frameworks react node python mongodb" },
   { title: "Resume",                path: "/resume",      keywords: "cv download pdf curriculum vitae" },
-  { title: "Engineering Journal",   path: "/journal",    keywords: "blog articles engineering journal writing insights posts" },
+  { title: "Engineering Journal",   path: "/journal",    keywords: "blog articles engineering journal writing insights posts systems experiments perspective" },
+  { title: "Signal",                path: "/signal",      keywords: "signal observing noticing workflow tools reading building experimenting desk latest observations current thinking perspective" },
 ];
 
 // Quick links shown when search is empty
@@ -269,6 +280,113 @@ const CSS = `
     margin: 4px 8px;
   }
 
+  /* ── Perspective Editorial Dropdown ── */
+  .nav-perspective-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    padding: 16px;
+    width: 320px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+    z-index: 9020;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pd-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 12px 16px 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    margin-bottom: 8px;
+  }
+
+  .pd-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: #111111;
+  }
+
+  .pd-subtitle {
+    font-family: var(--font-signal-mono, "JetBrains Mono", monospace);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: #86868b;
+  }
+
+  .pd-item {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .pd-item:hover {
+    background: rgba(0,0,0,0.02);
+    transform: translateX(4px);
+  }
+
+  .pd-item-num {
+    font-family: var(--font-signal-mono, "JetBrains Mono", monospace);
+    font-size: 10px;
+    color: #86868b;
+    margin-top: 2px;
+    transition: opacity 0.2s ease;
+  }
+
+  .pd-item:hover .pd-item-num {
+    opacity: 0.4;
+  }
+
+  .pd-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .pd-item-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #111111;
+  }
+
+  .pd-item-sub {
+    font-size: 11px;
+    color: #6B6B6B;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+  }
+
+  .pd-item:hover .pd-item-sub {
+    color: #111111;
+  }
+
+  .pd-preview {
+    margin-top: 8px;
+    padding: 12px;
+    background: rgba(0,0,0,0.02);
+    border-radius: 6px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #111111;
+    font-style: italic;
+  }
+
   /* ── Right actions ── */
   .nav-actions {
     justify-self: end;
@@ -409,6 +527,46 @@ const CSS = `
     height: 1px;
     background: rgba(0,0,0,0.06);
     margin: 16px 0;
+  }
+
+  .nav-mobile-header {
+    font-family: var(--font-signal-mono, "JetBrains Mono", monospace);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #86868b;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .nav-mobile-sublink {
+    font-size: clamp(20px, 5vw, 28px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: #1d1d1f;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 8px 0 8px 16px;
+    cursor: pointer;
+    line-height: 1.2;
+    transition: opacity 0.2s ease, transform 0.25s ease;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .nav-mobile-sublink span.sub {
+    font-size: 13px;
+    color: #86868b;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .nav-mobile-sublink:hover {
+    opacity: 0.4;
+    transform: translateX(8px);
   }
 
   /* ── Body lock ── */
@@ -620,6 +778,7 @@ export default function Navbar() {
   const [mobileOpen,   setMobileOpen]   = useState(false);
   const [searchOpen,   setSearchOpen]   = useState(false);
   const [searchQuery,  setSearchQuery]  = useState("");
+  const [hoveredPerspective, setHoveredPerspective] = useState(null);
 
   const ddTimer = useRef(null);
   const searchRef = useRef(null);
@@ -679,9 +838,14 @@ export default function Navbar() {
     );
   }, [searchQuery]);
 
-  const isActive = (path) => location.pathname === path ||
-    (path === "/" && (location.pathname === "/overview" || location.pathname === "/home")) ||
-    (path === "/work" && location.pathname.startsWith("/work/"));
+  const isActive = (path, item = null) => {
+    if (item && item.dropdown) {
+      return item.dropdown.some(sub => location.pathname === sub.path);
+    }
+    return location.pathname === path ||
+      (path === "/" && (location.pathname === "/overview" || location.pathname === "/home")) ||
+      (path === "/work" && location.pathname.startsWith("/work/"));
+  };
 
   // Dropdown hover handlers
   const handleItemEnter = (label) => {
@@ -855,34 +1019,54 @@ export default function Navbar() {
           >
             <button className="nav-mobile-close" onClick={() => setMobileOpen(false)}>✕</button>
 
-            {MOBILE_NAV.slice(0, 5).map((item, i) => (
-              <m.button
-                key={item.label}
-                className="nav-mobile-link"
-                onClick={() => go(item.path)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05, duration: 0.4, ease }}
-              >
-                {item.label}
-              </m.button>
-            ))}
+            {MOBILE_NAV.map((item, i) => {
+              if (item.isHeader) {
+                return (
+                  <React.Fragment key={item.label}>
+                    <div className="nav-mobile-divider" />
+                    <m.div
+                      className="nav-mobile-header"
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.05, duration: 0.4, ease }}
+                    >
+                      {item.label} <br/> <span style={{fontSize: "9px"}}>{item.sub}</span>
+                    </m.div>
+                  </React.Fragment>
+                );
+              }
 
-            <div className="nav-mobile-divider" />
+              if (item.indented) {
+                return (
+                  <m.button
+                    key={item.label}
+                    className="nav-mobile-sublink"
+                    onClick={() => go(item.path)}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.05, duration: 0.4, ease }}
+                  >
+                    {item.label}
+                    <span className="sub">{item.sub}</span>
+                  </m.button>
+                );
+              }
 
-            {MOBILE_NAV.slice(5).map((item, i) => (
-              <m.button
-                key={item.label}
-                className="nav-mobile-link"
-                onClick={() => go(item.path)}
-                style={{ fontSize: "clamp(22px, 5vw, 34px)", fontWeight: 500, opacity: 0.5 }}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 0.5, y: 0 }}
-                transition={{ delay: 0.25 + i * 0.05, duration: 0.4, ease }}
-              >
-                {item.label}
-              </m.button>
-            ))}
+              const isSecondary = item.label === "Resume" || item.label === "Connect";
+              return (
+                <m.button
+                  key={item.label}
+                  className="nav-mobile-link"
+                  onClick={() => go(item.path)}
+                  style={isSecondary ? { fontSize: "clamp(22px, 5vw, 34px)", fontWeight: 500, opacity: 0.5, marginTop: isSecondary && item.label === "Resume" ? "24px" : "0" } : {}}
+                  initial={{ opacity: 0, y: isSecondary ? 16 : 20 }}
+                  animate={isSecondary ? { opacity: 0.5, y: 0 } : { opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05, duration: 0.4, ease }}
+                >
+                  {item.label}
+                </m.button>
+              );
+            })}
 
           </m.div>
         )}
@@ -910,6 +1094,8 @@ export default function Navbar() {
               {PRIMARY_NAV.map((item) => {
                 if (item.dropdown) {
                   const open = activeDD === item.label;
+                  const isEditorial = item.type === "editorial";
+                  const itemIsActive = isActive(item.path, item);
                   return (
                     <div
                       key={item.label}
@@ -918,7 +1104,7 @@ export default function Navbar() {
                       onMouseLeave={handleItemLeave}
                     >
                       <button
-                        className={`nav-btn apple-pressable ${open ? "active" : ""}`}
+                        className={`nav-btn apple-pressable ${open || itemIsActive ? "active" : ""}`}
                         onClick={() => go(item.dropdown[0].path)}
                       >
                         {item.label}
@@ -931,26 +1117,63 @@ export default function Navbar() {
                       <AnimatePresence>
                         {open && (
                           <m.div
-                            className="nav-dropdown"
+                            className={isEditorial ? "nav-perspective-dropdown" : "nav-dropdown"}
                             initial={{ opacity: 0, y: -8, scale: 0.98 }}
                             animate={{ opacity: 1, y: 0,  scale: 1 }}
                             exit={{ opacity: 0, y: -8, scale: 0.98 }}
                             transition={{ duration: 0.22, ease }}
                             onMouseEnter={handleDDEnter}
-                            onMouseLeave={handleItemLeave}
+                            onMouseLeave={() => { handleItemLeave(); setHoveredPerspective(null); }}
                           >
-                            {item.dropdown.map((sub, idx) => (
-                              <React.Fragment key={sub.label}>
-                                {idx > 0 && <div className="nav-dropdown-divider" />}
-                                <button
-                                  className="nav-dropdown-item apple-pressable"
-                                  onClick={() => go(sub.path)}
-                                >
-                                  <span className="nav-dropdown-label">{sub.label}</span>
-                                  <span className="nav-dropdown-sub">{sub.sub}</span>
-                                </button>
-                              </React.Fragment>
-                            ))}
+                            {isEditorial ? (
+                              <>
+                                <div className="pd-header">
+                                  <span className="pd-title">PERSPECTIVE</span>
+                                  <span className="pd-subtitle">VIEW / THINK / BUILD</span>
+                                </div>
+                                {item.dropdown.map((sub) => (
+                                  <button
+                                    key={sub.label}
+                                    className="pd-item"
+                                    onClick={() => go(sub.path)}
+                                    onMouseEnter={() => setHoveredPerspective(sub.preview)}
+                                  >
+                                    <span className="pd-item-num">{sub.num}</span>
+                                    <div className="pd-item-content">
+                                      <span className="pd-item-label">{sub.label}</span>
+                                      <span className="pd-item-sub">{sub.sub}</span>
+                                    </div>
+                                  </button>
+                                ))}
+                                <AnimatePresence mode="wait">
+                                  {hoveredPerspective && (
+                                    <m.div
+                                      key={hoveredPerspective}
+                                      className="pd-preview"
+                                      initial={{ opacity: 0, y: 4 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      exit={{ opacity: 0, y: -4 }}
+                                      transition={{ duration: 0.2 }}
+                                    >
+                                      {hoveredPerspective}
+                                    </m.div>
+                                  )}
+                                </AnimatePresence>
+                              </>
+                            ) : (
+                              item.dropdown.map((sub, idx) => (
+                                <React.Fragment key={sub.label}>
+                                  {idx > 0 && <div className="nav-dropdown-divider" />}
+                                  <button
+                                    className="nav-dropdown-item apple-pressable"
+                                    onClick={() => go(sub.path)}
+                                  >
+                                    <span className="nav-dropdown-label">{sub.label}</span>
+                                    <span className="nav-dropdown-sub">{sub.sub}</span>
+                                  </button>
+                                </React.Fragment>
+                              ))
+                            )}
                           </m.div>
                         )}
                       </AnimatePresence>

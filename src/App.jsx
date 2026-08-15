@@ -24,6 +24,7 @@ const EngineeringJournal = lazy(() => import("./pages/EngineeringJournal"));
 const AboutJournal = lazy(() => import("./pages/AboutJournal"));
 const Platforms = lazy(() => import("./pages/journal/Platforms"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));
+const Signal = lazy(() => import("./pages/Signal"));
 
 const AcademicArchive = lazy(() => import("./pages/AcademicArchive"));
 
@@ -150,6 +151,7 @@ function App() {
               <Route path="/journal/about" element={<LazyRoute><AboutJournal /></LazyRoute>} />
               <Route path="/journal/platforms" element={<LazyRoute><Platforms /></LazyRoute>} />
               <Route path="/journal/:slug" element={<LazyRoute><ArticlePage /></LazyRoute>} />
+              <Route path="/signal" element={<LazyRoute><Signal /></LazyRoute>} />
 
               {/* 404 */}
               <Route path="*" element={<NotFound />} />

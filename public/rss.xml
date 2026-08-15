@@ -6,7 +6,7 @@
     <link>https://thenameisbhagavan.in/journal</link>
     <atom:link href="https://thenameisbhagavan.in/rss.xml" rel="self" type="application/rss+xml" />
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Aug 2026 16:47:09 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2026 17:32:58 GMT</lastBuildDate>
     <item>
       <title><![CDATA[AuraOS Architecture]]></title>
       <description><![CDATA[Deconstructing the AuraOS intelligence pipeline: orchestrators, tool registries, and the Gemini API.]]></description>
