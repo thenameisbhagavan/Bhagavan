@@ -65,6 +65,7 @@ const pageRoutes = [
   '/ecosystem',
   '/resume',
   '/journal',
+  '/academic-archive',
 ];
 
 const productRoutes = [

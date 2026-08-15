@@ -24,7 +24,8 @@ const SEO = ({
     '/vision': 'TheNameIsBhagavan — Vision',
     '/journal': 'TheNameIsBhagavan — Engineering Journal',
     '/connect': 'TheNameIsBhagavan — Connect',
-    '/resume': 'TheNameIsBhagavan — Resume'
+    '/resume': 'TheNameIsBhagavan — Resume',
+    '/academic-archive': 'TheNameIsBhagavan — Academic Archive'
   };
 
   // Check if it's a specific project or article page to maintain custom titles if needed,

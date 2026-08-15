@@ -26,6 +26,7 @@ const routes = [
   '/ecosystem',
   '/resume',
   '/journal',
+  '/academic-archive',
   ...slugs.map(slug => `/journal/${slug}`)
 ];
 

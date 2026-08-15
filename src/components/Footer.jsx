@@ -1,213 +1,254 @@
-import React, { memo } from 'react';
+import React, { memo, useState, useCallback, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { m } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { socialLinks } from '../constants/socialLinks';
-import profileImg from '../assets/profile-hero.jpg';
+
+// Images for system previews
+import careerOsImg from '../assets/careeros-ui.png';
+import auraOsImg from '../assets/auraos-ui.png';
+import voltDriveImg from '../assets/ev.png';
+import veritasImg from '../assets/fake.jpg';
+
 import '../styles/Footer.css';
 
-// Exact Apple Motion Curve
 const appleEase = [0.22, 1, 0.36, 1];
 
 const Footer = memo(function Footer() {
   const navigate = useNavigate();
-
-  const handleNavigation = (path) => {
+  const [hoveredSystem, setHoveredSystem] = useState(null);
+  
+  // Track mouse for preview positioning (though we want it anchored to grid, we can just position it absolute relative to the container)
+  
+  const handleNavigation = useCallback((path) => {
     navigate(path);
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  };
+  }, [navigate]);
 
   const navLinks = [
-    { name: "Overview", path: "/" },
-    { name: "Products", path: "/work" },
-    { name: "Journey", path: "/innovation" },
-    { name: "Capabilities", path: "/ecosystem" },
-    { name: "Connect", path: "/connect" },
-    { name: "Resume", path: "/resume" }
+    { num: "01", name: "OVERVIEW", path: "/" },
+    { num: "02", name: "PRODUCTS", path: "/work" },
+    { num: "03", name: "JOURNEY", path: "/innovation" },
+    { num: "04", name: "CAPABILITIES", path: "/ecosystem" },
+    { num: "05", name: "CONNECT", path: "/connect" },
+    { num: "06", name: "RESUME", path: "/resume" }
   ];
 
   const systems = [
-    { id: "01", name: "CareerOS", desc: "Career Intelligence", url: "https://careeros-thenameisbhagavan.vercel.app/" },
-    { id: "02", name: "AuraOS", desc: "AI Memory & Context", url: "https://aura-os-thenameisbhagavan.vercel.app/" },
-    { id: "03", name: "VERITAS", desc: "Reasoning & Evidence", url: "https://veritas-thenameisbhagavan.vercel.app/" },
-    { id: "04", name: "VoltDrive", desc: "Digital Product Experience", url: "https://voltdrive-thenameisbhagavan.vercel.app/" },
+    { id: "01", name: "CareerOS", desc: "Career Intelligence", url: "https://careeros-thenameisbhagavan.vercel.app/", img: careerOsImg },
+    { id: "02", name: "AuraOS", desc: "AI Memory & Context", url: "https://aura-os-thenameisbhagavan.vercel.app/", img: auraOsImg },
+    { id: "03", name: "VERITAS", desc: "Reasoning & Evidence", url: "https://veritas-thenameisbhagavan.vercel.app/", img: veritasImg },
+    { id: "04", name: "VoltDrive", desc: "Digital Product Experience", url: "https://voltdrive-thenameisbhagavan.vercel.app/", img: voltDriveImg },
   ];
 
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="footer-signature-container">
-      <div className="footer-content-bounds">
+    <footer className="footer-sig">
+      {/* Huge subtle watermark background */}
+      <div className="footer-watermark pointer-events-none" aria-hidden="true">
+        TNB
+      </div>
 
-
+      <div className="footer-sig-bounds">
         
-        {/* ==================== ZONE 1: OPENING STATEMENT ==================== */}
-        <div className="footer-zone-statement">
-          <m.h2 
-            className="footer-statement-headline"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: appleEase }}
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            Building intelligent systems.<br/>
-            Shipping products that matter.
-          </m.h2>
-          <m.div 
-            className="footer-technical-signature"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.1, ease: appleEase }}
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            PYTHON · FASTAPI · REACT · AI SYSTEMS · PRODUCT ENGINEERING
-          </m.div>
-        </div>
-
-        <div className="footer-hairline"></div>
-
-        {/* ==================== ZONE 2: EDITORIAL GRID ==================== */}
-        <div className="footer-editorial-grid">
-          
-          {/* Column 1: Explore */}
-          <div className="footer-column footer-explore">
-            <h3 className="footer-col-title">EXPLORE</h3>
-            <ul className="footer-explore-list">
-              {navLinks.map((link, idx) => (
-                <m.li 
-                  key={idx}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: idx * 0.08, ease: appleEase }}
-                  viewport={{ once: true }}
-                >
-                  <button onClick={() => handleNavigation(link.path)} className="footer-text-link">
-                    {link.name} <span className="footer-arrow">→</span>
-                  </button>
-                </m.li>
-              ))}
-            </ul>
+        {/* 1. ENTRY & STATEMENT */}
+        <div className="fsig-zone fsig-entry">
+          <div className="fsig-micro-label">
+            <div className="fsig-hairline"></div>
+            <span>TNB / SYSTEMS / {currentYear}</span>
           </div>
 
-          {/* Column 2: Systems Index */}
-          <div className="footer-column footer-systems">
-            <h3 className="footer-col-title">SYSTEMS</h3>
-            <ul className="footer-systems-list">
-              {systems.map((sys, idx) => (
-                <m.li 
-                  key={idx}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: idx * 0.08, ease: appleEase }}
-                  viewport={{ once: true }}
-                >
-                  <a href={sys.url} target="_blank" rel="noopener noreferrer" className="footer-system-row">
-                    <span className="fs-id">{sys.id}</span>
-                    <div className="fs-content">
-                      <span className="fs-name">{sys.name}</span>
-                      <span className="fs-desc">{sys.desc}</span>
-                    </div>
-                    <span className="fs-arrow">↗</span>
-                  </a>
-                </m.li>
-              ))}
-            </ul>
-          </div>
+          <div className="fsig-statement-wrap">
+            <m.h2 
+              className="fsig-statement"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: appleEase }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              THE WORK<br />CONTINUES.
+            </m.h2>
 
-          {/* Column 3: Connect (Hierarchy) */}
-          <div className="footer-column footer-connect">
-            <h3 className="footer-col-title">CONNECT</h3>
-            
-            <ul className="footer-connect-primary">
-              <m.li initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.0, ease: appleEase }} viewport={{ once: true }}>
-                <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer" className="footer-text-link">GitHub <span className="footer-arrow">↗</span></a>
-              </m.li>
-              <m.li initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.08, ease: appleEase }} viewport={{ once: true }}>
-                <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer" className="footer-text-link">LinkedIn <span className="footer-arrow">↗</span></a>
-              </m.li>
-              <m.li initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.16, ease: appleEase }} viewport={{ once: true }}>
-                <a href={socialLinks.email.url} target="_blank" rel="noopener noreferrer" className="footer-text-link">Email <span className="footer-arrow">↗</span></a>
-              </m.li>
-            </ul>
-            
             <m.div 
-              className="footer-connect-secondary"
+              className="fsig-wordmark brand-cursive"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: appleEase }}
-              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.3, ease: appleEase }}
+              viewport={{ once: true, amount: 0.2 }}
             >
-              <a href={socialLinks.instagram.url} target="_blank" rel="noopener noreferrer">Instagram</a> · 
-              <a href={socialLinks.twitter.url} target="_blank" rel="noopener noreferrer">X</a> · 
-              <a href={socialLinks.youtube.url} target="_blank" rel="noopener noreferrer">YouTube</a> · 
-              <a href={socialLinks.portfolio.url} target="_blank" rel="noopener noreferrer">Portfolio</a>
+              TheNameIsBhagavan
             </m.div>
-
           </div>
         </div>
 
-        <div className="footer-hairline"></div>
+        {/* 2. EDITORIAL NAVIGATION */}
+        <div className="fsig-zone fsig-nav-grid">
+          {navLinks.map((link, idx) => (
+            <m.button 
+              key={link.num}
+              className="fsig-nav-item"
+              onClick={() => handleNavigation(link.path)}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: idx * 0.05, ease: appleEase }}
+              viewport={{ once: true }}
+            >
+              <span className="fsig-nav-num">{link.num}</span>
+              <span className="fsig-nav-name">{link.name}</span>
+              <span className="fsig-nav-arrow">→</span>
+            </m.button>
+          ))}
+        </div>
 
-        {/* ==================== ZONE 3: ENGINEERING STATUS ==================== */}
-        <m.div 
-          className="footer-status-block"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.1, ease: appleEase }}
-          viewport={{ once: true }}
-        >
-          <div className="status-label">CURRENTLY BUILDING</div>
-          <div className="status-focus">AI SYSTEMS · PRODUCT ENGINEERING · ENGINEERING JOURNAL</div>
-          <div className="status-indicator">
-            <span className="status-title">STATUS</span>
-            <span className="status-dot"></span>
-            <span className="status-value">BUILDING</span>
-          </div>
-        </m.div>
+        <div className="fsig-hairline subtle-div"></div>
 
-        <div className="footer-hairline"></div>
-
-        {/* ==================== ZONE 4: TNB BRAND STAMP ==================== */}
-        <div className="footer-zone-closing">
+        {/* 3. SELECTED SYSTEMS */}
+        <div className="fsig-zone fsig-systems-zone">
           <m.div 
-            className="footer-brand-signature"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2, ease: appleEase }}
+            className="fsig-label"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: appleEase }}
             viewport={{ once: true }}
           >
-            <div className="brand-name brand-cursive">TheNameIsBhagavan</div>
-            <div className="brand-detail" style={{ lineHeight: 1.8 }}>
-              AI SYSTEMS<br/>
-              PRODUCT ENGINEERING<br/>
-              FULL-STACK DEVELOPMENT
+            SELECTED SYSTEMS
+          </m.div>
+
+          <div className="fsig-systems-container">
+            <div className="fsig-systems-list">
+              {systems.map((sys, idx) => (
+                <m.a
+                  key={sys.id}
+                  href={sys.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="fsig-system-row"
+                  onMouseEnter={() => setHoveredSystem(sys)}
+                  onMouseLeave={() => setHoveredSystem(null)}
+                  onClick={() => {
+                    // Mobile tap to reveal logic
+                    if (window.innerWidth <= 768 && hoveredSystem?.id !== sys.id) {
+                      setHoveredSystem(sys);
+                    }
+                  }}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: idx * 0.08, ease: appleEase }}
+                  viewport={{ once: true }}
+                >
+                  <span className="fs-row-id">{sys.id}</span>
+                  <span className="fs-row-name">{sys.name}</span>
+                  <span className="fs-row-desc">{sys.desc}</span>
+                  <span className="fs-row-arrow">↗</span>
+                </m.a>
+              ))}
             </div>
+
+            {/* Anchored / Mobile Preview Area */}
+            <div className={`fsig-preview-area ${hoveredSystem ? 'has-preview' : ''}`}>
+              <AnimatePresence mode="wait">
+                {hoveredSystem && (
+                  <m.div
+                    key={hoveredSystem.id}
+                    className="fsig-preview-box"
+                    initial={{ opacity: 0, scale: 0.97, y: 8 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.97, transition: { duration: 0.2 } }}
+                    transition={{ duration: 0.5, ease: appleEase }}
+                  >
+                    {hoveredSystem.img ? (
+                      <img 
+                        src={hoveredSystem.img} 
+                        alt={`${hoveredSystem.name} product interface`} 
+                        className="fsig-preview-img" 
+                        loading={hoveredSystem.id === "01" ? "eager" : "lazy"} 
+                        decoding="async"
+                      />
+                    ) : (
+                      <div className="fsig-preview-type">
+                        <span className="fsig-preview-logo">{hoveredSystem.name}</span>
+                        <span className="fsig-preview-sub">SYSTEM PLATFORM</span>
+                      </div>
+                    )}
+                  </m.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+
+        <div className="fsig-hairline subtle-div"></div>
+
+        {/* 4. CONTACT AREA */}
+        <div className="fsig-zone fsig-contact">
+          <m.div 
+            className="fsig-contact-statement"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: appleEase }}
+            viewport={{ once: true }}
+          >
+            AVAILABLE FOR<br />MEANINGFUL WORK.
           </m.div>
 
-          <m.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: appleEase }}
-            viewport={{ once: true }}
-            style={{ 
-              fontSize: '10px', 
-              fontWeight: 600, 
-              letterSpacing: '0.14em', 
-              color: '#aeaeb2', 
-              textTransform: 'uppercase',
-              textAlign: 'center',
-              margin: '24px 0'
-            }}
-          >
-            TNB / {new Date().getFullYear()}
-          </m.div>
-          
+          <div className="fsig-contact-links">
+            <m.a 
+              href={socialLinks.email.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="fsig-email-primary"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: appleEase }}
+              viewport={{ once: true }}
+            >
+              Email →
+            </m.a>
+
+            <m.div 
+              className="fsig-social-secondary"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: appleEase }}
+              viewport={{ once: true }}
+            >
+              <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer">GitHub</a> · 
+              <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer">LinkedIn</a> · 
+              <a href={socialLinks.instagram.url} target="_blank" rel="noopener noreferrer">Instagram</a> · 
+              <a href={socialLinks.twitter.url} target="_blank" rel="noopener noreferrer">X</a> · 
+              <a href={socialLinks.youtube.url} target="_blank" rel="noopener noreferrer">YouTube</a>
+            </m.div>
+          </div>
+        </div>
+
+        {/* 5. FINAL SIGNATURE & COPYRIGHT */}
+        <div className="fsig-zone fsig-closing">
           <m.div 
-            className="footer-copyright"
+            className="fsig-final-stamp"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.5, ease: appleEase }}
+            transition={{ duration: 1, delay: 0.2, ease: appleEase }}
             viewport={{ once: true }}
           >
-            © {new Date().getFullYear()} <span className="brand-cursive">TheNameIsBhagavan</span><br/>
-            AI Product Engineering · India
+            <div className="fsig-stamp-name brand-cursive">TheNameIsBhagavan</div>
+            <div className="fsig-stamp-meta">TNB / {currentYear}</div>
+          </m.div>
+
+          <m.div 
+            className="fsig-copyright"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3, ease: appleEase }}
+            viewport={{ once: true }}
+          >
+            <div className="fsig-status">
+              <div className="fsig-status-dot"></div>
+              CURRENTLY BUILDING AI SYSTEMS & PRODUCT ENGINEERING
+            </div>
+            <div className="fsig-copy-text">
+              © {currentYear} TheNameIsBhagavan<br />
+              AI Product Engineering · India
+            </div>
           </m.div>
         </div>
 

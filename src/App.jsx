@@ -25,6 +25,8 @@ const AboutJournal = lazy(() => import("./pages/AboutJournal"));
 const Platforms = lazy(() => import("./pages/journal/Platforms"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));
 
+const AcademicArchive = lazy(() => import("./pages/AcademicArchive"));
+
 // Cinematic Suspense fallback — dark canvas with brand signature while chunks download
 function PageLoader() {
   return (
@@ -141,6 +143,7 @@ function App() {
               <Route path="/connect" element={<LazyRoute><Connect /></LazyRoute>} />
               <Route path="/innovation" element={<LazyRoute><InnovationJourney /></LazyRoute>} />
               <Route path="/credentials" element={<LazyRoute><Credentials /></LazyRoute>} />
+              <Route path="/academic-archive" element={<LazyRoute><AcademicArchive /></LazyRoute>} />
               <Route path="/ecosystem" element={<LazyRoute><TechnologyEcosystem /></LazyRoute>} />
               <Route path="/resume" element={<LazyRoute><Resume /></LazyRoute>} />
               <Route path="/journal" element={<LazyRoute><EngineeringJournal /></LazyRoute>} />

@@ -21,6 +21,7 @@ const PRIMARY_NAV = [
     dropdown: [
       { label: "Innovation", sub: "Research & Exploration", path: "/innovation" },
       { label: "Credentials", sub: "Learning & Certifications", path: "/credentials" },
+      { label: "Academic Archive", sub: "Formal Education", path: "/academic-archive" },
       { label: "Technology", sub: "Tools & Ecosystem", path: "/ecosystem" },
     ],
   },
@@ -38,6 +39,7 @@ const MOBILE_NAV = [
 { label: "Journey",       path: "/experience" },
 { label: "Innovation",    path: "/innovation" },
 { label: "Credentials",   path: "/credentials" },
+{ label: "Academic Archive", path: "/academic-archive" },
 { label: "Technology",    path: "/ecosystem" },
 { label: "Vision",        path: "/vision" },
 { label: "Resume",        path: "/resume" },
@@ -57,6 +59,7 @@ const SEARCH_PAGES = [
   { title: "Connect",               path: "/connect",     keywords: "contact email message hire collaboration" },
   { title: "Innovation",            path: "/innovation",  keywords: "research engineering ai machine learning" },
   { title: "Credentials",           path: "/credentials", keywords: "certifications awards achievements badges" },
+  { title: "Academic Archive",      path: "/academic-archive", keywords: "education university school btech certificates diploma" },
   { title: "Technology Ecosystem",  path: "/ecosystem",   keywords: "stack architecture tools frameworks react node python mongodb" },
   { title: "Resume",                path: "/resume",      keywords: "cv download pdf curriculum vitae" },
   { title: "Engineering Journal",   path: "/journal",    keywords: "blog articles engineering journal writing insights posts" },

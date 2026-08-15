@@ -23,6 +23,6 @@
     { "source": "/engineering-journal/(.*)", "destination": "/journal/$1", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
