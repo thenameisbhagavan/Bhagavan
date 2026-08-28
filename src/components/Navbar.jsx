@@ -64,7 +64,7 @@ const SEARCH_PAGES = [
   { title: "Overview",              path: "/",    keywords: "home about profile introduction" },
   { title: "Products",              path: "/work",        keywords: "projects work portfolio careeros aurabot resume smart leave" },
   { title: "VoltDrive - EV Experience", path: "/work/voltdrive", keywords: "voltdrive electric vehicle ev automotive showroom frontend key note apple" },
-  { title: "Journey",               path: "/experience",  keywords: "experience career timeline internships education" },
+  { title: "Journey",               path: "/experience",  keywords: "experience career timeline professional education data valley trainer" },
   { title: "Vision",                path: "/vision",      keywords: "future goals mission direction roadmap perspective" },
   { title: "Connect",               path: "/connect",     keywords: "contact email message hire collaboration" },
   { title: "Innovation",            path: "/innovation",  keywords: "research engineering ai machine learning" },

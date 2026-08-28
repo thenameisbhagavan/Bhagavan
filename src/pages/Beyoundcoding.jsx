@@ -853,7 +853,7 @@ export default function BeyondCoding() {
                 <div style={{maxWidth:"540px"}}>
                   <div style={{display:"inline-flex",alignItems:"center",gap:"6px",padding:"5px 12px",borderRadius:"999px",background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.12)",marginBottom:"20px",opacity:fV?1:0,animation:fV?`_rtl ${MS.slow} ${E} 0.05s both`:"none"}}>
                     <div style={{width:"5px",height:"5px",borderRadius:"50%",background:"rgba(255,255,255,0.85)",animation:"_pulse 2.2s ease-in-out infinite"}}/>
-                    <ML color="rgba(255,255,255,0.65)">Open to Opportunities · 2026</ML>
+                    <ML color="rgba(255,255,255,0.65)">Technical AI/ML & Data Science Trainer · Data Valley · 2026</ML>
                   </div>
                   <h2 style={{fontFamily:"'Dancing Script',cursive",fontSize:"clamp(3rem,6vw,5.5rem)",fontWeight:700,color:"#FFFFFF",lineHeight:1.04,letterSpacing:"-0.03em",marginBottom:"14px",opacity:fV?1:0,animation:fV?`_rtl ${MS.reveal} ${E} 0.12s both`:"none"}}>
                     Build a Legendary Life
@@ -863,7 +863,7 @@ export default function BeyondCoding() {
                   </p>
                 </div>
                 <div style={{display:"flex",flexDirection:"column",gap:"10px",minWidth:"230px"}}>
-                  <FooterCTA label="Schedule Interview" sub="Primary" href="mailto:thenameisbhagavan@gmail.com" accent visible={fV} delay={0.16}/>
+                  <FooterCTA label="Start a Conversation" sub="Primary" href="mailto:thenameisbhagavan@gmail.com" accent visible={fV} delay={0.16}/>
                   <FooterCTA label="View Projects"      sub="GitHub"  href="https://github.com/thenameisbhagavan"                  accent={false} visible={fV} delay={0.22}/>
                   <FooterCTA label="View Portfolio"     sub="Work"    href="/"                                               accent={false} visible={fV} delay={0.28}/>
                 </div>
@@ -909,7 +909,7 @@ export default function BeyondCoding() {
                   {lb:"Email",    v:"thenameisbhagavan@gmail.com"},
                   {lb:"Phone",    v:"+91 7569205626"},
                   {lb:"Location", v:"Andhra Pradesh, IN"},
-                  {lb:"Status",   v:"Available · Immediate",bright:true},
+                  {lb:"Status",   v:"Currently at Data Valley",bright:true},
                 ].map((c,i)=>(
                   <div key={i} style={{marginBottom:"14px"}}>
                     <ML color="rgba(255,255,255,0.20)" style={{fontSize:"9px",marginBottom:"3px"}}>{c.lb}</ML>
@@ -931,7 +931,7 @@ export default function BeyondCoding() {
               </div>
               <div style={{display:"flex",alignItems:"center",gap:"6px"}}>
                 <div style={{width:"5px",height:"5px",borderRadius:"50%",background:"rgba(255,255,255,0.75)",animation:"_pulse 2.2s ease-in-out infinite"}}/>
-                <span style={{fontFamily:"'DM Mono',monospace",fontSize:"11px",color:"rgba(255,255,255,0.55)"}}>Available for hire</span>
+                <span style={{fontFamily:"'DM Mono',monospace",fontSize:"11px",color:"rgba(255,255,255,0.55)"}}>Open to conversations</span>
               </div>
             </div>
           </div>

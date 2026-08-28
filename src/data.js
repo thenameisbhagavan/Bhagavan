@@ -12,11 +12,11 @@ export const PROFILE = {
   phone: '+91 7569205626',
   github: 'https://github.com/thenameisbhagavan',
   linkedin: 'https://www.linkedin.com/in/thenameisbhagavan/',
-  objective: 'B.Tech Graduate 2026 in AI & Data Science eager to start a career in software development. Passionate about AI/ML, full-stack web development, and building practical applications. Completed academic projects including an AI chatbot and a leave automation system using Microsoft Power Apps.',
+  objective: 'Technical AI/ML & Data Science Trainer at Data Valley, Vijayawada. AI Product Engineer building intelligent software systems, AI-powered applications, and data-driven products. B.Tech in AI & Data Science (2026).',
   internships: [
-    { title: 'MERN Stack Intern', company: 'StudyOwl Education Pvt Ltd', period: 'May–July 2025', detail: ['Assisted in React frontend and Node.js backend integration.', 'Learned to build reusable components and REST APIs.'] },
-    { title: 'AI/ML Intern – Smart Sorting', company: 'SmartBridge (Remote)', period: 'May–June 2025', detail: ['Learned CNN-based image classification using TensorFlow and Keras.', 'Assisted in deploying trained model using Flask.'] },
-    { title: 'ML & Data Science Intern', company: 'Blackbucks (Remote)', period: 'May–June 2024', detail: ['Learned data preprocessing and feature engineering.', 'Practiced model training using Scikit-learn pipelines.'] },
+    { title: 'MERN Stack Intern', company: 'StudyOwl Education Pvt Ltd', period: 'May–July 2025', detail: ['Contributed to React frontend and Node.js backend integration.', 'Built reusable components and integrated REST APIs.'] },
+    { title: 'AI/ML Intern – Smart Sorting', company: 'SmartBridge (Remote)', period: 'May–June 2025', detail: ['Developed CNN-based image classification models using TensorFlow and Keras.', 'Deployed trained models using Flask.'] },
+    { title: 'ML & Data Science Intern', company: 'Blackbucks (Remote)', period: 'May–June 2024', detail: ['Performed data preprocessing and feature engineering.', 'Developed model training pipelines using Scikit-learn.'] },
   ],
   skills: { 
     languages: ['Python', 'Java', 'C', 'JavaScript'], 
@@ -32,60 +32,60 @@ export const PROJECTS = [
   {
     id:1,title:"Automated Leave Management System",
     tagline:"Low-code workflow automation project",
-    subtitle:"Academic final year project using Microsoft PowerApps",
+    subtitle:"Workflow automation system using Microsoft PowerApps",
     github:null,live:null,year:"2025",duration:"3 months",
-    problem:"Managing leave requests manually via emails is error-prone. As a student, I wanted to learn how modern workplaces solve this using low-code tools.",
-    solution:"Built an automated leave approval system using Microsoft PowerApps, SharePoint, and Power Automate to understand enterprise workflows.",
+    problem:"Managing leave requests manually via emails is error-prone and inefficient for organizations relying on manual approvals.",
+    solution:"Built an automated leave approval system using Microsoft PowerApps, SharePoint, and Power Automate for streamlined enterprise workflows.",
     impact:[{label:"Workflow Automations",value:5,suffix:""},{label:"Approval Steps",value:3,suffix:""},{label:"Test Users",value:15,suffix:"+"}],
     screenshot:leaveImg
   },
   {
     id:2,title:"ATS-Based Resume Builder",
     tagline:"Full-stack MERN academic project",
-    subtitle:"A learning project to understand ATS keywords and MERN",
+    subtitle:"ATS-optimized resume platform built with MERN stack",
     github:"https://github.com/thenameisbhagavan/Resumebuilderwebapp",live:null,year:"2025",duration:"3 months",
-    problem:"I wanted to learn React and Node.js while solving a real problem for students: getting their resumes past ATS (Applicant Tracking Systems) filters.",
-    solution:"Developed a MERN platform where users create resumes and check keyword matches against job descriptions, learning OAuth and REST APIs in the process.",
+    problem:"Job applicants struggle to get their resumes past ATS (Applicant Tracking Systems) filters due to keyword mismatches.",
+    solution:"Developed a MERN platform where users create resumes and check keyword matches against job descriptions, with OAuth authentication and REST API integration.",
     impact:[{label:"ATS Feedback",value:100,suffix:"%"},{label:"Templates",value:5,suffix:""},{label:"Auth Providers",value:2,suffix:""}],
     screenshot:resumeImg
   },
   {
     id:3,title:"AI Chatbot Web Application",
-    tagline:"AI API integration learning project",
-    subtitle:"Connecting React frontend with Flask backend",
+    tagline:"AI conversational interface",
+    subtitle:"React frontend with Flask AI backend",
     github:"https://github.com/thenameisbhagavan/chatbotwebapp",live:null,year:"2025",duration:"4 months",
-    problem:"I needed a hands-on project to understand how web frontends communicate with AI APIs securely without exposing API keys in the browser.",
-    solution:"Built a Flask backend to securely talk to the Gemini API, and a React frontend to render responses, learning about HTTP requests and session state.",
+    problem:"Web frontends need to communicate with AI APIs securely without exposing API keys in the browser.",
+    solution:"Built a Flask backend to securely proxy the Gemini API, and a React frontend to render responses, with session state management.",
     impact:[{label:"Response Time",value:500,suffix:"ms"},{label:"Secure Endpoints",value:100,suffix:"%"},{label:"Conversation Turns",value:15,suffix:"+"}],
     screenshot:chatImg
   },
   {
     id:4,title:"Career Path Recommendation System",
-    tagline:"Introductory Machine Learning project",
-    subtitle:"Applying Random Forest classification to a real dataset",
+    tagline:"Machine Learning classification system",
+    subtitle:"Random Forest classification applied to career data",
     github:"https://github.com/thenameisbhagavan/Career-Path-Recommendation",live:null,year:"2024",duration:"2 months",
-    problem:"Students struggle with career choices. I used this problem to practice my foundational Machine Learning skills and build my first classification model.",
-    solution:"Trained a Random Forest classifier on a skills dataset using Scikit-learn, and served the predictions via a simple Flask API connected to a React UI.",
+    problem:"Career decision-making lacks data-driven guidance, leaving applicants uncertain about which paths match their skill profiles.",
+    solution:"Trained a Random Forest classifier on a skills dataset using Scikit-learn, and served predictions via a Flask API connected to a React UI.",
     impact:[{label:"Accuracy",value:88,suffix:"%"},{label:"Career Domains",value:20,suffix:"+"},{label:"Prediction Time",value:180,suffix:"ms"}],
     screenshot:carrerImg
   },
   {
     id:5,title:"Fake News Detection System",
-    tagline:"NLP basics and text classification",
-    subtitle:"Practicing TF-IDF and Logistic Regression",
+    tagline:"NLP text classification system",
+    subtitle:"TF-IDF and Logistic Regression pipeline",
     github:"https://github.com/thenameisbhagavan/News-detector",live:null,year:"2023",duration:"2 months",
-    problem:"I wanted to learn the basics of Natural Language Processing (NLP) by building a text classifier that could distinguish real news from fake news.",
-    solution:"Built a preprocessing pipeline using NLTK and trained a Logistic Regression model on a public dataset, integrating it into a basic web UI.",
+    problem:"Misinformation spreads rapidly online, requiring automated systems to classify text credibility at scale.",
+    solution:"Built a preprocessing pipeline using NLTK and trained a Logistic Regression model on a public dataset, integrated into a web UI.",
     impact:[{label:"Accuracy",value:92,suffix:"%"},{label:"Dataset Size",value:40,suffix:"K"},{label:"Prediction Time",value:90,suffix:"ms"}],
     screenshot:fakeImg
   },
   {
     id:6,title:"Heart Disease Prediction System",
-    tagline:"Healthcare data classification project",
-    subtitle:"Practicing cross-validation on small datasets",
+    tagline:"Healthcare ML prediction system",
+    subtitle:"Cross-validated classification on clinical data",
     github:"https://github.com/thenameisbhagavan/Heart-Disease-Prediction",live:null,year:"2024",duration:"2 months",
-    problem:"I wanted to apply ML to tabular healthcare data to understand feature importance and learn how to evaluate models properly on smaller datasets.",
-    solution:"Trained a classifier on the UCI Heart Disease dataset, learning to use cross-validation to prevent overfitting, and deployed a basic Flask UI.",
+    problem:"Healthcare datasets are often small and high-dimensional, requiring careful evaluation to prevent overfitting and ensure clinical relevance.",
+    solution:"Trained a classifier on the UCI Heart Disease dataset using cross-validation to prevent overfitting, deployed via a Flask interface.",
     impact:[{label:"Accuracy",value:85,suffix:"%"},{label:"Clinical Features",value:13,suffix:""},{label:"Precision",value:83,suffix:"%"}],
     screenshot:heartImg
   }
@@ -93,30 +93,37 @@ export const PROJECTS = [
 
 export const JOURNEY = [
   {
+    year: "2026 — Present",
+    title: "Technical AI/ML & Data Science Trainer",
+    entity: "Data Valley, Vijayawada",
+    type: "Professional",
+    description: "Delivering hands-on technical training across Data Science, Machine Learning, and AI. Developing structured curricula, coding labs, and project-based learning experiences."
+  },
+  {
     year: "2025",
     title: "MERN Stack Intern",
     entity: "StudyOwl Education Pvt Ltd",
     type: "Internship",
-    description: "Assisted in React frontend and Node.js backend integration. Learned to build reusable components and REST APIs."
+    description: "Contributed to React frontend and Node.js backend integration. Built reusable components and integrated REST APIs."
   },
   {
     year: "2025",
     title: "AI/ML Intern – Smart Sorting",
     entity: "SmartBridge",
     type: "Internship",
-    description: "Learned CNN-based image classification using TensorFlow and Keras. Assisted in deploying trained model using Flask."
+    description: "Developed CNN-based image classification models using TensorFlow and Keras. Deployed trained models using Flask."
   },
   {
     year: "2024",
     title: "ML & Data Science Intern",
     entity: "Blackbucks",
     type: "Internship",
-    description: "Learned data preprocessing and feature engineering. Practiced model training using Scikit-learn pipelines."
+    description: "Performed data preprocessing and feature engineering. Developed model training pipelines using Scikit-learn."
   },
   {
     year: "2022-2026",
     title: "B.Tech in AI & Data Science",
-    entity: "University Name (Add Here)",
+    entity: "Ramachandra College of Engineering, JNTUK",
     type: "Education",
     description: "Comprehensive study of data structures, algorithms, databases, operating systems, machine learning, and artificial intelligence."
   }

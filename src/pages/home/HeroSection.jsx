@@ -144,13 +144,13 @@ export default function HeroSection({ profileImg, resumePdf, navigate, isMobile,
             {/* Availability signal */}
             <m.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, ease, delay: .15 }} style={{ marginBottom: '1.4rem', display: 'flex', alignItems: 'center', gap: '.55rem' }}>
               <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'rgba(74,222,128,.8)', animation: 'heroPulse 2s ease infinite', flexShrink: 0 }} />
-              <span style={{ fontSize: '.64rem', color: 'rgba(74,222,128,.6)', letterSpacing: '.06em', fontFamily: 'monospace' }}>Available for 2026 Software Engineering Opportunities</span>
+              <span style={{ fontSize: '.64rem', color: 'rgba(74,222,128,.6)', letterSpacing: '.06em', fontFamily: 'monospace' }}>Technical AI/ML & Data Science Trainer at Data Valley · Building AI Systems</span>
             </m.div>
 
             {/* Tagline */}
             <m.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, ease, delay: .3 }} style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '.6rem' }}>
               <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'rgba(255,255,255,.7)' }} />
-              <span style={{ fontSize: '.62rem', color: 'rgba(255,255,255,.4)', letterSpacing: '.14em', textTransform: 'uppercase', fontFamily: 'monospace' }}>B.Tech AI & Data Science · 2026</span>
+              <span style={{ fontSize: '.62rem', color: 'rgba(255,255,255,.4)', letterSpacing: '.14em', textTransform: 'uppercase', fontFamily: 'monospace' }}>AI Product Engineer · Data Science · Machine Learning</span>
             </m.div>
 
             {/* Headline */}

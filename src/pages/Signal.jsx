@@ -159,8 +159,7 @@ export default function Signal() {
   return (
     <div className="signal-page" data-nav-theme="light">
       <SEO 
-        title="TheNameIsBhagavan — Signal"
-        description="A living record of the tools, ideas, experiments, references, and engineering thinking shaping TheNameIsBhagavan."
+        description="Professional capability signal and engineering toolkit for Bhagavan. Live updates on technical experiments, software development, and AI research."
       />
 
       <LiveIndex />

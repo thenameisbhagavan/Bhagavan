@@ -112,8 +112,8 @@ export default function EngineeringJournal() {
   return (
     <div className="journal-page">
       <Helmet>
-        <title>Engineering Journal | TheNameIsBhagavan</title>
-        <meta name="description" content="Engineering deep dives, architecture patterns, and lessons learned from building production AI systems." />
+        <title>Engineering Journal — TheNameIsBhagavan</title>
+        <meta name="description" content="Engineering journal by Bhagavan. Technical writing on AI systems, software architecture, machine learning, and product engineering." />
         <link rel="canonical" href="https://thenameisbhagavan.in/journal" />
       </Helmet>
 

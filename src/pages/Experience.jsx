@@ -99,9 +99,8 @@ export default function Experience() {
   return (
     <>
       <SEO 
-        title="TheNameIsBhagavan | Experience"
-        description="Engineering Evolution. Documenting how my engineering perspective evolved from data to product, intelligence, and systems."
-        keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack, Software Development Intern"
+        description="Professional experience of Bhagavan. Currently Technical AI/ML & Data Science Trainer at Data Valley. Documenting the engineering evolution across software, data, and AI systems."
+        keywords="TheNameIsBhagavan, Bhagavan Experience, Technical AI/ML Trainer, Data Valley, AI Product Engineer, Machine Learning Experience, Software Engineering"
       />
       
       <ArtifactViewer 
@@ -117,7 +116,7 @@ export default function Experience() {
         <section className="exp-evolution-hero" data-nav-theme="light">
           <div className="evo-bounds hero-bounds">
             <m.div className="hero-eyebrow" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, ease: appleEase }}>
-              ENGINEERING EVOLUTION · 2022 — 2026
+              ENGINEERING EVOLUTION · 2022 — PRESENT
             </m.div>
             
             <m.h1 className="hero-massive-headline" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.1, ease: appleEase }}>
@@ -126,13 +125,13 @@ export default function Experience() {
             
             <m.p className="hero-supporting-copy" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.2, ease: appleEase }}>
               From learning how to work with data<br/>
-              to designing intelligent systems,<br/>
-              each experience changed the way I think<br/>
-              about software.
+              to designing intelligent systems<br/>
+              and teaching them professionally —<br/>
+              each experience shaped how I think about software.
             </m.p>
 
             <m.div className="hero-vertical-meta" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.4, ease: appleEase }}>
-              EXPERIENCE / ENGINEERING / 2026
+              EXPERIENCE / ENGINEERING / PRESENT
             </m.div>
           </div>
         </section>
@@ -168,6 +167,12 @@ export default function Experience() {
                 <span className="em-desc">Designing workflows</span>
                 <div className="em-line"></div>
               </button>
+              <button onClick={() => scrollToChapter('chap-current')} className="evo-milestone">
+                <span className="em-num">05</span>
+                <span className="em-title">CURRENT</span>
+                <span className="em-desc">Teaching & building</span>
+                <div className="em-line"></div>
+              </button>
             </div>
           </div>
         </section>
@@ -197,8 +202,49 @@ export default function Experience() {
               </m.h3>
               
               <m.h3 className="narrative-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                Finally, I learned to think in systems.
+                Then, I learned to think in systems.
               </m.h3>
+              
+              <m.h3 className="narrative-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
+                Now, I teach these technologies professionally — and keep building.
+              </m.h3>
+            </div>
+          </div>
+        </section>
+
+        {/* ==================== CURRENT: DATA VALLEY ==================== */}
+        <section id="chap-current" className="evo-chapter" data-nav-theme="light">
+          <div className="evo-bounds">
+            <m.div className="chapter-meta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <span className="cm-num">CURRENT · 2026 — PRESENT</span>
+              <span className="cm-company">DATA VALLEY</span>
+            </m.div>
+            
+            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              Teaching what I build.
+            </m.h2>
+
+            <div className="chapter-grid">
+              <m.div className="cg-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="role-meta">
+                  <span className="rm-company">DATA VALLEY</span>
+                  <span className="rm-role">Technical AI/ML & Data Science Trainer</span>
+                  <span className="rm-period">Vijayawada, Andhra Pradesh · 2026 — Present</span>
+                </div>
+              </m.div>
+              <m.div className="cg-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
+                <m.p className="cg-lesson" variants={fadeUp}>
+                  Teaching AI and Data Science professionally changed how I communicate technical complexity.
+                </m.p>
+                <m.p className="cg-editorial" variants={fadeUp}>
+                  Delivering hands-on technical training across Data Science, Machine Learning, and AI — developing structured curricula, coding labs, practical exercises, and project-based learning experiences for students across college, in-office, and online programs.
+                </m.p>
+                
+                <m.div className="cg-changed" variants={fadeUp}>
+                  <span className="cgc-label">WHAT THIS ROLE INVOLVES</span>
+                  <span className="cgc-text">Curriculum Design · Live Instruction · Lab Development · Project Mentoring · Technical Communication · PPT & Theory Preparation · Practical Sessions · Coding Exercises</span>
+                </m.div>
+              </m.div>
             </div>
           </div>
         </section>
@@ -460,7 +506,9 @@ export default function Experience() {
               <m.span className="if-arrow" variants={fadeUp}>→</m.span>
               <m.span className="if-term" variants={fadeUp}>03 INTELLIGENCE</m.span>
               <m.span className="if-arrow" variants={fadeUp}>→</m.span>
-              <m.span className="if-term highlight" variants={fadeUp}>04 SYSTEMS</m.span>
+              <m.span className="if-term" variants={fadeUp}>04 SYSTEMS</m.span>
+              <m.span className="if-arrow" variants={fadeUp}>→</m.span>
+              <m.span className="if-term highlight" variants={fadeUp}>05 TEACHING & BUILDING</m.span>
             </m.div>
 
             <m.div className="inflection-consequence" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
@@ -525,7 +573,7 @@ export default function Experience() {
             
             <m.div className="closing-signature" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               THE NAME IS BHAGAVAN<br/>
-              ENGINEERING EVOLUTION · 2026
+              ENGINEERING EVOLUTION · 2022 — PRESENT
             </m.div>
           </div>
         </section>

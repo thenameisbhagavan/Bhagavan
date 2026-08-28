@@ -109,9 +109,8 @@ export default function Connect() {
   return (
     <>
       <SEO 
-        title="Connect | TheNameIsBhagavan" 
-        description="Connect with Bhagavan to discuss AI engineering, full stack development, and ambitious technical problems." 
-        keywords="AI Engineer, Software Developer, Contact Bhagavan, Tech Collaboration" 
+        description="Connect with Bhagavan (TheNameIsBhagavan). Open to conversations around AI systems, data science, and software engineering." 
+        keywords="Contact Bhagavan, TheNameIsBhagavan Contact, Hire AI Engineer, Technical AI/ML Trainer, Vijayawada" 
       />
 
       <div className="con-page">
@@ -161,6 +160,10 @@ export default function Connect() {
               <m.div className="ch-right" initial="hidden" animate="visible" variants={fadeUp}>
                 <div className="c-label">CURRENTLY</div>
                 <div className="ch-availability">
+                  <div className="cha-item">
+                    <span className="cha-label">CURRENTLY</span>
+                    <span className="cha-value">TECHNICAL AI/ML & DATA SCIENCE TRAINER AT DATA VALLEY</span>
+                  </div>
                   <div className="cha-item">
                     <span className="cha-label">BUILDING</span>
                     <span className="cha-value">AI SYSTEMS</span>

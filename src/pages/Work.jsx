@@ -159,9 +159,8 @@ export default function Work() {
   return (
     <>
       <SEO 
-        title="TheNameIsBhagavan | Engineering Work"
-        description="Systems engineered by Bhagavan. AI systems, intelligent interfaces, reasoning pipelines, and digital product experiences."
-        keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, React, Full Stack, Product Engineering"
+        description="Engineering projects by Bhagavan. AI product engineer building intelligent systems, reasoning pipelines, full-stack software, and data-driven experiences. View AuraOS, CareerOS, VERITAS, and VoltDrive."
+        keywords="TheNameIsBhagavan, Bhagavan Projects, AI Systems Engineering, Software Portfolio, CareerOS, AuraOS, VERITAS, VoltDrive, AI Product Engineer"
       />
       <div className="work-exhibition-page">
         

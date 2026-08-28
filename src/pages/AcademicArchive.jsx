@@ -199,8 +199,7 @@ export default function AcademicArchive() {
       transition={{ duration: 0.5 }}
     >
       <SEO 
-        title="Academic Archive — Siva Satya Sai Bhagavan | TheNameIsBhagavan"
-        description="A documented academic journey from secondary education through a B.Tech in Artificial Intelligence & Data Science, including academic records and supporting certificates."
+        description="Academic archive of Bhagavan. Engineering education foundations, including a B.Tech in Artificial Intelligence & Data Science and early technical projects."
       />
 
       {/* ━━━ OPENING STATE ━━━ */}

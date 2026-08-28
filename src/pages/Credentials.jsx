@@ -173,9 +173,8 @@ export default function Credentials() {
   return (
     <>
       <SEO 
-        title="TheNameIsBhagavan | Credentials" 
-        description="An evolving record of the systems, technologies, and disciplines I have studied, practiced, and applied." 
-        keywords="AI Engineer, Artificial Intelligence, Machine Learning, Portfolio, Engineering Record, Certificates, Credentials" 
+        description="Technical credentials and engineering record of Bhagavan. Verified certifications in AI, Machine Learning, Full Stack Engineering, and Data Science." 
+        keywords="Bhagavan Credentials, AI Certifications, Machine Learning Certificates, Engineering Record, Data Science, AI Product Engineer" 
       />
 
       <AnimatePresence>
@@ -198,7 +197,7 @@ export default function Credentials() {
             <div className="cred-hero-grid">
               <div className="ch-left">
                 <m.div className="cred-hero-eyebrow" initial="hidden" animate="visible" variants={fadeUp}>
-                  CREDENTIALS / ENGINEERING RECORD / 2026
+                  CREDENTIALS / ENGINEERING RECORD / PRESENT
                 </m.div>
                 <m.h1 className="cred-hero-headline" initial="hidden" animate="visible" variants={fadeUp}>
                   Knowledge becomes<br />evidence.
@@ -495,7 +494,7 @@ export default function Credentials() {
               </m.div>
 
               <m.div className="rt-node rt-current" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <div className="rt-year">2026</div>
+                <div className="rt-year">PRESENT</div>
                 <div className="rt-phase">AI SYSTEMS ENGINEERING</div>
                 <div className="rt-details">
                   {["Google AI", "Generative AI", "LLMs", "Deep Learning", "Transformers", "GitHub Actions", "Continuous Product Development"].map((detail, idx) => (

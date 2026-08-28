@@ -102,7 +102,7 @@ export default function RecruiterImpact({ isMobile }) {
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
           <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'rgba(74,222,128,0.8)', animation: 'pulse 2s ease infinite', boxShadow: '0 0 10px rgba(74,222,128,0.5)' }} />
-          <span style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.5)', fontFamily: 'monospace', letterSpacing: '.05em' }}>STATUS: ACTIVELY SEEKING FULL-TIME ROLES</span>
+          <span style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.5)', fontFamily: 'monospace', letterSpacing: '.05em' }}>CURRENTLY: TECHNICAL AI/ML & DATA SCIENCE TRAINER AT DATA VALLEY</span>
         </div>
         <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
           {['AI Engineer', 'Full Stack Dev', 'Python Dev', 'Software Engineer'].map((role, ri) => (

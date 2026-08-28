@@ -242,7 +242,7 @@ export default function VerificationCenter() {
                 <span className="vc-summary-label">Recruitment Status</span>
                 <span className="vc-status-badge vc-status-ready">OPEN</span>
               </div>
-              <span className="vc-summary-value">Open to Software Engineering Opportunities</span>
+              <span className="vc-summary-value">Currently: Technical AI/ML & Data Science Trainer at Data Valley</span>
             </m.article>
 
           </div>

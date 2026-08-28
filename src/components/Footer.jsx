@@ -188,7 +188,7 @@ const Footer = memo(function Footer() {
             transition={{ duration: 0.8, ease: appleEase }}
             viewport={{ once: true }}
           >
-            AVAILABLE FOR<br />MEANINGFUL WORK.
+            OPEN TO MEANINGFUL<br />CONVERSATIONS.
           </m.div>
 
           <div className="fsig-contact-links">
@@ -243,7 +243,7 @@ const Footer = memo(function Footer() {
           >
             <div className="fsig-status">
               <div className="fsig-status-dot"></div>
-              CURRENTLY BUILDING AI SYSTEMS & PRODUCT ENGINEERING
+              CURRENTLY: TECHNICAL AI/ML & DATA SCIENCE TRAINER AT DATA VALLEY · BUILDING AI SYSTEMS
             </div>
             <div className="fsig-copy-text">
               © {currentYear} TheNameIsBhagavan<br />

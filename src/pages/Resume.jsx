@@ -187,9 +187,8 @@ export default function Resume() {
   return (
     <>
       <SEO 
-        title="Resume | TheNameIsBhagavan" 
-        description="Professional engineering resume library for Bhagavan, covering AI Systems, Python Backend, Machine Learning, and Full Stack Development." 
-        keywords="AI Engineer Resume, Python Backend Engineer, Resume Library, ML Engineer" 
+        description="Professional resume of Bhagavan (TheNameIsBhagavan). View engineering records spanning AI Product Engineering, Data Science, Full Stack Development, and Technical AI/ML Training." 
+        keywords="Bhagavan Resume, TheNameIsBhagavan Resume, AI Product Engineer Resume, Technical AI/ML Trainer, Data Valley, Software Engineer CV, Vijayawada" 
       />
 
       <div className="res-page">
@@ -213,7 +212,7 @@ export default function Resume() {
                 <div className="rh-metadata">
                   <span className="rh-meta-item">PROFESSIONAL RECORD / 2026</span>
                   <span className="rh-meta-item">AI SYSTEMS · PYTHON · PRODUCT ENGINEERING</span>
-                  <span className="rh-meta-item" style={{ color: '#86868b' }}>OPEN TO ENGINEERING OPPORTUNITIES</span>
+                  <span className="rh-meta-item" style={{ color: '#86868b' }}>CURRENTLY: TECHNICAL AI/ML & DATA SCIENCE TRAINER AT DATA VALLEY</span>
                 </div>
               </m.div>
             </div>
@@ -229,7 +228,7 @@ export default function Resume() {
               <div className="r-label">PRIMARY PROFILE</div>
               <div>
                 <h2 className="rp-title">AI Product / Systems Engineer</h2>
-                <p className="rp-sub">AI-focused engineer building intelligent systems, backend infrastructure, and full-stack product experiences.</p>
+                <p className="rp-sub">Technical AI/ML & Data Science Trainer at Data Valley. AI-focused engineer building intelligent systems, backend infrastructure, and full-stack product experiences.</p>
               </div>
 
               <div className="rp-spec-grid">
@@ -373,7 +372,7 @@ export default function Resume() {
                   </m.div>
                   <m.div className="rs-spec-row" variants={fadeUp}>
                     <span className="rs-spec-label">CURRENT GOAL</span>
-                    <span className="rs-spec-val">Build and contribute to production-grade AI systems.</span>
+                    <span className="rs-spec-val">Building AI systems and teaching Data Science & Machine Learning professionally while deepening engineering depth.</span>
                   </m.div>
                 </div>
               </m.div>

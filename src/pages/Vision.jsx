@@ -99,9 +99,8 @@ export default function Vision() {
   return (
     <>
       <SEO 
-        title="TheNameIsBhagavan | Vision" 
-        description="Engineering Human Potential. My philosophy on intelligence, systems, and product engineering." 
-        keywords="AI Philosophy, Engineering Vision, Human-Centered AI, Product Engineering" 
+        description="Engineering vision and product philosophy by Bhagavan (TheNameIsBhagavan). Thoughts on AI systems, machine learning, and the future of software engineering." 
+        keywords="Bhagavan Vision, AI Philosophy, Engineering Vision, Product Engineering, AI Systems, Data Science" 
       />
 
       <div className="vision-page">

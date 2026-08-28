@@ -126,9 +126,8 @@ export default function InnovationJourney() {
   return (
     <>
       <SEO
-        title="Innovation Lab | TheNameIsBhagavan"
-        description="Experiments, constraints, learning loops, and technical exploration that shape what I build next. The engineering lab of Bhagavan."
-        keywords="AI Engineering, Innovation, Experimentation, Machine Learning, Product Engineering, Learning"
+        description="Technical growth, hackathons, and software exploration by Bhagavan. Documenting the learning loops and technical experiments that shape AI product engineering."
+        keywords="Bhagavan Hackathons, Innovation Journey, AI Engineering, Machine Learning, Product Engineering, Learning"
       />
 
       <ArtifactViewer

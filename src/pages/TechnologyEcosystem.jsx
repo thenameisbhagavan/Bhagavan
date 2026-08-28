@@ -44,6 +44,12 @@ const LAYERS = [
     title: "DELIVERY",
     desc: "Databases, Tooling, and Deployment.",
     techs: ["MongoDB", "MongoDB Atlas", "MySQL", "Git", "GitHub", "Postman", "Docker", "CI/CD", "Vercel", "Netlify", "Render"]
+  },
+  {
+    num: "06",
+    title: "COMMUNICATION",
+    desc: "Teaching, Mentoring, and Technical Instruction.",
+    techs: ["Data Science Training", "Curriculum Design", "Technical Mentoring", "Project Guidance", "Live Instruction"]
   }
 ];
 
@@ -81,9 +87,8 @@ export default function TechnologyEcosystem() {
   return (
     <>
       <SEO 
-        title="TheNameIsBhagavan | Engineering Ecosystem" 
-        description="The layers, tools, and engineering disciplines I combine to build intelligent products." 
-        keywords="AI Engineer, Full Stack, Python, React, FastAPI, Technology Stack, Engineering Architecture" 
+        description="Software architecture and technology ecosystem used by Bhagavan. AI models, Python backend infrastructure, React frontends, and data science tooling." 
+        keywords="Software Architecture, AI Systems, Bhagavan Tech Stack, Python, React, Data Science Tools, Machine Learning Infrastructure" 
       />
 
       <div className="eco-page">

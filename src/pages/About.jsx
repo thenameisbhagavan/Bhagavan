@@ -263,7 +263,7 @@ const aboutData = [
   {
     title: '🎯 Career Objectives',
     items: [
-      'Seeking roles in Full Stack Development, Machine Learning, Data Science, AI, Cloud Computing, DevOps or related fields.',
+      'Building intelligent software systems and delivering professional technical training.',
       'Aim is to apply skills on real-world problems, work in agile teams, and grow as an engineer.',
     ],
     skills: 'Agile, CI/CD',
@@ -734,7 +734,7 @@ const About = () => {
               variants={contentChildVariants}
               transition={{ delay: 0.3 }}
             >
-              B.Tech Graduate 2026 in AI&DS | MERN Stack Developer | Python & Data Science Enthusiast
+              Technical AI/ML & Data Science Trainer | AI Product Engineer
             </m.p>
           </div>
 

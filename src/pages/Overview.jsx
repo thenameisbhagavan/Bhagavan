@@ -38,9 +38,8 @@ export default function Overview() {
   return (
     <>
       <SEO 
-        title="Bhagavan | AI Product Engineer"
-        description="I engineer AI systems and products that ship. CareerOS, AuraOS, VERITAS, and VoltDrive."
-        keywords="AI Engineer, Artificial Intelligence, CareerOS, AuraOS, VERITAS, VoltDrive, Portfolio"
+        description="Official portfolio of Bhagavan (TheNameIsBhagavan). Technical AI/ML & Data Science Trainer at Data Valley and AI Product Engineer. Explore my work building intelligent software systems like AuraOS, CareerOS, and VERITAS."
+        keywords="TheNameIsBhagavan, Bhagavan, AI Product Engineer, Technical AI/ML Data Science Trainer, Data Valley, Vijayawada, Artificial Intelligence, Machine Learning, Software Engineering, CareerOS, AuraOS"
       />
       
       <div className="engineering-surface">
@@ -63,15 +62,20 @@ export default function Overview() {
               </m.h1>
               
               <m.p className="es-subthesis" variants={fadeUp}>
-                I build intelligent products where AI, software engineering,<br/>and product experience meet.<br/><br/>
-                Career intelligence · AI memory &amp; context<br/>
-                Reasoning &amp; evidence · Digital product experiences
+                I currently work as a Technical AI/ML & Data Science Trainer at Data Valley, while building intelligent software products across AI, machine learning, data, and full-stack engineering.
+              </m.p>
+
+              <m.p className="es-subthesis" variants={fadeUp} style={{ marginTop: '16px' }}>
+                From AuraOS and CareerOS to VERITAS and VoltDrive, I turn technical ideas into working systems and products.
               </m.p>
               
-              <m.div variants={fadeUp} style={{ marginTop: '48px' }}>
-                <a href="#engineering" className="es-cta-quiet apple-pressable">
+              <m.div variants={fadeUp} style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <a href="#engineering" className="es-cta-quiet apple-pressable" style={{ alignSelf: 'flex-start' }}>
                   EXPLORE THE SYSTEMS <ArrowRight size={14} />
                 </a>
+                <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase' }}>
+                  Selected Work: AuraOS · CareerOS · VERITAS · VoltDrive
+                </span>
               </m.div>
             </m.div>
             
@@ -516,11 +520,11 @@ export default function Overview() {
             >
               <div className="es-person-text">
                 <m.h2 className="es-person-hl" variants={fadeUp}>
-                  Behind every system is an engineer still learning.
+                  Behind every system is an engineer who builds, teaches, and keeps learning.
                 </m.h2>
                 <m.p className="es-person-desc" variants={fadeUp}>
                   AI is the direction. Engineering is the discipline.<br/>
-                  Product is the outcome. Learning is the loop.
+                  Teaching is the practice. Product is the outcome.
                 </m.p>
               </div>
               <m.div className="es-person-image-wrapper" variants={fadeUp}>
@@ -675,6 +679,7 @@ export default function Overview() {
             >
               THE NAME IS BHAGAVAN<br/>
               AI PRODUCT ENGINEER<br/>
+              TECHNICAL AI/ML & DATA SCIENCE TRAINER<br/>
               AI SYSTEMS · PRODUCT ENGINEERING · SOFTWARE
             </m.div>
 
