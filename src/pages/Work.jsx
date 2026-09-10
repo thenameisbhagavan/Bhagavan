@@ -16,10 +16,10 @@ import leaveImg from "../assets/leave.jpg";
 import fakeImg from "../assets/fake.jpg";
 
 export const FLAGSHIP_PROJECTS = [
-  { name: "CareerOS", eyebrow: "Flagship Project", desc: "The intelligence layer for your career trajectory.", img: careerOSImg, link: "/work/careeros", live: "https://careeros-thenameisbhagavan.vercel.app/" },
-  { name: "AuraOS", eyebrow: "Personal Intelligence OS", desc: "Conversational intelligence that understands context.", img: chatImg, link: "/work/auraos", live: "https://aura-os-thenameisbhagavan.vercel.app/" },
-  { name: "VERITAS", eyebrow: "Explainable Intelligence Platform", desc: "Data validation and truth extraction engine.", img: fakeImg, link: "/work/veritas", live: "https://veritas-thenameisbhagavan.vercel.app/" },
-  { name: "VoltDrive", eyebrow: "Automotive Digital Showroom", desc: "Cinematic EV experience and precision frontend architecture.", img: voltDriveImg, link: "/work/voltdrive", live: "https://voltdrive-thenameisbhagavan.vercel.app/" }
+  { name: "CareerOS", eyebrow: "Flagship Project", desc: "An intelligence layer for career trajectory.", img: careerOSImg, link: "/work/careeros", live: "https://careeros-thenameisbhagavan.vercel.app/" },
+  { name: "AuraOS", eyebrow: "Personal Intelligence OS", desc: "A chatbot that actually remembers context.", img: chatImg, link: "/work/auraos", live: "https://aura-os-thenameisbhagavan.vercel.app/" },
+  { name: "VERITAS", eyebrow: "Explainable Intelligence Platform", desc: "AI that shows its reasoning, not just its answer.", img: fakeImg, link: "/work/veritas", live: "https://veritas-thenameisbhagavan.vercel.app/" },
+  { name: "VoltDrive", eyebrow: "Automotive Digital Showroom", desc: "A frontend experience built to feel alive.", img: voltDriveImg, link: "/work/voltdrive", live: "https://voltdrive-thenameisbhagavan.vercel.app/" }
 ];
 
 // ─── Motion ───────────────────────────────────────────────────────────────────
@@ -40,8 +40,8 @@ const FLAGSHIP_CAREEROS = {
   theme: "careeros",
   name: "CareerOS",
   eyebrow: "THE CAREER INTELLIGENCE SYSTEM",
-  problem: "Career decisions are fragmented.\nCareer intelligence should not be.",
-  vision: "To create an intelligence platform that understands your exact career trajectory and reveals precisely what to do next.",
+  problem: "Career decisions happen in fragments.\nNo system connects them.",
+  vision: "An intelligence platform that understands your career trajectory and shows you exactly what to do next.",
   productImg: careerOSImg,
   howItWorks: [
     { step: "01", title: "Discover", desc: "Captures academic and professional data into a unified profile." },
@@ -49,8 +49,8 @@ const FLAGSHIP_CAREEROS = {
     { step: "03", title: "Reveal", desc: "Generates tailored career opportunities and skill gaps." },
     { step: "04", title: "Accelerate", desc: "Provides AI-powered roadmaps for immediate execution." }
   ],
-  technologyDesc: "A full-stack intelligence engine built to process complex career data into actionable paths. Engineered with React, Node.js, and specialized analytical models.",
-  impact: "Transforms fragmented career decisions into measurable, continuous growth.",
+  technologyDesc: "Full-stack intelligence engine. Processes career data into actionable paths using React, Node.js, and custom analytical models.",
+  impact: "A system I built to explore how AI can help with career decisions.",
   github: `${socialLinks.github.url}/careeros`,
   liveLink: "https://careeros-thenameisbhagavan.vercel.app/",
   internalLink: "/work/careeros"
@@ -58,15 +58,15 @@ const FLAGSHIP_CAREEROS = {
 
 const AURAOS = {
   name: "AuraOS",
-  opening: "An assistant that remembers changes what an assistant can become.",
+  opening: "What if a chatbot actually remembered what you told it yesterday?",
   productImg: chatImg,
   howItWorks: [
     { step: "01", title: "Memory", desc: "Creates a persistent context window across all sessions." },
     { step: "02", title: "Reasoning", desc: "Connects separate concepts into a unified knowledge graph." },
     { step: "03", title: "Retrieval", desc: "Pulls exact historical facts instantly when required." }
   ],
-  technologyDesc: "Powered by vector databases, RAG architectures, and custom short/long-term memory routers.",
-  impact: "Demonstrated true conversational persistence across simulated multi-day interactions.",
+  technologyDesc: "Vector databases, RAG architecture, and custom memory routers for short and long-term context.",
+  impact: "I wanted to see what happens when a chatbot actually remembers context.",
   github: `${socialLinks.github.url}/auraos`,
   liveLink: "https://aura-os-thenameisbhagavan.vercel.app/",
   internalLink: "/work/auraos"
@@ -74,15 +74,15 @@ const AURAOS = {
 
 const VERITAS = {
   name: "VERITAS",
-  opening: "Intelligence without reasoning is just guessing.",
+  opening: "AI gives answers. But can it show you why?",
   productImg: fakeImg,
   howItWorks: [
     { step: "01", title: "Extract", desc: "Parses unstructured news data into verifiable assertions." },
     { step: "02", title: "Analyze", desc: "Scores claims against known credibility baselines." },
     { step: "03", title: "Trace", desc: "Maps the exact path from raw text to final judgment." }
   ],
-  technologyDesc: "A deterministic NLP pipeline built over FastAPI, React, and strict credibility schemas.",
-  impact: "Successfully validated complex intelligence reports with deterministic traceability.",
+  technologyDesc: "Deterministic NLP pipeline over FastAPI and React with strict credibility schemas.",
+  impact: "An experiment in making AI show its reasoning, not just its answer.",
   github: `${socialLinks.github.url}/News-detector`,
   liveLink: "https://veritas-thenameisbhagavan.vercel.app/",
   internalLink: "/work/veritas"
@@ -98,8 +98,8 @@ const VOLTDRIVE = {
     { step: "03", title: "Customize", desc: "Interact with a modern vehicle configurator built for seamless user engagement." },
     { step: "04", title: "Drive", desc: "Deliver a production-quality frontend experience inspired by leading automotive brands." }
   ],
-  technologyDesc: "Built using React, Vite, JavaScript, Framer Motion, modern CSS architecture, and performance-first frontend engineering.",
-  impact: "Successfully transformed a concept into a production-deployed luxury automotive website featuring unique hero experiences and premium visual storytelling.",
+  technologyDesc: "React, Vite, Framer Motion, modern CSS architecture, and performance-first frontend engineering.",
+  impact: "A frontend project where I explored cinematic interaction design and production-quality delivery.",
   github: "https://github.com/thenameisbhagavan/voltdrive",
   liveLink: "https://voltdrive-thenameisbhagavan.vercel.app/",
   internalLink: "/work/voltdrive"
@@ -119,7 +119,7 @@ const EARLIER_SYSTEMS = [
     domain: "Enterprise Automation",
     problem: "Administrative workflows are bogged down by manual approvals and fragmented communication.",
     tech: "Built entirely within the Microsoft Power Platform ecosystem, utilizing Power Automate.",
-    outcome: "Transformed multi-day approval chains into near-instantaneous digital resolutions.",
+    outcome: "Turned multi-day approval chains into near-instant digital resolutions.",
     source: null
   }
 ];
@@ -210,7 +210,7 @@ export default function Work() {
               animate={{ opacity: showHero ? 1 : 0, y: showHero ? 0 : 24 }}
               transition={{ duration: 1.0, ease: appleEase }}
             >
-              Systems I built<br/>to turn ideas<br/>into products.
+              Systems I built<br/>to understand<br/>real problems.
             </m.h1>
             <m.p 
               className="hero-supporting-copy"
@@ -227,20 +227,20 @@ export default function Work() {
         <section className="work-editorial-bridge" data-nav-theme="light">
           <div className="exhibition-bounds">
             <m.h2 className="bridge-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Every system begins with a problem worth solving.
+              Every system started with a question I couldn't stop thinking about.
             </m.h2>
             <m.div className="bridge-origins" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
               <m.p className="origin-line" variants={fadeUp}>
-                <span className="origin-name">CareerOS</span> started with career uncertainty.
+                <span className="origin-name">CareerOS</span> started because career advice felt generic and disconnected.
               </m.p>
               <m.p className="origin-line" variants={fadeUp}>
-                <span className="origin-name">AuraOS</span> started with the limits of stateless conversation.
+                <span className="origin-name">AuraOS</span> started because every chatbot forgot what I just said.
               </m.p>
               <m.p className="origin-line" variants={fadeUp}>
-                <span className="origin-name">VERITAS</span> started with the problem of untraceable conclusions.
+                <span className="origin-name">VERITAS</span> started because AI generates confident answers with no trail to follow.
               </m.p>
               <m.p className="origin-line" variants={fadeUp}>
-                <span className="origin-name">VoltDrive</span> started with the gap between capability and digital experience.
+                <span className="origin-name">VoltDrive</span> started because powerful technology doesn't matter if the experience falls flat.
               </m.p>
             </m.div>
           </div>
@@ -283,8 +283,8 @@ export default function Work() {
               {FLAGSHIP_CAREEROS.eyebrow}
             </m.div>
             <m.h2 className="chapter-massive-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Career decisions are fragmented.<br/>
-              Career intelligence should not be.
+              Career decisions happen in fragments.<br/>
+              No system connects them.
             </m.h2>
 
             <m.div className="chapter-product-artifact" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
@@ -490,21 +490,21 @@ export default function Work() {
                 <span className="p-num">01</span>
                 <div className="p-content">
                   <span className="p-title">INTELLIGENCE NEEDS CONTEXT</span>
-                  <span className="p-desc">Standalone models are commodities. The true engineering value lies in designing persistent memory layers and reasoning graphs that allow an AI to understand the user's specific state over time (AuraOS, CareerOS).</span>
+                  <span className="p-desc">I learned that a standalone model is just a starting point. The real engineering is in memory layers, context systems, and reasoning pipelines that make the model aware of the user's actual situation (AuraOS, CareerOS).</span>
                 </div>
               </m.div>
               <m.div className="principle-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <span className="p-num">02</span>
                 <div className="p-content">
                   <span className="p-title">SYSTEMS NEED STRUCTURE</span>
-                  <span className="p-desc">Generative outputs are useless if they cannot be verified. Architecting pipelines that force deterministic traceability allows for trust in environments where hallucinations are unacceptable (VERITAS).</span>
+                  <span className="p-desc">I learned that generative outputs are only useful if you can trace how they got there. Building deterministic pipelines forced me to think about trust, verification, and what it means for AI to be reliable (VERITAS).</span>
                 </div>
               </m.div>
               <m.div className="principle-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <span className="p-num">03</span>
                 <div className="p-content">
                   <span className="p-title">PRODUCTS NEED EXPERIENCE</span>
-                  <span className="p-desc">Backend complexity must never leak into the frontend. Performance optimization, spatial composition, and precise interaction design are critical to translating raw technical capability into a product users actually want to use (VoltDrive).</span>
+                  <span className="p-desc">I learned that backend complexity should never leak into the frontend. The performance, the motion, the spatial composition — that's where a technical project becomes something someone actually wants to use (VoltDrive).</span>
                 </div>
               </m.div>
             </div>
@@ -515,13 +515,13 @@ export default function Work() {
         <section className="work-closing" data-nav-theme="light">
           <div className="exhibition-bounds align-center">
             <m.h2 className="closing-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Work is the evidence.
+              The work speaks for itself.
             </m.h2>
             <m.p className="closing-sub" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              These systems are not isolated projects.<br/>
-              They are iterations of the same question:<br/><br/>
-              How do you turn intelligence into software people can use?<br/><br/>
-              Every system is an argument for how I think about software.
+              These aren't isolated projects.<br/>
+              They're iterations on the same question:<br/><br/>
+              How do you turn intelligence into something people can actually use?<br/><br/>
+              Each system is my best answer so far.
             </m.p>
             <m.div className="closing-action" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <Link to="/experience" className="action-link-large">

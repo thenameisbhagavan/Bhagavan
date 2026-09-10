@@ -10,6 +10,7 @@ import studyOwlCert from "../assets/cert-studyowl.png";
 import blackbucksCert from "../assets/cert-blackbucks.png";
 import smartBridgeCert from "../assets/cert-smartbridge.png";
 import helsonCert from "../assets/cert-helson.png";
+import paceImg from "../assets/pace.jpg";
 
 // ─── Motion ───────────────────────────────────────────────────────────────────
 const appleEase = [0.22, 1, 0.36, 1];
@@ -120,14 +121,13 @@ export default function Experience() {
             </m.div>
             
             <m.h1 className="hero-massive-headline" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.1, ease: appleEase }}>
-              Experience changed<br/>how I build.
+              Experience is just<br/>data you learn from.
             </m.h1>
             
             <m.p className="hero-supporting-copy" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.2, ease: appleEase }}>
-              From learning how to work with data<br/>
-              to designing intelligent systems<br/>
-              and teaching them professionally —<br/>
-              each experience shaped how I think about software.
+              From scraping data as an intern<br/>
+              to teaching AI to hundreds of students —<br/>
+              every role forced me to rethink what I know about software.
             </m.p>
 
             <m.div className="hero-vertical-meta" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.4, ease: appleEase }}>
@@ -186,27 +186,27 @@ export default function Experience() {
             
             <div className="narrative-stack">
               <m.h2 className="narrative-huge" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                I didn't learn engineering<br/>all at once.
+                I didn't learn how to build<br/>all at once.
               </m.h2>
               
               <m.h3 className="narrative-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                First, I learned to understand the data.
+                First, I figured out how to wrangle data.
               </m.h3>
               
               <m.h3 className="narrative-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                Then, I learned to build the product around it.
+                Then, I realized a script isn't a product.
               </m.h3>
               
               <m.h3 className="narrative-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                Then, I learned to make intelligence useful.
+                Then, I learned how hard it is to make AI actually useful.
               </m.h3>
               
               <m.h3 className="narrative-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                Then, I learned to think in systems.
+                Then, I had to unlearn isolated features and start thinking in systems.
               </m.h3>
               
               <m.h3 className="narrative-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                Now, I teach these technologies professionally — and keep building.
+                Now, I teach others how to do it — and keep building.
               </m.h3>
             </div>
           </div>
@@ -249,6 +249,42 @@ export default function Experience() {
           </div>
         </section>
 
+        {/* ==================== AI EDUCATION & TECHNICAL COMMUNICATION ==================== */}
+        <section className="evo-chapter" data-nav-theme="light">
+          <div className="evo-bounds">
+            <m.div className="chapter-meta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <span className="cm-num">CASE STUDY</span>
+              <span className="cm-company">PACE COLLEGE OF ENGINEERING</span>
+            </m.div>
+            
+            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              AI Education &<br/>Technical Communication.
+            </m.h2>
+
+            <div className="chapter-grid exp-case-study">
+              <m.div className="cg-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+                <div className="role-meta">
+                  <span className="rm-company">WORKSHOP</span>
+                  <span className="rm-role">Prompt Engineering × Generative AI</span>
+                  <span className="rm-period">Ongole · CSE, AI & DS, AI & ML</span>
+                </div>
+              </m.div>
+              <m.div className="cg-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
+                <m.div className="exp-case-image-wrap" variants={fadeUp}>
+                  <img src={paceImg} alt="PACE Workshop" className="exp-case-img" loading="lazy" />
+                </m.div>
+                
+                <m.p className="cg-editorial" variants={fadeUp} style={{ marginTop: '32px' }}>
+                  A hands-on workshop for ~300 students, showing them how to bridge the gap between hype-driven AI concepts and actual engineering workflows.
+                </m.p>
+                <m.p className="cg-editorial" variants={fadeUp}>
+                  I wanted to show them that AI isn't just about chatting—it's a component you engineer. We focused on forcing deterministic outputs from non-deterministic models. The hardest part wasn't the technical material; it was teaching people a new way to think.
+                </m.p>
+              </m.div>
+            </div>
+          </div>
+        </section>
+
         {/* ==================== 4. CHAPTER 01: BLACKBUCKS ==================== */}
         <section id="chap-foundation" className="evo-chapter" data-nav-theme="light">
           <div className="evo-bounds">
@@ -271,10 +307,10 @@ export default function Experience() {
               </m.div>
               <m.div className="cg-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
                 <m.p className="cg-lesson" variants={fadeUp}>
-                  Before building intelligent products, I had to learn what intelligence depends on: data, structure, and signal.
+                  Before I could build anything intelligent, I had to figure out what intelligence runs on.
                 </m.p>
                 <m.p className="cg-editorial" variants={fadeUp}>
-                  The real challenge wasn't building models—it was understanding data itself. Working with complex workflows revealed that successful AI systems depend entirely on the quality of the data and the rigor of the process.
+                  I thought machine learning was about algorithms. I quickly learned it's entirely about the data. If the data pipeline is messy, the model is useless. This internship was my crash course in finding signal in the noise.
                 </m.p>
                 
                 <m.div className="cg-changed" variants={fadeUp}>
@@ -328,10 +364,10 @@ export default function Experience() {
               </m.div>
               <m.div className="cg-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
                 <m.p className="cg-lesson" variants={fadeUp}>
-                  Architecture is only useful when people can actually use what you build.
+                  A working script isn't a product until someone else can use it.
                 </m.p>
                 <m.p className="cg-editorial" variants={fadeUp}>
-                  Software engineering became more than writing code. It introduced the full lifecycle of building digital products. Working across frontend and backend technologies revealed how architecture, usability, and reliability must work together.
+                  This is where I moved from writing isolated code to shipping full-stack features. I learned the hard way that backend logic doesn't matter if the frontend drops the ball, and a beautiful UI is pointless if the database is crawling.
                 </m.p>
                 
                 <m.div className="cg-changed" variants={fadeUp}>
@@ -385,10 +421,10 @@ export default function Experience() {
               </m.div>
               <m.div className="cg-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
                 <m.p className="cg-lesson" variants={fadeUp}>
-                  AI stopped being a technology I studied and became a system I had to make useful.
+                  A flashy AI demo is easy. Making it reliable enough for production is hard.
                 </m.p>
                 <m.p className="cg-editorial" variants={fadeUp}>
-                  The focus shifted from building systems to creating solutions. Working with artificial intelligence and automation revealed that technology creates value only when it solves real problems for real people.
+                  Here, AI stopped being an academic exercise. I had to integrate intelligence into existing workflows, which meant dealing with edge cases, latency, and the reality that automation is only valuable if it actually works every time.
                 </m.p>
                 
                 <m.div className="cg-changed" variants={fadeUp}>
@@ -453,10 +489,10 @@ export default function Experience() {
               
               <m.div className="cg-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
                 <m.p className="cg-lesson" variants={fadeUp}>
-                  At enterprise scale, individual features stop being the whole problem. The system around them becomes the problem.
+                  At scale, the problem isn't the feature. The problem is how it connects to everything else.
                 </m.p>
                 <m.p className="cg-editorial" variants={fadeUp}>
-                  Process automation required a different scale of thinking. It emphasized system thinking—understanding how individual processes connect and how information flows to transform complexity into reliability.
+                  Enterprise automation forced me to stop looking at isolated code and start looking at the entire pipeline. When a multi-day approval chain relies on manual steps, the code you write has to be bulletproof.
                 </m.p>
                 
                 <m.div className="cg-changed" variants={fadeUp}>
@@ -532,26 +568,26 @@ export default function Experience() {
             <div className="perspective-grid">
               <m.div className="pg-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <span className="pg-num">01</span>
-                <span className="pg-title">UNDERSTAND THE PROBLEM</span>
-                <span className="pg-desc">Technology is only useful if it solves a real issue.</span>
+                <span className="pg-title">SOLVE THE RIGHT PROBLEM</span>
+                <span className="pg-desc">Writing code for the wrong problem is just elegant waste. Find out what actually matters first.</span>
               </m.div>
               
               <m.div className="pg-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <span className="pg-num">02</span>
-                <span className="pg-title">DESIGN THE SYSTEM</span>
-                <span className="pg-desc">Architecture dictates reliability and scale.</span>
+                <span className="pg-title">DESIGN FOR FAILURE</span>
+                <span className="pg-desc">The happy path is easy. Real engineering is deciding what happens when the API goes down.</span>
               </m.div>
               
               <m.div className="pg-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <span className="pg-num">03</span>
-                <span className="pg-title">MAKE INTELLIGENCE USEFUL</span>
-                <span className="pg-desc">AI must be integrated cleanly into workflows to matter.</span>
+                <span className="pg-title">DEMOS DON'T COUNT</span>
+                <span className="pg-desc">A cool notebook isn't a product. Getting intelligence into a seamless UI is where the real work happens.</span>
               </m.div>
               
               <m.div className="pg-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <span className="pg-num">04</span>
-                <span className="pg-title">SHIP FOR REAL PEOPLE</span>
-                <span className="pg-desc">The user's experience is the final measure of engineering success.</span>
+                <span className="pg-title">SHIP TO LEARN</span>
+                <span className="pg-desc">You don't learn from code sitting on localhost. You learn when real people click the buttons.</span>
               </m.div>
             </div>
           </div>
@@ -561,14 +597,12 @@ export default function Experience() {
         <section className="evo-closing" data-nav-theme="light">
           <div className="evo-bounds">
             <m.h2 className="closing-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              I build differently<br/>
-              because I learned differently.
+              I learn by shipping.
             </m.h2>
             <m.p className="closing-sub" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Every experience left something behind:<br/>
-              a better question,<br/>
-              a stronger system,<br/>
-              a clearer way to build.
+              Every role was an experiment in how to build better software.<br/><br/>
+              I'm still running experiments.<br/>
+              I'm still learning.
             </m.p>
             
             <m.div className="closing-signature" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>

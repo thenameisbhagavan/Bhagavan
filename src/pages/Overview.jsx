@@ -13,6 +13,7 @@ import githubImg from "../assets/github-profile.png";
 import leetcodeImg from "../assets/leetcode-profile.png";
 import instagramImg from "../assets/instagram.png";
 import xImg from "../assets/x.png";
+import paceImg from "../assets/pace.jpg";
 
 // Apple-precise easing
 const appleEase = [0.22, 1, 0.36, 1];
@@ -51,22 +52,31 @@ export default function Overview() {
         {/* 01 — HERO (HUGE) */}
         <section className="es-hero act-i-identity" data-nav-theme="light">
           <div className="es-hero-bounds">
+            <m.div 
+              className="es-hero-portrait"
+              initial={{ opacity: 0, filter: 'blur(12px)', scale: 0.98 }}
+              animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
+              transition={{ duration: 1.5, delay: 0.2, ease: appleEase }}
+            >
+              <img src={profileHeroImg} alt="Bhagavan" className="es-portrait-img" loading="eager" />
+            </m.div>
+
             <m.div className="es-hero-content" initial="hidden" animate={controls} variants={fadeUpStagger}>
               <m.p className="es-eyebrow" variants={fadeUp}>
                 AI PRODUCT ENGINEER
               </m.p>
               
               <m.h1 className="es-headline" variants={fadeUp}>
-                I engineer AI systems<br/>
-                and products that ship.
+                I build software<br/>
+                to figure out how it works.
               </m.h1>
               
               <m.p className="es-subthesis" variants={fadeUp}>
-                I currently work as a Technical AI/ML & Data Science Trainer at Data Valley, while building intelligent software products across AI, machine learning, data, and full-stack engineering.
+                I am an early-career engineer exploring the intersection of artificial intelligence, backend systems, and product design. Currently a Technical AI/ML & Data Science Trainer at Data Valley.
               </m.p>
 
               <m.p className="es-subthesis" variants={fadeUp} style={{ marginTop: '16px' }}>
-                From AuraOS and CareerOS to VERITAS and VoltDrive, I turn technical ideas into working systems and products.
+                I don't just study technology. I build it, break it, and learn how to ship it.
               </m.p>
               
               <m.div variants={fadeUp} style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -77,15 +87,6 @@ export default function Overview() {
                   Selected Work: AuraOS · CareerOS · VERITAS · VoltDrive
                 </span>
               </m.div>
-            </m.div>
-            
-            <m.div 
-              className="es-hero-portrait"
-              initial={{ opacity: 0, filter: 'blur(12px)', scale: 0.98 }}
-              animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
-              transition={{ duration: 1.5, delay: 0.2, ease: appleEase }}
-            >
-              <img src={profileHeroImg} alt="Bhagavan" className="es-portrait-img" loading="eager" />
             </m.div>
           </div>
         </section>
@@ -100,14 +101,14 @@ export default function Overview() {
               transition={{ duration: 0.9, ease: appleEase }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              Software becomes interesting when intelligence meets execution.
+              I like understanding systems by trying to build them.
             </m.h2>
 
             <div className="es-thesis-grid">
               {[
-                { num: "01", title: "THINK IN SYSTEMS", desc: "I don't treat AI as an isolated feature. I design the surrounding system — context, data, logic, interfaces, failure paths and delivery." },
-                { num: "02", title: "BUILD FOR USE", desc: "A technically impressive model is not automatically a useful product. I care about how intelligence becomes an experience people can actually use." },
-                { num: "03", title: "SHIP THE LOOP", desc: "Idea → implementation → evaluation → iteration → deployment. This loop defines engineering velocity." }
+                { num: "01", title: "THINK IN SYSTEMS", desc: "I try to design the surrounding system — not just the model. Context, data, interfaces, failure paths." },
+                { num: "02", title: "BUILD FOR USE", desc: "A working model isn't automatically useful. I care about how people actually experience the intelligence." },
+                { num: "03", title: "SHIP THE LOOP", desc: "Idea → build → test → learn → ship. That loop teaches me more than any course." }
               ].map((thesis, i) => (
                 <EditorialReveal 
                   key={thesis.num} 
@@ -133,15 +134,15 @@ export default function Overview() {
               transition={{ duration: 0.8, ease: appleEase }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              From intelligence to interface.
+              The anatomy of what I build.
             </m.h2>
 
             <div className="es-build-grid">
               {[
-                { title: "INTELLIGENCE", desc: "Systems that reason, classify, evaluate and generate useful decisions." },
-                { title: "CONTEXT", desc: "Memory, retrieval, knowledge and user-aware experiences." },
-                { title: "PRODUCT", desc: "Interfaces that turn technical capability into something understandable." },
-                { title: "DELIVERY", desc: "APIs, architecture, deployment and production-oriented engineering." }
+                { title: "INTELLIGENCE", desc: "The reasoning layer — models that classify, evaluate, and generate decisions worth trusting." },
+                { title: "CONTEXT", desc: "The memory layer — retrieval, knowledge graphs, and user-aware persistence." },
+                { title: "PRODUCT", desc: "The interface layer — where technical complexity becomes something a person can actually use." },
+                { title: "DELIVERY", desc: "The engineering layer — APIs, deployment, monitoring, and the discipline of shipping." }
               ].map((cat, i) => (
                 <EditorialReveal 
                   key={cat.title}
@@ -165,10 +166,10 @@ export default function Overview() {
           <div className="es-bounds">
             <m.div className="es-flagship-list">
               {[
-                { num: "01", name: "CAREEROS", tag: "Career Intelligence", problem: "Scattered career data and isolated job application context.", core: "AI-driven context intelligence and memory.", eng: "Agentic RAG, Memory, Python, React.", outcome: "Unified intelligence system.", url: "https://careeros-thenameisbhagavan.vercel.app/" },
-                { num: "02", name: "AURAOS", tag: "AI Memory & Context", problem: "Stateless interactions lack contextual awareness.", core: "Persistent context mapping.", eng: "Vector DBs, Semantic Search.", outcome: "Intelligent operating environment.", url: "https://aura-os-thenameisbhagavan.vercel.app/" },
-                { num: "03", name: "VERITAS", tag: "Reasoning & Evidence", problem: "Hallucinations in ungrounded generation.", core: "Fact-based reasoning layer.", eng: "Evaluative models, fast architecture.", outcome: "Reliable logic execution.", url: "https://veritas-thenameisbhagavan.vercel.app/" },
-                { num: "04", name: "VOLTDRIVE", tag: "Digital Product Experience", problem: "Poor UX in complex technical tools.", core: "Frictionless product interaction.", eng: "Advanced Frontend, Motion Design.", outcome: "Premium interface delivery.", url: "https://voltdrive-thenameisbhagavan.vercel.app/" }
+                { num: "01", name: "CAREEROS", tag: "Career Intelligence", problem: "Career decisions happen in fragments. No system connects them.", core: "AI-driven career context and memory.", eng: "Agentic RAG, Memory Systems, Python, React.", outcome: "A unified intelligence layer for career trajectory.", url: "https://careeros-thenameisbhagavan.vercel.app/" },
+                { num: "02", name: "AURAOS", tag: "AI Memory & Context", problem: "Conversations reset every time. Context disappears.", core: "Persistent context mapping across sessions.", eng: "Vector DBs, Semantic Search, RAG.", outcome: "A chatbot that actually remembers.", url: "https://aura-os-thenameisbhagavan.vercel.app/" },
+                { num: "03", name: "VERITAS", tag: "Reasoning & Evidence", problem: "AI generates answers. It rarely shows its reasoning.", core: "Deterministic fact-tracing pipeline.", eng: "NLP, FastAPI, Credibility Schemas.", outcome: "Intelligence you can verify.", url: "https://veritas-thenameisbhagavan.vercel.app/" },
+                { num: "04", name: "VOLTDRIVE", tag: "Digital Product Experience", problem: "Technical capability without premium UX falls flat.", core: "Cinematic interaction architecture.", eng: "React, Framer Motion, Performance Engineering.", outcome: "A frontend experience that feels alive.", url: "https://voltdrive-thenameisbhagavan.vercel.app/" }
               ].map((sys, idx) => (
                 <m.a 
                   key={sys.num}
@@ -244,8 +245,71 @@ export default function Overview() {
               transition={{ duration: 0.8, delay: 0.8, ease: appleEase }}
               viewport={{ once: true, margin: "-50px" }}
             >
-              That is the loop I try to engineer.
+              Every system I build follows this loop.
             </m.p>
+          </div>
+        </section>
+
+        {/* 05B — TEACHING / KNOWLEDGE IN PRACTICE */}
+        <section className="es-teaching-section" data-nav-theme="light">
+          <div className="es-bounds">
+            <m.div 
+              className="es-teaching-transition"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: appleEase }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              Building intelligent systems.<br/>
+              Teaching people how to work with them.
+            </m.div>
+
+            <div className="es-teaching-layout">
+              <m.div 
+                className="es-teaching-image-wrap"
+                initial={{ opacity: 0, scale: 0.98, filter: 'blur(8px)' }}
+                whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                transition={{ duration: 1.4, ease: appleEase }}
+                viewport={{ once: true, margin: "-50px" }}
+              >
+                <img src={paceImg} alt="PACE Workshop" className="es-teaching-img" loading="lazy" />
+              </m.div>
+              
+              <div className="es-teaching-content">
+                <EditorialReveal stagger={1}>
+                  <div className="es-section-label" style={{ marginBottom: "24px" }}>TEACHING / KNOWLEDGE IN PRACTICE</div>
+                </EditorialReveal>
+                
+                <EditorialReveal stagger={2}>
+                  <h2 className="es-teaching-hl">
+                    I don't just build with AI.<br/>
+                    I teach people to think with it.
+                  </h2>
+                </EditorialReveal>
+                
+                <EditorialReveal stagger={3}>
+                  <div className="es-teaching-details">
+                    <span className="es-td-title">Prompt Engineering × Generative AI</span>
+                    <span className="es-td-org">PACE College of Engineering, Ongole</span>
+                    <span className="es-td-meta">~300 students · CSE / AI & DS / AI & ML</span>
+                  </div>
+                </EditorialReveal>
+                
+                <EditorialReveal stagger={4}>
+                  <p className="es-teaching-desc">
+                    A hands-on workshop for ~300 students across CSE, AI & DS, and AI & ML — translating complex AI concepts into practical engineering intuition.
+                  </p>
+                </EditorialReveal>
+                
+                <EditorialReveal stagger={5}>
+                  <div className="es-teaching-action">
+                    <Link to="/experience" className="es-cta-quiet apple-pressable">
+                      EXPLORE THE EXPERIENCE <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </EditorialReveal>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -254,10 +318,10 @@ export default function Overview() {
           <div className="es-bounds">
             <div className="es-layers-stack">
               {[
-                { num: "01", name: "INTELLIGENCE", tech: "AI / ML / reasoning", desc: "The cognitive core of the application." },
-                { num: "02", name: "SYSTEMS", tech: "APIs / backend / data / architecture", desc: "The infrastructure that makes intelligence available." },
-                { num: "03", name: "PRODUCT", tech: "React / interfaces / interaction", desc: "The surface where humans interact with the logic." },
-                { num: "04", name: "DELIVERY", tech: "Git / deployment / production", desc: "The rigorous process of shipping reliable software." }
+                { num: "01", name: "INTELLIGENCE", tech: "AI / ML / reasoning", desc: "Where the system learns to think." },
+                { num: "02", name: "SYSTEMS", tech: "APIs / backend / data / architecture", desc: "Where intelligence becomes infrastructure." },
+                { num: "03", name: "PRODUCT", tech: "React / interfaces / interaction", desc: "Where people meet the technology." },
+                { num: "04", name: "DELIVERY", tech: "Git / deployment / production", desc: "Where code becomes something real." }
               ].map((layer, i) => (
                 <EditorialReveal 
                   key={layer.num}
@@ -288,15 +352,15 @@ export default function Overview() {
               transition={{ duration: 0.9, ease: appleEase }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              Technology is easy to list. Decisions are harder to explain.
+              Decisions I keep coming back to.
             </m.h2>
 
             <div className="es-decisions-grid">
               {[
-                { num: "01", title: "DETERMINISTIC BEFORE GENERATIVE", desc: "Predictable logic handles what doesn't require an LLM. Reliability beats unnecessary AI complexity." },
-                { num: "02", title: "CONTEXT BEFORE COMPLEXITY", desc: "Useful AI systems need the right context before adding more intelligence. RAG and memory over massive parameter counts." },
-                { num: "03", title: "PRODUCT BEFORE DEMO", desc: "A working model is not the same thing as a useful product. UI, error handling, and latency matter just as much." },
-                { num: "04", title: "SHIP BEFORE PERFECT", desc: "Real feedback beats endless local refinement. The architecture must support rapid iteration." }
+                { num: "01", title: "DETERMINISTIC BEFORE GENERATIVE", desc: "If predictable logic works, I use that first. Not everything needs an LLM." },
+                { num: "02", title: "CONTEXT BEFORE COMPLEXITY", desc: "Giving a model the right context usually matters more than making it bigger." },
+                { num: "03", title: "PRODUCT BEFORE DEMO", desc: "A cool demo isn't a product. Error handling, latency, and UI matter just as much as the model." },
+                { num: "04", title: "SHIP BEFORE PERFECT", desc: "I'd rather ship something imperfect and learn from it than keep refining locally." }
               ].map((dec, i) => (
                 <EditorialReveal 
                   key={dec.num}
@@ -327,12 +391,12 @@ export default function Overview() {
 
             <div className="es-practice-grid">
               {[
-                { cat: "SYSTEM DESIGN", tool: "Microservices & Serverless", use: "Decoupling intelligence from interfaces." },
-                { cat: "API ENGINEERING", tool: "FastAPI & Node.js", use: "Building high-performance logic endpoints." },
-                { cat: "AI / ML", tool: "LLMs, Vectors, Agents", use: "Generative reasoning and contextual memory." },
-                { cat: "DATA", tool: "PostgreSQL & Vector DBs", use: "State persistence and semantic retrieval." },
-                { cat: "FRONTEND", tool: "React & Framer Motion", use: "Cinematic, highly responsive interfaces." },
-                { cat: "DEPLOYMENT", tool: "Vercel & Cloud Run", use: "Shipping robust production loops." }
+                { cat: "SYSTEM DESIGN", tool: "Microservices & Serverless", use: "Separating intelligence from interfaces." },
+                { cat: "API ENGINEERING", tool: "FastAPI & Node.js", use: "Fast, clean logic endpoints." },
+                { cat: "AI / ML", tool: "LLMs, Vectors, Agents", use: "Reasoning, generation, and contextual memory." },
+                { cat: "DATA", tool: "PostgreSQL & Vector DBs", use: "Persistent state and semantic retrieval." },
+                { cat: "FRONTEND", tool: "React & Framer Motion", use: "Interfaces that feel alive." },
+                { cat: "DEPLOYMENT", tool: "Vercel & Cloud Run", use: "From local to production in minutes." }
               ].map((prac, i) => (
                 <EditorialReveal 
                   key={prac.cat}
@@ -386,7 +450,7 @@ export default function Overview() {
               transition={{ duration: 0.8, delay: 0.8, ease: appleEase }}
               viewport={{ once: true, margin: "-50px" }}
             >
-              Every system changes what I build next.
+              Each system changes how I think about the next one.
             </m.p>
           </div>
         </section>
@@ -479,7 +543,7 @@ export default function Overview() {
               transition={{ duration: 1, delay: 0.4, ease: appleEase }}
               viewport={{ once: true, margin: "-50px" }}
             >
-              I am moving from building individual AI features toward designing complete intelligent systems.
+              I'm learning to think in systems rather than features. That's where I want to go.
             </m.p>
           </div>
         </section>
@@ -488,11 +552,11 @@ export default function Overview() {
         <section className="es-principles bg-light" data-nav-theme="light">
           <div className="es-bounds-narrow">
             {[
-              "01 UNDERSTAND THE PROBLEM BEFORE CHOOSING THE MODEL.",
-              "02 DESIGN THE SYSTEM AROUND THE INTELLIGENCE.",
-              "03 MAKE COMPLEXITY EARN ITS PLACE.",
-              "04 BUILD FOR FAILURE, NOT JUST THE HAPPY PATH.",
-              "05 SHIP, OBSERVE, ITERATE."
+              "01 Understand the problem before reaching for a model.",
+              "02 Design the system around the intelligence, not the other way around.",
+              "03 If complexity doesn't earn its place, remove it.",
+              "04 Build for the failure case. The happy path is easy.",
+              "05 Ship, observe, iterate. That's how I learn."
             ].map((principle, i) => (
               <m.div 
                 key={principle}
@@ -520,11 +584,11 @@ export default function Overview() {
             >
               <div className="es-person-text">
                 <m.h2 className="es-person-hl" variants={fadeUp}>
-                  Behind every system is an engineer who builds, teaches, and keeps learning.
+                  I'm building my career one system, one experiment, and one lesson at a time.
                 </m.h2>
                 <m.p className="es-person-desc" variants={fadeUp}>
-                  AI is the direction. Engineering is the discipline.<br/>
-                  Teaching is the practice. Product is the outcome.
+                  I build things to understand problems. I learn by building.<br/>
+                  I care about how technology works and how people experience it.
                 </m.p>
               </div>
               <m.div className="es-person-image-wrapper" variants={fadeUp}>
@@ -667,7 +731,7 @@ export default function Overview() {
               transition={{ duration: 1.5, ease: appleEase }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              The work is the introduction.
+              The work continues.
             </m.div>
             
             <m.div 

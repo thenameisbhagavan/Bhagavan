@@ -666,6 +666,31 @@
     text-transform: uppercase;
   }
   
+  /* ==================== 10. CASE STUDY SPECIFICS ==================== */
+  .exp-case-study {
+    margin-top: 40px;
+  }
+  
+  .exp-case-image-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #e5e5ea;
+    margin-bottom: 32px;
+  }
+  
+  .exp-case-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-apple);
+  }
+  
+  .exp-case-image-wrap:hover .exp-case-img {
+    transform: scale(1.02);
+  }
+
   /* ==================== REDUCED MOTION ==================== */
   @media (prefers-reduced-motion: reduce) {
     * {
@@ -674,3 +699,4 @@
       animation-iteration-count: 1 !important;
     }
   }
+

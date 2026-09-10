@@ -111,13 +111,13 @@ export default function Vision() {
         <section className="vision-hero" data-nav-theme="light">
           <div className="vision-bounds">
             <m.div className="vision-hero-eyebrow" initial="hidden" animate="visible" variants={fadeUp}>
-              VISION / POINT OF VIEW / 2026
+              PERSPECTIVE / HOW I THINK / 2026
             </m.div>
             <m.h1 className="vision-hero-headline" initial="hidden" animate="visible" variants={fadeUpSlow}>
-              What should technology make possible?
+              How I think about<br/>what I'm building.
             </m.h1>
             <m.p className="vision-hero-sub" initial="hidden" animate="visible" variants={fadeUpSlow}>
-              I build to explore that question.
+              These are observations, not conclusions. They change as I learn.
             </m.p>
           </div>
         </section>
@@ -132,16 +132,16 @@ export default function Vision() {
             </m.div>
 
             <m.h2 className="vb-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              More intelligence is not enough.
+              More intelligence isn't automatically useful.
             </m.h2>
 
             <m.h3 className="vb-secondary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              Technology becomes meaningful when intelligence becomes useful.
+              I'm more interested in useful AI than impressive AI.
             </m.h3>
 
             <m.p className="vb-explanation" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              We have access to more information, computation, and automation than ever before.<br/><br/>
-              The harder problem is turning that capability into clarity, context, and meaningful action.
+              A prototype that someone can actually use teaches me more than a perfect benchmark.<br/><br/>
+              The harder problem is always turning capability into something clear, contextual, and genuinely helpful.
             </m.p>
           </div>
         </section>
@@ -307,11 +307,11 @@ export default function Vision() {
             </m.div>
 
             <m.h2 className="vf-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              I am not building toward more software.
+              I'm not trying to build more software.
             </m.h2>
 
             <m.h3 className="vf-reveal" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              I am building toward better systems.
+              I'm trying to build better systems.
             </m.h3>
 
             <div className="vf-list">
@@ -361,7 +361,7 @@ export default function Vision() {
             </m.div>
 
             <m.h2 className="vc-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              Technology should expand human potential.
+              Technology should help people do things they couldn't do before.
             </m.h2>
 
             <m.h3 className="vc-secondary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
@@ -369,12 +369,12 @@ export default function Vision() {
             </m.h3>
 
             <m.p className="vc-final" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              The future I want to build is one where intelligence makes people more capable, not less.
+              That's the kind of work I want to spend my career on.
             </m.p>
 
             <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <Link to="/work" className="vc-cta">
-                Build with purpose. <ArrowRight size={16} />
+                See what I'm building. <ArrowRight size={16} />
               </Link>
             </m.div>
           </div>

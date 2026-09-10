@@ -26,15 +26,7 @@ const PRIMARY_NAV = [
     ],
   },
 
-  {
-    label: "Perspective",
-    type: "editorial",
-    dropdown: [
-      { num: "01", label: "VISION", sub: "Direction & Philosophy", path: "/vision", preview: "Direction, philosophy, and the systems I want to build." },
-      { num: "02", label: "ENGINEERING JOURNAL", sub: "Systems, Experiments & Engineering", path: "/journal", preview: "Architecture decisions, experiments, failures, and engineering logic." },
-      { num: "03", label: "SIGNAL", sub: "Observations, Tools & Current Thinking", path: "/signal", preview: "Tools, questions, experiments, and decisions shaping how I build." },
-    ]
-  },
+
 
   { label: "Connect", path: "/connect" },
 ];
@@ -47,11 +39,6 @@ const MOBILE_NAV = [
   { label: "Credentials",   path: "/credentials" },
   { label: "Academic Archive", path: "/academic-archive" },
   { label: "Technology",    path: "/ecosystem" },
-  
-  { isHeader: true, label: "PERSPECTIVE", sub: "VIEW / THINK / BUILD" },
-  { label: "01 Vision", sub: "Direction & Philosophy", path: "/vision", indented: true },
-  { label: "02 Engineering Journal", sub: "Systems, Experiments & Engineering", path: "/journal", indented: true },
-  { label: "03 Signal", sub: "Observations, Tools & Current Thinking", path: "/signal", indented: true },
 
   { label: "Resume",        path: "/resume" },
   { label: "Connect",       path: "/connect" },
@@ -92,6 +79,131 @@ const QUICK_LINKS = [
 const ease = [0.16, 1, 0.3, 1];
 
 // ─────────────────────────────────────────────
+// 2026 APPLE-STYLE LIGATURE LOGO
+// ─────────────────────────────────────────────
+const TBLogo = () => (
+  <m.div 
+    className="tb-logo-wrapper"
+    initial={{ filter: "drop-shadow(0px 0px 0px rgba(0,0,0,0))" }}
+    whileHover={{ filter: "drop-shadow(0px 4px 12px rgba(120,120,128,0.25))", scale: 1.04 }}
+    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+    style={{ 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      color: 'var(--nav-text-color, #1d1d1f)',
+      willChange: 'transform, filter'
+    }}
+  >
+    <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Glassy squircle container */}
+      <rect width="32" height="32" rx="10" fill="currentColor" fillOpacity="0.03" />
+      <rect width="32" height="32" rx="10" stroke="currentColor" strokeOpacity="0.08" strokeWidth="1" />
+      
+      {/* T and B Ligature - mathematically centered at x=16 */}
+      <m.path 
+        d="M 9 11 H 16 M 12.5 11 V 21" 
+        stroke="currentColor" 
+        strokeWidth="2" 
+        strokeLinecap="round" 
+        strokeLinejoin="round"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+      />
+      <m.path 
+        d="M 16 21 V 11 H 19 C 21 11 22 12 22 13.5 C 22 15 21 16 19 16 H 16 M 16 16 H 19.5 C 21.5 16 23 17 23 18.5 C 23 20 21.5 21 19.5 21 H 16" 
+        stroke="currentColor" 
+        strokeWidth="2" 
+        strokeLinecap="round" 
+        strokeLinejoin="round"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+      />
+    </svg>
+  </m.div>
+);
+
+// ─────────────────────────────────────────────
+// 2026 APPLE-STYLE SPATIAL RESUME LOGO
+// ─────────────────────────────────────────────
+const Resume3DLogo = () => {
+  return (
+    <m.div
+      style={{
+        position: 'relative',
+        width: 20,
+        height: 20,
+        perspective: 500,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+      whileHover="hover"
+      initial="rest"
+    >
+      <m.div
+        variants={{
+          rest: { rotateX: 0, rotateY: 0, scale: 1 },
+          hover: { rotateX: 18, rotateY: -18, scale: 1.15 }
+        }}
+        transition={{ type: "spring", stiffness: 350, damping: 20 }}
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'relative',
+          transformStyle: 'preserve-3d'
+        }}
+      >
+        {/* Spatial Backplate */}
+        <m.div 
+          style={{
+            position: 'absolute',
+            inset: -3,
+            background: 'rgba(120, 120, 128, 0.08)',
+            borderRadius: 6,
+            border: '1px solid rgba(120, 120, 128, 0.12)',
+            transform: 'translateZ(-4px)',
+            willChange: 'box-shadow'
+          }}
+          variants={{
+            rest: { boxShadow: '0px 0px 0px rgba(0,0,0,0)' },
+            hover: { boxShadow: '4px 6px 12px rgba(0,0,0,0.12)' }
+          }}
+        />
+        {/* Floating Document Outline */}
+        <svg
+          width="20" height="20" viewBox="0 0 24 24" fill="none"
+          style={{ position: 'absolute', inset: 0, transform: 'translateZ(4px)', color: 'currentColor' }}
+        >
+          <rect x="4" y="3" width="16" height="18" rx="3.5" stroke="currentColor" strokeWidth="1.75" />
+          <path d="M8 8H13M8 12H16M8 16H14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+        </svg>
+        {/* Elevated Accent Dot (Apple signature detail) */}
+        <m.div
+          style={{
+            position: 'absolute',
+            top: 2,
+            right: 2,
+            width: 5,
+            height: 5,
+            borderRadius: '50%',
+            background: '#0066cc',
+            transform: 'translateZ(10px)'
+          }}
+          variants={{
+            rest: { opacity: 0, scale: 0.5 },
+            hover: { opacity: 1, scale: 1 }
+          }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+        />
+      </m.div>
+    </m.div>
+  );
+};
+
+// ─────────────────────────────────────────────
 // STYLES — injected once
 // ─────────────────────────────────────────────
 const CSS = `
@@ -113,7 +225,7 @@ const CSS = `
   
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .nav-shell, .nav-wordmark, .nav-btn, .nav-search-icon, .nav-mobile-btn, .nav-resume-btn, .nav-social-btn, .brand-cursive {
+    .nav-shell, .nav-wordmark, .nav-btn, .nav-search-icon, .nav-mobile-btn, .nav-resume-btn, .nav-social-btn, .brand-text {
       transition-duration: 0.01ms !important;
     }
   }
@@ -735,7 +847,7 @@ const CSS = `
   }
 
   /* Apply the variables with smooth transition */
-  .nav-shell .nav-wordmark .brand-cursive,
+  .nav-shell .nav-wordmark .brand-text,
   .nav-shell .nav-btn,
   .nav-shell .nav-search-icon,
   .nav-shell .nav-mobile-btn,
@@ -755,7 +867,7 @@ const CSS = `
   }
   
   /* When panel is open, revert to light mode temporarily so dropdowns are readable */
-  .nav-shell.nav-dark-mode.panel-open .nav-wordmark .brand-cursive,
+  .nav-shell.nav-dark-mode.panel-open .nav-wordmark .brand-text,
   .nav-shell.nav-dark-mode.panel-open .nav-btn,
   .nav-shell.nav-dark-mode.panel-open .nav-search-icon,
   .nav-shell.nav-dark-mode.panel-open .nav-mobile-btn,
@@ -1076,17 +1188,9 @@ export default function Navbar() {
       <nav className={shellClass}>
         <div className="nav-inner">
 
-          {/* Master Portrait Identity + Cursive Brand Text */}
-          <button className="nav-wordmark apple-pressable" onClick={() => go("/")} aria-label="TheNameIsBhagavan — Home" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <img src="/identity/bhagavan-icon-32.png" alt="TNB — TheNameIsBhagavan" style={{ height: '32px', width: '32px', borderRadius: '6px', objectFit: 'cover' }}  loading="lazy" />
-            <span className="brand-cursive" style={{
-              fontSize: '22px',
-              color: 'var(--nav-text-color, #1d1d1f)',
-              lineHeight: 1,
-              marginTop: '4px' // Optical alignment
-            }}>
-              TheNameIsBhagavan
-            </span>
+          {/* 2026 Animated TB Logo */}
+          <button className="nav-wordmark apple-pressable" onClick={() => go("/")} aria-label="TB — Home">
+            <TBLogo />
           </button>
 
           {/* Desktop links */}
@@ -1207,12 +1311,13 @@ export default function Navbar() {
             </button>
 
             <button
-              className="nav-resume-btn"
+              className="nav-resume-btn apple-pressable"
               onClick={() => go("/resume")}
               aria-label="Resume"
               title="Resume"
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-              <FileText size={18} strokeWidth={1.75} color="currentColor" />
+              <Resume3DLogo />
             </button>
 
             {/* Mobile toggle */}

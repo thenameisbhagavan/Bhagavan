@@ -1,0 +1,42 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    path {
+      stroke: #1d1d1f;
+    }
+    .bg {
+      fill: #1d1d1f;
+      fill-opacity: 0.03;
+    }
+    .border {
+      stroke: #1d1d1f;
+      stroke-opacity: 0.08;
+    }
+    @media (prefers-color-scheme: dark) {
+      path {
+        stroke: #f5f5f7;
+      }
+      .bg {
+        fill: #f5f5f7;
+        fill-opacity: 0.05;
+      }
+      .border {
+        stroke: #f5f5f7;
+        stroke-opacity: 0.15;
+      }
+    }
+  </style>
+  <rect class="bg" width="32" height="32" rx="10" />
+  <rect class="border" width="32" height="32" rx="10" stroke-width="1" />
+  <path 
+    d="M 9 11 H 16 M 12.5 11 V 21" 
+    stroke-width="2" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+  />
+  <path 
+    d="M 16 21 V 11 H 19 C 21 11 22 12 22 13.5 C 22 15 21 16 19 16 H 16 M 16 16 H 19.5 C 21.5 16 23 17 23 18.5 C 23 20 21.5 21 19.5 21 H 16" 
+    stroke-width="2" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+  />
+</svg>

@@ -150,10 +150,10 @@ export default function Connect() {
               <m.div className="ch-left" initial="hidden" animate="visible" variants={fadeUp}>
                 <div className="c-label">OPEN CHANNEL / 2026</div>
                 <h1 className="ch-headline">
-                  Let's build something<br/>worth discussing.
+                  Open to<br/>learning.
                 </h1>
                 <p className="ch-sub">
-                  Open to conversations around AI systems, software engineering, intelligent products, and ambitious technical problems.
+                  If you're building something hard, trying to figure out AI in production, or just want to talk about what works and what doesn't — I'd love to connect.
                 </p>
               </m.div>
 
@@ -178,7 +178,7 @@ export default function Connect() {
                   </div>
                   <div className="cha-item">
                     <span className="cha-label">AVAILABLE FOR</span>
-                    <span className="cha-value">SELECT CONVERSATIONS</span>
+                    <span className="cha-value">OPEN TO CONVERSATIONS</span>
                   </div>
                 </div>
               </m.div>
@@ -392,10 +392,10 @@ export default function Connect() {
               
               <m.div className="cx-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <div className="cx-human">
-                  Behind every system is a conversation about what should exist.
+                  I don't have all the answers, but I know how to find them. I build, I break things, and I learn fast.
                 </div>
                 <div className="cx-human-sub">
-                  Start with the problem. The rest can be figured out together.
+                  Let's figure out the next problem together.
                 </div>
               </m.div>
 
@@ -420,7 +420,7 @@ export default function Connect() {
             </div>
 
             <m.div className="cx-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <div className="cx-cta-title">Have a problem worth solving?</div>
+              <div className="cx-cta-title">Want to talk?</div>
               <button className="cx-cta-link" onClick={handleScrollToForm}>
                 START THE CONVERSATION <ArrowRight size={16} />
               </button>
