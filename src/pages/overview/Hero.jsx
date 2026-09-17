@@ -1,164 +1,80 @@
-import React, { useRef } from 'react';
-import { m, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { m } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import heroImg from '../../assets/profile-hero-optimized.webp';
-import logoImg from '../../assets/logo.png';
-import { MaskReveal, EditorialFade, SequenceReveal } from '../../components/transitions/primitives';
+import resumeIconImg from '../../assets/resume-icon.png';
+
+const appleEase = [0.22, 1, 0.36, 1];
 
 export default function Hero() {
   const navigate = useNavigate();
-  const containerRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const opacityHero = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section 
-      ref={containerRef}
-      style={{
-        position: 'relative',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        padding: '0 6vw',
-        background: '#fbfbfd', // Quiet white canvas
-        overflow: 'hidden'
-      }}
-     data-nav-theme="light">
-      <m.div 
-        style={{ 
-          y: yText, 
-          opacity: opacityHero,
-          willChange: "transform, opacity",
-          transform: "translateZ(0)",
-          maxWidth: '1440px',
-          margin: '0 auto',
-          width: '100%',
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: '8vh',
-          paddingTop: '12vh' // Clear navbar
-        }}
-      >
-        {/* =========================================================
-            IDENTITY REVEAL: PORTRAIT
-            ========================================================= */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          
-          <EditorialFade delay={0.05}>
-            <img 
-              src={logoImg} 
-              alt="TNB Mark" 
-              style={{ width: '32px', height: '32px', borderRadius: '6px', marginBottom: '32px', opacity: 0.9 }} 
-             loading="lazy" />
-          </EditorialFade>
-
-          <MaskReveal delay={0.1} duration={1.2}>
-            <div style={{
-              width: 'clamp(280px, 30vw, 420px)',
-              aspectRatio: '3/4',
-              borderRadius: '2px', // Sharp editorial frame
-              overflow: 'hidden',
-              backgroundColor: '#f5f5f7'
-            }}>
-              <m.img 
-                src={heroImg} 
-                alt="Bhagavan"
-                fetchPriority="high"
-                initial={{ scale: 1.05 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center 20%',
-                  willChange: 'transform'
-                }}
-              />
+    <section className="es-hero act-i-identity" data-nav-theme="light">
+      <div className="es-hero-bounds-2col">
+        
+        {/* LEFT COLUMN — IDENTITY & POSITION */}
+        <m.div 
+          className="es-hero-left" 
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: appleEase }}
+        >
+          <div className="es-hero-badge-wrap">
+            <div className="es-live-badge">
+              <span className="es-live-dot"></span>
+              <span className="es-live-text">TECHNICAL AI/ML & DATA SCIENCE TRAINER @ DATA VALLEY</span>
             </div>
-          </MaskReveal>
+          </div>
 
-        </div>
+          <h1 className="es-hero-headline-2col">
+            I build <span className="es-gradient-text">intelligent AI systems</span> & train engineers.
+          </h1>
 
-        {/* =========================================================
-            IDENTITY REVEAL: TYPOGRAPHY
-            ========================================================= */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-          
-          <EditorialFade delay={0.4}>
-            <div style={{
-              fontFamily: 'var(--font-system, sans-serif)',
-              fontSize: '11px',
-              fontWeight: 600,
-              letterSpacing: '0.12em',
-              color: '#86868b',
-              textTransform: 'uppercase',
-              marginBottom: '24px'
-            }}>
-              IDENTITY / AI PRODUCT ENGINEERING / 2026
+          <p className="es-hero-sub-2col">
+            Hi, I'm <strong>TheNameIsBhagavan</strong> (Gopala Josyula Siva Satya Sai Bhagavan)—Technical AI/ML & Data Science Trainer at Data Valley and AI Product Engineer. I develop creative web designs while growing as an AI/ML developer & trainer.
+          </p>
+
+          {/* Action Buttons */}
+          <div className="es-hero-actions-group">
+            <button className="es-btn-primary apple-pressable" onClick={() => navigate('/work')}>
+              <span>Explore Shipped Systems</span>
+              <ArrowRight size={16} />
+            </button>
+
+            <button className="es-btn-secondary apple-pressable" onClick={() => navigate('/resume')}>
+              <img src={resumeIconImg} alt="Resume" style={{ width: '20px', height: '20px', objectFit: 'contain' }} />
+              <span>Resume</span>
+            </button>
+          </div>
+
+          {/* Shipped Systems Quick Chips */}
+          <div className="es-hero-chips-wrap">
+            <span className="es-chips-label">SHIPPED PLATFORMS:</span>
+            <div className="es-chips-list">
+              <span className="es-chip" onClick={() => navigate('/work/careeros')}>CareerOS</span>
+              <span className="es-chip" onClick={() => navigate('/work/auraos')}>AuraOS</span>
+              <span className="es-chip" onClick={() => navigate('/work/veritas')}>VERITAS</span>
+              <span className="es-chip" onClick={() => navigate('/work/voltdrive')}>VoltDrive</span>
             </div>
-          </EditorialFade>
+          </div>
 
-          <SequenceReveal stagger={0.15} delay={0.5}>
-            <h1 style={{
-              fontFamily: 'var(--font-display, sans-serif)',
-              fontSize: 'clamp(40px, 6vw, 84px)',
-              fontWeight: 600,
-              letterSpacing: '-0.03em',
-              lineHeight: 1.05,
-              color: '#1d1d1f',
-              margin: '0 0 32px 0',
-              maxWidth: '800px'
-            }}>
-              <span>I engineer systems that</span>
-              <br/>
-              <span>turn complexity into clarity.</span>
-            </h1>
-          </SequenceReveal>
+        </m.div>
 
-          <EditorialFade delay={1.1}>
-            <p style={{
-              fontFamily: 'var(--font-system, sans-serif)',
-              fontSize: 'clamp(17px, 2vw, 24px)',
-              fontWeight: 400,
-              color: '#86868b',
-              lineHeight: 1.4,
-              maxWidth: '600px',
-              margin: '0 auto 48px auto'
-            }}>
-              Specializing in AI architectures, autonomous agents, and premium product experiences.
-            </p>
-          </EditorialFade>
+        {/* RIGHT COLUMN — CLEAN HERO PORTRAIT */}
+        <m.div 
+          className="es-hero-right"
+          initial={{ opacity: 0, filter: 'blur(12px)', scale: 0.98 }}
+          animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
+          transition={{ duration: 1.4, delay: 0.2, ease: appleEase }}
+        >
+          <div className="es-hero-portrait-frame">
+            <img src={heroImg} alt="Bhagavan" className="es-portrait-img-old" loading="eager" />
+          </div>
+        </m.div>
 
-          <EditorialFade delay={1.3}>
-            <div style={{ display: 'flex', gap: '16px' }}>
-              <button 
-                onClick={() => navigate('/work')}
-                style={{
-                  padding: '14px 28px',
-                  borderRadius: '30px',
-                  backgroundColor: '#1d1d1f',
-                  color: '#fff',
-                  fontFamily: 'var(--font-system, sans-serif)',
-                  fontSize: '15px',
-                  fontWeight: 500,
-                  border: 'none',
-                  cursor: 'pointer'
-                }}
-              >
-                View Systems
-              </button>
-            </div>
-          </EditorialFade>
-
-        </div>
-      </m.div>
+      </div>
     </section>
   );
 }

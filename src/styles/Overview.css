@@ -1,6 +1,6 @@
 /* =========================================
    OVERVIEW - THE ENGINEERING SURFACE
-   2026 FLAGSHIP IDENTITY EXPERIENCE
+   MASTER NARRATIVE EXPERIENCE (9 ACTS)
    ========================================= */
 
 .engineering-surface {
@@ -18,7 +18,7 @@
 
 .es-bounds-narrow {
   width: 100%;
-  max-width: 1000px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 0 5vw;
 }
@@ -32,989 +32,819 @@
   background-color: #f5f5f7;
 }
 
+/* NARRATIVE BRIDGES BETWEEN ACTS */
+.es-narrative-bridge {
+  padding: 20px 0;
+  text-align: center;
+  background-color: #fbfbfd;
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+}
+
+.es-bridge-question {
+  font-family: var(--font-system, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #0066CC;
+  text-transform: uppercase;
+}
+
 .es-section-label {
   font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: clamp(12px, 1vw, 14px);
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: #a1a1a6;
-  margin-bottom: 48px;
+  font-size: clamp(11px, 0.9vw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #86868b;
+  margin-bottom: 16px;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.es-display-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(40px, 5vw, 76px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.06;
+  color: #1d1d1f;
+  margin-top: 8px;
+}
+
+.es-sub-headline {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(30px, 3.2vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #1d1d1f;
+  margin-top: 6px;
+}
+
+.es-section-lead {
+  font-family: var(--font-system, sans-serif);
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.55;
+  color: #6e6e73;
+  max-width: 680px;
+  margin: 16px auto 0 auto;
 }
 
 /* =========================================
-   ACT I — IDENTITY
+   ACT 01 — HERO (IDENTITY)
    ========================================= */
-
-/* 01 — HERO (HUGE) */
 .es-hero {
-  min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 10vh;
-  padding-bottom: 10vh;
+  padding-top: 84px;
+  padding-bottom: 60px;
+  position: relative;
+  overflow: hidden;
+  background: #fbfbfd;
 }
 
-.es-hero-bounds {
+.es-hero-bounds-2col {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 5vw;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 60px;
-  align-items: start;
+  gap: 48px;
+  align-items: center;
 }
 
 @media (min-width: 1024px) {
-  .es-hero-bounds {
+  .es-hero-bounds-2col {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
+  }
+}
+
+.es-hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.es-hero-badge-wrap {
+  margin-bottom: 20px;
+}
+
+.es-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(0, 102, 204, 0.06);
+  border: 1px solid rgba(0, 102, 204, 0.18);
+  border-radius: 20px;
+}
+
+.es-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #0066CC;
+  box-shadow: 0 0 10px rgba(0, 102, 204, 0.6);
+}
+
+.es-live-text {
+  font-family: var(--font-system, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #0066CC;
+  text-transform: uppercase;
+}
+
+.es-hero-title-group {
+  margin-bottom: 20px;
+}
+
+.es-hero-eyebrow {
+  font-family: var(--font-system, sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #86868b;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.es-hero-headline-2col {
+  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
+  font-size: clamp(38px, 4.5vw, 66px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  color: #1d1d1f;
+}
+
+.es-gradient-text {
+  background: linear-gradient(135deg, #0066CC 0%, #d92626 55%, #1d1d1f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.es-hero-sub-2col {
+  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-weight: 400;
+  color: #424245;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 620px;
+}
+
+.es-hero-sub-2col strong {
+  color: #1d1d1f;
+  font-weight: 600;
+}
+
+.es-hero-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.es-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: #1d1d1f;
+  color: #ffffff;
+  border-radius: 980px;
+  font-family: var(--font-system, sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.es-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  background: #000000;
+}
+
+.es-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: rgba(0, 102, 204, 0.08);
+  border: 1px solid rgba(0, 102, 204, 0.2);
+  color: #0066CC;
+  border-radius: 980px;
+  font-family: var(--font-system, sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.es-btn-secondary:hover {
+  background: rgba(0, 102, 204, 0.15);
+  border-color: rgba(0, 102, 204, 0.4);
+  transform: translateY(-2px);
+}
+
+.es-hero-chips-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.es-chips-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #86868b;
+}
+
+.es-chips-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.es-chip {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1d1d1f;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.es-chip:hover {
+  background: #1d1d1f;
+  color: #ffffff;
+  border-color: #1d1d1f;
+}
+
+.es-hero-right {
+  position: relative;
+  width: 100%;
+}
+
+.es-hero-portrait-frame {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  aspect-ratio: 3/4;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.12);
+  -webkit-mask-image: linear-gradient(to bottom, black 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 84%, transparent 100%);
+}
+
+.es-portrait-img-old {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.es-hero-portrait-frame:hover .es-portrait-img-old {
+  transform: scale(1.04);
+}
+
+/* =========================================
+   ACT 02 — THE KIND OF WORK I DO
+   ========================================= */
+.es-systems-architecture {
+  padding: 120px 0;
+  background-color: #ffffff;
+}
+
+.es-architecture-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin-top: 56px;
+}
+
+@media (min-width: 768px) {
+  .es-architecture-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .es-architecture-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+.es-arch-card {
+  padding: 36px 28px;
+  background: #f5f5f7;
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.es-arch-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+
+.es-arch-step {
+  font-family: var(--font-system, sans-serif);
+  font-size: 12px;
+  font-weight: 800;
+  color: #0066CC;
+  margin-bottom: 14px;
+}
+
+.es-arch-title {
+  font-family: var(--font-display, sans-serif);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
+  margin-bottom: 12px;
+}
+
+.es-arch-desc {
+  font-family: var(--font-system, sans-serif);
+  font-size: 15px;
+  line-height: 1.55;
+  color: #6e6e73;
+}
+
+.es-layer-summary-bar {
+  margin-top: 48px;
+  padding: 20px;
+  background: rgba(0, 102, 204, 0.04);
+  border: 1px solid rgba(0, 102, 204, 0.12);
+  border-radius: 12px;
+  text-align: center;
+  font-family: var(--font-system, sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: #0066CC;
+}
+
+/* =========================================
+   ACT 03 — SYSTEMS I HAVE SHIPPED
+   ========================================= */
+.es-systems-motion {
+  padding: 130px 0;
+  background-color: #fbfbfd;
+}
+
+.es-motion-projects-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 48px;
+}
+
+.es-motion-project-card {
+  position: relative;
+  padding: 44px;
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.es-motion-project-card:hover {
+  transform: translateY(-4px) scale(1.005);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+}
+
+.es-mpc-border-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+}
+
+.es-mpc-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.es-mpc-tag {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #86868b;
+  text-transform: uppercase;
+}
+
+.es-mpc-name {
+  font-family: var(--font-display, sans-serif);
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #1d1d1f;
+  margin: 6px 0 0 0;
+}
+
+.es-mpc-story-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+@media (min-width: 768px) {
+  .es-mpc-story-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+}
+
+.es-mpc-story-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.es-mpc-slabel {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #a1a1a6;
+}
+
+.es-mpc-sval {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333336;
+  margin: 0;
+}
+
+.es-mpc-meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .es-mpc-meta-row {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.es-mpc-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.es-mpc-mlabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #86868b;
+}
+
+.es-mpc-mval {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.es-mpc-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.es-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.es-btn-ghost:hover {
+  background: #1d1d1f;
+  color: #ffffff;
+}
+
+.es-btn-link {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0066CC;
+  text-decoration: none;
+  padding: 10px 16px;
+  transition: opacity 0.2s ease;
+}
+
+.es-btn-link:hover {
+  opacity: 0.7;
+}
+
+/* =========================================
+   ACT 04 — FROM IDEA TO SHIPPED SYSTEM
+   ========================================= */
+.es-pipeline {
+  padding: 120px 0;
+  background-color: #ffffff;
+}
+
+.es-pipeline-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 48px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.es-pipe-step-card {
+  padding: 24px 28px;
+  background: #f5f5f7;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.es-pipe-step-num {
+  font-size: 12px;
+  font-weight: 800;
+  color: #0066CC;
+}
+
+.es-pipe-step-name {
+  font-family: var(--font-display, sans-serif);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #1d1d1f;
+}
+
+.es-pipe-step-desc {
+  font-size: 15px;
+  color: #6e6e73;
+  line-height: 1.5;
+}
+
+.es-pipe-arrow {
+  display: flex;
+  justify-content: center;
+  height: 24px;
+}
+
+.es-pipe-line {
+  width: 2px;
+  height: 100%;
+  background-color: rgba(0,0,0,0.12);
+}
+
+/* =========================================
+   ACT 05 — BUILDING IS ONLY HALF THE JOB
+   ========================================= */
+.es-teaching-section {
+  padding: 130px 0;
+  background-color: #f5f5f7;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.es-teaching-transition {
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1.3;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 72px;
+  letter-spacing: -0.02em;
+}
+
+.es-teaching-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .es-teaching-layout {
+    grid-template-columns: 1.2fr 1fr;
     gap: 80px;
   }
 }
 
-.es-hero-content {
+.es-teaching-image-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 24px;
+  overflow: hidden;
+  background-color: #e5e5ea;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+}
+
+.es-teaching-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.es-teaching-content {
   display: flex;
   flex-direction: column;
-  z-index: 2;
+  gap: 18px;
 }
 
-.es-eyebrow {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: clamp(12px, 1vw, 14px);
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: #86868b;
-  margin-bottom: 16px;
-}
-
-.es-headline {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(44px, 5.5vw, 76px);
+.es-teaching-hl {
+  font-family: var(--font-display, sans-serif);
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1.15;
   font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.06;
+  letter-spacing: -0.02em;
   color: #1d1d1f;
-  margin-bottom: 24px;
 }
 
-.es-subthesis {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: clamp(15px, 1.3vw, 18px);
-  font-weight: 400;
+.es-teaching-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.es-td-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1d1d1f;
+}
+
+.es-td-org {
+  font-size: 15px;
+  color: #1d1d1f;
+}
+
+.es-td-meta {
+  font-size: 13px;
   color: #86868b;
+}
+
+.es-teaching-desc {
+  font-size: 16px;
   line-height: 1.55;
-  max-width: 580px;
+  color: #6e6e73;
+  max-width: 480px;
 }
 
 .es-cta-quiet {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   color: #1d1d1f;
   text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
   padding-bottom: 4px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: border-color 0.2s ease;
 }
 
 .es-cta-quiet:hover {
-  gap: 12px;
-  border-bottom-color: rgba(0,0,0,0.4);
+  border-bottom-color: #1d1d1f;
 }
 
-.es-hero-portrait {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3/4;
-  overflow: hidden;
-  /* Apple-style seamless background blending */
-  mix-blend-mode: darken;
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  /* Removed box-shadow and border-radius to prevent the "card" look */
+/* =========================================
+   ACT 06 — HOW I THINK (EDITORIAL PRINCIPLES)
+   ========================================= */
+.es-how-i-think {
+  padding: 130px 0;
+  background-color: #ffffff;
 }
 
-@media (max-width: 1023px) {
-  .es-hero-portrait {
-    max-width: 480px;
-    margin: 0 auto;
-    order: -1;
-    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-  }
-}
-
-.es-portrait-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 15%;
-}
-
-/* 02 — ENGINEER'S THESIS (MEDIUM) */
-.es-thesis-section {
-  padding: 15vh 0;
-}
-
-.es-thesis-headline {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(32px, 4vw, 56px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: #1d1d1f;
-  margin-bottom: 80px;
-  line-height: 1.1;
-}
-
-.es-thesis-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+.es-editorial-principles-list {
+  display: flex;
+  flex-direction: column;
   gap: 48px;
+  margin-top: 48px;
 }
 
-@media (min-width: 768px) {
-  .es-thesis-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-  }
+.es-editorial-principle {
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
-.es-thesis-card {
-  display: flex;
-  flex-direction: column;
-}
-
-.es-tc-num {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 14px;
-  font-weight: 600;
-  color: #a1a1a6;
-  margin-bottom: 16px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  padding-bottom: 8px;
-}
-
-.es-tc-title {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: 20px;
-  font-weight: 600;
-  color: #1d1d1f;
-  margin-bottom: 12px;
-}
-
-.es-tc-desc {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 16px;
-  color: #86868b;
-  line-height: 1.5;
-}
-
-/* 03 — WHAT I ACTUALLY BUILD (LARGE) */
-.es-what-i-build {
-  padding: 15vh 0;
-  background-color: #f5f5f7;
-}
-
-.es-build-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-  margin-top: 60px;
-}
-
-@media (min-width: 768px) {
-  .es-build-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 80px 40px;
-  }
-}
-
-.es-build-category {
-  display: flex;
-  flex-direction: column;
-}
-
-.es-bc-title {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: #1d1d1f;
-  margin-bottom: 16px;
-}
-
-.es-bc-desc {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: clamp(16px, 1.5vw, 20px);
-  color: #86868b;
-  line-height: 1.5;
-  max-width: 400px;
-}
-
-/* =========================================
-   ACT II — ENGINEERING
-   ========================================= */
-
-/* 04 — FLAGSHIP SYSTEMS (HUGE) */
-.es-flagships {
-  padding: 20vh 0;
-}
-
-.es-flagship-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.es-flagship-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  padding: 60px 0;
-  border-top: 1px solid rgba(0,0,0,0.1);
-  text-decoration: none;
-  color: inherit;
-  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.es-flagship-row:hover {
-  opacity: 0.7;
-}
-
-@media (min-width: 1024px) {
-  .es-flagship-row {
-    grid-template-columns: 300px 1fr 120px;
-    align-items: flex-start;
-  }
-}
-
-.es-fs-header {
-  display: flex;
-  flex-direction: column;
-}
-
-.es-fs-num {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 14px;
-  font-weight: 600;
-  color: #a1a1a6;
-  margin-bottom: 12px;
-}
-
-.es-fs-name {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(32px, 3vw, 40px);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 8px;
-}
-
-.es-fs-tag {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 14px;
-  color: #86868b;
-}
-
-.es-fs-details {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
-
-@media (min-width: 768px) {
-  .es-fs-details {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.es-fs-detail {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.es-fs-dlabel {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: #a1a1a6;
-}
-
-.es-fs-dval {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 16px;
-  line-height: 1.4;
-  color: #1d1d1f;
-}
-
-.es-fs-action {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  justify-content: flex-end;
-}
-
-/* 05 — IDEA → SYSTEM (VISUAL/LARGE) */
-.es-pipeline {
-  padding: 15vh 0;
-  background-color: #fbfbfd;
-}
-
-.es-pipe-node {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(32px, 5vw, 64px);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: rgba(0,0,0,0.1);
-  line-height: 1;
-  transition: color 0.4s ease;
-}
-
-.es-pipe-node.highlight {
-  color: #1d1d1f;
-}
-
-.es-pipe-arrow {
-  display: flex;
-  justify-content: center;
-  margin: 16px 0;
-}
-
-.es-pipe-line {
-  width: 1px;
-  height: 100%;
-  background-color: rgba(0,0,0,0.2);
-}
-
-.es-pipe-caption {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 18px;
-  color: #86868b;
-  margin-top: 60px;
-}
-
-/* 06 — ENGINEERING LAYERS (MEDIUM) */
-.es-layers {
-  padding: 15vh 0;
-}
-
-.es-layers-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.es-layer-item {
-  display: flex;
-  flex-direction: column;
-  padding: 32px;
-  background-color: #f5f5f7;
-  border-radius: 16px;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.es-layer-item:hover {
-  transform: translateX(12px);
-}
-
-@media (min-width: 768px) {
-  .es-layer-item {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
-
-.es-layer-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 12px;
-}
-
-@media (min-width: 768px) {
-  .es-layer-header { margin-bottom: 0; min-width: 300px; }
-}
-
-.es-layer-num {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 14px;
-  font-weight: 600;
-  color: #a1a1a6;
-}
-
-.es-layer-name {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: 24px;
-  font-weight: 600;
-  color: #1d1d1f;
-}
-
-.es-layer-content {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.es-layer-tech {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 14px;
-  font-weight: 600;
-  color: #1d1d1f;
-}
-
-.es-layer-desc {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 14px;
-  color: #86868b;
-}
-
-/* 07 — SELECTED ENGINEERING DECISIONS (MEDIUM) */
-.es-decisions {
-  padding: 15vh 0;
-}
-
-.es-decisions-headline {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  max-width: 800px;
-  margin-bottom: 80px;
-}
-
-.es-decisions-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 60px;
-}
-
-@media (min-width: 768px) {
-  .es-decisions-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 80px;
-  }
-}
-
-.es-dec-num {
+.es-ep-num {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0066CC;
   display: block;
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 12px;
-  font-weight: 600;
-  color: #a1a1a6;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
-.es-dec-title {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 18px;
-  font-weight: 600;
-  color: #1d1d1f;
-  margin-bottom: 12px;
-}
-
-.es-dec-desc {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 16px;
-  color: #86868b;
-  line-height: 1.5;
-}
-
-/* 08 — ENGINEERING IN PRACTICE (COMPACT) */
-.es-practice {
-  padding: 10vh 0;
-}
-
-.es-practice-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-}
-
-@media (min-width: 768px) {
-  .es-practice-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px 40px;
-  }
-}
-
-.es-prac-cat {
-  display: block;
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: #a1a1a6;
-  margin-bottom: 8px;
-}
-
-.es-prac-tool {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: 20px;
-  font-weight: 600;
-  color: #1d1d1f;
-  margin-bottom: 8px;
-}
-
-.es-prac-use {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 14px;
-  color: #86868b;
-  line-height: 1.4;
-}
-
-/* =========================================
-   14. PUBLIC SIGNAL (DIGITAL PRESENCE)
-   ========================================= */
-
-.es-public-signal {
-  padding: 140px 24px;
-}
-
-/* Header Composition */
-.es-ps-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 80px;
-}
-
-.es-ps-header-left {
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.es-ps-statement {
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 1.1;
+.es-ep-title {
+  font-family: var(--font-display, sans-serif);
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 800;
   letter-spacing: -0.02em;
   color: #1d1d1f;
-  margin: 0;
+  margin-bottom: 12px;
 }
 
-.es-ps-subcopy {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #86868b;
-  margin: 0;
+.es-ep-desc {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #424245;
+  max-width: 680px;
+  margin-bottom: 12px;
 }
 
-.es-ps-header-right {
-  text-align: right;
-}
-
-.es-ps-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: #86868b;
-}
-
-.es-ps-status-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #34c759; /* subtle active green */
-  margin-right: 6px;
-  vertical-align: middle;
-}
-
-/* Editorial Index */
-.es-ps-index {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid rgba(0,0,0,0.1);
-}
-
-.es-ps-row-wrapper {
-  display: block;
-}
-
-.es-ps-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 40px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  text-decoration: none;
-  position: relative;
-  transition: transform 0.4s var(--ease-apple), border-color 0.4s var(--ease-apple);
-}
-
-.es-ps-row-content {
-  display: flex;
-  align-items: baseline;
-  gap: 64px;
-  flex: 1;
-}
-
-.es-ps-num {
-  font-size: 14px;
-  font-weight: 500;
-  color: #a1a1a6;
-  width: 32px;
-  transition: color 0.4s var(--ease-apple);
-}
-
-.es-ps-text {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.es-ps-name {
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  color: #1d1d1f;
-}
-
-.es-ps-role {
-  font-size: 14px;
-  color: #86868b;
-}
-
-/* Preview Image */
-.es-ps-preview {
-  width: 280px;
-  height: 157px;
-  border-radius: 8px;
-  overflow: hidden;
-  opacity: 0.7;
-  transition: opacity 0.5s var(--ease-apple), transform 0.5s var(--ease-apple), box-shadow 0.5s var(--ease-apple);
-  margin-right: 48px; /* space between image and arrow */
-}
-
-.es-ps-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.es-ps-arrow {
-  font-size: 20px;
-  color: #1d1d1f;
-  transition: transform 0.4s var(--ease-apple);
-}
-
-.es-ps-mobile-cta {
-  display: none;
-}
-
-/* Hover Interactions */
-.es-ps-row:hover {
-  transform: translateX(8px);
-  border-bottom-color: rgba(0,0,0,0.3);
-}
-
-.es-ps-row:hover .es-ps-num {
-  color: #1d1d1f;
-}
-
-.es-ps-row:hover .es-ps-preview {
-  opacity: 1;
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-}
-
-.es-ps-row:hover .es-ps-img {
-  transform: scale(1.04);
-}
-
-.es-ps-row:hover .es-ps-arrow {
-  transform: translate(4px, -4px);
-}
-
-/* Featured Row (GitHub) */
-.es-ps-featured .es-ps-row {
-  padding: 56px 0;
-}
-
-.es-ps-featured .es-ps-name {
-  font-size: 32px;
-}
-
-.es-ps-featured .es-ps-preview {
-  width: 400px;
-  height: 225px;
-  opacity: 0.9;
-}
-
-/* Footer Transition */
-.es-ps-footer {
-  margin-top: 120px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.es-ps-footer-statement {
-  font-size: 14px;
-  color: #86868b;
-  margin: 0;
-}
-
-.es-ps-footer-link {
+.es-ep-proof {
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  color: #1d1d1f;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-}
-
-.es-ps-footer-link:hover {
-  opacity: 0.6;
-}
-
-/* Mobile Adjustments */
-@media (max-width: 1024px) {
-  .es-ps-header {
-    flex-direction: column;
-    gap: 40px;
-  }
-  
-  .es-ps-header-right {
-    text-align: left;
-  }
-  
-  .es-ps-preview {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .es-public-signal {
-    padding: 80px 24px;
-  }
-  
-  .es-ps-row {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 32px 0;
-    gap: 24px;
-  }
-  
-  .es-ps-row:hover {
-    transform: none;
-  }
-  
-  .es-ps-row-content {
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .es-ps-arrow {
-    display: none;
-  }
-  
-  .es-ps-mobile-cta {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: #1d1d1f;
-    border-bottom: 1px solid #1d1d1f;
-    padding-bottom: 4px;
-  }
-  
-  .es-ps-preview {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16/9;
-    right: auto;
-    top: auto;
-    margin-top: 0;
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-  }
-  
-  .es-ps-img {
-    clip-path: none;
-    border-radius: 8px;
-    border: 1px solid rgba(0,0,0,0.05);
-  }
-  
-  .es-ps-featured .es-ps-row {
-    padding: 32px 0;
-  }
-  
-  .es-ps-featured .es-ps-name {
-    font-size: 24px;
-  }
-  
-  .es-ps-featured .es-ps-preview {
-    width: 100%;
-    height: auto;
-    margin-top: 0;
-    opacity: 1;
-  }
+  color: #86868b;
+  display: block;
 }
 
 /* =========================================
-   15. PORTFOLIO NAVIGATION
+   ACT 07 — WHERE THE WORK IS GOING
    ========================================= */
-
-/* =========================================
-   ACT III — DIRECTION
-   ========================================= */
-
-/* 09 — THE ENGINEERING LOOP (MEDIUM) */
-.es-eng-loop {
-  padding: 15vh 0;
-}
-
-.es-loop-sequence {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 48px;
-}
-
-.es-loop-node {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: clamp(14px, 1.5vw, 18px);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: #1d1d1f;
-  padding: 12px 24px;
-  background-color: #f5f5f7;
-  border-radius: 40px;
-}
-
-.es-loop-arrow {
-  color: #a1a1a6;
-}
-
-.es-loop-caption {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(24px, 3vw, 40px);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-/* 10 — SYSTEMS IN THE REAL WORLD (COMPACT) */
-.es-evidence-map {
-  padding: 10vh 0;
-}
-
-.es-evidence-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 48px;
-}
-
-@media (min-width: 768px) {
-  .es-evidence-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.es-ev-title {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: #a1a1a6;
-  margin-bottom: 24px;
-}
-
-.es-ev-links {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.es-ev-links a {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 16px;
-  color: #f5f5f7;
-  text-decoration: none;
-  transition: opacity 0.4s ease;
-}
-
-.es-ev-links a:hover {
-  opacity: 0.6;
-}
-
-/* 11 — CURRENT FOCUS (LARGE) */
 .es-focus {
-  padding: 15vh 0;
+  padding: 80px 0;
+  background-color: #fbfbfd;
 }
 
 .es-focus-keywords {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
-  margin-bottom: 48px;
+  gap: 12px;
+  margin: 36px 0 36px 0;
 }
 
 .es-focus-kw {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(20px, 2.5vw, 32px);
-  font-weight: 600;
+  font-family: var(--font-display, sans-serif);
+  font-size: clamp(14px, 1.4vw, 18px);
+  font-weight: 700;
   color: #1d1d1f;
-  padding: 16px 32px;
-  border: 1px solid rgba(0,0,0,0.1);
+  padding: 12px 24px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 100px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
 .es-focus-desc {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: clamp(18px, 2vw, 24px);
-  color: #86868b;
-  max-width: 600px;
+  font-family: var(--font-system, sans-serif);
+  font-size: clamp(16px, 1.5vw, 20px);
+  color: #6e6e73;
+  max-width: 580px;
   margin: 0 auto;
   line-height: 1.5;
 }
 
-/* 12 — ENGINEERING PRINCIPLES (MEDIUM) */
-.es-principles {
-  padding: 15vh 0;
-}
-
-.es-principle-row {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(24px, 3vw, 48px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: #1d1d1f;
-  padding: 32px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.es-principle-row:first-child {
-  border-top: 1px solid rgba(0,0,0,0.1);
-}
-
-/* 13 — PERSON BEHIND THE SYSTEMS (CINEMATIC/HUGE) */
+/* =========================================
+   ACT 08 — THE PERSON BEHIND THE SYSTEMS
+   ========================================= */
 .es-person {
-  padding: 20vh 0;
+  padding: 80px 0;
+  background-color: #ffffff;
 }
 
 .es-person-layout {
@@ -1026,8 +856,8 @@
 
 @media (min-width: 1024px) {
   .es-person-layout {
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
   }
 }
 
@@ -1037,28 +867,29 @@
 }
 
 .es-person-hl {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(40px, 5vw, 64px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display, sans-serif);
+  font-size: clamp(34px, 4vw, 58px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
   line-height: 1.1;
   color: #1d1d1f;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .es-person-desc {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: clamp(18px, 2vw, 24px);
-  color: #86868b;
-  line-height: 1.5;
+  font-size: clamp(16px, 1.6vw, 20px);
+  color: #6e6e73;
+  line-height: 1.6;
 }
 
 .es-person-image-wrapper {
   width: 100%;
+  max-width: 460px;
   aspect-ratio: 3/4;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.1);
+  margin: 0 auto;
 }
 
 .es-person-image {
@@ -1068,253 +899,91 @@
 }
 
 /* =========================================
-   ACT IV — EXPLORE
+   ACT 09 — FINAL CTA
    ========================================= */
-
-/* 14 — PORTFOLIO NAVIGATION (MEDIUM) */
-.es-portfolio-nav {
-  padding: 15vh 0;
-}
-
-.es-nav-headline {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(32px, 4vw, 56px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: #f5f5f7;
-  margin-bottom: 80px;
-}
-
-.es-nav-index {
-  display: flex;
-  flex-direction: column;
-}
-
-.es-nav-row {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 32px 0;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  text-decoration: none;
-  transition: opacity 0.4s ease;
-}
-
-@media (min-width: 768px) {
-  .es-nav-row {
-    flex-direction: row;
-    align-items: baseline;
-    gap: 32px;
-  }
-}
-
-.es-nav-row:hover {
-  opacity: 0.6;
-}
-
-.es-nr-title {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(24px, 3vw, 40px);
-  font-weight: 600;
-  color: #f5f5f7;
-  letter-spacing: 0.02em;
-  min-width: 250px;
-}
-
-.es-nr-desc {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: clamp(16px, 1.5vw, 20px);
-  color: #a1a1a6;
-  font-weight: 400;
-}
-
-/* 15 & 16 — SIGNATURE & CTA (HUGE) */
 .es-signature-section {
-  padding: 25vh 0 10vh;
+  padding: 90px 0 60px;
+  background-color: #fbfbfd;
+  border-top: 1px solid rgba(0,0,0,0.06);
 }
 
 .es-signature-statement {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(40px, 6vw, 84px);
-  font-weight: 700;
+  font-family: var(--font-display, sans-serif);
+  font-size: clamp(40px, 5.5vw, 80px);
+  font-weight: 800;
   letter-spacing: -0.04em;
   color: #1d1d1f;
-  margin-bottom: 80px;
+  margin-bottom: 32px;
 }
 
 .es-signature-meta {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: clamp(10px, 1vw, 12px);
-  font-weight: 600;
-  letter-spacing: 0.2em;
+  font-family: var(--font-system, sans-serif);
+  font-size: clamp(11px, 1vw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
   color: #86868b;
   line-height: 2;
-  margin-bottom: 120px;
+  margin-bottom: 48px;
 }
 
-.es-final-cta {
+.es-final-cta-group {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 24px;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-.es-cta-label {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 18px;
-  color: #86868b;
+/* RESPONSIVE MOBILE BREAKPOINTS */
+@media (max-width: 768px) {
+  .es-hero {
+    padding-top: 100px;
+    padding-bottom: 40px;
+    min-height: auto;
+  }
+
+  .es-motion-project-card {
+    padding: 24px 18px;
+  }
+
+  .es-arch-card {
+    padding: 24px 18px;
+  }
+
+  .es-hero-actions-group {
+    width: 100%;
+  }
+
+  .es-btn-primary, .es-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
-.es-cta-link {
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: #1d1d1f;
-  text-decoration: none;
-  padding-bottom: 4px;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
-  transition: border-color 0.4s ease;
+@media (max-width: 430px) {
+  .es-bounds, .es-bounds-narrow {
+    padding: 0 4vw;
+  }
+
+  .es-hero-headline-2col {
+    font-size: 30px;
+  }
+
+  .es-display-headline {
+    font-size: 34px;
+  }
+
+  .es-signature-statement {
+    font-size: 36px;
+  }
 }
 
-.es-cta-link:hover {
-  border-bottom-color: #1d1d1f;
-}
-
-/* Reduces motion */
+/* Reduced Motion Fallback */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-}
-}
-
-/* ──────────────────────────────────────────────────────────────────────────
-   05B — TEACHING / KNOWLEDGE IN PRACTICE
-   ────────────────────────────────────────────────────────────────────────── */
-
-.es-teaching-section {
-  padding: 120px 0;
-  background-color: #f5f5f7; /* Very subtle off-white for transition */
-  border-top: 1px solid rgba(0,0,0,0.05);
-}
-
-.es-teaching-transition {
-  font-size: 28px;
-  line-height: 1.3;
-  font-weight: 500;
-  color: #1d1d1f;
-  margin-bottom: 120px;
-  letter-spacing: -0.01em;
-  max-width: 600px;
-}
-
-.es-teaching-layout {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.es-teaching-image-wrap {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: 24px;
-  overflow: hidden;
-  background-color: #e5e5ea;
-}
-
-.es-teaching-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 10s ease-out;
-}
-
-.es-teaching-image-wrap:hover .es-teaching-img {
-  transform: scale(1.05);
-}
-
-.es-teaching-content {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.es-teaching-hl {
-  font-size: 40px;
-  line-height: 1.15;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: #1d1d1f;
-  margin: 0 0 16px 0;
-}
-
-.es-teaching-details {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.es-td-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #1d1d1f;
-}
-
-.es-td-org {
-  font-size: 16px;
-  color: #1d1d1f;
-}
-
-.es-td-meta {
-  font-size: 14px;
-  color: #86868b;
-  letter-spacing: 0.02em;
-}
-
-.es-teaching-desc {
-  font-size: 18px;
-  line-height: 1.5;
-  color: #86868b;
-  margin: 0 0 32px 0;
-  max-width: 480px;
-}
-
-.es-teaching-action {
-  margin-top: 16px;
-}
-
-@media (max-width: 1024px) {
-  .es-teaching-layout {
-    grid-template-columns: 1fr;
-    gap: 56px;
-  }
-  
-  .es-teaching-transition {
-    margin-bottom: 80px;
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 768px) {
-  .es-teaching-section {
-    padding: 80px 0;
-  }
-
-  .es-teaching-hl {
-    font-size: 32px;
-  }
-
-  .es-teaching-transition {
-    font-size: 22px;
-    margin-bottom: 64px;
-  }
-  
-  .es-teaching-desc {
-    font-size: 16px;
   }
 }

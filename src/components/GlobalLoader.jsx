@@ -93,7 +93,7 @@ export default function GlobalLoader({ onComplete, prefersReducedMotion = false 
 
       {/* ── LOGO INSTEAD OF PORTRAIT ── */}
       <m.img
-        src="/tb-logo.svg"
+        src="/logo.png"
         alt="TB Logo"
         initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
         animate={{ 

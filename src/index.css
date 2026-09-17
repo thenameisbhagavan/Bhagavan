@@ -97,10 +97,12 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  padding: 0;
+  width: 100%;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #fbfbfd;
+  color: #1d1d1f;
 }
 
 h1 {

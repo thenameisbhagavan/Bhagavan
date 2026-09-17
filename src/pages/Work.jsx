@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { m } from "framer-motion";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import SEO from "../components/SEO";
 import BrandSignature from "../components/BrandSignature";
-import { socialLinks } from '../constants/socialLinks';
-import { useTransitionRegistry, appleEase as appleEaseImported } from "../components/transitions/RouteTransition";
+import Reveal from "../components/motion/Reveal";
+import MaskReveal from "../components/motion/MaskReveal";
+import ScaleReveal from "../components/motion/ScaleReveal";
+import Parallax from "../components/motion/Parallax";
+import MagneticLink from "../components/motion/MagneticLink";
+import { socialLinks } from "../constants/socialLinks";
 import "../styles/Work.css";
 
 // ─── Images ───────────────────────────────────────────────────────────────────
 import careerOSImg from "../assets/careeros-new.jpg";
 import voltDriveImg from "../assets/ev.png";
 import chatImg from "../assets/aurabot-new.png";
-import heartImg from "../assets/heart-new.png";
-import leaveImg from "../assets/leave.jpg";
 import fakeImg from "../assets/fake.jpg";
 
 export const FLAGSHIP_PROJECTS = [
@@ -22,512 +24,481 @@ export const FLAGSHIP_PROJECTS = [
   { name: "VoltDrive", eyebrow: "Automotive Digital Showroom", desc: "A frontend experience built to feel alive.", img: voltDriveImg, link: "/work/voltdrive", live: "https://voltdrive-thenameisbhagavan.vercel.app/" }
 ];
 
-// ─── Motion ───────────────────────────────────────────────────────────────────
-const appleEase = [0.22, 1, 0.36, 1];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: appleEase } },
-};
-
-const fadeUpStagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
-const FLAGSHIP_CAREEROS = {
-  theme: "careeros",
-  name: "CareerOS",
-  eyebrow: "THE CAREER INTELLIGENCE SYSTEM",
-  problem: "Career decisions happen in fragments.\nNo system connects them.",
-  vision: "An intelligence platform that understands your career trajectory and shows you exactly what to do next.",
-  productImg: careerOSImg,
-  howItWorks: [
-    { step: "01", title: "Discover", desc: "Captures academic and professional data into a unified profile." },
-    { step: "02", title: "Evaluate", desc: "Analyzes skills against real-time market demands." },
-    { step: "03", title: "Reveal", desc: "Generates tailored career opportunities and skill gaps." },
-    { step: "04", title: "Accelerate", desc: "Provides AI-powered roadmaps for immediate execution." }
-  ],
-  technologyDesc: "Full-stack intelligence engine. Processes career data into actionable paths using React, Node.js, and custom analytical models.",
-  impact: "A system I built to explore how AI can help with career decisions.",
-  github: `${socialLinks.github.url}/careeros`,
-  liveLink: "https://careeros-thenameisbhagavan.vercel.app/",
-  internalLink: "/work/careeros"
-};
-
-const AURAOS = {
-  name: "AuraOS",
-  opening: "What if a chatbot actually remembered what you told it yesterday?",
-  productImg: chatImg,
-  howItWorks: [
-    { step: "01", title: "Memory", desc: "Creates a persistent context window across all sessions." },
-    { step: "02", title: "Reasoning", desc: "Connects separate concepts into a unified knowledge graph." },
-    { step: "03", title: "Retrieval", desc: "Pulls exact historical facts instantly when required." }
-  ],
-  technologyDesc: "Vector databases, RAG architecture, and custom memory routers for short and long-term context.",
-  impact: "I wanted to see what happens when a chatbot actually remembers context.",
-  github: `${socialLinks.github.url}/auraos`,
-  liveLink: "https://aura-os-thenameisbhagavan.vercel.app/",
-  internalLink: "/work/auraos"
-};
-
-const VERITAS = {
-  name: "VERITAS",
-  opening: "AI gives answers. But can it show you why?",
-  productImg: fakeImg,
-  howItWorks: [
-    { step: "01", title: "Extract", desc: "Parses unstructured news data into verifiable assertions." },
-    { step: "02", title: "Analyze", desc: "Scores claims against known credibility baselines." },
-    { step: "03", title: "Trace", desc: "Maps the exact path from raw text to final judgment." }
-  ],
-  technologyDesc: "Deterministic NLP pipeline over FastAPI and React with strict credibility schemas.",
-  impact: "An experiment in making AI show its reasoning, not just its answer.",
-  github: `${socialLinks.github.url}/News-detector`,
-  liveLink: "https://veritas-thenameisbhagavan.vercel.app/",
-  internalLink: "/work/veritas"
-};
-
-const VOLTDRIVE = {
-  name: "VoltDrive",
-  opening: "Engineering is also what the user feels.",
-  productImg: voltDriveImg,
-  howItWorks: [
-    { step: "01", title: "Discover", desc: "Explore the future of luxury electric mobility through immersive storytelling." },
-    { step: "02", title: "Experience", desc: "Navigate premium sections with fluid animations, responsive layouts, and cinematic transitions." },
-    { step: "03", title: "Customize", desc: "Interact with a modern vehicle configurator built for seamless user engagement." },
-    { step: "04", title: "Drive", desc: "Deliver a production-quality frontend experience inspired by leading automotive brands." }
-  ],
-  technologyDesc: "React, Vite, Framer Motion, modern CSS architecture, and performance-first frontend engineering.",
-  impact: "A frontend project where I explored cinematic interaction design and production-quality delivery.",
-  github: "https://github.com/thenameisbhagavan/voltdrive",
-  liveLink: "https://voltdrive-thenameisbhagavan.vercel.app/",
-  internalLink: "/work/voltdrive"
-};
-
-const EARLIER_SYSTEMS = [
-  {
-    name: "Health Prediction",
-    domain: "Machine Learning Analytics",
-    problem: "Medical data is dense, complex, and inaccessible to patients trying to understand their risks.",
-    tech: "Engineered with Python, Scikit-learn, and Flask.",
-    outcome: "Achieved high-accuracy diagnostic predictions across established cardiovascular datasets.",
-    source: `${socialLinks.github.url}/Heart-Disease-Prediction`
-  },
-  {
-    name: "Smart Leave",
-    domain: "Enterprise Automation",
-    problem: "Administrative workflows are bogged down by manual approvals and fragmented communication.",
-    tech: "Built entirely within the Microsoft Power Platform ecosystem, utilizing Power Automate.",
-    outcome: "Turned multi-day approval chains into near-instant digital resolutions.",
-    source: null
-  }
-];
-
-const SELECTED_SYSTEMS_INDEX = [
-  { id: "01", name: "CareerOS", desc: "Career Intelligence", domain: "AI / Product", target: "#careeros" },
-  { id: "02", name: "AuraOS", desc: "AI Memory & Context", domain: "Conversational AI", target: "#auraos" },
-  { id: "03", name: "VERITAS", desc: "Reasoning & Evidence", domain: "NLP Pipeline", target: "#veritas" },
-  { id: "04", name: "VoltDrive", desc: "Digital Product Experience", domain: "Frontend Architecture", target: "#voltdrive" }
-];
-
-// ─── Main Page Component ──────────────────────────────────────────────────────
-
 export default function Work() {
-  // ─── Transition & Motion ───────────────────────────────────────────────────
-  const { isFirstVisit } = useTransitionRegistry();
-  const [phase, setPhase] = useState(isFirstVisit ? 0 : 3);
+  const navigate = useNavigate();
+  const [activeProject, setActiveProject] = useState("01");
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
+  // Update active project rail on scroll
   useEffect(() => {
-    if (!isFirstVisit) return;
-    const timeouts = [
-      setTimeout(() => setPhase(1), 150),
-      setTimeout(() => setPhase(2), 600),
-      setTimeout(() => setPhase(3), 1200),
-    ];
-    return () => timeouts.forEach(clearTimeout);
-  }, [isFirstVisit]);
+    const handleScroll = () => {
+      const sections = ["careeros", "auraos", "veritas", "voltdrive"];
+      const scrollPos = window.scrollY + window.innerHeight * 0.4;
 
-  const showMeta = phase >= 1;
-  const showIndex = phase >= 2;
-  const showHero = phase >= 3;
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveProject(`0${i + 1}`);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <>
       <SEO 
-        description="Engineering projects by Bhagavan. AI product engineer building intelligent systems, reasoning pipelines, full-stack software, and data-driven experiences. View AuraOS, CareerOS, VERITAS, and VoltDrive."
+        description="Engineering exhibition by Bhagavan. AI product engineer building intelligent systems, reasoning pipelines, full-stack software, and data-driven experiences. View AuraOS, CareerOS, VERITAS, and VoltDrive."
         keywords="TheNameIsBhagavan, Bhagavan Projects, AI Systems Engineering, Software Portfolio, CareerOS, AuraOS, VERITAS, VoltDrive, AI Product Engineer"
       />
       <div className="work-exhibition-page">
-        
-        {/* ==================== 1. SYSTEM ASSEMBLY INTRO + HERO ==================== */}
+
+        {/* FLOATING SPATIAL PROJECT RAIL */}
+        <div className="work-sticky-rail">
+          {[
+            { id: "01", name: "CAREEROS", target: "careeros" },
+            { id: "02", name: "AURAOS", target: "auraos" },
+            { id: "03", name: "VERITAS", target: "veritas" },
+            { id: "04", name: "VOLTDRIVE", target: "voltdrive" }
+          ].map((item) => (
+            <button
+              key={item.id}
+              className={`work-rail-item ${activeProject === item.id ? "active" : ""}`}
+              onClick={() => scrollToSection(item.target)}
+            >
+              <span className="rail-num">{item.id}</span>
+              <span className="rail-name">{item.name}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* ============================================================
+            ACT 01 — HERO (EXHIBITION OPENING)
+            ============================================================ */}
         <section className="work-exhibition-hero" data-nav-theme="light">
-          <div className="exhibition-bounds" style={{ position: 'relative' }}>
-
-            {/* SYSTEM ASSEMBLY: Metadata */}
-            <m.div
-              className="hero-eyebrow"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: showMeta ? 1 : 0 }}
-              transition={{ duration: 0.6, ease: appleEase }}
-            >
-              SYSTEMS / 04
-            </m.div>
-
-            {/* SYSTEM ASSEMBLY: Engineering rules */}
-            {isFirstVisit && (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', margin: '24px 0 40px 0' }}>
-                {SELECTED_SYSTEMS_INDEX.map((sys, idx) => (
-                  <div key={sys.id}>
-                    <m.div
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: showMeta ? 1 : 0 }}
-                      transition={{ duration: 0.8, delay: idx * 0.1, ease: appleEase }}
-                      style={{ width: '100%', height: '1px', backgroundColor: 'rgba(0,0,0,0.12)', transformOrigin: 'left center', marginBottom: '10px' }}
-                    />
-                    <m.div
-                      initial={{ opacity: 0, y: 6 }}
-                      animate={{ opacity: showIndex ? 1 : 0, y: showIndex ? 0 : 6 }}
-                      transition={{ duration: 0.5, delay: showIndex ? idx * 0.08 : 0, ease: appleEase }}
-                      style={{ display: 'flex', gap: '12px', alignItems: 'baseline' }}
-                    >
-                      <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em', color: '#86868b' }}>{sys.id}</span>
-                      <span style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '0.08em', color: '#1d1d1f' }}>{sys.name.toUpperCase()}</span>
-                    </m.div>
-                  </div>
-                ))}
+          <div className="exhibition-bounds">
+            
+            <Reveal y={16} duration={0.8}>
+              <div className="work-hero-eyebrow">
+                <span className="work-eyebrow-badge">SYSTEMS / 04</span>
               </div>
-            )}
+            </Reveal>
 
-            {/* Hero Typography (resolves after assembly) */}
-            <m.h1 
-              className="hero-massive-headline"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: showHero ? 1 : 0, y: showHero ? 0 : 24 }}
-              transition={{ duration: 1.0, ease: appleEase }}
-            >
-              Systems I built<br/>to understand<br/>real problems.
-            </m.h1>
-            <m.p 
-              className="hero-supporting-copy"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: showHero ? 1 : 0, y: showHero ? 0 : 20 }}
-              transition={{ duration: 1.0, delay: 0.15, ease: appleEase }}
-            >
-              AI systems · product engineering · intelligent interfaces
-            </m.p>
+            <MaskReveal duration={1.1} delay={0.1}>
+              <h1 className="work-hero-headline">
+                Systems I built<br />
+                to understand<br />
+                what technology can become.
+              </h1>
+            </MaskReveal>
+
+            <Reveal y={20} duration={0.9} delay={0.3}>
+              <p className="work-hero-sub">
+                AI SYSTEMS &middot; PRODUCT ENGINEERING &middot; INTELLIGENT INTERFACES
+              </p>
+            </Reveal>
+            
+            <Reveal y={16} duration={0.8} delay={0.5}>
+              <div className="work-scroll-indicator">
+                <span className="scroll-dot"></span>
+                <span>SCROLL TO EXPLORE EXHIBITION</span>
+              </div>
+            </Reveal>
           </div>
         </section>
 
-        {/* ==================== 2. EDITORIAL BRIDGE ==================== */}
-        <section className="work-editorial-bridge" data-nav-theme="light">
-          <div className="exhibition-bounds">
-            <m.h2 className="bridge-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Every system started with a question I couldn't stop thinking about.
-            </m.h2>
-            <m.div className="bridge-origins" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
-              <m.p className="origin-line" variants={fadeUp}>
-                <span className="origin-name">CareerOS</span> started because career advice felt generic and disconnected.
-              </m.p>
-              <m.p className="origin-line" variants={fadeUp}>
-                <span className="origin-name">AuraOS</span> started because every chatbot forgot what I just said.
-              </m.p>
-              <m.p className="origin-line" variants={fadeUp}>
-                <span className="origin-name">VERITAS</span> started because AI generates confident answers with no trail to follow.
-              </m.p>
-              <m.p className="origin-line" variants={fadeUp}>
-                <span className="origin-name">VoltDrive</span> started because powerful technology doesn't matter if the experience falls flat.
-              </m.p>
-            </m.div>
-          </div>
-        </section>
 
-        {/* ==================== 3. THE FLAGSHIP SYSTEMS INDEX ==================== */}
-        <section className="work-systems-index" data-nav-theme="light">
-          <div className="exhibition-bounds">
-            <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              SELECTED SYSTEMS
-            </m.div>
-            <div className="index-list">
-              {SELECTED_SYSTEMS_INDEX.map((sys, idx) => (
-                <m.a 
-                  key={sys.id} 
-                  href={sys.target} 
-                  className="index-row"
-                  initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
-                  transition={{ delay: idx * 0.1 }}
-                  variants={fadeUp}
-                >
-                  <span className="ix-num">{sys.id}</span>
-                  <span className="ix-name">{sys.name}</span>
-                  <span className="ix-desc">{sys.desc}</span>
-                  <span className="ix-domain">{sys.domain}</span>
-                  <span className="ix-arrow">↘</span>
-                </m.a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== 4. CAREEROS (FLAGSHIP) ==================== */}
+        {/* ============================================================
+            ACT 02 — CAREEROS (CHAPTER 01 / 04)
+            ============================================================ */}
         <section id="careeros" className="work-chapter chapter-careeros" data-nav-theme="light">
           <div className="exhibition-bounds">
-            <m.div className="chapter-eyebrow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              01 / CAREEROS
-            </m.div>
-            <m.div className="chapter-subtitle" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              {FLAGSHIP_CAREEROS.eyebrow}
-            </m.div>
-            <m.h2 className="chapter-massive-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Career decisions happen in fragments.<br/>
-              No system connects them.
-            </m.h2>
+            
+            <div className="chapter-header-row">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">CAREER INTELLIGENCE SYSTEM &middot; 01 / 04</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="chapter-title">CAREEROS</h2>
+              </Reveal>
+            </div>
 
-            <m.div className="chapter-product-artifact" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
-              <img src={FLAGSHIP_CAREEROS.productImg} alt="CareerOS System"  loading="lazy" />
-            </m.div>
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-opening-q">
+                "Career decisions happen in fragments. No system connects them."
+              </blockquote>
+            </Reveal>
 
-            <div className="chapter-spec-grid">
-              <div className="spec-column">
-                <m.div className="spec-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>THE SYSTEM</m.div>
-                <div className="spec-list">
-                  {FLAGSHIP_CAREEROS.howItWorks.map((step, idx) => (
-                    <m.div key={idx} className="spec-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                      <span className="s-num">{step.step}</span>
-                      <span className="s-title">{step.title}</span>
-                      <span className="s-desc">{step.desc}</span>
-                    </m.div>
-                  ))}
-                </div>
+            <ScaleReveal className="chapter-hero-image-wrap">
+              <img src={careerOSImg} alt="CareerOS System" className="chapter-hero-img" loading="lazy" />
+            </ScaleReveal>
+
+            {/* 4-Step System Architecture */}
+            <div className="chapter-steps-grid">
+              {[
+                { step: "01", title: "DISCOVER", desc: "Captures academic & professional data into a unified context profile." },
+                { step: "02", title: "EVALUATE", desc: "Analyzes skill sets against real-time market demands & benchmark roles." },
+                { step: "03", title: "REVEAL", desc: "Generates tailored career opportunities and explicit skill gaps." },
+                { step: "04", title: "ACCELERATE", desc: "Provides AI-powered roadmaps for immediate execution." }
+              ].map((st, idx) => (
+                <Reveal key={st.step} y={24} duration={0.8} delay={idx * 0.1} className="chapter-step-card">
+                  <span className="step-num">{st.step}</span>
+                  <h3 className="step-title">{st.title}</h3>
+                  <p className="step-desc">{st.desc}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Engineering Signal & Actions */}
+            <div className="chapter-footer-bar">
+              <div className="chapter-tech-stack">
+                <span className="tech-label">ENGINEERING LAYER:</span>
+                <span className="tech-val">AI / PRODUCT &middot; REACT &middot; NODE.JS &middot; ANALYTICAL MODELS</span>
               </div>
-              <div className="spec-column">
-                <m.div className="spec-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>ENGINEERING</m.div>
-                <m.p className="spec-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                  {FLAGSHIP_CAREEROS.technologyDesc}
-                </m.p>
-                <m.div className="spec-label mt-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>OUTCOME</m.div>
-                <m.p className="spec-text" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                  {FLAGSHIP_CAREEROS.impact}
-                </m.p>
-                <m.div className="spec-actions" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUpStagger}>
-                  {FLAGSHIP_CAREEROS.internalLink && (
-                    <m.span variants={fadeUp}><Link to={FLAGSHIP_CAREEROS.internalLink} className="action-link">Explore CareerOS →</Link></m.span>
-                  )}
-                  {FLAGSHIP_CAREEROS.liveLink && (
-                    <m.span variants={fadeUp}><a href={FLAGSHIP_CAREEROS.liveLink} target="_blank" rel="noopener noreferrer" className="action-link">Live System ↗</a></m.span>
-                  )}
-                  {FLAGSHIP_CAREEROS.github && (
-                    <m.span variants={fadeUp}><a href={FLAGSHIP_CAREEROS.github} target="_blank" rel="noopener noreferrer" className="action-link text-muted">Source →</a></m.span>
-                  )}
-                </m.div>
+
+              <div className="chapter-actions">
+                <MagneticLink strength={0.2}>
+                  <a href={`${socialLinks.github.url}/careeros`} target="_blank" rel="noopener noreferrer" className="work-btn-primary">
+                    <span>SOURCE CODE ↗</span>
+                  </a>
+                </MagneticLink>
+                <MagneticLink strength={0.2}>
+                  <a href="https://careeros-thenameisbhagavan.vercel.app/" target="_blank" rel="noopener noreferrer" className="work-btn-secondary">
+                    <span>LIVE SYSTEM ↗</span>
+                  </a>
+                </MagneticLink>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ==================== 5. AURAOS ==================== */}
+
+        {/* ============================================================
+            ACT 03 — AURAOS (CHAPTER 02 / 04)
+            ============================================================ */}
         <section id="auraos" className="work-chapter chapter-auraos" data-nav-theme="light">
           <div className="exhibition-bounds">
-            <div className="aura-grid">
-              <div className="aura-text-col">
-                <m.div className="chapter-eyebrow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                  02 / AURAOS
-                </m.div>
-                <m.h2 className="aura-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                  {AURAOS.opening}
-                </m.h2>
-                <div className="spec-list aura-specs">
-                  {AURAOS.howItWorks.map((step, idx) => (
-                    <m.div key={idx} className="spec-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                      <span className="s-title">{step.title}</span>
-                      <span className="s-desc">{step.desc}</span>
-                    </m.div>
-                  ))}
-                </div>
-                <m.div className="spec-actions" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUpStagger}>
-                  {AURAOS.internalLink && <m.span variants={fadeUp}><Link to={AURAOS.internalLink} className="action-link">Explore AuraOS →</Link></m.span>}
-                  {AURAOS.liveLink && <m.span variants={fadeUp}><a href={AURAOS.liveLink} target="_blank" rel="noopener noreferrer" className="action-link">Live System ↗</a></m.span>}
-                </m.div>
+            
+            <div className="chapter-header-row">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">PERSONAL INTELLIGENCE OS &middot; 02 / 04</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="chapter-title">AURAOS</h2>
+              </Reveal>
+            </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-opening-q">
+                "What if a chatbot actually remembered?"
+              </blockquote>
+            </Reveal>
+
+            <Parallax speed={-0.05} className="chapter-hero-image-wrap">
+              <img src={chatImg} alt="AuraOS Memory System" className="chapter-hero-img" loading="lazy" />
+            </Parallax>
+
+            {/* Context Memory Flow */}
+            <div className="chapter-steps-grid steps-3col">
+              {[
+                { label: "MEMORY", title: "PERSISTENT CONTEXT", desc: "Creates a continuous memory graph across multi-turn sessions." },
+                { label: "RETRIEVAL", title: "RELEVANT HISTORY", desc: "Pulls exact historical facts & user preferences instantly." },
+                { label: "REASONING", title: "CONNECTED CONTEXT", desc: "Connects separate conversations into unified intelligence." }
+              ].map((st, idx) => (
+                <Reveal key={st.label} y={24} duration={0.8} delay={idx * 0.12} className="chapter-step-card">
+                  <span className="step-label-badge">{st.label}</span>
+                  <h3 className="step-title">{st.title}</h3>
+                  <p className="step-desc">{st.desc}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Engineering Signal & Actions */}
+            <div className="chapter-footer-bar">
+              <div className="chapter-tech-stack">
+                <span className="tech-label">ENGINEERING LAYER:</span>
+                <span className="tech-val">RAG &middot; VECTOR DBs &middot; SEMANTIC SEARCH &middot; SESSION STATE GRAPH</span>
               </div>
-              <div className="aura-img-col">
-                <m.div className="aura-artifact" initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
-                  <img src={AURAOS.productImg} alt="AuraOS"  loading="lazy" />
-                </m.div>
+
+              <div className="chapter-actions">
+                <MagneticLink strength={0.2}>
+                  <a href={`${socialLinks.github.url}/auraos`} target="_blank" rel="noopener noreferrer" className="work-btn-primary">
+                    <span>SOURCE CODE ↗</span>
+                  </a>
+                </MagneticLink>
+                <MagneticLink strength={0.2}>
+                  <a href="https://aura-os-thenameisbhagavan.vercel.app/" target="_blank" rel="noopener noreferrer" className="work-btn-secondary">
+                    <span>LIVE SYSTEM ↗</span>
+                  </a>
+                </MagneticLink>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ==================== 6. VERITAS ==================== */}
+
+        {/* ============================================================
+            ACT 04 — VERITAS (CHAPTER 03 / 04)
+            ============================================================ */}
         <section id="veritas" className="work-chapter chapter-veritas" data-nav-theme="light">
           <div className="exhibition-bounds">
-            <m.div className="chapter-eyebrow align-center" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              03 / VERITAS
-            </m.div>
-            <m.h2 className="veritas-statement align-center" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              {VERITAS.opening}
-            </m.h2>
             
-            <m.div className="veritas-artifact" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
-              <img src={VERITAS.productImg} alt="VERITAS"  loading="lazy" />
-            </m.div>
+            <div className="chapter-header-row">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">EXPLAINABLE INTELLIGENCE &middot; 03 / 04</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="chapter-title">VERITAS</h2>
+              </Reveal>
+            </div>
 
-            <div className="veritas-specs-row">
-              {VERITAS.howItWorks.map((step, idx) => (
-                <m.div key={idx} className="spec-step-hz" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                  <span className="s-title">{step.title}</span>
-                  <span className="s-desc">{step.desc}</span>
-                </m.div>
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-opening-q">
+                "AI gives answers. Can it show why?"
+              </blockquote>
+            </Reveal>
+
+            <ScaleReveal className="chapter-hero-image-wrap">
+              <img src={fakeImg} alt="VERITAS Fact Tracing" className="chapter-hero-img" loading="lazy" />
+            </ScaleReveal>
+
+            {/* Verification Pipeline */}
+            <div className="chapter-steps-grid steps-3col">
+              {[
+                { label: "EXTRACT", title: "CLAIM DECONSTRUCTION", desc: "Parses raw text into verifiable structured assertions." },
+                { label: "ANALYZE", title: "EVIDENCE SCORING", desc: "Evaluates assertions against deterministic credibility baselines." },
+                { label: "TRACE", title: "PROVENANCE PATH", desc: "Maps exact reasoning graph from input text to final judgment." }
+              ].map((st, idx) => (
+                <Reveal key={st.label} y={24} duration={0.8} delay={idx * 0.12} className="chapter-step-card">
+                  <span className="step-label-badge badge-green">{st.label}</span>
+                  <h3 className="step-title">{st.title}</h3>
+                  <p className="step-desc">{st.desc}</p>
+                </Reveal>
               ))}
             </div>
-            
-            <m.div className="spec-actions justify-center mt-actions" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUpStagger}>
-              {VERITAS.internalLink && <m.span variants={fadeUp}><Link to={VERITAS.internalLink} className="action-link">Explore VERITAS →</Link></m.span>}
-              {VERITAS.liveLink && <m.span variants={fadeUp}><a href={VERITAS.liveLink} target="_blank" rel="noopener noreferrer" className="action-link">Live System ↗</a></m.span>}
-            </m.div>
+
+            {/* Engineering Signal & Actions */}
+            <div className="chapter-footer-bar">
+              <div className="chapter-tech-stack">
+                <span className="tech-label">ENGINEERING LAYER:</span>
+                <span className="tech-val">DETERMINISTIC NLP &middot; FASTAPI &middot; FACT GRAPH &middot; CREDIBILITY SCHEMAS</span>
+              </div>
+
+              <div className="chapter-actions">
+                <MagneticLink strength={0.2}>
+                  <a href={`${socialLinks.github.url}/News-detector`} target="_blank" rel="noopener noreferrer" className="work-btn-primary">
+                    <span>SOURCE CODE ↗</span>
+                  </a>
+                </MagneticLink>
+                <MagneticLink strength={0.2}>
+                  <a href="https://veritas-thenameisbhagavan.vercel.app/" target="_blank" rel="noopener noreferrer" className="work-btn-secondary">
+                    <span>LIVE SYSTEM ↗</span>
+                  </a>
+                </MagneticLink>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* ==================== 7. VOLTDRIVE ==================== */}
+
+        {/* ============================================================
+            ACT 05 — VOLTDRIVE (CHAPTER 04 / 04)
+            ============================================================ */}
         <section id="voltdrive" className="work-chapter chapter-voltdrive" data-nav-theme="light">
           <div className="exhibition-bounds">
-            <div className="volt-grid">
-              <div className="volt-img-col">
-                <m.div className="volt-artifact" initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1.2, ease: appleEase }} viewport={{ once: true, margin: "-100px" }}>
-                  <img src={VOLTDRIVE.productImg} alt="VoltDrive"  loading="lazy" />
-                </m.div>
+            
+            <div className="chapter-header-row">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">DIGITAL PRODUCT EXPERIENCE &middot; 04 / 04</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="chapter-title">VOLTDRIVE</h2>
+              </Reveal>
+            </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-opening-q">
+                "Engineering is also what the user feels."
+              </blockquote>
+            </Reveal>
+
+            <Parallax speed={0.06} className="chapter-hero-image-wrap">
+              <img src={voltDriveImg} alt="VoltDrive Experience" className="chapter-hero-img" loading="lazy" />
+            </Parallax>
+
+            {/* Automotive Product Experience Steps */}
+            <div className="chapter-steps-grid">
+              {[
+                { step: "01", title: "DISCOVER", desc: "Storytelling luxury electric mobility interface." },
+                { step: "02", title: "EXPERIENCE", desc: "Hardware-accelerated 60fps interaction physics." },
+                { step: "03", title: "CONFIGURE", desc: "Real-time vehicle telemetry configurator." },
+                { step: "04", title: "DRIVE", desc: "Production-quality automotive product delivery." }
+              ].map((st, idx) => (
+                <Reveal key={st.step} y={24} duration={0.8} delay={idx * 0.1} className="chapter-step-card">
+                  <span className="step-num num-amber">{st.step}</span>
+                  <h3 className="step-title">{st.title}</h3>
+                  <p className="step-desc">{st.desc}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Engineering Signal & Actions */}
+            <div className="chapter-footer-bar">
+              <div className="chapter-tech-stack">
+                <span className="tech-label">ENGINEERING LAYER:</span>
+                <span className="tech-val">REACT &middot; THREE.JS &middot; MOTION PHYSICS &middot; 60FPS HARDWARE ENGINE</span>
               </div>
-              <div className="volt-text-col">
-                <m.div className="chapter-eyebrow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                  04 / VOLTDRIVE
-                </m.div>
-                <m.h2 className="volt-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                  {VOLTDRIVE.opening}
-                </m.h2>
-                <div className="spec-list volt-specs">
-                  {VOLTDRIVE.howItWorks.map((step, idx) => (
-                    <m.div key={idx} className="spec-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                      <span className="s-title">{step.title}</span>
-                      <span className="s-desc">{step.desc}</span>
-                    </m.div>
-                  ))}
-                </div>
-                <m.div className="spec-actions" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUpStagger}>
-                  {VOLTDRIVE.internalLink && <m.span variants={fadeUp}><Link to={VOLTDRIVE.internalLink} className="action-link">Explore VoltDrive →</Link></m.span>}
-                  {VOLTDRIVE.liveLink && <m.span variants={fadeUp}><a href={VOLTDRIVE.liveLink} target="_blank" rel="noopener noreferrer" className="action-link">Live System ↗</a></m.span>}
-                </m.div>
+
+              <div className="chapter-actions">
+                <MagneticLink strength={0.2}>
+                  <a href="https://github.com/thenameisbhagavan/voltdrive" target="_blank" rel="noopener noreferrer" className="work-btn-primary">
+                    <span>SOURCE CODE ↗</span>
+                  </a>
+                </MagneticLink>
+                <MagneticLink strength={0.2}>
+                  <a href="https://voltdrive-thenameisbhagavan.vercel.app/" target="_blank" rel="noopener noreferrer" className="work-btn-secondary">
+                    <span>LIVE SYSTEM ↗</span>
+                  </a>
+                </MagneticLink>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ==================== 8. EARLIER SYSTEMS ==================== */}
-        <section className="work-earlier-systems" data-nav-theme="light">
+
+        {/* ============================================================
+            ACT 06 — EARLIER EXPERIMENTS (COMPACT HORIZONTAL ARCHIVE)
+            ============================================================ */}
+        <section className="work-archive-section" data-nav-theme="light">
           <div className="exhibition-bounds">
-            <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              EARLIER SYSTEMS
-            </m.div>
-            <div className="earlier-archive">
-              {EARLIER_SYSTEMS.map((sys, idx) => (
-                <m.div key={idx} className="earlier-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                  <div className="e-header">
-                    <span className="e-name">{sys.name}</span>
-                    <span className="e-domain">{sys.domain}</span>
-                  </div>
-                  <div className="e-details">
-                    <p><strong>Problem:</strong> {sys.problem}</p>
-                    <p><strong>Technology:</strong> {sys.tech}</p>
-                    <p><strong>Outcome:</strong> {sys.outcome}</p>
-                  </div>
-                  <div className="e-action">
-                    {sys.source && <a href={sys.source} target="_blank" rel="noopener noreferrer" className="action-link text-muted">Source ↗</a>}
-                  </div>
-                </m.div>
+            
+            <Reveal y={20} duration={0.9}>
+              <div className="archive-header">
+                <span className="archive-badge">HISTORICAL PROGRESSION</span>
+                <h2 className="archive-title">Earlier Experiments</h2>
+              </div>
+            </Reveal>
+
+            <div className="archive-grid">
+              <Reveal y={24} duration={0.8} className="archive-card">
+                <div className="arc-top">
+                  <span className="arc-tag">MACHINE LEARNING</span>
+                  <h3 className="arc-name">Health Prediction</h3>
+                </div>
+                <p className="arc-desc">
+                  Scikit-learn diagnostic prediction pipeline resolving cardiovascular risk signals across medical datasets.
+                </p>
+                <div className="arc-footer">
+                  <span className="arc-tech">Python &middot; Flask &middot; Scikit-Learn</span>
+                  <a href={`${socialLinks.github.url}/Heart-Disease-Prediction`} target="_blank" rel="noopener noreferrer" className="arc-link">
+                    <span>Source</span>
+                    <ExternalLink size={12} />
+                  </a>
+                </div>
+              </Reveal>
+
+              <Reveal y={24} duration={0.8} delay={0.1} className="archive-card">
+                <div className="arc-top">
+                  <span className="arc-tag">ENTERPRISE AUTOMATION</span>
+                  <h3 className="arc-name">Smart Leave</h3>
+                </div>
+                <p className="arc-desc">
+                  Microsoft Power Platform automated workflow resolving multi-day administrative leave approval chains.
+                </p>
+                <div className="arc-footer">
+                  <span className="arc-tech">Power Automate &middot; Power Platform</span>
+                  <span className="arc-meta">Internal System</span>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+
+        {/* ============================================================
+            ACT 07 — WHAT THE WORK TAUGHT ME (EDITORIAL LESSONS)
+            ============================================================ */}
+        <section className="work-lessons-section" data-nav-theme="light">
+          <div className="exhibition-bounds">
+            
+            <Reveal y={20} duration={0.9}>
+              <span className="lessons-label">EDITORIAL LESSONS</span>
+              <h2 className="lessons-headline">What the work taught me.</h2>
+            </Reveal>
+
+            <div className="lessons-grid">
+              {[
+                { 
+                  num: "01", 
+                  title: "INTELLIGENCE NEEDS CONTEXT", 
+                  desc: "A standalone model is just a starting point. Real engineering happens in memory layers, context systems, and reasoning pipelines that make the model aware of the user's situation.",
+                  ref: "AuraOS / CareerOS"
+                },
+                { 
+                  num: "02", 
+                  title: "SYSTEMS NEED STRUCTURE", 
+                  desc: "Generative outputs are only useful if you can trace how they got there. Deterministic verification pipelines force clarity on fact-tracing and reliability.",
+                  ref: "VERITAS"
+                },
+                { 
+                  num: "03", 
+                  title: "PRODUCTS NEED EXPERIENCE", 
+                  desc: "Backend complexity should never leak into the user experience. Motion, spatial composition, and performance turn a technical project into something people actually use.",
+                  ref: "VoltDrive"
+                }
+              ].map((ls, idx) => (
+                <Reveal key={ls.num} y={28} duration={0.9} delay={idx * 0.12} className="lesson-card">
+                  <span className="lesson-num">— {ls.num}</span>
+                  <h3 className="lesson-title">{ls.title}</h3>
+                  <p className="lesson-desc">{ls.desc}</p>
+                  <span className="lesson-ref">APPLIED IN {ls.ref}</span>
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ==================== 9. ENGINEERING LAYERS ==================== */}
-        <section className="work-layers" data-nav-theme="light">
-          <div className="exhibition-bounds">
-            <m.div className="section-label align-center" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              ENGINEERING THROUGH DIFFERENT LAYERS
-            </m.div>
-            <div className="layers-grid">
-              <m.div className="layer-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                <span className="layer-title">INTELLIGENCE</span>
-                <span className="layer-desc">AI / ML / Reasoning / Memory</span>
-              </m.div>
-              <m.div className="layer-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                <span className="layer-title">SYSTEMS</span>
-                <span className="layer-desc">APIs / Architecture / Data / Backend</span>
-              </m.div>
-              <m.div className="layer-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                <span className="layer-title">PRODUCT</span>
-                <span className="layer-desc">React / Interfaces / Interaction / Experience</span>
-              </m.div>
-              <m.div className="layer-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-                <span className="layer-title">DELIVERY</span>
-                <span className="layer-desc">Git / Deployment / Production Engineering</span>
-              </m.div>
-            </div>
-          </div>
-        </section>
 
-        {/* ==================== 10. WHAT CHANGED ==================== */}
-        <section className="work-principles" data-nav-theme="light">
-          <div className="exhibition-bounds">
-            <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              WHAT BUILDING THESE SYSTEMS CHANGED
-            </m.div>
-            <div className="principles-list">
-              <m.div className="principle-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <span className="p-num">01</span>
-                <div className="p-content">
-                  <span className="p-title">INTELLIGENCE NEEDS CONTEXT</span>
-                  <span className="p-desc">I learned that a standalone model is just a starting point. The real engineering is in memory layers, context systems, and reasoning pipelines that make the model aware of the user's actual situation (AuraOS, CareerOS).</span>
-                </div>
-              </m.div>
-              <m.div className="principle-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <span className="p-num">02</span>
-                <div className="p-content">
-                  <span className="p-title">SYSTEMS NEED STRUCTURE</span>
-                  <span className="p-desc">I learned that generative outputs are only useful if you can trace how they got there. Building deterministic pipelines forced me to think about trust, verification, and what it means for AI to be reliable (VERITAS).</span>
-                </div>
-              </m.div>
-              <m.div className="principle-row" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <span className="p-num">03</span>
-                <div className="p-content">
-                  <span className="p-title">PRODUCTS NEED EXPERIENCE</span>
-                  <span className="p-desc">I learned that backend complexity should never leak into the frontend. The performance, the motion, the spatial composition — that's where a technical project becomes something someone actually wants to use (VoltDrive).</span>
-                </div>
-              </m.div>
-            </div>
-          </div>
-        </section>
+        {/* ============================================================
+            ACT 08 — CLOSING (CONTINUING QUESTION)
+            ============================================================ */}
+        <section className="work-closing-section" data-nav-theme="light">
+          <div className="exhibition-bounds text-center">
+            
+            <Reveal y={24} duration={1.0}>
+              <h2 className="closing-statement-main">
+                Four systems.<br />
+                One continuing question.
+              </h2>
+            </Reveal>
 
-        {/* ==================== 11. CLOSING BRIDGE ==================== */}
-        <section className="work-closing" data-nav-theme="light">
-          <div className="exhibition-bounds align-center">
-            <m.h2 className="closing-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              The work speaks for itself.
-            </m.h2>
-            <m.p className="closing-sub" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              These aren't isolated projects.<br/>
-              They're iterations on the same question:<br/><br/>
-              How do you turn intelligence into something people can actually use?<br/><br/>
-              Each system is my best answer so far.
-            </m.p>
-            <m.div className="closing-action" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <Link to="/experience" className="action-link-large">
-                Explore my engineering journey →
-              </Link>
-            </m.div>
+            <Reveal y={20} duration={0.9} delay={0.2}>
+              <p className="closing-question-sub">
+                How do you turn intelligence into something people can use?
+              </p>
+            </Reveal>
+
+            <Reveal y={20} duration={0.9} delay={0.4}>
+              <MagneticLink strength={0.3}>
+                <button className="work-btn-cta apple-pressable" onClick={() => navigate("/experience")}>
+                  <span>EXPLORE THE ENGINEERING JOURNEY</span>
+                  <ArrowRight size={16} />
+                </button>
+              </MagneticLink>
+            </Reveal>
           </div>
         </section>
 

@@ -1,33 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { m, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { X, ArrowRight, ExternalLink } from "lucide-react";
 import SEO from "../components/SEO";
 import BrandSignature from "../components/BrandSignature";
+import Reveal from "../components/motion/Reveal";
+import MaskReveal from "../components/motion/MaskReveal";
+import ScaleReveal from "../components/motion/ScaleReveal";
+import Parallax from "../components/motion/Parallax";
+import MagneticLink from "../components/motion/MagneticLink";
 import "../styles/Experience.css";
-import { X } from "lucide-react";
 
-// ─── Certificate Artifacts ────────────────────────────────────────────────────
+// ─── Certificate Artifacts & Assets ───────────────────────────────────────────
 import studyOwlCert from "../assets/cert-studyowl.png";
 import blackbucksCert from "../assets/cert-blackbucks.png";
 import smartBridgeCert from "../assets/cert-smartbridge.png";
 import helsonCert from "../assets/cert-helson.png";
 import paceImg from "../assets/pace.jpg";
 
-// ─── Motion ───────────────────────────────────────────────────────────────────
-const appleEase = [0.22, 1, 0.36, 1];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.1, ease: appleEase } },
-};
-
-const fadeUpStagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } },
-};
-
 // ─── Artifact Viewer Modal ────────────────────────────────────────────────────
 function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
-  // Handle ESC key
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") onClose();
@@ -36,7 +26,6 @@ function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Lock body scroll
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -45,63 +34,64 @@ function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
     }
   }, [isOpen]);
 
+  if (!isOpen) return null;
+
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <m.div 
-          className="artifact-modal-overlay"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4, ease: appleEase }}
-          onClick={onClose}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Artifact Viewer"
-        >
-          <button className="am-close-btn" onClick={onClose} aria-label="Close viewer">
-            <X size={24} strokeWidth={1.5} />
-          </button>
-          <m.div 
-            className="am-modal-content"
-            initial={{ scale: 0.98, opacity: 0, y: 10 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.98, opacity: 0, y: 10 }}
-            transition={{ duration: 0.5, ease: appleEase, delay: 0.05 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="am-modal-header">VERIFIED ARTIFACT</div>
-            <img src={imgSrc} alt={imgAlt} className="am-modal-img"  loading="lazy" />
-          </m.div>
-        </m.div>
-      )}
-    </AnimatePresence>
+    <div className="artifact-modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label="Artifact Viewer">
+      <button className="am-close-btn" onClick={onClose} aria-label="Close viewer">
+        <X size={24} strokeWidth={1.5} />
+      </button>
+      <div className="am-modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="am-modal-header">VERIFIED ARTIFACT</div>
+        <img src={imgSrc} alt={imgAlt} className="am-modal-img" loading="lazy" />
+      </div>
+    </div>
   );
 }
 
-// ─── Main Page Component ──────────────────────────────────────────────────────
+// ─── Main Experience Page Component ───────────────────────────────────────────
 export default function Experience() {
+  const [viewerState, setViewerState] = useState({ isOpen: false, src: "", alt: "" });
+  const [activeStage, setActiveStage] = useState("01");
+
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
-  const [viewerState, setViewerState] = useState({ isOpen: false, src: "", alt: "" });
-
   const openViewer = (src, alt) => setViewerState({ isOpen: true, src, alt });
-  const closeViewer = () => setViewerState(prev => ({ ...prev, isOpen: false }));
+  const closeViewer = () => setViewerState((prev) => ({ ...prev, isOpen: false }));
 
-  const scrollToChapter = (id) => {
+  // Update active stage indicator on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const stages = ["blackbucks", "studyowl", "smartbridge", "helson", "datavalley"];
+      const scrollPos = window.scrollY + window.innerHeight * 0.4;
+
+      for (let i = stages.length - 1; i >= 0; i--) {
+        const el = document.getElementById(stages[i]);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveStage(`0${i + 1}`);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToStage = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
     <>
       <SEO 
-        description="Professional experience of Bhagavan. Currently Technical AI/ML & Data Science Trainer at Data Valley. Documenting the engineering evolution across software, data, and AI systems."
-        keywords="TheNameIsBhagavan, Bhagavan Experience, Technical AI/ML Trainer, Data Valley, AI Product Engineer, Machine Learning Experience, Software Engineering"
+        description="Professional engineering evolution of Bhagavan. Technical AI/ML & Data Science Trainer at Data Valley. Documenting the trajectory across Data, Product, Intelligence, Systems, and Teaching."
+        keywords="TheNameIsBhagavan, Bhagavan Experience, Technical AI/ML Trainer, Data Valley, AI Product Engineer, Machine Learning Experience, Software Engineering Evolution"
       />
       
       <ArtifactViewer 
@@ -112,503 +102,464 @@ export default function Experience() {
       />
 
       <div className="exp-evolution-page">
-        
-        {/* ==================== 1. HERO ==================== */}
+
+        {/* FLOATING SPATIAL STAGE RAIL */}
+        <div className="exp-sticky-rail">
+          {[
+            { id: "01", label: "DATA", target: "blackbucks" },
+            { id: "02", label: "PRODUCT", target: "studyowl" },
+            { id: "03", label: "INTELLIGENCE", target: "smartbridge" },
+            { id: "04", label: "SYSTEMS", target: "helson" },
+            { id: "05", label: "TEACHING", target: "datavalley" }
+          ].map((st) => (
+            <button
+              key={st.id}
+              className={`exp-rail-item ${activeStage === st.id ? "active" : ""}`}
+              onClick={() => scrollToStage(st.target)}
+            >
+              <span className="rail-num">{st.id}</span>
+              <span className="rail-label">{st.label}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* ============================================================
+            ACT 01 — HERO (ENGINEERING EVOLUTION)
+            ============================================================ */}
         <section className="exp-evolution-hero" data-nav-theme="light">
-          <div className="evo-bounds hero-bounds">
-            <m.div className="hero-eyebrow" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, ease: appleEase }}>
-              ENGINEERING EVOLUTION · 2022 — PRESENT
-            </m.div>
-            
-            <m.h1 className="hero-massive-headline" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.1, ease: appleEase }}>
-              Experience is just<br/>data you learn from.
-            </m.h1>
-            
-            <m.p className="hero-supporting-copy" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.2, ease: appleEase }}>
-              From scraping data as an intern<br/>
-              to teaching AI to hundreds of students —<br/>
-              every role forced me to rethink what I know about software.
-            </m.p>
-
-            <m.div className="hero-vertical-meta" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 0.4, ease: appleEase }}>
-              EXPERIENCE / ENGINEERING / PRESENT
-            </m.div>
-          </div>
-        </section>
-
-        {/* ==================== 2. EVOLUTION INDEX ==================== */}
-        <section className="evo-index-section" data-nav-theme="light">
           <div className="evo-bounds">
-            <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-              THE EVOLUTION
-            </m.div>
-            <div className="evo-index-row">
-              <button onClick={() => scrollToChapter('chap-foundation')} className="evo-milestone">
-                <span className="em-num">01</span>
-                <span className="em-title">FOUNDATION</span>
-                <span className="em-desc">Learning from data</span>
-                <div className="em-line"></div>
-              </button>
-              <button onClick={() => scrollToChapter('chap-product')} className="evo-milestone">
-                <span className="em-num">02</span>
-                <span className="em-title">PRODUCT</span>
-                <span className="em-desc">Building products</span>
-                <div className="em-line"></div>
-              </button>
-              <button onClick={() => scrollToChapter('chap-intelligence')} className="evo-milestone">
-                <span className="em-num">03</span>
-                <span className="em-title">INTELLIGENCE</span>
-                <span className="em-desc">Applying intelligence</span>
-                <div className="em-line"></div>
-              </button>
-              <button onClick={() => scrollToChapter('chap-systems')} className="evo-milestone">
-                <span className="em-num">04</span>
-                <span className="em-title">SYSTEMS</span>
-                <span className="em-desc">Designing workflows</span>
-                <div className="em-line"></div>
-              </button>
-              <button onClick={() => scrollToChapter('chap-current')} className="evo-milestone">
-                <span className="em-num">05</span>
-                <span className="em-title">CURRENT</span>
-                <span className="em-desc">Teaching & building</span>
-                <div className="em-line"></div>
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== 3. CORE NARRATIVE ==================== */}
-        <section className="evo-core-narrative" data-nav-theme="light">
-          <div className="evo-bounds">
-            <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-              HOW THE WORK CHANGED ME
-            </m.div>
             
-            <div className="narrative-stack">
-              <m.h2 className="narrative-huge" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                I didn't learn how to build<br/>all at once.
-              </m.h2>
-              
-              <m.h3 className="narrative-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                First, I figured out how to wrangle data.
-              </m.h3>
-              
-              <m.h3 className="narrative-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                Then, I realized a script isn't a product.
-              </m.h3>
-              
-              <m.h3 className="narrative-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                Then, I learned how hard it is to make AI actually useful.
-              </m.h3>
-              
-              <m.h3 className="narrative-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                Then, I had to unlearn isolated features and start thinking in systems.
-              </m.h3>
-              
-              <m.h3 className="narrative-step" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-200px" }} variants={fadeUp}>
-                Now, I teach others how to do it — and keep building.
-              </m.h3>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== CURRENT: DATA VALLEY ==================== */}
-        <section id="chap-current" className="evo-chapter" data-nav-theme="light">
-          <div className="evo-bounds">
-            <m.div className="chapter-meta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <span className="cm-num">CURRENT · 2026 — PRESENT</span>
-              <span className="cm-company">DATA VALLEY</span>
-            </m.div>
-            
-            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Teaching what I build.
-            </m.h2>
-
-            <div className="chapter-grid">
-              <m.div className="cg-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <div className="role-meta">
-                  <span className="rm-company">DATA VALLEY</span>
-                  <span className="rm-role">Technical AI/ML & Data Science Trainer</span>
-                  <span className="rm-period">Vijayawada, Andhra Pradesh · 2026 — Present</span>
-                </div>
-              </m.div>
-              <m.div className="cg-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
-                <m.p className="cg-lesson" variants={fadeUp}>
-                  Teaching AI and Data Science professionally changed how I communicate technical complexity.
-                </m.p>
-                <m.p className="cg-editorial" variants={fadeUp}>
-                  Delivering hands-on technical training across Data Science, Machine Learning, and AI — developing structured curricula, coding labs, practical exercises, and project-based learning experiences for students across college, in-office, and online programs.
-                </m.p>
-                
-                <m.div className="cg-changed" variants={fadeUp}>
-                  <span className="cgc-label">WHAT THIS ROLE INVOLVES</span>
-                  <span className="cgc-text">Curriculum Design · Live Instruction · Lab Development · Project Mentoring · Technical Communication · PPT & Theory Preparation · Practical Sessions · Coding Exercises</span>
-                </m.div>
-              </m.div>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== AI EDUCATION & TECHNICAL COMMUNICATION ==================== */}
-        <section className="evo-chapter" data-nav-theme="light">
-          <div className="evo-bounds">
-            <m.div className="chapter-meta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <span className="cm-num">CASE STUDY</span>
-              <span className="cm-company">PACE COLLEGE OF ENGINEERING</span>
-            </m.div>
-            
-            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              AI Education &<br/>Technical Communication.
-            </m.h2>
-
-            <div className="chapter-grid exp-case-study">
-              <m.div className="cg-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <div className="role-meta">
-                  <span className="rm-company">WORKSHOP</span>
-                  <span className="rm-role">Prompt Engineering × Generative AI</span>
-                  <span className="rm-period">Ongole · CSE, AI & DS, AI & ML</span>
-                </div>
-              </m.div>
-              <m.div className="cg-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
-                <m.div className="exp-case-image-wrap" variants={fadeUp}>
-                  <img src={paceImg} alt="PACE Workshop" className="exp-case-img" loading="lazy" />
-                </m.div>
-                
-                <m.p className="cg-editorial" variants={fadeUp} style={{ marginTop: '32px' }}>
-                  A hands-on workshop for ~300 students, showing them how to bridge the gap between hype-driven AI concepts and actual engineering workflows.
-                </m.p>
-                <m.p className="cg-editorial" variants={fadeUp}>
-                  I wanted to show them that AI isn't just about chatting—it's a component you engineer. We focused on forcing deterministic outputs from non-deterministic models. The hardest part wasn't the technical material; it was teaching people a new way to think.
-                </m.p>
-              </m.div>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== 4. CHAPTER 01: BLACKBUCKS ==================== */}
-        <section id="chap-foundation" className="evo-chapter" data-nav-theme="light">
-          <div className="evo-bounds">
-            <m.div className="chapter-meta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <span className="cm-num">CHAPTER 01</span>
-              <span className="cm-company">BLACKBUCKS</span>
-            </m.div>
-            
-            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Learning from data.
-            </m.h2>
-
-            <div className="chapter-grid">
-              <m.div className="cg-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <div className="role-meta">
-                  <span className="rm-company">BLACKBUCKS</span>
-                  <span className="rm-role">Machine Learning Intern</span>
-                  <span className="rm-period">Foundation</span>
-                </div>
-              </m.div>
-              <m.div className="cg-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
-                <m.p className="cg-lesson" variants={fadeUp}>
-                  Before I could build anything intelligent, I had to figure out what intelligence runs on.
-                </m.p>
-                <m.p className="cg-editorial" variants={fadeUp}>
-                  I thought machine learning was about algorithms. I quickly learned it's entirely about the data. If the data pipeline is messy, the model is useless. This internship was my crash course in finding signal in the noise.
-                </m.p>
-                
-                <m.div className="cg-changed" variants={fadeUp}>
-                  <span className="cgc-label">WHAT CHANGED</span>
-                  <span className="cgc-text">Data became more than input. It became the foundation of every decision.</span>
-                </m.div>
-
-                {/* VERIFIED ARTIFACT */}
-                <m.div className="verified-artifact-wrap artifact-scale-1" variants={fadeUp}>
-                  <div className="va-header">
-                    <span className="va-label">VERIFIED ARTIFACT</span>
-                    <span className="va-relationship">This artifact marks the beginning of the progression: understanding data before designing intelligence.</span>
-                  </div>
-                  <button 
-                    className="va-image-btn" 
-                    onClick={() => openViewer(blackbucksCert, "Blackbucks Machine Learning Internship Certificate")}
-                    aria-label="View Blackbucks Machine Learning Internship Certificate"
-                  >
-                    <img src={blackbucksCert} alt="Blackbucks Machine Learning Internship Certificate" loading="lazy" />
-                    <div className="va-hover-label">VIEW ARTIFACT ↗</div>
-                  </button>
-                  <div className="va-footer">
-                    <span>DOCUMENTED EXPERIENCE / 01</span>
-                    <span>2024</span>
-                  </div>
-                </m.div>
-              </m.div>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== 5. CHAPTER 02: STUDYOWL ==================== */}
-        <section id="chap-product" className="evo-chapter" data-nav-theme="light">
-          <div className="evo-bounds">
-            <m.div className="chapter-meta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <span className="cm-num">CHAPTER 02</span>
-              <span className="cm-company">STUDYOWL</span>
-            </m.div>
-            
-            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Learning to build for people.
-            </m.h2>
-
-            <div className="chapter-grid">
-              <m.div className="cg-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <div className="role-meta">
-                  <span className="rm-company">STUDYOWL</span>
-                  <span className="rm-role">Software Development Intern</span>
-                  <span className="rm-period">From Code → Product</span>
-                </div>
-              </m.div>
-              <m.div className="cg-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
-                <m.p className="cg-lesson" variants={fadeUp}>
-                  A working script isn't a product until someone else can use it.
-                </m.p>
-                <m.p className="cg-editorial" variants={fadeUp}>
-                  This is where I moved from writing isolated code to shipping full-stack features. I learned the hard way that backend logic doesn't matter if the frontend drops the ball, and a beautiful UI is pointless if the database is crawling.
-                </m.p>
-                
-                <m.div className="cg-changed" variants={fadeUp}>
-                  <span className="cgc-label">ENGINEERING SHIFT</span>
-                  <span className="cgc-text">Frontend + Backend + Usability + Reliability</span>
-                </m.div>
-
-                {/* VERIFIED ARTIFACT */}
-                <m.div className="verified-artifact-wrap artifact-scale-2" variants={fadeUp}>
-                  <div className="va-header">
-                    <span className="va-label">VERIFIED ARTIFACT</span>
-                    <span className="va-relationship">The next step was learning that engineering is not complete when code works. It is complete when people can use the product.</span>
-                  </div>
-                  <button 
-                    className="va-image-btn" 
-                    onClick={() => openViewer(studyOwlCert, "StudyOwl Software Development Internship Certificate")}
-                    aria-label="View StudyOwl Software Development Internship Certificate"
-                  >
-                    <img src={studyOwlCert} alt="StudyOwl Software Development Internship Certificate" loading="lazy" />
-                    <div className="va-hover-label">VIEW ARTIFACT ↗</div>
-                  </button>
-                  <div className="va-footer">
-                    <span>DOCUMENTED EXPERIENCE / 02</span>
-                    <span>2024</span>
-                  </div>
-                </m.div>
-              </m.div>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== 6. CHAPTER 03: SMARTBRIDGE ==================== */}
-        <section id="chap-intelligence" className="evo-chapter chapter-dark" data-nav-theme="light">
-          <div className="evo-bounds">
-            <m.div className="chapter-meta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <span className="cm-num">CHAPTER 03</span>
-              <span className="cm-company">SMARTBRIDGE</span>
-            </m.div>
-            
-            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Making intelligence useful.
-            </m.h2>
-
-            <div className="chapter-grid">
-              <m.div className="cg-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <div className="role-meta">
-                  <span className="rm-company">SMARTBRIDGE</span>
-                  <span className="rm-role">Software Engineering Intern</span>
-                  <span className="rm-period">From Product → Intelligence</span>
-                </div>
-              </m.div>
-              <m.div className="cg-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
-                <m.p className="cg-lesson" variants={fadeUp}>
-                  A flashy AI demo is easy. Making it reliable enough for production is hard.
-                </m.p>
-                <m.p className="cg-editorial" variants={fadeUp}>
-                  Here, AI stopped being an academic exercise. I had to integrate intelligence into existing workflows, which meant dealing with edge cases, latency, and the reality that automation is only valuable if it actually works every time.
-                </m.p>
-                
-                <m.div className="cg-changed" variants={fadeUp}>
-                  <span className="cgc-label">ENGINEERING SHIFT</span>
-                  <span className="cgc-text formula-text">AI + AUTOMATION + DECISION MAKING = IMPACT</span>
-                </m.div>
-
-                {/* VERIFIED ARTIFACT */}
-                <m.div className="verified-artifact-wrap artifact-scale-3" variants={fadeUp}>
-                  <div className="va-header">
-                    <span className="va-label">VERIFIED ARTIFACT</span>
-                    <span className="va-relationship">This experience moved engineering from implementation toward intelligent behavior, automation, and practical AI.</span>
-                  </div>
-                  <button 
-                    className="va-image-btn" 
-                    onClick={() => openViewer(smartBridgeCert, "SmartBridge Software Engineering Certificate")}
-                    aria-label="View SmartBridge Software Engineering Certificate"
-                  >
-                    <img src={smartBridgeCert} alt="SmartBridge Software Engineering Certificate" loading="lazy" />
-                    <div className="va-hover-label">VIEW ARTIFACT ↗</div>
-                  </button>
-                  <div className="va-footer">
-                    <span>DOCUMENTED EXPERIENCE / 03</span>
-                    <span>2024</span>
-                  </div>
-                </m.div>
-              </m.div>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== 7. CHAPTER 04: HELSON ==================== */}
-        <section id="chap-systems" className="evo-chapter" data-nav-theme="light">
-          <div className="evo-bounds">
-            <m.div className="chapter-meta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <span className="cm-num">CHAPTER 04</span>
-              <span className="cm-company">HELSON</span>
-            </m.div>
-            
-            <m.h2 className="chapter-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Learning to think in workflows.
-            </m.h2>
-
-            <div className="chapter-grid">
-              <m.div className="cg-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <div className="role-meta">
-                  <span className="rm-company">HELSON</span>
-                  <span className="rm-role">Enterprise Automation Intern</span>
-                  <span className="rm-period">From Features → Systems</span>
-                </div>
-                
-                <div className="architectural-flow">
-                  <span>INPUT</span>
-                  <span className="flow-arrow">↓</span>
-                  <span>PROCESS</span>
-                  <span className="flow-arrow">↓</span>
-                  <span>DECISION</span>
-                  <span className="flow-arrow">↓</span>
-                  <span>OUTCOME</span>
-                </div>
-              </m.div>
-              
-              <m.div className="cg-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
-                <m.p className="cg-lesson" variants={fadeUp}>
-                  At scale, the problem isn't the feature. The problem is how it connects to everything else.
-                </m.p>
-                <m.p className="cg-editorial" variants={fadeUp}>
-                  Enterprise automation forced me to stop looking at isolated code and start looking at the entire pipeline. When a multi-day approval chain relies on manual steps, the code you write has to be bulletproof.
-                </m.p>
-                
-                <m.div className="cg-changed" variants={fadeUp}>
-                  <span className="cgc-label">ENGINEERING SHIFT</span>
-                  <span className="cgc-text">Moving from building isolated features to architecting interconnected, resilient systems.</span>
-                </m.div>
-
-                {/* VERIFIED ARTIFACT */}
-                <m.div className="verified-artifact-wrap artifact-scale-4" variants={fadeUp}>
-                  <div className="va-header">
-                    <span className="va-label">VERIFIED ARTIFACT</span>
-                    <span className="va-relationship">The focus shifted from individual features to workflows, integration, and systems that operate across boundaries.</span>
-                  </div>
-                  <button 
-                    className="va-image-btn" 
-                    onClick={() => openViewer(helsonCert, "Helson Enterprise Automation Certificate")}
-                    aria-label="View Helson Enterprise Automation Certificate"
-                  >
-                    <img src={helsonCert} alt="Helson Enterprise Automation Certificate" loading="lazy" />
-                    <div className="va-hover-label">VIEW ARTIFACT ↗</div>
-                  </button>
-                  <div className="va-footer">
-                    <span>DOCUMENTED EXPERIENCE / 04</span>
-                    <span>2024</span>
-                  </div>
-                </m.div>
-              </m.div>
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== 8. THE INFLECTION POINT ==================== */}
-        <section className="evo-inflection" data-nav-theme="light">
-          <div className="evo-bounds">
-            <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              THE INFLECTION POINT
-            </m.div>
-            <m.h2 className="inflection-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              These experiences became the foundation<br/>
-              for what I build now.
-            </m.h2>
-            
-            <m.div className="inflection-flow" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpStagger}>
-              <m.span className="if-term" variants={fadeUp}>01 FOUNDATION</m.span>
-              <m.span className="if-arrow" variants={fadeUp}>→</m.span>
-              <m.span className="if-term" variants={fadeUp}>02 PRODUCT</m.span>
-              <m.span className="if-arrow" variants={fadeUp}>→</m.span>
-              <m.span className="if-term" variants={fadeUp}>03 INTELLIGENCE</m.span>
-              <m.span className="if-arrow" variants={fadeUp}>→</m.span>
-              <m.span className="if-term" variants={fadeUp}>04 SYSTEMS</m.span>
-              <m.span className="if-arrow" variants={fadeUp}>→</m.span>
-              <m.span className="if-term highlight" variants={fadeUp}>05 TEACHING & BUILDING</m.span>
-            </m.div>
-
-            <m.div className="inflection-consequence" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <div className="ic-systems">
-                <span>CareerOS</span>
-                <span>AuraOS</span>
-                <span>VERITAS</span>
-                <span>VoltDrive</span>
+            <Reveal y={16} duration={0.8}>
+              <div className="hero-eyebrow">
+                <span className="hero-badge">ENGINEERING EVOLUTION &middot; 2022 — PRESENT</span>
               </div>
-            </m.div>
+            </Reveal>
+
+            <MaskReveal duration={1.1} delay={0.1}>
+              <h1 className="hero-headline">
+                Experience is just<br />
+                data you learn from.
+              </h1>
+            </MaskReveal>
+
+            <Reveal y={20} duration={0.9} delay={0.3}>
+              <p className="hero-sub">
+                From working with data to building software, integrating intelligence, designing systems, and now teaching others to build.
+              </p>
+            </Reveal>
+
+            {/* Stage Path Roadmap Bar */}
+            <Reveal y={16} duration={0.8} delay={0.5}>
+              <div className="hero-stage-roadmap">
+                <span>DATA</span>
+                <span className="rm-arrow">&rarr;</span>
+                <span>PRODUCT</span>
+                <span className="rm-arrow">&rarr;</span>
+                <span>INTELLIGENCE</span>
+                <span className="rm-arrow">&rarr;</span>
+                <span>SYSTEMS</span>
+                <span className="rm-arrow">&rarr;</span>
+                <span className="rm-current">TEACHING + BUILDING</span>
+              </div>
+            </Reveal>
           </div>
         </section>
 
-        {/* ==================== 9. ENGINEERING PERSPECTIVE ==================== */}
-        <section className="evo-perspective" data-nav-theme="light">
+
+        {/* ============================================================
+            ACT 02 — BLACKBUCKS (STAGE 01 / 05 — DATA)
+            ============================================================ */}
+        <section id="blackbucks" className="evo-chapter" data-nav-theme="light">
           <div className="evo-bounds">
-            <m.div className="section-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              WHAT EXPERIENCE TAUGHT ME
-            </m.div>
             
-            <div className="perspective-grid">
-              <m.div className="pg-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <span className="pg-num">01</span>
-                <span className="pg-title">SOLVE THE RIGHT PROBLEM</span>
-                <span className="pg-desc">Writing code for the wrong problem is just elegant waste. Find out what actually matters first.</span>
-              </m.div>
-              
-              <m.div className="pg-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <span className="pg-num">02</span>
-                <span className="pg-title">DESIGN FOR FAILURE</span>
-                <span className="pg-desc">The happy path is easy. Real engineering is deciding what happens when the API goes down.</span>
-              </m.div>
-              
-              <m.div className="pg-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <span className="pg-num">03</span>
-                <span className="pg-title">DEMOS DON'T COUNT</span>
-                <span className="pg-desc">A cool notebook isn't a product. Getting intelligence into a seamless UI is where the real work happens.</span>
-              </m.div>
-              
-              <m.div className="pg-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <span className="pg-num">04</span>
-                <span className="pg-title">SHIP TO LEARN</span>
-                <span className="pg-desc">You don't learn from code sitting on localhost. You learn when real people click the buttons.</span>
-              </m.div>
+            <div className="chapter-header-bar">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">STAGE 01 / 05 &middot; DATA &middot; 2024</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="company-name">BLACKBUCKS</h2>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.15}>
+                <span className="role-title">Machine Learning Intern</span>
+              </Reveal>
             </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-statement">
+                "Before intelligence, there was data."
+              </blockquote>
+            </Reveal>
+
+            <Reveal y={20} duration={0.9} delay={0.3}>
+              <p className="chapter-desc">
+                Worked with data and machine-learning workflows, learning that model quality depends entirely on the quality and structure of the data behind it.
+              </p>
+            </Reveal>
+
+            {/* Engineering Signal */}
+            <Reveal y={20} duration={0.8} delay={0.4}>
+              <div className="engineering-signal-bar">
+                <span className="signal-label">ENGINEERING SIGNAL:</span>
+                <div className="signal-tags">
+                  <span>DATA</span>
+                  <span className="sig-sep">&rarr;</span>
+                  <span>CLEANING</span>
+                  <span className="sig-sep">&rarr;</span>
+                  <span>ANALYSIS</span>
+                  <span className="sig-sep">&rarr;</span>
+                  <span>MODELING</span>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Verified Artifact Card */}
+            <Reveal y={24} duration={0.9} delay={0.5}>
+              <div className="artifact-card-container">
+                <div className="ac-top-meta">
+                  <span className="ac-badge">VERIFIED ARTIFACT</span>
+                  <span className="ac-doc-num">DOCUMENTED EXPERIENCE / 01</span>
+                </div>
+                <button 
+                  className="artifact-preview-btn"
+                  onClick={() => openViewer(blackbucksCert, "Blackbucks Machine Learning Internship Certificate")}
+                >
+                  <img src={blackbucksCert} alt="Blackbucks Certificate" className="artifact-img" loading="lazy" />
+                  <div className="artifact-hover-overlay">
+                    <span>VIEW ARTIFACT ↗</span>
+                  </div>
+                </button>
+              </div>
+            </Reveal>
           </div>
         </section>
 
-        {/* ==================== 10. CLOSING ==================== */}
-        <section className="evo-closing" data-nav-theme="light">
+
+        {/* ============================================================
+            ACT 03 — STUDYOWL (STAGE 02 / 05 — PRODUCT)
+            ============================================================ */}
+        <section id="studyowl" className="evo-chapter" data-nav-theme="light">
           <div className="evo-bounds">
-            <m.h2 className="closing-statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              I learn by shipping.
-            </m.h2>
-            <m.p className="closing-sub" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              Every role was an experiment in how to build better software.<br/><br/>
-              I'm still running experiments.<br/>
-              I'm still learning.
-            </m.p>
             
-            <m.div className="closing-signature" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              THE NAME IS BHAGAVAN<br/>
-              ENGINEERING EVOLUTION · 2022 — PRESENT
-            </m.div>
+            <div className="chapter-header-bar">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">STAGE 02 / 05 &middot; PRODUCT &middot; 2024</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="company-name">STUDYOWL</h2>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.15}>
+                <span className="role-title">Software Development Intern</span>
+              </Reveal>
+            </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-statement">
+                "Code works. Products have to work for people."
+              </blockquote>
+            </Reveal>
+
+            <Reveal y={20} duration={0.9} delay={0.3}>
+              <p className="chapter-desc">
+                Moved from isolated implementation toward full-stack product development, learning how frontend, backend, data, and usability have to work together seamlessly.
+              </p>
+            </Reveal>
+
+            {/* Engineering Signal */}
+            <Reveal y={20} duration={0.8} delay={0.4}>
+              <div className="engineering-signal-bar">
+                <span className="signal-label">ENGINEERING SIGNAL:</span>
+                <div className="signal-tags">
+                  <span>FRONTEND</span>
+                  <span className="sig-sep">+</span>
+                  <span>BACKEND</span>
+                  <span className="sig-sep">+</span>
+                  <span>DATA</span>
+                  <span className="sig-sep">+</span>
+                  <span>USABILITY</span>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Verified Artifact Card */}
+            <Reveal y={24} duration={0.9} delay={0.5}>
+              <div className="artifact-card-container">
+                <div className="ac-top-meta">
+                  <span className="ac-badge">VERIFIED ARTIFACT</span>
+                  <span className="ac-doc-num">DOCUMENTED EXPERIENCE / 02</span>
+                </div>
+                <button 
+                  className="artifact-preview-btn"
+                  onClick={() => openViewer(studyOwlCert, "StudyOwl Software Development Internship Certificate")}
+                >
+                  <img src={studyOwlCert} alt="StudyOwl Certificate" className="artifact-img" loading="lazy" />
+                  <div className="artifact-hover-overlay">
+                    <span>VIEW ARTIFACT ↗</span>
+                  </div>
+                </button>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+
+        {/* ============================================================
+            ACT 04 — SMARTBRIDGE (STAGE 03 / 05 — INTELLIGENCE)
+            ============================================================ */}
+        <section id="smartbridge" className="evo-chapter" data-nav-theme="light">
+          <div className="evo-bounds">
+            
+            <div className="chapter-header-bar">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">STAGE 03 / 05 &middot; INTELLIGENCE &middot; 2024</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="company-name">SMARTBRIDGE</h2>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.15}>
+                <span className="role-title">Software Engineering Intern</span>
+              </Reveal>
+            </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-statement">
+                "AI became part of the system."
+              </blockquote>
+            </Reveal>
+
+            <Reveal y={20} duration={0.9} delay={0.3}>
+              <p className="chapter-desc">
+                Worked with software engineering and AI-driven workflows, learning that useful intelligence has to operate reliably inside real application constraints.
+              </p>
+            </Reveal>
+
+            {/* Engineering Signal */}
+            <Reveal y={20} duration={0.8} delay={0.4}>
+              <div className="engineering-signal-bar">
+                <span className="signal-label">ENGINEERING SIGNAL:</span>
+                <div className="signal-tags">
+                  <span>AI</span>
+                  <span className="sig-sep">&rarr;</span>
+                  <span>AUTOMATION</span>
+                  <span className="sig-sep">&rarr;</span>
+                  <span>DECISION</span>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Verified Artifact Card */}
+            <Reveal y={24} duration={0.9} delay={0.5}>
+              <div className="artifact-card-container">
+                <div className="ac-top-meta">
+                  <span className="ac-badge">VERIFIED ARTIFACT</span>
+                  <span className="ac-doc-num">DOCUMENTED EXPERIENCE / 03</span>
+                </div>
+                <button 
+                  className="artifact-preview-btn"
+                  onClick={() => openViewer(smartBridgeCert, "SmartBridge Software Engineering Certificate")}
+                >
+                  <img src={smartBridgeCert} alt="SmartBridge Certificate" className="artifact-img" loading="lazy" />
+                  <div className="artifact-hover-overlay">
+                    <span>VIEW ARTIFACT ↗</span>
+                  </div>
+                </button>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+
+        {/* ============================================================
+            ACT 05 — HELSON (STAGE 04 / 05 — SYSTEMS)
+            ============================================================ */}
+        <section id="helson" className="evo-chapter" data-nav-theme="light">
+          <div className="evo-bounds">
+            
+            <div className="chapter-header-bar">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">STAGE 04 / 05 &middot; SYSTEMS &middot; 2024</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="company-name">HELSON</h2>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.15}>
+                <span className="role-title">Enterprise Automation Intern</span>
+              </Reveal>
+            </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-statement">
+                "The feature was never the whole problem."
+              </blockquote>
+            </Reveal>
+
+            <Reveal y={20} duration={0.9} delay={0.3}>
+              <p className="chapter-desc">
+                Worked with enterprise automation and workflow-oriented thinking, moving from isolated features toward connected processes and resilient system behavior.
+              </p>
+            </Reveal>
+
+            {/* Architectural Flow Signal */}
+            <Reveal y={20} duration={0.8} delay={0.4}>
+              <div className="architectural-signal-flow">
+                <span className="flow-step">INPUT</span>
+                <span className="flow-arrow">&rarr;</span>
+                <span className="flow-step">PROCESS</span>
+                <span className="flow-arrow">&rarr;</span>
+                <span className="flow-step">DECISION</span>
+                <span className="flow-arrow">&rarr;</span>
+                <span className="flow-step">OUTCOME</span>
+              </div>
+            </Reveal>
+
+            {/* Verified Artifact Card */}
+            <Reveal y={24} duration={0.9} delay={0.5}>
+              <div className="artifact-card-container">
+                <div className="ac-top-meta">
+                  <span className="ac-badge">VERIFIED ARTIFACT</span>
+                  <span className="ac-doc-num">DOCUMENTED EXPERIENCE / 04</span>
+                </div>
+                <button 
+                  className="artifact-preview-btn"
+                  onClick={() => openViewer(helsonCert, "Helson Enterprise Automation Certificate")}
+                >
+                  <img src={helsonCert} alt="Helson Certificate" className="artifact-img" loading="lazy" />
+                  <div className="artifact-hover-overlay">
+                    <span>VIEW ARTIFACT ↗</span>
+                  </div>
+                </button>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+
+        {/* ============================================================
+            ACT 06 — DATA VALLEY (STAGE 05 / 05 — TEACHING + BUILDING)
+            ============================================================ */}
+        <section id="datavalley" className="evo-chapter current-role-chapter" data-nav-theme="light">
+          <div className="evo-bounds">
+            
+            <div className="chapter-header-bar">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge badge-active">CURRENT &middot; 2026 — PRESENT &middot; DATA VALLEY</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="company-name">DATA VALLEY</h2>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.15}>
+                <span className="role-title highlight-role">Technical AI/ML & Data Science Trainer</span>
+              </Reveal>
+            </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-statement">
+                "Now I teach what I build."
+              </blockquote>
+            </Reveal>
+
+            <Reveal y={20} duration={0.9} delay={0.3}>
+              <p className="chapter-desc">
+                Designing and delivering hands-on training across Data Science, Machine Learning, and AI — turning technical concepts into structured lessons, coding exercises, and practical workflows.
+              </p>
+            </Reveal>
+
+            {/* Role Responsibilities Tags */}
+            <Reveal y={20} duration={0.8} delay={0.4}>
+              <div className="responsibilities-tags-wrap">
+                {[
+                  "Curriculum Design", 
+                  "Live Instruction", 
+                  "Lab Development", 
+                  "Project Mentoring", 
+                  "Technical Communication", 
+                  "Practical Sessions"
+                ].map((tag) => (
+                  <span key={tag} className="resp-tag">{tag}</span>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+
+        {/* ============================================================
+            ACT 07 — PACE COLLEGE CASE STUDY (TEACHING CASE STUDY)
+            ============================================================ */}
+        <section className="evo-chapter pace-case-chapter" data-nav-theme="light">
+          <div className="evo-bounds">
+            
+            <div className="chapter-header-bar">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">TEACHING CASE STUDY &middot; PACE COLLEGE OF ENGINEERING</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="company-name">ONGOLE WORKSHOP</h2>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.15}>
+                <span className="role-title">Prompt Engineering × Generative AI</span>
+              </Reveal>
+            </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-statement">
+                "Teaching AI is not just explaining models. It is teaching people how to think with them."
+              </blockquote>
+            </Reveal>
+
+            <ScaleReveal className="pace-image-wrapper">
+              <img src={paceImg} alt="PACE College Workshop" className="pace-image" loading="lazy" />
+            </ScaleReveal>
+
+            <Reveal y={20} duration={0.8} delay={0.4}>
+              <div className="pace-meta-row">
+                <span className="pm-tag">~300 STUDENTS</span>
+                <span className="pm-tag">CSE &middot; AI&DS &middot; AI&ML</span>
+                <span className="pm-tag">PROMPT ENGINEERING &middot; GENERATIVE AI</span>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+
+        {/* ============================================================
+            ACT 08 — MINIMAL CLOSING
+            ============================================================ */}
+        <section className="exp-closing-section" data-nav-theme="light">
+          <div className="evo-bounds text-center">
+            
+            <Reveal y={24} duration={1.0}>
+              <h2 className="closing-headline">
+                Different roles.<br />
+                One direction.
+              </h2>
+            </Reveal>
+
+            <Reveal y={20} duration={0.9} delay={0.2}>
+              <div className="closing-stage-path">
+                <span>DATA</span>
+                <span className="csp-arrow">&rarr;</span>
+                <span>PRODUCT</span>
+                <span className="csp-arrow">&rarr;</span>
+                <span>INTELLIGENCE</span>
+                <span className="csp-arrow">&rarr;</span>
+                <span>SYSTEMS</span>
+                <span className="csp-arrow">&rarr;</span>
+                <span className="csp-highlight">TEACHING</span>
+              </div>
+            </Reveal>
+
+            <Reveal y={20} duration={0.9} delay={0.35}>
+              <p className="closing-subtext">
+                Still building. Still teaching. Still evolving.
+              </p>
+            </Reveal>
+
+            <Reveal y={20} duration={0.9} delay={0.5}>
+              <div className="closing-signature-meta">
+                THE NAME IS BHAGAVAN<br />
+                ENGINEERING EVOLUTION &middot; 2022 — PRESENT
+              </div>
+            </Reveal>
           </div>
         </section>
 

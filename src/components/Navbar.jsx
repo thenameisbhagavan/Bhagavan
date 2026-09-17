@@ -3,6 +3,7 @@ import { FileText, Github, Linkedin, Mail, Twitter, Youtube, Instagram } from "l
 import { useLocation, useNavigate } from "react-router-dom";
 import { m, AnimatePresence } from "framer-motion";
 import logoImg from "../assets/logo.png";
+import resumeIconImg from "../assets/resume-icon.png";
 import { socialLinks } from "../constants/socialLinks";
 
 // ─────────────────────────────────────────────
@@ -12,15 +13,15 @@ import { socialLinks } from "../constants/socialLinks";
 const PRIMARY_NAV = [
   { label: "Overview", path: "/" },
 
-  { label: "Products", path: "/work" },
+  { label: "Projects", path: "/work" },
 
-  { label: "Journey", path: "/experience" },
+  { label: "Experience", path: "/experience" },
 
   {
     label: "Capabilities",
     dropdown: [
       { label: "Innovation", sub: "Research & Exploration", path: "/innovation" },
-      { label: "Credentials", sub: "Learning & Certifications", path: "/credentials" },
+      { label: "Certifications", sub: "Learning & Certifications", path: "/credentials" },
       { label: "Academic Archive", sub: "Formal Education", path: "/academic-archive" },
       { label: "Technology", sub: "Tools & Ecosystem", path: "/ecosystem" },
     ],
@@ -84,44 +85,29 @@ const ease = [0.16, 1, 0.3, 1];
 const TBLogo = () => (
   <m.div 
     className="tb-logo-wrapper"
-    initial={{ filter: "drop-shadow(0px 0px 0px rgba(0,0,0,0))" }}
-    whileHover={{ filter: "drop-shadow(0px 4px 12px rgba(120,120,128,0.25))", scale: 1.04 }}
-    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+    initial={{ opacity: 0, scale: 0.9 }}
+    animate={{ opacity: 1, scale: 1 }}
+    whileHover={{ scale: 1.06, filter: "drop-shadow(0px 4px 14px rgba(220, 38, 38, 0.45))" }}
+    whileTap={{ scale: 0.95 }}
+    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
     style={{ 
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'center',
-      color: 'var(--nav-text-color, #1d1d1f)',
       willChange: 'transform, filter'
     }}
   >
-    <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Glassy squircle container */}
-      <rect width="32" height="32" rx="10" fill="currentColor" fillOpacity="0.03" />
-      <rect width="32" height="32" rx="10" stroke="currentColor" strokeOpacity="0.08" strokeWidth="1" />
-      
-      {/* T and B Ligature - mathematically centered at x=16 */}
-      <m.path 
-        d="M 9 11 H 16 M 12.5 11 V 21" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-      />
-      <m.path 
-        d="M 16 21 V 11 H 19 C 21 11 22 12 22 13.5 C 22 15 21 16 19 16 H 16 M 16 16 H 19.5 C 21.5 16 23 17 23 18.5 C 23 20 21.5 21 19.5 21 H 16" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-      />
-    </svg>
+    <img 
+      src={logoImg} 
+      alt="TheNameIsBhagavan Logo" 
+      style={{
+        height: '38px',
+        width: '38px',
+        objectFit: 'contain',
+        borderRadius: '8px',
+        display: 'block'
+      }}
+    />
   </m.div>
 );
 
@@ -132,73 +118,27 @@ const Resume3DLogo = () => {
   return (
     <m.div
       style={{
-        position: 'relative',
-        width: 20,
-        height: 20,
-        perspective: 500,
-        display: 'flex',
+        display: 'inline-flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        gap: '6px'
       }}
-      whileHover="hover"
-      initial="rest"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.2 }}
     >
-      <m.div
-        variants={{
-          rest: { rotateX: 0, rotateY: 0, scale: 1 },
-          hover: { rotateX: 18, rotateY: -18, scale: 1.15 }
-        }}
-        transition={{ type: "spring", stiffness: 350, damping: 20 }}
+      <img 
+        src={resumeIconImg} 
+        alt="Resume Icon" 
         style={{
-          width: '100%',
-          height: '100%',
-          position: 'relative',
-          transformStyle: 'preserve-3d'
+          height: '24px',
+          width: '24px',
+          objectFit: 'contain',
+          display: 'block'
         }}
-      >
-        {/* Spatial Backplate */}
-        <m.div 
-          style={{
-            position: 'absolute',
-            inset: -3,
-            background: 'rgba(120, 120, 128, 0.08)',
-            borderRadius: 6,
-            border: '1px solid rgba(120, 120, 128, 0.12)',
-            transform: 'translateZ(-4px)',
-            willChange: 'box-shadow'
-          }}
-          variants={{
-            rest: { boxShadow: '0px 0px 0px rgba(0,0,0,0)' },
-            hover: { boxShadow: '4px 6px 12px rgba(0,0,0,0.12)' }
-          }}
-        />
-        {/* Floating Document Outline */}
-        <svg
-          width="20" height="20" viewBox="0 0 24 24" fill="none"
-          style={{ position: 'absolute', inset: 0, transform: 'translateZ(4px)', color: 'currentColor' }}
-        >
-          <rect x="4" y="3" width="16" height="18" rx="3.5" stroke="currentColor" strokeWidth="1.75" />
-          <path d="M8 8H13M8 12H16M8 16H14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
-        </svg>
-        {/* Elevated Accent Dot (Apple signature detail) */}
-        <m.div
-          style={{
-            position: 'absolute',
-            top: 2,
-            right: 2,
-            width: 5,
-            height: 5,
-            borderRadius: '50%',
-            background: '#0066cc',
-            transform: 'translateZ(10px)'
-          }}
-          variants={{
-            rest: { opacity: 0, scale: 0.5 },
-            hover: { opacity: 1, scale: 1 }
-          }}
-          transition={{ type: "spring", stiffness: 400, damping: 20 }}
-        />
-      </m.div>
+      />
+      <span className="nav-resume-text">
+        Resume
+      </span>
     </m.div>
   );
 };
@@ -508,7 +448,7 @@ const CSS = `
     flex-shrink: 0;
   }
 
-  .nav-resume-btn, .nav-social-btn {
+  .nav-social-btn {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -527,16 +467,66 @@ const CSS = `
     text-decoration: none;
     color: inherit;
   }
-  .nav-resume-btn:hover, .nav-social-btn:hover {
+
+  .nav-resume-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    padding: 4px 12px;
+    background: rgba(0, 102, 204, 0.08);
+    border: 1px solid rgba(0, 102, 204, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.95;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+  .nav-resume-btn:hover {
+    opacity: 1;
+    background: rgba(0, 102, 204, 0.15);
+    border-color: rgba(0, 102, 204, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.18);
+  }
+  .nav-resume-btn:focus-visible {
+    outline: 2px solid rgba(0, 102, 204, 0.5);
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+  .nav-social-btn:hover {
     opacity: 1;
   }
-  .nav-resume-btn:focus-visible, .nav-social-btn:focus-visible {
+  .nav-social-btn:focus-visible {
     outline: 2px solid rgba(0, 102, 204, 0.5);
     outline-offset: 2px;
     border-radius: 4px;
   }
+
+  .nav-resume-text {
+    color: #0066CC;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+  .nav-shell.nav-dark-mode .nav-resume-btn {
+    background: rgba(41, 151, 255, 0.12);
+    border-color: rgba(41, 151, 255, 0.28);
+  }
+  .nav-shell.nav-dark-mode .nav-resume-btn:hover {
+    background: rgba(41, 151, 255, 0.22);
+    border-color: rgba(41, 151, 255, 0.45);
+  }
+  .nav-shell.nav-dark-mode .nav-resume-text {
+    color: #38bdf8;
+  }
+
   /* Tooltip */
-  .nav-resume-btn::after, .nav-social-btn::after {
+  .nav-social-btn::after {
     position: absolute;
     bottom: calc(100% + 8px);
     left: 50%;
@@ -554,12 +544,11 @@ const CSS = `
     opacity: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
-  .nav-resume-btn::after { content: 'Resume'; }
   .nav-social-btn[data-social="github"]::after { content: 'GitHub'; }
   .nav-social-btn[data-social="linkedin"]::after { content: 'LinkedIn'; }
   .nav-social-btn[data-social="email"]::after { content: 'Email'; }
 
-  .nav-resume-btn:hover::after, .nav-social-btn:hover::after {
+  .nav-social-btn:hover::after {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
