@@ -52,15 +52,6 @@ export default function Overview() {
         {/* 01 — HERO (HUGE) */}
         <section className="es-hero act-i-identity" data-nav-theme="light">
           <div className="es-hero-bounds">
-            <m.div 
-              className="es-hero-portrait"
-              initial={{ opacity: 0, filter: 'blur(12px)', scale: 0.98 }}
-              animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
-              transition={{ duration: 1.5, delay: 0.2, ease: appleEase }}
-            >
-              <img src={profileHeroImg} alt="Bhagavan" className="es-portrait-img" loading="eager" />
-            </m.div>
-
             <m.div className="es-hero-content" initial="hidden" animate={controls} variants={fadeUpStagger}>
               <m.p className="es-eyebrow" variants={fadeUp}>
                 AI PRODUCT ENGINEER
@@ -87,6 +78,15 @@ export default function Overview() {
                   Selected Work: AuraOS · CareerOS · VERITAS · VoltDrive
                 </span>
               </m.div>
+            </m.div>
+
+            <m.div 
+              className="es-hero-portrait"
+              initial={{ opacity: 0, filter: 'blur(12px)', scale: 0.98 }}
+              animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
+              transition={{ duration: 1.5, delay: 0.2, ease: appleEase }}
+            >
+              <img src={profileHeroImg} alt="Bhagavan" className="es-portrait-img" loading="eager" />
             </m.div>
           </div>
         </section>
