@@ -16,12 +16,14 @@ import careerOSImg from "../assets/careeros-new.jpg";
 import voltDriveImg from "../assets/ev.png";
 import chatImg from "../assets/aurabot-new.png";
 import fakeImg from "../assets/fake.jpg";
+import agrivisionImg from "../assets/agrivision.png";
 
 export const FLAGSHIP_PROJECTS = [
   { name: "CareerOS", eyebrow: "Flagship Project", desc: "An intelligence layer for career trajectory.", img: careerOSImg, link: "/work/careeros", live: "https://careeros-thenameisbhagavan.vercel.app/" },
   { name: "AuraOS", eyebrow: "Personal Intelligence OS", desc: "A chatbot that actually remembers context.", img: chatImg, link: "/work/auraos", live: "https://aura-os-thenameisbhagavan.vercel.app/" },
   { name: "VERITAS", eyebrow: "Explainable Intelligence Platform", desc: "AI that shows its reasoning, not just its answer.", img: fakeImg, link: "/work/veritas", live: "https://veritas-thenameisbhagavan.vercel.app/" },
-  { name: "VoltDrive", eyebrow: "Automotive Digital Showroom", desc: "A frontend experience built to feel alive.", img: voltDriveImg, link: "/work/voltdrive", live: "https://voltdrive-thenameisbhagavan.vercel.app/" }
+  { name: "VoltDrive", eyebrow: "Automotive Digital Showroom", desc: "A frontend experience built to feel alive.", img: voltDriveImg, link: "/work/voltdrive", live: "https://voltdrive-thenameisbhagavan.vercel.app/" },
+  { name: "AgriVision AI", eyebrow: "Intelligent Crop Diagnostics", desc: "From Crop Image to Explainable AI Insight.", img: agrivisionImg, link: "/work/agrivision", live: "https://github.com/thenameisbhagavan" }
 ];
 
 export default function Work() {
@@ -35,7 +37,7 @@ export default function Work() {
   // Update active project rail on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["careeros", "auraos", "veritas", "voltdrive"];
+      const sections = ["careeros", "auraos", "veritas", "voltdrive", "agrivision"];
       const scrollPos = window.scrollY + window.innerHeight * 0.4;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -72,7 +74,8 @@ export default function Work() {
             { id: "01", name: "CAREEROS", target: "careeros" },
             { id: "02", name: "AURAOS", target: "auraos" },
             { id: "03", name: "VERITAS", target: "veritas" },
-            { id: "04", name: "VOLTDRIVE", target: "voltdrive" }
+            { id: "04", name: "VOLTDRIVE", target: "voltdrive" },
+            { id: "05", name: "AGRIVISION AI", target: "agrivision" }
           ].map((item) => (
             <button
               key={item.id}
@@ -93,7 +96,7 @@ export default function Work() {
             
             <Reveal y={16} duration={0.8}>
               <div className="work-hero-eyebrow">
-                <span className="work-eyebrow-badge">SYSTEMS / 04</span>
+                <span className="work-eyebrow-badge">SYSTEMS / 05</span>
               </div>
             </Reveal>
 
@@ -129,7 +132,7 @@ export default function Work() {
             
             <div className="chapter-header-row">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">CAREER INTELLIGENCE SYSTEM &middot; 01 / 04</span>
+                <span className="chapter-badge">CAREER INTELLIGENCE SYSTEM &middot; 01 / 05</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="chapter-title">CAREEROS</h2>
@@ -194,7 +197,7 @@ export default function Work() {
             
             <div className="chapter-header-row">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">PERSONAL INTELLIGENCE OS &middot; 02 / 04</span>
+                <span className="chapter-badge">PERSONAL INTELLIGENCE OS &middot; 02 / 05</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="chapter-title">AURAOS</h2>
@@ -258,7 +261,7 @@ export default function Work() {
             
             <div className="chapter-header-row">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">EXPLAINABLE INTELLIGENCE &middot; 03 / 04</span>
+                <span className="chapter-badge">EXPLAINABLE INTELLIGENCE &middot; 03 / 05</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="chapter-title">VERITAS</h2>
@@ -322,7 +325,7 @@ export default function Work() {
             
             <div className="chapter-header-row">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">DIGITAL PRODUCT EXPERIENCE &middot; 04 / 04</span>
+                <span className="chapter-badge">DIGITAL PRODUCT EXPERIENCE &middot; 04 / 05</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="chapter-title">VOLTDRIVE</h2>
@@ -380,7 +383,73 @@ export default function Work() {
 
 
         {/* ============================================================
-            ACT 06 — EARLIER EXPERIMENTS (COMPACT HORIZONTAL ARCHIVE)
+            ACT 06 — AGRIVISION AI (CHAPTER 05 / 05)
+            ============================================================ */}
+        <section id="agrivision" className="work-chapter chapter-agrivision" data-nav-theme="light">
+          <div className="exhibition-bounds">
+            
+            <div className="chapter-header-row">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">INTELLIGENT CROP DIAGNOSTICS &middot; 05 / 05</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="chapter-title">AGRIVISION AI</h2>
+              </Reveal>
+            </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-opening-q">
+                "From Crop Image to Explainable AI Insight."
+              </blockquote>
+            </Reveal>
+            
+            <Reveal y={24} duration={0.9} delay={0.3}>
+              <p style={{ fontFamily: 'var(--font-system, "SF Pro Text", sans-serif)', fontSize: 'clamp(14px, 2.5vw, 18px)', lineHeight: '1.6', color: '#6B6B6B', maxWidth: '800px', margin: '0 auto 60px', textAlign: 'center' }}>
+                AgriVision AI brings computer vision, deep learning, and explainability together in a production-oriented crop analysis experience.
+              </p>
+            </Reveal>
+
+            <Parallax speed={0.06} className="chapter-hero-image-wrap">
+              <img src={agrivisionImg} alt="AgriVision AI System" className="chapter-hero-img" loading="lazy" />
+            </Parallax>
+
+            {/* AI Diagnostics Steps */}
+            <div className="chapter-steps-grid">
+              {[
+                { step: "01", title: "DEEP LEARNING VISION", desc: "MobileNetV2 transfer learning for 30 crop/health-condition classes." },
+                { step: "02", title: "EXPLAINABLE AI", desc: "Grad-CAM visualizations expose the image regions contributing to the model's prediction." },
+                { step: "03", title: "SECURE AUTH", desc: "Firebase Authentication with backend-side ID-token verification." },
+                { step: "04", title: "PERSISTENCE", desc: "Persistent prediction history and user dashboards via MongoDB Atlas." }
+              ].map((st, idx) => (
+                <Reveal key={st.step} y={24} duration={0.8} delay={idx * 0.1} className="chapter-step-card">
+                  <span className="step-num num-green" style={{ color: '#34C759' }}>{st.step}</span>
+                  <h3 className="step-title">{st.title}</h3>
+                  <p className="step-desc">{st.desc}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Engineering Signal & Actions */}
+            <div className="chapter-footer-bar">
+              <div className="chapter-tech-stack">
+                <span className="tech-label">ENGINEERING LAYER:</span>
+                <span className="tech-val">FASTAPI &middot; MOBILENETV2 &middot; GRAD-CAM &middot; MONGODB ATLAS &middot; REACT</span>
+              </div>
+
+              <div className="chapter-actions">
+                <MagneticLink strength={0.2}>
+                  <a href={`${socialLinks.github.url}/Plant-disease-detection`} target="_blank" rel="noopener noreferrer" className="work-btn-primary">
+                    <span>SOURCE CODE ↗</span>
+                  </a>
+                </MagneticLink>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        {/* ============================================================
+            ACT 07 — EARLIER EXPERIMENTS (COMPACT HORIZONTAL ARCHIVE)
             ============================================================ */}
         <section className="work-archive-section" data-nav-theme="light">
           <div className="exhibition-bounds">
@@ -429,7 +498,7 @@ export default function Work() {
 
 
         {/* ============================================================
-            ACT 07 — WHAT THE WORK TAUGHT ME (EDITORIAL LESSONS)
+            ACT 08 — WHAT THE WORK TAUGHT ME (EDITORIAL LESSONS)
             ============================================================ */}
         <section className="work-lessons-section" data-nav-theme="light">
           <div className="exhibition-bounds">
@@ -473,14 +542,14 @@ export default function Work() {
 
 
         {/* ============================================================
-            ACT 08 — CLOSING (CONTINUING QUESTION)
+            ACT 09 — CLOSING (CONTINUING QUESTION)
             ============================================================ */}
         <section className="work-closing-section" data-nav-theme="light">
           <div className="exhibition-bounds text-center">
             
             <Reveal y={24} duration={1.0}>
               <h2 className="closing-statement-main">
-                Four systems.<br />
+                Five systems.<br />
                 One continuing question.
               </h2>
             </Reveal>

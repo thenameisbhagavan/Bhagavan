@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import { ArrowRight } from "lucide-react";
+import React, { useEffect, useRef } from "react";
+import { ArrowRight, BrainCircuit, Scan, Layers, Server } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { m, useScroll, useTransform } from "framer-motion";
 import SEO from "../components/SEO";
 import Reveal from "../components/motion/Reveal";
 import MaskReveal from "../components/motion/MaskReveal";
@@ -13,7 +14,12 @@ import "../styles/Overview.css";
 // ─── Core Assets ──────────────────────────────────────────────────────────────
 import profileHeroImg from "../assets/profile-hero.jpg";
 import resumeIconImg from "../assets/resume-icon.png";
-import paceImg from "../assets/pace.jpg";
+import careerosImg from "../assets/careeros-new.jpg";
+import auraosImg from "../assets/aurabot-new.png";
+import voltdriveImg from "../assets/ev.png";
+import veritasImg from "../assets/fake.jpg";
+import agrivisionImg from "../assets/agrivision.png";
+
 
 export default function Overview() {
   const navigate = useNavigate();
@@ -21,6 +27,10 @@ export default function Overview() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const { scrollY } = useScroll();
+  const heroScale = useTransform(scrollY, [0, 800], [1, 0.92]);
+  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
 
   return (
     <>
@@ -32,564 +42,508 @@ export default function Overview() {
       <div className="engineering-surface">
         
         {/* ============================================================
-            ACT 01 — IDENTITY (WHO I AM)
-            Purpose: Immediately establish identity, role & professional focus
+            SECTION 01 — HERO (APPROVED)
             ============================================================ */}
-        <section className="es-hero act-i-identity" data-nav-theme="light">
-          <div className="es-hero-bounds-2col">
+        <m.section className="es-hero act-i-identity" data-nav-theme="light" style={{ scale: heroScale, opacity: heroOpacity }}>
+          <div className="es-hero-grid">
             
-            {/* LEFT COLUMN — PROFESSIONAL IDENTITY */}
-            <div className="es-hero-left">
-              
+            {/* LEFT COLUMN: NARRATIVE */}
+            <div className="es-hero-left" style={{ position: 'relative', zIndex: 10, paddingRight: '2rem' }}>
               <Reveal y={16} duration={0.8}>
-                <div className="es-hero-badge-wrap">
-                  <div className="es-live-badge">
-                    <span className="es-live-dot"></span>
-                    <span className="es-live-text">TECHNICAL AI/ML & DATA SCIENCE TRAINER @ DATA VALLEY</span>
-                  </div>
-                </div>
+                <span className="es-hero-eyebrow">AI &bull; SOFTWARE &bull; PRODUCT ENGINEERING</span>
               </Reveal>
 
               <div className="es-hero-title-group">
-                <MaskReveal duration={1.0} delay={0.1}>
-                  <span className="es-hero-eyebrow">AI PRODUCT ENGINEER</span>
-                </MaskReveal>
-
-                <h1 className="es-hero-headline-2col">
-                  I build <span className="es-gradient-text">intelligent AI systems</span> & train engineers.
-                </h1>
+                <Reveal y={20} duration={1.0} delay={0.1}>
+                  <h1 className="es-hero-headline">
+                    <span className="es-hero-hl-line">I build intelligent</span>
+                    <span className="es-hero-hl-line">products that feel</span>
+                    <span className="es-hero-hl-line">remarkably simple.</span>
+                  </h1>
+                </Reveal>
               </div>
+              
+              <div className="es-hero-bottom-group">
+                <Reveal y={20} duration={0.9} delay={0.3}>
+                  <p className="es-hero-sub">
+                    I’m Siva Satya Sai Bhagavan — an AI & Data Science engineer, builder, and technical educator creating intelligent digital experiences across AI, Python, full-stack engineering, and interactive frontend systems.
+                  </p>
+                </Reveal>
 
-              <Reveal y={20} duration={0.9} delay={0.3}>
-                <p className="es-hero-sub-2col">
-                  Hi, I'm <strong>TheNameIsBhagavan</strong> — an AI Product Engineer and Technical AI/ML & Data Science Trainer at Data Valley. I build intelligent systems, turn them into usable products, and teach engineers how to work with emerging AI technologies.
-                </p>
-              </Reveal>
+                <Reveal y={20} duration={0.9} delay={0.4}>
+                  <p className="es-hero-sub-secondary">
+                    Building at the intersection of intelligence, engineering, and experience.
+                  </p>
+                </Reveal>
 
-              {/* Primary Action Buttons */}
-              <Reveal y={20} duration={0.9} delay={0.4}>
-                <div className="es-hero-actions-group">
-                  <MagneticLink strength={0.25}>
-                    <button className="es-btn-primary apple-pressable" onClick={() => navigate('/work')}>
-                      <span>Explore Shipped Systems</span>
-                      <ArrowRight size={16} />
-                    </button>
-                  </MagneticLink>
+                {/* Primary Action Buttons */}
+                <Reveal y={20} duration={0.9} delay={0.5}>
+                  <div className="es-hero-actions-group">
+                    <MagneticLink strength={0.25}>
+                      <button className="es-btn-primary apple-pressable" onClick={() => navigate('/work')}>
+                        <span>Explore My Work &rarr;</span>
+                      </button>
+                    </MagneticLink>
 
-                  <MagneticLink strength={0.25}>
-                    <button className="es-btn-secondary apple-pressable" onClick={() => navigate('/resume')}>
-                      <img src={resumeIconImg} alt="Resume" style={{ width: '18px', height: '18px', objectFit: 'contain' }} />
-                      <span>Resume</span>
-                    </button>
-                  </MagneticLink>
-                </div>
-              </Reveal>
-
-              {/* Shipped Platform Direct Chips */}
-              <Reveal y={16} duration={0.8} delay={0.5}>
-                <div className="es-hero-chips-wrap">
-                  <span className="es-chips-label">SHIPPED PLATFORMS:</span>
-                  <div className="es-chips-list">
-                    <span className="es-chip" onClick={() => navigate('/work/careeros')}>CareerOS</span>
-                    <span className="es-chip" onClick={() => navigate('/work/auraos')}>AuraOS</span>
-                    <span className="es-chip" onClick={() => navigate('/work/veritas')}>VERITAS</span>
-                    <span className="es-chip" onClick={() => navigate('/work/voltdrive')}>VoltDrive</span>
+                    <MagneticLink strength={0.25}>
+                      <button className="es-btn-secondary es-btn-quiet apple-pressable" onClick={() => navigate('/experience')}>
+                        <span>View Experience</span>
+                      </button>
+                    </MagneticLink>
                   </div>
-                </div>
-              </Reveal>
-
+                </Reveal>
+              </div>
             </div>
 
-            {/* RIGHT COLUMN — CLEAN PORTRAIT WITH PHYSICAL SCROLL DEPTH */}
-            <div className="es-hero-right">
-              <ScaleReveal>
-                <Parallax speed={0.08}>
-                  <div className="es-hero-portrait-frame">
-                    <img src={profileHeroImg} alt="Bhagavan" className="es-portrait-img-old" loading="eager" />
-                  </div>
-                </Parallax>
-              </ScaleReveal>
+            {/* RIGHT COLUMN: PORTRAIT ENVIRONMENT (APPLE STYLE OPTIMIZED) */}
+            <div className="es-hero-right" style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'flex-end', 
+              width: '100%',
+              paddingLeft: '2rem'
+            }}>
+              <div className="es-hero-portrait-env" style={{ 
+                width: '100%', 
+                maxWidth: '400px',
+                position: 'relative',
+                zIndex: 5
+              }}>
+                <ScaleReveal>
+                  <Parallax speed={0.02}>
+                    <div 
+                      className="es-hero-portrait-frame" 
+                      style={{ 
+                        position: 'relative',
+                        width: '100%',
+                        aspectRatio: '4/5',
+                        borderRadius: '32px',
+                        overflow: 'hidden', 
+                        backgroundColor: '#f5f5f7', 
+                        boxShadow: '0 20px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)',
+                        transform: 'translateZ(0)',
+                        WebkitMaskImage: '-webkit-radial-gradient(white, black)'
+                      }}
+                    >
+                      <img 
+                        src={profileHeroImg} 
+                        alt="Bhagavan" 
+                        loading="eager" 
+                        style={{ 
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          objectPosition: 'center',
+                          display: 'block',
+                          borderRadius: '32px'
+                        }} 
+                      />
+                    </div>
+                  </Parallax>
+                </ScaleReveal>
+              </div>
             </div>
 
           </div>
-        </section>
-
-        {/* Narrative Transition Line 01 -> 02 */}
-        <div className="es-narrative-bridge">
-          <Reveal y={16} duration={0.8}>
-            <span className="es-bridge-question">SO WHAT DO I BUILD?</span>
-          </Reveal>
-        </div>
+        </m.section>
 
 
         {/* ============================================================
-            ACT 02 — THE KIND OF WORK I DO (WHAT I BUILD)
-            Purpose: Establish mental model: "I don't build isolated demos. I build systems."
+            SECTION 02 — THE WORK
             ============================================================ */}
-        <section className="es-systems-architecture" data-nav-theme="light">
+        <ScaleReveal as="section" className="es-the-work" data-nav-theme="light">
           <div className="es-bounds">
             <Reveal y={24} duration={0.9}>
-              <div className="es-section-header text-center">
-                <span className="es-section-label">THE SYSTEM APPROACH</span>
-                <h2 className="es-display-headline">
-                  SYSTEMS,<br /><span className="es-gradient-text">NOT FEATURES.</span>
-                </h2>
-                <p className="es-section-lead">
-                  I don't build isolated models or quick demos. I build complete systems where intelligence, context, product experience, and delivery work together.
-                </p>
-              </div>
-            </Reveal>
-
-            {/* 4 Core System Layers */}
-            <div className="es-architecture-grid">
-              {[
-                { 
-                  title: "INTELLIGENCE", 
-                  step: "01", 
-                  desc: "The reasoning layer — models, machine learning algorithms, LLMs, and decision engines built for accuracy." 
-                },
-                { 
-                  title: "CONTEXT", 
-                  step: "02", 
-                  desc: "The memory layer — retrieval pipelines (RAG), vector databases, knowledge graphs, and persistent session state." 
-                },
-                { 
-                  title: "PRODUCT", 
-                  step: "03", 
-                  desc: "The interface layer — human-centered workflows where complex technical capabilities become intuitive tools." 
-                },
-                { 
-                  title: "DELIVERY", 
-                  step: "04", 
-                  desc: "The engineering layer — performant APIs, serverless deployment, monitoring, and production reliability." 
-                }
-              ].map((layer, idx) => (
-                <Reveal key={layer.title} y={28} duration={0.8} delay={idx * 0.1} className="es-arch-card">
-                  <span className="es-arch-step">{layer.step}</span>
-                  <h3 className="es-arch-title">{layer.title}</h3>
-                  <p className="es-arch-desc">{layer.desc}</p>
-                </Reveal>
-              ))}
-            </div>
-
-            <Reveal y={16} duration={0.8} delay={0.5}>
-              <div className="es-layer-summary-bar">
-                <span>I build the surrounding system around the intelligence — not just the model.</span>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* Narrative Transition Line 02 -> 03 */}
-        <div className="es-narrative-bridge">
-          <Reveal y={16} duration={0.8}>
-            <span className="es-bridge-question">THESE LAYERS BECOME MEANINGFUL WHEN SHIPPED.</span>
-          </Reveal>
-        </div>
-
-
-        {/* ============================================================
-            ACT 03 — SYSTEMS I HAVE SHIPPED (FLAGSHIP SHOWCASE)
-            Purpose: Centerpiece demonstrating actual shipped systems
-            ============================================================ */}
-        <section className="es-systems-motion" data-nav-theme="light">
-          <div className="es-bounds">
-            <Reveal y={20} duration={0.9}>
               <div className="es-section-header">
-                <span className="es-section-label">SHIPPED WORK</span>
-                <h2 className="es-sub-headline">Four flagship systems.</h2>
+                <span className="es-section-label">THE WORK</span>
+                <h2 className="es-display-headline">
+                  Products built to solve<br />real problems.
+                </h2>
               </div>
             </Reveal>
 
-            {/* 4 Flagship Project Story Cards */}
-            <div className="es-motion-projects-stack">
+            <div className="es-cinematic-projects">
               {[
-                { 
-                  name: "CAREEROS", 
-                  tag: "AI Career Intelligence Platform", 
-                  problem: "Career decisions are fragmented across resumes, skill gaps, projects, and market signals without unified context.", 
-                  built: "A deterministic-first AI career intelligence platform with ATS scoring and personalized roadmap generation.",
-                  engineering: "Agentic RAG · Vector Retrieval · Python FastAPI · React Frontend",
-                  demonstrates: "AI Systems + Product Engineering + Career Intelligence",
-                  accent: "#0066CC", 
-                  url: "https://careeros-thenameisbhagavan.vercel.app/", 
-                  internal: "/work/careeros" 
+                {
+                  id: "01",
+                  name: "CareerOS",
+                  category: "AI CAREER INTELLIGENCE",
+                  desc: "AI-powered career intelligence that transforms resumes, projects, and market signals into actionable career strategy.",
+                  img: careerosImg,
+                  url: "/work/careeros",
+                  theme: "light"
                 },
-                { 
-                  name: "AURAOS", 
-                  tag: "Spatial AI OS & Memory Workspace", 
-                  problem: "Standard AI chat interfaces reset every session, losing context and conversational history.", 
-                  built: "Persistent context mapping system across multi-turn sessions with neural workspace memory.",
-                  engineering: "Vector DBs · Semantic Search · Session State Graph · React",
-                  demonstrates: "Persistent Context + Memory Systems + Spatial Interface",
-                  accent: "#8B5CF6", 
-                  url: "https://aura-os-thenameisbhagavan.vercel.app/", 
-                  internal: "/work/auraos" 
+                {
+                  id: "02",
+                  name: "VERITAS",
+                  category: "INTELLIGENCE SYSTEM",
+                  desc: "A deterministic intelligence system designed to analyze information, extract claims, and evaluate credibility.",
+                  img: veritasImg,
+                  url: "/work/veritas",
+                  theme: "dark"
                 },
-                { 
-                  name: "VERITAS", 
-                  tag: "AI Trust & Code Verification Pipeline", 
-                  problem: "Generative AI produces code and text without verifiable evidence or deterministic fact-tracing.", 
-                  built: "A deterministic fact-tracing and credibility schema pipeline for AI generation verification.",
-                  engineering: "NLP Verification · FastAPI · Fact Graph · Credibility Schemas",
-                  demonstrates: "Deterministic AI + Fact Tracing + Code Credibility",
-                  accent: "#10B981", 
-                  url: "https://veritas-thenameisbhagavan.vercel.app/", 
-                  internal: "/work/veritas" 
+                {
+                  id: "03",
+                  name: "AuraOS",
+                  category: "PERSONAL AI OPERATING SYSTEM",
+                  desc: "A personal AI operating system built around memory, knowledge, context, and intelligent interaction.",
+                  img: auraosImg,
+                  url: "/work/auraos",
+                  theme: "light"
                 },
-                { 
-                  name: "VOLTDRIVE", 
-                  tag: "EV Telemetry & Digital Product Experience", 
-                  problem: "Complex automotive telemetry data requires high-speed rendering without UI lag or performance drops.", 
-                  built: "Cinematic real-time digital automotive telemetry experience built with physical motion architecture.",
-                  engineering: "React · Motion Physics · Hardware 60fps · Component Engine",
-                  demonstrates: "High-Performance Frontend + Cinematic UX + Automotive Telemetry",
-                  accent: "#F59E0B", 
-                  url: "https://voltdrive-thenameisbhagavan.vercel.app/", 
-                  internal: "/work/voltdrive" 
+                {
+                  id: "04",
+                  name: "VoltDrive",
+                  category: "DIGITAL PRODUCT EXPERIENCE",
+                  desc: "An immersive digital vehicle experience combining 3D, motion, interaction, and product engineering.",
+                  img: voltdriveImg,
+                  url: "/work/voltdrive",
+                  theme: "dark"
+                },
+                {
+                  id: "05",
+                  name: "AgriVision AI",
+                  category: "INTELLIGENT CROP DIAGNOSTICS",
+                  desc: "From Crop Image to Explainable AI Insight. Bringing computer vision, deep learning, and explainability to production.",
+                  img: agrivisionImg,
+                  url: "/work/agrivision",
+                  theme: "light"
                 }
               ].map((proj, idx) => (
-                <Reveal key={proj.name} y={36} scale={0.98} duration={1.0} delay={idx * 0.12} className="es-motion-project-card">
-                  <div className="es-mpc-border-indicator" style={{ backgroundColor: proj.accent }} />
-                  
-                  <div className="es-mpc-header">
-                    <span className="es-mpc-tag">{proj.tag}</span>
-                    <h3 className="es-mpc-name">{proj.name}</h3>
+                <Reveal key={proj.id} y={40} duration={1.1} delay={0.1} className={`es-project-showcase theme-${proj.theme}`}>
+                  <div className="es-ps-content">
+                    <div className="es-ps-meta">
+                      <span className="es-ps-id">{proj.id}</span>
+                      <span className="es-ps-category">{proj.category}</span>
+                    </div>
+                    <h3 className="es-ps-title">{proj.name}</h3>
+                    <p className="es-ps-desc">{proj.desc}</p>
                   </div>
-
-                  <div className="es-mpc-story-grid">
-                    <div className="es-mpc-story-col">
-                      <span className="es-mpc-slabel">THE PROBLEM</span>
-                      <p className="es-mpc-sval">{proj.problem}</p>
+                  <div className="es-ps-visual">
+                    <div className="es-ps-image-wrapper">
+                      <img src={proj.img} alt={proj.name} loading="lazy" />
                     </div>
-
-                    <div className="es-mpc-story-col">
-                      <span className="es-mpc-slabel">WHAT WAS BUILT</span>
-                      <p className="es-mpc-sval">{proj.built}</p>
-                    </div>
-                  </div>
-
-                  <div className="es-mpc-meta-row">
-                    <div className="es-mpc-meta-item">
-                      <span className="es-mpc-mlabel">ENGINEERING</span>
-                      <span className="es-mpc-mval">{proj.engineering}</span>
-                    </div>
-
-                    <div className="es-mpc-meta-item">
-                      <span className="es-mpc-mlabel">DEMONSTRATES</span>
-                      <span className="es-mpc-mval">{proj.demonstrates}</span>
-                    </div>
-                  </div>
-
-                  <div className="es-mpc-actions">
-                    <a href={proj.url} target="_blank" rel="noopener noreferrer" className="es-btn-link">
-                      <span>LIVE DEMO ↗</span>
-                    </a>
                   </div>
                 </Reveal>
               ))}
             </div>
-          </div>
-        </section>
 
-        {/* Narrative Transition Line 03 -> 04 */}
-        <div className="es-narrative-bridge">
-          <Reveal y={16} duration={0.8}>
-            <span className="es-bridge-question">HOW DO I TURN IDEAS INTO REAL SYSTEMS?</span>
-          </Reveal>
-        </div>
+            <Reveal y={20} duration={0.9} delay={0.2}>
+              <div className="es-work-cta-wrap text-center">
+                <MagneticLink strength={0.3}>
+                  <button className="es-btn-primary apple-pressable" onClick={() => navigate('/work')}>
+                    <span>Explore all work</span>
+                    <ArrowRight size={16} />
+                  </button>
+                </MagneticLink>
+              </div>
+            </Reveal>
+          </div>
+        </ScaleReveal>
 
 
         {/* ============================================================
-            ACT 04 — FROM IDEA TO SHIPPED SYSTEM (WORKFLOW PIPELINE)
-            Purpose: Explain the engineering workflow behind the shipped systems
+            SECTION 03 — THE DIFFERENCE
             ============================================================ */}
-        <section className="es-pipeline" data-nav-theme="light">
-          <div className="es-bounds-narrow text-center">
-            <Reveal y={20} duration={0.9}>
-              <span className="es-section-label">ENGINEERING DISCIPLINE</span>
-              <h2 className="es-sub-headline" style={{ marginBottom: "16px" }}>From idea to shipped system.</h2>
-              <p className="es-section-lead" style={{ margin: "0 auto 48px auto" }}>
-                Every platform I build moves through a rigorous engineering loop — turning unstructured questions into reliable production code.
-              </p>
+        <ScaleReveal as="section" className="es-the-difference" data-nav-theme="light">
+          <div className="es-bounds text-center">
+            <Reveal y={24} duration={0.9}>
+              <span className="es-section-label">THE DIFFERENCE</span>
+              <h2 className="es-display-headline">
+                I don't just build features.<br />
+                <span className="text-muted">I build systems.</span>
+              </h2>
             </Reveal>
 
-            <div className="es-pipeline-flow">
-              {[
-                { stage: "QUESTION", detail: "Identify the real problem that needs solving before writing code." },
-                { stage: "RESEARCH", detail: "Analyze users, data constraints, existing approaches, and failure modes." },
-                { stage: "EXPERIMENT", detail: "Test models, algorithms, data structures, and architectural assumptions." },
-                { stage: "IMPLEMENT", detail: "Build clean, modular software connecting models to interfaces." },
-                { stage: "EVALUATE", detail: "Measure behavior, latency, output accuracy, and edge cases." },
-                { stage: "SHIP", detail: "Deploy to production environments where people can actually use it." },
-                { stage: "LEARN", detail: "Observe usage patterns, refine the system, and iterate." }
-              ].map((step, i, arr) => (
-                <React.Fragment key={step.stage}>
-                  <Reveal y={16} duration={0.7} delay={i * 0.06} className="es-pipe-step-card">
-                    <span className="es-pipe-step-num">0{i + 1}</span>
-                    <span className="es-pipe-step-name">{step.stage}</span>
-                    <span className="es-pipe-step-desc">{step.detail}</span>
-                  </Reveal>
+            {/* Transform Sequence */}
+            <div className="es-transform-sequence-wrap">
+              <Reveal y={20} duration={1.2} delay={0.3}>
+                <div className="es-transform-sequence">
+                  {['IDEA', 'INTELLIGENCE', 'SYSTEM', 'EXPERIENCE', 'PRODUCT'].map((step, i, arr) => (
+                    <React.Fragment key={step}>
+                      <div className="es-ts-step">{step}</div>
+                      {i < arr.length - 1 && <div className="es-ts-arrow">&rarr;</div>}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
 
-                  {i < arr.length - 1 && (
-                    <div className="es-pipe-arrow">
-                      <div className="es-pipe-line" />
+            {/* Conceptual Areas */}
+            <div className="es-conceptual-areas">
+              {[
+                { title: "THINK", tags: "Architecture · Logic · AI", desc: "Designing deterministic logic and intelligent data pipelines before writing any code." },
+                { title: "BUILD", tags: "Python · FastAPI · React · Data", desc: "Constructing robust backends and dynamic interfaces engineered for scale." },
+                { title: "EXPERIENCE", tags: "Motion · 3D · Interaction · UX", desc: "Polishing the final layer where users interact with complex underlying systems." }
+              ].map((area, i) => (
+                <Reveal key={area.title} y={30} duration={0.9} delay={i * 0.15} className="es-concept-area">
+                  <div className="es-ca-inner">
+                    <h3 className="es-ca-title">{area.title}</h3>
+                    <div className="es-ca-tags">{area.tags}</div>
+                    <div className="es-ca-hover-reveal">
+                      <p>{area.desc}</p>
                     </div>
-                  )}
-                </React.Fragment>
+                  </div>
+                </Reveal>
               ))}
             </div>
-          </div>
-        </section>
 
-        {/* Narrative Transition Line 04 -> 05 */}
-        <div className="es-narrative-bridge">
-          <Reveal y={16} duration={0.8}>
-            <span className="es-bridge-question">IS BUILDING THE ONLY THING I DO?</span>
-          </Reveal>
-        </div>
+            <Reveal y={20} duration={0.9} delay={0.4}>
+              <p className="es-difference-quote">
+                “From backend intelligence to the final interaction, I think about how every layer works together.”
+              </p>
+            </Reveal>
+          </div>
+        </ScaleReveal>
 
 
         {/* ============================================================
-            ACT 05 — BUILDING IS ONLY HALF THE JOB (TEACHING & KNOWLEDGE TRANSFER)
-            Purpose: Demonstrate the teaching dimension of my career
+            SECTION 04 — CURRENTLY BUILDING
             ============================================================ */}
-        <section className="es-teaching-section" data-nav-theme="light">
+        <ScaleReveal as="section" className="es-currently-building" data-nav-theme="light">
           <div className="es-bounds">
             <Reveal y={24} duration={0.9}>
-              <div className="es-teaching-transition">
-                BUILD · TEACH · SHARE<br />
-                Building intelligent systems. Teaching engineers how to master them.
+              <div className="es-section-header">
+                <span className="es-section-label">CURRENTLY BUILDING</span>
+                <h2 className="es-display-headline">The work never really stops.</h2>
               </div>
             </Reveal>
 
-            <div className="es-teaching-layout">
-              <ScaleReveal className="es-teaching-image-wrap">
-                <img src={paceImg} alt="PACE Workshop" className="es-teaching-img" loading="lazy" />
-              </ScaleReveal>
-              
-              <div className="es-teaching-content">
-                <Reveal y={20} duration={0.8} delay={0.1}>
-                  <div className="es-section-label" style={{ marginBottom: "12px" }}>KNOWLEDGE TRANSFER</div>
+            <div className="es-active-dashboard">
+              {[
+                {
+                  num: "01",
+                  name: "VoltDrive",
+                  category: "DIGITAL PRODUCT EXPERIENCE",
+                  desc: "Exploring the future of interactive automotive experiences through 3D, motion, configuration, and digital twins.",
+                  status: "BUILDING",
+                  statusColor: "amber",
+                  url: "/work/voltdrive"
+                },
+                {
+                  num: "02",
+                  name: "VERITAS",
+                  category: "INTELLIGENCE SYSTEM",
+                  desc: "Evolving deterministic NLP and credibility analysis into a more reliable intelligence platform.",
+                  status: "EVOLVING",
+                  statusColor: "blue",
+                  url: "/work/veritas"
+                },
+                {
+                  num: "03",
+                  name: "CareerOS",
+                  category: "AI CAREER INTELLIGENCE",
+                  desc: "Building a deeper career intelligence layer around skills, projects, market signals, and engineering maturity.",
+                  status: "ITERATING",
+                  statusColor: "green",
+                  url: "/work/careeros"
+                }
+              ].map((item, i) => (
+                <Reveal key={item.num} y={30} duration={0.9} delay={i * 0.1} className="es-dashboard-item">
+                  <Link to={item.url} className="es-di-link-wrapper">
+                    <div className="es-di-header">
+                      <span className="es-di-num">{item.num} — {item.name}</span>
+                      <div className="es-di-status">
+                        <span className={`es-status-dot pulse-${item.statusColor}`}></span>
+                        {item.status} &rarr;
+                      </div>
+                    </div>
+                    <div className="es-di-body">
+                      <span className="es-di-category">{item.category}</span>
+                      <p className="es-di-desc">{item.desc}</p>
+                    </div>
+                  </Link>
                 </Reveal>
+              ))}
+            </div>
+          </div>
+        </ScaleReveal>
 
-                <Reveal y={20} duration={0.9} delay={0.2}>
-                  <h2 className="es-teaching-hl">
-                    I don't just build with AI.<br />
-                    I teach people to think with it.
+
+        {/* ============================================================
+            SECTION 05 — ENGINEER × EDUCATOR
+            ============================================================ */}
+        <ScaleReveal as="section" className="es-engineer-educator" data-nav-theme="light">
+          <div className="es-bounds">
+            <div className="es-ee-layout">
+              <div className="es-ee-left">
+                <ScaleReveal className="es-ee-image-wrap">
+                  <img src={profileHeroImg} alt="Bhagavan" className="es-ee-image" loading="lazy" />
+                </ScaleReveal>
+              </div>
+
+              <div className="es-ee-right">
+                <Reveal y={24} duration={0.9}>
+                  <span className="es-section-label">ENGINEER × EDUCATOR</span>
+                  <h2 className="es-ee-hl">
+                    Building technology.<br />
+                    Teaching people to build it.
                   </h2>
                 </Reveal>
 
+                <Reveal y={20} duration={0.9} delay={0.2}>
+                  <p className="es-ee-story">
+                    My work extends beyond building software.<br /><br />
+                    I teach AI, Machine Learning, Data Science, Python, and modern development — turning complex concepts into practical systems students can understand and build.
+                  </p>
+                </Reveal>
+
                 <Reveal y={20} duration={0.9} delay={0.3}>
-                  <div className="es-teaching-details">
-                    <span className="es-td-title">Prompt Engineering × Generative AI Workshop</span>
-                    <span className="es-td-org">PACE College of Engineering, Ongole</span>
-                    <span className="es-td-meta">~300 students · CSE / AI & DS / AI & ML</span>
+                  <div className="es-ee-metrics">
+                    <span className="es-ee-metric">AI / ML</span>
+                    <span className="es-ee-metric">DATA SCIENCE</span>
+                    <span className="es-ee-metric">PYTHON</span>
+                    <span className="es-ee-metric highlight">300+ STUDENTS REACHED</span>
                   </div>
                 </Reveal>
 
                 <Reveal y={20} duration={0.9} delay={0.4}>
-                  <p className="es-teaching-desc">
-                    A hands-on workshop for ~300 engineering students — translating complex machine learning concepts and generative AI patterns into practical engineering intuition.
-                  </p>
-                </Reveal>
-
-                <Reveal y={20} duration={0.9} delay={0.5}>
-                  <div className="es-teaching-action">
-                    <MagneticLink strength={0.3}>
-                      <Link to="/experience" className="es-cta-quiet apple-pressable">
-                        EXPLORE MY TEACHING RECORD <ArrowRight size={14} />
-                      </Link>
+                  <div className="es-ee-action">
+                    <MagneticLink strength={0.25}>
+                      <button className="es-btn-secondary apple-pressable" onClick={() => navigate('/experience')}>
+                        <span>Explore Experience</span>
+                        <ArrowRight size={16} />
+                      </button>
                     </MagneticLink>
                   </div>
                 </Reveal>
               </div>
             </div>
           </div>
-        </section>
-
-        {/* Narrative Transition Line 05 -> 06 */}
-        <div className="es-narrative-bridge">
-          <Reveal y={16} duration={0.8}>
-            <span className="es-bridge-question">WHAT PRINCIPLES GUIDE THE WORK?</span>
-          </Reveal>
-        </div>
+        </ScaleReveal>
 
 
         {/* ============================================================
-            ACT 06 — HOW I THINK (ENGINEERING PRINCIPLES)
-            Purpose: Evidence-backed engineering principles
+            SECTION 06 — THE LAB
             ============================================================ */}
-        <section className="es-how-i-think" data-nav-theme="light">
-          <div className="es-bounds-narrow">
-            <Reveal y={24} duration={0.9}>
-              <div className="es-section-header text-center">
-                <span className="es-section-label">ENGINEERING BELIEFS</span>
-                <h2 className="es-sub-headline">How I think.</h2>
-              </div>
-            </Reveal>
-
-            <div className="es-editorial-principles-list">
-              {[
-                { 
-                  num: "01", 
-                  title: "DETERMINISTIC BEFORE GENERATIVE", 
-                  desc: "Use deterministic logic where the problem does not require generation. Predictable code is easier to test, verify, and scale.",
-                  proof: "Applied in VERITAS fact-tracing pipeline & CareerOS ATS engine."
-                },
-                { 
-                  num: "02", 
-                  title: "CONTEXT BEFORE COMPLEXITY", 
-                  desc: "Giving a model useful, structured context matters more than making the model larger or adding unnecessary architectural complexity.",
-                  proof: "Applied in AuraOS persistent session graph & RAG retrieval pipelines."
-                },
-                { 
-                  num: "03", 
-                  title: "PRODUCT BEFORE DEMO", 
-                  desc: "A working model isn't automatically a useful product. High performance, latency optimization, and human-centered UI matter just as much as the model.",
-                  proof: "Applied in VoltDrive automotive telemetry & CareerOS product interface."
-                }
-              ].map((principle, idx) => (
-                <Reveal key={principle.num} y={32} duration={0.9} delay={idx * 0.12} className="es-editorial-principle">
-                  <span className="es-ep-num">— {principle.num}</span>
-                  <h3 className="es-ep-title">{principle.title}</h3>
-                  <p className="es-ep-desc">{principle.desc}</p>
-                  <span className="es-ep-proof">{principle.proof}</span>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Narrative Transition Line 06 -> 07 */}
-        <div className="es-narrative-bridge">
-          <Reveal y={16} duration={0.8}>
-            <span className="es-bridge-question">WHAT AM I BUILDING TOWARD?</span>
-          </Reveal>
-        </div>
-
-
-        {/* ============================================================
-            ACT 07 — WHERE THE WORK IS GOING (CURRENT DIRECTION)
-            Purpose: Concise forward-looking focus
-            ============================================================ */}
-        <section className="es-focus" data-nav-theme="light">
+        <ScaleReveal as="section" className="es-the-lab" data-nav-theme="light">
           <div className="es-bounds text-center">
-            <Reveal y={20} duration={0.9}>
-              <span className="es-section-label">CURRENT DIRECTION</span>
-              <h2 className="es-sub-headline" style={{ marginBottom: "24px" }}>What I'm focused on now.</h2>
+            <Reveal y={24} duration={0.9}>
+              <span className="es-section-label">THE LAB</span>
+              <h2 className="es-display-headline">Where ideas become experiments.</h2>
             </Reveal>
 
-            <div className="es-focus-keywords">
+            <div className="es-lab-grid">
               {[
-                "AI SYSTEMS", 
-                "AGENTIC WORKFLOWS", 
-                "RAG & MEMORY", 
-                "TOOL USE", 
-                "SYSTEM DESIGN", 
-                "PRODUCT ENGINEERING", 
-                "PRODUCTION AI"
-              ].map((kw, i) => (
-                <Reveal key={kw} y={16} duration={0.7} delay={i * 0.05} className="es-focus-kw">
-                  {kw}
+                { domain: "AI & LLMs", tags: "RAG · Agents · Embeddings · Evaluation", visual: "ai-visual", icon: BrainCircuit },
+                { domain: "COMPUTER VISION", tags: "Deep Learning · Transfer Learning · Intelligent Detection", visual: "cv-visual", icon: Scan },
+                { domain: "INTERACTIVE SYSTEMS", tags: "Three.js · WebGL · Motion · 3D", visual: "interactive-visual", icon: Layers },
+                { domain: "DEVELOPER INFRASTRUCTURE", tags: "FastAPI · PostgreSQL · Redis · Qdrant · Docker", visual: "infra-visual", icon: Server }
+              ].map((lab, i) => {
+                const Icon = lab.icon;
+                return (
+                <Reveal key={lab.domain} y={30} duration={0.9} delay={i * 0.1} className="es-lab-card">
+                  <div className={`es-lab-visual ${lab.visual}`}>
+                    <div className="es-lv-pattern"></div>
+                    <div className="es-lv-icon-wrapper">
+                      <Icon size={40} strokeWidth={1.5} />
+                    </div>
+                  </div>
+                  <div className="es-lab-content">
+                    <h3 className="es-lab-domain">{lab.domain}</h3>
+                    <p className="es-lab-tags">{lab.tags}</p>
+                  </div>
                 </Reveal>
-              ))}
+              )})}
             </div>
 
-            <Reveal y={16} duration={0.8} delay={0.4}>
-              <p className="es-focus-desc">
-                Building systems that connect intelligence with real-world execution. That is the direction of my work.
-              </p>
+            <Reveal y={20} duration={0.9} delay={0.4}>
+              <div className="es-lab-cta-wrap">
+                <MagneticLink strength={0.3}>
+                  <button className="es-btn-ghost apple-pressable" onClick={() => navigate('/innovation')}>
+                    <span>Explore Innovation &rarr;</span>
+                  </button>
+                </MagneticLink>
+              </div>
             </Reveal>
           </div>
-        </section>
-
-        {/* Narrative Transition Line 07 -> 08 */}
-        <div className="es-narrative-bridge">
-          <Reveal y={16} duration={0.8}>
-            <span className="es-bridge-question">WHO IS BEHIND ALL THIS?</span>
-          </Reveal>
-        </div>
+        </ScaleReveal>
 
 
         {/* ============================================================
-            ACT 08 — THE PERSON BEHIND THE SYSTEMS
-            Purpose: Human, mature identity statement
+            SECTION 07 — THE JOURNEY
             ============================================================ */}
-        <section className="es-person" data-nav-theme="light">
+        <ScaleReveal as="section" className="es-the-journey" data-nav-theme="light">
           <div className="es-bounds">
-            <div className="es-person-layout">
-              <div className="es-person-text">
-                <Reveal y={24} duration={0.9}>
-                  <h2 className="es-person-hl">
-                    I build to understand.<br />
-                    I teach to make understanding transferable.
-                  </h2>
-                </Reveal>
-                
-                <Reveal y={20} duration={0.9} delay={0.3}>
-                  <p className="es-person-desc">
-                    I care about how technology works, how systems behave, and how people experience them. AI systems, software products, and the engineering choices behind them are where I spend my time.
-                  </p>
-                </Reveal>
+            <Reveal y={24} duration={0.9}>
+              <div className="es-section-header">
+                <span className="es-section-label">THE JOURNEY</span>
+                <h2 className="es-display-headline">
+                  From learning technology<br />
+                  <span className="text-muted">to building with it.</span>
+                </h2>
               </div>
+            </Reveal>
 
-              <ScaleReveal className="es-person-image-wrapper">
-                <img src={profileHeroImg} alt="Bhagavan" className="es-person-image" loading="lazy" />
-              </ScaleReveal>
+            <div className="es-timeline-wrapper">
+              <div className="es-timeline-scroll">
+                <div className="es-timeline-track">
+                  {[
+                    { year: "2022", stage: "START", desc: "AI & Data Science" },
+                    { year: "2024", stage: "BUILD", desc: "Full-stack · AI · ML" },
+                    { year: "2025", stage: "CREATE", desc: "Intelligent products" },
+                    { year: "2026", stage: "SHIP", desc: "Production-minded systems" },
+                    { year: "NOW", stage: "BUILDING", desc: "AI × Software × Product" }
+                  ].map((node, i, arr) => (
+                    <Reveal key={node.year} x={20} duration={0.8} delay={i * 0.15} className="es-timeline-node-container">
+                      <div className="es-timeline-node">
+                        <span className="es-tn-year">{node.year}</span>
+                        <h4 className="es-tn-title">{node.stage}</h4>
+                        <p className="es-tn-desc">{node.desc}</p>
+                      </div>
+                      {i < arr.length - 1 && <div className="es-timeline-line"></div>}
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
             </div>
+
+            <Reveal y={20} duration={0.9} delay={0.4}>
+              <div className="es-journey-footer">
+                <p className="es-journey-quote">“Every stage changed what I build next.”</p>
+                <MagneticLink strength={0.25}>
+                  <button className="es-btn-link" onClick={() => navigate('/experience')}>
+                    <span>View Experience &rarr;</span>
+                  </button>
+                </MagneticLink>
+              </div>
+            </Reveal>
           </div>
-        </section>
+        </ScaleReveal>
 
 
         {/* ============================================================
-            ACT 09 — THE WORK CONTINUES (FINAL CTA)
-            Purpose: Clean, earned conclusion
+            SECTION 08 — FINAL STATEMENT
             ============================================================ */}
-        <section className="es-signature-section" data-nav-theme="light">
+        <ScaleReveal as="section" className="es-final-statement" data-nav-theme="light">
           <div className="es-bounds text-center">
             
             <Reveal y={24} duration={1.1}>
-              <h2 className="es-signature-statement">
-                The work continues.
-              </h2>
+              <h2 className="es-final-hl">STILL BUILDING.</h2>
             </Reveal>
 
             <Reveal y={20} duration={0.9} delay={0.2}>
-              <div className="es-signature-meta">
-                THE NAME IS BHAGAVAN<br />
-                AI PRODUCT ENGINEER<br />
-                TECHNICAL AI/ML & DATA SCIENCE TRAINER @ DATA VALLEY<br />
-                AI SYSTEMS · PRODUCT ENGINEERING · SOFTWARE
-              </div>
+              <p className="es-final-sub">The next product is already taking shape.</p>
             </Reveal>
 
             <Reveal y={20} duration={0.9} delay={0.4}>
-              <div className="es-final-cta-group">
+              <div className="es-final-actions">
                 <MagneticLink strength={0.3}>
                   <button className="es-btn-primary apple-pressable" onClick={() => navigate('/work')}>
-                    <span>VIEW THE WORK</span>
-                    <ArrowRight size={16} />
+                    <span>Explore My Work &rarr;</span>
                   </button>
                 </MagneticLink>
 
                 <MagneticLink strength={0.3}>
                   <button className="es-btn-secondary apple-pressable" onClick={() => navigate('/connect')}>
-                    <span>CONNECT</span>
-                  </button>
-                </MagneticLink>
-
-                <MagneticLink strength={0.3}>
-                  <button className="es-btn-secondary apple-pressable" onClick={() => navigate('/resume')}>
-                    <img src={resumeIconImg} alt="Resume" style={{ width: '18px', height: '18px', objectFit: 'contain' }} />
-                    <span>RESUME</span>
+                    <span>Let's Connect &rarr;</span>
                   </button>
                 </MagneticLink>
               </div>
             </Reveal>
 
           </div>
-        </section>
+        </ScaleReveal>
 
       </div>
     </>

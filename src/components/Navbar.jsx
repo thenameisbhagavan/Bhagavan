@@ -84,30 +84,73 @@ const ease = [0.16, 1, 0.3, 1];
 // ─────────────────────────────────────────────
 const TBLogo = () => (
   <m.div 
-    className="tb-logo-wrapper"
-    initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    whileHover={{ scale: 1.06, filter: "drop-shadow(0px 4px 14px rgba(220, 38, 38, 0.45))" }}
-    whileTap={{ scale: 0.95 }}
-    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+    className="tb-logo-container"
+    initial={{ opacity: 0, x: -10 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     style={{ 
       display: 'flex', 
       alignItems: 'center', 
-      justifyContent: 'center',
-      willChange: 'transform, filter'
+      gap: '12px'
     }}
   >
-    <img 
-      src={logoImg} 
-      alt="TheNameIsBhagavan Logo" 
-      style={{
-        height: '38px',
-        width: '38px',
-        objectFit: 'contain',
-        borderRadius: '8px',
-        display: 'block'
+    {/* 3D Apple-Style TB Icon */}
+    <m.div
+      className="tb-logo-3d-mark"
+      whileHover={{ 
+        scale: 1.05, 
+        rotateY: 15, 
+        rotateX: -5
       }}
-    />
+      whileTap={{ scale: 0.95 }}
+      style={{
+        width: '38px',
+        height: '38px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        perspective: '1000px',
+        transformStyle: 'preserve-3d',
+        willChange: 'transform'
+      }}
+    >
+      <img src="/logo.png" alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'translateZ(10px)' }} />
+    </m.div>
+
+    {/* Brand Text */}
+    <span 
+      className="brand-text"
+      style={{
+        fontFamily: 'var(--font-display, "SF Pro Display", -apple-system, sans-serif)',
+        fontSize: '20px',
+        letterSpacing: '-0.03em',
+        display: 'inline-flex'
+      }}
+    >
+      <span className="desktop-logo-text" style={{ display: 'inline-flex' }}>
+        <span style={{ fontWeight: 500, color: 'inherit', opacity: 0.85 }}>GSSB</span>
+        <span style={{ 
+          fontWeight: 800, 
+          background: 'linear-gradient(135deg, #2997FF 0%, #DA52D6 50%, #FF4C4C 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          paddingLeft: '1px'
+        }}>
+          
+        </span>
+      </span>
+      <span className="mobile-logo-text" style={{ 
+        display: 'none', 
+        fontWeight: 800, 
+        background: 'linear-gradient(135deg, #2997FF 0%, #DA52D6 50%, #FF4C4C 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        letterSpacing: '-0.02em'
+      }}>
+        GSSB
+      </span>
+    </span>
   </m.div>
 );
 
@@ -231,12 +274,8 @@ const CSS = `
   @media (max-width: 900px) { 
     .nav-links { display: none; }
     .nav-inner { padding: 0 16px; }
-    .nav-wordmark span { 
-      font-size: clamp(14px, 4.5vw, 20px) !important;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    .desktop-logo-text { display: none !important; }
+    .mobile-logo-text { display: inline-flex !important; font-size: clamp(18px, 5vw, 22px) !important; }
     .nav-wordmark {
       gap: 8px !important;
     }
