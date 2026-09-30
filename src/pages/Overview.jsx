@@ -19,6 +19,7 @@ import auraosImg from "../assets/aurabot-new.png";
 import voltdriveImg from "../assets/ev.png";
 import veritasImg from "../assets/fake.jpg";
 import agrivisionImg from "../assets/agrivision.png";
+import datavalleyImg from "../assets/datascience coruse compltetion.jpeg";
 
 
 export default function Overview() {
@@ -367,8 +368,12 @@ export default function Overview() {
           <div className="es-bounds">
             <div className="es-ee-layout">
               <div className="es-ee-left">
-                <ScaleReveal className="es-ee-image-wrap">
-                  <img src={profileHeroImg} alt="Bhagavan" className="es-ee-image" loading="lazy" />
+                <ScaleReveal className="es-ee-image-wrap" style={{ position: 'relative' }}>
+                  <img src={datavalleyImg} alt="Data Science internship students and technical trainers at Datavalley Inc" className="es-ee-image" loading="lazy" style={{ borderRadius: '16px' }} />
+                  <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: '600', letterSpacing: '0.05em', color: '#111111', textTransform: 'uppercase' }}>Data Science internship mentorship at Datavalley Inc.</span>
+                    <span style={{ fontSize: '12px', color: '#666666', lineHeight: '1.4' }}>Mentoring students through practical Data Science and AI learning.</span>
+                  </div>
                 </ScaleReveal>
               </div>
 
@@ -383,22 +388,26 @@ export default function Overview() {
 
                 <Reveal y={20} duration={0.9} delay={0.2}>
                   <p className="es-ee-story">
-                    My work extends beyond building software.<br /><br />
-                    I teach AI, Machine Learning, Data Science, Python, and modern development — turning complex concepts into practical systems students can understand and build.
+                    Alongside building intelligent products, I work as a technical trainer at Datavalley Inc, helping students turn concepts in Data Science, Python, Machine Learning, and AI into practical understanding.
                   </p>
                 </Reveal>
 
                 <Reveal y={20} duration={0.9} delay={0.3}>
-                  <div className="es-ee-metrics">
-                    <span className="es-ee-metric">AI / ML</span>
-                    <span className="es-ee-metric">DATA SCIENCE</span>
-                    <span className="es-ee-metric">PYTHON</span>
-                    <span className="es-ee-metric highlight">300+ STUDENTS REACHED</span>
+                  <div className="es-ee-marker" style={{ margin: '32px 0', paddingLeft: '16px', borderLeft: '2px solid rgba(0,0,0,0.1)' }}>
+                    <div style={{ fontSize: '12px', fontWeight: '600', letterSpacing: '0.08em', color: '#111111', marginBottom: '4px' }}>DATAVALLEY INC</div>
+                    <div style={{ fontSize: '15px', fontWeight: '500', color: '#333333' }}>Technical Trainer</div>
+                    <div style={{ fontSize: '13px', color: '#666666', marginTop: '2px' }}>Vijayawada &middot; Current</div>
                   </div>
+                </Reveal>
+                
+                <Reveal y={20} duration={0.9} delay={0.35}>
+                  <p className="es-ee-story" style={{ fontStyle: 'italic', color: '#444444' }}>
+                    "Teaching is another form of engineering:<br/>breaking complex systems down until they become understandable."
+                  </p>
                 </Reveal>
 
                 <Reveal y={20} duration={0.9} delay={0.4}>
-                  <div className="es-ee-action">
+                  <div className="es-ee-action" style={{ marginTop: '32px' }}>
                     <MagneticLink strength={0.25}>
                       <button className="es-btn-secondary apple-pressable" onClick={() => navigate('/experience')}>
                         <span>Explore Experience</span>

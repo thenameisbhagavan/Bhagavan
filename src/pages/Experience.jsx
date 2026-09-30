@@ -15,6 +15,7 @@ import blackbucksCert from "../assets/cert-blackbucks.png";
 import smartBridgeCert from "../assets/cert-smartbridge.png";
 import helsonCert from "../assets/cert-helson.png";
 import paceImg from "../assets/pace.jpg";
+import datavalleyImg from "../assets/datascience coruse compltetion.jpeg";
 
 // ─── Artifact Viewer Modal ────────────────────────────────────────────────────
 function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
@@ -434,48 +435,97 @@ export default function Experience() {
 
 
         {/* ============================================================
-            ACT 06 — DATA VALLEY (STAGE 05 / 05 — TEACHING + BUILDING)
+            ACT 06 — DATAVALLEY INC (STAGE 05 / 05 — TEACHING + BUILDING)
             ============================================================ */}
         <section id="datavalley" className="evo-chapter current-role-chapter" data-nav-theme="light">
           <div className="evo-bounds">
             
             <div className="chapter-header-bar">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge badge-active">CURRENT &middot; 2026 — PRESENT &middot; DATA VALLEY</span>
+                <span className="chapter-badge badge-active">CURRENT &middot; 2026 — PRESENT &middot; DATAVALLEY INC</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="company-name">DATA VALLEY</h2>
+                <h2 className="company-name">DATAVALLEY INC</h2>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.15}>
-                <span className="role-title highlight-role">Technical AI/ML & Data Science Trainer</span>
+                <span className="role-title highlight-role">Technical Trainer</span>
               </Reveal>
             </div>
 
             <Reveal y={24} duration={0.9} delay={0.2}>
               <blockquote className="chapter-statement">
-                "Now I teach what I build."
+                "Working at the intersection of technical education and applied AI."
               </blockquote>
             </Reveal>
 
             <Reveal y={20} duration={0.9} delay={0.3}>
               <p className="chapter-desc">
-                Designing and delivering hands-on training across Data Science, Machine Learning, and AI — turning technical concepts into structured lessons, coding exercises, and practical workflows.
+                Mentoring students and delivering practical learning across Data Science, Python, Machine Learning, and Artificial Intelligence in Vijayawada, India.
               </p>
             </Reveal>
 
-            {/* Role Responsibilities Tags */}
+            {/* Role Responsibilities List */}
             <Reveal y={20} duration={0.8} delay={0.4}>
-              <div className="responsibilities-tags-wrap">
-                {[
-                  "Curriculum Design", 
-                  "Live Instruction", 
-                  "Lab Development", 
-                  "Project Mentoring", 
-                  "Technical Communication", 
-                  "Practical Sessions"
-                ].map((tag) => (
-                  <span key={tag} className="resp-tag">{tag}</span>
-                ))}
+              <div style={{ marginTop: '32px', marginBottom: '48px' }}>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <span style={{ color: '#007aff', fontSize: '18px', lineHeight: '1.4' }}>&bull;</span>
+                    <span style={{ fontSize: '15px', color: '#333333', lineHeight: '1.4' }}>Technical training in Data Science and AI</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <span style={{ color: '#007aff', fontSize: '18px', lineHeight: '1.4' }}>&bull;</span>
+                    <span style={{ fontSize: '15px', color: '#333333', lineHeight: '1.4' }}>Python and Machine Learning instruction</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <span style={{ color: '#007aff', fontSize: '18px', lineHeight: '1.4' }}>&bull;</span>
+                    <span style={{ fontSize: '15px', color: '#333333', lineHeight: '1.4' }}>Hands-on practical learning</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <span style={{ color: '#007aff', fontSize: '18px', lineHeight: '1.4' }}>&bull;</span>
+                    <span style={{ fontSize: '15px', color: '#333333', lineHeight: '1.4' }}>Student mentorship and technical guidance</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <span style={{ color: '#007aff', fontSize: '18px', lineHeight: '1.4' }}>&bull;</span>
+                    <span style={{ fontSize: '15px', color: '#333333', lineHeight: '1.4' }}>Simplifying complex technical concepts</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <span style={{ color: '#007aff', fontSize: '18px', lineHeight: '1.4' }}>&bull;</span>
+                    <span style={{ fontSize: '15px', color: '#333333', lineHeight: '1.4' }}>Workshop and internship-oriented teaching</span>
+                  </li>
+                </ul>
+              </div>
+            </Reveal>
+
+            {/* Editorial Subsection */}
+            <Reveal y={24} duration={0.9} delay={0.5}>
+              <div style={{ marginTop: '64px', borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '48px' }}>
+                <span style={{ fontSize: '11px', fontWeight: '600', letterSpacing: '0.1em', color: '#666', display: 'block', marginBottom: '24px' }}>FROM BUILDING TO TEACHING</span>
+                <p style={{ fontSize: '18px', lineHeight: '1.6', color: '#111', fontWeight: '500', marginBottom: '24px', maxWidth: '800px' }}>
+                  Engineering has always been about understanding how systems work. Teaching adds another layer — understanding how people learn them.
+                </p>
+                <p style={{ fontSize: '16px', lineHeight: '1.6', color: '#444', maxWidth: '800px', marginBottom: '48px' }}>
+                  At Datavalley Inc, I work directly with students, helping translate technical concepts into practical understanding. This experience has strengthened not only my teaching ability, but also the way I communicate architecture, logic, AI systems, and problem-solving.
+                </p>
+              </div>
+            </Reveal>
+
+            {/* Verified Artifact / Image Card */}
+            <Reveal y={24} duration={0.9} delay={0.6}>
+              <div className="artifact-card-container">
+                <div className="ac-top-meta">
+                  <span className="ac-badge">SELECTED EXPERIENCE</span>
+                  <span className="ac-doc-num">Data Science Internship Mentorship / Datavalley Inc</span>
+                </div>
+                <button 
+                  className="artifact-preview-btn"
+                  onClick={() => openViewer(datavalleyImg, "Data Science internship students and technical trainers at Datavalley Inc")}
+                  style={{ background: '#f5f5f7', padding: 0 }}
+                >
+                  <img src={datavalleyImg} alt="Data Science internship mentorship at Datavalley Inc." className="artifact-img" loading="lazy" style={{ objectFit: 'cover', height: 'auto', maxHeight: '500px', width: '100%' }} />
+                  <div className="artifact-hover-overlay">
+                    <span>VIEW IMAGE ↗</span>
+                  </div>
+                </button>
               </div>
             </Reveal>
           </div>

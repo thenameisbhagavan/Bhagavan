@@ -115,7 +115,7 @@ const TBLogo = () => (
         willChange: 'transform'
       }}
     >
-      <img src="/logo.png" alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'translateZ(10px)' }} />
+      <img src={logoImg} alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'translateZ(10px)' }} />
     </m.div>
 
     {/* Brand Text */}
@@ -128,27 +128,30 @@ const TBLogo = () => (
         display: 'inline-flex'
       }}
     >
-      <span className="desktop-logo-text" style={{ display: 'inline-flex' }}>
-        <span style={{ fontWeight: 500, color: 'inherit', opacity: 0.85 }}>GSSB</span>
-        <span style={{ 
-          fontWeight: 800, 
-          background: 'linear-gradient(135deg, #2997FF 0%, #DA52D6 50%, #FF4C4C 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          paddingLeft: '1px'
-        }}>
-          
-        </span>
-      </span>
-      <span className="mobile-logo-text" style={{ 
-        display: 'none', 
-        fontWeight: 800, 
+      <span className="desktop-logo-text" style={{ 
+        display: 'inline-flex',
+        fontFamily: '"Dancing Script", cursive',
+        fontSize: '28px',
+        fontWeight: 700,
         background: 'linear-gradient(135deg, #2997FF 0%, #DA52D6 50%, #FF4C4C 100%)',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
-        letterSpacing: '-0.02em'
+        letterSpacing: '1px',
+        paddingLeft: '4px'
       }}>
-        GSSB
+        thenameisbhagavan
+      </span>
+      <span className="mobile-logo-text" style={{ 
+        display: 'none', 
+        fontFamily: '"Dancing Script", cursive',
+        fontSize: '24px',
+        fontWeight: 700,
+        background: 'linear-gradient(135deg, #2997FF 0%, #DA52D6 50%, #FF4C4C 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        letterSpacing: '0.5px'
+      }}>
+        thenameisbhagavan
       </span>
     </span>
   </m.div>

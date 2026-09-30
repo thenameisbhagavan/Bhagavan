@@ -12,7 +12,7 @@ export const PROFILE = {
   phone: '+91 7569205626',
   github: 'https://github.com/thenameisbhagavan',
   linkedin: 'https://www.linkedin.com/in/thenameisbhagavan/',
-  objective: 'Technical AI/ML & Data Science Trainer at Data Valley, Vijayawada. AI Product Engineer building intelligent software systems, AI-powered applications, and data-driven products. B.Tech in AI & Data Science (2026).',
+  objective: 'Technical Trainer at Datavalley Inc, Vijayawada. AI Product Engineer building intelligent software systems, AI-powered applications, and data-driven products. B.Tech in AI & Data Science (2026).',
   internships: [
     { title: 'MERN Stack Intern', company: 'StudyOwl Education Pvt Ltd', period: 'May–July 2025', detail: ['Contributed to React frontend and Node.js backend integration.', 'Built reusable components and integrated REST APIs.'] },
     { title: 'AI/ML Intern – Smart Sorting', company: 'SmartBridge (Remote)', period: 'May–June 2025', detail: ['Developed CNN-based image classification models using TensorFlow and Keras.', 'Deployed trained models using Flask.'] },
@@ -94,10 +94,10 @@ export const PROJECTS = [
 export const JOURNEY = [
   {
     year: "2026 — Present",
-    title: "Technical AI/ML & Data Science Trainer",
-    entity: "Data Valley, Vijayawada",
+    title: "Technical Trainer",
+    entity: "Datavalley Inc, Vijayawada, India",
     type: "Professional",
-    description: "Delivering hands-on technical training across Data Science, Machine Learning, and AI. Developing structured curricula, coding labs, and project-based learning experiences."
+    description: "Working at the intersection of technical education and applied AI, mentoring students and delivering practical learning across Data Science, Python, Machine Learning, and Artificial Intelligence."
   },
   {
     year: "2025",

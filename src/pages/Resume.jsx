@@ -112,8 +112,8 @@ export default function Resume() {
   return (
     <>
       <SEO 
-        description="Official canonical resume of Bhagavan (TheNameIsBhagavan). AI Product Engineer & Technical AI/ML & Data Science Trainer at Data Valley. View one current professional record."
-        keywords="Bhagavan Resume, TheNameIsBhagavan Resume, AI Product Engineer CV, Technical AI/ML Trainer, Data Valley, Software Engineer Resume, Canonical Resume"
+        description="Official canonical resume of Bhagavan (TheNameIsBhagavan). AI Product Engineer & Technical Trainer at Datavalley Inc. View one current professional record."
+        keywords="Bhagavan Resume, TheNameIsBhagavan Resume, AI Product Engineer CV, Technical Trainer, Datavalley Inc, Software Engineer Resume, Canonical Resume"
       />
 
       <LiveResumeModal 
@@ -271,7 +271,7 @@ export default function Resume() {
                   </div>
                   <div className="rec-signal-item">
                     <span className="sig-key">CURRENT ROLE:</span>
-                    <span className="sig-val">Technical AI/ML & Data Science Trainer @ Data Valley</span>
+                    <span className="sig-val">Technical Trainer &mdash; Datavalley Inc (2026 - Present)</span>
                   </div>
                   <div className="rec-signal-item">
                     <span className="sig-key">ENGINEERING FOCUS:</span>

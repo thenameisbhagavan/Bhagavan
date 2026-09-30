@@ -47,9 +47,9 @@ const LAYERS = [
   },
   {
     num: "06",
-    title: "COMMUNICATION",
-    desc: "Teaching, Mentoring, and Technical Instruction.",
-    techs: ["Data Science Training", "Curriculum Design", "Technical Mentoring", "Project Guidance", "Live Instruction"]
+    title: "TECHNICAL EDUCATION & LEADERSHIP",
+    desc: "Mentoring the next generation of engineers.",
+    techs: ["Instruction & Mentorship", "Curriculum Design", "Practical Data Science Learning", "ML/AI Applied Workshops"]
   }
 ];
 
