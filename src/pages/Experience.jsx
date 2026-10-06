@@ -10,15 +10,57 @@ import MagneticLink from "../components/motion/MagneticLink";
 import "../styles/Experience.css";
 
 // ─── Certificate Artifacts & Assets ───────────────────────────────────────────
+import studyOwlCert from "../assets/cert-studyowl.png";
+import blackbucksCert from "../assets/cert-blackbucks.png";
+import smartBridgeCert from "../assets/cert-smartbridge.png";
+import helsonCert from "../assets/cert-helson.png";
 import paceImg from "../assets/pace.jpg";
+import datavalleyImg from "../assets/datascience coruse compltetion.jpeg";
+
+// ─── Artifact Viewer Modal ────────────────────────────────────────────────────
+function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="artifact-modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label="Artifact Viewer">
+      <button className="am-close-btn" onClick={onClose} aria-label="Close viewer">
+        <X size={24} strokeWidth={1.5} />
+      </button>
+      <div className="am-modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="am-modal-header">VERIFIED ARTIFACT</div>
+        <img src={imgSrc} alt={imgAlt} className="am-modal-img" loading="lazy" />
+      </div>
+    </div>
+  );
+}
 
 // ─── Main Experience Page Component ───────────────────────────────────────────
 export default function Experience() {
+  const [viewerState, setViewerState] = useState({ isOpen: false, src: "", alt: "" });
   const [activeStage, setActiveStage] = useState("01");
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
+
+  const openViewer = (src, alt) => setViewerState({ isOpen: true, src, alt });
+  const closeViewer = () => setViewerState((prev) => ({ ...prev, isOpen: false }));
 
   // Update active stage indicator on scroll
   useEffect(() => {
@@ -52,6 +94,13 @@ export default function Experience() {
         description="Professional engineering evolution of Bhagavan. Technical AI/ML & Data Science Trainer at Data Valley. Documenting the trajectory across Data, Product, Intelligence, Systems, and Teaching."
         keywords="TheNameIsBhagavan, Bhagavan Experience, Technical AI/ML Trainer, Data Valley, AI Product Engineer, Machine Learning Experience, Software Engineering Evolution"
       />
+      
+      <ArtifactViewer 
+        isOpen={viewerState.isOpen} 
+        onClose={closeViewer} 
+        imgSrc={viewerState.src} 
+        imgAlt={viewerState.alt} 
+      />
 
       <div className="exp-evolution-page">
 
@@ -83,7 +132,7 @@ export default function Experience() {
             
             <Reveal y={16} duration={0.8}>
               <div className="hero-eyebrow">
-                <span className="hero-badge">ENGINEERING EVOLUTION &middot; 2021 — PRESENT</span>
+                <span className="hero-badge">ENGINEERING EVOLUTION &middot; 2022 — PRESENT</span>
               </div>
             </Reveal>
 
@@ -126,7 +175,7 @@ export default function Experience() {
             
             <div className="chapter-header-bar">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">STAGE 01 / 05 &middot; DATA &middot; 2021</span>
+                <span className="chapter-badge">STAGE 01 / 05 &middot; DATA &middot; 2024</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="company-name">BLACKBUCKS</h2>
@@ -164,7 +213,24 @@ export default function Experience() {
               </div>
             </Reveal>
 
-
+            {/* Verified Artifact Card */}
+            <Reveal y={24} duration={0.9} delay={0.5}>
+              <div className="artifact-card-container">
+                <div className="ac-top-meta">
+                  <span className="ac-badge">VERIFIED ARTIFACT</span>
+                  <span className="ac-doc-num">DOCUMENTED EXPERIENCE / 01</span>
+                </div>
+                <button 
+                  className="artifact-preview-btn"
+                  onClick={() => openViewer(blackbucksCert, "Blackbucks Machine Learning Internship Certificate")}
+                >
+                  <img src={blackbucksCert} alt="Blackbucks Certificate" className="artifact-img" loading="lazy" />
+                  <div className="artifact-hover-overlay">
+                    <span>VIEW ARTIFACT ↗</span>
+                  </div>
+                </button>
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -177,7 +243,7 @@ export default function Experience() {
             
             <div className="chapter-header-bar">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">STAGE 02 / 05 &middot; PRODUCT &middot; 2021</span>
+                <span className="chapter-badge">STAGE 02 / 05 &middot; PRODUCT &middot; 2024</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="company-name">STUDYOWL</h2>
@@ -215,7 +281,24 @@ export default function Experience() {
               </div>
             </Reveal>
 
-
+            {/* Verified Artifact Card */}
+            <Reveal y={24} duration={0.9} delay={0.5}>
+              <div className="artifact-card-container">
+                <div className="ac-top-meta">
+                  <span className="ac-badge">VERIFIED ARTIFACT</span>
+                  <span className="ac-doc-num">DOCUMENTED EXPERIENCE / 02</span>
+                </div>
+                <button 
+                  className="artifact-preview-btn"
+                  onClick={() => openViewer(studyOwlCert, "StudyOwl Software Development Internship Certificate")}
+                >
+                  <img src={studyOwlCert} alt="StudyOwl Certificate" className="artifact-img" loading="lazy" />
+                  <div className="artifact-hover-overlay">
+                    <span>VIEW ARTIFACT ↗</span>
+                  </div>
+                </button>
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -228,7 +311,7 @@ export default function Experience() {
             
             <div className="chapter-header-bar">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">STAGE 03 / 05 &middot; INTELLIGENCE &middot; 2021</span>
+                <span className="chapter-badge">STAGE 03 / 05 &middot; INTELLIGENCE &middot; 2024</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="company-name">SMARTBRIDGE</h2>
@@ -264,7 +347,24 @@ export default function Experience() {
               </div>
             </Reveal>
 
-
+            {/* Verified Artifact Card */}
+            <Reveal y={24} duration={0.9} delay={0.5}>
+              <div className="artifact-card-container">
+                <div className="ac-top-meta">
+                  <span className="ac-badge">VERIFIED ARTIFACT</span>
+                  <span className="ac-doc-num">DOCUMENTED EXPERIENCE / 03</span>
+                </div>
+                <button 
+                  className="artifact-preview-btn"
+                  onClick={() => openViewer(smartBridgeCert, "SmartBridge Software Engineering Certificate")}
+                >
+                  <img src={smartBridgeCert} alt="SmartBridge Certificate" className="artifact-img" loading="lazy" />
+                  <div className="artifact-hover-overlay">
+                    <span>VIEW ARTIFACT ↗</span>
+                  </div>
+                </button>
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -277,7 +377,7 @@ export default function Experience() {
             
             <div className="chapter-header-bar">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">STAGE 04 / 05 &middot; SYSTEMS &middot; 2021</span>
+                <span className="chapter-badge">STAGE 04 / 05 &middot; SYSTEMS &middot; 2024</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="company-name">HELSON</h2>
@@ -312,7 +412,24 @@ export default function Experience() {
               </div>
             </Reveal>
 
-
+            {/* Verified Artifact Card */}
+            <Reveal y={24} duration={0.9} delay={0.5}>
+              <div className="artifact-card-container">
+                <div className="ac-top-meta">
+                  <span className="ac-badge">VERIFIED ARTIFACT</span>
+                  <span className="ac-doc-num">DOCUMENTED EXPERIENCE / 04</span>
+                </div>
+                <button 
+                  className="artifact-preview-btn"
+                  onClick={() => openViewer(helsonCert, "Helson Enterprise Automation Certificate")}
+                >
+                  <img src={helsonCert} alt="Helson Certificate" className="artifact-img" loading="lazy" />
+                  <div className="artifact-hover-overlay">
+                    <span>VIEW ARTIFACT ↗</span>
+                  </div>
+                </button>
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -325,7 +442,7 @@ export default function Experience() {
             
             <div className="chapter-header-bar">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge badge-active">CURRENT &middot; JUNE 2024 — PRESENT &middot; DATAVALLEY INC</span>
+                <span className="chapter-badge badge-active">CURRENT &middot; 2026 — PRESENT &middot; DATAVALLEY INC</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="company-name">DATAVALLEY INC</h2>
@@ -392,7 +509,25 @@ export default function Experience() {
               </div>
             </Reveal>
 
-
+            {/* Verified Artifact / Image Card */}
+            <Reveal y={24} duration={0.9} delay={0.6}>
+              <div className="artifact-card-container">
+                <div className="ac-top-meta">
+                  <span className="ac-badge">SELECTED EXPERIENCE</span>
+                  <span className="ac-doc-num">Data Science Internship Mentorship / Datavalley Inc</span>
+                </div>
+                <button 
+                  className="artifact-preview-btn"
+                  onClick={() => openViewer(datavalleyImg, "Data Science internship students and technical trainers at Datavalley Inc")}
+                  style={{ background: '#f5f5f7', padding: 0 }}
+                >
+                  <img src={datavalleyImg} alt="Data Science internship mentorship at Datavalley Inc." className="artifact-img" loading="lazy" style={{ objectFit: 'cover', height: 'auto', maxHeight: '500px', width: '100%' }} />
+                  <div className="artifact-hover-overlay">
+                    <span>VIEW IMAGE ↗</span>
+                  </div>
+                </button>
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -472,7 +607,7 @@ export default function Experience() {
             <Reveal y={20} duration={0.9} delay={0.5}>
               <div className="closing-signature-meta">
                 THE NAME IS BHAGAVAN<br />
-                ENGINEERING EVOLUTION &middot; 2021 — PRESENT
+                ENGINEERING EVOLUTION &middot; 2022 — PRESENT
               </div>
             </Reveal>
           </div>

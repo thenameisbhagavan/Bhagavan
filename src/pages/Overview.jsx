@@ -488,10 +488,10 @@ export default function Overview() {
               <div className="es-timeline-scroll">
                 <div className="es-timeline-track">
                   {[
-                    { year: "2020", stage: "START", desc: "AI & Data Science" },
-                    { year: "2021", stage: "BUILD", desc: "Full-stack · AI · ML" },
-                    { year: "2022", stage: "CREATE", desc: "Intelligent products" },
-                    { year: "2024", stage: "SHIP", desc: "Production-minded systems" },
+                    { year: "2022", stage: "START", desc: "AI & Data Science" },
+                    { year: "2024", stage: "BUILD", desc: "Full-stack · AI · ML" },
+                    { year: "2025", stage: "CREATE", desc: "Intelligent products" },
+                    { year: "2026", stage: "SHIP", desc: "Production-minded systems" },
                     { year: "NOW", stage: "BUILDING", desc: "AI × Software × Product" }
                   ].map((node, i, arr) => (
                     <Reveal key={node.year} x={20} duration={0.8} delay={i * 0.15} className="es-timeline-node-container">

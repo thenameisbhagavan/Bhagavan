@@ -12,11 +12,11 @@ export const PROFILE = {
   phone: '+91 7569205626',
   github: 'https://github.com/thenameisbhagavan',
   linkedin: 'https://www.linkedin.com/in/thenameisbhagavan/',
-  objective: 'Technical Trainer at Datavalley Inc, Vijayawada. AI Product Engineer building intelligent software systems, AI-powered applications, and data-driven products. B.Tech in AI & Data Science (2022).',
+  objective: 'Technical Trainer at Datavalley Inc, Vijayawada. AI Product Engineer building intelligent software systems, AI-powered applications, and data-driven products. B.Tech in AI & Data Science (2026).',
   internships: [
-    { title: 'MERN Stack Intern', company: 'StudyOwl Education Pvt Ltd', period: 'May–July 2021', detail: ['Contributed to React frontend and Node.js backend integration.', 'Built reusable components and integrated REST APIs.'] },
-    { title: 'AI/ML Intern – Smart Sorting', company: 'SmartBridge (Remote)', period: 'May–June 2021', detail: ['Developed CNN-based image classification models using TensorFlow and Keras.', 'Deployed trained models using Flask.'] },
-    { title: 'ML & Data Science Intern', company: 'Blackbucks (Remote)', period: 'May–June 2021', detail: ['Performed data preprocessing and feature engineering.', 'Developed model training pipelines using Scikit-learn.'] },
+    { title: 'MERN Stack Intern', company: 'StudyOwl Education Pvt Ltd', period: 'May–July 2025', detail: ['Contributed to React frontend and Node.js backend integration.', 'Built reusable components and integrated REST APIs.'] },
+    { title: 'AI/ML Intern – Smart Sorting', company: 'SmartBridge (Remote)', period: 'May–June 2025', detail: ['Developed CNN-based image classification models using TensorFlow and Keras.', 'Deployed trained models using Flask.'] },
+    { title: 'ML & Data Science Intern', company: 'Blackbucks (Remote)', period: 'May–June 2024', detail: ['Performed data preprocessing and feature engineering.', 'Developed model training pipelines using Scikit-learn.'] },
   ],
   skills: { 
     languages: ['Python', 'Java', 'C', 'JavaScript'], 
@@ -33,7 +33,7 @@ export const PROJECTS = [
     id:1,title:"Automated Leave Management System",
     tagline:"Low-code workflow automation project",
     subtitle:"Workflow automation system using Microsoft PowerApps",
-    github:null,live:null,year:"2022",duration:"3 months",
+    github:null,live:null,year:"2025",duration:"3 months",
     problem:"Managing leave requests manually via emails is error-prone and inefficient for organizations relying on manual approvals.",
     solution:"Built an automated leave approval system using Microsoft PowerApps, SharePoint, and Power Automate for streamlined enterprise workflows.",
     impact:[{label:"Workflow Automations",value:5,suffix:""},{label:"Approval Steps",value:3,suffix:""},{label:"Test Users",value:15,suffix:"+"}],
@@ -43,7 +43,7 @@ export const PROJECTS = [
     id:2,title:"ATS-Based Resume Builder",
     tagline:"Full-stack MERN academic project",
     subtitle:"ATS-optimized resume platform built with MERN stack",
-    github:"https://github.com/thenameisbhagavan/Resumebuilderwebapp",live:null,year:"2022",duration:"3 months",
+    github:"https://github.com/thenameisbhagavan/Resumebuilderwebapp",live:null,year:"2025",duration:"3 months",
     problem:"Job applicants struggle to get their resumes past ATS (Applicant Tracking Systems) filters due to keyword mismatches.",
     solution:"Developed a MERN platform where users create resumes and check keyword matches against job descriptions, with OAuth authentication and REST API integration.",
     impact:[{label:"ATS Feedback",value:100,suffix:"%"},{label:"Templates",value:5,suffix:""},{label:"Auth Providers",value:2,suffix:""}],
@@ -53,7 +53,7 @@ export const PROJECTS = [
     id:3,title:"AI Chatbot Web Application",
     tagline:"AI conversational interface",
     subtitle:"React frontend with Flask AI backend",
-    github:"https://github.com/thenameisbhagavan/chatbotwebapp",live:null,year:"2022",duration:"4 months",
+    github:"https://github.com/thenameisbhagavan/chatbotwebapp",live:null,year:"2025",duration:"4 months",
     problem:"Web frontends need to communicate with AI APIs securely without exposing API keys in the browser.",
     solution:"Built a Flask backend to securely proxy the Gemini API, and a React frontend to render responses, with session state management.",
     impact:[{label:"Response Time",value:500,suffix:"ms"},{label:"Secure Endpoints",value:100,suffix:"%"},{label:"Conversation Turns",value:15,suffix:"+"}],
@@ -93,35 +93,35 @@ export const PROJECTS = [
 
 export const JOURNEY = [
   {
-    year: "June 2024 — Present",
+    year: "2026 — Present",
     title: "Technical Trainer",
     entity: "Datavalley Inc, Vijayawada, India",
     type: "Professional",
     description: "Working at the intersection of technical education and applied AI, mentoring students and delivering practical learning across Data Science, Python, Machine Learning, and Artificial Intelligence."
   },
   {
-    year: "2021",
+    year: "2025",
     title: "MERN Stack Intern",
     entity: "StudyOwl Education Pvt Ltd",
     type: "Internship",
     description: "Contributed to React frontend and Node.js backend integration. Built reusable components and integrated REST APIs."
   },
   {
-    year: "2021",
+    year: "2025",
     title: "AI/ML Intern – Smart Sorting",
     entity: "SmartBridge",
     type: "Internship",
     description: "Developed CNN-based image classification models using TensorFlow and Keras. Deployed trained models using Flask."
   },
   {
-    year: "2021",
+    year: "2024",
     title: "ML & Data Science Intern",
     entity: "Blackbucks",
     type: "Internship",
     description: "Performed data preprocessing and feature engineering. Developed model training pipelines using Scikit-learn."
   },
   {
-    year: "2020 — 2022",
+    year: "2022-2026",
     title: "B.Tech in AI & Data Science",
     entity: "Ramachandra College of Engineering, JNTUK",
     type: "Education",

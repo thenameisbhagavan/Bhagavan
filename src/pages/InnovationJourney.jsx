@@ -11,27 +11,100 @@ import MagneticLink from "../components/motion/MagneticLink";
 import "../styles/Innovation.css";
 
 // ─── Core Artifact Assets ──────────────────────────────────────────────────────
+import vegacodeImg from "../assets/cert-vegacode.png";
 import githubImg from "../assets/profile-github.png";
 import leetcodeImg from "../assets/profile-leetcode.png";
 import linkedInProfileImg from "../assets/link.png";
+import trainingCert from "../assets/training.png";
+
+// ─── Workshop Artifact Assets ──────────────────────────────────────────────────
+import aimlWorkshopImg from "../assets/cert-aiml-workshop.jpg";
+import mobileWorkshopImg from "../assets/cert-mobile-workshop.jpg";
+import webWorkshopImg from "../assets/cert-web-workshop.jpg";
+import pythonWorkshopImg from "../assets/cert-ds-workshop.jpg";
+import powerWorkshopImg from "../assets/cert-power-workshop.jpg";
 
 const appleEase = [0.22, 1, 0.36, 1];
 
-// ─── Innovation Journey Page ──────────────────────────────────────────────────
+// ─── Artifact Viewer Modal ────────────────────────────────────────────────────
+function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
+  useEffect(() => {
+    const handleKey = (e) => { if (e.key === "Escape") onClose(); };
+    if (isOpen) window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [isOpen, onClose]);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+  }, [isOpen]);
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <m.div
+          className="lab-modal-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35, ease: appleEase }}
+          onClick={onClose}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Artifact Viewer"
+        >
+          <button className="lab-modal-close" onClick={onClose} aria-label="Close viewer">
+            <X size={22} strokeWidth={1.5} />
+          </button>
+          <m.div
+            className="lab-modal-content"
+            initial={{ scale: 0.98, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.98, opacity: 0 }}
+            transition={{ duration: 0.4, ease: appleEase }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="lab-modal-header">VERIFIED ARTIFACT</div>
+            <img src={imgSrc} alt={imgAlt} className="lab-modal-img" loading="eager" />
+          </m.div>
+        </m.div>
+      )}
+    </AnimatePresence>
+  );
+}
 
 // ─── Innovation Journey Page ──────────────────────────────────────────────────
 export default function InnovationJourney() {
+  const [viewer, setViewer] = useState({ isOpen: false, src: "", alt: "" });
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
+  const openViewer = (src, alt) => setViewer({ isOpen: true, src, alt });
+  const closeViewer = () => setViewer((prev) => ({ ...prev, isOpen: false }));
 
+  // Archive items array
+  const archiveItems = [
+    { id: "01", category: "AI / ML", title: "Artificial Intelligence Workshop", img: aimlWorkshopImg, alt: "AI/ML Workshop Certificate" },
+    { id: "02", category: "SOFTWARE", title: "Python & Data Science Workshop", img: pythonWorkshopImg, alt: "Python & Data Science Workshop Certificate" },
+    { id: "03", category: "WEB", title: "Web Systems Workshop", img: webWorkshopImg, alt: "Web Development Workshop Certificate" },
+    { id: "04", category: "MOBILE", title: "Mobile Systems Workshop", img: mobileWorkshopImg, alt: "Mobile Development Workshop Certificate" },
+    { id: "05", category: "AUTOMATION", title: "Power & Automation Workshop", img: powerWorkshopImg, alt: "Power & Automation Workshop Certificate" },
+    { id: "06", category: "FOUNDATION", title: "Technical Training Foundation", img: trainingCert, alt: "Comprehensive Professional Training Certificate" },
+  ];
 
   return (
     <>
       <SEO
         description="The experimental layer of Bhagavan (TheNameIsBhagavan). Documenting curiosity, hackathon constraints, public evidence, and experimental archives that shape AI products."
         keywords="Bhagavan Innovation, Experimental Layer, VegaCode Hackathon, AI Systems, Technical Experiments, LeetCode, GitHub, Evidence Archive"
+      />
+
+      <ArtifactViewer
+        isOpen={viewer.isOpen}
+        onClose={closeViewer}
+        imgSrc={viewer.src}
+        imgAlt={viewer.alt}
       />
 
       <div className="lab-page">
@@ -148,7 +221,24 @@ export default function InnovationJourney() {
               </div>
             </Reveal>
 
-
+            {/* VegaCode Certificate Artifact Object */}
+            <ScaleReveal className="vegacode-artifact-wrapper">
+              <button
+                className="lab-artifact-btn artifact-primary"
+                onClick={() => openViewer(vegacodeImg, "VegaCode National Hackathon Certificate")}
+                aria-label="View VegaCode National Hackathon Certificate"
+              >
+                <img src={vegacodeImg} alt="VegaCode National Hackathon Certificate" loading="lazy" />
+                <div className="lab-artifact-hover">
+                  <span>VIEW EXPERIMENT EVIDENCE</span>
+                  <ArrowUpRight size={16} />
+                </div>
+              </button>
+              <div className="ca-footer">
+                <span>VEGACODE NATIONAL HACKATHON</span>
+                <span>EVIDENCE / 01</span>
+              </div>
+            </ScaleReveal>
           </div>
         </section>
 
@@ -247,7 +337,37 @@ export default function InnovationJourney() {
           </div>
         </section>
 
+        {/* ============================================================
+            ACT 05 — EXPERIMENTAL ARCHIVE
+            ============================================================ */}
+        <section className="lab-archive-section" data-nav-theme="light">
+          <div className="lab-bounds">
+            <Reveal y={16} duration={0.8}>
+              <span className="lab-section-label">EXPERIMENTAL ARCHIVE</span>
+              <h2 className="lab-sub-headline">Compact evidence across technical disciplines.</h2>
+            </Reveal>
 
+            <div className="archive-list-grid">
+              {archiveItems.map((item, idx) => (
+                <Reveal y={20} duration={0.8} delay={idx * 0.08} key={item.id} className="archive-item-card">
+                  <div className="arc-header">
+                    <span className="arc-num">{item.id}</span>
+                    <span className="arc-cat">{item.category}</span>
+                  </div>
+                  <h3 className="arc-title">{item.title}</h3>
+                  <button 
+                    className="arc-view-btn"
+                    onClick={() => openViewer(item.img, item.alt)}
+                    aria-label={`View ${item.title}`}
+                  >
+                    <span>VIEW EVIDENCE</span>
+                    <ArrowUpRight size={14} />
+                  </button>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* ============================================================
             ACT 06 — CURRENT EXPLORATION
