@@ -1,5 +1,5 @@
 /* =========================================
-   ENGINEERING JOURNAL: 2026 PUBLICATION
+   ENGINEERING JOURNAL: 2024 PUBLICATION
    ========================================= */
 
 .journal-page {
@@ -32,8 +32,8 @@
   margin-bottom: 24px;
 }
 
-/* ==================== 1. HERO 2026 ==================== */
-.j-hero-2026 {
+/* ==================== 1. HERO 2024 ==================== */
+.j-hero-2024 {
   position: relative;
   min-height: 100vh;
   display: flex;
@@ -48,7 +48,7 @@
 }
 
 @media (min-width: 960px) {
-  .j-hero-2026 {
+  .j-hero-2024 {
     margin: 0 calc(-1 * max(6vw, 40px)) 0 calc(-1 * max(6vw, 40px));
   }
 }

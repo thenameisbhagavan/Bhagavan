@@ -1392,7 +1392,7 @@ export function ClosingSection() {
         >
           <div className="vrt-wwdc-seal">
             <Sparkles size={14} color="#00f5d4" />
-            <span>VERITAS • Engineered for Human Potential • Bhagavan 2026</span>
+            <span>VERITAS • Engineered for Human Potential • Bhagavan 2024</span>
           </div>
 
           <div>

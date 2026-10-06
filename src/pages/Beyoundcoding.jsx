@@ -853,7 +853,7 @@ export default function BeyondCoding() {
                 <div style={{maxWidth:"540px"}}>
                   <div style={{display:"inline-flex",alignItems:"center",gap:"6px",padding:"5px 12px",borderRadius:"999px",background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.12)",marginBottom:"20px",opacity:fV?1:0,animation:fV?`_rtl ${MS.slow} ${E} 0.05s both`:"none"}}>
                     <div style={{width:"5px",height:"5px",borderRadius:"50%",background:"rgba(255,255,255,0.85)",animation:"_pulse 2.2s ease-in-out infinite"}}/>
-                    <ML color="rgba(255,255,255,0.65)">Technical AI/ML & Data Science Trainer · Data Valley · 2026</ML>
+                    <ML color="rgba(255,255,255,0.65)">Technical AI/ML & Data Science Trainer · Data Valley · 2024</ML>
                   </div>
                   <h2 style={{fontFamily:"'Dancing Script',cursive",fontSize:"clamp(3rem,6vw,5.5rem)",fontWeight:700,color:"#FFFFFF",lineHeight:1.04,letterSpacing:"-0.03em",marginBottom:"14px",opacity:fV?1:0,animation:fV?`_rtl ${MS.reveal} ${E} 0.12s both`:"none"}}>
                     Build a Legendary Life
@@ -922,7 +922,7 @@ export default function BeyondCoding() {
             {/* Bottom bar */}
             <div style={{borderTop:"1px solid rgba(255,255,255,0.06)",padding:"1.5rem 0",display:"flex",alignItems:"center",justifyContent:"space-between",gap:"1rem",flexWrap:"wrap"}}>
               <div style={{fontFamily:"'DM Mono',monospace",fontSize:"11px",color:"rgba(255,255,255,0.20)"}}>
-                © 2026 Siva Satya Sai Bhagavan
+                © 2024 Siva Satya Sai Bhagavan
               </div>
               <div style={{display:"flex",gap:"20px"}}>
                 {["Privacy","Terms","Sitemap"].map(l=>(

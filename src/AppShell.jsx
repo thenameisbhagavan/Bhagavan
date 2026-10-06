@@ -57,7 +57,7 @@ export default function AppShell({ children }) {
           <Footer />
         </main>
 
-        {/* 2026 Apple VisionOS Scroll Elevator */}
+        {/* 2024 Apple VisionOS Scroll Elevator */}
         <ScrollToTopElevator />
       </div>
     </ScrollProvider>

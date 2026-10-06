@@ -63,7 +63,7 @@ export default function WorkLoader({ onComplete, prefersReducedMotion = false })
           transition={{ duration: 0.6, ease: appleEase }}
         >
           <span>WORK / SYSTEM INDEX</span>
-          <span>2026</span>
+          <span>2024</span>
         </m.div>
 
         {/* RULE */}

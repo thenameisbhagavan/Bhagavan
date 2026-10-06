@@ -111,54 +111,8 @@ const ARCHIVE = [
   }
 ];
 
-// ─── Modal Component ────────────────────────────────────────────────────────
-const ArtifactViewer = ({ src, alt, onClose }) => {
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'auto';
-    };
-  }, [onClose]);
-
-  return (
-    <m.div 
-      className="cred-modal-overlay"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.4, ease: appleEase }}
-      onClick={onClose}
-    >
-      <button className="cred-modal-close" onClick={onClose} aria-label="Close viewer">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-      <m.div 
-        className="cred-modal-content"
-        initial={{ scale: 0.96, opacity: 0, y: 10 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.98, opacity: 0, y: -10 }}
-        transition={{ duration: 0.5, ease: appleEase }}
-        onClick={e => e.stopPropagation()}
-      >
-        <div className="cred-modal-header">ENGINEERING ARTIFACT</div>
-        <img src={src} alt={alt} className="cred-modal-img"  loading="lazy" />
-      </m.div>
-    </m.div>
-  );
-};
-
 // ─── Page Component ───────────────────────────────────────────────────────────
 export default function Credentials() {
-  const [selectedArtifact, setSelectedArtifact] = useState(null);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -176,16 +130,6 @@ export default function Credentials() {
         description="Technical credentials and engineering record of Bhagavan. Verified certifications in AI, Machine Learning, Full Stack Engineering, and Data Science." 
         keywords="Bhagavan Credentials, AI Certifications, Machine Learning Certificates, Engineering Record, Data Science, AI Product Engineer" 
       />
-
-      <AnimatePresence>
-        {selectedArtifact && (
-          <ArtifactViewer 
-            src={selectedArtifact.src} 
-            alt={selectedArtifact.alt} 
-            onClose={() => setSelectedArtifact(null)} 
-          />
-        )}
-      </AnimatePresence>
 
       <div className="cred-page">
         
@@ -307,12 +251,6 @@ export default function Credentials() {
                     </div>
                   </div>
                 </div>
-                <div className="fi-artifact">
-                  <button className="cred-artifact-btn" onClick={() => setSelectedArtifact({ src: googleEduCert, alt: "Google Generative AI Certificate" })}>
-                    <img src={googleEduCert} alt="Google Generative AI Certificate" loading="lazy" />
-                    <span className="cred-artifact-hover">VIEW ARTIFACT ↗</span>
-                  </button>
-                </div>
               </m.div>
 
               {/* Feature 2: Microsoft Prompting */}
@@ -334,12 +272,6 @@ export default function Credentials() {
                       ))}
                     </div>
                   </div>
-                </div>
-                <div className="fi-artifact">
-                  <button className="cred-artifact-btn" onClick={() => setSelectedArtifact({ src: microsoftPromptWritingCert, alt: "Microsoft Prompt Writing Certificate" })}>
-                    <img src={microsoftPromptWritingCert} alt="Microsoft Prompt Writing Certificate" loading="lazy" />
-                    <span className="cred-artifact-hover">VIEW ARTIFACT ↗</span>
-                  </button>
                 </div>
               </m.div>
 
@@ -363,12 +295,6 @@ export default function Credentials() {
                     </div>
                   </div>
                 </div>
-                <div className="fi-artifact">
-                  <button className="cred-artifact-btn" onClick={() => setSelectedArtifact({ src: deepLearningPythonCert, alt: "Deep Learning Certificate" })}>
-                    <img src={deepLearningPythonCert} alt="Deep Learning Certificate" loading="lazy" />
-                    <span className="cred-artifact-hover">VIEW ARTIFACT ↗</span>
-                  </button>
-                </div>
               </m.div>
 
               {/* Feature 4: Full Stack */}
@@ -390,12 +316,6 @@ export default function Credentials() {
                       ))}
                     </div>
                   </div>
-                </div>
-                <div className="fi-artifact">
-                  <button className="cred-artifact-btn" onClick={() => setSelectedArtifact({ src: gfgFsCert, alt: "Full Stack Certificate" })}>
-                    <img src={gfgFsCert} alt="Full Stack Certificate" loading="lazy" />
-                    <span className="cred-artifact-hover">VIEW ARTIFACT ↗</span>
-                  </button>
                 </div>
               </m.div>
               
@@ -479,17 +399,17 @@ export default function Credentials() {
             
             <div className="record-timeline">
               <m.div className="rt-node" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <div className="rt-year">2022</div>
+                <div className="rt-year">2020</div>
                 <div className="rt-phase">Beginning</div>
               </m.div>
 
               <m.div className="rt-node" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <div className="rt-year">2024</div>
+                <div className="rt-year">2021</div>
                 <div className="rt-phase">Exploration</div>
               </m.div>
 
               <m.div className="rt-node" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                <div className="rt-year">2025</div>
+                <div className="rt-year">2022</div>
                 <div className="rt-phase">Acceleration</div>
               </m.div>
 
@@ -528,23 +448,10 @@ export default function Credentials() {
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true, margin: "-100px" }}
-                      variants={fadeUp}
-                      onClick={() => setSelectedArtifact({ src: cert.img, alt: cert.label })}
                     >
                       <span className="ar-num">{(j + 1).toString().padStart(2, '0')}</span>
                       <span className="ar-provider">{cert.provider}</span>
                       <span className="ar-label">{cert.label}</span>
-                      <span className="ar-view">VIEW ↗</span>
-                      
-                      {/* Desktop hover preview */}
-                      <div className="ar-preview">
-                        <img src={cert.img} alt={cert.label} loading="lazy" />
-                      </div>
-                      
-                      {/* Mobile inline image */}
-                      <div className="ar-mobile-img">
-                        <img src={cert.img} alt={cert.label} loading="lazy" />
-                      </div>
                     </m.div>
                   ))}
                 </div>

@@ -132,7 +132,7 @@ export default function Resume() {
             
             <Reveal y={16} duration={0.8}>
               <div className="res-hero-eyebrow">
-                <span className="res-badge">PROFESSIONAL RECORD / 2026</span>
+                <span className="res-badge">PROFESSIONAL RECORD / 2024</span>
               </div>
             </Reveal>
 
@@ -271,7 +271,7 @@ export default function Resume() {
                   </div>
                   <div className="rec-signal-item">
                     <span className="sig-key">CURRENT ROLE:</span>
-                    <span className="sig-val">Technical Trainer &mdash; Datavalley Inc (2026 - Present)</span>
+                    <span className="sig-val">Technical Trainer &mdash; Datavalley Inc (June 2024 - Present)</span>
                   </div>
                   <div className="rec-signal-item">
                     <span className="sig-key">ENGINEERING FOCUS:</span>

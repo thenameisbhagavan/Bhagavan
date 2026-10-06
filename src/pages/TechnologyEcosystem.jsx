@@ -99,7 +99,7 @@ export default function TechnologyEcosystem() {
         <section className="eco-hero" data-nav-theme="light">
           <div className="eco-bounds">
             <m.div className="eco-hero-eyebrow" initial="hidden" animate="visible" variants={fadeUp}>
-              TECHNOLOGY ECOSYSTEM / ENGINEERING ARCHITECTURE / 2026
+              TECHNOLOGY ECOSYSTEM / ENGINEERING ARCHITECTURE / 2024
             </m.div>
             <m.h1 className="eco-hero-headline" initial="hidden" animate="visible" variants={fadeUp}>
               Technology is not the stack.<br/>

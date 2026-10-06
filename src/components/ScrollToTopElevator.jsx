@@ -70,7 +70,7 @@ export default function ScrollToTopElevator() {
             {/* Ambient Glow behind elevator */}
             <div className="scroll-elevator-glow" />
 
-            {/* Circular Scroll Progress Ring (2026 Apple VisionOS style) */}
+            {/* Circular Scroll Progress Ring (2024 Apple VisionOS style) */}
             <svg className="scroll-progress-ring" viewBox="0 0 52 52">
               {/* Background Track */}
               <circle

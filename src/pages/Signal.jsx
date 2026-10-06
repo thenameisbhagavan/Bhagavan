@@ -171,7 +171,7 @@ export default function Signal() {
           <m.div className="sh-wrapper" initial="hidden" animate="visible" variants={fadeUpStagger}>
             <m.div className="sh-meta" variants={fadeUpItem}>
               <span>SIGNAL</span>
-              <span>THE NAME IS BHAGAVAN / 2026</span>
+              <span>THE NAME IS BHAGAVAN / 2024</span>
             </m.div>
             
             <m.div className="sh-rule" variants={ruleDraw} />

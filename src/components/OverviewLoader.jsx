@@ -91,7 +91,7 @@ export default function OverviewLoader({ onComplete, prefersReducedMotion = fals
             transition={{ duration: 0.8, ease: appleEase }}
           >
             <span>THE NAME IS BHAGAVAN</span>
-            <span>ENGINEERING / 2026</span>
+            <span>ENGINEERING / 2024</span>
           </m.div>
         </div>
 

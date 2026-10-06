@@ -111,7 +111,7 @@ export default function Vision() {
         <section className="vision-hero" data-nav-theme="light">
           <div className="vision-bounds">
             <m.div className="vision-hero-eyebrow" initial="hidden" animate="visible" variants={fadeUp}>
-              PERSPECTIVE / HOW I THINK / 2026
+              PERSPECTIVE / HOW I THINK / 2024
             </m.div>
             <m.h1 className="vision-hero-headline" initial="hidden" animate="visible" variants={fadeUpSlow}>
               How I think about<br/>what I'm building.

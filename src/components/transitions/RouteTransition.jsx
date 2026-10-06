@@ -5,7 +5,7 @@ const TransitionContext = createContext();
 
 export const useTransitionRegistry = () => useContext(TransitionContext);
 
-// Shared ease for all 2026 editorial motion
+// Shared ease for all 2024 editorial motion
 export const appleEase = [0.22, 1, 0.36, 1];
 
 export function RouteTransitionProvider({ children }) {

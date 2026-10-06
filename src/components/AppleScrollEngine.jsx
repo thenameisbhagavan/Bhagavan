@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 /**
- * AppleScrollEngine (2026 Apple Keynote & Apple.com High-End Live Scroll Engine)
+ * AppleScrollEngine (2024 Apple Keynote & Apple.com High-End Live Scroll Engine)
  * 1. Desktop: Transforms fast, jerky Windows wheel scrolling into slow, velvety 60fps momentum (lerp 0.052).
  * 2. Desktop + Mobile: Live Apple.com scroll-linked scrubbing, parallax depth, soft blur-to-sharp reveals,
  *    and smooth scale transitions for every section & card across all portfolio pages.

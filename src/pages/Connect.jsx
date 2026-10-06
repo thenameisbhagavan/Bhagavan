@@ -148,7 +148,7 @@ export default function Connect() {
             <div className="ch-grid">
               
               <m.div className="ch-left" initial="hidden" animate="visible" variants={fadeUp}>
-                <div className="c-label">OPEN CHANNEL / 2026</div>
+                <div className="c-label">OPEN CHANNEL / 2024</div>
                 <h1 className="ch-headline">
                   Open to<br/>learning.
                 </h1>
@@ -439,7 +439,7 @@ export default function Connect() {
             <m.div className="cx-signature" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <div className="cxs-status">
                 <span>CHANNEL STATUS / OPEN</span>
-                <span>SYSTEM SIGNATURE / TNB — 2026</span>
+                <span>SYSTEM SIGNATURE / TNB — 2024</span>
               </div>
               <BrandSignature />
             </m.div>

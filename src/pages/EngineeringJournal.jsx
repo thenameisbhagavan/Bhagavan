@@ -122,9 +122,9 @@ export default function EngineeringJournal() {
       <div className="j-bounds">
         
                 {/* ══════════════════════════════════════════════════════
-            1. HERO 2026
+            1. HERO 2024
         ══════════════════════════════════════════════════════ */}
-        <section className="j-hero-2026" data-nav-theme="dark">
+        <section className="j-hero-2024" data-nav-theme="dark">
           <div className="jh26-aurora">
             <div className="aurora-layer aurora-1"></div>
             <div className="aurora-layer aurora-2"></div>
@@ -157,7 +157,7 @@ export default function EngineeringJournal() {
               <span className="jh26-strip-dot">·</span>
               <span>PRODUCT DESIGN</span>
               <span className="jh26-strip-dot">·</span>
-              <span>2026</span>
+              <span>2024</span>
             </m.div>
 
             <m.div className="jh26-rule jh26-rule-bottom" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.8, ease: appleEase, delay: 0.5 }} />
@@ -471,7 +471,7 @@ export default function EngineeringJournal() {
           <m.div className="j-status-block" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
             <div className="jsb-label">FORMAT</div><div className="jsb-value">ENGINEERING JOURNAL</div>
             <div className="jsb-label">FOCUS</div><div className="jsb-value">AI SYSTEMS + PRODUCT ENGINEERING</div>
-            <div className="jsb-label">UPDATED</div><div className="jsb-value">2026</div>
+            <div className="jsb-label">UPDATED</div><div className="jsb-value">2024</div>
             <div className="jsb-label">STYLE</div><div className="jsb-value">LONG-FORM + FIELD NOTES</div>
             <div className="jsb-label">STATUS</div><div className="jsb-value">ACTIVELY BUILDING</div>
           </m.div>

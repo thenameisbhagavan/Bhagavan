@@ -84,7 +84,7 @@ export default function VerificationCenter() {
                 </div>
                 <div className="vc-trust-meta-item">
                   <span className="vc-trust-meta-label">Last Updated</span>
-                  <span className="vc-trust-meta-value">August 2026</span>
+                  <span className="vc-trust-meta-value">August 2024</span>
                 </div>
               </div>
               <p className="vc-trust-text">

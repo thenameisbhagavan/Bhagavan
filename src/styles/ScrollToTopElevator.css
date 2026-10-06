@@ -1,5 +1,5 @@
 /* ==========================================================================
-   APPLE 2026 HUMAN INTERFACE SYSTEM - VISIONOS SCROLL ELEVATOR
+   APPLE 2024 HUMAN INTERFACE SYSTEM - VISIONOS SCROLL ELEVATOR
    ========================================================================== */
 
 .apple-scroll-elevator {
@@ -57,7 +57,7 @@
   transition: stroke-dashoffset 0.15s ease-out;
 }
 
-/* Apple 2026 High-Contrast Floating Elevator Button */
+/* Apple 2024 High-Contrast Floating Elevator Button */
 .scroll-elevator-btn {
   position: relative;
   width: 42px;

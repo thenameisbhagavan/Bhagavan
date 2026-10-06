@@ -80,7 +80,7 @@ const QUICK_LINKS = [
 const ease = [0.16, 1, 0.3, 1];
 
 // ─────────────────────────────────────────────
-// 2026 APPLE-STYLE LIGATURE LOGO
+// 2024 APPLE-STYLE LIGATURE LOGO
 // ─────────────────────────────────────────────
 const TBLogo = () => (
   <m.div 
@@ -158,7 +158,7 @@ const TBLogo = () => (
 );
 
 // ─────────────────────────────────────────────
-// 2026 APPLE-STYLE SPATIAL RESUME LOGO
+// 2024 APPLE-STYLE SPATIAL RESUME LOGO
 // ─────────────────────────────────────────────
 const Resume3DLogo = () => {
   return (
@@ -1219,7 +1219,7 @@ export default function Navbar() {
       <nav className={shellClass}>
         <div className="nav-inner">
 
-          {/* 2026 Animated TB Logo */}
+          {/* 2024 Animated TB Logo */}
           <button className="nav-wordmark apple-pressable" onClick={() => go("/")} aria-label="TB — Home">
             <TBLogo />
           </button>

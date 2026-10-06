@@ -5,7 +5,7 @@ import heroImg from '../../assets/profile-hero.jpg';
 import '../../styles/RouteTransitions.css';
 
 /**
- * PageIntro — 2026 Cinematic Route Transition
+ * PageIntro — 2024 Cinematic Route Transition
  * 
  * A unified, image-driven intro overlay. Uses the master portrait
  * and brand signature to create a premium loading experience

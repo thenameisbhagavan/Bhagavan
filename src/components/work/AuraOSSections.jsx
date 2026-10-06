@@ -1374,7 +1374,7 @@ export function ClosingSection() {
         >
           <div className="aos-wwdc-seal">
             <Sparkles size={14} color="#9f55ff" />
-            <span>AuraOS • Engineered for Human Potential • Bhagavan 2026</span>
+            <span>AuraOS • Engineered for Human Potential • Bhagavan 2024</span>
           </div>
 
           <div>
