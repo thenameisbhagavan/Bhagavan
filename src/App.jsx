@@ -13,6 +13,7 @@ const CareerOS = lazy(() => import("./pages/work/CareerOS"));
 const VoltDrive = lazy(() => import("./pages/work/VoltDrive"));
 const AuraOS = lazy(() => import("./pages/work/AuraOS"));
 const Veritas = lazy(() => import("./pages/work/Veritas"));
+const DataValleyAssessment = lazy(() => import("./pages/work/DataValleyAssessment"));
 const Experience = lazy(() => import("./pages/Experience"));
 const Vision = lazy(() => import("./pages/Vision"));
 const Connect = lazy(() => import("./pages/Connect"));
@@ -129,12 +130,15 @@ function App() {
               <Route path="/home" element={<Navigate to="/" replace />} />
 
               {/* SEO-friendly Aliases */}
+              <Route path="/about" element={<Navigate to="/experience" replace />} />
               <Route path="/projects" element={<Navigate to="/work" replace />} />
               <Route path="/skills" element={<Navigate to="/ecosystem" replace />} />
               <Route path="/contact" element={<Navigate to="/connect" replace />} />
 
               {/* Core Experiences */}
               <Route path="/work" element={<LazyRoute><Work /></LazyRoute>} />
+              <Route path="/work/data-valley-assessment-platform" element={<LazyRoute><DataValleyAssessment /></LazyRoute>} />
+              <Route path="/work/dv-assessments" element={<Navigate to="/work/data-valley-assessment-platform" replace />} />
               <Route path="/work/careeros" element={<LazyRoute><CareerOS /></LazyRoute>} />
               <Route path="/work/voltdrive" element={<LazyRoute><VoltDrive /></LazyRoute>} />
               <Route path="/work/auraos" element={<LazyRoute><AuraOS /></LazyRoute>} />

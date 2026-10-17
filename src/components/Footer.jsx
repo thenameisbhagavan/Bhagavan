@@ -1,15 +1,11 @@
 import React, { memo, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { m, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import SEO from "./SEO";
-import Reveal from "./motion/Reveal";
-import MaskReveal from "./motion/MaskReveal";
-import ScaleReveal from "./motion/ScaleReveal";
-import MagneticLink from "./motion/MagneticLink";
+import { ArrowUpRight, ArrowRight, Mail } from "lucide-react";
 import { socialLinks } from "../constants/socialLinks";
 
 // System preview assets & logo
+import dvAssessmentImg from "../assets/datavalley-assessment-platform.png";
 import careerOsImg from "../assets/careeros-new.jpg";
 import auraOsImg from "../assets/aurabot-new.png";
 import voltDriveImg from "../assets/ev.png";
@@ -20,7 +16,7 @@ import "../styles/Footer.css";
 
 const Footer = memo(function Footer() {
   const navigate = useNavigate();
-  const [hoveredSystem, setHoveredSystem] = useState(null);
+  const [activeSystem, setActiveSystem] = useState(0);
 
   const handleNavigation = useCallback(
     (path) => {
@@ -31,40 +27,52 @@ const Footer = memo(function Footer() {
   );
 
   const navLinks = [
-    { num: "01", name: "OVERVIEW", path: "/" },
-    { num: "02", name: "PRODUCTS", path: "/work" },
-    { num: "03", name: "JOURNEY", path: "/experience" },
-    { num: "04", name: "CAPABILITIES", path: "/ecosystem" },
-    { num: "05", name: "CONNECT", path: "/connect" },
-    { num: "06", name: "RESUME", path: "/resume" }
+    { name: "Overview",       path: "/" },
+    { name: "Projects",       path: "/work" },
+    { name: "Experience",     path: "/experience" },
+    { name: "Innovation",     path: "/innovation" },
+    { name: "Connect",        path: "/connect" },
+    { name: "Resume",         path: "/resume" }
   ];
 
   const systems = [
     {
       id: "01",
+      name: "DV Assessments",
+      desc: "Enterprise Assessment Platform",
+      tag: "Next.js · Enterprise",
+      url: "https://dv-assesments.vercel.app/",
+      img: dvAssessmentImg
+    },
+    {
+      id: "02",
       name: "CareerOS",
       desc: "AI Career Intelligence Platform",
+      tag: "FastAPI · Intelligence",
       url: "https://careeros-thenameisbhagavan.vercel.app/",
       img: careerOsImg
     },
     {
-      id: "02",
+      id: "03",
       name: "AuraOS",
       desc: "Spatial AI OS & Memory Workspace",
+      tag: "React · Context OS",
       url: "https://aura-os-thenameisbhagavan.vercel.app/",
       img: auraOsImg
     },
     {
-      id: "03",
+      id: "04",
       name: "VERITAS",
       desc: "AI Trust & Fact Tracing Pipeline",
+      tag: "Python · Explainable AI",
       url: "https://veritas-thenameisbhagavan.vercel.app/",
       img: veritasImg
     },
     {
-      id: "04",
+      id: "05",
       name: "VoltDrive",
       desc: "EV Telemetry & Digital Showroom",
+      tag: "Telemetry · 3D Showroom",
       url: "https://voltdrive-thenameisbhagavan.vercel.app/",
       img: voltDriveImg
     }
@@ -73,215 +81,227 @@ const Footer = memo(function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer-sig" data-nav-theme="light">
-      {/* SPATIAL LOW-CONTRAST WATERMARK */}
-      <div className="footer-watermark pointer-events-none" aria-hidden="true">
-        TNB
-      </div>
-
+    <footer className="footer-sig" data-nav-theme="light" role="contentinfo">
       <div className="footer-sig-bounds">
         
         {/* ============================================================
-            ACT 01 — ENTRY & FINAL STATEMENT
+            ZONE A — SIGNATURE CLOSING STATEMENT
             ============================================================ */}
-        <div className="fsig-zone fsig-entry">
-          <Reveal y={16} duration={0.8}>
-            <div className="fsig-micro-label">
-              <span className="fsig-badge">TNB / SYSTEMS / {currentYear}</span>
-            </div>
-          </Reveal>
-
-          <div className="fsig-statement-wrap">
-            <MaskReveal duration={1.1} delay={0.1}>
-              <h2 className="fsig-statement">
+        <section className="fsig-zone fsig-statement-zone" aria-label="Closing Statement">
+          <div className="fsig-statement-grid">
+            <div className="fsig-statement-main">
+              <span className="fsig-eyebrow">TNB / ENGINEERING / {currentYear}</span>
+              <h2 className="fsig-statement-title">
                 THE WORK<br />
                 CONTINUES.
               </h2>
-            </MaskReveal>
-
-            <Reveal y={16} duration={0.8} delay={0.3}>
-              <div className="fsig-wordmark brand-cursive">
-                TheNameIsBhagavan
-              </div>
-            </Reveal>
+            </div>
+            
+            <div className="fsig-statement-aside">
+              <p className="fsig-statement-desc">
+                Software, intelligent systems, and ideas built to be useful.
+              </p>
+              <button 
+                className="fsig-connect-cta apple-pressable"
+                onClick={() => handleNavigation("/connect")}
+                aria-label="Start a conversation via Connect"
+              >
+                <span>Start a conversation</span>
+                <ArrowRight size={14} className="fsig-cta-arrow" />
+              </button>
+            </div>
           </div>
-        </div>
+        </section>
 
+        <div className="fsig-hairline" />
 
         {/* ============================================================
-            ACT 02 — INTERACTIVE EDITORIAL NAVIGATION INDEX
+            ZONE B — SELECTED WORK, INTELLIGENTLY SIMPLIFIED
             ============================================================ */}
-        <div className="fsig-zone fsig-nav-zone">
-          <Reveal y={16} duration={0.8}>
-            <span className="fsig-label">EXPLORE</span>
-          </Reveal>
-
-          <div className="fsig-nav-grid">
-            {navLinks.map((link, idx) => (
-              <Reveal key={link.num} y={20} duration={0.8} delay={idx * 0.05}>
-                <button
-                  className="fsig-nav-item"
-                  onClick={() => handleNavigation(link.path)}
-                >
-                  <span className="fsig-nav-num">{link.num}</span>
-                  <span className="fsig-nav-name">{link.name}</span>
-                  <span className="fsig-nav-arrow">&rarr;</span>
-                </button>
-              </Reveal>
-            ))}
+        <section className="fsig-zone fsig-work-zone" aria-label="Selected Systems">
+          <div className="fsig-section-head">
+            <span className="fsig-section-label">SELECTED WORK</span>
+            <span className="fsig-section-counter">05 SYSTEMS IN PRODUCTION</span>
           </div>
-        </div>
 
-        <div className="fsig-hairline"></div>
-
-
-        {/* ============================================================
-            ACT 03 — SELECTED SYSTEMS HOVER PREVIEW RAIL
-            ============================================================ */}
-        <div className="fsig-zone fsig-systems-zone">
-          <Reveal y={16} duration={0.8}>
-            <span className="fsig-label">SELECTED SYSTEMS</span>
-          </Reveal>
-
-          <div className="fsig-systems-container">
-            <div className="fsig-systems-list">
-              {systems.map((sys, idx) => (
-                <Reveal key={sys.id} y={20} duration={0.8} delay={idx * 0.08}>
+          <div className="fsig-work-layout">
+            {/* Left: Compact Editorial Index */}
+            <div className="fsig-work-list" role="list">
+              {systems.map((sys, idx) => {
+                const isSelected = activeSystem === idx;
+                return (
                   <a
+                    key={sys.id}
                     href={sys.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="fsig-system-row"
-                    onMouseEnter={() => setHoveredSystem(sys)}
-                    onMouseLeave={() => setHoveredSystem(null)}
-                    onClick={() => {
-                      if (window.innerWidth <= 768 && hoveredSystem?.id !== sys.id) {
-                        setHoveredSystem(sys);
-                      }
-                    }}
+                    className={`fsig-work-row ${isSelected ? "is-active" : ""}`}
+                    onMouseEnter={() => setActiveSystem(idx)}
+                    onFocus={() => setActiveSystem(idx)}
+                    role="listitem"
+                    aria-label={`${sys.name}: ${sys.desc}`}
                   >
-                    <span className="fs-row-id">{sys.id}</span>
-                    <span className="fs-row-name">{sys.name}</span>
-                    <span className="fs-row-desc">{sys.desc}</span>
-                    <span className="fs-row-arrow">↗</span>
+                    <div className="fwr-left">
+                      <span className="fwr-num">{sys.id}</span>
+                      <div className="fwr-info">
+                        <span className="fwr-name">{sys.name}</span>
+                        <span className="fwr-desc">{sys.desc}</span>
+                      </div>
+                    </div>
+                    <div className="fwr-right">
+                      <span className="fwr-tag">{sys.tag}</span>
+                      <ArrowUpRight size={16} className="fwr-arrow" />
+                    </div>
                   </a>
-                </Reveal>
-              ))}
+                );
+              })}
             </div>
 
-            {/* Anchored Preview Box */}
-            <div className={`fsig-preview-area ${hoveredSystem ? "has-preview" : ""}`}>
-              <AnimatePresence mode="wait">
-                {hoveredSystem && (
+            {/* Right: Anchored Editorial Preview Window */}
+            <div className="fsig-preview-container" aria-hidden="true">
+              <div className="fsig-preview-frame">
+                <AnimatePresence mode="wait">
                   <m.div
-                    key={hoveredSystem.id}
-                    className="fsig-preview-box"
-                    initial={{ opacity: 0, scale: 0.96, y: 8 }}
+                    key={systems[activeSystem].id}
+                    className="fsig-preview-card"
+                    initial={{ opacity: 0, scale: 0.98, y: 6 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 } }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    exit={{ opacity: 0, scale: 0.98, y: -4, transition: { duration: 0.16 } }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <img 
-                      src={hoveredSystem.img} 
-                      alt={`${hoveredSystem.name} preview`} 
-                      className="fsig-preview-img"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <div className="fsig-preview-meta">
-                      <span className="fpm-name">{hoveredSystem.name}</span>
-                      <span className="fpm-sub">SYSTEM PLATFORM</span>
+                    <div className="fpc-img-wrap">
+                      <img 
+                        src={systems[activeSystem].img} 
+                        alt={systems[activeSystem].name} 
+                        className="fpc-img"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="fpc-footer">
+                      <div className="fpc-meta">
+                        <span className="fpc-id">{systems[activeSystem].id}</span>
+                        <span className="fpc-title">{systems[activeSystem].name}</span>
+                      </div>
+                      <span className="fpc-status">DEPLOYED · LIVE VIEW ↗</span>
                     </div>
                   </m.div>
-                )}
-              </AnimatePresence>
+                </AnimatePresence>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className="fsig-hairline"></div>
-
+        <div className="fsig-hairline" />
 
         {/* ============================================================
-            ACT 04 — INVITATION & CONTACT
+            ZONE C — CONTACT AND NAVIGATION
             ============================================================ */}
-        <div className="fsig-zone fsig-contact-zone">
-          <Reveal y={20} duration={0.9}>
-            <h3 className="fsig-contact-statement">
-              OPEN TO MEANINGFUL<br />CONVERSATIONS.
-            </h3>
-          </Reveal>
-
-          <div className="fsig-contact-actions">
-            <Reveal y={20} duration={0.9} delay={0.15}>
-              <MagneticLink strength={0.3}>
+        <section className="fsig-zone fsig-contact-zone" aria-label="Contact and Navigation">
+          <div className="fsig-contact-grid">
+            
+            {/* Left Column: Direct Invitation */}
+            <div className="fsig-invite-block">
+              <span className="fsig-section-label">GET IN TOUCH</span>
+              <h3 className="fsig-invite-title">Have something worth building?</h3>
+              <p className="fsig-invite-desc">
+                Let's connect and discuss software, AI, or practical engineering.
+              </p>
+              
+              <div className="fsig-email-action">
                 <a 
                   href={socialLinks.email.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="fsig-email-cta apple-pressable"
+                  className="fsig-email-btn apple-pressable"
+                  aria-label="Send email to thenameisbhagavan@gmail.com"
                 >
-                  <span>EMAIL &rarr;</span>
+                  <Mail size={14} className="feb-icon" />
+                  <span>{socialLinks.email.handle}</span>
+                  <ArrowRight size={13} className="feb-arrow" />
                 </a>
-              </MagneticLink>
-            </Reveal>
-
-            <Reveal y={20} duration={0.9} delay={0.25}>
-              <div className="fsig-social-row">
-                <span className="social-label">FOLLOW THE WORK:</span>
-                <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer">GitHub</a>
-                <span className="dot-sep">&middot;</span>
-                <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <span className="dot-sep">&middot;</span>
-                <a href={socialLinks.instagram.url} target="_blank" rel="noopener noreferrer">Instagram</a>
-                <span className="dot-sep">&middot;</span>
-                <a href={socialLinks.twitter.url} target="_blank" rel="noopener noreferrer">X</a>
-                <span className="dot-sep">&middot;</span>
-                <a href={socialLinks.youtube.url} target="_blank" rel="noopener noreferrer">YouTube</a>
               </div>
-            </Reveal>
-          </div>
-        </div>
-
-        <div className="fsig-hairline"></div>
-
-
-        {/* ============================================================
-            ACT 05 — SYSTEM STATUS & FINAL BRAND STAMP
-            ============================================================ */}
-        <div className="fsig-zone fsig-closing-zone">
-          
-          <Reveal y={20} duration={0.9}>
-            <div className="fsig-system-status">
-              <span className="status-pulse-dot"></span>
-              <span className="status-text">CURRENTLY BUILDING: TECHNICAL AI/ML & DATA SCIENCE TRAINER @ DATA VALLEY &middot; AI SYSTEMS</span>
             </div>
-          </Reveal>
 
-          <div className="fsig-brand-stamp-row">
-            <Reveal y={20} duration={0.9} delay={0.1}>
-              <div className="fsig-stamp-left">
-                <img 
-                  src={logoImg} 
-                  alt="TheNameIsBhagavan Logo" 
-                  className="fsig-stamp-logo" 
-                  loading="lazy"
-                />
-                <div className="fsig-stamp-brand-info">
-                  <div className="fsig-stamp-name brand-cursive">TheNameIsBhagavan</div>
-                  <div className="fsig-stamp-meta">TNB / {currentYear}</div>
+            {/* Right Column: Compact Navigation & Social Links */}
+            <div className="fsig-links-block">
+              
+              <div className="fsig-nav-column">
+                <span className="fsig-column-label">NAVIGATION</span>
+                <nav className="fsig-routes-list" aria-label="Footer Navigation">
+                  {navLinks.map((item) => (
+                    <button
+                      key={item.name}
+                      onClick={() => handleNavigation(item.path)}
+                      className="fsig-route-link apple-pressable"
+                    >
+                      {item.name}
+                    </button>
+                  ))}
+                </nav>
+              </div>
+
+              <div className="fsig-social-column">
+                <span className="fsig-column-label">FOLLOW THE WORK</span>
+                <div className="fsig-social-links">
+                  {socialLinks.github && (
+                    <a href={socialLinks.github.url} target="_blank" rel="noopener noreferrer" className="fsig-social-link">
+                      <span>GitHub</span>
+                      <ArrowUpRight size={12} />
+                    </a>
+                  )}
+                  {socialLinks.linkedin && (
+                    <a href={socialLinks.linkedin.url} target="_blank" rel="noopener noreferrer" className="fsig-social-link">
+                      <span>LinkedIn</span>
+                      <ArrowUpRight size={12} />
+                    </a>
+                  )}
+                  {socialLinks.instagram && (
+                    <a href={socialLinks.instagram.url} target="_blank" rel="noopener noreferrer" className="fsig-social-link">
+                      <span>Instagram</span>
+                      <ArrowUpRight size={12} />
+                    </a>
+                  )}
+                  {socialLinks.twitter && (
+                    <a href={socialLinks.twitter.url} target="_blank" rel="noopener noreferrer" className="fsig-social-link">
+                      <span>X (Twitter)</span>
+                      <ArrowUpRight size={12} />
+                    </a>
+                  )}
+                  {socialLinks.youtube && (
+                    <a href={socialLinks.youtube.url} target="_blank" rel="noopener noreferrer" className="fsig-social-link">
+                      <span>YouTube</span>
+                      <ArrowUpRight size={12} />
+                    </a>
+                  )}
                 </div>
               </div>
-            </Reveal>
 
-            <Reveal y={20} duration={0.9} delay={0.2}>
-              <div className="fsig-copyright-info">
-                <span>&copy; {currentYear} TheNameIsBhagavan</span>
-                <span className="sub-copy">AI Product Engineering &middot; India</span>
-              </div>
-            </Reveal>
+            </div>
+
           </div>
-        </div>
+        </section>
+
+        <div className="fsig-hairline" />
+
+        {/* ============================================================
+            ZONE D — MINIMAL BRAND SIGNATURE
+            ============================================================ */}
+        <section className="fsig-bottom-bar" aria-label="Brand Signature and Copyright">
+          <div className="fsig-bottom-left">
+            <div className="fsig-brand-mark">
+              <img src={logoImg} alt="Bhagavan Logo" className="fsig-bottom-logo" />
+              <span className="fsig-bottom-wordmark">Bhagavan</span>
+            </div>
+            <span className="fsig-bottom-tagline">
+              Software Development &amp; AI Systems · India
+            </span>
+          </div>
+
+          <div className="fsig-bottom-right">
+            <span className="fsig-copyright">
+              &copy; {currentYear} TheNameIsBhagavan. All rights reserved.
+            </span>
+          </div>
+        </section>
 
       </div>
     </footer>

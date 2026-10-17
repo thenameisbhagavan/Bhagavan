@@ -1,227 +1,119 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { FileText, Github, Linkedin, Mail, Twitter, Youtube, Instagram } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { m, AnimatePresence } from "framer-motion";
+import { FileText, ArrowRight } from "lucide-react";
 import logoImg from "../assets/logo.png";
-import resumeIconImg from "../assets/resume-icon.png";
 import { socialLinks } from "../constants/socialLinks";
 
 // ─────────────────────────────────────────────
-// NAVIGATION ARCHITECTURE
+// DIRECT NAVIGATION ARCHITECTURE
 // ─────────────────────────────────────────────
 
 const PRIMARY_NAV = [
-  { label: "Overview", path: "/" },
-
-  { label: "Projects", path: "/work" },
-
-  { label: "Experience", path: "/experience" },
-
-  {
-    label: "Capabilities",
-    dropdown: [
-      { label: "Innovation", sub: "Research & Exploration", path: "/innovation" },
-      { label: "Certifications", sub: "Learning & Certifications", path: "/credentials" },
-      { label: "Academic Archive", sub: "Formal Education", path: "/academic-archive" },
-      { label: "Technology", sub: "Tools & Ecosystem", path: "/ecosystem" },
-    ],
-  },
-
-
-
-  { label: "Connect", path: "/connect" },
+  { label: "Overview",       path: "/" },
+  { label: "Projects",       path: "/work" },
+  { label: "Experience",     path: "/experience" },
+  { label: "Innovation",     path: "/innovation" },
+  { label: "Certifications", path: "/credentials" },
+  { label: "Connect",        path: "/connect" },
 ];
 
 const MOBILE_NAV = [
-  { label: "Overview",      path: "/" },
-  { label: "Products",      path: "/work" },
-  { label: "Journey",       path: "/experience" },
-  { label: "Innovation",    path: "/innovation" },
-  { label: "Credentials",   path: "/credentials" },
-  { label: "Academic Archive", path: "/academic-archive" },
-  { label: "Technology",    path: "/ecosystem" },
-
-  { label: "Resume",        path: "/resume" },
-  { label: "Connect",       path: "/connect" },
+  { label: "Overview",       path: "/" },
+  { label: "Projects",       path: "/work" },
+  { label: "Experience",     path: "/experience" },
+  { label: "Innovation",     path: "/innovation" },
+  { label: "Certifications", path: "/credentials" },
+  { label: "Connect",        path: "/connect" },
+  { label: "Resume",         path: "/resume" },
 ];
 
 // ─────────────────────────────────────────────
 // SEARCH INDEX — every page is searchable
 // ─────────────────────────────────────────────
 const SEARCH_PAGES = [
-  { title: "Overview",              path: "/",    keywords: "home about profile introduction" },
-  { title: "Products",              path: "/work",        keywords: "projects work portfolio careeros aurabot resume smart leave" },
-  { title: "VoltDrive - EV Experience", path: "/work/voltdrive", keywords: "voltdrive electric vehicle ev automotive showroom frontend key note apple" },
-  { title: "Journey",               path: "/experience",  keywords: "experience career timeline professional education data valley trainer" },
-  { title: "Vision",                path: "/vision",      keywords: "future goals mission direction roadmap perspective" },
-  { title: "Connect",               path: "/connect",     keywords: "contact email message hire collaboration" },
-  { title: "Innovation",            path: "/innovation",  keywords: "research engineering ai machine learning" },
-  { title: "Credentials",           path: "/credentials", keywords: "certifications awards achievements badges" },
-  { title: "Academic Archive",      path: "/academic-archive", keywords: "education university school btech certificates diploma" },
-  { title: "Technology Ecosystem",  path: "/ecosystem",   keywords: "stack architecture tools frameworks react node python mongodb" },
-  { title: "Resume",                path: "/resume",      keywords: "cv download pdf curriculum vitae" },
-  { title: "Engineering Journal",   path: "/journal",    keywords: "blog articles engineering journal writing insights posts systems experiments perspective" },
-  { title: "Signal",                path: "/signal",      keywords: "signal observing noticing workflow tools reading building experimenting desk latest observations current thinking perspective" },
+  { title: "Overview",                  path: "/",                  keywords: "home about profile introduction hero" },
+  { title: "Projects",                  path: "/work",              keywords: "projects work portfolio careeros aurabot veritas voltdrive agrivision assessment" },
+  { title: "DV Assessment Platform",    path: "/work/data-valley-assessment-platform", keywords: "datavalley assessment enterprise evaluation nextjs react mongodb" },
+  { title: "CareerOS",                  path: "/work/careeros",      keywords: "careeros intelligence system career trajectory ai" },
+  { title: "AuraOS",                    path: "/work/auraos",        keywords: "auraos spatial ai os memory context chatbot" },
+  { title: "VERITAS",                   path: "/work/veritas",       keywords: "veritas explainable intelligence fact tracing reasoning" },
+  { title: "VoltDrive - EV Experience", path: "/work/voltdrive",     keywords: "voltdrive electric vehicle ev showroom automotive" },
+  { title: "Experience",                path: "/experience",        keywords: "experience career timeline data valley technical trainer blackbucks studyowl pbr vits" },
+  { title: "Innovation",                path: "/innovation",        keywords: "innovation research engineering lab vegacode experiments" },
+  { title: "Certifications",           path: "/credentials",       keywords: "certifications awards credentials google aws infosys ibm" },
+  { title: "Academic Archive",          path: "/academic-archive",   keywords: "education university degree btech cmm provisional marks" },
+  { title: "Technology Ecosystem",      path: "/ecosystem",         keywords: "stack architecture tools python react node fastapi layers" },
+  { title: "Resume",                    path: "/resume",            keywords: "resume cv download pdf curriculum vitae" },
+  { title: "Vision",                    path: "/vision",            keywords: "future goals mission direction roadmap perspective philosophy" },
+  { title: "Connect",                   path: "/connect",           keywords: "contact email message hire collaboration" },
+  { title: "Engineering Journal",       path: "/journal",           keywords: "blog articles engineering journal writing insights systems" },
+  { title: "Signal",                    path: "/signal",            keywords: "signal observing workflow tools reading desk current thinking" },
 ];
 
-// Quick links shown when search is empty
 const QUICK_LINKS = [
-  { label: "CareerOS",           path: "/work" },
-  { label: "AI Products",        path: "/work" },
-  { label: "Experience",         path: "/experience" },
-  { label: "Certifications",     path: "/credentials" },
-  { label: "Tech Stack",         path: "/ecosystem" },
-  { label: "Contact",            path: "/connect" },
+  { label: "Projects",          path: "/work" },
+  { label: "Experience",        path: "/experience" },
+  { label: "Innovation",        path: "/innovation" },
+  { label: "Certifications",    path: "/credentials" },
+  { label: "Architecture",      path: "/ecosystem" },
+  { label: "Resume",            path: "/resume" },
+  { label: "Connect",           path: "/connect" },
 ];
 
-// ─────────────────────────────────────────────
-// EASING
-// ─────────────────────────────────────────────
 const ease = [0.16, 1, 0.3, 1];
 
 // ─────────────────────────────────────────────
-// 2024 APPLE-STYLE LIGATURE LOGO
+// COMPACT BRAND TREATMENT: [RED B LOGO] Bhagavan (Apple-grade Typography)
 // ─────────────────────────────────────────────
 const TBLogo = () => (
-  <m.div 
-    className="tb-logo-container"
-    initial={{ opacity: 0, x: -10 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-    style={{ 
-      display: 'flex', 
-      alignItems: 'center', 
-      gap: '12px'
-    }}
-  >
-    {/* 3D Apple-Style TB Icon */}
-    <m.div
-      className="tb-logo-3d-mark"
-      whileHover={{ 
-        scale: 1.05, 
-        rotateY: 15, 
-        rotateX: -5
-      }}
-      whileTap={{ scale: 0.95 }}
-      style={{
-        width: '38px',
-        height: '38px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-        perspective: '1000px',
-        transformStyle: 'preserve-3d',
-        willChange: 'transform'
-      }}
-    >
-      <img src={logoImg} alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'translateZ(10px)' }} />
-    </m.div>
-
-    {/* Brand Text */}
-    <span 
-      className="brand-text"
-      style={{
-        fontFamily: 'var(--font-display, "SF Pro Display", -apple-system, sans-serif)',
-        fontSize: '20px',
-        letterSpacing: '-0.03em',
-        display: 'inline-flex'
-      }}
-    >
-      <span className="desktop-logo-text" style={{ 
-        display: 'inline-flex',
-        fontFamily: '"Dancing Script", cursive',
-        fontSize: '28px',
-        fontWeight: 700,
-        background: 'linear-gradient(135deg, #2997FF 0%, #DA52D6 50%, #FF4C4C 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        letterSpacing: '1px',
-        paddingLeft: '4px'
-      }}>
-        thenameisbhagavan
-      </span>
-      <span className="mobile-logo-text" style={{ 
-        display: 'none', 
-        fontFamily: '"Dancing Script", cursive',
-        fontSize: '24px',
-        fontWeight: 700,
-        background: 'linear-gradient(135deg, #2997FF 0%, #DA52D6 50%, #FF4C4C 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        letterSpacing: '0.5px'
-      }}>
-        thenameisbhagavan
-      </span>
+  <div className="tb-logo-container">
+    <div className="tb-logo-mark">
+      <img 
+        src={logoImg} 
+        alt="Bhagavan" 
+      />
+    </div>
+    <span className="brand-text">
+      Bhagavan
     </span>
-  </m.div>
+  </div>
 );
 
 // ─────────────────────────────────────────────
-// 2024 APPLE-STYLE SPATIAL RESUME LOGO
-// ─────────────────────────────────────────────
-const Resume3DLogo = () => {
-  return (
-    <m.div
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '6px'
-      }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ duration: 0.2 }}
-    >
-      <img 
-        src={resumeIconImg} 
-        alt="Resume Icon" 
-        style={{
-          height: '24px',
-          width: '24px',
-          objectFit: 'contain',
-          display: 'block'
-        }}
-      />
-      <span className="nav-resume-text">
-        Resume
-      </span>
-    </m.div>
-  );
-};
-
-// ─────────────────────────────────────────────
-// STYLES — injected once
+// STYLES
 // ─────────────────────────────────────────────
 const CSS = `
   /* ── Navbar shell ── */
   .nav-shell {
     position: fixed;
     top: 0; left: 0; right: 0;
-    height: 68px;
+    height: 64px;
     z-index: 9000;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
-                backdrop-filter 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
-                border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
-                box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                backdrop-filter 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     border-bottom: 1px solid transparent;
   }
   
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .nav-shell, .nav-wordmark, .nav-btn, .nav-search-icon, .nav-mobile-btn, .nav-resume-btn, .nav-social-btn, .brand-text {
+    .nav-shell, .nav-wordmark, .nav-btn, .nav-search-icon, .nav-mobile-btn, .nav-resume-btn, .brand-text, .nav-resume-icon, .nav-resume-arrow {
       transition-duration: 0.01ms !important;
+      transform: none !important;
     }
   }
 
   .nav-shell.scrolled {
-    background: var(--nav-scrolled-bg, rgba(255, 255, 255, 0.85));
+    background: var(--nav-scrolled-bg, rgba(255, 255, 255, 0.88));
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid var(--nav-border-color, rgba(0,0,0,0.04));
-    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    border-bottom: 1px solid var(--nav-border-color, rgba(0, 0, 0, 0.06));
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   }
   
   .nav-shell.panel-open {
@@ -244,27 +136,87 @@ const CSS = `
     z-index: 9010;
   }
 
-  /* ── Wordmark ── */
+  /* ── Brand Wordmark & Apple Advanced Typography ── */
   .nav-wordmark {
     justify-self: start;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    flex-shrink: 1; /* Allow shrinking on narrow screens */
-    min-width: 0; /* Prevent grid blowout */
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+    flex-shrink: 0;
     outline: none;
     background: none;
     border: none;
     padding: 0;
+    margin: 0;
     cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
-  .nav-wordmark img {
-    height: 32px;
-    width: 32px;
-    border-radius: 8px;
+  .nav-wordmark:hover { 
+    opacity: 0.92;
   }
-  .nav-wordmark:hover { transform: scale(1.04); }
-  .nav-wordmark:focus-visible { outline: 2px solid rgba(0,102,204,0.5); outline-offset: 4px; border-radius: 4px; }
+  .nav-wordmark:active {
+    transform: scale(0.97);
+  }
+  .nav-wordmark:focus-visible { 
+    outline: 2px solid #e50914; 
+    outline-offset: 4px; 
+    border-radius: 6px; 
+  }
+
+  .tb-logo-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .tb-logo-mark {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: drop-shadow(0 1px 2px rgba(229, 9, 20, 0.18));
+  }
+  .tb-logo-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .nav-wordmark:hover .tb-logo-mark {
+    transform: scale(1.05) translateY(-0.5px);
+    filter: drop-shadow(0 3px 8px rgba(229, 9, 20, 0.28));
+  }
+
+  .brand-text {
+    font-family: var(--font-display, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif);
+    font-size: 17.5px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: #111111;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transition: color 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+  }
+  .nav-wordmark:hover .brand-text {
+    color: #000000;
+  }
+
+  /* Dark mode brand adaptation */
+  .nav-shell.nav-dark-mode .brand-text {
+    color: #f5f5f7;
+  }
+  .nav-shell.nav-dark-mode .nav-wordmark:hover .brand-text {
+    color: #ffffff;
+  }
 
   /* ── Desktop links ── */
   .nav-links {
@@ -274,14 +226,23 @@ const CSS = `
     gap: 28px;
     height: 100%;
   }
-  @media (max-width: 900px) { 
+
+  /* Responsive spacing across desktop & tablet widths */
+  @media (max-width: 1120px) {
+    .nav-links { gap: 20px; }
+    .nav-btn { font-size: 13.5px; }
+    .nav-inner { padding: 0 28px; }
+  }
+
+  @media (max-width: 980px) {
+    .nav-links { gap: 14px; }
+    .nav-btn { font-size: 13px; }
+    .nav-inner { padding: 0 20px; }
+  }
+
+  @media (max-width: 860px) { 
     .nav-links { display: none; }
     .nav-inner { padding: 0 16px; }
-    .desktop-logo-text { display: none !important; }
-    .mobile-logo-text { display: inline-flex !important; font-size: clamp(18px, 5vw, 22px) !important; }
-    .nav-wordmark {
-      gap: 8px !important;
-    }
   }
 
   /* ── Single nav item ── */
@@ -295,190 +256,48 @@ const CSS = `
   .nav-btn {
     background: none;
     border: none;
-    padding: 0;
-    height: 100%;
-    display: flex;
+    padding: 6px 4px;
+    height: auto;
+    display: inline-flex;
     align-items: center;
-    font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+    font-family: var(--font-system, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif);
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 500;
     color: var(--nav-text-color, #111111);
-    opacity: 0.8;
-    letter-spacing: 0.01em;
+    opacity: 0.92;
+    letter-spacing: -0.01em;
     cursor: pointer;
     white-space: nowrap;
-    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: color 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     outline: none;
   }
   .nav-btn:hover { 
     opacity: 1;
+    color: #e50914;
     transform: translateY(-1px);
   }
   .nav-btn.active {
     opacity: 1;
-    font-weight: 500;
+    color: var(--nav-text-color, #111111);
+    font-weight: 650;
+  }
+  .nav-btn.active::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 4px;
+    right: 4px;
+    height: 2px;
+    background: #e50914;
+    border-radius: 99px;
   }
   .nav-btn:focus-visible {
-    outline: 2px solid rgba(0,102,204,0.5);
-    outline-offset: -2px;
+    outline: 2px solid #e50914;
+    outline-offset: 3px;
     border-radius: 4px;
-  }
-
-  /* ── Intelligence dropdown panel ── */
-  .nav-dropdown {
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 12px;
-    padding: 8px;
-    min-width: 240px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-    z-index: 9020;
-  }
-
-  .nav-dropdown-item {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding: 10px 12px;
-    border-radius: 8px;
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    transition: background 0.15s ease;
-    text-decoration: none;
-  }
-  .nav-dropdown-item:hover { background: rgba(0,0,0,0.03); }
-
-  .nav-dropdown-label {
-    font-size: 13px;
-    font-weight: 500;
-    color: #1d1d1f;
-  }
-
-  .nav-dropdown-sub {
-    font-size: 11px;
-    font-weight: 400;
-    color: #86868b;
-  }
-
-  .nav-dropdown-divider {
-    height: 1px;
-    background: rgba(0,0,0,0.04);
-    margin: 4px 8px;
-  }
-
-  /* ── Perspective Editorial Dropdown ── */
-  .nav-perspective-dropdown {
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 12px;
-    padding: 16px;
-    width: 320px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-    z-index: 9020;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .pd-header {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 0 12px 16px 12px;
-    border-bottom: 1px solid rgba(0,0,0,0.04);
-    margin-bottom: 8px;
-  }
-
-  .pd-title {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    color: #111111;
-  }
-
-  .pd-subtitle {
-    font-family: var(--font-signal-mono, "JetBrains Mono", monospace);
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    color: #86868b;
-  }
-
-  .pd-item {
-    display: grid;
-    grid-template-columns: 24px 1fr;
-    gap: 12px;
-    padding: 12px;
-    border-radius: 8px;
-    background: none;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-
-  .pd-item:hover {
-    background: rgba(0,0,0,0.02);
-    transform: translateX(4px);
-  }
-
-  .pd-item-num {
-    font-family: var(--font-signal-mono, "JetBrains Mono", monospace);
-    font-size: 10px;
-    color: #86868b;
-    margin-top: 2px;
-    transition: opacity 0.2s ease;
-  }
-
-  .pd-item:hover .pd-item-num {
-    opacity: 0.4;
-  }
-
-  .pd-item-content {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .pd-item-label {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: #111111;
-  }
-
-  .pd-item-sub {
-    font-size: 11px;
-    color: #6B6B6B;
-    line-height: 1.4;
-    transition: color 0.2s ease;
-  }
-
-  .pd-item:hover .pd-item-sub {
-    color: #111111;
-  }
-
-  .pd-preview {
-    margin-top: 8px;
-    padding: 12px;
-    background: rgba(0,0,0,0.02);
-    border-radius: 6px;
-    font-size: 11px;
-    line-height: 1.5;
-    color: #111111;
-    font-style: italic;
   }
 
   /* ── Right actions ── */
@@ -486,230 +305,269 @@ const CSS = `
     justify-self: end;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     flex-shrink: 0;
   }
 
-  .nav-social-btn {
-    position: relative;
+  /* ── Search Button ── */
+  .nav-search-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     background: none;
     border: none;
-    border-radius: 0;
+    border-radius: 8px;
     padding: 0;
     cursor: pointer;
-    opacity: 0.8;
-    transition: opacity 0.2s ease, color 0.35s ease;
+    color: var(--nav-text-color, #111111);
+    opacity: 0.88;
+    transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
     outline: none;
     flex-shrink: 0;
-    text-decoration: none;
-    color: inherit;
+  }
+  .nav-search-icon:hover {
+    opacity: 1;
+    color: #e50914;
+    transform: scale(1.05);
+  }
+  .nav-search-icon:focus-visible {
+    outline: 2px solid #e50914;
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 
+  /* ── Redesigned Sophisticated Resume CTA ── */
   .nav-resume-btn {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 34px;
-    padding: 4px 12px;
-    background: rgba(0, 102, 204, 0.08);
-    border: 1px solid rgba(0, 102, 204, 0.2);
-    border-radius: 8px;
+    gap: 6px;
+    height: 33px;
+    padding: 0 11px 0 9px;
+    background: #ffffff;
+    border: 1px solid rgba(229, 9, 20, 0.4);
+    border-radius: 7px;
     cursor: pointer;
-    opacity: 0.95;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #1d1d1f;
+    transition: background-color 0.18s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1);
     outline: none;
     flex-shrink: 0;
     text-decoration: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(229, 9, 20, 0.04);
   }
-  .nav-resume-btn:hover {
-    opacity: 1;
-    background: rgba(0, 102, 204, 0.15);
-    border-color: rgba(0, 102, 204, 0.4);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.18);
-  }
-  .nav-resume-btn:focus-visible {
-    outline: 2px solid rgba(0, 102, 204, 0.5);
-    outline-offset: 2px;
-    border-radius: 8px;
-  }
-  .nav-social-btn:hover {
-    opacity: 1;
-  }
-  .nav-social-btn:focus-visible {
-    outline: 2px solid rgba(0, 102, 204, 0.5);
-    outline-offset: 2px;
-    border-radius: 4px;
+
+  .nav-resume-icon {
+    flex-shrink: 0;
+    color: #e50914;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s ease;
   }
 
   .nav-resume-text {
-    color: #0066CC;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.01em;
+    color: #1d1d1f;
+    font-family: var(--font-system, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif);
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: -0.015em;
     line-height: 1;
+    transition: color 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
+  .nav-resume-arrow {
+    flex-shrink: 0;
+    color: rgba(229, 9, 20, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-left: -1px;
+  }
+
+  /* Hover state: smooth transition to solid favicon-red */
+  .nav-resume-btn:hover {
+    background: #e50914;
+    border-color: #e50914;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(229, 9, 20, 0.28);
+  }
+  .nav-resume-btn:hover .nav-resume-icon {
+    color: #ffffff;
+    transform: translateY(-0.5px);
+  }
+  .nav-resume-btn:hover .nav-resume-text {
+    color: #ffffff;
+  }
+  .nav-resume-btn:hover .nav-resume-arrow {
+    color: #ffffff;
+    transform: translateX(1.5px);
+  }
+
+  /* Pressed state */
+  .nav-resume-btn:active {
+    background: #c70812;
+    border-color: #c70812;
+    transform: scale(0.97) translateY(0);
+    box-shadow: 0 2px 6px rgba(229, 9, 20, 0.2);
+  }
+  .nav-resume-btn:active .nav-resume-icon,
+  .nav-resume-btn:active .nav-resume-text,
+  .nav-resume-btn:active .nav-resume-arrow {
+    color: #ffffff;
+  }
+
+  /* Focus state */
+  .nav-resume-btn:focus-visible {
+    outline: 2px solid #e50914;
+    outline-offset: 2px;
+  }
+
+  /* Dark mode */
   .nav-shell.nav-dark-mode .nav-resume-btn {
-    background: rgba(41, 151, 255, 0.12);
-    border-color: rgba(41, 151, 255, 0.28);
-  }
-  .nav-shell.nav-dark-mode .nav-resume-btn:hover {
-    background: rgba(41, 151, 255, 0.22);
-    border-color: rgba(41, 151, 255, 0.45);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(229, 9, 20, 0.6);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   }
   .nav-shell.nav-dark-mode .nav-resume-text {
-    color: #38bdf8;
-  }
-
-  /* Tooltip */
-  .nav-social-btn::after {
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%) translateY(4px);
-    background: #000000;
     color: #ffffff;
-    font-family: -apple-system, 'SF Pro Text', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-    padding: 5px 10px;
-    border-radius: 6px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s ease, transform 0.2s ease;
   }
-  .nav-social-btn[data-social="github"]::after { content: 'GitHub'; }
-  .nav-social-btn[data-social="linkedin"]::after { content: 'LinkedIn'; }
-  .nav-social-btn[data-social="email"]::after { content: 'Email'; }
-
-  .nav-social-btn:hover::after {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+  .nav-shell.nav-dark-mode .nav-resume-icon {
+    color: #ff3b30;
+  }
+  .nav-shell.nav-dark-mode .nav-resume-arrow {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .nav-shell.nav-dark-mode .nav-resume-btn:hover {
+    background: #e50914;
+    border-color: #e50914;
+  }
+  .nav-shell.nav-dark-mode .nav-resume-btn:hover .nav-resume-text,
+  .nav-shell.nav-dark-mode .nav-resume-btn:hover .nav-resume-icon,
+  .nav-shell.nav-dark-mode .nav-resume-btn:hover .nav-resume-arrow {
+    color: #ffffff;
   }
 
-  @media (max-width: 900px) {
-    .nav-actions .nav-social-btn {
-      display: none;
+  @media (max-width: 480px) {
+    .nav-actions {
+      gap: 9px;
+    }
+    .nav-resume-btn {
+      height: 32px;
+      padding: 0 9px 0 7px;
+      gap: 4px;
+    }
+    .nav-resume-text {
+      font-size: 11.5px;
     }
   }
 
-  /* ── Mobile toggle ── */
+  /* ── Mobile menu toggle ── */
   .nav-mobile-btn {
     display: none;
     background: none;
     border: none;
-    padding: 0;
+    padding: 6px;
     cursor: pointer;
-    transition: opacity 0.2s ease, color 0.35s ease;
+    color: var(--nav-text-color, #111111);
+    transition: opacity 0.2s ease, color 0.2s ease;
+    outline: none;
   }
-  .nav-mobile-btn:hover { opacity: 0.55; }
-  @media (max-width: 900px) { .nav-mobile-btn { display: flex; align-items: center; } }
+  .nav-mobile-btn:hover { opacity: 0.6; }
+  .nav-mobile-btn:focus-visible {
+    outline: 2px solid #e50914;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  @media (max-width: 860px) {
+    .nav-mobile-btn { display: inline-flex; align-items: center; justify-content: center; }
+  }
 
   /* ── Mobile full-screen sheet ── */
   .nav-mobile-sheet {
     position: fixed;
     inset: 0;
-    background: rgba(255,255,255,0.96);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
-    z-index: 8990;
+    z-index: 9999;
     display: flex;
     flex-direction: column;
-    padding: 100px 40px 60px;
+    padding: 90px 32px 50px;
     overflow-y: auto;
   }
 
+  .nav-mobile-links-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
   .nav-mobile-link {
-    font-size: clamp(32px, 7vw, 52px);
+    font-size: clamp(28px, 6.5vw, 44px);
     font-weight: 700;
-    letter-spacing: -0.04em;
-    color: #1d1d1f;
+    letter-spacing: -0.035em;
+    color: #111111;
     background: none;
     border: none;
     text-align: left;
-    padding: 10px 0;
+    padding: 8px 0;
     cursor: pointer;
-    line-height: 1.1;
-    transition: opacity 0.2s ease, transform 0.25s ease;
+    line-height: 1.15;
+    transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
     text-decoration: none;
     display: block;
+    font-family: var(--font-display, "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
   }
   .nav-mobile-link:hover {
-    opacity: 0.4;
-    transform: translateX(8px);
+    color: #e50914;
+    transform: translateX(6px);
+  }
+  .nav-mobile-link.active {
+    color: #e50914;
+  }
+
+  .nav-mobile-resume-link {
+    color: #e50914 !important;
+    font-weight: 700 !important;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   .nav-mobile-close {
     position: absolute;
-    top: 24px;
-    right: 28px;
-    background: rgba(0,0,0,0.06);
+    top: 20px;
+    right: 24px;
+    background: rgba(0, 0, 0, 0.05);
     border: none;
     border-radius: 50%;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 18px;
-    color: #1d1d1f;
-    transition: background 0.2s ease;
+    font-size: 16px;
+    color: #111111;
+    transition: background 0.2s ease, transform 0.2s ease;
+    outline: none;
   }
-  .nav-mobile-close:hover { background: rgba(0,0,0,0.1); }
-
-  .nav-mobile-divider {
-    height: 1px;
-    background: rgba(0,0,0,0.06);
-    margin: 16px 0;
+  .nav-mobile-close:hover { 
+    background: rgba(0, 0, 0, 0.1); 
+    transform: scale(1.05);
   }
-
-  .nav-mobile-header {
-    font-family: var(--font-signal-mono, "JetBrains Mono", monospace);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: #86868b;
-    margin-top: 24px;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-  }
-
-  .nav-mobile-sublink {
-    font-size: clamp(20px, 5vw, 28px);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: #1d1d1f;
-    background: none;
-    border: none;
-    text-align: left;
-    padding: 8px 0 8px 16px;
-    cursor: pointer;
-    line-height: 1.2;
-    transition: opacity 0.2s ease, transform 0.25s ease;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .nav-mobile-sublink span.sub {
-    font-size: 13px;
-    color: #86868b;
-    font-weight: 400;
-    letter-spacing: 0;
-  }
-
-  .nav-mobile-sublink:hover {
-    opacity: 0.4;
-    transform: translateX(8px);
+  .nav-mobile-close:focus-visible {
+    outline: 2px solid #e50914;
+    outline-offset: 2px;
   }
 
   /* ── Body lock ── */
@@ -718,36 +576,23 @@ const CSS = `
   /* ══════════════════════════════════════════
      APPLE SEARCH OVERLAY
      ══════════════════════════════════════════ */
-
-  .nav-search-icon {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: opacity 0.2s ease, color 0.35s ease;
-  }
-  .nav-search-icon:hover { opacity: 0.5; }
-
-  /* Overlay backdrop */
   .search-overlay-bg {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.35);
     z-index: 9050;
     cursor: pointer;
   }
 
-  /* Search container */
   .search-container {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 9060;
-    background: rgba(255,255,255,0.98);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   }
 
   .search-inner {
@@ -756,17 +601,18 @@ const CSS = `
     padding: 0 32px;
   }
 
-  /* Input row */
   .search-input-row {
     display: flex;
     align-items: center;
     gap: 12px;
-    height: 44px;
+    height: 52px;
   }
 
   .search-input-icon {
     flex-shrink: 0;
     color: #86868b;
+    display: flex;
+    align-items: center;
   }
 
   .search-input {
@@ -774,12 +620,13 @@ const CSS = `
     background: none;
     border: none;
     outline: none;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 400;
-    letter-spacing: -0.02em;
-    color: #000000;
+    letter-spacing: -0.015em;
+    color: #111111;
     padding: 0;
-    caret-color: #0066cc;
+    caret-color: #e50914;
+    font-family: inherit;
   }
   .search-input::placeholder {
     color: #86868b;
@@ -791,24 +638,26 @@ const CSS = `
     border: none;
     font-size: 13px;
     font-weight: 500;
-    color: #0066cc;
+    color: #e50914;
     cursor: pointer;
-    padding: 4px 0;
+    padding: 6px 4px;
     transition: opacity 0.15s ease;
     white-space: nowrap;
+    outline: none;
   }
   .search-close:hover { opacity: 0.7; }
 
-  /* Results area */
   .search-results {
     padding: 16px 0 24px;
-    border-top: 1px solid rgba(0,0,0,0.06);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    max-height: 480px;
+    overflow-y: auto;
   }
 
   .search-section-title {
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #86868b;
     padding: 0 0 12px;
@@ -829,7 +678,7 @@ const CSS = `
     text-decoration: none;
   }
   .search-result-item:hover {
-    background: rgba(0,0,0,0.04);
+    background: rgba(0, 0, 0, 0.04);
   }
 
   .search-result-arrow {
@@ -842,12 +691,13 @@ const CSS = `
   .search-result-item:hover .search-result-arrow {
     opacity: 1;
     transform: translateX(0);
+    color: #e50914;
   }
 
   .search-result-title {
     font-size: 14px;
     font-weight: 500;
-    color: #000000;
+    color: #111111;
     letter-spacing: -0.01em;
     flex: 1;
   }
@@ -861,51 +711,35 @@ const CSS = `
   .search-empty {
     font-size: 14px;
     color: #86868b;
-    padding: 12px 0;
+    padding: 16px 0;
   }
 
-  /* ── Dark Mode Overrides for Specific Pages (e.g. Insights) ── */
+  /* ── Dark Mode Overrides for Dark-Themed Routes ── */
   .nav-shell.nav-dark-mode {
-    --nav-text-color: #FFFFFF;
-    --nav-scrolled-bg: rgba(255, 255, 255, 0.03);
-    --nav-border-color: transparent;
+    --nav-text-color: #ffffff;
+    --nav-scrolled-bg: rgba(13, 13, 18, 0.88);
+    --nav-border-color: rgba(255, 255, 255, 0.08);
   }
   
   .nav-shell:not(.nav-dark-mode) {
     --nav-text-color: #111111;
-    --nav-scrolled-bg: rgba(255, 255, 255, 0.85);
-    --nav-border-color: rgba(0,0,0,0.04);
+    --nav-scrolled-bg: rgba(255, 255, 255, 0.88);
+    --nav-border-color: rgba(0, 0, 0, 0.06);
   }
 
-  /* Apply the variables with smooth transition */
   .nav-shell .nav-wordmark .brand-text,
   .nav-shell .nav-btn,
   .nav-shell .nav-search-icon,
-  .nav-shell .nav-mobile-btn,
-  .nav-shell .nav-resume-btn,
-  .nav-shell .nav-social-btn {
+  .nav-shell .nav-mobile-btn {
     color: var(--nav-text-color);
-    transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
   
-  /* Adjust scrolled background for dark mode */
   .nav-shell.nav-dark-mode.scrolled {
     background: var(--nav-scrolled-bg);
     border-color: var(--nav-border-color);
-    backdrop-filter: blur(20px) saturate(120%);
-    -webkit-backdrop-filter: blur(20px) saturate(120%);
-    box-shadow: none;
-  }
-  
-  /* When panel is open, revert to light mode temporarily so dropdowns are readable */
-  .nav-shell.nav-dark-mode.panel-open .nav-wordmark .brand-text,
-  .nav-shell.nav-dark-mode.panel-open .nav-btn,
-  .nav-shell.nav-dark-mode.panel-open .nav-search-icon,
-  .nav-shell.nav-dark-mode.panel-open .nav-mobile-btn,
-  .nav-shell.nav-dark-mode.panel-open .nav-resume-btn,
-  .nav-shell.nav-dark-mode.panel-open .nav-social-btn {
-    color: #111111;
-  }
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   }
 `;
 
@@ -916,14 +750,11 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [scrolled,     setScrolled]     = useState(false);
-  const [activeDD,     setActiveDD]     = useState(null);
-  const [mobileOpen,   setMobileOpen]   = useState(false);
-  const [searchOpen,   setSearchOpen]   = useState(false);
-  const [searchQuery,  setSearchQuery]  = useState("");
-  const [hoveredPerspective, setHoveredPerspective] = useState(null);
+  const [scrolled,    setScrolled]    = useState(false);
+  const [mobileOpen,  setMobileOpen]  = useState(false);
+  const [searchOpen,  setSearchOpen]  = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const ddTimer = useRef(null);
   const searchRef = useRef(null);
 
   // Scroll detection
@@ -948,10 +779,13 @@ export default function Navbar() {
     }
   }, [searchOpen]);
 
-  // Escape key closes search
+  // Escape key closes search & mobile menu
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "Escape") setSearchOpen(false);
+      if (e.key === "Escape") {
+        setSearchOpen(false);
+        setMobileOpen(false);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -959,13 +793,11 @@ export default function Navbar() {
 
   // Close everything on route change
   useEffect(() => {
-    setActiveDD(null);
     setMobileOpen(false);
     setSearchOpen(false);
   }, [location.pathname]);
 
   const go = useCallback((path) => {
-    setActiveDD(null);
     setMobileOpen(false);
     setSearchOpen(false);
     navigate(path);
@@ -981,43 +813,29 @@ export default function Navbar() {
     );
   }, [searchQuery]);
 
-  const isActive = (path, item = null) => {
-    if (item && item.dropdown) {
-      return item.dropdown.some(sub => location.pathname === sub.path);
-    }
+  const isActive = (path) => {
     return location.pathname === path ||
       (path === "/" && (location.pathname === "/overview" || location.pathname === "/home")) ||
       (path === "/work" && location.pathname.startsWith("/work/"));
   };
 
-  // Dropdown hover handlers
-  const handleItemEnter = (label) => {
-    clearTimeout(ddTimer.current);
-    setActiveDD(label);
-  };
-  const handleItemLeave = () => {
-    ddTimer.current = setTimeout(() => setActiveDD(null), 180);
-  };
-  const handleDDEnter = () => {
-    clearTimeout(ddTimer.current);
-  };
-  
-  // Dynamic theme detection
+  // Dynamic theme detection for pages with dark canvas
   const [activeNavTheme, setActiveNavTheme] = useState("light");
 
   useEffect(() => {
-    // Give DOM a tick to render
     const timer = setTimeout(() => {
       const sections = Array.from(document.querySelectorAll("[data-nav-theme]"));
       
       if (sections.length === 0) {
-        // Fallback
-        const isDark = location.pathname.startsWith("/work/voltdrive") || location.pathname.startsWith("/work/careeros") || location.pathname.startsWith("/work/auraos") || location.pathname.startsWith("/work/veritas") || location.pathname === "/journal";
+        const isDark = location.pathname.startsWith("/work/voltdrive") || 
+                       location.pathname.startsWith("/work/careeros") || 
+                       location.pathname.startsWith("/work/auraos") || 
+                       location.pathname.startsWith("/work/veritas") || 
+                       location.pathname === "/journal";
         setActiveNavTheme(isDark ? "dark" : "light");
         return;
       }
 
-      // Initial check based on scroll position (in case load in middle)
       let initialTheme = "light";
       for (const section of sections) {
         const rect = section.getBoundingClientRect();
@@ -1054,13 +872,11 @@ export default function Navbar() {
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
-  const isDarkTheme = activeNavTheme === "dark" || (mobileOpen && activeNavTheme !== "dark"); // Example: if mobile is light, but wait, mobile sheet is white, so force light.
-
   const shellClass = [
     "nav-shell",
     activeNavTheme === "dark" && !mobileOpen ? "nav-dark-mode" : "",
-    scrolled && !activeDD && !searchOpen ? "scrolled" : "",
-    (activeDD || searchOpen) ? "panel-open" : "",
+    scrolled && !searchOpen ? "scrolled" : "",
+    searchOpen ? "panel-open" : "",
   ].filter(Boolean).join(" ");
 
   // Search icon SVG
@@ -1101,7 +917,7 @@ export default function Navbar() {
                     ref={searchRef}
                     className="search-input"
                     type="text"
-                    placeholder="Search"
+                    placeholder="Search systems, experience, notes..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyDown={(e) => {
@@ -1158,204 +974,88 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.4, ease }}
+            transition={{ duration: 0.35, ease }}
           >
-            <button className="nav-mobile-close" onClick={() => setMobileOpen(false)}>✕</button>
+            <button className="nav-mobile-close" onClick={() => setMobileOpen(false)} aria-label="Close menu">✕</button>
 
-            {MOBILE_NAV.map((item, i) => {
-              if (item.isHeader) {
-                return (
-                  <React.Fragment key={item.label}>
-                    <div className="nav-mobile-divider" />
-                    <m.div
-                      className="nav-mobile-header"
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.05, duration: 0.4, ease }}
-                    >
-                      {item.label} <br/> <span style={{fontSize: "9px"}}>{item.sub}</span>
-                    </m.div>
-                  </React.Fragment>
-                );
-              }
-
-              if (item.indented) {
+            <div className="nav-mobile-links-wrapper">
+              {MOBILE_NAV.map((item, i) => {
+                const isResume = item.label === "Resume";
+                const isCurrent = isActive(item.path);
                 return (
                   <m.button
                     key={item.label}
-                    className="nav-mobile-sublink"
+                    className={`nav-mobile-link ${isResume ? "nav-mobile-resume-link" : ""} ${isCurrent ? "active" : ""}`}
                     onClick={() => go(item.path)}
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05, duration: 0.4, ease }}
+                    transition={{ delay: i * 0.04, duration: 0.35, ease }}
                   >
                     {item.label}
-                    <span className="sub">{item.sub}</span>
                   </m.button>
                 );
-              }
-
-              const isSecondary = item.label === "Resume" || item.label === "Connect";
-              return (
-                <m.button
-                  key={item.label}
-                  className="nav-mobile-link"
-                  onClick={() => go(item.path)}
-                  style={isSecondary ? { fontSize: "clamp(22px, 5vw, 34px)", fontWeight: 500, opacity: 0.5, marginTop: isSecondary && item.label === "Resume" ? "24px" : "0" } : {}}
-                  initial={{ opacity: 0, y: isSecondary ? 16 : 20 }}
-                  animate={isSecondary ? { opacity: 0.5, y: 0 } : { opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05, duration: 0.4, ease }}
-                >
-                  {item.label}
-                </m.button>
-              );
-            })}
-
+              })}
+            </div>
           </m.div>
         )}
       </AnimatePresence>
 
       {/* ── Navbar ── */}
-      <nav className={shellClass}>
+      <nav className={shellClass} role="navigation" aria-label="Primary Navigation">
         <div className="nav-inner">
 
-          {/* 2024 Animated TB Logo */}
-          <button className="nav-wordmark apple-pressable" onClick={() => go("/")} aria-label="TB — Home">
+          {/* Left: Red B Logo & "Bhagavan" */}
+          <button className="nav-wordmark apple-pressable" onClick={() => go("/")} aria-label="Bhagavan — Home">
             <TBLogo />
           </button>
 
-          {/* Desktop links */}
+          {/* Center: Direct Navigation Links */}
           <div className="nav-links">
-              {PRIMARY_NAV.map((item) => {
-                if (item.dropdown) {
-                  const open = activeDD === item.label;
-                  const isEditorial = item.type === "editorial";
-                  const itemIsActive = isActive(item.path, item);
-                  return (
-                    <div
-                      key={item.label}
-                      className="nav-item"
-                      onMouseEnter={() => handleItemEnter(item.label)}
-                      onMouseLeave={handleItemLeave}
-                    >
-                      <button
-                        className={`nav-btn apple-pressable ${open || itemIsActive ? "active" : ""}`}
-                        onClick={() => go(item.dropdown[0].path)}
-                      >
-                        {item.label}
-                        {/* tiny chevron */}
-                        <svg style={{ marginLeft: 5, opacity: 0.5, transition: "transform 0.2s", transform: open ? "rotate(180deg)" : "rotate(0deg)" }} width="10" height="6" viewBox="0 0 10 6" fill="none">
-                          <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
+            {PRIMARY_NAV.map((item) => {
+              const itemIsActive = isActive(item.path);
+              return (
+                <div key={item.label} className="nav-item">
+                  <button
+                    className={`nav-btn apple-pressable ${itemIsActive ? "active" : ""}`}
+                    onClick={() => go(item.path)}
+                    aria-current={itemIsActive ? "page" : undefined}
+                  >
+                    {item.label}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
 
-                      <AnimatePresence>
-                        {open && (
-                          <m.div
-                            className={isEditorial ? "nav-perspective-dropdown" : "nav-dropdown"}
-                            initial={{ opacity: 0, y: -8, scale: 0.98 }}
-                            animate={{ opacity: 1, y: 0,  scale: 1 }}
-                            exit={{ opacity: 0, y: -8, scale: 0.98 }}
-                            transition={{ duration: 0.22, ease }}
-                            onMouseEnter={handleDDEnter}
-                            onMouseLeave={() => { handleItemLeave(); setHoveredPerspective(null); }}
-                          >
-                            {isEditorial ? (
-                              <>
-                                <div className="pd-header">
-                                  <span className="pd-title">PERSPECTIVE</span>
-                                  <span className="pd-subtitle">VIEW / THINK / BUILD</span>
-                                </div>
-                                {item.dropdown.map((sub) => (
-                                  <button
-                                    key={sub.label}
-                                    className="pd-item"
-                                    onClick={() => go(sub.path)}
-                                    onMouseEnter={() => setHoveredPerspective(sub.preview)}
-                                  >
-                                    <span className="pd-item-num">{sub.num}</span>
-                                    <div className="pd-item-content">
-                                      <span className="pd-item-label">{sub.label}</span>
-                                      <span className="pd-item-sub">{sub.sub}</span>
-                                    </div>
-                                  </button>
-                                ))}
-                                <AnimatePresence mode="wait">
-                                  {hoveredPerspective && (
-                                    <m.div
-                                      key={hoveredPerspective}
-                                      className="pd-preview"
-                                      initial={{ opacity: 0, y: 4 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      exit={{ opacity: 0, y: -4 }}
-                                      transition={{ duration: 0.2 }}
-                                    >
-                                      {hoveredPerspective}
-                                    </m.div>
-                                  )}
-                                </AnimatePresence>
-                              </>
-                            ) : (
-                              item.dropdown.map((sub, idx) => (
-                                <React.Fragment key={sub.label}>
-                                  {idx > 0 && <div className="nav-dropdown-divider" />}
-                                  <button
-                                    className="nav-dropdown-item apple-pressable"
-                                    onClick={() => go(sub.path)}
-                                  >
-                                    <span className="nav-dropdown-label">{sub.label}</span>
-                                    <span className="nav-dropdown-sub">{sub.sub}</span>
-                                  </button>
-                                </React.Fragment>
-                              ))
-                            )}
-                          </m.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  );
-                }
-
-                return (
-                  <div key={item.label} className="nav-item">
-                    <button
-                      className={`nav-btn apple-pressable ${isActive(item.path) ? "active" : ""}`}
-                      onClick={() => go(item.path)}
-                      onMouseEnter={() => setActiveDD(null)}
-                    >
-                      {item.label}
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Right actions */}
-            <div className="nav-actions">
-              {/* Search icon */}
+          {/* Right: Search & Red Resume CTA */}
+          <div className="nav-actions">
+            {/* Search icon */}
             <button
               className="nav-search-icon apple-pressable"
               onClick={() => setSearchOpen(true)}
-              aria-label="Search"
+              aria-label="Search portfolio"
+              title="Search"
             >
               <SearchSVG />
             </button>
 
+            {/* Redesigned Document-Action Resume CTA */}
             <button
               className="nav-resume-btn apple-pressable"
               onClick={() => go("/resume")}
-              aria-label="Resume"
+              aria-label="View Resume document"
               title="Resume"
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-              <Resume3DLogo />
+              <FileText className="nav-resume-icon" size={13.5} strokeWidth={2} />
+              <span className="nav-resume-text">Resume</span>
+              <ArrowRight className="nav-resume-arrow" size={11} strokeWidth={2.2} />
             </button>
 
-            {/* Mobile toggle */}
+            {/* Mobile menu toggle */}
             <button
-              className="nav-mobile-btn"
+              className="nav-mobile-btn apple-pressable"
               onClick={() => setMobileOpen(true)}
-              aria-label="Open menu"
+              aria-label="Open navigation menu"
             >
               <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
                 <path d="M1 1H21M1 8H21M1 15H21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>

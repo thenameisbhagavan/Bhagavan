@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { X, ArrowRight, ExternalLink } from "lucide-react";
+import { X, ArrowRight, ExternalLink, FileText } from "lucide-react";
 import SEO from "../components/SEO";
 import BrandSignature from "../components/BrandSignature";
 import Reveal from "../components/motion/Reveal";
@@ -7,6 +7,7 @@ import MaskReveal from "../components/motion/MaskReveal";
 import ScaleReveal from "../components/motion/ScaleReveal";
 import Parallax from "../components/motion/Parallax";
 import MagneticLink from "../components/motion/MagneticLink";
+import AppreciationLetterModal from "../components/AppreciationLetterModal";
 import "../styles/Experience.css";
 
 // ─── Certificate Artifacts & Assets ───────────────────────────────────────────
@@ -16,6 +17,8 @@ import smartBridgeCert from "../assets/cert-smartbridge.png";
 import helsonCert from "../assets/cert-helson.png";
 import paceImg from "../assets/pace.jpg";
 import datavalleyImg from "../assets/datascience coruse compltetion.jpeg";
+import pbrTalkPhoto from "../assets/pbr-vits-ai-talk.jpg";
+import pbrLetterImg from "../assets/pbr-vits-appreciation-letter.png";
 
 // ─── Artifact Viewer Modal ────────────────────────────────────────────────────
 function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
@@ -59,13 +62,14 @@ export default function Experience() {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
+  const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
   const openViewer = (src, alt) => setViewerState({ isOpen: true, src, alt });
   const closeViewer = () => setViewerState((prev) => ({ ...prev, isOpen: false }));
 
   // Update active stage indicator on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const stages = ["blackbucks", "studyowl", "smartbridge", "helson", "datavalley"];
+      const stages = ["blackbucks", "studyowl", "smartbridge", "helson", "datavalley", "pbr-vits"];
       const scrollPos = window.scrollY + window.innerHeight * 0.4;
 
       for (let i = stages.length - 1; i >= 0; i--) {
@@ -91,8 +95,8 @@ export default function Experience() {
   return (
     <>
       <SEO 
-        description="Professional engineering evolution of Bhagavan. Technical AI/ML & Data Science Trainer at Data Valley. Documenting the trajectory across Data, Product, Intelligence, Systems, and Teaching."
-        keywords="TheNameIsBhagavan, Bhagavan Experience, Technical AI/ML Trainer, Data Valley, AI Product Engineer, Machine Learning Experience, Software Engineering Evolution"
+        description="Professional engineering & technical training experience of Bhagavan (TheNameIsBhagavan). Developer & Technical Trainer at Data Valley AI Tech Solutions. Software development, AI/ML systems, Generative AI, and technical training."
+        keywords="TheNameIsBhagavan, Bhagavan Experience, Developer Technical Trainer, Data Valley AI Tech Solutions, AI ML Developer, Generative AI, Technical Education, Software Engineering"
       />
       
       <ArtifactViewer 
@@ -100,6 +104,11 @@ export default function Experience() {
         onClose={closeViewer} 
         imgSrc={viewerState.src} 
         imgAlt={viewerState.alt} 
+      />
+
+      <AppreciationLetterModal
+        isOpen={isLetterModalOpen}
+        onClose={() => setIsLetterModalOpen(false)}
       />
 
       <div className="exp-evolution-page">
@@ -111,7 +120,8 @@ export default function Experience() {
             { id: "02", label: "PRODUCT", target: "studyowl" },
             { id: "03", label: "INTELLIGENCE", target: "smartbridge" },
             { id: "04", label: "SYSTEMS", target: "helson" },
-            { id: "05", label: "TEACHING", target: "datavalley" }
+            { id: "05", label: "DEV & TEACH", target: "datavalley" },
+            { id: "06", label: "TALK & EVIDENCE", target: "pbr-vits" }
           ].map((st) => (
             <button
               key={st.id}
@@ -132,7 +142,7 @@ export default function Experience() {
             
             <Reveal y={16} duration={0.8}>
               <div className="hero-eyebrow">
-                <span className="hero-badge">ENGINEERING EVOLUTION &middot; 2022 — PRESENT</span>
+                <span className="hero-badge">DEVELOPER &amp; TECHNICAL TRAINER &middot; DATA VALLEY AI TECH SOLUTIONS</span>
               </div>
             </Reveal>
 
@@ -145,7 +155,7 @@ export default function Experience() {
 
             <Reveal y={20} duration={0.9} delay={0.3}>
               <p className="hero-sub">
-                From working with data to building software, integrating intelligence, designing systems, and now teaching others to build.
+                Developing software applications, Python backend services, and practical AI systems while teaching Data Science, Machine Learning, and Generative AI.
               </p>
             </Reveal>
 
@@ -160,7 +170,7 @@ export default function Experience() {
                 <span className="rm-arrow">&rarr;</span>
                 <span>SYSTEMS</span>
                 <span className="rm-arrow">&rarr;</span>
-                <span className="rm-current">TEACHING + BUILDING</span>
+                <span className="rm-current">DEVELOPMENT + TRAINING</span>
               </div>
             </Reveal>
           </div>
@@ -435,76 +445,139 @@ export default function Experience() {
 
 
         {/* ============================================================
-            ACT 06 — DATAVALLEY INC (STAGE 05 / 05 — TEACHING + BUILDING)
+            ACT 06 — DATA VALLEY AI TECH SOLUTIONS (STAGE 05 / 05 — DEVELOPMENT + TRAINING)
             ============================================================ */}
         <section id="datavalley" className="evo-chapter current-role-chapter" data-nav-theme="light">
           <div className="evo-bounds">
             
             <div className="chapter-header-bar">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge badge-active">CURRENT &middot; 2026 — PRESENT &middot; DATAVALLEY INC</span>
+                <span className="chapter-badge badge-active">CURRENT ENGAGEMENT &middot; DATA VALLEY AI TECH SOLUTIONS</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="company-name">DATAVALLEY INC</h2>
+                <h2 className="company-name">DATA VALLEY AI TECH SOLUTIONS</h2>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.15}>
-                <span className="role-title highlight-role">Technical Trainer</span>
+                <span className="role-title highlight-role">Developer &amp; Technical Trainer</span>
               </Reveal>
             </div>
 
             <Reveal y={24} duration={0.9} delay={0.2}>
               <blockquote className="chapter-statement">
-                "Working at the intersection of technical education and applied AI."
+                "Working at the nexus of application development, applied AI systems, and technical education."
               </blockquote>
             </Reveal>
 
             <Reveal y={20} duration={0.9} delay={0.3}>
               <p className="chapter-desc">
-                Mentoring students and delivering practical learning across Data Science, Python, Machine Learning, and Artificial Intelligence in Vijayawada, India.
+                Based in Vijayawada, India. Responsible for developing Python backend services, REST APIs, and applied AI applications while designing curriculum and delivering hands-on technical training across Data Science, Machine Learning, and Generative AI.
               </p>
             </Reveal>
 
-            {/* Role Responsibilities List */}
+            {/* Categorized Responsibilities Grid */}
             <Reveal y={20} duration={0.8} delay={0.4}>
-              <div style={{ marginTop: '32px', marginBottom: '48px' }}>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                    <span style={{ color: '#007aff', fontSize: '18px', lineHeight: '1.4' }}>&bull;</span>
-                    <span style={{ fontSize: '15px', color: '#333333', lineHeight: '1.4' }}>Technical training in Data Science and AI</span>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                    <span style={{ color: '#007aff', fontSize: '18px', lineHeight: '1.4' }}>&bull;</span>
-                    <span style={{ fontSize: '15px', color: '#333333', lineHeight: '1.4' }}>Python and Machine Learning instruction</span>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                    <span style={{ color: '#007aff', fontSize: '18px', lineHeight: '1.4' }}>&bull;</span>
-                    <span style={{ fontSize: '15px', color: '#333333', lineHeight: '1.4' }}>Hands-on practical learning</span>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                    <span style={{ color: '#007aff', fontSize: '18px', lineHeight: '1.4' }}>&bull;</span>
-                    <span style={{ fontSize: '15px', color: '#333333', lineHeight: '1.4' }}>Student mentorship and technical guidance</span>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                    <span style={{ color: '#007aff', fontSize: '18px', lineHeight: '1.4' }}>&bull;</span>
-                    <span style={{ fontSize: '15px', color: '#333333', lineHeight: '1.4' }}>Simplifying complex technical concepts</span>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                    <span style={{ color: '#007aff', fontSize: '18px', lineHeight: '1.4' }}>&bull;</span>
-                    <span style={{ fontSize: '15px', color: '#333333', lineHeight: '1.4' }}>Workshop and internship-oriented teaching</span>
-                  </li>
-                </ul>
+              <div style={{ marginTop: '40px', marginBottom: '48px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+                
+                {/* 1. Software Development */}
+                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#007aff', textTransform: 'uppercase', marginBottom: '12px' }}>
+                    01 / Software Development
+                  </div>
+                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Python &amp; Backend Engineering</h3>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <li style={{ fontSize: '14px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#007aff' }}>&bull;</span>
+                      <span>Architecting backend services and REST APIs with Python (Flask / FastAPI) for application integration.</span>
+                    </li>
+                    <li style={{ fontSize: '14px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#007aff' }}>&bull;</span>
+                      <span>Building modular components, utility functions, and clean data pipelines for analytical applications.</span>
+                    </li>
+                    <li style={{ fontSize: '14px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#007aff' }}>&bull;</span>
+                      <span>Establishing code conventions, unit tests, and API documentation for maintainable codebases.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* 2. Data Science & Applied AI/ML */}
+                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#34c759', textTransform: 'uppercase', marginBottom: '12px' }}>
+                    02 / Data Science &amp; AI/ML
+                  </div>
+                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Data Pipelines &amp; Modeling</h3>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <li style={{ fontSize: '14px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#34c759' }}>&bull;</span>
+                      <span>Building end-to-end data preprocessing, exploratory analysis, and feature engineering workflows with Pandas and NumPy.</span>
+                    </li>
+                    <li style={{ fontSize: '14px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#34c759' }}>&bull;</span>
+                      <span>Training and evaluating supervised models (classification and regression) using Scikit-learn with rigorous cross-validation.</span>
+                    </li>
+                    <li style={{ fontSize: '14px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#34c759' }}>&bull;</span>
+                      <span>Translating real-world problem statements into measurable machine learning benchmarks.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* 3. Generative AI */}
+                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#af52de', textTransform: 'uppercase', marginBottom: '12px' }}>
+                    03 / Generative AI
+                  </div>
+                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>LLM Workflows &amp; Orchestration</h3>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <li style={{ fontSize: '14px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#af52de' }}>&bull;</span>
+                      <span>Designing prompt engineering frameworks, structured output parsing, and few-shot conditioning workflows.</span>
+                    </li>
+                    <li style={{ fontSize: '14px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#af52de' }}>&bull;</span>
+                      <span>Implementing secure proxy layers to connect web clients with LLM APIs (Gemini API) without leaking secrets.</span>
+                    </li>
+                    <li style={{ fontSize: '14px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#af52de' }}>&bull;</span>
+                      <span>Exploring Retrieval-Augmented Generation (RAG) concepts, contextual embeddings, and agentic reasoning boundaries.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* 4. Technical Training */}
+                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#ff9500', textTransform: 'uppercase', marginBottom: '12px' }}>
+                    04 / Technical Education
+                  </div>
+                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Curriculum &amp; Mentorship</h3>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <li style={{ fontSize: '14px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#ff9500' }}>&bull;</span>
+                      <span>Delivering structured training cohorts in Data Science, Python, Machine Learning, and Generative AI.</span>
+                    </li>
+                    <li style={{ fontSize: '14px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#ff9500' }}>&bull;</span>
+                      <span>Developing progressive problem sets, live coding demos, and project assignments to reinforce core concepts.</span>
+                    </li>
+                    <li style={{ fontSize: '14px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#ff9500' }}>&bull;</span>
+                      <span>Conducting code reviews, debugging guidance, and capstone project mentorship for students and trainees.</span>
+                    </li>
+                  </ul>
+                </div>
+
               </div>
             </Reveal>
 
             {/* Editorial Subsection */}
             <Reveal y={24} duration={0.9} delay={0.5}>
-              <div style={{ marginTop: '64px', borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '48px' }}>
-                <span style={{ fontSize: '11px', fontWeight: '600', letterSpacing: '0.1em', color: '#666', display: 'block', marginBottom: '24px' }}>FROM BUILDING TO TEACHING</span>
-                <p style={{ fontSize: '18px', lineHeight: '1.6', color: '#111', fontWeight: '500', marginBottom: '24px', maxWidth: '800px' }}>
-                  Engineering has always been about understanding how systems work. Teaching adds another layer — understanding how people learn them.
+              <div style={{ marginTop: '48px', borderTop: '1px solid rgba(0,0,0,0.1)', paddingTop: '40px' }}>
+                <span style={{ fontSize: '11px', fontWeight: '600', letterSpacing: '0.1em', color: '#666', display: 'block', marginBottom: '16px' }}>THE FEEDBACK LOOP: BUILDING × TEACHING</span>
+                <p style={{ fontSize: '18px', lineHeight: '1.6', color: '#111', fontWeight: '500', marginBottom: '16px', maxWidth: '800px' }}>
+                  Engineering is about making systems work reliably. Teaching requires understanding why they work so completely that you can deconstruct them for someone else.
                 </p>
-                <p style={{ fontSize: '16px', lineHeight: '1.6', color: '#444', maxWidth: '800px', marginBottom: '48px' }}>
-                  At Datavalley Inc, I work directly with students, helping translate technical concepts into practical understanding. This experience has strengthened not only my teaching ability, but also the way I communicate architecture, logic, AI systems, and problem-solving.
+                <p style={{ fontSize: '15px', lineHeight: '1.6', color: '#444', maxWidth: '800px', marginBottom: '40px' }}>
+                  At Data Valley AI Tech Solutions, building software keeps my curriculum rooted in actual implementation details, while teaching challenges me to write simpler, cleaner, and more defensible architecture.
                 </p>
               </div>
             </Reveal>
@@ -513,15 +586,15 @@ export default function Experience() {
             <Reveal y={24} duration={0.9} delay={0.6}>
               <div className="artifact-card-container">
                 <div className="ac-top-meta">
-                  <span className="ac-badge">SELECTED EXPERIENCE</span>
-                  <span className="ac-doc-num">Data Science Internship Mentorship / Datavalley Inc</span>
+                  <span className="ac-badge">DOCUMENTED ENGAGEMENT</span>
+                  <span className="ac-doc-num">Technical Mentorship / Data Valley AI Tech Solutions</span>
                 </div>
                 <button 
                   className="artifact-preview-btn"
-                  onClick={() => openViewer(datavalleyImg, "Data Science internship students and technical trainers at Datavalley Inc")}
+                  onClick={() => openViewer(datavalleyImg, "Technical training and mentorship session at Data Valley AI Tech Solutions")}
                   style={{ background: '#f5f5f7', padding: 0 }}
                 >
-                  <img src={datavalleyImg} alt="Data Science internship mentorship at Datavalley Inc." className="artifact-img" loading="lazy" style={{ objectFit: 'cover', height: 'auto', maxHeight: '500px', width: '100%' }} />
+                  <img src={datavalleyImg} alt="Technical mentorship session at Data Valley AI Tech Solutions" className="artifact-img" loading="lazy" style={{ objectFit: 'cover', height: 'auto', maxHeight: '500px', width: '100%' }} />
                   <div className="artifact-hover-overlay">
                     <span>VIEW IMAGE ↗</span>
                   </div>
@@ -533,14 +606,183 @@ export default function Experience() {
 
 
         {/* ============================================================
-            ACT 07 — PACE COLLEGE CASE STUDY (TEACHING CASE STUDY)
+            ACT 07 — TECHNICAL TALK CASE STUDY: PBR VITS, KAVALI
+            ============================================================ */}
+        <section id="pbr-vits" className="evo-chapter pbr-case-chapter" data-nav-theme="light">
+          <div className="evo-bounds">
+            
+            <div className="chapter-header-bar">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">TECHNICAL TALK CASE STUDY &middot; PBR VITS, KAVALI</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="company-name">PBR VITS, KAVALI</h2>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.15}>
+                <span className="role-title highlight-role">AI Innovation and Startup Opportunities</span>
+              </Reveal>
+            </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-statement">
+                "Simplifying complex AI concepts into practical systems thinking and startup opportunities for graduating engineers."
+              </blockquote>
+            </Reveal>
+
+            <Reveal y={20} duration={0.9} delay={0.3}>
+              <p className="chapter-desc">
+                Invited by the Internal Quality Assurance Cell (IQAC) of Parvathareddy Babul Reddy Visvodaya Institute of Technology &amp; Science (Autonomous), Kavali, to deliver a specialized technical talk for IV-Year students in the Department of Artificial Intelligence and Machine Learning (AIML).
+              </p>
+            </Reveal>
+
+            {/* Event Overview Grid */}
+            <Reveal y={20} duration={0.8} delay={0.35}>
+              <div className="pbr-fact-grid">
+                <div className="pbr-fact-card">
+                  <span className="pbr-fact-label">Institution</span>
+                  <span className="pbr-fact-value">PBR VITS (Autonomous), Kavali</span>
+                </div>
+                <div className="pbr-fact-card">
+                  <span className="pbr-fact-label">Department</span>
+                  <span className="pbr-fact-value">Artificial Intelligence &amp; Machine Learning</span>
+                </div>
+                <div className="pbr-fact-card">
+                  <span className="pbr-fact-label">Audience</span>
+                  <span className="pbr-fact-value">IV-Year B.Tech AIML Students &amp; Faculty</span>
+                </div>
+                <div className="pbr-fact-card">
+                  <span className="pbr-fact-label">Date &amp; Scope</span>
+                  <span className="pbr-fact-value">October 10, 2026 &middot; Technical Talk</span>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Core Themes Covered */}
+            <Reveal y={24} duration={0.9} delay={0.4}>
+              <div className="pbr-themes-grid">
+                <div className="pbr-theme-card">
+                  <span className="pbr-theme-num">THEME 01</span>
+                  <h3 className="pbr-theme-title">Practical AI Translation</h3>
+                  <p className="pbr-theme-desc">
+                    Moving from isolated academic models toward production-ready REST APIs, data ingestion pipelines, and resilient system boundaries.
+                  </p>
+                </div>
+                <div className="pbr-theme-card">
+                  <span className="pbr-theme-num">THEME 02</span>
+                  <h3 className="pbr-theme-title">AI Startup Opportunities</h3>
+                  <p className="pbr-theme-desc">
+                    Identifying real domain friction in enterprise workflows and consumer software where focused AI applications create defensible value.
+                  </p>
+                </div>
+                <div className="pbr-theme-card">
+                  <span className="pbr-theme-num">THEME 03</span>
+                  <h3 className="pbr-theme-title">Concept Simplification</h3>
+                  <p className="pbr-theme-desc">
+                    Demystifying neural network behaviors, prompt engineering patterns, and generative AI APIs into transparent, actionable engineering steps.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Dual Evidence Showcase: Authentic Classroom Photo + Appreciation Letter */}
+            <div className="pbr-evidence-dual-grid">
+              
+              {/* Event Photograph with authentic context */}
+              <Reveal y={24} duration={0.9} delay={0.45} className="pbr-media-card">
+                <div className="pbr-media-card-header">
+                  <span className="pbr-badge-blue">AUTHENTIC EVENT EVIDENCE</span>
+                  <span style={{ fontSize: '11px', color: '#86868b', fontWeight: '600' }}>SEMINAR HALL &bull; PBR VITS</span>
+                </div>
+                <button 
+                  className="pbr-media-container"
+                  onClick={() => openViewer(pbrTalkPhoto, "Students attending the AI Innovation and Startup Opportunities technical talk at PBR VITS, Kavali")}
+                  type="button"
+                  aria-label="Enlarge event photograph"
+                >
+                  <img 
+                    src={pbrTalkPhoto} 
+                    alt="Students attending the AI Innovation and Startup Opportunities technical talk at PBR VITS, Kavali, on October 10, 2026." 
+                    className="pbr-media-img" 
+                    loading="lazy" 
+                  />
+                  <div className="artifact-hover-overlay">
+                    <span>ENLARGE PHOTO ↗</span>
+                  </div>
+                </button>
+                <div className="pbr-media-caption">
+                  <span>Interactive technical talk with IV-year AIML students in the college seminar hall.</span>
+                  <button 
+                    className="pbr-doc-action-btn"
+                    onClick={() => openViewer(pbrTalkPhoto, "Students attending the AI Innovation and Startup Opportunities technical talk at PBR VITS, Kavali")}
+                    type="button"
+                  >
+                    <span>View Fullscreen</span>
+                  </button>
+                </div>
+              </Reveal>
+
+              {/* Official Appreciation Letter */}
+              <Reveal y={24} duration={0.9} delay={0.5} className="pbr-media-card">
+                <div className="pbr-media-card-header">
+                  <span className="pbr-badge-green">OFFICIAL RECOGNITION</span>
+                  <span style={{ fontSize: '11px', color: '#86868b', fontWeight: '600' }}>IQAC &bull; OCT 10, 2026</span>
+                </div>
+                <button 
+                  className="pbr-media-container"
+                  onClick={() => setIsLetterModalOpen(true)}
+                  type="button"
+                  aria-label="Inspect official Letter of Appreciation in document viewer"
+                >
+                  <img 
+                    src={pbrLetterImg} 
+                    alt="Appreciation letter issued by the Internal Quality Assurance Cell of PBR VITS for the AI Innovation and Startup Opportunities technical talk." 
+                    className="pbr-doc-img" 
+                    loading="lazy" 
+                  />
+                  <div className="artifact-hover-overlay">
+                    <span>INSPECT DOCUMENT ↗</span>
+                  </div>
+                </button>
+                <div className="pbr-media-caption">
+                  <span>Formal Letter of Appreciation from IQAC, signed by the Principal.</span>
+                  <button 
+                    className="pbr-doc-action-btn"
+                    onClick={() => setIsLetterModalOpen(true)}
+                    type="button"
+                  >
+                    <FileText size={12} />
+                    <span>QuickLook Document</span>
+                  </button>
+                </div>
+              </Reveal>
+
+            </div>
+
+            {/* Professional Reflection / Takeaway */}
+            <Reveal y={20} duration={0.9} delay={0.55}>
+              <div style={{ marginTop: '32px', padding: '24px 28px', background: '#fbfbfd', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.06)' }}>
+                <span style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+                  PROFESSIONAL TAKEAWAY &middot; TECHNICAL TRAINING
+                </span>
+                <p style={{ fontSize: '15px', color: '#333333', lineHeight: '1.6', margin: 0 }}>
+                  "Technical training is at its best when it demystifies complex technology. For final-year engineering students preparing for industry, understanding how to transition from academic algorithms to practical, user-facing AI applications is the foundation for both strong engineering careers and genuine startup innovation."
+                </p>
+              </div>
+            </Reveal>
+
+          </div>
+        </section>
+
+
+        {/* ============================================================
+            ACT 08 — PACE COLLEGE CASE STUDY (TEACHING CASE STUDY)
             ============================================================ */}
         <section className="evo-chapter pace-case-chapter" data-nav-theme="light">
           <div className="evo-bounds">
             
             <div className="chapter-header-bar">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">TEACHING CASE STUDY &middot; PACE COLLEGE OF ENGINEERING</span>
+                <span className="chapter-badge">FIELD WORKSHOP &middot; PACE INSTITUTE OF TECHNOLOGY AND SCIENCES</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="company-name">ONGOLE WORKSHOP</h2>
@@ -552,19 +794,25 @@ export default function Experience() {
 
             <Reveal y={24} duration={0.9} delay={0.2}>
               <blockquote className="chapter-statement">
-                "Teaching AI is not just explaining models. It is teaching people how to think with them."
+                "Teaching AI is not just explaining models. It is teaching people how to reason and build with them."
               </blockquote>
             </Reveal>
 
+            <Reveal y={20} duration={0.9} delay={0.3}>
+              <p className="chapter-desc">
+                Conducted an intensive hands-on technical workshop for undergraduate engineering students at PACE Institute of Technology and Sciences in Ongole. Delivered structured instruction on prompt engineering taxonomies, zero-shot and few-shot patterns, LLM API integration techniques, and real-world failure mode mitigation.
+              </p>
+            </Reveal>
+
             <ScaleReveal className="pace-image-wrapper">
-              <img src={paceImg} alt="PACE College Workshop" className="pace-image" loading="lazy" />
+              <img src={paceImg} alt="Generative AI & Prompt Engineering Workshop at PACE Institute of Technology and Sciences" className="pace-image" loading="lazy" />
             </ScaleReveal>
 
             <Reveal y={20} duration={0.8} delay={0.4}>
               <div className="pace-meta-row">
-                <span className="pm-tag">~300 STUDENTS</span>
-                <span className="pm-tag">CSE &middot; AI&DS &middot; AI&ML</span>
-                <span className="pm-tag">PROMPT ENGINEERING &middot; GENERATIVE AI</span>
+                <span className="pm-tag">UNDERGRADUATE WORKSHOP</span>
+                <span className="pm-tag">CSE &middot; AI&amp;DS &middot; AI&amp;ML</span>
+                <span className="pm-tag">PROMPT ENGINEERING &middot; GENERATIVE AI APIS</span>
               </div>
             </Reveal>
           </div>
@@ -594,7 +842,7 @@ export default function Experience() {
                 <span className="csp-arrow">&rarr;</span>
                 <span>SYSTEMS</span>
                 <span className="csp-arrow">&rarr;</span>
-                <span className="csp-highlight">TEACHING</span>
+                <span className="csp-highlight">DEVELOPMENT + TEACHING</span>
               </div>
             </Reveal>
 

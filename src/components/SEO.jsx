@@ -5,7 +5,7 @@ import { socialLinks } from '../constants/socialLinks';
 
 const SEO = ({ 
   title: propTitle, 
-  description = "Official portfolio of TheNameIsBhagavan — Technical AI/ML & Data Science Trainer at Data Valley, Vijayawada and AI Product Engineer. Building intelligent systems, AI-powered applications, and data science products. Explore engineering work, professional experience, technical expertise, and AI/ML projects.", 
+  description = "Official portfolio of TheNameIsBhagavan — Software Developer & Technical Trainer at Data Valley AI Tech Solutions. Developing software applications, Python backend services, and practical AI systems while delivering technical training in Data Science, Machine Learning, and Generative AI.", 
   type = "website", 
   image = "/og-image.jpg",
   article = null
@@ -15,18 +15,18 @@ const SEO = ({
   
   // Enforce TNB Brand Title System
   const brandTitles = {
-    '/': 'TheNameIsBhagavan — AI Product Engineer | AI/ML & Data Science',
-    '/work': 'Work — TheNameIsBhagavan | AI Systems & Engineering Projects',
-    '/experience': 'Experience — TheNameIsBhagavan | Data Valley · AI/ML & Data Science',
-    '/innovation': 'Innovation — TheNameIsBhagavan | Technical Growth & Hackathons',
+    '/': 'TheNameIsBhagavan — Software Developer | AI/ML & Generative AI | Data Science & Technical Trainer',
+    '/work': 'Work — TheNameIsBhagavan | Software & AI Engineering Systems',
+    '/experience': 'Experience — TheNameIsBhagavan | Data Valley AI Tech Solutions · Developer & Trainer',
+    '/innovation': 'Innovation — TheNameIsBhagavan | Technical Growth & Applied AI',
     '/credentials': 'Credentials — TheNameIsBhagavan | Engineering & AI Certifications',
-    '/ecosystem': 'Technology Ecosystem — TheNameIsBhagavan | Software Architecture',
-    '/vision': 'Vision — TheNameIsBhagavan | Future Systems & Product Engineering',
+    '/ecosystem': 'Technology Ecosystem — TheNameIsBhagavan | Software Architecture & Stack',
+    '/vision': 'Vision — TheNameIsBhagavan | Engineering Principles & Systems',
     '/journal': 'Engineering Journal — TheNameIsBhagavan',
-    '/connect': 'Connect — TheNameIsBhagavan | AI, Software & Data Science',
-    '/resume': 'Resume — TheNameIsBhagavan | AI/ML & Data Science',
-    '/academic-archive': 'Academic Archive — TheNameIsBhagavan | Engineering Projects',
-    '/signal': 'Signal — TheNameIsBhagavan | Professional Capability Overview'
+    '/connect': 'Connect — TheNameIsBhagavan | Software, AI & Technical Training',
+    '/resume': 'Resume — TheNameIsBhagavan | Developer & Technical Trainer',
+    '/academic-archive': 'Academic Archive — TheNameIsBhagavan | Engineering Records',
+    '/signal': 'Signal — TheNameIsBhagavan | Professional Capability & Field Notes'
   };
 
   // Check if it's a specific project or article page to maintain custom titles if needed,
@@ -34,7 +34,7 @@ const SEO = ({
   const isCorePage = brandTitles[pathname];
   const finalTitle = isCorePage ? brandTitles[pathname] : (propTitle || 'TheNameIsBhagavan');
   
-  const keywords = "TheNameIsBhagavan, Bhagavan, Technical AI/ML Data Science Trainer, Data Valley, AI Product Engineer, Bhagavan AI Engineer, AI Engineer, Artificial Intelligence Engineer, Machine Learning Engineer, Deep Learning Engineer, Intelligent Systems Engineer, Agentic AI, Full Stack Developer, React Developer, Python Developer, Software Engineer, CareerOS, AuraOS, Portfolio, Developer Portfolio, India, Andhra Pradesh, JNTUK, Ramachandra College of Engineering";
+  const keywords = "TheNameIsBhagavan, Bhagavan, Software Developer, Technical Trainer, Data Valley AI Tech Solutions, AI ML Developer, Generative AI, Data Science Trainer, Python Developer, FastAPI, React Developer, CareerOS, AuraOS, VERITAS, VoltDrive, Portfolio, India, Andhra Pradesh, JNTUK";
 
   // Person Schema
   const personSchema = {
@@ -44,11 +44,11 @@ const SEO = ({
     "alternateName": "TheNameIsBhagavan",
     "url": "https://thenameisbhagavan.in",
     "image": "https://thenameisbhagavan.in/og-image.jpg",
-    "jobTitle": "Technical AI/ML & Data Science Trainer | AI Product Engineer",
-    "description": "Technical AI/ML & Data Science Trainer at Data Valley, Vijayawada. AI Product Engineer building intelligent software systems, AI-powered applications, and data-driven products.",
+    "jobTitle": "Software Developer & Technical Trainer | AI/ML & Generative AI",
+    "description": "Software Developer & Technical Trainer at Data Valley AI Tech Solutions. Building software applications, Python backends, and practical AI systems while teaching Data Science, Machine Learning, and Generative AI.",
     "worksFor": {
       "@type": "Organization",
-      "name": "Data Valley",
+      "name": "Data Valley AI Tech Solutions",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Vijayawada",

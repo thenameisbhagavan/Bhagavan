@@ -17,13 +17,15 @@ import voltDriveImg from "../assets/ev.png";
 import chatImg from "../assets/aurabot-new.png";
 import fakeImg from "../assets/fake.jpg";
 import agrivisionImg from "../assets/agrivision.png";
+import dvAssessmentImg from "../assets/datavalley-assessment-platform.png";
 
 export const FLAGSHIP_PROJECTS = [
+  { name: "DV Assessments", eyebrow: "Enterprise Web Application", desc: "End-to-end engineering assessment platform with timed sessions and server-side evaluation.", img: dvAssessmentImg, link: "/work/data-valley-assessment-platform", live: "https://dv-assesments.vercel.app/" },
   { name: "CareerOS", eyebrow: "Flagship Project", desc: "An intelligence layer for career trajectory.", img: careerOSImg, link: "/work/careeros", live: "https://careeros-thenameisbhagavan.vercel.app/" },
   { name: "AuraOS", eyebrow: "Personal Intelligence OS", desc: "A chatbot that actually remembers context.", img: chatImg, link: "/work/auraos", live: "https://aura-os-thenameisbhagavan.vercel.app/" },
   { name: "VERITAS", eyebrow: "Explainable Intelligence Platform", desc: "AI that shows its reasoning, not just its answer.", img: fakeImg, link: "/work/veritas", live: "https://veritas-thenameisbhagavan.vercel.app/" },
   { name: "VoltDrive", eyebrow: "Automotive Digital Showroom", desc: "A frontend experience built to feel alive.", img: voltDriveImg, link: "/work/voltdrive", live: "https://voltdrive-thenameisbhagavan.vercel.app/" },
-  { name: "AgriVision AI", eyebrow: "Intelligent Crop Diagnostics", desc: "From Crop Image to Explainable AI Insight.", img: agrivisionImg, link: "/work/agrivision", live: "https://github.com/thenameisbhagavan" }
+  { name: "AgriVision AI", eyebrow: "Intelligent Crop Diagnostics", desc: "From Crop Image to Explainable AI Insight.", img: agrivisionImg, link: "#agrivision", live: "https://github.com/thenameisbhagavan/Plant-disease-detection" }
 ];
 
 export default function Work() {
@@ -37,7 +39,7 @@ export default function Work() {
   // Update active project rail on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["careeros", "auraos", "veritas", "voltdrive", "agrivision"];
+      const sections = ["dv-assessments", "careeros", "auraos", "veritas", "voltdrive", "agrivision"];
       const scrollPos = window.scrollY + window.innerHeight * 0.4;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -63,19 +65,21 @@ export default function Work() {
   return (
     <>
       <SEO 
-        description="Engineering exhibition by Bhagavan. AI product engineer building intelligent systems, reasoning pipelines, full-stack software, and data-driven experiences. View AuraOS, CareerOS, VERITAS, and VoltDrive."
-        keywords="TheNameIsBhagavan, Bhagavan Projects, AI Systems Engineering, Software Portfolio, CareerOS, AuraOS, VERITAS, VoltDrive, AI Product Engineer"
+        title="Work | TheNameIsBhagavan"
+        description="Engineering exhibition by Bhagavan (TheNameIsBhagavan) — Software Developer, AI/ML & Generative AI practitioner, and Technical Trainer. Explore Data Valley Engineering Assessment Platform, CareerOS, AuraOS, VERITAS, VoltDrive, and AgriVision AI."
+        keywords="TheNameIsBhagavan, Bhagavan Projects, Data Valley Engineering Assessment Platform, Software Developer, AI Systems Engineering, CareerOS, AuraOS, VERITAS, VoltDrive, AgriVision AI, Technical Trainer"
       />
       <div className="work-exhibition-page">
 
         {/* FLOATING SPATIAL PROJECT RAIL */}
         <div className="work-sticky-rail">
           {[
-            { id: "01", name: "CAREEROS", target: "careeros" },
-            { id: "02", name: "AURAOS", target: "auraos" },
-            { id: "03", name: "VERITAS", target: "veritas" },
-            { id: "04", name: "VOLTDRIVE", target: "voltdrive" },
-            { id: "05", name: "AGRIVISION AI", target: "agrivision" }
+            { id: "01", name: "DV ASSESSMENTS", target: "dv-assessments" },
+            { id: "02", name: "CAREEROS", target: "careeros" },
+            { id: "03", name: "AURAOS", target: "auraos" },
+            { id: "04", name: "VERITAS", target: "veritas" },
+            { id: "05", name: "VOLTDRIVE", target: "voltdrive" },
+            { id: "06", name: "AGRIVISION AI", target: "agrivision" }
           ].map((item) => (
             <button
               key={item.id}
@@ -96,7 +100,7 @@ export default function Work() {
             
             <Reveal y={16} duration={0.8}>
               <div className="work-hero-eyebrow">
-                <span className="work-eyebrow-badge">SYSTEMS / 05</span>
+                <span className="work-eyebrow-badge">SYSTEMS / 06</span>
               </div>
             </Reveal>
 
@@ -125,14 +129,84 @@ export default function Work() {
 
 
         {/* ============================================================
-            ACT 02 — CAREEROS (CHAPTER 01 / 04)
+            ACT 02 — DATA VALLEY ENGINEERING ASSESSMENT PLATFORM (FLAGSHIP ENTERPRISE SYSTEM)
+            ============================================================ */}
+        <section id="dv-assessments" className="work-chapter chapter-dv-assessments" data-nav-theme="light">
+          <div className="exhibition-bounds">
+            
+            <div className="chapter-header-row">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">ENTERPRISE WEB APPLICATION &middot; DATA VALLEY AI TECH SOLUTIONS &middot; 01 / 06</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="chapter-title">DATA VALLEY ASSESSMENT PLATFORM</h2>
+              </Reveal>
+            </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-opening-q">
+                "Technical evaluation requires zero data loss, verified timing, and tamper-proof evaluation."
+              </blockquote>
+            </Reveal>
+
+            <ScaleReveal className="chapter-hero-image-wrap">
+              <img 
+                src={dvAssessmentImg} 
+                alt="Data Valley Engineering Assessment Platform showing candidate portal, coding challenge, question palette, and countdown timer" 
+                className="chapter-hero-img" 
+                loading="lazy" 
+              />
+            </ScaleReveal>
+
+            {/* 4-Step System Architecture */}
+            <div className="chapter-steps-grid">
+              {[
+                { step: "01", title: "AUTHENTICATE", desc: "Validates candidate credentials and binds session directly to dedicated assessment instance." },
+                { step: "02", title: "DELIVER", desc: "Renders 40 timed technical challenges with live countdown timer and interactive question palette." },
+                { step: "03", title: "PERSIST", desc: "Continuously auto-syncs answers in background via /api/assessment/sync to prevent data loss." },
+                { step: "04", title: "EVALUATE", desc: "Executes deterministic server-side scoring via /api/assessment/submit, protecting against tampering." }
+              ].map((st, idx) => (
+                <Reveal key={st.step} y={24} duration={0.8} delay={idx * 0.1} className="chapter-step-card">
+                  <span className="step-num">{st.step}</span>
+                  <h3 className="step-title">{st.title}</h3>
+                  <p className="step-desc">{st.desc}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Engineering Signal & Actions */}
+            <div className="chapter-footer-bar">
+              <div className="chapter-tech-stack">
+                <span className="tech-label">ENGINEERING LAYER:</span>
+                <span className="tech-val">NEXT.JS APP ROUTER &middot; REACT 19 &middot; TYPESCRIPT &middot; MONGODB ATLAS</span>
+              </div>
+
+              <div className="chapter-actions">
+                <MagneticLink strength={0.2}>
+                  <Link to="/work/data-valley-assessment-platform" className="work-btn-primary">
+                    <span>EXPLORE CASE STUDY ↗</span>
+                  </Link>
+                </MagneticLink>
+                <MagneticLink strength={0.2}>
+                  <a href="https://dv-assesments.vercel.app/" target="_blank" rel="noopener noreferrer" className="work-btn-secondary">
+                    <span>LIVE SYSTEM ↗</span>
+                  </a>
+                </MagneticLink>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        {/* ============================================================
+            ACT 03 — CAREEROS (CHAPTER 02 / 06)
             ============================================================ */}
         <section id="careeros" className="work-chapter chapter-careeros" data-nav-theme="light">
           <div className="exhibition-bounds">
             
             <div className="chapter-header-row">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">CAREER INTELLIGENCE SYSTEM &middot; 01 / 05</span>
+                <span className="chapter-badge">CAREER INTELLIGENCE SYSTEM &middot; 02 / 06</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="chapter-title">CAREEROS</h2>
@@ -197,7 +271,7 @@ export default function Work() {
             
             <div className="chapter-header-row">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">PERSONAL INTELLIGENCE OS &middot; 02 / 05</span>
+                <span className="chapter-badge">PERSONAL INTELLIGENCE OS &middot; 03 / 06</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="chapter-title">AURAOS</h2>
@@ -261,7 +335,7 @@ export default function Work() {
             
             <div className="chapter-header-row">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">EXPLAINABLE INTELLIGENCE &middot; 03 / 05</span>
+                <span className="chapter-badge">EXPLAINABLE INTELLIGENCE &middot; 04 / 06</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="chapter-title">VERITAS</h2>
@@ -325,7 +399,7 @@ export default function Work() {
             
             <div className="chapter-header-row">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">DIGITAL PRODUCT EXPERIENCE &middot; 04 / 05</span>
+                <span className="chapter-badge">DIGITAL PRODUCT EXPERIENCE &middot; 05 / 06</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="chapter-title">VOLTDRIVE</h2>
@@ -390,7 +464,7 @@ export default function Work() {
             
             <div className="chapter-header-row">
               <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">INTELLIGENT CROP DIAGNOSTICS &middot; 05 / 05</span>
+                <span className="chapter-badge">INTELLIGENT CROP DIAGNOSTICS &middot; 06 / 06</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
                 <h2 className="chapter-title">AGRIVISION AI</h2>
@@ -549,7 +623,7 @@ export default function Work() {
             
             <Reveal y={24} duration={1.0}>
               <h2 className="closing-statement-main">
-                Five systems.<br />
+                Six systems.<br />
                 One continuing question.
               </h2>
             </Reveal>

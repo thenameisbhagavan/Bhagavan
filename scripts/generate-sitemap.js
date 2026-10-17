@@ -70,6 +70,7 @@ const pageRoutes = [
 ];
 
 const productRoutes = [
+  '/work/data-valley-assessment-platform',
   '/work/voltdrive',
   '/work/careeros',
   '/work/auraos',

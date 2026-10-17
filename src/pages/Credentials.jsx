@@ -621,6 +621,63 @@ export default function Credentials() {
         </section>
 
         {/* ══════════════════════════════════════════════════════
+            ACADEMIC ARCHIVE LINKAGE
+        ══════════════════════════════════════════════════════ */}
+        <section className="cred-academic-bridge" data-nav-theme="light" style={{ padding: '60px 0', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+          <div className="cred-bounds">
+            <m.div 
+              style={{ 
+                background: '#fbfbfd', 
+                border: '1px solid rgba(0,0,0,0.08)', 
+                borderRadius: '20px', 
+                padding: '36px 32px',
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                gap: '20px'
+              }}
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true, margin: "-100px" }} 
+              variants={fadeUp}
+            >
+              <div style={{ maxWidth: '640px' }}>
+                <span style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#86868b', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+                  INSTITUTIONAL EDUCATION
+                </span>
+                <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#111111', margin: '0 0 8px 0', letterSpacing: '-0.02em' }}>
+                  Academic Archive &amp; Verified Records
+                </h3>
+                <p style={{ fontSize: '14px', color: '#555555', margin: 0, lineHeight: 1.5 }}>
+                  Institutional records, B.Tech Consolidated Marks Memorandum (CMM), Provisional Certificate, and semester marks.
+                </p>
+              </div>
+              <Link 
+                to="/academic-archive" 
+                style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '8px', 
+                  fontSize: '13px', 
+                  fontWeight: '600', 
+                  letterSpacing: '0.04em', 
+                  color: '#0071e3', 
+                  textDecoration: 'none',
+                  padding: '12px 20px',
+                  background: 'rgba(0,113,227,0.08)',
+                  borderRadius: '980px',
+                  transition: 'background 0.2s ease'
+                }}
+              >
+                <span>EXPLORE ACADEMIC ARCHIVE</span>
+                <ArrowRight size={14} />
+              </Link>
+            </m.div>
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
             10. CLOSING
         ══════════════════════════════════════════════════════ */}
         <section className="cred-closing" data-nav-theme="light">

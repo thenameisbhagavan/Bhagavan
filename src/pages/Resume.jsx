@@ -112,8 +112,9 @@ export default function Resume() {
   return (
     <>
       <SEO 
-        description="Official canonical resume of Bhagavan (TheNameIsBhagavan). AI Product Engineer & Technical Trainer at Datavalley Inc. View one current professional record."
-        keywords="Bhagavan Resume, TheNameIsBhagavan Resume, AI Product Engineer CV, Technical Trainer, Datavalley Inc, Software Engineer Resume, Canonical Resume"
+        title="Resume | TheNameIsBhagavan"
+        description="Official professional record of Bhagavan (TheNameIsBhagavan) — Software Developer, AI/ML & Generative AI practitioner, and Technical Trainer at Data Valley AI Tech Solutions."
+        keywords="Bhagavan Resume, TheNameIsBhagavan Resume, Software Developer CV, AI/ML, Generative AI, Technical Trainer, Data Valley AI Tech Solutions, Python Developer Resume"
       />
 
       <LiveResumeModal 
@@ -132,7 +133,7 @@ export default function Resume() {
             
             <Reveal y={16} duration={0.8}>
               <div className="res-hero-eyebrow">
-                <span className="res-badge">PROFESSIONAL RECORD / 2024</span>
+                <span className="res-badge">PROFESSIONAL RECORD / 2024 &ndash; PRESENT</span>
               </div>
             </Reveal>
 
@@ -145,20 +146,20 @@ export default function Resume() {
 
             <Reveal y={20} duration={0.9} delay={0.3}>
               <p className="res-hero-sub">
-                AI Product Engineering, AI/ML systems, software development, and technical training — documented in one current professional record.
+                Software development, AI/ML & Generative AI applications, and hands-on technical training &mdash; documented in one current professional record.
               </p>
             </Reveal>
 
             {/* Restrained Metadata Tags */}
             <Reveal y={16} duration={0.8} delay={0.45}>
               <div className="res-hero-tags">
-                <span>AI PRODUCT ENGINEERING</span>
+                <span>SOFTWARE DEVELOPMENT</span>
                 <span className="tag-dot">&middot;</span>
-                <span>AI / ML</span>
+                <span>AI / ML &amp; GENAI</span>
                 <span className="tag-dot">&middot;</span>
-                <span>PYTHON</span>
+                <span>PYTHON BACKEND</span>
                 <span className="tag-dot">&middot;</span>
-                <span>PRODUCT ENGINEERING</span>
+                <span>DATA SCIENCE</span>
                 <span className="tag-dot">&middot;</span>
                 <span>TECHNICAL TRAINING</span>
               </div>
@@ -258,7 +259,7 @@ export default function Resume() {
               <Reveal y={24} duration={0.9} className="res-evidence-col">
                 <span className="rec-col-title">THE DOCUMENT</span>
                 <p className="rec-col-desc">
-                  A concise professional summary highlighting core engineering skill sets, technical AI/ML training leadership, and shipping capabilities across Python, APIs, and modern frontends.
+                  A concise professional summary highlighting software engineering skill sets, practical AI/ML and Generative AI application workflows, and technical training delivery across Python, APIs, and modern architectures.
                 </p>
               </Reveal>
 
@@ -267,15 +268,15 @@ export default function Resume() {
                 <div className="rec-signals-list">
                   <div className="rec-signal-item">
                     <span className="sig-key">SHIPPED SYSTEMS:</span>
-                    <span className="sig-val">CareerOS &middot; AuraOS &middot; VERITAS &middot; VoltDrive</span>
+                    <span className="sig-val">CareerOS &middot; VERITAS &middot; AuraOS &middot; VoltDrive</span>
                   </div>
                   <div className="rec-signal-item">
                     <span className="sig-key">CURRENT ROLE:</span>
-                    <span className="sig-val">Technical Trainer &mdash; Datavalley Inc (June 2024 - Present)</span>
+                    <span className="sig-val">Developer &amp; Technical Trainer &mdash; Data Valley AI Tech Solutions (2024 &ndash; Present)</span>
                   </div>
                   <div className="rec-signal-item">
-                    <span className="sig-key">ENGINEERING FOCUS:</span>
-                    <span className="sig-val">AI Systems &middot; Python &middot; Product Engineering</span>
+                    <span className="sig-key">CORE DISCIPLINES:</span>
+                    <span className="sig-val">Software Engineering &middot; AI/ML &amp; GenAI &middot; Technical Training</span>
                   </div>
                 </div>
               </Reveal>

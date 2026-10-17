@@ -109,8 +109,9 @@ export default function Connect() {
   return (
     <>
       <SEO 
-        description="Connect with Bhagavan (TheNameIsBhagavan). Open to conversations around AI systems, data science, and software engineering." 
-        keywords="Contact Bhagavan, TheNameIsBhagavan Contact, Hire AI Engineer, Technical AI/ML Trainer, Vijayawada" 
+        title="Connect | TheNameIsBhagavan"
+        description="Connect with Bhagavan (TheNameIsBhagavan) — Software Developer, AI/ML & Generative AI practitioner, and Technical Trainer at Data Valley AI Tech Solutions. Open to engineering collaborations and technical discussions." 
+        keywords="Contact Bhagavan, TheNameIsBhagavan Contact, Software Developer, AI/ML, Generative AI, Technical Trainer, Data Valley AI Tech Solutions, Vijayawada" 
       />
 
       <div className="con-page">
@@ -148,33 +149,33 @@ export default function Connect() {
             <div className="ch-grid">
               
               <m.div className="ch-left" initial="hidden" animate="visible" variants={fadeUp}>
-                <div className="c-label">OPEN CHANNEL / 2024</div>
+                <div className="c-label">OPEN CHANNEL / 2024 &ndash; PRESENT</div>
                 <h1 className="ch-headline">
                   Open to<br/>learning.
                 </h1>
                 <p className="ch-sub">
-                  If you're building something hard, trying to figure out AI in production, or just want to talk about what works and what doesn't — I'd love to connect.
+                  If you're building software, evaluating AI applications in production, or exploring practical technical training &mdash; I'd love to connect.
                 </p>
               </m.div>
 
               <m.div className="ch-right" initial="hidden" animate="visible" variants={fadeUp}>
-                <div className="c-label">CURRENTLY</div>
+                <div className="c-label">CURRENT STATUS</div>
                 <div className="ch-availability">
                   <div className="cha-item">
-                    <span className="cha-label">CURRENTLY</span>
-                    <span className="cha-value">TECHNICAL AI/ML & DATA SCIENCE TRAINER AT DATA VALLEY</span>
+                    <span className="cha-label">ENGAGEMENT</span>
+                    <span className="cha-value">DEVELOPER &amp; TECHNICAL TRAINER AT DATA VALLEY AI TECH SOLUTIONS</span>
                   </div>
                   <div className="cha-item">
                     <span className="cha-label">BUILDING</span>
-                    <span className="cha-value">AI SYSTEMS</span>
+                    <span className="cha-value">AI APPLICATIONS &amp; PYTHON BACKENDS</span>
+                  </div>
+                  <div className="cha-item">
+                    <span className="cha-label">TEACHING</span>
+                    <span className="cha-value">DATA SCIENCE, AI/ML &amp; GENERATIVE AI</span>
                   </div>
                   <div className="cha-item">
                     <span className="cha-label">EXPLORING</span>
-                    <span className="cha-value">AGENTIC INTELLIGENCE</span>
-                  </div>
-                  <div className="cha-item">
-                    <span className="cha-label">INTERESTED IN</span>
-                    <span className="cha-value">PRODUCT ENGINEERING</span>
+                    <span className="cha-value">AGENTIC WORKFLOWS &amp; LLM EVALUATIONS</span>
                   </div>
                   <div className="cha-item">
                     <span className="cha-label">AVAILABLE FOR</span>
@@ -429,6 +430,7 @@ export default function Connect() {
             <m.div className="cx-explore" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <div className="c-label">EXPLORE THE SYSTEMS →</div>
               <div className="cxe-links">
+                <Link to="/work/data-valley-assessment-platform" className="cxe-link">DV Assessments</Link>
                 <Link to="/work/careeros" className="cxe-link">CareerOS</Link>
                 <Link to="/work/auraos" className="cxe-link">AuraOS</Link>
                 <Link to="/work/veritas" className="cxe-link">VERITAS</Link>

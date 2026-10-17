@@ -35,26 +35,31 @@ const LAYERS = [
   },
   {
     num: "04",
-    title: "INTELLIGENCE",
-    desc: "AI, Machine Learning, and Data Processing.",
-    techs: ["AI / Machine Learning", "TensorFlow", "Keras", "Scikit-learn", "Pandas", "NumPy", "NLP", "Computer Vision"]
+    title: "INTELLIGENCE & AI/ML",
+    desc: "AI, Machine Learning, Generative AI APIs, and Data Processing.",
+    techs: ["Python", "Scikit-learn", "TensorFlow", "Pandas", "NumPy", "Generative AI APIs", "NLP", "Computer Vision"]
   },
   {
     num: "05",
-    title: "DELIVERY",
+    title: "DELIVERY & INFRASTRUCTURE",
     desc: "Databases, Tooling, and Deployment.",
-    techs: ["MongoDB", "MongoDB Atlas", "MySQL", "Git", "GitHub", "Postman", "Docker", "CI/CD", "Vercel", "Netlify", "Render"]
+    techs: ["MongoDB", "MySQL", "Git", "GitHub", "Postman", "Docker", "CI/CD", "Vercel", "Render"]
   },
   {
     num: "06",
-    title: "TECHNICAL EDUCATION & LEADERSHIP",
-    desc: "Mentoring the next generation of engineers.",
-    techs: ["Instruction & Mentorship", "Curriculum Design", "Practical Data Science Learning", "ML/AI Applied Workshops"]
+    title: "TECHNICAL TRAINING & CURRICULUM",
+    desc: "Delivering practical engineering curriculum, hands-on coding labs, and real-world AI walkthroughs.",
+    techs: ["Curriculum Architecture", "Hands-on Coding Labs", "Applied Data Science", "Machine Learning Workflows", "Generative AI Integration"]
   }
 ];
 
 // ─── Data: System Connections ────────────────────────────────────────────────
 const SYSTEMS = [
+  {
+    name: "DV Assessments",
+    focus: "Enterprise Evaluation System",
+    trace: ["Next.js", "React 19", "TypeScript", "MongoDB Atlas", "Vercel"]
+  },
   {
     name: "CareerOS",
     focus: "Career Intelligence",
@@ -87,8 +92,9 @@ export default function TechnologyEcosystem() {
   return (
     <>
       <SEO 
-        description="Software architecture and technology ecosystem used by Bhagavan. AI models, Python backend infrastructure, React frontends, and data science tooling." 
-        keywords="Software Architecture, AI Systems, Bhagavan Tech Stack, Python, React, Data Science Tools, Machine Learning Infrastructure" 
+        title="Technology Ecosystem | TheNameIsBhagavan"
+        description="Software architecture and technology ecosystem used by Bhagavan (TheNameIsBhagavan) — Software Developer, AI/ML & Generative AI practitioner, and Technical Trainer. Languages, frameworks, intelligence tools, and training methodology." 
+        keywords="Software Architecture, AI Systems, Generative AI, Bhagavan Tech Stack, Python, React, Data Science Tools, Machine Learning Infrastructure, Technical Trainer" 
       />
 
       <div className="eco-page">
@@ -99,7 +105,7 @@ export default function TechnologyEcosystem() {
         <section className="eco-hero" data-nav-theme="light">
           <div className="eco-bounds">
             <m.div className="eco-hero-eyebrow" initial="hidden" animate="visible" variants={fadeUp}>
-              TECHNOLOGY ECOSYSTEM / ENGINEERING ARCHITECTURE / 2024
+              TECHNOLOGY ECOSYSTEM / ENGINEERING ARCHITECTURE / 2024 &ndash; PRESENT
             </m.div>
             <m.h1 className="eco-hero-headline" initial="hidden" animate="visible" variants={fadeUp}>
               Technology is not the stack.<br/>

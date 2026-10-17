@@ -240,9 +240,9 @@ export default function VerificationCenter() {
             <m.article className="vc-summary-item vc-summary-full" variants={vcFadeUp}>
               <div className="vc-summary-header">
                 <span className="vc-summary-label">Recruitment Status</span>
-                <span className="vc-status-badge vc-status-ready">OPEN</span>
+                <span className="vc-status-badge vc-status-ready">ACTIVE</span>
               </div>
-              <span className="vc-summary-value">Currently: Technical AI/ML & Data Science Trainer at Data Valley</span>
+              <span className="vc-summary-value">Currently: Developer &amp; Technical Trainer at Data Valley AI Tech Solutions</span>
             </m.article>
 
           </div>

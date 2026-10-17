@@ -5,6 +5,7 @@ import carrerImg from "./assets/carrer.jpg";
 import fakeImg from "./assets/fake.jpg";
 import heartImg from "./assets/heart.jpg";
 import leaveImg from "./assets/leave.jpg";
+import dvAssessmentImg from "./assets/datavalley-assessment-platform.png";
 
 export const PROFILE = {
   name: 'Siva Satya Sai Bhagavan Gopalajosyula',
@@ -12,23 +13,43 @@ export const PROFILE = {
   phone: '+91 7569205626',
   github: 'https://github.com/thenameisbhagavan',
   linkedin: 'https://www.linkedin.com/in/thenameisbhagavan/',
-  objective: 'Technical Trainer at Datavalley Inc, Vijayawada. AI Product Engineer building intelligent software systems, AI-powered applications, and data-driven products. B.Tech in AI & Data Science (2026).',
+  objective: 'Software Developer | AI/ML & Generative AI | Data Science & Technical Trainer at Data Valley AI Tech Solutions. Building practical AI systems, Python backend services, and data-driven applications while delivering hands-on technical training.',
   internships: [
-    { title: 'MERN Stack Intern', company: 'StudyOwl Education Pvt Ltd', period: 'May–July 2025', detail: ['Contributed to React frontend and Node.js backend integration.', 'Built reusable components and integrated REST APIs.'] },
-    { title: 'AI/ML Intern – Smart Sorting', company: 'SmartBridge (Remote)', period: 'May–June 2025', detail: ['Developed CNN-based image classification models using TensorFlow and Keras.', 'Deployed trained models using Flask.'] },
-    { title: 'ML & Data Science Intern', company: 'Blackbucks (Remote)', period: 'May–June 2024', detail: ['Performed data preprocessing and feature engineering.', 'Developed model training pipelines using Scikit-learn.'] },
+    { title: 'Software Development Intern', company: 'StudyOwl Education Pvt Ltd', period: '2024', detail: ['Contributed to React frontend and Node.js backend integration.', 'Built reusable components and integrated REST APIs.'] },
+    { title: 'Software Engineering Intern', company: 'SmartBridge', period: '2024', detail: ['Developed CNN-based image classification models using TensorFlow and Keras.', 'Deployed trained models using Flask.'] },
+    { title: 'Machine Learning Intern', company: 'Blackbucks', period: '2024', detail: ['Performed data preprocessing and feature engineering.', 'Developed model training pipelines using Scikit-learn.'] },
+    { title: 'Enterprise Automation Intern', company: 'Helson', period: '2024', detail: ['Worked with business process workflows and enterprise automation systems.'] },
   ],
   skills: { 
-    languages: ['Python', 'Java', 'C', 'JavaScript'], 
-    frontend: ['HTML', 'CSS', 'React.js', 'Bootstrap', 'Tailwind CSS'], 
-    backend: ['Node.js', 'Express.js', 'Flask', 'REST APIs'], 
-    databases: ['MongoDB', 'MySQL'], 
+    languages: ['Python', 'Java', 'C', 'JavaScript', 'TypeScript'], 
+    frontend: ['HTML', 'CSS', 'React.js', 'Next.js', 'Bootstrap', 'Tailwind CSS'], 
+    backend: ['Node.js', 'Express.js', 'Flask', 'FastAPI', 'Next.js App Router', 'REST APIs'], 
+    databases: ['MongoDB', 'MongoDB Atlas', 'MySQL'], 
     ml: ['TensorFlow', 'Keras', 'Scikit-learn', 'Pandas', 'NumPy', 'OpenCV'], 
-    tools: ['Git', 'GitHub', 'VS Code', 'Postman', 'Power Apps', 'Power Automate'] 
+    tools: ['Git', 'GitHub', 'VS Code', 'Postman', 'Power Apps', 'Power Automate', 'Vercel'] 
   }
 };
 
 export const PROJECTS = [
+  {
+    id: 0,
+    title: "Data Valley Engineering Assessment Platform",
+    tagline: "End-to-End Application Engineering · Data Valley AI Tech Solutions",
+    subtitle: "Engineering assessment web application with authenticated candidate workflows, timed evaluations, and server-side scoring",
+    github: null,
+    live: "https://dv-assesments.vercel.app/",
+    caseStudy: "/work/data-valley-assessment-platform",
+    year: "2026",
+    duration: "Production Application",
+    problem: "Technical assessment pipelines need a secure, synchronized environment to deliver timed coding challenges, persist answers reliably across interruptions, and evaluate candidate performance without client-side tampering.",
+    solution: "Engineered an end-to-end assessment platform for Data Valley AI Tech Solutions using Next.js App Router, React 19, TypeScript, and MongoDB Atlas, featuring continuous answer syncing, countdown timer orchestration, and server-side score calculation.",
+    impact: [
+      { label: "Questions Delivered", value: 40, suffix: "/session" },
+      { label: "Answer Syncing", value: 100, suffix: "% server-verified" },
+      { label: "Score Calculation", value: 100, suffix: "% server-side" }
+    ],
+    screenshot: dvAssessmentImg
+  },
   {
     id:1,title:"Automated Leave Management System",
     tagline:"Low-code workflow automation project",
@@ -93,29 +114,36 @@ export const PROJECTS = [
 
 export const JOURNEY = [
   {
-    year: "2026 — Present",
-    title: "Technical Trainer",
-    entity: "Datavalley Inc, Vijayawada, India",
+    year: "Current",
+    title: "Developer & Technical Trainer",
+    entity: "Data Valley AI Tech Solutions, Vijayawada, India",
     type: "Professional",
-    description: "Working at the intersection of technical education and applied AI, mentoring students and delivering practical learning across Data Science, Python, Machine Learning, and Artificial Intelligence."
+    description: "Developing software applications, Python backend services, and practical AI systems while mentoring students and delivering curriculum across Data Science, Python, Machine Learning, and Generative AI."
   },
   {
-    year: "2025",
-    title: "MERN Stack Intern",
+    year: "2024",
+    title: "Enterprise Automation Intern",
+    entity: "Helson",
+    type: "Internship",
+    description: "Worked with business process workflows and enterprise automation systems."
+  },
+  {
+    year: "2024",
+    title: "Software Development Intern",
     entity: "StudyOwl Education Pvt Ltd",
     type: "Internship",
     description: "Contributed to React frontend and Node.js backend integration. Built reusable components and integrated REST APIs."
   },
   {
-    year: "2025",
-    title: "AI/ML Intern – Smart Sorting",
+    year: "2024",
+    title: "Software Engineering Intern",
     entity: "SmartBridge",
     type: "Internship",
     description: "Developed CNN-based image classification models using TensorFlow and Keras. Deployed trained models using Flask."
   },
   {
     year: "2024",
-    title: "ML & Data Science Intern",
+    title: "Machine Learning Intern",
     entity: "Blackbucks",
     type: "Internship",
     description: "Performed data preprocessing and feature engineering. Developed model training pipelines using Scikit-learn."
