@@ -22,6 +22,39 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { m, useScroll, useTransform } from "framer-motion";
 import SEO from "../components/SEO";
+import {
+  SiPython,
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiNextdotjs,
+  SiFastapi,
+  SiNodedotjs,
+  SiFlask,
+  SiPostgresql,
+  SiMongodb,
+  SiMysql,
+  SiRedis,
+  SiTailwindcss,
+  SiDocker,
+  SiGit,
+  SiGithub,
+  SiPostman,
+  SiVercel,
+  SiHtml5,
+  SiCss3,
+  SiGooglegemini,
+  SiOpenai,
+  SiHuggingface,
+  SiLangchain,
+  SiPytorch,
+  SiTensorflow,
+  SiKeras,
+  SiScikitlearn,
+  SiPandas,
+  SiNumpy,
+  SiJupyter
+} from "react-icons/si";
 import Reveal from "../components/motion/Reveal";
 import MaskReveal from "../components/motion/MaskReveal";
 import ScaleReveal from "../components/motion/ScaleReveal";
@@ -41,38 +74,54 @@ import veritasImg from "../assets/fake.jpg";
 import datavalleyImg from "../assets/datascience coruse compltetion.jpeg";
 import pbrTalkPhoto from "../assets/pbr-vits-ai-talk.jpg";
 import dvAssessmentImg from "../assets/datavalley-assessment-platform.png";
+import agrivisionImg from "../assets/agrivision.png";
 
-// ─── Dual-Direction Technology Trains (Canonical & Disjoint) ───────────────────
-// Train 1: Right-to-Left (Software Development, Modern Web, Backend & GenAI)
+// ─── Dual-Direction Technology Trains (Authentic Brand Logos & Concepts) ─────
+// Track A: Right-to-Left (Software Engineering, Modern Web, Backend, Databases & Dev Tools)
 const TECH_TRAIN_1 = [
-  { name: "Python", icon: Terminal },
-  { name: "Next.js App Router", icon: Layers },
-  { name: "React 19", icon: Cpu },
-  { name: "FastAPI", icon: Server },
-  { name: "Gemini API", icon: Sparkles },
-  { name: "TypeScript", icon: Code2 },
-  { name: "MongoDB Atlas", icon: Database },
-  { name: "Prompt Engineering", icon: Terminal },
-  { name: "Tailwind CSS", icon: Sparkles },
-  { name: "REST APIs", icon: Workflow },
-  { name: "Vercel Edge", icon: Server },
-  { name: "Java & C", icon: Code2 }
+  { name: "Python", icon: SiPython, color: "#3776AB" },
+  { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+  { name: "React 19", icon: SiReact, color: "#61DAFB" },
+  { name: "Next.js App Router", icon: SiNextdotjs, color: "#000000" },
+  { name: "FastAPI", icon: SiFastapi, color: "#009688" },
+  { name: "Node.js", icon: SiNodedotjs, color: "#5FA04E" },
+  { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+  { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+  { name: "Docker", icon: SiDocker, color: "#2496ED" },
+  { name: "Flask", icon: SiFlask, color: "#000000" },
+  { name: "Redis", icon: SiRedis, color: "#FF4438" },
+  { name: "Git", icon: SiGit, color: "#F05032" },
+  { name: "GitHub", icon: SiGithub, color: "#181717" },
+  { name: "Postman", icon: SiPostman, color: "#FF6C37" },
+  { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+  { name: "Vercel Edge", icon: SiVercel, color: "#000000" },
+  { name: "JavaScript (ESNext)", icon: SiJavascript, color: "#F7DF1E" },
+  { name: "HTML5 & CSS3", icon: SiHtml5, color: "#E34F26" },
+  { name: "REST APIs", isConcept: true },
+  { name: "Microservices", isConcept: true }
 ];
 
-// Train 2: Left-to-Right (Data Science, Machine Learning, Systems & Infrastructure)
+// Track B: Left-to-Right (Data Science, Machine Learning, Generative AI & Agentic AI)
 const TECH_TRAIN_2 = [
-  { name: "Scikit-learn", icon: BrainCircuit },
-  { name: "TensorFlow & Keras", icon: Cpu },
-  { name: "Pandas", icon: Layers },
-  { name: "NumPy", icon: Database },
-  { name: "Flask", icon: Server },
-  { name: "Node.js", icon: Server },
-  { name: "SQL", icon: Database },
-  { name: "RAG Architectures", icon: BrainCircuit },
-  { name: "Git & GitHub", icon: GitBranch },
-  { name: "Postman", icon: Workflow },
-  { name: "MySQL", icon: Database },
-  { name: "JavaScript (ESNext)", icon: Code2 }
+  { name: "Gemini API", icon: SiGooglegemini, color: "#1BA1E2" },
+  { name: "OpenAI API", icon: SiOpenai, color: "#10A37F" },
+  { name: "LangChain", icon: SiLangchain, color: "#1C3C3C" },
+  { name: "Hugging Face", icon: SiHuggingface, color: "#FFD21E" },
+  { name: "PyTorch", icon: SiPytorch, color: "#EE4C2C" },
+  { name: "TensorFlow", icon: SiTensorflow, color: "#FF6F00" },
+  { name: "Scikit-learn", icon: SiScikitlearn, color: "#F7931E" },
+  { name: "Keras", icon: SiKeras, color: "#D00000" },
+  { name: "Pandas", icon: SiPandas, color: "#150458" },
+  { name: "NumPy", icon: SiNumpy, color: "#013243" },
+  { name: "Jupyter", icon: SiJupyter, color: "#F37626" },
+  { name: "Agentic Workflows", isConcept: true },
+  { name: "Multi-Agent Systems", isConcept: true },
+  { name: "RAG Architectures", isConcept: true },
+  { name: "Vector Search", isConcept: true },
+  { name: "Tool Calling", isConcept: true },
+  { name: "Prompt Engineering", isConcept: true },
+  { name: "Model Evaluation", isConcept: true }
 ];
 
 
@@ -86,53 +135,63 @@ export default function Overview() {
 
   return (
     <>
-      <SEO 
+      <SEO
         description="Official portfolio of Bhagavan (TheNameIsBhagavan). Software Developer & Technical Trainer at Data Valley AI Tech Solutions. Building software applications, Python backend services, and practical AI systems while teaching Data Science, Machine Learning, and Generative AI."
         keywords="TheNameIsBhagavan, Bhagavan, Software Developer, Technical Trainer, Data Valley AI Tech Solutions, AI ML Developer, Generative AI, Data Science Trainer, Python Developer, CareerOS, AuraOS, VERITAS, VoltDrive"
       />
-      
+
       <div className="engineering-surface">
-        
+
         {/* ============================================================
             SECTION 01 — HERO (APPLE-INSPIRED REFINED IDENTITY)
             ============================================================ */}
         <section className="es-hero" data-nav-theme="light">
           <div className="es-hero-grid">
-            
+
             {/* LEFT COLUMN: NARRATIVE */}
             <div className="es-hero-left">
-              <Reveal y={14} duration={0.8}>
-                <span className="es-hero-eyebrow">SOFTWARE ENGINEER &bull; AI/ML &bull; TECHNICAL TRAINER</span>
+              <Reveal y={12} duration={0.7}>
+                <span className="es-hero-eyebrow">
+                  SOFTWARE ENGINEER <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> AI/ML <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> TECHNICAL TRAINER
+                </span>
               </Reveal>
 
               <div className="es-hero-title-group">
-                <Reveal y={18} duration={0.9} delay={0.08}>
+                <Reveal y={16} duration={0.8} delay={0.06}>
                   <h1 className="es-hero-headline">
                     <span className="es-hero-hl-line">I build software.</span>
                     <span className="es-hero-hl-line">I teach intelligence.</span>
                   </h1>
                 </Reveal>
               </div>
-              
+
               <div className="es-hero-bottom-group">
-                <Reveal y={16} duration={0.9} delay={0.16}>
+                <Reveal y={14} duration={0.8} delay={0.12}>
                   <p className="es-hero-sub">
-                    Software Developer &amp; AI/ML Technical Trainer at Data Valley AI Tech Solutions.
+                    Developer &amp; Data Science Technical Trainer at <br className="es-hero-sub-break" /> Data Valley AI-first EdTech software training institute and technology solutions .
                   </p>
                 </Reveal>
 
-                {/* Primary Action Buttons */}
-                <Reveal y={16} duration={0.9} delay={0.24}>
+                {/* Primary & Secondary Action Buttons */}
+                <Reveal y={14} duration={0.8} delay={0.18}>
                   <div className="es-hero-actions-group">
                     <MagneticLink strength={0.2}>
-                      <button className="es-btn-primary apple-pressable" onClick={() => navigate('/work')}>
+                      <button
+                        className="es-hero-btn-primary apple-pressable"
+                        onClick={() => navigate('/work')}
+                        aria-label="Explore My Work"
+                      >
                         <span>Explore My Work</span>
-                        <ArrowRight size={15} />
+                        <ArrowRight size={14} className="es-hero-btn-arrow" strokeWidth={2.2} />
                       </button>
                     </MagneticLink>
 
                     <MagneticLink strength={0.2}>
-                      <button className="es-btn-secondary apple-pressable" onClick={() => navigate('/experience')}>
+                      <button
+                        className="es-hero-btn-secondary apple-pressable"
+                        onClick={() => navigate('/experience')}
+                        aria-label="About Me"
+                      >
                         <span>About Me</span>
                       </button>
                     </MagneticLink>
@@ -144,15 +203,16 @@ export default function Overview() {
             {/* RIGHT COLUMN: PORTRAIT ENVIRONMENT */}
             <div className="es-hero-right">
               <div className="es-hero-portrait-env">
-                <ScaleReveal duration={0.9} delay={0.12}>
+                <ScaleReveal duration={0.85} delay={0.1}>
                   <div className="es-hero-portrait-frame">
-                    <img 
-                      src={profileHeroImg} 
-                      alt="Bhagavan — Software Developer & AI/ML Technical Trainer" 
-                      loading="eager" 
+                    <img
+                      src={profileHeroImg}
+                      alt="Bhagavan — Software Developer & AI/ML Technical Trainer"
+                      loading="eager"
                       fetchpriority="high"
                       className="es-hero-portrait-img"
                     />
+                    <div className="es-hero-portrait-scrim" aria-hidden="true" />
                   </div>
                 </ScaleReveal>
               </div>
@@ -169,15 +229,15 @@ export default function Overview() {
         <section id="technology-ecosystem" className="es-tech-marquee-section" data-nav-theme="light">
           <div className="es-bounds">
             <div className="es-tech-editorial-header">
-              <Reveal y={16} duration={0.8}>
+              <Reveal y={14} duration={0.8}>
                 <span className="es-tech-eyebrow">TECHNICAL ECOSYSTEM</span>
               </Reveal>
-              <Reveal y={20} duration={0.9} delay={0.1}>
+              <Reveal y={18} duration={0.9} delay={0.08}>
                 <h2 className="es-tech-headline">The technologies behind my work.</h2>
               </Reveal>
-              <Reveal y={20} duration={0.9} delay={0.18}>
+              <Reveal y={18} duration={0.9} delay={0.16}>
                 <p className="es-tech-sub">
-                  Software Engineering &bull; Data Science &bull; AI/ML &bull; Generative AI
+                  Software Engineering <span className="es-tech-sub-sep" aria-hidden="true">&bull;</span> Data Science <span className="es-tech-sub-sep" aria-hidden="true">&bull;</span> AI/ML <span className="es-tech-sub-sep" aria-hidden="true">&bull;</span> Generative AI <span className="es-tech-sub-sep" aria-hidden="true">&bull;</span> Agentic AI
                 </p>
               </Reveal>
             </div>
@@ -185,7 +245,7 @@ export default function Overview() {
 
           {/* DUAL-DIRECTION HORIZONTAL TECHNOLOGY TRAINS */}
           <div className="es-tech-trains-container" aria-label="Dual-direction continuous technology stream">
-            {/* TRAIN 1: Continuously moving right-to-left */}
+            {/* TRAIN 1: Continuously moving right-to-left (Software Engineering & Infrastructure) */}
             <div className="es-tech-train-outer">
               <div className="es-tech-train-track es-train-rtl">
                 <div className="es-tech-train-group">
@@ -194,7 +254,13 @@ export default function Overview() {
                     return (
                       <React.Fragment key={`t1-orig-${idx}`}>
                         <div className="es-tech-item">
-                          <span className="es-tech-icon" aria-hidden="true"><Icon size={15} strokeWidth={1.7} /></span>
+                          {item.isConcept ? (
+                            <span className="es-tech-concept-badge" aria-hidden="true">ARCH</span>
+                          ) : (
+                            <span className="es-tech-icon" style={{ "--brand-color": item.color }} aria-hidden="true">
+                              <Icon size={18} />
+                            </span>
+                          )}
                           <span className="es-tech-name">{item.name}</span>
                         </div>
                         <span className="es-tech-dot-sep" aria-hidden="true">&bull;</span>
@@ -209,7 +275,13 @@ export default function Overview() {
                     return (
                       <React.Fragment key={`t1-dup-${idx}`}>
                         <div className="es-tech-item">
-                          <span className="es-tech-icon"><Icon size={15} strokeWidth={1.7} /></span>
+                          {item.isConcept ? (
+                            <span className="es-tech-concept-badge" aria-hidden="true">ARCH</span>
+                          ) : (
+                            <span className="es-tech-icon" style={{ "--brand-color": item.color }} aria-hidden="true">
+                              <Icon size={18} />
+                            </span>
+                          )}
                           <span className="es-tech-name">{item.name}</span>
                         </div>
                         <span className="es-tech-dot-sep">&bull;</span>
@@ -220,7 +292,7 @@ export default function Overview() {
               </div>
             </div>
 
-            {/* TRAIN 2: Continuously moving left-to-right */}
+            {/* TRAIN 2: Continuously moving left-to-right (Data Science, AI/ML, Generative AI & Agentic AI) */}
             <div className="es-tech-train-outer">
               <div className="es-tech-train-track es-train-ltr">
                 <div className="es-tech-train-group">
@@ -229,7 +301,13 @@ export default function Overview() {
                     return (
                       <React.Fragment key={`t2-orig-${idx}`}>
                         <div className="es-tech-item">
-                          <span className="es-tech-icon" aria-hidden="true"><Icon size={15} strokeWidth={1.7} /></span>
+                          {item.isConcept ? (
+                            <span className="es-tech-concept-badge es-concept-agentic" aria-hidden="true">AI</span>
+                          ) : (
+                            <span className="es-tech-icon" style={{ "--brand-color": item.color }} aria-hidden="true">
+                              <Icon size={18} />
+                            </span>
+                          )}
                           <span className="es-tech-name">{item.name}</span>
                         </div>
                         <span className="es-tech-dot-sep" aria-hidden="true">&bull;</span>
@@ -244,7 +322,13 @@ export default function Overview() {
                     return (
                       <React.Fragment key={`t2-dup-${idx}`}>
                         <div className="es-tech-item">
-                          <span className="es-tech-icon"><Icon size={15} strokeWidth={1.7} /></span>
+                          {item.isConcept ? (
+                            <span className="es-tech-concept-badge es-concept-agentic" aria-hidden="true">AI</span>
+                          ) : (
+                            <span className="es-tech-icon" style={{ "--brand-color": item.color }} aria-hidden="true">
+                              <Icon size={18} />
+                            </span>
+                          )}
                           <span className="es-tech-name">{item.name}</span>
                         </div>
                         <span className="es-tech-dot-sep">&bull;</span>
@@ -354,7 +438,7 @@ export default function Overview() {
             ============================================================ */}
         <ScaleReveal as="section" className="es-featured-dv-platform" data-nav-theme="light">
           <div className="es-bounds">
-            
+
             {/* Header / Context */}
             <div className="es-dv-header">
               <Reveal y={16} duration={0.8}>
@@ -396,11 +480,11 @@ export default function Overview() {
                 </div>
 
                 <div className="es-dv-screenshot-wrapper">
-                  <img 
-                    src={dvAssessmentImg} 
-                    alt="Data Valley Engineering Assessment Platform showing candidate portal, coding challenge, question palette, and countdown timer." 
-                    className="es-dv-screenshot" 
-                    loading="lazy" 
+                  <img
+                    src={dvAssessmentImg}
+                    alt="Data Valley Engineering Assessment Platform showing candidate portal, coding challenge, question palette, and countdown timer."
+                    className="es-dv-screenshot"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -473,8 +557,8 @@ export default function Overview() {
                 {/* Actions */}
                 <div className="es-dv-actions">
                   <MagneticLink strength={0.25}>
-                    <button 
-                      className="es-dv-btn-primary apple-pressable" 
+                    <button
+                      className="es-dv-btn-primary apple-pressable"
                       onClick={() => navigate('/work/data-valley-assessment-platform')}
                     >
                       <span>Explore Case Study</span>
@@ -483,10 +567,10 @@ export default function Overview() {
                   </MagneticLink>
 
                   <MagneticLink strength={0.25}>
-                    <a 
-                      href="https://dv-assesments.vercel.app/" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href="https://dv-assesments.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="es-dv-btn-secondary apple-pressable"
                     >
                       <span>Open Live Application</span>
@@ -657,10 +741,10 @@ export default function Overview() {
                     <div style={{ fontSize: '13px', color: '#666666', marginTop: '2px' }}>Vijayawada &middot; Current Engagement</div>
                   </div>
                 </Reveal>
-                
+
                 <Reveal y={20} duration={0.9} delay={0.35}>
                   <p className="es-ee-story" style={{ fontStyle: 'italic', color: '#444444' }}>
-                    "Teaching is another form of engineering:<br/>breaking complex systems down until they become understandable."
+                    "Teaching is another form of engineering:<br />breaking complex systems down until they become understandable."
                   </p>
                 </Reveal>
 
@@ -686,13 +770,13 @@ export default function Overview() {
         <ScaleReveal as="section" className="es-featured-talk" data-nav-theme="light">
           <div className="es-bounds">
             <div className="es-ft-grid">
-              
+
               <div className="es-ft-media">
-                <img 
-                  src={pbrTalkPhoto} 
-                  alt="Students attending the AI Innovation and Startup Opportunities technical talk at PBR VITS, Kavali, on October 10, 2026." 
-                  className="es-ft-img" 
-                  loading="lazy" 
+                <img
+                  src={pbrTalkPhoto}
+                  alt="Students attending the AI Innovation and Startup Opportunities technical talk at PBR VITS, Kavali, on October 10, 2026."
+                  className="es-ft-img"
+                  loading="lazy"
                 />
                 <div className="es-ft-media-badge">
                   PBR VITS, KAVALI &bull; OCT 10, 2026
@@ -726,7 +810,7 @@ export default function Overview() {
                 <Reveal y={20} duration={0.9} delay={0.3}>
                   <div className="es-ft-actions">
                     <MagneticLink strength={0.2}>
-                      <button 
+                      <button
                         className="es-ft-btn-primary apple-pressable"
                         onClick={() => navigate('/experience#pbr-vits')}
                       >
@@ -736,7 +820,7 @@ export default function Overview() {
                     </MagneticLink>
 
                     <MagneticLink strength={0.2}>
-                      <button 
+                      <button
                         className="es-ft-btn-secondary apple-pressable"
                         onClick={() => setIsLetterModalOpen(true)}
                         type="button"
@@ -773,19 +857,20 @@ export default function Overview() {
               ].map((lab, i) => {
                 const Icon = lab.icon;
                 return (
-                <Reveal key={lab.domain} y={30} duration={0.9} delay={i * 0.1} className="es-lab-card">
-                  <div className={`es-lab-visual ${lab.visual}`}>
-                    <div className="es-lv-pattern"></div>
-                    <div className="es-lv-icon-wrapper">
-                      <Icon size={40} strokeWidth={1.5} />
+                  <Reveal key={lab.domain} y={30} duration={0.9} delay={i * 0.1} className="es-lab-card">
+                    <div className={`es-lab-visual ${lab.visual}`}>
+                      <div className="es-lv-pattern"></div>
+                      <div className="es-lv-icon-wrapper">
+                        <Icon size={40} strokeWidth={1.5} />
+                      </div>
                     </div>
-                  </div>
-                  <div className="es-lab-content">
-                    <h3 className="es-lab-domain">{lab.domain}</h3>
-                    <p className="es-lab-tags">{lab.tags}</p>
-                  </div>
-                </Reveal>
-              )})}
+                    <div className="es-lab-content">
+                      <h3 className="es-lab-domain">{lab.domain}</h3>
+                      <p className="es-lab-tags">{lab.tags}</p>
+                    </div>
+                  </Reveal>
+                )
+              })}
             </div>
 
             <Reveal y={20} duration={0.9} delay={0.4}>
@@ -857,7 +942,7 @@ export default function Overview() {
             ============================================================ */}
         <ScaleReveal as="section" className="es-final-statement" data-nav-theme="light">
           <div className="es-bounds text-center">
-            
+
             <Reveal y={24} duration={1.1}>
               <h2 className="es-final-hl">STILL BUILDING.</h2>
             </Reveal>
@@ -886,7 +971,7 @@ export default function Overview() {
         </ScaleReveal>
 
         {/* Live Document Viewer for PBR VITS Appreciation Letter */}
-        <AppreciationLetterModal 
+        <AppreciationLetterModal
           isOpen={isLetterModalOpen}
           onClose={() => setIsLetterModalOpen(false)}
         />
