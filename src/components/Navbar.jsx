@@ -10,10 +10,11 @@ import "../styles/Navbar.css";
 // ─────────────────────────────────────────────
 const PRIMARY_NAV = [
   { label: "Overview",       path: "/" },
-  { label: "Projects",       path: "/work" },
+  { label: "Work",           path: "/work" },
   { label: "Experience",     path: "/experience" },
+  { label: "Vision",         path: "/vision" },
   { label: "Innovation",     path: "/innovation" },
-  { label: "Certifications", path: "/credentials" },
+  { label: "Credentials",    path: "/credentials" },
   { label: "Connect",        path: "/connect" },
 ];
 
@@ -41,11 +42,12 @@ const SEARCH_PAGES = [
 ];
 
 const QUICK_LINKS = [
-  { label: "Projects",          path: "/work" },
+  { label: "Work",              path: "/work" },
   { label: "Experience",        path: "/experience" },
+  { label: "Vision",            path: "/vision" },
   { label: "Innovation",        path: "/innovation" },
-  { label: "Certifications",    path: "/credentials" },
-  { label: "Architecture",      path: "/ecosystem" },
+  { label: "Credentials",       path: "/credentials" },
+  { label: "Ecosystem",         path: "/ecosystem" },
   { label: "Resume",            path: "/resume" },
   { label: "Connect",           path: "/connect" },
 ];

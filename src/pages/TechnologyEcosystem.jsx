@@ -17,39 +17,63 @@ const fadeUp = {
 const LAYERS = [
   {
     num: "01",
-    title: "FOUNDATION",
-    desc: "Languages that define the computational layer.",
-    techs: ["Python", "JavaScript", "Java", "C", "SQL", "HTML", "CSS"]
+    title: "PROGRAMMING LANGUAGES",
+    desc: "Computational foundations for systems, data modeling, and application logic.",
+    techs: ["Python", "JavaScript (ESNext)", "TypeScript", "Java", "C", "SQL"]
   },
   {
     num: "02",
-    title: "PRODUCT",
-    desc: "Interfaces and application experiences.",
-    techs: ["React", "Vite", "Node.js", "Express.js"]
+    title: "FRONTEND ENGINEERING",
+    desc: "Fluid, high-performance interfaces and client architecture.",
+    techs: ["React 19", "Next.js (App Router)", "Tailwind CSS", "HTML5 & CSS3", "Framer Motion", "Vite"]
   },
   {
     num: "03",
-    title: "SYSTEMS",
-    desc: "Backend architecture and APIs.",
-    techs: ["FastAPI", "Flask", "REST APIs"]
+    title: "BACKEND ENGINEERING",
+    desc: "Resilient server architecture, asynchronous routing, and API microservices.",
+    techs: ["FastAPI", "Flask", "Node.js", "Express.js", "REST APIs", "Stateless Proxy Bridges"]
   },
   {
     num: "04",
-    title: "INTELLIGENCE & AI/ML",
-    desc: "AI, Machine Learning, Generative AI APIs, and Data Processing.",
-    techs: ["Python", "Scikit-learn", "TensorFlow", "Pandas", "NumPy", "Generative AI APIs", "NLP", "Computer Vision"]
+    title: "DATABASES & PERSISTENCE",
+    desc: "Structured schemas, document stores, and state synchronization.",
+    techs: ["MongoDB Atlas", "PostgreSQL", "MySQL", "Redis", "Mongoose"]
   },
   {
     num: "05",
-    title: "DELIVERY & INFRASTRUCTURE",
-    desc: "Databases, Tooling, and Deployment.",
-    techs: ["MongoDB", "MySQL", "Git", "GitHub", "Postman", "Docker", "CI/CD", "Vercel", "Render"]
+    title: "AI & MACHINE LEARNING",
+    desc: "Statistical learning models, classification pipelines, and feature transformations.",
+    techs: ["Scikit-learn", "TensorFlow", "Keras", "Pandas", "NumPy", "OpenCV", "Cross-Validation"]
   },
   {
     num: "06",
+    title: "GENERATIVE AI & LLMs",
+    desc: "Large language model workflows, prompt taxonomies, and inference APIs.",
+    techs: ["Google Gemini API", "OpenAI API", "Prompt Engineering", "Structured Output Parsing", "LangChain", "Hugging Face"]
+  },
+  {
+    num: "07",
+    title: "AGENTIC AI & REASONING",
+    desc: "Multi-turn context graphs, semantic memory, and tool-calling execution loops.",
+    techs: ["Agentic Workflows", "Tool Calling & Action Loops", "RAG Architectures", "Vector Search", "Context Preservation"]
+  },
+  {
+    num: "08",
+    title: "DEVELOPER TOOLS & WORKFLOW",
+    desc: "Engineering toolchains for rapid development, testing, and collaboration.",
+    techs: ["Git", "GitHub", "Postman", "VS Code", "Jupyter Notebook", "Linux Terminal"]
+  },
+  {
+    num: "09",
+    title: "CLOUD & DEPLOYMENT",
+    desc: "Production deployment, containerization, and edge delivery.",
+    techs: ["Vercel Edge", "Docker", "Render", "Microsoft PowerApps", "Power Automate"]
+  },
+  {
+    num: "10",
     title: "TECHNICAL TRAINING & CURRICULUM",
-    desc: "Delivering practical engineering curriculum, hands-on coding labs, and real-world AI walkthroughs.",
-    techs: ["Curriculum Architecture", "Hands-on Coding Labs", "Applied Data Science", "Machine Learning Workflows", "Generative AI Integration"]
+    desc: "Transforming engineering depth into structured educational programs and student mentorship.",
+    techs: ["Curriculum Design", "Live Coding Demos", "Hands-on Lab Exercises", "Code Reviews", "Technical Talks (PBR VITS, PACE)"]
   }
 ];
 
@@ -62,23 +86,28 @@ const SYSTEMS = [
   },
   {
     name: "CareerOS",
-    focus: "Career Intelligence",
-    trace: ["React", "FastAPI", "AI / ML", "Data", "Deployment"]
+    focus: "AI Career Intelligence",
+    trace: ["React", "FastAPI", "Python", "Scikit-learn", "MongoDB Atlas"]
   },
   {
     name: "AuraOS",
-    focus: "AI Memory & Context",
-    trace: ["React", "FastAPI", "Memory / RAG", "Data", "Deployment"]
+    focus: "Context Memory & AI Workspace",
+    trace: ["React", "Flask", "Gemini API", "State Graphs", "Vercel"]
   },
   {
     name: "VERITAS",
-    focus: "Reasoning & Evidence",
-    trace: ["React", "Python", "NLP / Reasoning", "Evidence Processing", "Deployment"]
+    focus: "Explainable Credibility System",
+    trace: ["React", "Python", "Scikit-learn NLP", "TF-IDF", "FastAPI"]
   },
   {
     name: "VoltDrive",
-    focus: "Digital Product Experience",
-    trace: ["React", "Application Logic", "Product Interface", "Deployment"]
+    focus: "Automotive Digital Showroom",
+    trace: ["React", "Hardware Transforms", "Telemetry Engine", "Vercel"]
+  },
+  {
+    name: "AgriVision AI",
+    focus: "Crop Diagnostics & Explainability",
+    trace: ["React", "FastAPI", "MobileNetV2", "Grad-CAM", "MongoDB Atlas"]
   }
 ];
 

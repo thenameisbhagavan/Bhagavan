@@ -5,8 +5,8 @@
 
 .footer-sig {
   position: relative;
-  background-color: #fbfbfd;
-  color: #1d1d1f;
+  background-color: #F7F7F5;
+  color: #111111;
   padding: 100px 0 48px 0;
   font-family: var(--font-system, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif);
   -webkit-font-smoothing: antialiased;

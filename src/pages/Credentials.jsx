@@ -121,7 +121,7 @@ const ArtifactViewer = ({ src, alt, onClose }) => {
     document.body.style.overflow = 'hidden';
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
     };
   }, [onClose]);
 
@@ -627,7 +627,7 @@ export default function Credentials() {
           <div className="cred-bounds">
             <m.div 
               style={{ 
-                background: '#fbfbfd', 
+                background: '#ffffff', 
                 border: '1px solid rgba(0,0,0,0.08)', 
                 borderRadius: '20px', 
                 padding: '36px 32px',

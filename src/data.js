@@ -13,7 +13,7 @@ export const PROFILE = {
   phone: '+91 7569205626',
   github: 'https://github.com/thenameisbhagavan',
   linkedin: 'https://www.linkedin.com/in/thenameisbhagavan/',
-  objective: 'Software Developer | AI/ML & Generative AI | Data Science & Technical Trainer at Data Valley AI Tech Solutions. Building practical AI systems, Python backend services, and data-driven applications while delivering hands-on technical training.',
+  objective: 'Software Developer & AI Engineer | Technical Trainer at Data Valley AI Tech Solutions. Building production-oriented software applications, Python backend services, and applied AI systems while delivering hands-on technical education across Python, Data Science, and Machine Learning.',
   internships: [
     { title: 'Software Development Intern', company: 'StudyOwl Education Pvt Ltd', period: '2024', detail: ['Contributed to React frontend and Node.js backend integration.', 'Built reusable components and integrated REST APIs.'] },
     { title: 'Software Engineering Intern', company: 'SmartBridge', period: '2024', detail: ['Developed CNN-based image classification models using TensorFlow and Keras.', 'Deployed trained models using Flask.'] },

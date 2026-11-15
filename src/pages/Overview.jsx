@@ -17,7 +17,10 @@ import {
   Workflow,
   Database,
   Cpu,
-  Sparkles
+  Sparkles,
+  Lock,
+  Network,
+  Activity
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { m, useScroll, useTransform } from "framer-motion";
@@ -60,7 +63,9 @@ import MaskReveal from "../components/motion/MaskReveal";
 import ScaleReveal from "../components/motion/ScaleReveal";
 import Parallax from "../components/motion/Parallax";
 import TextReveal from "../components/motion/TextReveal";
+import KineticTypography from "../components/motion/KineticTypography";
 import MagneticLink from "../components/motion/MagneticLink";
+import SpringTilt from "../components/motion/SpringTilt";
 import AppreciationLetterModal from "../components/AppreciationLetterModal";
 import { CANONICAL_PROFILE } from "../data/profile";
 import "../styles/Overview.css";
@@ -90,7 +95,7 @@ const TECH_TRAIN_1 = [
   { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
   { name: "Docker", icon: SiDocker, color: "#2496ED" },
   { name: "Flask", icon: SiFlask, color: "#000000" },
-  { name: "Redis", icon: SiRedis, color: "#FF4438" },
+  { name: "Redis", icon: SiRedis, color: "#DC382D" },
   { name: "Git", icon: SiGit, color: "#F05032" },
   { name: "GitHub", icon: SiGithub, color: "#181717" },
   { name: "Postman", icon: SiPostman, color: "#FF6C37" },
@@ -98,8 +103,8 @@ const TECH_TRAIN_1 = [
   { name: "Vercel Edge", icon: SiVercel, color: "#000000" },
   { name: "JavaScript (ESNext)", icon: SiJavascript, color: "#F7DF1E" },
   { name: "HTML5 & CSS3", icon: SiHtml5, color: "#E34F26" },
-  { name: "REST APIs", isConcept: true },
-  { name: "Microservices", isConcept: true }
+  { name: "REST APIs", icon: Server, color: "#D97706" },
+  { name: "Microservices", icon: GitBranch, color: "#7C3AED" }
 ];
 
 // Track B: Left-to-Right (Data Science, Machine Learning, Generative AI & Agentic AI)
@@ -107,7 +112,7 @@ const TECH_TRAIN_2 = [
   { name: "Gemini API", icon: SiGooglegemini, color: "#1BA1E2" },
   { name: "OpenAI API", icon: SiOpenai, color: "#10A37F" },
   { name: "LangChain", icon: SiLangchain, color: "#1C3C3C" },
-  { name: "Hugging Face", icon: SiHuggingface, color: "#FFD21E" },
+  { name: "Hugging Face", icon: SiHuggingface, color: "#FF9D00" },
   { name: "PyTorch", icon: SiPytorch, color: "#EE4C2C" },
   { name: "TensorFlow", icon: SiTensorflow, color: "#FF6F00" },
   { name: "Scikit-learn", icon: SiScikitlearn, color: "#F7931E" },
@@ -115,13 +120,13 @@ const TECH_TRAIN_2 = [
   { name: "Pandas", icon: SiPandas, color: "#150458" },
   { name: "NumPy", icon: SiNumpy, color: "#013243" },
   { name: "Jupyter", icon: SiJupyter, color: "#F37626" },
-  { name: "Agentic Workflows", isConcept: true },
-  { name: "Multi-Agent Systems", isConcept: true },
-  { name: "RAG Architectures", isConcept: true },
-  { name: "Vector Search", isConcept: true },
-  { name: "Tool Calling", isConcept: true },
-  { name: "Prompt Engineering", isConcept: true },
-  { name: "Model Evaluation", isConcept: true }
+  { name: "Agentic Workflows", icon: Workflow, color: "#8B5CF6" },
+  { name: "Multi-Agent Systems", icon: BrainCircuit, color: "#6366F1" },
+  { name: "RAG Architectures", icon: Database, color: "#0EA5E9" },
+  { name: "Vector Search", icon: Scan, color: "#10B981" },
+  { name: "Tool Calling", icon: Terminal, color: "#EC4899" },
+  { name: "Prompt Engineering", icon: Sparkles, color: "#F59E0B" },
+  { name: "Model Evaluation", icon: CheckCircle2, color: "#2563EB" }
 ];
 
 
@@ -148,74 +153,99 @@ export default function Overview() {
         <section className="es-hero" data-nav-theme="light">
           <div className="es-hero-grid">
 
-            {/* LEFT COLUMN: NARRATIVE */}
+            {/* LEFT COLUMN: EDITORIAL CONTENT */}
             <div className="es-hero-left">
-              <Reveal y={12} duration={0.7}>
-                <span className="es-hero-eyebrow">
-                  SOFTWARE ENGINEER <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> AI/ML <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> TECHNICAL TRAINER
+              {/* Professional Identity Eyebrow Stack */}
+              <div className="es-hero-eyebrow-stack">
+                <span className="es-hero-primary-identity">
+                  SOFTWARE DEVELOPER <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> AI ENGINEER
                 </span>
-              </Reveal>
-
-              <div className="es-hero-title-group">
-                <Reveal y={16} duration={0.8} delay={0.06}>
-                  <h1 className="es-hero-headline">
-                    <span className="es-hero-hl-line">I build software.</span>
-                    <span className="es-hero-hl-line">I teach intelligence.</span>
-                  </h1>
-                </Reveal>
+                <span className="es-hero-secondary-identity">
+                  TECHNICAL TRAINER <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> AI &amp; DATA SCIENCE
+                </span>
               </div>
 
-              <div className="es-hero-bottom-group">
-                <Reveal y={14} duration={0.8} delay={0.12}>
-                  <p className="es-hero-sub">
-                    Developer &amp; Data Science Technical Trainer at <br className="es-hero-sub-break" /> Data Valley AI-first EdTech software training institute and technology solutions .
-                  </p>
-                </Reveal>
+              {/* Primary Headline — Rock-solid visible line mask reveal */}
+              <div className="es-hero-title-group">
+                <h1 className="es-hero-headline" aria-label="I Build Intelligent Digital Experiences.">
+                  <span className="es-hero-hl-mask">
+                    <span className="es-hero-hl-line line-1">I Build Intelligent</span>
+                  </span>
+                  <span className="es-hero-hl-mask">
+                    <span className="es-hero-hl-line line-2">Digital Experiences.</span>
+                  </span>
+                </h1>
+              </div>
 
-                {/* Primary & Secondary Action Buttons */}
-                <Reveal y={14} duration={0.8} delay={0.18}>
-                  <div className="es-hero-actions-group">
-                    <MagneticLink strength={0.2}>
-                      <button
-                        className="es-hero-btn-primary apple-pressable"
-                        onClick={() => navigate('/work')}
-                        aria-label="Explore My Work"
-                      >
-                        <span>Explore My Work</span>
-                        <ArrowRight size={14} className="es-hero-btn-arrow" strokeWidth={2.2} />
-                      </button>
-                    </MagneticLink>
+              {/* Supporting Editorial Description */}
+              <p className="es-hero-sub">
+                I engineer production-oriented software, intelligent backend architectures, and applied AI systems. Alongside development, I deliver practical technical education across Python, Data Science, and Machine Learning.
+              </p>
 
-                    <MagneticLink strength={0.2}>
-                      <button
-                        className="es-hero-btn-secondary apple-pressable"
-                        onClick={() => navigate('/experience')}
-                        aria-label="About Me"
-                      >
-                        <span>About Me</span>
-                      </button>
-                    </MagneticLink>
-                  </div>
-                </Reveal>
+              {/* Mobile Portrait (Appears between description and CTAs on mobile viewport) */}
+              <div className="es-hero-portrait-mobile">
+                <div className="es-hero-portrait-frame">
+                  <img
+                    src={profileHeroImg}
+                    alt="Bhagavan — Software Developer & AI Engineer"
+                    loading="eager"
+                    fetchpriority="high"
+                    className="es-hero-portrait-img"
+                  />
+                  <div className="es-hero-portrait-scrim" aria-hidden="true" />
+                </div>
+              </div>
+
+              {/* Interactive CTAs */}
+              <div className="es-hero-actions-group">
+                <MagneticLink strength={0.2}>
+                  <button
+                    className="es-hero-btn-primary apple-pressable"
+                    onClick={() => navigate('/work')}
+                    aria-label="Explore Work"
+                  >
+                    <span>Explore Work</span>
+                    <ArrowRight size={15} className="es-hero-btn-arrow" strokeWidth={2.2} />
+                  </button>
+                </MagneticLink>
+
+                <MagneticLink strength={0.2}>
+                  <button
+                    className="es-hero-btn-secondary apple-pressable"
+                    onClick={() => navigate('/experience')}
+                    aria-label="View Experience"
+                  >
+                    <span>View Experience</span>
+                  </button>
+                </MagneticLink>
+
+                <MagneticLink strength={0.2}>
+                  <button
+                    className="es-hero-btn-tertiary apple-pressable"
+                    onClick={() => navigate('/resume')}
+                    aria-label="Resume"
+                  >
+                    <span>Resume</span>
+                    <ExternalLink size={13.5} />
+                  </button>
+                </MagneticLink>
               </div>
             </div>
 
-            {/* RIGHT COLUMN: PORTRAIT ENVIRONMENT */}
+            {/* RIGHT COLUMN: DESKTOP PORTRAIT */}
             <div className="es-hero-right">
-              <div className="es-hero-portrait-env">
-                <ScaleReveal duration={0.85} delay={0.1}>
-                  <div className="es-hero-portrait-frame">
-                    <img
-                      src={profileHeroImg}
-                      alt="Bhagavan — Software Developer & AI/ML Technical Trainer"
-                      loading="eager"
-                      fetchpriority="high"
-                      className="es-hero-portrait-img"
-                    />
-                    <div className="es-hero-portrait-scrim" aria-hidden="true" />
-                  </div>
-                </ScaleReveal>
-              </div>
+              <SpringTilt maxTilt={2.8} scale={1.01} className="es-hero-portrait-env">
+                <div className="es-hero-portrait-frame">
+                  <img
+                    src={profileHeroImg}
+                    alt="Bhagavan — Software Developer & AI Engineer"
+                    loading="eager"
+                    fetchpriority="high"
+                    className="es-hero-portrait-img"
+                  />
+                  <div className="es-hero-portrait-scrim" aria-hidden="true" />
+                </div>
+              </SpringTilt>
             </div>
 
           </div>
@@ -252,19 +282,16 @@ export default function Overview() {
                   {TECH_TRAIN_1.map((item, idx) => {
                     const Icon = item.icon;
                     return (
-                      <React.Fragment key={`t1-orig-${idx}`}>
-                        <div className="es-tech-item">
-                          {item.isConcept ? (
-                            <span className="es-tech-concept-badge" aria-hidden="true">ARCH</span>
-                          ) : (
-                            <span className="es-tech-icon" style={{ "--brand-color": item.color }} aria-hidden="true">
-                              <Icon size={18} />
-                            </span>
-                          )}
-                          <span className="es-tech-name">{item.name}</span>
-                        </div>
-                        <span className="es-tech-dot-sep" aria-hidden="true">&bull;</span>
-                      </React.Fragment>
+                      <div
+                        className="es-tech-item"
+                        style={{ "--brand-color": item.color }}
+                        key={`t1-orig-${idx}`}
+                      >
+                        <span className="es-tech-icon" aria-hidden="true">
+                          <Icon size={19} />
+                        </span>
+                        <span className="es-tech-name">{item.name}</span>
+                      </div>
                     );
                   })}
                 </div>
@@ -273,19 +300,16 @@ export default function Overview() {
                   {TECH_TRAIN_1.map((item, idx) => {
                     const Icon = item.icon;
                     return (
-                      <React.Fragment key={`t1-dup-${idx}`}>
-                        <div className="es-tech-item">
-                          {item.isConcept ? (
-                            <span className="es-tech-concept-badge" aria-hidden="true">ARCH</span>
-                          ) : (
-                            <span className="es-tech-icon" style={{ "--brand-color": item.color }} aria-hidden="true">
-                              <Icon size={18} />
-                            </span>
-                          )}
-                          <span className="es-tech-name">{item.name}</span>
-                        </div>
-                        <span className="es-tech-dot-sep">&bull;</span>
-                      </React.Fragment>
+                      <div
+                        className="es-tech-item"
+                        style={{ "--brand-color": item.color }}
+                        key={`t1-dup-${idx}`}
+                      >
+                        <span className="es-tech-icon" aria-hidden="true">
+                          <Icon size={19} />
+                        </span>
+                        <span className="es-tech-name">{item.name}</span>
+                      </div>
                     );
                   })}
                 </div>
@@ -299,19 +323,16 @@ export default function Overview() {
                   {TECH_TRAIN_2.map((item, idx) => {
                     const Icon = item.icon;
                     return (
-                      <React.Fragment key={`t2-orig-${idx}`}>
-                        <div className="es-tech-item">
-                          {item.isConcept ? (
-                            <span className="es-tech-concept-badge es-concept-agentic" aria-hidden="true">AI</span>
-                          ) : (
-                            <span className="es-tech-icon" style={{ "--brand-color": item.color }} aria-hidden="true">
-                              <Icon size={18} />
-                            </span>
-                          )}
-                          <span className="es-tech-name">{item.name}</span>
-                        </div>
-                        <span className="es-tech-dot-sep" aria-hidden="true">&bull;</span>
-                      </React.Fragment>
+                      <div
+                        className="es-tech-item"
+                        style={{ "--brand-color": item.color }}
+                        key={`t2-orig-${idx}`}
+                      >
+                        <span className="es-tech-icon" aria-hidden="true">
+                          <Icon size={19} />
+                        </span>
+                        <span className="es-tech-name">{item.name}</span>
+                      </div>
                     );
                   })}
                 </div>
@@ -320,19 +341,16 @@ export default function Overview() {
                   {TECH_TRAIN_2.map((item, idx) => {
                     const Icon = item.icon;
                     return (
-                      <React.Fragment key={`t2-dup-${idx}`}>
-                        <div className="es-tech-item">
-                          {item.isConcept ? (
-                            <span className="es-tech-concept-badge es-concept-agentic" aria-hidden="true">AI</span>
-                          ) : (
-                            <span className="es-tech-icon" style={{ "--brand-color": item.color }} aria-hidden="true">
-                              <Icon size={18} />
-                            </span>
-                          )}
-                          <span className="es-tech-name">{item.name}</span>
-                        </div>
-                        <span className="es-tech-dot-sep">&bull;</span>
-                      </React.Fragment>
+                      <div
+                        className="es-tech-item"
+                        style={{ "--brand-color": item.color }}
+                        key={`t2-dup-${idx}`}
+                      >
+                        <span className="es-tech-icon" aria-hidden="true">
+                          <Icon size={19} />
+                        </span>
+                        <span className="es-tech-name">{item.name}</span>
+                      </div>
                     );
                   })}
                 </div>
@@ -393,27 +411,38 @@ export default function Overview() {
                   img: voltdriveImg,
                   url: "/work/voltdrive",
                   theme: "dark"
+                },
+                {
+                  id: "05",
+                  name: "AgriVision AI",
+                  category: "INTELLIGENT CROP DIAGNOSTICS & EXPLAINABLE AI",
+                  desc: "Computer vision and deep learning diagnostic system translating plant leaf imagery into disease classification and actionable agricultural insights.",
+                  img: agrivisionImg,
+                  url: "/work#agrivision",
+                  theme: "light"
                 }
               ].map((proj) => (
-                <Reveal key={proj.id} y={40} duration={1.1} delay={0.1} className={`es-project-showcase theme-${proj.theme}`}>
-                  <div className="es-ps-content">
-                    <div className="es-ps-meta">
-                      <span className="es-ps-id">{proj.id}</span>
-                      <span className="es-ps-category">{proj.category}</span>
+                <Reveal key={proj.id} y={40} duration={1.1} delay={0.1} className="es-project-showcase-env">
+                  <SpringTilt maxTilt={2.2} scale={1.01} className={`es-project-showcase theme-${proj.theme} spring-card-lift`}>
+                    <div className="es-ps-content">
+                      <div className="es-ps-meta">
+                        <span className="es-ps-id">{proj.id}</span>
+                        <span className="es-ps-category">{proj.category}</span>
+                      </div>
+                      <h3 className="es-ps-title">{proj.name}</h3>
+                      <p className="es-ps-desc">{proj.desc}</p>
+                      <div style={{ marginTop: '16px' }}>
+                        <Link to={proj.url} style={{ fontSize: '13px', fontWeight: '600', color: proj.theme === 'dark' ? '#ffffff' : '#007aff', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                          <span>Explore System Architecture</span> &rarr;
+                        </Link>
+                      </div>
                     </div>
-                    <h3 className="es-ps-title">{proj.name}</h3>
-                    <p className="es-ps-desc">{proj.desc}</p>
-                    <div style={{ marginTop: '16px' }}>
-                      <Link to={proj.url} style={{ fontSize: '13px', fontWeight: '600', color: proj.theme === 'dark' ? '#ffffff' : '#007aff', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                        <span>Explore System Architecture</span> &rarr;
-                      </Link>
+                    <div className="es-ps-visual">
+                      <div className="es-ps-image-wrapper">
+                        <img src={proj.img} alt={proj.name} loading="lazy" />
+                      </div>
                     </div>
-                  </div>
-                  <div className="es-ps-visual">
-                    <div className="es-ps-image-wrapper">
-                      <img src={proj.img} alt={proj.name} loading="lazy" />
-                    </div>
-                  </div>
+                  </SpringTilt>
                 </Reveal>
               ))}
             </div>
@@ -462,16 +491,19 @@ export default function Overview() {
             </div>
 
             {/* Editorial Showcase Card */}
-            <div className="es-dv-card">
+            <SpringTilt maxTilt={1.5} scale={1.004} className="es-dv-card-tilt-wrap">
+              <div className="es-dv-card">
+              {/* Apple-Grade Browser Window Mockup */}
               <div className="es-dv-media-container">
                 <div className="es-dv-browser-chrome">
-                  <div className="es-dv-browser-dots">
+                  <div className="es-dv-browser-dots" aria-hidden="true">
                     <span className="es-dv-dot dot-red"></span>
                     <span className="es-dv-dot dot-yellow"></span>
                     <span className="es-dv-dot dot-green"></span>
                   </div>
                   <div className="es-dv-browser-url">
-                    https://dv-assesments.vercel.app/
+                    <Lock size={11} className="es-dv-lock-icon" />
+                    <span>https://dv-assesments.vercel.app/</span>
                   </div>
                   <div className="es-dv-browser-status">
                     <span className="es-status-indicator pulse-green"></span>
@@ -482,104 +514,205 @@ export default function Overview() {
                 <div className="es-dv-screenshot-wrapper">
                   <img
                     src={dvAssessmentImg}
-                    alt="Data Valley Engineering Assessment Platform showing candidate portal, coding challenge, question palette, and countdown timer."
+                    alt="Data Valley Engineering Assessment Platform — Candidate portal, coding challenge, interactive question palette, and countdown timer"
                     className="es-dv-screenshot"
                     loading="lazy"
                   />
+                  <div className="es-dv-screenshot-overlay" aria-hidden="true" />
                 </div>
               </div>
 
               {/* Technical Capabilities & Architecture Highlights */}
               <div className="es-dv-details-panel">
+                
+                {/* Verified Technology Stack Strip */}
+                <div className="es-dv-tech-row">
+                  <div className="es-dv-tech-header">
+                    <span className="es-dv-tech-label">VERIFIED PRODUCTION STACK</span>
+                    <span className="es-dv-tech-badge">PROD ARCHITECTURE</span>
+                  </div>
+                  <div className="es-dv-tech-chips">
+                    <div className="es-dv-chip" style={{ "--chip-color": "#000000" }}>
+                      <SiNextdotjs size={14} className="es-dv-chip-icon" />
+                      <span>Next.js App Router</span>
+                    </div>
+                    <div className="es-dv-chip" style={{ "--chip-color": "#61DAFB" }}>
+                      <SiReact size={14} className="es-dv-chip-icon" />
+                      <span>React 19</span>
+                    </div>
+                    <div className="es-dv-chip" style={{ "--chip-color": "#3178C6" }}>
+                      <SiTypescript size={14} className="es-dv-chip-icon" />
+                      <span>TypeScript</span>
+                    </div>
+                    <div className="es-dv-chip" style={{ "--chip-color": "#47A248" }}>
+                      <SiMongodb size={14} className="es-dv-chip-icon" />
+                      <span>MongoDB Atlas</span>
+                    </div>
+                    <div className="es-dv-chip" style={{ "--chip-color": "#06B6D4" }}>
+                      <SiTailwindcss size={14} className="es-dv-chip-icon" />
+                      <span>Tailwind CSS</span>
+                    </div>
+                    <div className="es-dv-chip" style={{ "--chip-color": "#000000" }}>
+                      <SiVercel size={14} className="es-dv-chip-icon" />
+                      <span>Vercel Edge</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 6 Engineering Architecture Capability Cards */}
                 <div className="es-dv-caps-grid">
                   <div className="es-dv-cap-item">
-                    <div className="es-dv-cap-icon-wrap">
+                    <div className="es-dv-cap-icon-wrap" style={{ "--cap-color": "#0071E3", "--cap-bg": "rgba(0, 113, 227, 0.08)" }}>
                       <ShieldCheck size={18} className="es-dv-icon" />
                     </div>
                     <div>
-                      <h4 className="es-dv-cap-title">Candidate Authentication</h4>
+                      <h4 className="es-dv-cap-title">Candidate Authentication & Provisioning</h4>
                       <p className="es-dv-cap-desc">
-                        Secure session authorization binding candidate identity to unique assessment instances.
+                        Secure session token authorization binding candidate identity to unique assessment instances, eliminating duplicate entries.
                       </p>
                     </div>
                   </div>
 
                   <div className="es-dv-cap-item">
-                    <div className="es-dv-cap-icon-wrap">
+                    <div className="es-dv-cap-icon-wrap" style={{ "--cap-color": "#FF9500", "--cap-bg": "rgba(255, 149, 0, 0.08)" }}>
                       <Clock size={18} className="es-dv-icon" />
                     </div>
                     <div>
                       <h4 className="es-dv-cap-title">Timed Technical Assessment</h4>
                       <p className="es-dv-cap-desc">
-                        Structured 40-question technical challenge delivery with real-time countdown timer orchestration.
+                        Structured 40-question technical challenge delivery with real-time synchronized countdown orchestration and question palette.
                       </p>
                     </div>
                   </div>
 
                   <div className="es-dv-cap-item">
-                    <div className="es-dv-cap-icon-wrap">
+                    <div className="es-dv-cap-icon-wrap" style={{ "--cap-color": "#34C759", "--cap-bg": "rgba(52, 199, 89, 0.08)" }}>
                       <CheckCircle2 size={18} className="es-dv-icon" />
                     </div>
                     <div>
-                      <h4 className="es-dv-cap-title">Answer Persistence & Auto-Sync</h4>
+                      <h4 className="es-dv-cap-title">Continuous Delta Auto-Sync</h4>
                       <p className="es-dv-cap-desc">
-                        Continuous background synchronization protecting candidates against page reloads and network loss.
+                        Background state synchronization protecting candidate responses against accidental page refreshes, crashes, or network loss.
                       </p>
                     </div>
                   </div>
 
                   <div className="es-dv-cap-item">
-                    <div className="es-dv-cap-icon-wrap">
+                    <div className="es-dv-cap-icon-wrap" style={{ "--cap-color": "#AF52DE", "--cap-bg": "rgba(175, 82, 222, 0.08)" }}>
                       <Terminal size={18} className="es-dv-icon" />
                     </div>
                     <div>
                       <h4 className="es-dv-cap-title">Server-Side Scoring Protection</h4>
                       <p className="es-dv-cap-desc">
-                        Deterministic server evaluation upon verified submission, preventing client-side score manipulation.
+                        Deterministic evaluation strictly executed within route handlers upon submission, preventing client-side score manipulation.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="es-dv-cap-item">
+                    <div className="es-dv-cap-icon-wrap" style={{ "--cap-color": "#5856D6", "--cap-bg": "rgba(88, 86, 214, 0.08)" }}>
+                      <Layers size={18} className="es-dv-icon" />
+                    </div>
+                    <div>
+                      <h4 className="es-dv-cap-title">Admin Management & Analytics</h4>
+                      <p className="es-dv-cap-desc">
+                        Administrative oversight dashboard enabling live candidate session monitoring, batch result evaluation, and CSV export.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="es-dv-cap-item">
+                    <div className="es-dv-cap-icon-wrap" style={{ "--cap-color": "#FF2D55", "--cap-bg": "rgba(255, 45, 85, 0.08)" }}>
+                      <Cpu size={18} className="es-dv-icon" />
+                    </div>
+                    <div>
+                      <h4 className="es-dv-cap-title">Pre-Assessment Readiness Check</h4>
+                      <p className="es-dv-cap-desc">
+                        Client environment diagnostic verifying screen resolution, network connectivity, and browser readiness prior to challenge initiation.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Tech Stack Chips */}
-                <div className="es-dv-tech-row">
-                  <span className="es-dv-tech-label">VERIFIED STACK:</span>
-                  <div className="es-dv-tech-chips">
-                    <span className="es-dv-chip">Next.js App Router</span>
-                    <span className="es-dv-chip">React 19</span>
-                    <span className="es-dv-chip">TypeScript</span>
-                    <span className="es-dv-chip">MongoDB Atlas</span>
-                    <span className="es-dv-chip">Tailwind CSS</span>
-                    <span className="es-dv-chip">Vercel</span>
+                {/* Technical Architecture Flow Visualization */}
+                <div className="es-dv-arch-visualizer">
+                  <div className="es-dv-arch-top">
+                    <div className="es-dv-arch-tag">
+                      <Network size={13} />
+                      <span>SYSTEM ARCHITECTURE DIAGRAM</span>
+                    </div>
+                    <span className="es-dv-arch-status">VERIFIED SECURE FLOW</span>
+                  </div>
+
+                  <div className="es-dv-flow-grid">
+                    <div className="es-dv-flow-node">
+                      <span className="es-dv-node-badge">01 · CLIENT</span>
+                      <h5 className="es-dv-node-title">Candidate UI</h5>
+                      <p className="es-dv-node-sub">Next.js 19 / Timer / Palette</p>
+                    </div>
+
+                    <div className="es-dv-flow-connector" aria-hidden="true">&rarr;</div>
+
+                    <div className="es-dv-flow-node">
+                      <span className="es-dv-node-badge">02 · AUTH</span>
+                      <h5 className="es-dv-node-title">Security Guard</h5>
+                      <p className="es-dv-node-sub">Session Token Binding</p>
+                    </div>
+
+                    <div className="es-dv-flow-connector" aria-hidden="true">&rarr;</div>
+
+                    <div className="es-dv-flow-node">
+                      <span className="es-dv-node-badge">03 · API</span>
+                      <h5 className="es-dv-node-title">Route Handlers</h5>
+                      <p className="es-dv-node-sub">/api/assessment/submit</p>
+                    </div>
+
+                    <div className="es-dv-flow-connector" aria-hidden="true">&rarr;</div>
+
+                    <div className="es-dv-flow-node">
+                      <span className="es-dv-node-badge">04 · EVAL</span>
+                      <h5 className="es-dv-node-title">Assessment Engine</h5>
+                      <p className="es-dv-node-sub">Deterministic Scoring</p>
+                    </div>
+
+                    <div className="es-dv-flow-connector" aria-hidden="true">&rarr;</div>
+
+                    <div className="es-dv-flow-node highlight">
+                      <span className="es-dv-node-badge">05 · DB &amp; ADMIN</span>
+                      <h5 className="es-dv-node-title">MongoDB Atlas</h5>
+                      <p className="es-dv-node-sub">Audit Trail &amp; Analytics</p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Actions */}
+                {/* Verified Project Actions */}
                 <div className="es-dv-actions">
-                  <MagneticLink strength={0.25}>
-                    <button
-                      className="es-dv-btn-primary apple-pressable"
-                      onClick={() => navigate('/work/data-valley-assessment-platform')}
-                    >
-                      <span>Explore Case Study</span>
-                      <ArrowRight size={16} />
-                    </button>
-                  </MagneticLink>
-
                   <MagneticLink strength={0.25}>
                     <a
                       href="https://dv-assesments.vercel.app/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="es-dv-btn-secondary apple-pressable"
+                      className="es-dv-btn-primary apple-pressable"
                     >
+                      <span className="es-status-indicator pulse-white" aria-hidden="true"></span>
                       <span>Open Live Application</span>
                       <ExternalLink size={14} />
                     </a>
                   </MagneticLink>
+
+                  <MagneticLink strength={0.25}>
+                    <button
+                      className="es-dv-btn-secondary apple-pressable"
+                      onClick={() => navigate('/work/data-valley-assessment-platform')}
+                    >
+                      <span>Read Full Engineering Case Study</span>
+                      <ArrowRight size={15} />
+                    </button>
+                  </MagneticLink>
                 </div>
               </div>
             </div>
+            </SpringTilt>
 
           </div>
         </ScaleReveal>
@@ -905,10 +1038,10 @@ export default function Overview() {
               <div className="es-timeline-scroll">
                 <div className="es-timeline-track">
                   {[
-                    { year: "2022", stage: "FOUNDATION", desc: "B.Tech in Artificial Intelligence & Data Science" },
-                    { year: "2024", stage: "EXPERIENCE", desc: "Internships: Blackbucks · StudyOwl · SmartBridge · Helson" },
-                    { year: "2024", stage: "SYSTEMS", desc: "Shipped CareerOS · AuraOS · VERITAS · VoltDrive" },
-                    { year: "NOW", stage: "CURRENT", desc: "Developer & Technical Trainer at Data Valley AI Tech Solutions" }
+                    { year: "2022", stage: "FOUNDATION", desc: "B.Tech in Artificial Intelligence & Data Science · Strong CS & ML Foundations" },
+                    { year: "2024", stage: "ENGINEERING", desc: "Software Development & Applied ML across StudyOwl, SmartBridge, Blackbucks & Helson" },
+                    { year: "2024", stage: "SYSTEMS", desc: "Architected & Shipped CareerOS · VERITAS · AuraOS · VoltDrive · AgriVision" },
+                    { year: "NOW", stage: "PRODUCTION & TRAINING", desc: "Software Developer & Technical Trainer at Data Valley AI Tech Solutions" }
                   ].map((node, i) => (
                     <Reveal key={node.year} x={20} duration={0.8} delay={i * 0.15} className="es-timeline-node-container">
                       <div className="es-timeline-node">

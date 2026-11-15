@@ -3,11 +3,11 @@
    ========================================= */
 
 .work-exhibition-page {
-  background-color: #fbfbfd;
-  color: #1d1d1f;
+  background-color: #F7F7F5;
+  color: #111111;
   font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .exhibition-bounds {
@@ -91,7 +91,7 @@
    ========================================= */
 .work-exhibition-hero {
   padding: 100px 0 60px 0;
-  background: #fbfbfd;
+  background: #F7F7F5;
 }
 
 .work-hero-eyebrow {

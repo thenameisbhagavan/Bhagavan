@@ -4,13 +4,7 @@
    Import this ONCE in index.css — it applies globally to every page.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ── 1. FORCE GPU COMPOSITION ON ALL ANIMATED ELEMENTS ─────────────────── */
-/* Promote animated elements to their own composite layer so the GPU handles
-   painting instead of the CPU. This is the #1 trick for 144Hz smoothness. */
-
-[style*="animation"],
-[style*="transition"],
-[style*="transform"],
+/* ── 1. STRATEGIC GPU ACCELERATION ON KEY COMPOSITE ELEMENTS ─────────── */
 .liquid-glass,
 .liquid-glass-strong,
 .cinematic-card,
@@ -27,9 +21,6 @@
 .di,
 .pill,
 .snav-btn,
-#c-dot, #c-ring,
-#mc-dot, #mc-ring,
-#scroll-prog-bar,
 video {
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
@@ -139,12 +130,6 @@ html {
     will-change: transform, opacity, backdrop-filter;
   }
 
-  /* Extreme GPU Optimization for Sections */
-  .apple-section, .chapter-block, .belief-container, .inno-card, .museum-wall-container {
-    content-visibility: auto;
-    contain-intrinsic-size: 1000px; /* Provides a hint to the browser so scrollbar doesn't jump */
-  }
-
   /* Disable grain entirely on mobile */
   .grain-overlay {
     display: none !important;
@@ -159,7 +144,6 @@ html {
 /* ── 8. IMAGE & MEDIA OPTIMIZATION ─────────────────────────────────────── */
 
 img {
-  content-visibility: auto;
   /* Prevent layout shift */
   display: block;
 }
@@ -188,12 +172,24 @@ img[loading="lazy"] {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* ── 10. PASSIVE SCROLL OPTIMIZATIONS ──────────────────────────────────── */
-/* Force passive event listeners via CSS touch-action hints */
+/* ── 10. PASSIVE SCROLL & GESTURE OPTIMIZATIONS ─────────────────────────── */
+/* Preserve browser-native touch gestures and rubber-band momentum */
 
 body {
-  touch-action: manipulation; /* Eliminates 300ms tap delay on mobile */
-  overscroll-behavior: none; /* Prevent bounce/overscroll jank */
+  overscroll-behavior-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure horizontal carousels & marquees never trap vertical scrolling */
+.es-tech-train-outer,
+.es-tech-train-track,
+.es-transform-sequence-wrap,
+.es-timeline-scroll,
+.marquee,
+.marquee-inner,
+.mqinner {
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ── 11. COMPOSITE LAYER FOR FIXED ELEMENTS ────────────────────────────── */
@@ -212,33 +208,37 @@ body {
   font-display: swap !important;
 }
 
-/* ── 13. CONTENT-VISIBILITY FOR OFF-SCREEN SECTIONS ────────────────────── */
-/* Skip rendering of off-screen content entirely until it's near viewport */
+/* ── 13. STABLE DOCUMENT LAYOUT (No content-visibility height jumps) ────── */
+/* Offscreen sections retain authentic geometric heights to ensure 100% stable
+   scroll metrics, exact anchor landing, and zero scrollbar jitter. */
 
 section,
 [data-section],
 footer {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
+  contain: layout style;
 }
 
-/* ── 14. ULTRA-THIN SCROLLBAR (less paint area = faster scroll) ────────── */
+/* ── 14. APPLE REFINED SCROLLBAR ───────────────────────────────────────── */
 
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 1px;
+  background: rgba(0, 0, 0, 0.16);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.32);
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  scrollbar-color: rgba(0, 0, 0, 0.16) transparent;
 }
 
 /* ── 15. PREVENT LAYOUT THRASHING ON HOVER ─────────────────────────────── */

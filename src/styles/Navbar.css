@@ -16,33 +16,33 @@
   --nav-font-script: "Dancing Script", cursive, -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Light Canvas (Default) */
-  --nav-bg-resting: rgba(250, 250, 252, 0.85);
-  --nav-bg-scrolled: rgba(255, 255, 255, 0.92);
-  --nav-bg-panel: rgba(255, 255, 255, 0.98);
+  --nav-bg-resting: rgba(247, 247, 245, 0.82);
+  --nav-bg-scrolled: rgba(247, 247, 245, 0.94);
+  --nav-bg-panel: rgba(247, 247, 245, 0.98);
   --nav-border-resting: rgba(0, 0, 0, 0.06);
   --nav-border-scrolled: rgba(0, 0, 0, 0.08);
-  --nav-shadow-scrolled: 0 1px 12px rgba(0, 0, 0, 0.035), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --nav-shadow-scrolled: 0 1px 16px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
 
-  --nav-text-brand: #171717;
-  --nav-text-link: rgba(23, 23, 23, 0.72);
-  --nav-text-link-hover: #171717;
-  --nav-text-link-active: #171717;
+  --nav-text-brand: #111111;
+  --nav-text-link: rgba(17, 17, 17, 0.70);
+  --nav-text-link-hover: #111111;
+  --nav-text-link-active: #111111;
 
-  --nav-control-hover-bg: rgba(0, 0, 0, 0.045);
+  --nav-control-hover-bg: rgba(0, 0, 0, 0.04);
   --nav-control-active-bg: rgba(0, 0, 0, 0.08);
 
-  --nav-resume-bg: #ffffff;
-  --nav-resume-border: rgba(229, 9, 20, 0.38);
-  --nav-resume-border-inner: rgba(229, 9, 20, 0.05);
-  --nav-resume-text: #171717;
-  --nav-resume-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 0 0 0.5px rgba(229, 9, 20, 0.05);
+  --nav-resume-bg: #111111;
+  --nav-resume-border: rgba(0, 0, 0, 0.12);
+  --nav-resume-border-inner: rgba(255, 255, 255, 0.12);
+  --nav-resume-text: #ffffff;
+  --nav-resume-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* ── Dark Route Theme Overrides ── */
 .nav-shell.nav-dark-mode {
-  --nav-bg-resting: rgba(13, 13, 18, 0.85);
-  --nav-bg-scrolled: rgba(13, 13, 18, 0.92);
-  --nav-bg-panel: rgba(13, 13, 18, 0.98);
+  --nav-bg-resting: rgba(10, 10, 12, 0.85);
+  --nav-bg-scrolled: rgba(10, 10, 12, 0.94);
+  --nav-bg-panel: rgba(10, 10, 12, 0.98);
   --nav-border-resting: rgba(255, 255, 255, 0.07);
   --nav-border-scrolled: rgba(255, 255, 255, 0.10);
   --nav-shadow-scrolled: 0 1px 16px rgba(0, 0, 0, 0.45);
@@ -55,11 +55,11 @@
   --nav-control-hover-bg: rgba(255, 255, 255, 0.08);
   --nav-control-active-bg: rgba(255, 255, 255, 0.12);
 
-  --nav-resume-bg: rgba(255, 255, 255, 0.06);
-  --nav-resume-border: rgba(229, 9, 20, 0.45);
-  --nav-resume-border-inner: rgba(255, 255, 255, 0.04);
-  --nav-resume-text: #f5f5f7;
-  --nav-resume-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  --nav-resume-bg: #ffffff;
+  --nav-resume-border: rgba(255, 255, 255, 0.2);
+  --nav-resume-border-inner: rgba(0, 0, 0, 0.05);
+  --nav-resume-text: #111111;
+  --nav-resume-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -319,14 +319,15 @@
   outline: none;
   text-decoration: none;
   box-shadow: var(--nav-resume-shadow);
-  transition: background-color 0.18s var(--nav-ease),
+  transition: transform 0.3s var(--ease-spring-bounce),
+              box-shadow 0.3s var(--ease-spring-bounce),
+              background-color 0.18s var(--nav-ease),
               border-color 0.18s var(--nav-ease),
-              color 0.18s var(--nav-ease),
-              box-shadow 0.18s var(--nav-ease),
-              transform 0.16s var(--nav-ease);
+              color 0.18s var(--nav-ease);
   flex-shrink: 0;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  will-change: transform;
 }
 
 .nav-resume-icon {
@@ -335,7 +336,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.18s var(--nav-ease);
+  transition: transform 0.28s var(--ease-spring-bounce), color 0.18s var(--nav-ease);
+  will-change: transform;
 }
 
 .nav-resume-label {
@@ -359,7 +361,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.18s var(--nav-ease), transform 0.18s var(--nav-ease);
+  transition: color 0.18s var(--nav-ease), transform 0.3s var(--ease-spring-bounce);
+  will-change: transform;
 }
 
 /* Hover: refined document action response */
@@ -367,12 +370,13 @@
   background-color: rgba(229, 9, 20, 0.045);
   border-color: rgba(229, 9, 20, 0.65);
   color: #111111;
-  box-shadow: 0 2px 6px rgba(229, 9, 20, 0.08);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.12);
 }
 
 .nav-resume-cta:hover .nav-resume-icon {
   color: var(--nav-brand-red);
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .nav-resume-cta:hover .nav-resume-label {
@@ -381,14 +385,15 @@
 
 .nav-resume-cta:hover .nav-resume-arrow {
   color: var(--nav-brand-red);
-  transform: translateX(2.5px);
+  transform: translateX(3.5px);
 }
 
 /* Active / Pressed state */
 .nav-resume-cta:active {
   background-color: rgba(229, 9, 20, 0.08);
   border-color: var(--nav-brand-red);
-  transform: scale(0.98);
+  transform: translateY(0) scale(0.96) !important;
+  transition: transform 0.1s var(--ease-spring-press) !important;
   box-shadow: 0 1px 3px rgba(229, 9, 20, 0.12);
 }
 

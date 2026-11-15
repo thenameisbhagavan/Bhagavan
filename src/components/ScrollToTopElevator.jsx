@@ -1,39 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
 import '../styles/ScrollToTopElevator.css';
 
 export default function ScrollToTopElevator() {
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const circleRef = useRef(null);
+  const rafRef = useRef(null);
+  const isVisibleRef = useRef(false);
+
+  const radius = 23;
+  const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const updateProgress = () => {
+      const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       
-      // Show elevator button as soon as user starts scrolling down (> 60px)
-      if (currentScrollY > 60) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
+      const shouldBeVisible = currentScrollY > 80;
+      if (shouldBeVisible !== isVisibleRef.current) {
+        isVisibleRef.current = shouldBeVisible;
+        setIsVisible(shouldBeVisible);
       }
 
-      // Calculate scroll progress (0 to 100)
-      if (scrollHeight > 0) {
+      if (circleRef.current && scrollHeight > 0) {
         const progress = Math.min(100, Math.max(0, (currentScrollY / scrollHeight) * 100));
-        setScrollProgress(progress);
-      } else {
-        setScrollProgress(0);
+        const offset = circumference - (progress / 100) * circumference;
+        circleRef.current.style.strokeDashoffset = offset;
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Run initial check
-    handleScroll();
+    const handleScroll = () => {
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
+        updateProgress();
+      });
+    };
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    updateProgress();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [circumference]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -41,11 +53,6 @@ export default function ScrollToTopElevator() {
       behavior: 'smooth'
     });
   };
-
-  // SVG ring properties
-  const radius = 23;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (scrollProgress / 100) * circumference;
 
   return (
     <AnimatePresence>
@@ -83,6 +90,7 @@ export default function ScrollToTopElevator() {
               />
               {/* Animated Progress Stroke */}
               <circle
+                ref={circleRef}
                 cx="26"
                 cy="26"
                 r={radius}
@@ -91,7 +99,7 @@ export default function ScrollToTopElevator() {
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeDasharray={circumference}
-                strokeDashoffset={strokeDashoffset}
+                strokeDashoffset={circumference}
               />
             </svg>
 

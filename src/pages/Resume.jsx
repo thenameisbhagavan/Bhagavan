@@ -9,11 +9,12 @@ import ScaleReveal from "../components/motion/ScaleReveal";
 import MagneticLink from "../components/motion/MagneticLink";
 import "../styles/Resume.css";
 
-// ─── Single Canonical Resume Asset ────────────────────────────────────────────
+// ─── Single Canonical Resume Assets (PDF + High-Res Image) ────────────────────
+import resumePdf from "../assets/Bhagavan_Resume.pdf";
 import resumeImage from "../assets/Bhagavan_Resume.jpg";
 
 // ─── Live Full-Screen Document Viewer (Apple QuickLook Style) ─────────────────
-function LiveResumeModal({ isOpen, onClose, imgSrc }) {
+function LiveResumeModal({ isOpen, onClose, imgSrc, pdfSrc }) {
   const [zoomLevel, setZoomLevel] = useState(1);
 
   useEffect(() => {
@@ -59,7 +60,7 @@ function LiveResumeModal({ isOpen, onClose, imgSrc }) {
         </div>
 
         <div className="lrv-header-center">
-          <span className="lrv-filename">Bhagavan_Resume.jpg</span>
+          <span className="lrv-filename">Bhagavan_Resume.pdf</span>
           <div className="lrv-divider"></div>
           <div className="lrv-zoom-controls">
             <button className="lrv-btn-icon-small" onClick={handleZoomOut} aria-label="Zoom Out" title="Zoom Out">
@@ -75,10 +76,10 @@ function LiveResumeModal({ isOpen, onClose, imgSrc }) {
         </div>
 
         <div className="lrv-header-right">
-          <a href={imgSrc} target="_blank" rel="noopener noreferrer" className="lrv-btn-icon" title="Open in New Tab">
+          <a href={pdfSrc} target="_blank" rel="noopener noreferrer" className="lrv-btn-icon" title="Open PDF in New Tab">
             <ArrowUpRight size={18} />
           </a>
-          <a href={imgSrc} download="Bhagavan_Resume.jpg" className="lrv-btn-icon" title="Download Resume">
+          <a href={pdfSrc} download="Bhagavan_Resume.pdf" className="lrv-btn-icon" title="Download PDF Resume">
             <Download size={18} />
           </a>
         </div>
@@ -121,6 +122,7 @@ export default function Resume() {
         isOpen={isViewerOpen} 
         onClose={closeLiveViewer} 
         imgSrc={resumeImage} 
+        pdfSrc={resumePdf}
       />
 
       <div className="res-canonical-page">
@@ -230,16 +232,158 @@ export default function Resume() {
               <Reveal y={20} duration={0.9} delay={0.15}>
                 <MagneticLink strength={0.3}>
                   <a 
-                    href={resumeImage} 
-                    download="Bhagavan_Resume.jpg" 
+                    href={resumePdf} 
+                    download="Bhagavan_Resume.pdf" 
                     className="res-btn-secondary apple-pressable"
                   >
-                    <span>DOWNLOAD RESUME</span>
+                    <span>DOWNLOAD OFFICIAL RESUME (PDF)</span>
                     <Download size={16} />
                   </a>
                 </MagneticLink>
               </Reveal>
             </div>
+          </div>
+        </section>
+
+
+        {/* ============================================================
+            ACT 02.5 — STRUCTURED DIGITAL RESUME (EDITORIAL TRANSCRIPT)
+            ============================================================ */}
+        <section className="res-transcript-section" data-nav-theme="light" style={{ padding: '60px 0', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+          <div className="res-bounds">
+            
+            <Reveal y={20} duration={0.9}>
+              <div style={{ marginBottom: '40px' }}>
+                <span className="res-section-label">STRUCTURED RECORD</span>
+                <h2 className="res-sub-headline">Digital Curriculum Vitae</h2>
+              </div>
+            </Reveal>
+
+            <div style={{ background: '#ffffff', borderRadius: '20px', border: '1px solid rgba(0,0,0,0.08)', padding: 'clamp(28px, 4vw, 48px)', boxShadow: '0 4px 24px rgba(0,0,0,0.03)' }}>
+              
+              {/* Header Info */}
+              <div style={{ borderBottom: '1px solid rgba(0,0,0,0.08)', paddingBottom: '28px', marginBottom: '32px' }}>
+                <h1 style={{ fontSize: 'clamp(24px, 3.5vw, 36px)', fontWeight: '700', color: '#111111', margin: '0 0 8px 0', letterSpacing: '-0.02em' }}>
+                  Siva Satya Sai Bhagavan Gopalajosyula
+                </h1>
+                <p style={{ fontSize: '15px', color: '#0071E3', fontWeight: '600', margin: '0 0 12px 0', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                  Software Developer &middot; AI Engineer &middot; Technical Trainer
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', fontSize: '13.5px', color: '#666666' }}>
+                  <span>thenameisbhagavan@gmail.com</span>
+                  <span>&bull;</span>
+                  <span>+91 7569205626</span>
+                  <span>&bull;</span>
+                  <a href="https://linkedin.com/in/thenameisbhagavan" target="_blank" rel="noopener noreferrer" style={{ color: '#111111', textDecoration: 'none' }}>linkedin.com/in/thenameisbhagavan</a>
+                  <span>&bull;</span>
+                  <a href="https://github.com/thenameisbhagavan" target="_blank" rel="noopener noreferrer" style={{ color: '#111111', textDecoration: 'none' }}>github.com/thenameisbhagavan</a>
+                </div>
+              </div>
+
+              {/* 1. Professional Summary */}
+              <div style={{ marginBottom: '32px' }}>
+                <h3 style={{ fontSize: '14px', fontWeight: '700', letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase', marginBottom: '12px' }}>
+                  PROFESSIONAL SUMMARY
+                </h3>
+                <p style={{ fontSize: '15px', color: '#333333', lineHeight: '1.65', margin: 0 }}>
+                  Software Developer and AI Engineer with hands-on experience in full-stack web applications, Python backend services, and applied AI systems. Developer and Technical Trainer at Data Valley AI Tech Solutions, building production applications (Data Valley Engineering Assessment Platform, CareerOS, AuraOS, VERITAS, VoltDrive) while training and mentoring students across Python, Data Science, Machine Learning, and Generative AI.
+                </p>
+              </div>
+
+              {/* 2. Technical Skills */}
+              <div style={{ marginBottom: '32px' }}>
+                <h3 style={{ fontSize: '14px', fontWeight: '700', letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase', marginBottom: '16px' }}>
+                  TECHNICAL SKILLS
+                </h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+                  <div>
+                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111', display: 'block', marginBottom: '4px' }}>LANGUAGES</span>
+                    <span style={{ fontSize: '14px', color: '#555558' }}>Python, JavaScript (ESNext), TypeScript, Java, C, SQL</span>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111', display: 'block', marginBottom: '4px' }}>FRONTEND</span>
+                    <span style={{ fontSize: '14px', color: '#555558' }}>React 19, Next.js (App Router), Tailwind CSS, Vite, HTML5, CSS3, Framer Motion</span>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111', display: 'block', marginBottom: '4px' }}>BACKEND &amp; APIS</span>
+                    <span style={{ fontSize: '14px', color: '#555558' }}>FastAPI, Flask, Node.js, Express.js, REST APIs, Stateless Proxy Bridges</span>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111', display: 'block', marginBottom: '4px' }}>DATABASES</span>
+                    <span style={{ fontSize: '14px', color: '#555558' }}>MongoDB Atlas, PostgreSQL, MySQL, Redis, Mongoose</span>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111', display: 'block', marginBottom: '4px' }}>AI / ML &amp; GENAI</span>
+                    <span style={{ fontSize: '14px', color: '#555558' }}>Scikit-learn, TensorFlow, Keras, Pandas, NumPy, Gemini API, Prompt Engineering, RAG</span>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111', display: 'block', marginBottom: '4px' }}>TOOLS &amp; CLOUD</span>
+                    <span style={{ fontSize: '14px', color: '#555558' }}>Git, GitHub, Postman, Vercel Edge, Docker, PowerApps, Linux</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. Professional Experience */}
+              <div style={{ marginBottom: '32px' }}>
+                <h3 style={{ fontSize: '14px', fontWeight: '700', letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase', marginBottom: '20px' }}>
+                  PROFESSIONAL EXPERIENCE
+                </h3>
+                
+                {/* Data Valley */}
+                <div style={{ marginBottom: '24px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '8px', marginBottom: '4px' }}>
+                    <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#111111', margin: 0 }}>
+                      Data Valley AI Tech Solutions &mdash; Developer &amp; Technical Trainer
+                    </h4>
+                    <span style={{ fontSize: '13px', color: '#86868b', fontWeight: '600' }}>2024 &ndash; PRESENT | VIJAYAWADA, INDIA</span>
+                  </div>
+                  <ul style={{ paddingLeft: '20px', margin: '8px 0 0 0', fontSize: '14px', color: '#444444', lineHeight: '1.6', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <li>Engineered the end-to-end Data Valley Engineering Assessment Platform using Next.js App Router, React 19, TypeScript, and MongoDB Atlas.</li>
+                    <li>Developed Python backend services (FastAPI/Flask) and secure stateless proxy bridges interfacing with the Gemini API.</li>
+                    <li>Delivered curriculum and practical training in Python, Data Science, Machine Learning, and Generative AI for students and trainees.</li>
+                    <li>Conducted technical workshops including the PACE Institute (300 engineering students) and PBR VITS AI technical talk with formal letter of appreciation.</li>
+                  </ul>
+                </div>
+
+                {/* Internships List */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+                  <div>
+                    <span style={{ fontSize: '13px', fontWeight: '700', color: '#111111' }}>StudyOwl Education (2024)</span>
+                    <p style={{ fontSize: '13px', color: '#666666', margin: '2px 0 0 0' }}>Software Development Intern &middot; React frontend, Node.js backend, REST API integration.</p>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '13px', fontWeight: '700', color: '#111111' }}>SmartBridge (2024)</span>
+                    <p style={{ fontSize: '13px', color: '#666666', margin: '2px 0 0 0' }}>Software Engineering Intern &middot; CNN image classification with TensorFlow/Keras &amp; Flask.</p>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '13px', fontWeight: '700', color: '#111111' }}>Blackbucks (2024)</span>
+                    <p style={{ fontSize: '13px', color: '#666666', margin: '2px 0 0 0' }}>Machine Learning Intern &middot; Data preprocessing, feature engineering &amp; Scikit-learn pipelines.</p>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '13px', fontWeight: '700', color: '#111111' }}>Helson (2024)</span>
+                    <p style={{ fontSize: '13px', color: '#666666', margin: '2px 0 0 0' }}>Enterprise Automation Intern &middot; Business process workflows using PowerApps &amp; Automate.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 4. Education */}
+              <div>
+                <h3 style={{ fontSize: '14px', fontWeight: '700', letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase', marginBottom: '12px' }}>
+                  EDUCATION
+                </h3>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '8px' }}>
+                  <div>
+                    <h4 style={{ fontSize: '15px', fontWeight: '700', color: '#111111', margin: 0 }}>
+                      B.Tech in Artificial Intelligence &amp; Data Science
+                    </h4>
+                    <span style={{ fontSize: '13.5px', color: '#555558' }}>Ramachandra College of Engineering, JNTUK</span>
+                  </div>
+                  <span style={{ fontSize: '13px', color: '#86868b', fontWeight: '600' }}>2022 &ndash; 2026</span>
+                </div>
+              </div>
+
+            </div>
+
           </div>
         </section>
 

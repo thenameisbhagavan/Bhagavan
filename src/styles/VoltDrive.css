@@ -9,7 +9,7 @@
   background-color: #000000;
   color: #fbfbfd;
   font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Inter', sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
   padding-top: 50px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -8,6 +8,7 @@ import Reveal from "../components/motion/Reveal";
 import MaskReveal from "../components/motion/MaskReveal";
 import ScaleReveal from "../components/motion/ScaleReveal";
 import MagneticLink from "../components/motion/MagneticLink";
+import SpatialArchitectureCore from "../components/spatial/SpatialArchitectureCore";
 import "../styles/Innovation.css";
 
 // ─── Core Artifact Assets ──────────────────────────────────────────────────────
@@ -114,38 +115,49 @@ export default function InnovationJourney() {
             ============================================================ */}
         <section className="lab-hero" data-nav-theme="light">
           <div className="lab-bounds">
-            <Reveal y={16} duration={0.8}>
-              <div className="lab-hero-meta">
-                <span>LAB / 01</span>
-                <span>&middot;</span>
-                <span>INNOVATION</span>
-                <span>&middot;</span>
-                <span>2024</span>
+            <div className="lab-hero-grid">
+              <div>
+                <Reveal y={16} duration={0.8}>
+                  <div className="lab-hero-meta">
+                    <span>LAB / 01</span>
+                    <span>&middot;</span>
+                    <span>INNOVATION &amp; EXPERIMENTATION</span>
+                    <span>&middot;</span>
+                    <span>AI RESEARCH</span>
+                  </div>
+                </Reveal>
+
+                <MaskReveal duration={1.1} delay={0.1}>
+                  <h1 className="lab-hero-headline">
+                    CURIOSITY IS WHERE<br />
+                    THE SYSTEM BEGINS.
+                  </h1>
+                </MaskReveal>
+
+                <Reveal y={20} duration={0.9} delay={0.25}>
+                  <p className="lab-hero-sub">
+                    Experiments, constraints and evidence shape what I build next.
+                  </p>
+                </Reveal>
+
+                <Reveal y={16} duration={0.8} delay={0.4}>
+                  <div className="lab-hero-tag">
+                    <span>RESEARCH</span>
+                    <span className="tag-dot">&middot;</span>
+                    <span>EXPERIMENTATION</span>
+                    <span className="tag-dot">&middot;</span>
+                    <span>SYSTEMS</span>
+                  </div>
+                </Reveal>
               </div>
-            </Reveal>
 
-            <MaskReveal duration={1.1} delay={0.1}>
-              <h1 className="lab-hero-headline">
-                CURIOSITY IS WHERE<br />
-                THE SYSTEM BEGINS.
-              </h1>
-            </MaskReveal>
-
-            <Reveal y={20} duration={0.9} delay={0.25}>
-              <p className="lab-hero-sub">
-                Experiments, constraints and evidence shape what I build next.
-              </p>
-            </Reveal>
-
-            <Reveal y={16} duration={0.8} delay={0.4}>
-              <div className="lab-hero-tag">
-                <span>RESEARCH</span>
-                <span className="tag-dot">&middot;</span>
-                <span>EXPERIMENTATION</span>
-                <span className="tag-dot">&middot;</span>
-                <span>SYSTEMS</span>
-              </div>
-            </Reveal>
+              {/* 3D Spatial Architecture Core Model */}
+              <Reveal y={24} duration={1.0} delay={0.2}>
+                <div style={{ height: "420px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <SpatialArchitectureCore />
+                </div>
+              </Reveal>
+            </div>
           </div>
         </section>
 
@@ -384,10 +396,12 @@ export default function InnovationJourney() {
 
             <div className="exploration-fields-grid">
               {[
-                { area: "AI SYSTEMS", tags: "Memory &middot; Context &middot; Reasoning" },
-                { area: "PRODUCT ENGINEERING", tags: "Interfaces &middot; Workflows" },
-                { area: "SYSTEM DESIGN", tags: "Architecture &middot; APIs &middot; Reliability" },
-                { area: "ENGINEERING WRITING", tags: "Experiments &middot; Decisions" },
+                { area: "AI ENGINEERING & ML", tags: "Deterministic Pipelines &middot; Feature Attribution &middot; Scikit-learn" },
+                { area: "GENERATIVE AI & LLMs", tags: "Prompt Taxonomies &middot; Structured Output &middot; Gemini API Proxies" },
+                { area: "AGENTIC AI & AUTOMATION", tags: "Tool Calling &middot; Multi-Step Reasoning &middot; Context Graphs" },
+                { area: "FULL-STACK ENGINEERING", tags: "Next.js App Router &middot; React 19 &middot; FastAPI &middot; MongoDB Atlas" },
+                { area: "INTELLIGENT SYSTEMS", tags: "CareerOS &middot; VERITAS &middot; AuraOS &middot; AgriVision AI" },
+                { area: "TECHNICAL WRITING & SPEECH", tags: "PBR VITS Talk &middot; PACE Ongole Workshop &middot; Systems Architecture" }
               ].map((field, idx) => (
                 <Reveal y={20} duration={0.8} delay={idx * 0.1} key={field.area} className="exploration-field-card">
                   <span className="efc-area">{field.area}</span>

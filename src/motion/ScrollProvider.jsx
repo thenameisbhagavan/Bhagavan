@@ -1,9 +1,7 @@
-import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { LENIS_CONFIG } from './motionTokens';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,88 +15,122 @@ const ScrollContext = createContext({
 
 export const useScrollContext = () => useContext(ScrollContext);
 
+/**
+ * Native Apple-Grade Scroll Provider
+ * Restores 100% natural, browser-native vertical scrolling across all platforms:
+ * - Direct mouse wheel with native OS acceleration
+ * - Hardware-accelerated trackpad inertia and fluid Apple gestures
+ * - Flawless mobile & tablet finger swipe momentum
+ * - Zero-lag keyboard navigation (PageUp, PageDown, Space, Home, End)
+ * - Free scrollbar dragging without resistance or virtual loops
+ * - Clean synchronization with GSAP ScrollTrigger via passive scroll listener
+ */
 export function ScrollProvider({ children }) {
-  const [lenisInstance, setLenisInstance] = useState(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [scrollVelocity, setScrollVelocity] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const location = useLocation();
-  const rafRef = useRef(null);
+
+  // Keep live scroll metrics in refs to prevent application-wide React re-renders on every scroll tick
+  const progressRef = useRef(0);
+  const velocityRef = useRef(0);
+  const lastScrollYRef = useRef(0);
+  const lastScrollTimeRef = useRef(performance.now());
+  const rafIdRef = useRef(null);
 
   useEffect(() => {
-    // Detect prefers-reduced-motion and touch screen mobile hardware
+    // 1. Accessibility: Detect prefers-reduced-motion
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const checkReduced = () => setReducedMotion(motionQuery.matches);
     checkReduced();
     motionQuery.addEventListener('change', checkReduced);
 
+    // 2. Responsive: Check mobile viewport / touch capability
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window);
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener('resize', checkMobile, { passive: true });
 
-    if (motionQuery.matches) {
-      return () => {
-        motionQuery.removeEventListener('change', checkReduced);
-        window.removeEventListener('resize', checkMobile);
-      };
-    }
+    // 3. Native scroll listener: Update GSAP ScrollTrigger and track velocity passively in rAF
+    const onNativeScroll = () => {
+      if (rafIdRef.current) return;
 
-    // Initialize Lenis Smooth Scroll
-    const lenis = new Lenis(LENIS_CONFIG);
-    setLenisInstance(lenis);
+      rafIdRef.current = requestAnimationFrame(() => {
+        rafIdRef.current = null;
+        
+        // Sync GSAP ScrollTrigger with native scroll position
+        ScrollTrigger.update();
 
-    // Sync Lenis scroll tick with GSAP ScrollTrigger
-    lenis.on('scroll', (e) => {
-      ScrollTrigger.update();
-      setScrollProgress(e.progress || 0);
-      setScrollVelocity(e.velocity || 0);
-    });
+        const currentY = window.scrollY || window.pageYOffset || 0;
+        const now = performance.now();
+        const docHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const dt = Math.max(1, now - lastScrollTimeRef.current);
+        const dy = currentY - lastScrollYRef.current;
 
-    // Run GSAP ticker aligned with Lenis
-    const updateGsapTicker = (time) => {
-      lenis.raf(time * 1000);
+        progressRef.current = Math.min(1, Math.max(0, currentY / docHeight));
+        velocityRef.current = (dy / dt) * 16.67; // Normalized 60fps velocity
+
+        lastScrollYRef.current = currentY;
+        lastScrollTimeRef.current = now;
+      });
     };
 
-    gsap.ticker.add(updateGsapTicker);
-    gsap.ticker.lagSmoothing(0);
+    window.addEventListener('scroll', onNativeScroll, { passive: true });
 
     return () => {
       motionQuery.removeEventListener('change', checkReduced);
       window.removeEventListener('resize', checkMobile);
-      gsap.ticker.remove(updateGsapTicker);
-      lenis.destroy();
-      setLenisInstance(null);
+      window.removeEventListener('scroll', onNativeScroll);
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
     };
   }, []);
 
-  // Route-change scroll restoration & ScrollTrigger recalculation
+  // 4. Route-change scroll restoration & ScrollTrigger recalculation
   useEffect(() => {
-    if (lenisInstance) {
-      lenisInstance.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
-    }
+    // Instant, unhindered native reset to top
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 120);
+    }, 80);
 
     return () => clearTimeout(timer);
-  }, [location.pathname, lenisInstance]);
+  }, [location.pathname]);
+
+  // 5. Native Scroll Adapter: Provides smooth and instant scrollTo API matching Lenis signature
+  const nativeScrollAdapter = useMemo(() => ({
+    scrollTo: (target, options = {}) => {
+      let top = 0;
+      if (typeof target === 'number') {
+        top = target;
+      } else if (typeof target === 'string') {
+        const el = document.querySelector(target);
+        if (el) top = el.getBoundingClientRect().top + window.scrollY + (options.offset || 0);
+      } else if (target instanceof HTMLElement) {
+        top = target.getBoundingClientRect().top + window.scrollY + (options.offset || 0);
+      }
+
+      window.scrollTo({
+        top,
+        behavior: options.immediate ? 'instant' : 'smooth',
+      });
+    },
+    stop: () => {},
+    start: () => {},
+    destroy: () => {},
+    raf: () => {},
+  }), []);
+
+  const contextValue = useMemo(() => ({
+    lenis: nativeScrollAdapter,
+    scrollProgress: progressRef.current,
+    scrollVelocity: velocityRef.current,
+    isMobile,
+    reducedMotion,
+  }), [nativeScrollAdapter, isMobile, reducedMotion]);
 
   return (
-    <ScrollContext.Provider
-      value={{
-        lenis: lenisInstance,
-        scrollProgress,
-        scrollVelocity,
-        isMobile,
-        reducedMotion,
-      }}
-    >
+    <ScrollContext.Provider value={contextValue}>
       {children}
     </ScrollContext.Provider>
   );

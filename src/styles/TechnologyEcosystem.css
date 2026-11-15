@@ -3,11 +3,11 @@
    ========================================= */
 
 .eco-page {
-  background-color: #fbfbfd;
-  color: #1d1d1f;
+  background-color: #F7F7F5;
+  color: #111111;
   font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .eco-bounds {
@@ -100,6 +100,12 @@
 
 .layer-row:hover {
   border-top-color: rgba(0,0,0,0.15);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .layer-row:hover + .layer-row {

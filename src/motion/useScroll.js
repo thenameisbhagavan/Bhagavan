@@ -269,3 +269,65 @@ export function useMagneticInteraction(strength = 0.35) {
 
   return ref;
 }
+
+/**
+ * 3D Interactive Spring Tilt hook for cards and portrait frames.
+ * Provides subtle perspective response on cursor movement with elastic settle on mouse leave.
+ * Automatically disabled on touch devices and reduced motion.
+ */
+export function useSpringTilt({ maxTilt = 3.5, scale = 1.012 } = {}) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (
+      !el ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      window.matchMedia('(hover: none)').matches
+    ) {
+      return;
+    }
+
+    const handleMouseMove = (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -maxTilt;
+      const rotateY = ((x - centerX) / centerX) * maxTilt;
+
+      gsap.to(el, {
+        rotateX,
+        rotateY,
+        scale,
+        transformPerspective: 1000,
+        transformOrigin: 'center center',
+        duration: 0.3,
+        ease: 'power2.out',
+      });
+    };
+
+    const handleMouseLeave = () => {
+      gsap.to(el, {
+        rotateX: 0,
+        rotateY: 0,
+        scale: 1,
+        duration: 0.85,
+        ease: 'elastic.out(1, 0.45)',
+      });
+    };
+
+    el.addEventListener('mousemove', handleMouseMove);
+    el.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      el.removeEventListener('mousemove', handleMouseMove);
+      el.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [maxTilt, scale]);
+
+  return ref;
+}

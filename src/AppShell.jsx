@@ -13,18 +13,18 @@ export default function AppShell({ children }) {
 
   return (
     <ScrollProvider>
-      <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#fbfbfd', color: '#1d1d1f' }}>
+      <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#F7F7F5', color: '#111111' }}>
         
-        {/* Premium Ambient Background System (Apple Light Theme) */}
+        {/* Premium Ambient Background System (Apple Editorial Light Canvas) */}
         <div style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
-          {/* Soft light diffusion top left */}
+          {/* Subtle light diffusion */}
           <m.div 
-            animate={{ x: ['-2%', '2%', '-2%'], y: ['-2%', '2%', '-2%'] }}
+            animate={{ x: ['-1%', '1%', '-1%'], y: ['-1%', '1%', '-1%'] }}
             transition={{ duration: animDuration, repeat: Infinity, ease: 'linear' }}
             style={{
               position: 'absolute',
-              top: '-20%', left: '-10%', width: '60%', height: '60%',
-              background: 'radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%)',
+              top: '-15%', left: '-5%', width: '50%', height: '50%',
+              background: 'radial-gradient(circle, rgba(0, 113, 227, 0.02) 0%, transparent 70%)',
               borderRadius: '50%',
               willChange: 'transform'
             }} 

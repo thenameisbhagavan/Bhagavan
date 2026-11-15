@@ -1,39 +1,60 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   DESIGN TOKENS — AI-OS Cinematic Architecture
-   Single source of truth for colors, timing, and typography.
+   DESIGN TOKENS — Apple-Level Editorial System
+   Brand: TheNameIsBhagavan
+   Primary Canvas: #F7F7F5 | Primary Text: #111111
    ═══════════════════════════════════════════════════════════════════════════ */
 
 // ── Color Palette ──
 export const C = {
-  // Backgrounds
-  bg:        "#07111F",
-  surface:   "rgba(255,255,255,0.02)",
-  surfaceHi: "rgba(255,255,255,0.04)",
-  elevated:  "rgba(255,255,255,0.06)",
+  // Primary Editorial Canvas (Light Theme)
+  bg:          "#F7F7F5",
+  canvas:      "#F7F7F5",
+  surface:     "#FFFFFF",
+  surfaceMuted:"#F0F0EE",
+  surfaceHi:   "#EBEBE9",
+  elevated:    "#FFFFFF",
+
+  // Dark Canvas Sections
+  darkBg:      "#0A0A0C",
+  darkSurface: "#141416",
+  darkElevated:"#1C1C1F",
 
   // Borders
-  border:    "rgba(255,255,255,0.06)",
-  border2:   "rgba(255,255,255,0.12)",
-  border3:   "rgba(255,255,255,0.18)",
+  border:      "rgba(0, 0, 0, 0.07)",
+  border2:     "rgba(0, 0, 0, 0.12)",
+  border3:     "rgba(0, 0, 0, 0.20)",
+  darkBorder:  "rgba(255, 255, 255, 0.08)",
+  darkBorder2: "rgba(255, 255, 255, 0.16)",
 
-  // Text hierarchy
-  text:      "#FFFFFF",
-  muted:     "rgba(255,255,255,0.55)",
-  muted2:    "rgba(255,255,255,0.40)",
-  muted3:    "rgba(255,255,255,0.25)",
+  // Typography Hierarchy
+  text:        "#111111",
+  textMuted:   "#6E6E73",
+  textSub:     "#86868B",
+  textTertiary:"#A1A1A6",
 
-  // Accents
-  accent:    "#FFFFFF",
-  accentSub: "rgba(255,255,255,0.04)",
-  accentLine:"rgba(255,255,255,0.08)",
-  green:     "rgba(74,222,128,0.8)",
-  greenSub:  "rgba(74,222,128,0.03)",
+  // Dark Section Typography
+  darkText:    "#F5F5F7",
+  darkMuted:   "#A1A1A6",
+  darkSub:     "#6E6E73",
 
-  // Glass
-  glass:     "rgba(255,255,255,0.015)",
-  glassHi:   "rgba(255,255,255,0.03)",
-  glassBorder:   "rgba(255,255,255,0.08)",
-  glassBorderHi: "rgba(255,255,255,0.12)",
+  // Restrained Accents
+  accent:      "#0071E3",
+  accentHover: "#0077ED",
+  accentMuted: "rgba(0, 113, 227, 0.08)",
+  accentBorder:"rgba(0, 113, 227, 0.22)",
+
+  // Verified / System Signals
+  green:       "#34C759",
+  greenMuted:  "rgba(52, 199, 89, 0.10)",
+  purple:      "#AF52DE",
+  orange:      "#FF9500",
+
+  // Apple Liquid Glass
+  glassBg:     "rgba(247, 247, 245, 0.75)",
+  glassCard:   "rgba(255, 255, 255, 0.82)",
+  glassBorder: "rgba(255, 255, 255, 0.60)",
+  glassDark:   "rgba(15, 15, 18, 0.72)",
+  glassDarkBorder: "rgba(255, 255, 255, 0.10)",
 };
 
 // ── Easing ──

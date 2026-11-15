@@ -4,9 +4,10 @@ import { m, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
 import BrandSignature from "../components/BrandSignature";
+import MagneticLink from "../components/motion/MagneticLink";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import '../styles/Connect.css';
-import resumePdf from '../assets/bhagavanresume.pdf';
+import resumePdf from '../assets/Bhagavan_Resume.pdf';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // PRESERVED EMAILJS CONFIGURATION
@@ -234,13 +235,15 @@ export default function Connect() {
                 <a href="mailto:thenameisbhagavan@gmail.com" className="cp-email">
                   thenameisbhagavan@gmail.com
                 </a>
-                <button 
-                  className={`cp-copy-btn ${copied ? 'copied' : ''}`} 
-                  onClick={handleCopyEmail}
-                  aria-label="Copy email address"
-                >
-                  {copied ? 'COPIED' : 'COPY'}
-                </button>
+                <MagneticLink strength={0.25}>
+                  <button 
+                    className={`cp-copy-btn apple-pressable ${copied ? 'copied' : ''}`} 
+                    onClick={handleCopyEmail}
+                    aria-label="Copy email address"
+                  >
+                    {copied ? 'COPIED' : 'COPY'}
+                  </button>
+                </MagneticLink>
               </div>
 
               <div className="cp-note">
@@ -284,10 +287,14 @@ export default function Connect() {
                     <textarea id="message" name="message" className="cf-textarea" value={formData.message} onChange={handleChange} required />
                   </div>
 
-                  <button type="submit" className="cf-submit" disabled={status === 'loading'}>
-                    {status === 'loading' ? 'SENDING' : 'SEND MESSAGE'}
-                    {status !== 'loading' && <ArrowRight size={16} className="cf-submit-arrow" />}
-                  </button>
+                  <div style={{ marginTop: '16px' }}>
+                    <MagneticLink strength={0.2}>
+                      <button type="submit" className="cf-submit apple-pressable" disabled={status === 'loading'}>
+                        {status === 'loading' ? 'SENDING' : 'SEND MESSAGE'}
+                        {status !== 'loading' && <ArrowRight size={16} className="cf-submit-arrow" />}
+                      </button>
+                    </MagneticLink>
+                  </div>
                 </form>
               </m.div>
 

@@ -58,9 +58,9 @@ function PageLoader() {
   );
 }
 
-// Apple 2026 Instant Scroll Restoration — prevents layout shifts and scroll persistence across page changes
+// Apple-Grade Instant Scroll Restoration — smooth in-page anchor handling and clean page resets
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -69,30 +69,23 @@ const ScrollToTop = () => {
   }, []);
 
   useEffect(() => {
-    // Instant scroll reset
+    if (hash) {
+      // If navigating with an in-page anchor (e.g. #ats-resume), scroll to that section
+      const targetEl = document.querySelector(hash);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+      const timer = setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 120);
+      return () => clearTimeout(timer);
+    }
+
+    // Standard route transition: immediate clean reset to top
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-
-    // Multi-stage verification to ensure scroll is top after Framer Motion exit & Suspense mount
-    const rAF = requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    });
-    const t1 = setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    }, 40);
-    const t2 = setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    }, 150);
-    const t3 = setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    }, 350);
-
-    return () => {
-      cancelAnimationFrame(rAF);
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
-    };
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 };

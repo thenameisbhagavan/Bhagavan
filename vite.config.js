@@ -23,6 +23,8 @@ export default defineConfig({
           'vendor-motion': ['framer-motion'],
           // Icons — frequently used, cache separately
           'vendor-icons': ['lucide-react'],
+          // 3D Engine — isolated chunk loaded only on Innovation Journey
+          'vendor-three': ['three', '@react-three/fiber'],
         },
       },
     },
@@ -36,7 +38,7 @@ export default defineConfig({
     // Pre-bundle heavy deps so they don't cause jank during HMR
     warmup: {
       clientFiles: [
-        './src/pages/Home.jsx',
+        './src/pages/Overview.jsx',
         './src/components/Navbar.jsx',
       ],
     },

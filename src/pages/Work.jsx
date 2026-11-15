@@ -18,6 +18,8 @@ import chatImg from "../assets/aurabot-new.png";
 import fakeImg from "../assets/fake.jpg";
 import agrivisionImg from "../assets/agrivision.png";
 import dvAssessmentImg from "../assets/datavalley-assessment-platform.png";
+import atsResumeImg from "../assets/resume.jpg";
+import chatProxyImg from "../assets/chat.jpeg";
 
 export const FLAGSHIP_PROJECTS = [
   { name: "DV Assessments", eyebrow: "Enterprise Web Application", desc: "End-to-end engineering assessment platform with timed sessions and server-side evaluation.", img: dvAssessmentImg, link: "/work/data-valley-assessment-platform", live: "https://dv-assesments.vercel.app/" },
@@ -25,7 +27,9 @@ export const FLAGSHIP_PROJECTS = [
   { name: "AuraOS", eyebrow: "Personal Intelligence OS", desc: "A chatbot that actually remembers context.", img: chatImg, link: "/work/auraos", live: "https://aura-os-thenameisbhagavan.vercel.app/" },
   { name: "VERITAS", eyebrow: "Explainable Intelligence Platform", desc: "AI that shows its reasoning, not just its answer.", img: fakeImg, link: "/work/veritas", live: "https://veritas-thenameisbhagavan.vercel.app/" },
   { name: "VoltDrive", eyebrow: "Automotive Digital Showroom", desc: "A frontend experience built to feel alive.", img: voltDriveImg, link: "/work/voltdrive", live: "https://voltdrive-thenameisbhagavan.vercel.app/" },
-  { name: "AgriVision AI", eyebrow: "Intelligent Crop Diagnostics", desc: "From Crop Image to Explainable AI Insight.", img: agrivisionImg, link: "#agrivision", live: "https://github.com/thenameisbhagavan/Plant-disease-detection" }
+  { name: "AgriVision AI", eyebrow: "Intelligent Crop Diagnostics", desc: "From Crop Image to Explainable AI Insight.", img: agrivisionImg, link: "#agrivision", live: "https://github.com/thenameisbhagavan/Plant-disease-detection" },
+  { name: "ATS Resume Builder", eyebrow: "Full-Stack Web Platform", desc: "MERN application optimizing resumes against ATS filters with keyword extraction algorithms.", img: atsResumeImg, link: "#ats-resume", live: "https://github.com/thenameisbhagavan/Resumebuilderwebapp" },
+  { name: "AI Chat Proxy", eyebrow: "Secure LLM Gateway", desc: "Stateless backend bridge securing Gemini API interactions without browser key leakage.", img: chatProxyImg, link: "#ai-chat", live: "https://github.com/thenameisbhagavan/chatbotwebapp" }
 ];
 
 export default function Work() {
@@ -36,23 +40,34 @@ export default function Work() {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
-  // Update active project rail on scroll
+  // Update active project rail on scroll with rAF batching
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["dv-assessments", "careeros", "auraos", "veritas", "voltdrive", "agrivision"];
-      const scrollPos = window.scrollY + window.innerHeight * 0.4;
+    let rafId = null;
+    const sections = ["dv-assessments", "careeros", "auraos", "veritas", "voltdrive", "agrivision", "ats-resume", "ai-chat"];
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= scrollPos) {
-          setActiveProject(`0${i + 1}`);
-          break;
+    const handleScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const scrollPos = window.scrollY + window.innerHeight * 0.35;
+
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const el = document.getElementById(sections[i]);
+          if (el && el.offsetTop <= scrollPos) {
+            const nextKey = `0${i + 1}`;
+            setActiveProject((prev) => (prev !== nextKey ? nextKey : prev));
+            break;
+          }
         }
-      }
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const scrollToSection = (id) => {
@@ -66,7 +81,7 @@ export default function Work() {
     <>
       <SEO 
         title="Work | TheNameIsBhagavan"
-        description="Engineering exhibition by Bhagavan (TheNameIsBhagavan) — Software Developer, AI/ML & Generative AI practitioner, and Technical Trainer. Explore Data Valley Engineering Assessment Platform, CareerOS, AuraOS, VERITAS, VoltDrive, and AgriVision AI."
+        description="Engineering exhibition by Bhagavan (TheNameIsBhagavan) — Software Developer, AI Engineer, and Technical Trainer. Explore Data Valley Engineering Assessment Platform, CareerOS, AuraOS, VERITAS, VoltDrive, AgriVision AI, and ATS Resume Builder."
         keywords="TheNameIsBhagavan, Bhagavan Projects, Data Valley Engineering Assessment Platform, Software Developer, AI Systems Engineering, CareerOS, AuraOS, VERITAS, VoltDrive, AgriVision AI, Technical Trainer"
       />
       <div className="work-exhibition-page">
@@ -79,7 +94,9 @@ export default function Work() {
             { id: "03", name: "AURAOS", target: "auraos" },
             { id: "04", name: "VERITAS", target: "veritas" },
             { id: "05", name: "VOLTDRIVE", target: "voltdrive" },
-            { id: "06", name: "AGRIVISION AI", target: "agrivision" }
+            { id: "06", name: "AGRIVISION AI", target: "agrivision" },
+            { id: "07", name: "ATS RESUME", target: "ats-resume" },
+            { id: "08", name: "AI PROXY", target: "ai-chat" }
           ].map((item) => (
             <button
               key={item.id}
@@ -100,7 +117,7 @@ export default function Work() {
             
             <Reveal y={16} duration={0.8}>
               <div className="work-hero-eyebrow">
-                <span className="work-eyebrow-badge">SYSTEMS / 06</span>
+                <span className="work-eyebrow-badge">SYSTEMS / 08</span>
               </div>
             </Reveal>
 
@@ -523,6 +540,125 @@ export default function Work() {
 
 
         {/* ============================================================
+            ACT 06.5 — ATS RESUME BUILDER (CHAPTER 07 / 08)
+            ============================================================ */}
+        <section id="ats-resume" className="work-chapter chapter-ats-resume" data-nav-theme="light">
+          <div className="exhibition-bounds">
+            
+            <div className="chapter-header-row">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">FULL-STACK APPLICATION &middot; 07 / 08</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="chapter-title">ATS RESUME BUILDER</h2>
+              </Reveal>
+            </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-opening-q">
+                "Applicant Tracking Systems filter candidates silently. Transparency gives applicants leverage."
+              </blockquote>
+            </Reveal>
+
+            <ScaleReveal className="chapter-hero-image-wrap">
+              <img src={atsResumeImg} alt="ATS-Based Resume Builder Platform" className="chapter-hero-img" loading="lazy" />
+            </ScaleReveal>
+
+            {/* 4-Step Engineering Architecture */}
+            <div className="chapter-steps-grid">
+              {[
+                { step: "01", title: "KEYWORD EXTRACTION", desc: "Extracts role requirements and critical skill tokens directly from targeted job descriptions." },
+                { step: "02", title: "MATCH SCORING", desc: "Computes lexical and semantic overlap between candidate resume sections and target requisitions." },
+                { step: "03", title: "FORMAT VALIDATION", desc: "Enforces single-column semantic markup optimized for machine parsers and OCR readers." },
+                { step: "04", title: "SECURE EXPORT", desc: "Generates clean PDF and JSON resumes with OAuth authentication and REST API integration." }
+              ].map((st, idx) => (
+                <Reveal key={st.step} y={24} duration={0.8} delay={idx * 0.1} className="chapter-step-card">
+                  <span className="step-num">{st.step}</span>
+                  <h3 className="step-title">{st.title}</h3>
+                  <p className="step-desc">{st.desc}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Engineering Signal & Actions */}
+            <div className="chapter-footer-bar">
+              <div className="chapter-tech-stack">
+                <span className="tech-label">ENGINEERING LAYER:</span>
+                <span className="tech-val">REACT &middot; NODE.JS &middot; EXPRESS &middot; MONGODB &middot; OAUTH &middot; REST APIS</span>
+              </div>
+
+              <div className="chapter-actions">
+                <MagneticLink strength={0.2}>
+                  <a href="https://github.com/thenameisbhagavan/Resumebuilderwebapp" target="_blank" rel="noopener noreferrer" className="work-btn-primary">
+                    <span>SOURCE CODE ↗</span>
+                  </a>
+                </MagneticLink>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        {/* ============================================================
+            ACT 06.6 — AI CONVERSATIONAL CHATBOT GATEWAY (CHAPTER 08 / 08)
+            ============================================================ */}
+        <section id="ai-chat" className="work-chapter chapter-ai-chat" data-nav-theme="light">
+          <div className="exhibition-bounds">
+            
+            <div className="chapter-header-row">
+              <Reveal y={16} duration={0.8}>
+                <span className="chapter-badge">AI SYSTEMS ARCHITECTURE &middot; 08 / 08</span>
+              </Reveal>
+              <Reveal y={16} duration={0.8} delay={0.1}>
+                <h2 className="chapter-title">AI CHAT GATEWAY</h2>
+              </Reveal>
+            </div>
+
+            <Reveal y={24} duration={0.9} delay={0.2}>
+              <blockquote className="chapter-opening-q">
+                "Production AI frontends must never expose API keys to the browser client."
+              </blockquote>
+            </Reveal>
+
+            <Parallax speed={-0.04} className="chapter-hero-image-wrap">
+              <img src={chatProxyImg} alt="AI Chatbot Web Application" className="chapter-hero-img" loading="lazy" />
+            </Parallax>
+
+            {/* Pipeline Steps */}
+            <div className="chapter-steps-grid steps-3col">
+              {[
+                { label: "SECURITY", title: "STATELESS PROXY BRIDGE", desc: "Isolates upstream Gemini API secrets inside a hardened Python/Flask backend bridge." },
+                { label: "ORCHESTRATION", title: "STREAMING & TIMEOUTS", desc: "Manages session conversation history, rate limits, and client error recovery." },
+                { label: "INTERFACE", title: "RESPONSIVE CLIENT", desc: "Renders real-time conversational streaming and structured markdown responses." }
+              ].map((st, idx) => (
+                <Reveal key={st.label} y={24} duration={0.8} delay={idx * 0.12} className="chapter-step-card">
+                  <span className="step-label-badge badge-green">{st.label}</span>
+                  <h3 className="step-title">{st.title}</h3>
+                  <p className="step-desc">{st.desc}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Engineering Signal & Actions */}
+            <div className="chapter-footer-bar">
+              <div className="chapter-tech-stack">
+                <span className="tech-label">ENGINEERING LAYER:</span>
+                <span className="tech-val">PYTHON &middot; FLASK &middot; GEMINI API &middot; REACT &middot; REST APIS &middot; CORS GUARD</span>
+              </div>
+
+              <div className="chapter-actions">
+                <MagneticLink strength={0.2}>
+                  <a href="https://github.com/thenameisbhagavan/chatbotwebapp" target="_blank" rel="noopener noreferrer" className="work-btn-primary">
+                    <span>SOURCE CODE ↗</span>
+                  </a>
+                </MagneticLink>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        {/* ============================================================
             ACT 07 — EARLIER EXPERIMENTS (COMPACT HORIZONTAL ARCHIVE)
             ============================================================ */}
         <section className="work-archive-section" data-nav-theme="light">
@@ -623,7 +759,7 @@ export default function Work() {
             
             <Reveal y={24} duration={1.0}>
               <h2 className="closing-statement-main">
-                Six systems.<br />
+                Eight systems.<br />
                 One continuing question.
               </h2>
             </Reveal>

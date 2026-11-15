@@ -111,7 +111,7 @@ export default function Vision() {
         <section className="vision-hero" data-nav-theme="light">
           <div className="vision-bounds">
             <m.div className="vision-hero-eyebrow" initial="hidden" animate="visible" variants={fadeUp}>
-              PERSPECTIVE / HOW I THINK / 2024
+              ENGINEERING THESIS &middot; THE NAME IS BHAGAVAN
             </m.div>
             <m.h1 className="vision-hero-headline" initial="hidden" animate="visible" variants={fadeUpSlow}>
               How I think about<br/>what I'm building.
@@ -149,7 +149,7 @@ export default function Vision() {
         {/* ══════════════════════════════════════════════════════
             3. THE SHIFT
         ══════════════════════════════════════════════════════ */}
-        <section className="vision-shift" data-nav-theme="light">
+        <section className="vision-shift" data-nav-theme="dark">
           <div className="vision-bounds">
             <div className="vision-label">THE PROGRESSION</div>
             

@@ -3,11 +3,11 @@
    ========================================= */
 
 .exp-evolution-page {
-  background-color: #fbfbfd;
-  color: #1d1d1f;
+  background-color: #F7F7F5;
+  color: #111111;
   font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .evo-bounds {
@@ -91,7 +91,7 @@
    ========================================= */
 .exp-evolution-hero {
   padding: 100px 0 70px 0;
-  background: #fbfbfd;
+  background: #F7F7F5;
 }
 
 .hero-badge {
