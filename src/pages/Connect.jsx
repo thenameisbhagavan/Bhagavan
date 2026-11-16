@@ -111,8 +111,8 @@ export default function Connect() {
     <>
       <SEO 
         title="Connect | TheNameIsBhagavan"
-        description="Connect with Bhagavan (TheNameIsBhagavan) — Software Developer, AI/ML & Generative AI practitioner, and Technical Trainer at Data Valley AI Tech Solutions. Open to engineering collaborations and technical discussions." 
-        keywords="Contact Bhagavan, TheNameIsBhagavan Contact, Software Developer, AI/ML, Generative AI, Technical Trainer, Data Valley AI Tech Solutions, Vijayawada" 
+        description="Connect with Bhagavan (TheNameIsBhagavan) — AI & Data Science Professional, Technical Trainer, and AI Solutions Developer at Data Valley AI Tech Solutions. Open to engineering collaborations, technical workshops, and consulting discussions." 
+        keywords="Contact Bhagavan, TheNameIsBhagavan Contact, AI Data Science Professional, Technical Trainer, AI Solutions Developer, Data Valley AI Tech Solutions, Vijayawada" 
       />
 
       <div className="con-page">
@@ -164,7 +164,7 @@ export default function Connect() {
                 <div className="ch-availability">
                   <div className="cha-item">
                     <span className="cha-label">ENGAGEMENT</span>
-                    <span className="cha-value">DEVELOPER &amp; TECHNICAL TRAINER AT DATA VALLEY AI TECH SOLUTIONS</span>
+                    <span className="cha-value">TECHNICAL TRAINER &amp; AI SOLUTIONS DEVELOPER AT DATA VALLEY AI TECH SOLUTIONS</span>
                   </div>
                   <div className="cha-item">
                     <span className="cha-label">BUILDING</span>

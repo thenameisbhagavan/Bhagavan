@@ -18,7 +18,9 @@ import {
   X,
   FileCode2,
   ChevronRight,
-  AlertCircle
+  AlertCircle,
+  Brain,
+  Award
 } from "lucide-react";
 import Reveal from "../../components/motion/Reveal";
 import MaskReveal from "../../components/motion/MaskReveal";
@@ -64,15 +66,17 @@ export default function DataValleyAssessment() {
       {
         "@type": "SoftwareApplication",
         "@id": `${canonicalUrl}#software`,
-        "name": "Data Valley Engineering Assessment Platform",
-        "headline": "Engineering Assessment Web Application",
-        "description": "An engineering assessment platform engineered end to end for Data Valley AI Tech Solutions, featuring candidate authentication, timed technical evaluations, continuous answer persistence, server-side scoring, and administrative result management.",
+        "name": "DV Labs Assessment Platform",
+        "alternateName": "Data Valley Engineering Assessment Platform",
+        "headline": "Engineering Assessment Web Application with Server Scoring and Auto-Sync",
+        "description": "An end-to-end technical evaluation platform engineered for Data Valley AI Tech Solutions, featuring candidate authentication, timed evaluations, continuous answer persistence, server-side scoring, and administrative result management.",
         "applicationCategory": "WebApplication",
         "operatingSystem": "All modern browsers",
         "creator": {
           "@type": "Person",
           "name": "Gopala Josyula Siva Satya Sai Bhagavan",
           "alternateName": "TheNameIsBhagavan",
+          "jobTitle": "End-to-End Application Developer",
           "url": "https://thenameisbhagavan.in/"
         },
         "publisher": {
@@ -81,12 +85,7 @@ export default function DataValleyAssessment() {
           "url": "https://dv-assesments.vercel.app/"
         },
         "url": canonicalUrl,
-        "image": "https://thenameisbhagavan.in/images/work/datavalley-assessment-platform.png",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
+        "image": "https://thenameisbhagavan.in/images/work/datavalley-assessment-platform.png"
       },
       {
         "@type": "BreadcrumbList",
@@ -106,37 +105,8 @@ export default function DataValleyAssessment() {
           {
             "@type": "ListItem",
             "position": 3,
-            "name": "Data Valley Engineering Assessment Platform",
+            "name": "DV Labs Assessment Platform",
             "item": canonicalUrl
-          }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What was Bhagavan's role in the Data Valley Engineering Assessment Platform?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Bhagavan engineered the platform end to end for Data Valley AI Tech Solutions, designing the candidate authentication flows, timed question delivery interface, background answer synchronization, server-side evaluation engine, and administrative review workflows."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How does the platform prevent client-side answer and score tampering?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Score calculation is strictly performed on the server inside Next.js Route Handlers. The client interface never calculates or modifies score metrics; it only transmits verified candidate selections to /api/assessment/submit."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What technologies power the assessment platform?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The platform is built using the Next.js App Router, React 19, TypeScript, MongoDB Atlas, and Tailwind CSS, deployed on Vercel."
-            }
           }
         ]
       }
@@ -146,13 +116,13 @@ export default function DataValleyAssessment() {
   return (
     <div className="dva-case-study">
       <Helmet>
-        <title>Data Valley Engineering Assessment Platform — Case Study | TheNameIsBhagavan</title>
+        <title>DV Labs Assessment Platform — Case Study | TheNameIsBhagavan</title>
         <meta
           name="description"
-          content="End-to-end engineering case study of the Data Valley Assessment Platform: candidate authentication, timed evaluations, continuous answer persistence, server-side scoring, and MongoDB Atlas persistence."
+          content="End-to-end engineering case study of the DV Labs Assessment Platform: candidate authentication with JWT/cookies, timed evaluations, continuous answer persistence, server-side scoring, and MongoDB Atlas persistence."
         />
         <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content="Data Valley Engineering Assessment Platform — Technical Case Study" />
+        <meta property="og:title" content="DV Labs Assessment Platform — Technical Case Study" />
         <meta
           property="og:description"
           content="End-to-end full-stack web application developed for Data Valley AI Tech Solutions with Next.js App Router, TypeScript, and MongoDB Atlas."
@@ -173,23 +143,23 @@ export default function DataValleyAssessment() {
           </div>
 
           <div className="dva-hero-meta-row">
-            <span className="dva-badge-org">DATA VALLEY AI TECH SOLUTIONS</span>
+            <span className="dva-badge-org">COMPANY PROJECT &middot; DATA VALLEY AI TECH SOLUTIONS</span>
             <span className="dva-badge-role">END-TO-END APPLICATION DEVELOPER</span>
             <span className="dva-badge-live">
               <span className="dva-live-dot"></span>
-              PRODUCTION SYSTEM
+              ONGOING / IN DEVELOPMENT &middot; PRODUCTION SYSTEM
             </span>
           </div>
 
           <MaskReveal duration={1.1}>
             <h1 className="dva-hero-headline">
-              Data Valley Engineering<br />Assessment Platform
+              DV Labs Assessment<br />Platform
             </h1>
           </MaskReveal>
 
           <Reveal y={20} duration={0.9} delay={0.2}>
             <p className="dva-hero-sub">
-              An engineering assessment web application developed end to end for Data Valley AI Tech Solutions, bringing authenticated candidate workflows, timed challenge delivery, answer persistence, and server-side evaluation into a unified system.
+              An engineering assessment web application developed end to end for <strong>Data Valley AI Tech Solutions</strong>, bringing authenticated candidate workflows, timed challenge delivery, answer persistence, and server-side evaluation into a unified system.
             </p>
           </Reveal>
 
@@ -214,7 +184,7 @@ export default function DataValleyAssessment() {
                   type="button"
                 >
                   <Maximize2 size={15} />
-                  <span>Inspect Interface</span>
+                  <span>Inspect Interface Canvas</span>
                 </button>
               </MagneticLink>
             </div>
@@ -228,11 +198,11 @@ export default function DataValleyAssessment() {
             </div>
             <div className="dva-fact-item">
               <span className="dva-fact-label">MY CONTRIBUTION</span>
-              <span className="dva-fact-value">End-to-End Development</span>
+              <span className="dva-fact-value">End-to-End Application Developer</span>
             </div>
             <div className="dva-fact-item">
               <span className="dva-fact-label">ARCHITECTURE</span>
-              <span className="dva-fact-value">Next.js App Router · TypeScript</span>
+              <span className="dva-fact-value">Next.js App Router · TypeScript · React 19</span>
             </div>
             <div className="dva-fact-item">
               <span className="dva-fact-label">PERSISTENCE</span>
@@ -258,7 +228,7 @@ export default function DataValleyAssessment() {
                   <span className="dva-chrome-dot dot-green"></span>
                 </div>
                 <div className="dva-chrome-address">
-                  https://dv-assesments.vercel.app/
+                  https://dv-assesments.vercel.app/ &bull; PRODUCTION ASSESSMENT ENGINE
                 </div>
                 <button
                   className="dva-chrome-zoom-btn"
@@ -278,7 +248,7 @@ export default function DataValleyAssessment() {
               >
                 <img
                   src={dvAssessmentImg}
-                  alt="Data Valley Engineering Assessment Platform showing candidate portal, coding challenge, question palette, and countdown timer."
+                  alt="DV Labs Assessment Platform showing candidate portal, coding challenge, question palette, and countdown timer."
                   className="dva-screenshot-img"
                   loading="eager"
                 />
@@ -289,7 +259,7 @@ export default function DataValleyAssessment() {
                   <strong>Figure 1.0:</strong> Production candidate experience — structured question palette (Q1–Q40), synchronized countdown timer (00:48:12), formatted code challenges with JetBrains Mono, and real-time state flags.
                 </span>
                 <span style={{ fontSize: "11px", fontWeight: "600", color: "#0071e3" }}>
-                  AUTHENTIC APPLICATION ARTIFACT
+                  AUTHENTIC APPLICATION ARTIFACT &middot; DATA VALLEY
                 </span>
               </div>
             </div>
@@ -297,7 +267,7 @@ export default function DataValleyAssessment() {
         </div>
       </section>
 
-      {/* ─── Section A: Overview ─── */}
+      {/* ─── Section 01: Overview ─── */}
       <section className="dva-section">
         <div className="dva-bounds">
           <Reveal y={20} duration={0.9}>
@@ -307,7 +277,7 @@ export default function DataValleyAssessment() {
 
           <Reveal y={20} duration={0.9} delay={0.15}>
             <p className="dva-body-p">
-              The <strong>Data Valley Engineering Assessment Platform</strong> is a dedicated web application engineered to evaluate technical candidates across practical programming, algorithmic reasoning, and computer science fundamentals. Developed end to end for <strong>Data Valley AI Tech Solutions</strong>, the system replaces manual forms and scattered testing links with a unified, state-persistent, authenticated evaluation engine.
+              The <strong>DV Labs Assessment Platform</strong> is a dedicated web application engineered to evaluate technical candidates across practical programming, algorithmic reasoning, and computer science fundamentals. Developed end to end for <strong>Data Valley AI Tech Solutions</strong>, the system replaces manual forms and scattered testing links with a unified, state-persistent, authenticated evaluation engine.
             </p>
             <p className="dva-body-p">
               My engineering ownership encompassed the complete application lifecycle: architecting the Next.js App Router structure, designing the component interface with responsive ergonomics, engineering state synchronization to protect candidates from accidental data loss, writing server-side scoring handlers to eliminate client tampering, and provisioning MongoDB Atlas schemas for persistent record keeping.
@@ -316,11 +286,11 @@ export default function DataValleyAssessment() {
         </div>
       </section>
 
-      {/* ─── Section B: Problem & Goals ─── */}
+      {/* ─── Section 02: Problem & Goals ─── */}
       <section className="dva-section" style={{ background: "#fafafc" }}>
         <div className="dva-bounds">
           <Reveal y={20} duration={0.9}>
-            <span className="dva-section-label">SECTION 02 · PROBLEM & GOALS</span>
+            <span className="dva-section-label">SECTION 02 · PROBLEM &amp; GOALS</span>
             <h2 className="dva-section-title">The Engineering Challenge</h2>
           </Reveal>
 
@@ -351,14 +321,14 @@ export default function DataValleyAssessment() {
               <span className="dva-decision-problem">GOAL 03</span>
               <h3 className="dva-decision-title">Synchronized Timed Delivery</h3>
               <p className="dva-decision-body">
-                Deliver timed technical evaluations (e.g., 40 questions in 60 minutes) with an active countdown timer, interactive navigation palette, and automatic flush on expiry.
+                Deliver timed technical evaluations (40 questions in 60 minutes) with an active countdown timer, interactive navigation palette, and automatic flush on expiry.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── Section C: System Architecture ─── */}
+      {/* ─── Section 03: Architecture ─── */}
       <section className="dva-section">
         <div className="dva-bounds">
           <Reveal y={20} duration={0.9}>
@@ -415,12 +385,12 @@ export default function DataValleyAssessment() {
         </div>
       </section>
 
-      {/* ─── Section D: Authentication & Authorization ─── */}
+      {/* ─── Section 04: Authentication & Security ─── */}
       <section className="dva-section" style={{ background: "#fafafc" }}>
         <div className="dva-bounds">
           <Reveal y={20} duration={0.9}>
-            <span className="dva-section-label">SECTION 04 · SECURITY</span>
-            <h2 className="dva-section-title">Authentication & Protected Sessions</h2>
+            <span className="dva-section-label">SECTION 04 · SECURITY &amp; AUTH</span>
+            <h2 className="dva-section-title">Authentication &amp; Protected Sessions</h2>
           </Reveal>
 
           <Reveal y={20} duration={0.9} delay={0.15}>
@@ -428,27 +398,21 @@ export default function DataValleyAssessment() {
               Candidate authentication establishes an explicit boundary between unauthenticated landing visitors and active assessment candidates.
             </p>
             <ul style={{ paddingLeft: "24px", color: "#424245", lineHeight: "1.8", fontSize: "15px" }}>
-              <li><strong>Session Binding:</strong> Each candidate session is associated with an authenticated profile, preventing cross-candidate state collisions.</li>
+              <li><strong>Session Binding:</strong> Each candidate session is validated via JWT tokens stored in HTTP-only cookies, binding candidate identity directly to their active test instance.</li>
+              <li><strong>Bcrypt Password Hashing:</strong> Candidate credentials and access tokens are hashed server-side to prevent credential harvesting.</li>
               <li><strong>Protected Route Guards:</strong> Assessment routes verify session validity before mounting the testing canvas or serving question content.</li>
-              <li><strong>Secure Credential Handling:</strong> Credentials and token secrets remain strictly server-side; client components only receive necessary session identifiers.</li>
               <li><strong>Separation of Privileges:</strong> Candidate permissions are restricted to submitting their own answers, while administrative review routes require elevated evaluator authorization.</li>
             </ul>
           </Reveal>
         </div>
       </section>
 
-      {/* ─── Section E: Assessment Lifecycle ─── */}
+      {/* ─── Section 05: Lifecycle ─── */}
       <section className="dva-section">
         <div className="dva-bounds">
           <Reveal y={20} duration={0.9}>
             <span className="dva-section-label">SECTION 05 · LIFECYCLE</span>
             <h2 className="dva-section-title">Verified Assessment Lifecycle</h2>
-          </Reveal>
-
-          <Reveal y={20} duration={0.9} delay={0.15}>
-            <p className="dva-body-p">
-              The technical talk and testing pipeline follows a robust 5-stage lifecycle directly verified from production client and route bundles:
-            </p>
           </Reveal>
 
           <div className="dva-lifecycle-grid">
@@ -490,7 +454,7 @@ export default function DataValleyAssessment() {
 
             <div className="dva-lifecycle-card">
               <span className="dva-card-step-num">STAGE 05</span>
-              <h3 className="dva-card-title">Final Submission & Scoring</h3>
+              <h3 className="dva-card-title">Final Submission &amp; Scoring</h3>
               <p className="dva-card-desc">
                 Upon candidate submit or timer expiration, final answers are flushed to the server. The engine marks session as SUBMITTED and locks subsequent modifications.
               </p>
@@ -500,185 +464,112 @@ export default function DataValleyAssessment() {
         </div>
       </section>
 
-      {/* ─── Section F: Scoring Engine ─── */}
+      {/* ─── Section 06: Proctoring Status Distinction ─── */}
       <section className="dva-section" style={{ background: "#fafafc" }}>
         <div className="dva-bounds">
           <Reveal y={20} duration={0.9}>
-            <span className="dva-section-label">SECTION 06 · SCORING</span>
-            <h2 className="dva-section-title">Deterministic Server-Side Scoring</h2>
+            <span className="dva-section-label">SECTION 06 · PROCTORING &amp; VERIFICATION</span>
+            <h2 className="dva-section-title">Implementation Status Matrix</h2>
           </Reveal>
 
           <Reveal y={20} duration={0.9} delay={0.15}>
             <p className="dva-body-p">
-              A foundational engineering priority was <strong>tamper-proof evaluation</strong>. In many naive web applications, question options include metadata like <code>isCorrect: true</code> in the JSON payload sent to the browser. In this platform, client bundles receive only question text, code snippets, and randomized option IDs.
+              To maintain strict technical credibility, the features of the platform are explicitly categorized by their verified implementation status:
             </p>
-            <p className="dva-body-p">
-              When <code>/api/assessment/submit</code> receives the final answer payload, the server evaluates candidate choices against secure answer keys stored in the database. Scores, category breakdowns, and performance percentiles are computed in an isolated execution environment and written directly to the persistence layer.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginTop: '24px' }}>
+              <div style={{ padding: '20px', background: '#ffffff', borderRadius: '14px', border: '1px solid rgba(52, 199, 89, 0.3)' }}>
+                <span style={{ fontSize: '11px', fontWeight: '700', color: '#1b8738', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                  ✓ IMPLEMENTED &amp; VERIFIED
+                </span>
+                <h4 style={{ fontSize: '15px', fontWeight: '700', color: '#111111', margin: '8px 0 6px' }}>Session &amp; Sync Architecture</h4>
+                <p style={{ fontSize: '13px', color: '#555558', lineHeight: '1.5', margin: 0 }}>
+                  JWT auth, HTTP-only cookies, 40-question palette, countdown timer, background delta autosave, deterministic server scoring, and window blur telemetry.
+                </p>
+              </div>
 
-      {/* ─── Section G: Data & Persistence ─── */}
-      <section className="dva-section">
-        <div className="dva-bounds">
-          <Reveal y={20} duration={0.9}>
-            <span className="dva-section-label">SECTION 07 · PERSISTENCE</span>
-            <h2 className="dva-section-title">Data Modeling & MongoDB Atlas</h2>
-          </Reveal>
+              <div style={{ padding: '20px', background: '#ffffff', borderRadius: '14px', border: '1px solid rgba(0, 122, 255, 0.3)' }}>
+                <span style={{ fontSize: '11px', fontWeight: '700', color: '#007aff', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                  ⚡ TESTED IN STAGING
+                </span>
+                <h4 style={{ fontSize: '15px', fontWeight: '700', color: '#111111', margin: '8px 0 6px' }}>Timer Resync &amp; Recovery</h4>
+                <p style={{ fontSize: '13px', color: '#555558', lineHeight: '1.5', margin: 0 }}>
+                  Network reconnection retry queueing and client clock resynchronization against server UTC timestamps to eliminate tab sleep drift.
+                </p>
+              </div>
 
-          <Reveal y={20} duration={0.9} delay={0.15}>
-            <p className="dva-body-p">
-              The data model is engineered for rapid reads during assessment loading and atomic writes during answer synchronization:
-            </p>
-            <div className="dva-facts-grid" style={{ marginTop: "24px" }}>
-              <div className="dva-fact-item">
-                <span className="dva-fact-label">CANDIDATE COLLECTION</span>
-                <span className="dva-fact-value">Identity, email, credential hash, assigned test ID.</span>
-              </div>
-              <div className="dva-fact-item">
-                <span className="dva-fact-label">ASSESSMENT SESSIONS</span>
-                <span className="dva-fact-value">Session ID, startedAt, durationMinutes, status (IN_PROGRESS | SUBMITTED).</span>
-              </div>
-              <div className="dva-fact-item">
-                <span className="dva-fact-label">ANSWER RECORD SNAPSHOTS</span>
-                <span className="dva-fact-value">Array of questionId, selectedOption, flagged flags, and lastSavedAt.</span>
-              </div>
-              <div className="dva-fact-item">
-                <span className="dva-fact-label">RESULT SUBMISSIONS</span>
-                <span className="dva-fact-value">Final score, section breakdown, completion timestamp, evaluation status.</span>
+              <div style={{ padding: '20px', background: '#ffffff', borderRadius: '14px', border: '1px solid rgba(255, 149, 0, 0.3)' }}>
+                <span style={{ fontSize: '11px', fontWeight: '700', color: '#ff9500', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                  🔄 IN PROGRESS / PLANNED
+                </span>
+                <h4 style={{ fontSize: '15px', fontWeight: '700', color: '#111111', margin: '8px 0 6px' }}>AI Viva Speech Pipeline</h4>
+                <p style={{ fontSize: '13px', color: '#555558', lineHeight: '1.5', margin: 0 }}>
+                  Automated audio transcription for oral viva defenses, multi-modal webcam verification, and in-browser WebAssembly code compilation sandboxes.
+                </p>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ─── Section H: Administrative Workflow ─── */}
+      {/* ─── Section 07: Sister Project Recommendation ─── */}
+      <section className="dva-section">
+        <div className="dva-bounds">
+          <Reveal y={20} duration={0.9}>
+            <span className="dva-section-label">CONNECTED COMPANY PROJECT</span>
+            <h2 className="dva-section-title">Companion Platform Architecture</h2>
+          </Reveal>
+
+          <Reveal y={20} duration={0.9} delay={0.15}>
+            <p className="dva-body-p">
+              The Assessment Platform forms the technical evaluation backbone of the larger <strong>DV Labs Platform</strong> ecosystem, where milestone-locked projects are defended in viva before graduation into production.
+            </p>
+            <div style={{ marginTop: '20px' }}>
+              <Link to="/work/dv-labs-platform" className="dva-next-project-card" style={{ display: 'block', textDecoration: 'none' }}>
+                <span className="dva-next-label">EXPLORE COMPANION SYSTEM</span>
+                <h3 className="dva-next-title">DV Labs Platform — Where Vision Meets Execution &rarr;</h3>
+                <p style={{ color: "#6e6e73", margin: "6px 0 0", fontSize: "14.5px" }}>
+                  Milestone-locked projects. Defended in viva. Built for the real world. Flagship company engineering initiative at Data Valley AI Tech Solutions.
+                </p>
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ─── Section 08: Product Ownership & Credits ─── */}
       <section className="dva-section" style={{ background: "#fafafc" }}>
         <div className="dva-bounds">
           <Reveal y={20} duration={0.9}>
-            <span className="dva-section-label">SECTION 08 · ADMINISTRATION</span>
-            <h2 className="dva-section-title">Administrative Result Management</h2>
+            <span className="dva-section-label">SECTION 08 · CREDITS &amp; OWNERSHIP</span>
+            <h2 className="dva-section-title">Company Product Ownership</h2>
           </Reveal>
 
           <Reveal y={20} duration={0.9} delay={0.15}>
-            <p className="dva-body-p">
-              In addition to the candidate interface, the system supports authorized evaluator review. Technical mentors and HR evaluators at Data Valley can inspect candidate submissions, review time-per-question telemetry, evaluate aggregate cohort performance, and export structured assessment results for hiring and training evaluation.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ─── Section I: Engineering Decisions ─── */}
-      <section className="dva-section">
-        <div className="dva-bounds">
-          <Reveal y={20} duration={0.9}>
-            <span className="dva-section-label">SECTION 09 · ENGINEERING DECISIONS</span>
-            <h2 className="dva-section-title">Architectural Trade-offs</h2>
-          </Reveal>
-
-          <div className="dva-decisions-grid">
-            <div className="dva-decision-card">
-              <span className="dva-decision-problem">DECISION 01</span>
-              <h3 className="dva-decision-title">Server Scoring vs. Client Scoring</h3>
-              <p className="dva-decision-body">
-                <strong>Problem:</strong> Client-side scoring enables instant feedback but completely compromises test integrity by exposing answer keys in network bundles.
-              </p>
-              <div className="dva-decision-tradeoff">
-                <span className="dva-tradeoff-label">Trade-off:</span> We chose strict server-side evaluation via API handlers. This adds a network hop on submit but guarantees 100% answer privacy.
+            <div className="dva-ownership-box">
+              <div className="dva-ownership-icon">
+                <Award size={20} />
               </div>
-            </div>
-
-            <div className="dva-decision-card">
-              <span className="dva-decision-problem">DECISION 02</span>
-              <h3 className="dva-decision-title">Continuous Sync vs. Batch Submit</h3>
-              <p className="dva-decision-body">
-                <strong>Problem:</strong> Single-batch submission on test completion reduces API calls but risks catastrophic data loss if a candidate experiences a power or network cut.
-              </p>
-              <div className="dva-decision-tradeoff">
-                <span className="dva-tradeoff-label">Trade-off:</span> Implemented background auto-sync on option change with debounced PUT requests, delivering near-zero data loss tolerance.
-              </div>
-            </div>
-
-            <div className="dva-decision-card">
-              <span className="dva-decision-problem">DECISION 03</span>
-              <h3 className="dva-decision-title">Unified Next.js vs. Separate Backend</h3>
-              <p className="dva-decision-body">
-                <strong>Problem:</strong> Maintaining separate frontend and backend microservices increases operational burden and deployment complexity.
-              </p>
-              <div className="dva-decision-tradeoff">
-                <span className="dva-tradeoff-label">Trade-off:</span> Chose Next.js App Router route handlers. Streamlines deployment to a single Vercel target while keeping TypeScript contracts unified.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Section J: Challenges & Limitations ─── */}
-      <section className="dva-section" style={{ background: "#fafafc" }}>
-        <div className="dva-bounds">
-          <Reveal y={20} duration={0.9}>
-            <span className="dva-section-label">SECTION 10 · LESSONS & LIMITATIONS</span>
-            <h2 className="dva-section-title">Honest Technical Reflections</h2>
-          </Reveal>
-
-          <Reveal y={20} duration={0.9} delay={0.15}>
-            <p className="dva-body-p">
-              Engineering real-world assessment software reveals subtleties rarely encountered in standard web CRUD apps:
-            </p>
-            <ul style={{ paddingLeft: "24px", color: "#424245", lineHeight: "1.8", fontSize: "15px" }}>
-              <li><strong>Timer Drift:</strong> Browser <code>setInterval</code> timers throttle when tabs enter background mode. The solution required syncing against server timestamps rather than relying solely on local client increments.</li>
-              <li><strong>Network Reconnects:</strong> When candidates experience brief disconnects, sync requests must fail gracefully without throwing disruptive modal errors, queueing unsynced changes until connectivity returns.</li>
-              <li><strong>Verified Scope vs. Future Roadmap:</strong> Current production focuses on objective multi-choice coding evaluations and algorithmic reasoning. Active future exploration includes in-browser code execution sandboxes (WebAssembly) and randomized question banks.</li>
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ─── Section K: Testing & Validation ─── */}
-      <section className="dva-section">
-        <div className="dva-bounds">
-          <Reveal y={20} duration={0.9}>
-            <span className="dva-section-label">SECTION 11 · VALIDATION</span>
-            <h2 className="dva-section-title">Testing & Verification</h2>
-          </Reveal>
-
-          <Reveal y={20} duration={0.9} delay={0.15}>
-            <p className="dva-body-p">
-              The platform passed continuous type-checking and automated build steps:
-            </p>
-            <div className="dva-facts-grid" style={{ marginTop: "24px" }}>
-              <div className="dva-fact-item">
-                <span className="dva-fact-label">TYPE SAFETY</span>
-                <span className="dva-fact-value">100% strict TypeScript checks</span>
-              </div>
-              <div className="dva-fact-item">
-                <span className="dva-fact-label">BUILD SYSTEM</span>
-                <span className="dva-fact-value">Turbopack / Next.js production build</span>
-              </div>
-              <div className="dva-fact-item">
-                <span className="dva-fact-label">LIVE DEPLOYMENT</span>
-                <span className="dva-fact-value">Verified running at dv-assesments.vercel.app</span>
-              </div>
-              <div className="dva-fact-item">
-                <span className="dva-fact-label">DISCLAIMER</span>
-                <span className="dva-fact-value">No formal 3rd-party audit or synthetic load-testing claimed</span>
+              <div>
+                <h4 className="dva-ownership-title">COMPANY INTELLECTUAL PROPERTY NOTICE</h4>
+                <p className="dva-ownership-text">
+                  The <strong>DV Labs Assessment Platform</strong> is a proprietary engineering asset of <strong>Data Valley AI Tech Solutions</strong>. All application rights, trademarks, candidate data, and testing infrastructure belong exclusively to the company. My documentation here reflects my authentic technical contributions as an <strong>End-to-End Application Developer</strong> during my ongoing tenure.
+                </p>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ─── Next Project / Bottom Bar ─── */}
+      {/* ─── Bottom Navigation Bar ─── */}
       <section className="dva-bottom-bar">
         <div className="dva-bounds">
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px", marginBottom: "40px" }}>
             <div>
               <span style={{ fontSize: "11px", fontWeight: "700", letterSpacing: "0.1em", color: "#86868b", textTransform: "uppercase" }}>
-                END-TO-END APPLICATION ENGINEERING
+                COMPANY PROJECT &middot; DATA VALLEY AI TECH SOLUTIONS
               </span>
               <h3 style={{ fontSize: "22px", fontWeight: "700", color: "#1d1d1f", margin: "4px 0 0" }}>
-                Data Valley AI Tech Solutions
+                DV Labs Assessment Platform
               </h3>
             </div>
 
@@ -698,14 +589,6 @@ export default function DataValleyAssessment() {
               </Link>
             </div>
           </div>
-
-          <Link to="/work/careeros" className="dva-next-project-card">
-            <span className="dva-next-label">EXPLORE NEXT SYSTEM</span>
-            <h3 className="dva-next-title">CareerOS — AI Career Intelligence Platform &rarr;</h3>
-            <p style={{ color: "#6e6e73", margin: 0, fontSize: "15px" }}>
-              Career trajectory modeling and deterministic skill gap evaluation powered by Python backend services.
-            </p>
-          </Link>
         </div>
       </section>
 
@@ -723,7 +606,7 @@ export default function DataValleyAssessment() {
           <div className="dva-modal-dialog" onClick={(e) => e.stopPropagation()}>
             <div className="dva-modal-header">
               <span className="dva-modal-title">
-                Data Valley Engineering Assessment Platform · Production Interface
+                DV Labs Assessment Platform · Production Interface
               </span>
               <button
                 className="dva-modal-close-btn"
@@ -737,7 +620,7 @@ export default function DataValleyAssessment() {
             <div className="dva-modal-body">
               <img
                 src={dvAssessmentImg}
-                alt="Full resolution view of Data Valley Engineering Assessment Platform"
+                alt="Full resolution view of DV Labs Assessment Platform"
                 className="dva-modal-img"
               />
             </div>

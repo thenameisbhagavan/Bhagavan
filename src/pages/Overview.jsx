@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   ArrowRight,
+  Brain,
   BrainCircuit,
   Scan,
   Layers,
@@ -79,6 +80,7 @@ import veritasImg from "../assets/fake.jpg";
 import datavalleyImg from "../assets/datascience coruse compltetion.jpeg";
 import pbrTalkPhoto from "../assets/pbr-vits-ai-talk.jpg";
 import dvAssessmentImg from "../assets/datavalley-assessment-platform.png";
+import dvLabsHeroImg from "../assets/dvlabs-hero.jpg";
 import agrivisionImg from "../assets/agrivision.png";
 
 // ─── Dual-Direction Technology Trains (Authentic Brand Logos & Concepts) ─────
@@ -141,8 +143,8 @@ export default function Overview() {
   return (
     <>
       <SEO
-        description="Official portfolio of Bhagavan (TheNameIsBhagavan). Software Developer & Technical Trainer at Data Valley AI Tech Solutions. Building software applications, Python backend services, and practical AI systems while teaching Data Science, Machine Learning, and Generative AI."
-        keywords="TheNameIsBhagavan, Bhagavan, Software Developer, Technical Trainer, Data Valley AI Tech Solutions, AI ML Developer, Generative AI, Data Science Trainer, Python Developer, CareerOS, AuraOS, VERITAS, VoltDrive"
+        description="Official portfolio of Bhagavan (TheNameIsBhagavan) — AI & Data Science Professional, Technical Trainer, and AI Solutions Developer at Data Valley AI Tech Solutions. Practical AI implementation, Python engineering, Generative AI, and technical education."
+        keywords="TheNameIsBhagavan, Bhagavan, AI Data Science Professional, Technical Trainer, AI Solutions Developer, Data Valley AI Tech Solutions, Machine Learning, Generative AI, Prompt Engineering, Agentic AI, CareerOS, AuraOS, VERITAS, VoltDrive"
       />
 
       <div className="engineering-surface">
@@ -158,10 +160,10 @@ export default function Overview() {
               {/* Professional Identity Eyebrow Stack */}
               <div className="es-hero-eyebrow-stack">
                 <span className="es-hero-primary-identity">
-                  SOFTWARE DEVELOPER <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> AI ENGINEER
+                  AI &amp; DATA SCIENCE PROFESSIONAL <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> AI SOLUTIONS DEVELOPER
                 </span>
                 <span className="es-hero-secondary-identity">
-                  TECHNICAL TRAINER <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> AI &amp; DATA SCIENCE
+                  TECHNICAL TRAINER <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> AI &amp; DATA SCIENCE EDUCATOR
                 </span>
               </div>
 
@@ -179,7 +181,7 @@ export default function Overview() {
 
               {/* Supporting Editorial Description */}
               <p className="es-hero-sub">
-                I engineer production-oriented software, intelligent backend architectures, and applied AI systems. Alongside development, I deliver practical technical education across Python, Data Science, and Machine Learning.
+                Engineering practical AI solutions, resilient backend architectures, and production applications. Developer &amp; Technical Trainer at Data Valley AI Tech Solutions, combining active systems development with real-world technical education across Python, Data Science, Machine Learning, and Generative AI.
               </p>
 
               {/* Mobile Portrait (Appears between description and CTAs on mobile viewport) */}
@@ -187,7 +189,7 @@ export default function Overview() {
                 <div className="es-hero-portrait-frame">
                   <img
                     src={profileHeroImg}
-                    alt="Bhagavan — Software Developer & AI Engineer"
+                    alt="Bhagavan — AI & Data Science Professional, Technical Trainer & AI Solutions Developer"
                     loading="eager"
                     fetchpriority="high"
                     className="es-hero-portrait-img"
@@ -238,7 +240,7 @@ export default function Overview() {
                 <div className="es-hero-portrait-frame">
                   <img
                     src={profileHeroImg}
-                    alt="Bhagavan — Software Developer & AI Engineer"
+                    alt="Bhagavan — AI & Data Science Professional, Technical Trainer & AI Solutions Developer"
                     loading="eager"
                     fetchpriority="high"
                     className="es-hero-portrait-img"
@@ -361,16 +363,318 @@ export default function Overview() {
 
 
         {/* ============================================================
-            SECTION 02 — THE WORK
+            SECTION 02 — SELECTED COMPANY WORK (DATA VALLEY AI TECH SOLUTIONS)
             ============================================================ */}
-        <ScaleReveal as="section" className="es-the-work" data-nav-theme="light">
+        <section id="company-work" className="es-company-work-section" data-nav-theme="light">
+          <div className="es-bounds">
+
+            {/* A. Company Work Editorial Introduction */}
+            <div className="es-cw-header">
+              <Reveal y={16} duration={0.8}>
+                <div className="es-cw-eyebrow-row">
+                  <span className="es-cw-live-pill">
+                    <span className="es-cw-pulse-dot" aria-hidden="true"></span>
+                    COMPANY PROJECT &middot; ONGOING
+                  </span>
+                  <span className="es-cw-company-badge">DATA VALLEY AI TECH SOLUTIONS</span>
+                </div>
+              </Reveal>
+
+              <Reveal y={20} duration={0.9} delay={0.1}>
+                <div style={{ fontSize: '12px', fontWeight: '800', letterSpacing: '0.12em', color: '#007aff', textTransform: 'uppercase', marginBottom: '8px' }}>
+                  SELECTED COMPANY WORK
+                </div>
+                <h2 className="es-cw-headline">
+                  Building technology that moves ideas into execution.
+                </h2>
+              </Reveal>
+
+              <Reveal y={20} duration={0.9} delay={0.18}>
+                <p className="es-cw-lead">
+                  A selection of AI-powered platforms, assessment systems, and digital products developed through my professional work at Data Valley AI Tech Solutions.
+                </p>
+              </Reveal>
+            </div>
+
+            {/* B. Project Showcase — Two Distinct Premium Project Experiences */}
+            <div className="es-cw-projects-stack">
+
+              {/* ────────────────────────────────────────────────────────
+                  SHOWCASE 01: DV LABS PLATFORM (ASYMMETRIC EDITORIAL)
+                  ──────────────────────────────────────────────────────── */}
+              <ScaleReveal className="es-cw-card-dvlabs">
+                {/* 1. Top Editorial & Contribution Section */}
+                <div className="es-cw-dvlabs-content-wrap">
+                  <div className="es-cw-dvlabs-meta-bar">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                      <span className="es-cw-live-pill">
+                        <span className="es-cw-pulse-dot" aria-hidden="true"></span>
+                        COMPANY PROJECT &middot; ONGOING
+                      </span>
+                      <span style={{ fontSize: '11.5px', fontWeight: '700', color: '#86868b', letterSpacing: '0.04em' }}>
+                        DATA VALLEY AI TECH SOLUTIONS
+                      </span>
+                    </div>
+
+                    <div className="es-cw-actions-compact">
+                      <MagneticLink strength={0.2}>
+                        <button
+                          className="es-dv-btn-primary apple-pressable"
+                          onClick={() => navigate('/work/dv-labs-platform')}
+                          style={{ padding: '8px 18px', fontSize: '13px' }}
+                        >
+                          <span>Explore DV Labs Platform</span>
+                          <ArrowRight size={14} />
+                        </button>
+                      </MagneticLink>
+                      <MagneticLink strength={0.2}>
+                        <a
+                          href="https://dvlabs.datavalley.ai/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="es-dv-btn-secondary apple-pressable"
+                          style={{ padding: '8px 18px', fontSize: '13px' }}
+                        >
+                          <span>Visit Environment ↗</span>
+                        </a>
+                      </MagneticLink>
+                    </div>
+                  </div>
+
+                  <div className="es-cw-dvlabs-title-row">
+                    <div className="es-cw-brand-mark-row">
+                      <span className="es-cw-red-d" aria-hidden="true">D</span>
+                      <h3 className="es-cw-brand-name">
+                        DV <span className="serif-accent">Labs</span>
+                      </h3>
+                    </div>
+                    <h4 className="es-cw-tagline-quote">
+                      "Where vision meets execution."
+                    </h4>
+                  </div>
+
+                  <div className="es-cw-dvlabs-details-grid">
+                    <div className="es-cw-dvlabs-desc-side">
+                      <p className="es-cw-subline">
+                        Milestone-locked projects. Defended in viva. Built for the real world.
+                      </p>
+                      <p className="es-cw-desc">
+                        An advanced company engineering ecosystem designed to bridge academic coursework with production engineering rigor through stage-gated milestones, automated AI viva defenses, and verifiable deliverables.
+                      </p>
+                    </div>
+
+                    <div className="es-cw-dvlabs-contrib-side">
+                      <div className="es-cw-contrib-box">
+                        <div className="es-cw-contrib-label">MY CONTRIBUTION</div>
+                        <p className="es-cw-contrib-text">
+                          <strong>AI Solutions Developer | Full-Stack &amp; AI Systems:</strong> Engineered full-stack web application, AI viva questioning workflows, stage-gated milestone progress models, and speech processing integrations.
+                        </p>
+                      </div>
+
+                      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px' }}>
+                        {["Next.js App Router", "React 19", "TypeScript", "Node.js", "MongoDB Atlas", "AI Viva Engine"].map((t) => (
+                          <span key={t} style={{ fontSize: '11px', fontWeight: '600', padding: '4px 10px', background: '#f0f0f4', borderRadius: '6px', color: '#333336' }}>
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2. Full Panoramic Browser Showcase — Natural 1024x501 View */}
+                <div className="es-cw-dvlabs-cinema-wrap">
+                  <div className="es-cw-dvlabs-browser-window">
+                    <div className="es-cw-dvlabs-chrome">
+                      <div className="es-cw-window-dots">
+                        <span className="es-dot dot-red" />
+                        <span className="es-dot dot-yellow" />
+                        <span className="es-dot dot-green" />
+                      </div>
+                      <div className="es-cw-browser-address-bar">
+                        <span style={{ opacity: 0.6 }}>🔒</span>
+                        <span>https://dvlabs.datavalley.ai/ (DV Labs)</span>
+                      </div>
+                      <div className="es-cw-chrome-status">
+                        <span className="es-cw-pulse-dot" style={{ background: '#34c759' }}></span>
+                        <span>OFFICIAL PRODUCT ENVIRONMENT</span>
+                      </div>
+                    </div>
+
+                    <div className="es-cw-dvlabs-viewport">
+                      <img
+                        src={dvLabsHeroImg}
+                        alt="DV Labs — Where vision meets execution. Milestone-locked projects defended in viva. Built for the real world."
+                        className="es-cw-dvlabs-cinema-img"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="es-cw-dvlabs-caption-strip">
+                    <span>FIGURE 1.0: OFFICIAL DV LABS PLATFORM ENVIRONMENT &middot; DATA VALLEY AI TECH SOLUTIONS</span>
+                    <span style={{ color: '#007aff', fontWeight: '600' }}>ACTIVE COMPANY PRODUCT</span>
+                  </div>
+                </div>
+              </ScaleReveal>
+
+              {/* ────────────────────────────────────────────────────────
+                  SHOWCASE 02: DV LABS ASSESSMENT PLATFORM (TECHNICAL CANVAS)
+                  ──────────────────────────────────────────────────────── */}
+              <ScaleReveal className="es-cw-card-assessment">
+                <div className="es-cw-assessment-grid">
+                  
+                  {/* Left Column: Layered Browser Mockup of Live Platform */}
+                  <div className="es-cw-assessment-preview-side">
+                    <div className="es-cw-assessment-frame">
+                      <div className="es-cw-assessment-chrome">
+                        <div style={{ display: 'flex', gap: '6px' }}>
+                          <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#ff5f56', display: 'inline-block' }}></span>
+                          <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#ffbd2e', display: 'inline-block' }}></span>
+                          <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#27c93f', display: 'inline-block' }}></span>
+                        </div>
+                        <div className="es-cw-assessment-url">
+                          https://dv-assesments.vercel.app/
+                        </div>
+                        <span style={{ fontSize: '10.5px', fontWeight: '700', color: '#1b8738' }}>
+                          ● LIVE
+                        </span>
+                      </div>
+                      <img
+                        src={dvAssessmentImg}
+                        alt="DV Labs Assessment Platform showing candidate portal, 40-question palette, and countdown timer"
+                        className="es-cw-assessment-img"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', fontSize: '11.5px', color: '#86868b' }}>
+                      <span>Figure 2.0: Synchronized candidate testing canvas (40 questions)</span>
+                      <span style={{ color: '#007aff', fontWeight: '600' }}>VERIFIED SYSTEM</span>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Engineering System Highlights */}
+                  <div className="es-cw-assessment-info">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                      <span className="es-cw-live-pill">
+                        <span className="es-cw-pulse-dot" aria-hidden="true"></span>
+                        COMPANY PROJECT &middot; IN DEVELOPMENT
+                      </span>
+                      <span style={{ fontSize: '11.5px', fontWeight: '700', color: '#86868b', letterSpacing: '0.04em' }}>
+                        DATA VALLEY AI TECH SOLUTIONS
+                      </span>
+                    </div>
+
+                    <h3 className="es-cw-title">
+                      DV Labs Assessment Platform
+                    </h3>
+
+                    <p className="es-cw-subline">
+                      Candidate assessment platform with secure sessions, live timers, and server-side evaluation.
+                    </p>
+
+                    <p className="es-cw-desc">
+                      An end-to-end technical evaluation application built for Data Valley AI Tech Solutions. Combines authenticated candidate workflows, synchronized countdown timers, background auto-save sync, deterministic server scoring, and proctoring telemetry.
+                    </p>
+
+                    {/* 4 Architectural Capability Boxes */}
+                    <div className="es-cw-caps-strip">
+                      <div className="es-cw-cap-box">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#007aff', marginBottom: '2px' }}>
+                          <ShieldCheck size={14} />
+                          <span style={{ fontSize: '10px', fontWeight: '700', letterSpacing: '0.06em' }}>01 / AUTH</span>
+                        </div>
+                        <h5 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600 }}>Session Token Binding</h5>
+                        <p style={{ margin: 0, fontSize: '12px', color: '#666668' }}>JWT &amp; HTTP-only cookies prevent duplicate submissions.</p>
+                      </div>
+
+                      <div className="es-cw-cap-box">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#ff9500', marginBottom: '2px' }}>
+                          <Clock size={14} />
+                          <span style={{ fontSize: '10px', fontWeight: '700', letterSpacing: '0.06em' }}>02 / TIMING</span>
+                        </div>
+                        <h5 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600 }}>Timed 40-Question Canvas</h5>
+                        <p style={{ margin: 0, fontSize: '12px', color: '#666668' }}>Synchronized clock &amp; question palette.</p>
+                      </div>
+
+                      <div className="es-cw-cap-box">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#34c759', marginBottom: '2px' }}>
+                          <CheckCircle2 size={14} />
+                          <span style={{ fontSize: '10px', fontWeight: '700', letterSpacing: '0.06em' }}>03 / SYNC</span>
+                        </div>
+                        <h5 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600 }}>Delta Auto-Save</h5>
+                        <p style={{ margin: 0, fontSize: '12px', color: '#666668' }}>/api/assessment/sync eliminates data loss.</p>
+                      </div>
+
+                      <div className="es-cw-cap-box">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#af52de', marginBottom: '2px' }}>
+                          <Terminal size={14} />
+                          <span style={{ fontSize: '10px', fontWeight: '700', letterSpacing: '0.06em' }}>04 / SCORING</span>
+                        </div>
+                        <h5 style={{ margin: '0 0 2px 0', fontSize: '13px', fontWeight: 600 }}>Server Scoring</h5>
+                        <p style={{ margin: 0, fontSize: '12px', color: '#666668' }}>Deterministic evaluation via API handlers.</p>
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '4px' }}>
+                      {["Next.js App Router", "React 19", "TypeScript", "MongoDB Atlas", "JWT / Cookies", "Bcrypt"].map((t) => (
+                        <span key={t} style={{ fontSize: '11.5px', fontWeight: '600', padding: '4px 10px', background: '#f0f0f4', borderRadius: '6px', color: '#333336' }}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="es-cw-actions">
+                      <MagneticLink strength={0.2}>
+                        <button
+                          className="es-dv-btn-primary apple-pressable"
+                          onClick={() => navigate('/work/data-valley-assessment-platform')}
+                        >
+                          <span>Read Assessment Case Study</span>
+                          <ArrowRight size={15} />
+                        </button>
+                      </MagneticLink>
+                      <MagneticLink strength={0.2}>
+                        <a
+                          href="https://dv-assesments.vercel.app/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="es-dv-btn-secondary apple-pressable"
+                        >
+                          <span>Launch Live Engine ↗</span>
+                        </a>
+                      </MagneticLink>
+                    </div>
+                  </div>
+
+                </div>
+              </ScaleReveal>
+
+            </div>
+
+          </div>
+        </section>
+
+
+        {/* ============================================================
+            SECTION 03 — INDEPENDENT & PERSONAL PROJECTS
+            ============================================================ */}
+        <ScaleReveal as="section" id="independent-work" className="es-the-work" data-nav-theme="light">
           <div className="es-bounds">
             <Reveal y={24} duration={0.9}>
               <div className="es-section-header">
-                <span className="es-section-label">THE WORK</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                  <span className="es-cw-live-pill" style={{ background: '#f5f5f7', color: '#555558', borderColor: '#e5e5ea' }}>
+                    INDEPENDENT ENGINEERING &middot; OPEN SOURCE
+                  </span>
+                </div>
+                <span className="es-section-label">PERSONAL PROJECTS &middot; INDEPENDENT SYSTEMS</span>
                 <h2 className="es-display-headline">
-                  Products built to solve<br />real problems.
+                  Self-directed products &amp;<br />experimental architectures.
                 </h2>
+                <p style={{ maxWidth: '640px', fontSize: '15px', color: '#666668', marginTop: '10px', lineHeight: 1.6 }}>
+                  Independently conceived and engineered applications exploring career intelligence, explainable ML transparency, conversational LLM architectures, and interactive 3D web experiences.
+                </p>
               </div>
             </Reveal>
 
@@ -379,6 +683,7 @@ export default function Overview() {
                 {
                   id: "01",
                   name: "CareerOS",
+                  badge: "PERSONAL PROJECT",
                   category: "AI CAREER INTELLIGENCE",
                   desc: "AI career intelligence platform that parses resumes, maps skills to market benchmarks, and produces explainable career strategy.",
                   img: careerosImg,
@@ -388,6 +693,7 @@ export default function Overview() {
                 {
                   id: "02",
                   name: "VERITAS",
+                  badge: "PERSONAL PROJECT",
                   category: "EXPLAINABLE INTELLIGENCE SYSTEM",
                   desc: "Deterministic credibility evaluation engine using Scikit-learn NLP pipelines to extract textual claims with mathematical transparency.",
                   img: veritasImg,
@@ -397,6 +703,7 @@ export default function Overview() {
                 {
                   id: "03",
                   name: "AuraOS",
+                  badge: "PERSONAL PROJECT",
                   category: "PERSONAL AI OPERATING SYSTEM",
                   desc: "Context-preserving conversational platform bridging a React frontend with a secure Python/Flask LLM orchestration layer.",
                   img: auraosImg,
@@ -406,6 +713,7 @@ export default function Overview() {
                 {
                   id: "04",
                   name: "VoltDrive",
+                  badge: "PERSONAL PROJECT",
                   category: "DIGITAL PRODUCT EXPERIENCE",
                   desc: "High-performance digital vehicle showroom demonstrating fluid interaction choreography and responsive product engineering.",
                   img: voltdriveImg,
@@ -415,6 +723,7 @@ export default function Overview() {
                 {
                   id: "05",
                   name: "AgriVision AI",
+                  badge: "PERSONAL PROJECT",
                   category: "INTELLIGENT CROP DIAGNOSTICS & EXPLAINABLE AI",
                   desc: "Computer vision and deep learning diagnostic system translating plant leaf imagery into disease classification and actionable agricultural insights.",
                   img: agrivisionImg,
@@ -427,6 +736,9 @@ export default function Overview() {
                     <div className="es-ps-content">
                       <div className="es-ps-meta">
                         <span className="es-ps-id">{proj.id}</span>
+                        <span style={{ fontSize: '10px', fontWeight: '800', letterSpacing: '0.08em', padding: '3px 8px', borderRadius: '4px', background: proj.theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.06)', color: proj.theme === 'dark' ? '#a1a1a6' : '#666668' }}>
+                          {proj.badge}
+                        </span>
                         <span className="es-ps-category">{proj.category}</span>
                       </div>
                       <h3 className="es-ps-title">{proj.name}</h3>
@@ -457,263 +769,6 @@ export default function Overview() {
                 </MagneticLink>
               </div>
             </Reveal>
-          </div>
-        </ScaleReveal>
-
-
-        {/* ============================================================
-            SECTION 02.5 — FEATURED ENGINEERING APPLICATION:
-            DATA VALLEY ENGINEERING ASSESSMENT PLATFORM
-            ============================================================ */}
-        <ScaleReveal as="section" className="es-featured-dv-platform" data-nav-theme="light">
-          <div className="es-bounds">
-
-            {/* Header / Context */}
-            <div className="es-dv-header">
-              <Reveal y={16} duration={0.8}>
-                <div className="es-dv-eyebrow-row">
-                  <span className="es-dv-eyebrow">END-TO-END APPLICATION ENGINEERING</span>
-                  <span className="es-dv-company-pill">DATA VALLEY AI TECH SOLUTIONS</span>
-                </div>
-              </Reveal>
-
-              <Reveal y={20} duration={1.0} delay={0.1}>
-                <h2 className="es-dv-headline">
-                  Data Valley Engineering<br />Assessment Platform
-                </h2>
-              </Reveal>
-
-              <Reveal y={20} duration={0.9} delay={0.18}>
-                <p className="es-dv-lead">
-                  I designed and developed an engineering assessment platform for Data Valley AI Tech Solutions, bringing candidate workflows, technical evaluation, and assessment result management into a unified web application.
-                </p>
-              </Reveal>
-            </div>
-
-            {/* Editorial Showcase Card */}
-            <SpringTilt maxTilt={1.5} scale={1.004} className="es-dv-card-tilt-wrap">
-              <div className="es-dv-card">
-              {/* Apple-Grade Browser Window Mockup */}
-              <div className="es-dv-media-container">
-                <div className="es-dv-browser-chrome">
-                  <div className="es-dv-browser-dots" aria-hidden="true">
-                    <span className="es-dv-dot dot-red"></span>
-                    <span className="es-dv-dot dot-yellow"></span>
-                    <span className="es-dv-dot dot-green"></span>
-                  </div>
-                  <div className="es-dv-browser-url">
-                    <Lock size={11} className="es-dv-lock-icon" />
-                    <span>https://dv-assesments.vercel.app/</span>
-                  </div>
-                  <div className="es-dv-browser-status">
-                    <span className="es-status-indicator pulse-green"></span>
-                    <span>LIVE PRODUCTION</span>
-                  </div>
-                </div>
-
-                <div className="es-dv-screenshot-wrapper">
-                  <img
-                    src={dvAssessmentImg}
-                    alt="Data Valley Engineering Assessment Platform — Candidate portal, coding challenge, interactive question palette, and countdown timer"
-                    className="es-dv-screenshot"
-                    loading="lazy"
-                  />
-                  <div className="es-dv-screenshot-overlay" aria-hidden="true" />
-                </div>
-              </div>
-
-              {/* Technical Capabilities & Architecture Highlights */}
-              <div className="es-dv-details-panel">
-                
-                {/* Verified Technology Stack Strip */}
-                <div className="es-dv-tech-row">
-                  <div className="es-dv-tech-header">
-                    <span className="es-dv-tech-label">VERIFIED PRODUCTION STACK</span>
-                    <span className="es-dv-tech-badge">PROD ARCHITECTURE</span>
-                  </div>
-                  <div className="es-dv-tech-chips">
-                    <div className="es-dv-chip" style={{ "--chip-color": "#000000" }}>
-                      <SiNextdotjs size={14} className="es-dv-chip-icon" />
-                      <span>Next.js App Router</span>
-                    </div>
-                    <div className="es-dv-chip" style={{ "--chip-color": "#61DAFB" }}>
-                      <SiReact size={14} className="es-dv-chip-icon" />
-                      <span>React 19</span>
-                    </div>
-                    <div className="es-dv-chip" style={{ "--chip-color": "#3178C6" }}>
-                      <SiTypescript size={14} className="es-dv-chip-icon" />
-                      <span>TypeScript</span>
-                    </div>
-                    <div className="es-dv-chip" style={{ "--chip-color": "#47A248" }}>
-                      <SiMongodb size={14} className="es-dv-chip-icon" />
-                      <span>MongoDB Atlas</span>
-                    </div>
-                    <div className="es-dv-chip" style={{ "--chip-color": "#06B6D4" }}>
-                      <SiTailwindcss size={14} className="es-dv-chip-icon" />
-                      <span>Tailwind CSS</span>
-                    </div>
-                    <div className="es-dv-chip" style={{ "--chip-color": "#000000" }}>
-                      <SiVercel size={14} className="es-dv-chip-icon" />
-                      <span>Vercel Edge</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 6 Engineering Architecture Capability Cards */}
-                <div className="es-dv-caps-grid">
-                  <div className="es-dv-cap-item">
-                    <div className="es-dv-cap-icon-wrap" style={{ "--cap-color": "#0071E3", "--cap-bg": "rgba(0, 113, 227, 0.08)" }}>
-                      <ShieldCheck size={18} className="es-dv-icon" />
-                    </div>
-                    <div>
-                      <h4 className="es-dv-cap-title">Candidate Authentication & Provisioning</h4>
-                      <p className="es-dv-cap-desc">
-                        Secure session token authorization binding candidate identity to unique assessment instances, eliminating duplicate entries.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="es-dv-cap-item">
-                    <div className="es-dv-cap-icon-wrap" style={{ "--cap-color": "#FF9500", "--cap-bg": "rgba(255, 149, 0, 0.08)" }}>
-                      <Clock size={18} className="es-dv-icon" />
-                    </div>
-                    <div>
-                      <h4 className="es-dv-cap-title">Timed Technical Assessment</h4>
-                      <p className="es-dv-cap-desc">
-                        Structured 40-question technical challenge delivery with real-time synchronized countdown orchestration and question palette.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="es-dv-cap-item">
-                    <div className="es-dv-cap-icon-wrap" style={{ "--cap-color": "#34C759", "--cap-bg": "rgba(52, 199, 89, 0.08)" }}>
-                      <CheckCircle2 size={18} className="es-dv-icon" />
-                    </div>
-                    <div>
-                      <h4 className="es-dv-cap-title">Continuous Delta Auto-Sync</h4>
-                      <p className="es-dv-cap-desc">
-                        Background state synchronization protecting candidate responses against accidental page refreshes, crashes, or network loss.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="es-dv-cap-item">
-                    <div className="es-dv-cap-icon-wrap" style={{ "--cap-color": "#AF52DE", "--cap-bg": "rgba(175, 82, 222, 0.08)" }}>
-                      <Terminal size={18} className="es-dv-icon" />
-                    </div>
-                    <div>
-                      <h4 className="es-dv-cap-title">Server-Side Scoring Protection</h4>
-                      <p className="es-dv-cap-desc">
-                        Deterministic evaluation strictly executed within route handlers upon submission, preventing client-side score manipulation.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="es-dv-cap-item">
-                    <div className="es-dv-cap-icon-wrap" style={{ "--cap-color": "#5856D6", "--cap-bg": "rgba(88, 86, 214, 0.08)" }}>
-                      <Layers size={18} className="es-dv-icon" />
-                    </div>
-                    <div>
-                      <h4 className="es-dv-cap-title">Admin Management & Analytics</h4>
-                      <p className="es-dv-cap-desc">
-                        Administrative oversight dashboard enabling live candidate session monitoring, batch result evaluation, and CSV export.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="es-dv-cap-item">
-                    <div className="es-dv-cap-icon-wrap" style={{ "--cap-color": "#FF2D55", "--cap-bg": "rgba(255, 45, 85, 0.08)" }}>
-                      <Cpu size={18} className="es-dv-icon" />
-                    </div>
-                    <div>
-                      <h4 className="es-dv-cap-title">Pre-Assessment Readiness Check</h4>
-                      <p className="es-dv-cap-desc">
-                        Client environment diagnostic verifying screen resolution, network connectivity, and browser readiness prior to challenge initiation.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Technical Architecture Flow Visualization */}
-                <div className="es-dv-arch-visualizer">
-                  <div className="es-dv-arch-top">
-                    <div className="es-dv-arch-tag">
-                      <Network size={13} />
-                      <span>SYSTEM ARCHITECTURE DIAGRAM</span>
-                    </div>
-                    <span className="es-dv-arch-status">VERIFIED SECURE FLOW</span>
-                  </div>
-
-                  <div className="es-dv-flow-grid">
-                    <div className="es-dv-flow-node">
-                      <span className="es-dv-node-badge">01 · CLIENT</span>
-                      <h5 className="es-dv-node-title">Candidate UI</h5>
-                      <p className="es-dv-node-sub">Next.js 19 / Timer / Palette</p>
-                    </div>
-
-                    <div className="es-dv-flow-connector" aria-hidden="true">&rarr;</div>
-
-                    <div className="es-dv-flow-node">
-                      <span className="es-dv-node-badge">02 · AUTH</span>
-                      <h5 className="es-dv-node-title">Security Guard</h5>
-                      <p className="es-dv-node-sub">Session Token Binding</p>
-                    </div>
-
-                    <div className="es-dv-flow-connector" aria-hidden="true">&rarr;</div>
-
-                    <div className="es-dv-flow-node">
-                      <span className="es-dv-node-badge">03 · API</span>
-                      <h5 className="es-dv-node-title">Route Handlers</h5>
-                      <p className="es-dv-node-sub">/api/assessment/submit</p>
-                    </div>
-
-                    <div className="es-dv-flow-connector" aria-hidden="true">&rarr;</div>
-
-                    <div className="es-dv-flow-node">
-                      <span className="es-dv-node-badge">04 · EVAL</span>
-                      <h5 className="es-dv-node-title">Assessment Engine</h5>
-                      <p className="es-dv-node-sub">Deterministic Scoring</p>
-                    </div>
-
-                    <div className="es-dv-flow-connector" aria-hidden="true">&rarr;</div>
-
-                    <div className="es-dv-flow-node highlight">
-                      <span className="es-dv-node-badge">05 · DB &amp; ADMIN</span>
-                      <h5 className="es-dv-node-title">MongoDB Atlas</h5>
-                      <p className="es-dv-node-sub">Audit Trail &amp; Analytics</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Verified Project Actions */}
-                <div className="es-dv-actions">
-                  <MagneticLink strength={0.25}>
-                    <a
-                      href="https://dv-assesments.vercel.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="es-dv-btn-primary apple-pressable"
-                    >
-                      <span className="es-status-indicator pulse-white" aria-hidden="true"></span>
-                      <span>Open Live Application</span>
-                      <ExternalLink size={14} />
-                    </a>
-                  </MagneticLink>
-
-                  <MagneticLink strength={0.25}>
-                    <button
-                      className="es-dv-btn-secondary apple-pressable"
-                      onClick={() => navigate('/work/data-valley-assessment-platform')}
-                    >
-                      <span>Read Full Engineering Case Study</span>
-                      <ArrowRight size={15} />
-                    </button>
-                  </MagneticLink>
-                </div>
-              </div>
-            </div>
-            </SpringTilt>
-
           </div>
         </ScaleReveal>
 

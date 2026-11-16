@@ -4,6 +4,10 @@ import { AnimatePresence, LayoutGroup, MotionConfig } from "framer-motion";
 import { HelmetProvider } from "react-helmet-async";
 import AppShell from "./AppShell";
 import NotFound from "./components/NotFound";
+import ErrorBoundary from "./components/ErrorBoundary";
+import { LoadingProvider, useLoading } from "./context/LoadingContext";
+import BrandLoader from "./components/BrandLoader";
+import { RouteTransitionProvider } from "./components/transitions/RouteTransition";
 import "./styles/motion.css";
 
 // LAZY-LOADED CORE EXPERIENCES
@@ -13,6 +17,7 @@ const CareerOS = lazy(() => import("./pages/work/CareerOS"));
 const VoltDrive = lazy(() => import("./pages/work/VoltDrive"));
 const AuraOS = lazy(() => import("./pages/work/AuraOS"));
 const Veritas = lazy(() => import("./pages/work/Veritas"));
+const DVLabsPlatform = lazy(() => import("./pages/work/DVLabsPlatform"));
 const DataValleyAssessment = lazy(() => import("./pages/work/DataValleyAssessment"));
 const Experience = lazy(() => import("./pages/Experience"));
 const Vision = lazy(() => import("./pages/Vision"));
@@ -26,37 +31,7 @@ const AboutJournal = lazy(() => import("./pages/AboutJournal"));
 const Platforms = lazy(() => import("./pages/journal/Platforms"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));
 const Signal = lazy(() => import("./pages/Signal"));
-
 const AcademicArchive = lazy(() => import("./pages/AcademicArchive"));
-
-// Cinematic Suspense fallback — dark canvas with brand signature while chunks download
-function PageLoader() {
-  return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 99999,
-        backgroundColor: "#000000",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <h1
-        className="brand-cursive"
-        style={{
-          fontSize: 'clamp(32px, 6vw, 56px)',
-          color: 'rgba(255,255,255,0.7)',
-          margin: 0,
-          animation: 'pulse-brand 1.8s ease-in-out infinite'
-        }}
-      >
-        TheNameIsBhagavan
-      </h1>
-    </div>
-  );
-}
 
 // Apple-Grade Instant Scroll Restoration — smooth in-page anchor handling and clean page resets
 const ScrollToTop = () => {
@@ -90,33 +65,35 @@ const ScrollToTop = () => {
   return null;
 };
 
-import ErrorBoundary from "./components/ErrorBoundary";
-import { RouteTransitionProvider } from "./components/transitions/RouteTransition";
-import PageIntro, { TRANSITION_CONFIGS } from "./components/transitions/PageIntro";
-
+// Lightweight, seamless Suspense fallback using the Bhagavan Signature Brand Loader
 const LazyRoute = ({ children }) => (
-  <Suspense fallback={<PageLoader />}>
+  <Suspense fallback={<BrandLoader mode="route" label="TheNameIsBhagavan" />}>
     {children}
   </Suspense>
 );
 
-function App() {
+function AppRoutes() {
   const location = useLocation();
-  const introConfig = TRANSITION_CONFIGS[location.pathname];
+  const { isInitialLoading } = useLoading();
 
   return (
-    <ErrorBoundary>
-      <HelmetProvider>
-      <MotionConfig reducedMotion="user">
-        <RouteTransitionProvider>
-          {/* Route-specific intro overlay (first visit only) */}
-          {introConfig && <PageIntro config={introConfig} key={location.pathname + '-intro'} />}
+    <>
+      {/* Apple-Grade Branded Signature Loader for Initial Load & Refresh */}
+      <AnimatePresence mode="wait">
+        {isInitialLoading && (
+          <BrandLoader
+            key="initial-brand-loader"
+            mode="initial"
+            label="TheNameIsBhagavan"
+          />
+        )}
+      </AnimatePresence>
 
-          <AppShell>
-            <ScrollToTop />
-            <LayoutGroup>
-              <AnimatePresence mode="wait">
-                <Routes location={location} key={location.pathname}>
+      <AppShell>
+        <ScrollToTop />
+        <LayoutGroup>
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
               {/* Core Landing Experience */}
               <Route path="/" element={<LazyRoute><Overview /></LazyRoute>} />
               <Route path="/overview" element={<Navigate to="/" replace />} />
@@ -130,7 +107,10 @@ function App() {
 
               {/* Core Experiences */}
               <Route path="/work" element={<LazyRoute><Work /></LazyRoute>} />
+              <Route path="/work/dv-labs-platform" element={<LazyRoute><DVLabsPlatform /></LazyRoute>} />
+              <Route path="/work/dv-labs" element={<Navigate to="/work/dv-labs-platform" replace />} />
               <Route path="/work/data-valley-assessment-platform" element={<LazyRoute><DataValleyAssessment /></LazyRoute>} />
+              <Route path="/work/dv-assessment-platform" element={<Navigate to="/work/data-valley-assessment-platform" replace />} />
               <Route path="/work/dv-assessments" element={<Navigate to="/work/data-valley-assessment-platform" replace />} />
               <Route path="/work/careeros" element={<LazyRoute><CareerOS /></LazyRoute>} />
               <Route path="/work/voltdrive" element={<LazyRoute><VoltDrive /></LazyRoute>} />
@@ -156,9 +136,22 @@ function App() {
           </AnimatePresence>
         </LayoutGroup>
       </AppShell>
-      </RouteTransitionProvider>
-      </MotionConfig>
-    </HelmetProvider>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <ErrorBoundary>
+      <HelmetProvider>
+        <MotionConfig reducedMotion="user">
+          <LoadingProvider>
+            <RouteTransitionProvider>
+              <AppRoutes />
+            </RouteTransitionProvider>
+          </LoadingProvider>
+        </MotionConfig>
+      </HelmetProvider>
     </ErrorBoundary>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { X, ArrowRight, ExternalLink, FileText, CheckCircle2, Terminal, Code2, Server, Database, Brain, Sparkles, ShieldCheck } from "lucide-react";
+import { X, ArrowRight, ExternalLink, FileText, CheckCircle2, Terminal, Code2, Server, Database, Brain, Sparkles, ShieldCheck, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import BrandSignature from "../components/BrandSignature";
@@ -21,6 +21,7 @@ import datavalleyImg from "../assets/datascience coruse compltetion.jpeg";
 import pbrTalkPhoto from "../assets/pbr-vits-ai-talk.jpg";
 import pbrLetterImg from "../assets/pbr-vits-appreciation-letter.png";
 import dvAssessmentImg from "../assets/datavalley-assessment-platform.png";
+import dvLabsHeroImg from "../assets/dvlabs-hero.jpg";
 
 // ─── Artifact Viewer Modal ────────────────────────────────────────────────────
 function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
@@ -201,10 +202,13 @@ export default function Experience() {
                 <span className="chapter-badge badge-active">PRIMARY PROFESSIONAL DIRECTION &middot; SOFTWARE DEVELOPMENT</span>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="company-name">SOFTWARE ENGINEERING</h2>
+                <h2 className="company-name">AI SOLUTIONS ENGINEERING</h2>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.15}>
-                <span className="role-title highlight-role">Software Developer &middot; Data Valley AI Tech Solutions</span>
+                <span className="role-title highlight-role">AI Solutions Developer &middot; Data Valley AI Tech Solutions</span>
+                <span style={{ display: 'block', fontSize: '12px', fontWeight: '600', color: '#86868b', marginTop: '4px', letterSpacing: '0.04em' }}>
+                  JUNE 2024 &ndash; PRESENT &bull; VIJAYAWADA, ANDHRA PRADESH
+                </span>
               </Reveal>
             </div>
 
@@ -238,8 +242,132 @@ export default function Experience() {
               </div>
             </Reveal>
 
-            {/* Core Development Responsibilities Grid */}
+            {/* ============================================================
+                DV LABS — ONGOING FLAGSHIP COMPANY PROJECT SHOWCASE
+                ============================================================ */}
             <Reveal y={24} duration={0.9} delay={0.4}>
+              <div className="exp-dvlabs-showcase">
+                <div className="exp-dvlabs-header">
+                  <div className="exp-dvlabs-meta-row">
+                    <span className="exp-dvlabs-live-badge">
+                      <span className="exp-dvlabs-pulse-dot" aria-hidden="true"></span>
+                      COMPANY PROJECT &middot; ONGOING DEVELOPMENT
+                    </span>
+                    <span className="exp-dvlabs-company-tag">DATA VALLEY AI TECH SOLUTIONS</span>
+                  </div>
+
+                  <div className="exp-dvlabs-brand-title">
+                    <span className="exp-dvlabs-brand-mark" aria-hidden="true">D</span>
+                    <h3 className="exp-dvlabs-name">
+                      DV <span className="serif-accent">Labs</span>
+                    </h3>
+                  </div>
+
+                  <h4 className="exp-dvlabs-tagline">
+                    "Where vision meets execution."
+                  </h4>
+                  <p className="exp-dvlabs-subline">
+                    Milestone-locked projects. Defended in viva. Built for the real world. A flagship company engineering platform at Data Valley AI Tech Solutions bridging academic learning with production engineering rigor.
+                  </p>
+                </div>
+
+                <div className="exp-dvlabs-content-grid">
+                  {/* Left Column: Atmospheric Brand Visual from Landing Page */}
+                  <div className="exp-dvlabs-visual-container">
+                    <img
+                      src={dvLabsHeroImg}
+                      alt="DV Labs — Where vision meets execution. Milestone-locked projects defended in viva."
+                      className="exp-dvlabs-visual-img"
+                      loading="lazy"
+                    />
+                    <div className="exp-dvlabs-visual-overlay">
+                      <div className="exp-dvlabs-visual-label">PRODUCTION ECOSYSTEM &middot; DATA VALLEY LABS</div>
+                      <p className="exp-dvlabs-visual-caption">
+                        Milestone-gated project progression &middot; AI-powered oral viva defense &middot; Timed assessment delivery
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Core Product Pillars & Contributions */}
+                  <div className="exp-dvlabs-details-col">
+                    <div className="exp-dvlabs-pill-list">
+                      <div className="exp-dvlabs-pill-item">
+                        <div className="exp-dvlabs-pill-icon">
+                          <ShieldCheck size={16} />
+                        </div>
+                        <div>
+                          <h5 className="exp-dvlabs-pill-title">Milestone-Locked Engineering</h5>
+                          <p className="exp-dvlabs-pill-desc">
+                            Structured project phases gated by automated verification; subsequent architectural tiers unlock only after code requirements pass.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="exp-dvlabs-pill-item">
+                        <div className="exp-dvlabs-pill-icon">
+                          <Brain size={16} />
+                        </div>
+                        <div>
+                          <h5 className="exp-dvlabs-pill-title">AI Viva Defense System</h5>
+                          <p className="exp-dvlabs-pill-desc">
+                            Automated oral defense interrogations testing candidates on their architectural decisions, algorithm trade-offs, and code mechanics.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="exp-dvlabs-pill-item">
+                        <div className="exp-dvlabs-pill-icon">
+                          <Clock size={16} />
+                        </div>
+                        <div>
+                          <h5 className="exp-dvlabs-pill-title">Practical Assessment Engine</h5>
+                          <p className="exp-dvlabs-pill-desc">
+                            40-question technical challenge canvas with live countdown timer, auto-sync answer persistence, and tamper-proof server-side scoring.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Verified Contribution Attribution */}
+                    <div className="exp-dvlabs-contrib-box">
+                      <div className="exp-dvlabs-contrib-title">My Technical Contribution</div>
+                      <p className="exp-dvlabs-contrib-text">
+                        <strong>Role:</strong> AI Solutions Developer | Full-Stack Development &amp; AI Systems.<br />
+                        I engineered the full-stack web application end-to-end (Next.js App Router, React 19, TypeScript, MongoDB Atlas), designed the state persistence and background sync pipeline, implemented deterministic server-side evaluation, and architected the AI viva questioning workflows.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="exp-dvlabs-footer">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666668', fontSize: '13px' }}>
+                    <CheckCircle2 size={15} style={{ color: '#34c759' }} />
+                    <span>Proprietary Company Project of Data Valley AI Tech Solutions &middot; Actively Maintained</span>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    <Link to="/work/dv-labs-platform" className="work-btn-primary" style={{ padding: '8px 16px', fontSize: '12.5px' }}>
+                      <span>DV LABS PLATFORM &rarr;</span>
+                    </Link>
+                    <Link to="/work/data-valley-assessment-platform" className="work-btn-secondary" style={{ padding: '8px 16px', fontSize: '12.5px' }}>
+                      <span>ASSESSMENT CASE STUDY &rarr;</span>
+                    </Link>
+                    <a
+                      href="https://dv-assesments.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="work-btn-secondary"
+                      style={{ padding: '8px 16px', fontSize: '12.5px' }}
+                    >
+                      <span>LIVE ENGINE &#8599;</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Core Development Responsibilities Grid */}
+            <Reveal y={24} duration={0.9} delay={0.45}>
               <div style={{ marginTop: '36px', marginBottom: '40px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
                 
                 {/* 1. Enterprise Web App */}
@@ -363,6 +491,9 @@ export default function Experience() {
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.15}>
                 <span className="role-title highlight-role">Technical Trainer &middot; Data Valley AI Tech Solutions</span>
+                <span style={{ display: 'block', fontSize: '12px', fontWeight: '600', color: '#86868b', marginTop: '4px', letterSpacing: '0.04em' }}>
+                  JUNE 2024 &ndash; PRESENT &bull; VIJAYAWADA, ANDHRA PRADESH
+                </span>
               </Reveal>
             </div>
 
@@ -374,32 +505,32 @@ export default function Experience() {
 
             <Reveal y={20} duration={0.9} delay={0.3}>
               <p className="chapter-desc">
-                Serving as Technical Trainer at Data Valley AI Tech Solutions, delivering comprehensive technical education, designing progressive curriculum, and conducting interactive workshops across Data Science, Machine Learning, Python, and Generative AI for students and trainees in Vijayawada and across academic institutions.
+                Serving as Technical Trainer at Data Valley AI Tech Solutions since June 2024, delivering comprehensive technical instruction, designing progressive curricula, and conducting hands-on workshops across Data Science, Machine Learning, Python, and Generative AI for students and trainees.
               </p>
             </Reveal>
 
-            {/* Categorized Training Responsibilities Grid */}
+            {/* Categorized Training Responsibilities Grid (6 Core Verified Areas) */}
             <Reveal y={20} duration={0.8} delay={0.4}>
-              <div style={{ marginTop: '36px', marginBottom: '40px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+              <div style={{ marginTop: '36px', marginBottom: '40px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
                 
                 {/* 1. Python & Core Programming */}
                 <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
                   <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#ff9500', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    01 / Programming Instruction
+                    01 / Python &amp; Programming Instruction
                   </div>
-                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Python &amp; Core Programming</h3>
+                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Python &amp; Core Engineering</h3>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
                       <span style={{ color: '#ff9500' }}>&bull;</span>
-                      <span>Structured training cohorts covering object-oriented programming, data structures, and algorithms.</span>
+                      <span>Structured cohorts covering Python fundamentals, OOP, data structures, and algorithmic logic.</span>
                     </li>
                     <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
                       <span style={{ color: '#ff9500' }}>&bull;</span>
-                      <span>Developing progressive problem sets, live coding demonstrations, and project assignments.</span>
+                      <span>Live coding sessions demonstrating modular package design and clean refactoring principles.</span>
                     </li>
                     <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
                       <span style={{ color: '#ff9500' }}>&bull;</span>
-                      <span>Instilling clean code practices, testing habits, and debugging methodologies.</span>
+                      <span>Instilling automated unit testing, PEP-8 compliance, and defensive programming habits.</span>
                     </li>
                   </ul>
                 </div>
@@ -407,65 +538,109 @@ export default function Experience() {
                 {/* 2. Data Science & Applied AI/ML */}
                 <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
                   <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#34c759', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    02 / Data Science &amp; AI/ML
+                    02 / Data Science &amp; Machine Learning
                   </div>
                   <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Data Science &amp; Applied ML</h3>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
                       <span style={{ color: '#34c759' }}>&bull;</span>
-                      <span>Comprehensive training in Pandas, NumPy, and Scikit-learn exploratory analysis pipelines.</span>
+                      <span>Hands-on training in Pandas, NumPy, and Scikit-learn exploratory analysis pipelines.</span>
                     </li>
                     <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
                       <span style={{ color: '#34c759' }}>&bull;</span>
-                      <span>Supervised learning workflows (classification and regression) with rigorous k-fold cross-validation.</span>
+                      <span>Supervised learning models (classification, regression) with mathematical cross-validation.</span>
                     </li>
                     <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
                       <span style={{ color: '#34c759' }}>&bull;</span>
-                      <span>Translating messy real-world datasets into measurable analytical benchmarks.</span>
+                      <span>Feature transformation, outlier mitigation, and statistical performance benchmarking.</span>
                     </li>
                   </ul>
                 </div>
 
-                {/* 3. Generative AI & LLMs */}
+                {/* 3. Generative AI & Agentic AI */}
                 <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
                   <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#af52de', textTransform: 'uppercase', marginBottom: '12px' }}>
                     03 / Generative &amp; Agentic AI
                   </div>
-                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Generative AI &amp; LLM Systems</h3>
+                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Generative AI &amp; Agentic Systems</h3>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
                       <span style={{ color: '#af52de' }}>&bull;</span>
-                      <span>Designing prompt engineering frameworks, structured JSON parsing, and few-shot conditioning.</span>
+                      <span>Designing prompt construction patterns, structured JSON extraction, and few-shot conditioning.</span>
                     </li>
                     <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
                       <span style={{ color: '#af52de' }}>&bull;</span>
-                      <span>Teaching practical LLM API integration (Gemini API) and stateless backend proxies.</span>
+                      <span>Teaching practical LLM API integration (Gemini API) and secure backend proxy bridges.</span>
                     </li>
                     <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
                       <span style={{ color: '#af52de' }}>&bull;</span>
-                      <span>Demystifying Retrieval-Augmented Generation (RAG) and Agentic reasoning paradigms.</span>
+                      <span>Explaining Retrieval-Augmented Generation (RAG), vector embeddings, and agent tool execution.</span>
                     </li>
                   </ul>
                 </div>
 
-                {/* 4. Student Mentorship */}
+                {/* 4. Curriculum Planning & Content */}
                 <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
                   <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#007aff', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    04 / Practical Mentorship
+                    04 / Curriculum Architecture
                   </div>
-                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Student Mentoring &amp; Projects</h3>
+                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Curriculum Planning &amp; Content</h3>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
                       <span style={{ color: '#007aff' }}>&bull;</span>
-                      <span>One-on-one technical doubt clearance, debugging assistance, and code reviews.</span>
+                      <span>Authoring structured course modules, step-by-step laboratory guides, and progressive code repos.</span>
                     </li>
                     <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
                       <span style={{ color: '#007aff' }}>&bull;</span>
-                      <span>Guiding students through real-world capstone projects from ideation to deployment.</span>
+                      <span>Aligning instructional syllabi with real-world developer requirements and industry expectations.</span>
                     </li>
                     <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
                       <span style={{ color: '#007aff' }}>&bull;</span>
-                      <span>Bridging academic theory with industry standards, interview prep, and technical portfolios.</span>
+                      <span>Developing standardized assessment rubrics and practical coding evaluation benchmarks.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* 5. Student Mentorship & Guidance */}
+                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#5856d6', textTransform: 'uppercase', marginBottom: '12px' }}>
+                    05 / Practical Mentorship
+                  </div>
+                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Student Mentoring &amp; Guidance</h3>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#5856d6' }}>&bull;</span>
+                      <span>One-on-one technical debugging assistance, code reviews, and architectural problem-solving.</span>
+                    </li>
+                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#5856d6' }}>&bull;</span>
+                      <span>Guiding students through real-world capstone projects from data acquisition to working demo.</span>
+                    </li>
+                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#5856d6' }}>&bull;</span>
+                      <span>Bridging classroom theory with engineering portfolios, interview readiness, and systems thinking.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* 6. AI Demos & Live Workshops */}
+                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#e50914', textTransform: 'uppercase', marginBottom: '12px' }}>
+                    06 / Applied Demonstrations
+                  </div>
+                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>AI Application Demonstrations</h3>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#e50914' }}>&bull;</span>
+                      <span>Conducting live technical workshops and demonstrations of intelligent tools and NLP pipelines.</span>
+                    </li>
+                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#e50914' }}>&bull;</span>
+                      <span>Demonstrating end-to-end applications (e.g. Data Valley Assessment Platform, CareerOS, AuraOS).</span>
+                    </li>
+                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
+                      <span style={{ color: '#e50914' }}>&bull;</span>
+                      <span>Inspiring engineering cohorts to build production-oriented AI systems rather than shallow wrappers.</span>
                     </li>
                   </ul>
                 </div>

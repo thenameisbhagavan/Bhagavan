@@ -5,7 +5,7 @@ import { socialLinks } from '../constants/socialLinks';
 
 const SEO = ({ 
   title: propTitle, 
-  description = "Official portfolio of TheNameIsBhagavan — Software Developer & Technical Trainer at Data Valley AI Tech Solutions. Developing software applications, Python backend services, and practical AI systems while delivering technical training in Data Science, Machine Learning, and Generative AI.", 
+  description = "Official portfolio of TheNameIsBhagavan — AI & Data Science Professional, Technical Trainer, and AI Solutions Developer at Data Valley AI Tech Solutions. Engineering practical AI systems, Python backend architectures, and full-stack solutions while training engineers in Data Science, Machine Learning, Generative AI, and Agentic Workflows.", 
   type = "website", 
   image = "/og-image.jpg",
   article = null
@@ -15,17 +15,17 @@ const SEO = ({
   
   // Enforce TNB Brand Title System
   const brandTitles = {
-    '/': 'TheNameIsBhagavan — Software Developer | AI/ML & Generative AI | Data Science & Technical Trainer',
-    '/work': 'Work — TheNameIsBhagavan | Software & AI Engineering Systems',
-    '/experience': 'Experience — TheNameIsBhagavan | Data Valley AI Tech Solutions · Developer & Trainer',
+    '/': 'TheNameIsBhagavan — AI & Data Science Professional | Technical Trainer | AI Solutions Developer',
+    '/work': 'Work — TheNameIsBhagavan | AI Solutions & Applied Engineering Systems',
+    '/experience': 'Experience — TheNameIsBhagavan | Data Valley AI Tech Solutions · Trainer & AI Developer',
     '/innovation': 'Innovation — TheNameIsBhagavan | Technical Growth & Applied AI',
-    '/credentials': 'Credentials — TheNameIsBhagavan | Engineering & AI Certifications',
-    '/ecosystem': 'Technology Ecosystem — TheNameIsBhagavan | Software Architecture & Stack',
+    '/credentials': 'Credentials — TheNameIsBhagavan | Verified Academic & AI Certifications',
+    '/ecosystem': 'Technology Ecosystem — TheNameIsBhagavan | AI & Data Science Stack',
     '/vision': 'Vision — TheNameIsBhagavan | Engineering Principles & Systems',
     '/journal': 'Engineering Journal — TheNameIsBhagavan',
-    '/connect': 'Connect — TheNameIsBhagavan | Software, AI & Technical Training',
-    '/resume': 'Resume — TheNameIsBhagavan | Developer & Technical Trainer',
-    '/academic-archive': 'Academic Archive — TheNameIsBhagavan | Engineering Records',
+    '/connect': 'Connect — TheNameIsBhagavan | AI Solutions, Data Science & Technical Training',
+    '/resume': 'Resume — TheNameIsBhagavan | AI & Data Science Professional',
+    '/academic-archive': 'Academic Archive — TheNameIsBhagavan | Verified Educational Records',
     '/signal': 'Signal — TheNameIsBhagavan | Professional Capability & Field Notes'
   };
 
@@ -34,7 +34,7 @@ const SEO = ({
   const isCorePage = brandTitles[pathname];
   const finalTitle = isCorePage ? brandTitles[pathname] : (propTitle || 'TheNameIsBhagavan');
   
-  const keywords = "TheNameIsBhagavan, Bhagavan, Software Developer, Technical Trainer, Data Valley AI Tech Solutions, AI ML Developer, Generative AI, Data Science Trainer, Python Developer, FastAPI, React Developer, CareerOS, AuraOS, VERITAS, VoltDrive, Portfolio, India, Andhra Pradesh, JNTUK";
+  const keywords = "TheNameIsBhagavan, Bhagavan, AI & Data Science Professional, Technical Trainer, AI Solutions Developer, Data Valley AI Tech Solutions, Generative AI, Machine Learning Engineer, Python Developer, FastAPI, Prompt Engineering, Agentic AI, CareerOS, AuraOS, VERITAS, VoltDrive, Portfolio, India, Andhra Pradesh, JNTUK";
 
   // Person Schema
   const personSchema = {
@@ -44,8 +44,8 @@ const SEO = ({
     "alternateName": "TheNameIsBhagavan",
     "url": "https://thenameisbhagavan.in",
     "image": "https://thenameisbhagavan.in/og-image.jpg",
-    "jobTitle": "Software Developer & Technical Trainer | AI/ML & Generative AI",
-    "description": "Software Developer & Technical Trainer at Data Valley AI Tech Solutions. Building software applications, Python backends, and practical AI systems while teaching Data Science, Machine Learning, and Generative AI.",
+    "jobTitle": "AI & Data Science Professional | Technical Trainer | AI Solutions Developer",
+    "description": "AI & Data Science Professional, Technical Trainer, and AI Solutions Developer at Data Valley AI Tech Solutions. Engineering practical AI systems, Python backends, and full-stack solutions while training engineers in Data Science, Machine Learning, Generative AI, and Agentic Workflows.",
     "worksFor": {
       "@type": "Organization",
       "name": "Data Valley AI Tech Solutions",
@@ -56,6 +56,21 @@ const SEO = ({
         "addressCountry": "IN"
       }
     },
+    "alumniOf": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "Ramachandra College of Engineering (JNTUK)",
+        "department": "Artificial Intelligence and Data Science"
+      },
+      {
+        "@type": "EducationalOrganization",
+        "name": "Sri Vidya Junior College, Gudivada"
+      },
+      {
+        "@type": "EducationalOrganization",
+        "name": "Montessori High School (EM), Gudivada"
+      }
+    ],
     "email": "thenameisbhagavan@gmail.com",
     "sameAs": [
       "https://www.linkedin.com/in/thenameisbhagavan/",

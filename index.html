@@ -34,10 +34,36 @@
       /* Prevent black flash — set bg immediately to Apple canvas */
       html, body { margin: 0; padding: 0; background: #F7F7F5; color: #111111; }
       #root { min-height: 100vh; background: #F7F7F5; }
+      @keyframes preloaderGlow { 0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.55; } 50% { transform: translate(-50%, -50%) scale(1.08); opacity: 0.95; } }
+      @keyframes preloaderSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      @keyframes preloaderSlide { 0% { left: -35%; width: 25%; } 50% { left: 40%; width: 38%; } 100% { left: 105%; width: 25%; } }
+      @media (prefers-reduced-motion: reduce) {
+        .preloader-glow, .preloader-spin, .preloader-bar { animation: none !important; }
+        .preloader-bar { left: 0 !important; width: 100% !important; }
+      }
     </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="initial-preloader" style="position:fixed;inset:0;background-color:#F7F7F5;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999999;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;user-select:none;-webkit-user-select:none;">
+        <div style="position:relative;width:96px;height:96px;display:flex;align-items:center;justify-content:center;">
+          <div class="preloader-glow" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(229,9,20,0.16) 0%,rgba(229,9,20,0.04) 45%,transparent 70%);filter:blur(12px);animation:preloaderGlow 2.8s ease-in-out infinite;"></div>
+          <svg class="preloader-spin" style="position:absolute;inset:0;width:100%;height:100%;animation:preloaderSpin 2.6s linear infinite;" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="44" stroke="rgba(0,0,0,0.06)" stroke-width="1.2" />
+            <circle cx="50" cy="50" r="44" stroke="#E50914" stroke-width="2" stroke-linecap="round" stroke-dasharray="68 208" />
+          </svg>
+          <div style="position:relative;z-index:2;width:56px;height:56px;display:flex;align-items:center;justify-content:center;">
+            <img src="/logo.png" alt="Bhagavan" width="56" height="56" style="width:100%;height:100%;object-fit:contain;display:block;" />
+          </div>
+        </div>
+        <div style="margin-top:28px;display:flex;flex-direction:column;align-items:center;gap:12px;">
+          <div style="width:96px;height:2px;background:rgba(0,0,0,0.06);border-radius:980px;overflow:hidden;position:relative;">
+            <div class="preloader-bar" style="position:absolute;top:0;bottom:0;width:32%;background:#E50914;border-radius:980px;animation:preloaderSlide 1.6s cubic-bezier(0.4,0,0.2,1) infinite;"></div>
+          </div>
+          <span style="font-size:10px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(0,0,0,0.40);">TheNameIsBhagavan</span>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

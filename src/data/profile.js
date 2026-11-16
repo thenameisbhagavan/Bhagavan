@@ -10,40 +10,81 @@ export const CANONICAL_PROFILE = {
   location: "Vijayawada, Andhra Pradesh, India",
 
   // Core Positioning
-  headline: "Software Developer | AI/ML & Generative AI | Data Science & Technical Trainer",
-  shortHeadline: "Software Developer & Technical Trainer",
+  headline: "AI & Data Science Professional | Technical Trainer | AI Solutions Developer",
+  shortHeadline: "AI & Data Science Professional & Technical Trainer",
 
   currentRole: {
-    title: "Developer & Technical Trainer",
+    title: "Technical Trainer & AI Solutions Developer",
     organization: "Data Valley AI Tech Solutions",
     shortOrg: "Data Valley",
-    location: "Vijayawada, India",
-    status: "Current Engagement",
-    period: "2024 — Present",
-    flaggedDetails: "Functional role confirmed in development and training; formal tenure spans ongoing technical mentorship and system engineering."
+    location: "Vijayawada, Andhra Pradesh, India",
+    status: "Active Engagement · Currently Working",
+    period: "June 2024 — Present",
+    flaggedDetails: "Technical Trainer and AI Solutions Developer since June 2024, leading instructional cohorts across Python, Data Science, and Machine Learning while actively engineering full-stack architectures, assessment engines, and AI viva defense systems for DV LABS at Data Valley AI Tech Solutions."
   },
+
+  // Verified Institutional Education Timeline
+  education: [
+    {
+      id: "btech",
+      level: "Undergraduate Degree",
+      degree: "B.Tech — Artificial Intelligence and Data Science",
+      institution: "Ramachandra College of Engineering, Eluru",
+      university: "Jawaharlal Nehru Technological University Kakinada (JNTUK)",
+      location: "Eluru, Andhra Pradesh",
+      period: "2022 — 2026",
+      score: "CGPA 7.5 / 10",
+      officialRecord: "7.57 / 10 (First Class with Distinction on CMM)",
+      status: "Graduating 2026",
+      keyFocus: ["Machine Learning", "Deep Learning", "Data Mining & Warehousing", "Python & Java Programming", "Computer Networks", "Database Systems", "Cloud Computing"]
+    },
+    {
+      id: "intermediate",
+      level: "Senior Secondary / Higher Secondary (Class XII)",
+      degree: "Intermediate — MPC (Mathematics, Physics, Chemistry)",
+      institution: "Sri Vidya Junior College, Gudivada",
+      board: "Board of Intermediate Education, Andhra Pradesh (BIEAP)",
+      location: "Gudivada, Andhra Pradesh",
+      period: "2020 — 2022",
+      score: "78% (784 / 1000, Grade A)",
+      status: "Completed May 2022",
+      keyFocus: ["Higher Mathematics", "Physics", "Chemistry", "Analytical Problem Solving"]
+    },
+    {
+      id: "ssc",
+      level: "Secondary School Certificate (Class X)",
+      degree: "SSC / Class X",
+      institution: "Montessori High School (EM), Gudivada",
+      board: "Board of Secondary Education, Andhra Pradesh (BSEAP)",
+      location: "Gudivada, Krishna District, Andhra Pradesh",
+      period: "2019 — 2020",
+      score: "95% (546 / 600, First Division)",
+      status: "Completed March 2020",
+      keyFocus: ["Mathematics (98/100)", "General Science", "English Medium", "Social Studies"]
+    }
+  ],
 
   // Dual Professional Pillars
   pillars: {
     build: {
       label: "BUILD",
-      title: "Software & AI Systems",
-      summary: "I engineer practical software applications, Python backend services, and data-driven AI systems designed for reliability and maintainability."
+      title: "AI Solutions & Python Engineering",
+      summary: "I engineer practical AI applications, resilient Python backend architectures, and data-driven systems designed for mathematical clarity, determinism, and enterprise integration."
     },
     teach: {
       label: "TEACH",
       title: "Technical Education & Mentorship",
-      summary: "I teach technical concepts through structured explanations, live coding demonstrations, hands-on lab exercises, and practical project guidance."
+      summary: "I deconstruct complex AI, Data Science, and Machine Learning concepts through structured curricula, live coding demonstrations, hands-on lab exercises, and practical project mentorship."
     }
   },
 
   // Narrative Summaries
   hero: {
-    eyebrow: "SOFTWARE DEVELOPER &bull; AI/ML &bull; TECHNICAL TRAINER",
+    eyebrow: "AI & DATA SCIENCE PROFESSIONAL &bull; TECHNICAL TRAINER &bull; AI SOLUTIONS DEVELOPER",
     headlineLine1: "Engineering intelligent systems.",
     headlineLine2: "Teaching how they work.",
     headlineLine3: "Built with clarity.",
-    subtext: "Software developer and technical trainer at Data Valley AI Tech Solutions. I develop software applications, Python backends, and practical AI/ML solutions while guiding learners through Data Science, Machine Learning, and Generative AI."
+    subtext: "AI & Data Science Professional, Technical Trainer, and AI Solutions Developer at Data Valley AI Tech Solutions. I engineer practical AI systems, Python backends, and full-stack solutions while training engineers in Data Science, Machine Learning, Generative AI, and Agentic Workflows."
   },
 
   about: {
@@ -122,10 +163,11 @@ export const CANONICAL_PROFILE = {
     {
       id: "pace-ongole",
       venue: "PACE Institute of Technology & Sciences, Ongole",
-      program: "Hands-on Workshop: Prompt Engineering & Generative AI",
-      audience: "Undergraduate Engineering Students (CSE, AI&DS, AI&ML)",
-      focus: "Applied Generative AI, Structured Prompting, LLM APIs",
-      methodology: "Interactive live demonstrations, prompt construction patterns, failure mode analysis, and hands-on coding exercises.",
+      program: "Hands-on Technical Workshop: Prompt Engineering & Generative AI",
+      audience: "Undergraduate Engineering Students (CSE, AI&DS, AI&ML) — ~300 Attendees",
+      attendanceCount: "Approximately 300 Students",
+      focus: "Applied Generative AI, Structured Prompting, LLM APIs, and Real-World Application Workflows",
+      methodology: "Interactive live demonstrations across multiple seminar displays, prompt construction taxonomies, edge-case mitigation, and hands-on coding exercises.",
       documentedDate: "Documented Academic Session",
       artifactKey: "paceImg"
     },
@@ -181,20 +223,78 @@ export const CANONICAL_PROFILE = {
     ]
   },
 
+  // Canonical Record: DV LABS (Data Valley Labs) — Ongoing Flagship Company Project
+  dvLabs: {
+    id: "dv-labs",
+    name: "DV LABS",
+    fullName: "DV Labs (Data Valley Labs)",
+    organization: "Data Valley AI Tech Solutions",
+    ownership: "Data Valley AI Tech Solutions",
+    role: "AI Solutions Developer | Full-Stack Development & AI Systems",
+    status: "Active / Ongoing Development",
+    nature: "Company Project (Data Valley AI Tech Solutions) · Ongoing Development",
+    headline: "Where vision meets execution.",
+    subTagline: "Milestone-locked projects. Defended in viva. Built for the real world.",
+    description: "An advanced engineering project and assessment ecosystem developed at Data Valley AI Tech Solutions. DV Labs bridges academic learning and industry execution through structured milestone locks, AI-conducted oral viva defenses, and production-grade timed assessment architectures.",
+    brandMark: "DV Labs",
+    heroImage: "/images/work/dvlabs-hero.jpg",
+    liveUrl: "https://dv-assesments.vercel.app/",
+    caseStudyUrl: "/work/data-valley-assessment-platform",
+    technologies: ["Next.js App Router", "React 19", "TypeScript", "Node.js", "MongoDB Atlas", "Tailwind CSS", "Vercel", "AI Viva Workflows", "Speech-to-Text APIs"],
+    corePillars: [
+      {
+        id: "milestones",
+        title: "Milestone-Locked Projects",
+        tag: "ENGINEERING DISCIPLINE",
+        desc: "Progressive, stage-gated engineering workflows where code deliverables and system milestones must satisfy strict requirements before subsequent architectural phases unlock."
+      },
+      {
+        id: "viva-defense",
+        title: "AI Viva Defense System",
+        tag: "ORAL CODE DEFENSE",
+        desc: "Automated, AI-conducted oral defense interrogations challenging candidates to explain design decisions, architectural trade-offs, and algorithmic implementations."
+      },
+      {
+        id: "assessment-engine",
+        title: "Practical Evaluation Engine",
+        tag: "TIMED ASSESSMENT",
+        desc: "Production-tested technical assessment interface delivering 40 structured challenges with synchronized timers, continuous background sync, and server-side scoring."
+      },
+      {
+        id: "real-world-readiness",
+        title: "Real-World Engineering Verification",
+        tag: "PRODUCTION STANDARDS",
+        desc: "Replacing superficial quizzes with rigorous, defensible technical artifacts built to modern software engineering and enterprise code quality baselines."
+      }
+    ],
+    bhagavanContributions: [
+      "End-to-End full-stack web application engineering using Next.js App Router, React 19, and TypeScript.",
+      "Protected candidate authentication with HTTP-only cookies and active assessment session binding.",
+      "Real-time answer persistence and background auto-sync via /api/assessment/sync protecting against data loss.",
+      "100% server-side scoring engine (/api/assessment/submit) guaranteeing complete answer-key tamper resistance.",
+      "Integrity telemetry and session focus tracking (/api/integrity/event) ensuring equitable test conditions.",
+      "AI viva question generation workflows and audio response integration pipelines for candidate defense.",
+      "MongoDB Atlas document schemas for candidate profiles, session states, and evaluation records."
+    ]
+  },
+
   // Canonical Record: Data Valley Engineering Assessment Platform (Flagship Enterprise Application)
   dataValleyAssessmentPlatform: {
     id: "data-valley-assessment-platform",
     name: "Data Valley Engineering Assessment Platform",
     shortName: "DV Engineering Assessment",
     organization: "Data Valley AI Tech Solutions",
+    ownership: "Data Valley AI Tech Solutions",
     role: "End-to-End Application Developer",
+    status: "Company Project · Ongoing Development",
     category: "Full-Stack Development · Engineering Assessments · Web Application Engineering",
-    eyebrow: "END-TO-END APPLICATION ENGINEERING",
+    eyebrow: "COMPANY PROJECT · ONGOING DEVELOPMENT",
     tagline: "Candidate assessment platform with secure sessions, live timers, and server-side evaluation",
     description: "An engineering assessment platform engineered end to end for Data Valley AI Tech Solutions, bringing candidate workflows, technical evaluation, and assessment result management into a unified web application.",
     liveUrl: "https://dv-assesments.vercel.app/",
     caseStudyUrl: "/work/data-valley-assessment-platform",
     screenshotUrl: "/images/work/datavalley-assessment-platform.png",
+    heroImageUrl: "/images/work/dvlabs-hero.jpg",
     technologies: ["Next.js App Router", "React 19", "TypeScript", "MongoDB Atlas", "Tailwind CSS", "Vercel"],
     capabilities: [
       {
@@ -229,15 +329,18 @@ export const CANONICAL_PROFILE = {
   // Flagship Projects with Architecture & Engineering Evidence
   flagshipProjects: [
     {
-      id: "data-valley-assessment-platform",
-      name: "Data Valley Engineering Assessment Platform",
-      eyebrow: "Enterprise Web Application Engineering",
-      tagline: "Candidate assessment platform with secure sessions, live timers, and server-side evaluation",
-      description: "An engineering assessment platform engineered end to end for Data Valley AI Tech Solutions, bringing candidate workflows, technical evaluation, and assessment result management into a unified web application.",
-      architecture: "Next.js App Router with React 19, TypeScript, and MongoDB Atlas; server-side scoring and state synchronization route handlers.",
+      id: "dv-labs",
+      legacyId: "data-valley-assessment-platform",
+      name: "DV LABS",
+      fullName: "DV Labs — Engineering Assessment & Project Defense Platform",
+      eyebrow: "COMPANY PROJECT (DATA VALLEY AI TECH SOLUTIONS) · ONGOING",
+      tagline: "Where vision meets execution.",
+      subTagline: "Milestone-locked projects. Defended in viva. Built for the real world.",
+      description: "Flagship engineering ecosystem built for Data Valley AI Tech Solutions. Combines milestone-locked project delivery, AI viva defense interrogations, and a live production-grade technical assessment engine.",
+      architecture: "Next.js App Router with React 19, TypeScript, and MongoDB Atlas; server-side scoring, state synchronization route handlers, and AI viva orchestration.",
       tradeoffs: "Enforced strict server-side score calculation and continuous answer synchronization to eliminate candidate tampering and data loss.",
-      status: "Production Deployment",
-      nature: "Company Engineering Project · Data Valley AI Tech Solutions",
+      status: "Ongoing Development · Production Deployment",
+      nature: "Company Project (Data Valley AI Tech Solutions) · Ongoing",
       url: "/work/data-valley-assessment-platform",
       liveUrl: "https://dv-assesments.vercel.app/",
       githubUrl: null

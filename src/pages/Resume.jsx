@@ -267,7 +267,7 @@ export default function Resume() {
                   Siva Satya Sai Bhagavan Gopalajosyula
                 </h1>
                 <p style={{ fontSize: '15px', color: '#0071E3', fontWeight: '600', margin: '0 0 12px 0', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                  Software Developer &middot; AI Engineer &middot; Technical Trainer
+                  AI &amp; Data Science Professional &middot; Technical Trainer &middot; AI Solutions Developer
                 </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', fontSize: '13.5px', color: '#666666' }}>
                   <span>thenameisbhagavan@gmail.com</span>
@@ -286,99 +286,178 @@ export default function Resume() {
                   PROFESSIONAL SUMMARY
                 </h3>
                 <p style={{ fontSize: '15px', color: '#333333', lineHeight: '1.65', margin: 0 }}>
-                  Software Developer and AI Engineer with hands-on experience in full-stack web applications, Python backend services, and applied AI systems. Developer and Technical Trainer at Data Valley AI Tech Solutions, building production applications (Data Valley Engineering Assessment Platform, CareerOS, AuraOS, VERITAS, VoltDrive) while training and mentoring students across Python, Data Science, Machine Learning, and Generative AI.
+                  AI &amp; Data Science Professional, Technical Trainer, and AI Solutions Developer with practical experience engineering applied machine learning systems, Python backend services, and production web applications. Developer and Technical Trainer at Data Valley AI Tech Solutions since June 2024, architecting production systems (DV Labs &amp; Data Valley Assessment Platform, CareerOS, AuraOS, VERITAS, AgriVision AI) while designing curricula and delivering hands-on instruction in Python, Data Science, Machine Learning, Generative AI, and Agentic Workflows.
                 </p>
               </div>
 
-              {/* 2. Technical Skills */}
+              {/* 2. Technical Skills (Organized by Actual Proficiency) */}
               <div style={{ marginBottom: '32px' }}>
                 <h3 style={{ fontSize: '14px', fontWeight: '700', letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase', marginBottom: '16px' }}>
-                  TECHNICAL SKILLS
+                  TECHNICAL SKILLS &amp; PROFICIENCY TIERS
                 </h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
-                  <div>
-                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111', display: 'block', marginBottom: '4px' }}>LANGUAGES</span>
-                    <span style={{ fontSize: '14px', color: '#555558' }}>Python, JavaScript (ESNext), TypeScript, Java, C, SQL</span>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
+                  <div style={{ background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '12px', padding: '16px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111' }}>CORE &amp; PRODUCTION</span>
+                      <span style={{ fontSize: '10px', color: '#34c759', background: 'rgba(52,199,89,0.12)', padding: '2px 6px', borderRadius: '4px', fontWeight: '700' }}>DAILY USE</span>
+                    </div>
+                    <span style={{ fontSize: '13.5px', color: '#555558', lineHeight: 1.5, display: 'block' }}>
+                      Python, SQL, Scikit-learn, Pandas, NumPy, FastAPI, Flask, React 19, MongoDB Atlas, Git
+                    </span>
                   </div>
-                  <div>
-                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111', display: 'block', marginBottom: '4px' }}>FRONTEND</span>
-                    <span style={{ fontSize: '14px', color: '#555558' }}>React 19, Next.js (App Router), Tailwind CSS, Vite, HTML5, CSS3, Framer Motion</span>
+
+                  <div style={{ background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '12px', padding: '16px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111' }}>APPLIED AI &amp; GENAI</span>
+                      <span style={{ fontSize: '10px', color: '#0071E3', background: 'rgba(0,113,227,0.08)', padding: '2px 6px', borderRadius: '4px', fontWeight: '700' }}>PROFICIENT</span>
+                    </div>
+                    <span style={{ fontSize: '13.5px', color: '#555558', lineHeight: 1.5, display: 'block' }}>
+                      TensorFlow, Keras, Gemini API, Prompt Engineering, RAG Architectures, Vector Search, NLP Pipelines
+                    </span>
                   </div>
-                  <div>
-                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111', display: 'block', marginBottom: '4px' }}>BACKEND &amp; APIS</span>
-                    <span style={{ fontSize: '14px', color: '#555558' }}>FastAPI, Flask, Node.js, Express.js, REST APIs, Stateless Proxy Bridges</span>
+
+                  <div style={{ background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '12px', padding: '16px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111' }}>FULL-STACK &amp; PLATFORMS</span>
+                      <span style={{ fontSize: '10px', color: '#ff9500', background: 'rgba(255,149,0,0.1)', padding: '2px 6px', borderRadius: '4px', fontWeight: '700' }}>APPLICATION</span>
+                    </div>
+                    <span style={{ fontSize: '13.5px', color: '#555558', lineHeight: 1.5, display: 'block' }}>
+                      Next.js (App Router), TypeScript, Node.js, Express.js, REST APIs, Vercel Edge, Tailwind CSS
+                    </span>
                   </div>
-                  <div>
-                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111', display: 'block', marginBottom: '4px' }}>DATABASES</span>
-                    <span style={{ fontSize: '14px', color: '#555558' }}>MongoDB Atlas, PostgreSQL, MySQL, Redis, Mongoose</span>
-                  </div>
-                  <div>
-                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111', display: 'block', marginBottom: '4px' }}>AI / ML &amp; GENAI</span>
-                    <span style={{ fontSize: '14px', color: '#555558' }}>Scikit-learn, TensorFlow, Keras, Pandas, NumPy, Gemini API, Prompt Engineering, RAG</span>
-                  </div>
-                  <div>
-                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111', display: 'block', marginBottom: '4px' }}>TOOLS &amp; CLOUD</span>
-                    <span style={{ fontSize: '14px', color: '#555558' }}>Git, GitHub, Postman, Vercel Edge, Docker, PowerApps, Linux</span>
+
+                  <div style={{ background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '12px', padding: '16px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <span style={{ fontSize: '12px', fontWeight: '700', color: '#111111' }}>EMERGING &amp; TOOLING</span>
+                      <span style={{ fontSize: '10px', color: '#af52de', background: 'rgba(175,82,222,0.1)', padding: '2px 6px', borderRadius: '4px', fontWeight: '700' }}>EXPLORING</span>
+                    </div>
+                    <span style={{ fontSize: '13.5px', color: '#555558', lineHeight: 1.5, display: 'block' }}>
+                      Agentic AI Workflows, Multi-Agent Systems, LangChain, Docker, Postman, Linux CLI
+                    </span>
                   </div>
                 </div>
               </div>
 
               {/* 3. Professional Experience */}
-              <div style={{ marginBottom: '32px' }}>
+              <div style={{ marginBottom: '36px' }}>
                 <h3 style={{ fontSize: '14px', fontWeight: '700', letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase', marginBottom: '20px' }}>
-                  PROFESSIONAL EXPERIENCE
+                  PROFESSIONAL EXPERIENCE &middot; INDUSTRY PRACTICE
                 </h3>
                 
                 {/* Data Valley */}
-                <div style={{ marginBottom: '24px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '8px', marginBottom: '4px' }}>
-                    <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#111111', margin: 0 }}>
-                      Data Valley AI Tech Solutions &mdash; Developer &amp; Technical Trainer
-                    </h4>
-                    <span style={{ fontSize: '13px', color: '#86868b', fontWeight: '600' }}>2024 &ndash; PRESENT | VIJAYAWADA, INDIA</span>
+                <div style={{ marginBottom: '24px', background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '16px', padding: '24px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
+                    <div>
+                      <h4 style={{ fontSize: '17px', fontWeight: '700', color: '#111111', margin: 0 }}>
+                        Data Valley AI Tech Solutions &mdash; Technical Trainer &amp; AI Solutions Developer
+                      </h4>
+                      <span style={{ fontSize: '13px', color: '#0071E3', fontWeight: '600' }}>Vijayawada, Andhra Pradesh, India</span>
+                    </div>
+                    <span style={{ fontSize: '12px', color: '#86868b', fontWeight: '700', background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', padding: '3px 10px', borderRadius: '6px' }}>
+                      JUNE 2024 &ndash; PRESENT
+                    </span>
                   </div>
-                  <ul style={{ paddingLeft: '20px', margin: '8px 0 0 0', fontSize: '14px', color: '#444444', lineHeight: '1.6', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <li>Engineered the end-to-end Data Valley Engineering Assessment Platform using Next.js App Router, React 19, TypeScript, and MongoDB Atlas.</li>
-                    <li>Developed Python backend services (FastAPI/Flask) and secure stateless proxy bridges interfacing with the Gemini API.</li>
-                    <li>Delivered curriculum and practical training in Python, Data Science, Machine Learning, and Generative AI for students and trainees.</li>
-                    <li>Conducted technical workshops including the PACE Institute (300 engineering students) and PBR VITS AI technical talk with formal letter of appreciation.</li>
+                  <ul style={{ paddingLeft: '20px', margin: '12px 0 0 0', fontSize: '14px', color: '#444444', lineHeight: '1.65', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <li><strong>AI, Data Science &amp; Python Training:</strong> Delivering structured cohorts across Python programming, Scikit-learn ML pipelines, exploratory analysis, and feature engineering.</li>
+                    <li><strong>Curriculum Planning &amp; Content Development:</strong> Designing progressive syllabi, hands-on lab exercises, coding benchmarks, and technical evaluation rubrics.</li>
+                    <li><strong>Student Mentoring &amp; Project Guidance:</strong> Guiding engineering students through technical doubts, code debugging, and real-world capstone AI projects.</li>
+                    <li><strong>Generative AI &amp; Agentic AI Workshops:</strong> Conducting technical workshops including the 300-student Generative AI workshop at PACE Institute of Technology &amp; Sciences, Ongole.</li>
+                    <li><strong>Application Engineering &amp; DV Labs:</strong> Architected the DV Labs candidate assessment engine (dv-assesments.vercel.app) end-to-end with Next.js App Router, React 19, TypeScript, and MongoDB Atlas; engineering milestone-locked project delivery and AI viva defense workflows.</li>
+                    <li><strong>Academic Outreach:</strong> Delivered technical talk on "AI Innovation and Startup Opportunities" at PBR VITS (Autonomous), Kavali, recognized with formal Letter of Appreciation from IQAC.</li>
                   </ul>
                 </div>
 
-                {/* Internships List */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
-                  <div>
-                    <span style={{ fontSize: '13px', fontWeight: '700', color: '#111111' }}>StudyOwl Education (2024)</span>
-                    <p style={{ fontSize: '13px', color: '#666666', margin: '2px 0 0 0' }}>Software Development Intern &middot; React frontend, Node.js backend, REST API integration.</p>
-                  </div>
-                  <div>
-                    <span style={{ fontSize: '13px', fontWeight: '700', color: '#111111' }}>SmartBridge (2024)</span>
-                    <p style={{ fontSize: '13px', color: '#666666', margin: '2px 0 0 0' }}>Software Engineering Intern &middot; CNN image classification with TensorFlow/Keras &amp; Flask.</p>
-                  </div>
-                  <div>
-                    <span style={{ fontSize: '13px', fontWeight: '700', color: '#111111' }}>Blackbucks (2024)</span>
-                    <p style={{ fontSize: '13px', color: '#666666', margin: '2px 0 0 0' }}>Machine Learning Intern &middot; Data preprocessing, feature engineering &amp; Scikit-learn pipelines.</p>
-                  </div>
-                  <div>
-                    <span style={{ fontSize: '13px', fontWeight: '700', color: '#111111' }}>Helson (2024)</span>
-                    <p style={{ fontSize: '13px', color: '#666666', margin: '2px 0 0 0' }}>Enterprise Automation Intern &middot; Business process workflows using PowerApps &amp; Automate.</p>
+                {/* Foundational Internships Archive */}
+                <div style={{ marginTop: '20px' }}>
+                  <span style={{ fontSize: '12px', fontWeight: '700', color: '#86868b', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'block', marginBottom: '12px' }}>
+                    EARLY ENGINEERING INTERNSHIPS (2024 ARCHIVE)
+                  </span>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px' }}>
+                    <div style={{ padding: '14px', background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '10px' }}>
+                      <span style={{ fontSize: '13px', fontWeight: '700', color: '#111111' }}>StudyOwl Education (2024)</span>
+                      <p style={{ fontSize: '12.5px', color: '#666666', margin: '3px 0 0 0' }}>Software Development Intern &middot; React frontend, REST API integration, reusable components.</p>
+                    </div>
+                    <div style={{ padding: '14px', background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '10px' }}>
+                      <span style={{ fontSize: '13px', fontWeight: '700', color: '#111111' }}>SmartBridge (2024)</span>
+                      <p style={{ fontSize: '12.5px', color: '#666666', margin: '3px 0 0 0' }}>Software Engineering Intern &middot; CNN image classification with TensorFlow/Keras &amp; Flask service.</p>
+                    </div>
+                    <div style={{ padding: '14px', background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '10px' }}>
+                      <span style={{ fontSize: '13px', fontWeight: '700', color: '#111111' }}>Blackbucks (2024)</span>
+                      <p style={{ fontSize: '12.5px', color: '#666666', margin: '3px 0 0 0' }}>Machine Learning Intern &middot; Data preprocessing, feature engineering &amp; Scikit-learn pipelines.</p>
+                    </div>
+                    <div style={{ padding: '14px', background: '#ffffff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '10px' }}>
+                      <span style={{ fontSize: '13px', fontWeight: '700', color: '#111111' }}>Helson (2024)</span>
+                      <p style={{ fontSize: '12.5px', color: '#666666', margin: '3px 0 0 0' }}>Enterprise Automation Intern &middot; Business process workflows using PowerApps &amp; Automate.</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* 4. Education */}
+              {/* 4. Verified Institutional Education Timeline */}
               <div>
-                <h3 style={{ fontSize: '14px', fontWeight: '700', letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase', marginBottom: '12px' }}>
-                  EDUCATION
+                <h3 style={{ fontSize: '14px', fontWeight: '700', letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase', marginBottom: '20px' }}>
+                  INSTITUTIONAL EDUCATION TIMELINE
                 </h3>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '8px' }}>
-                  <div>
-                    <h4 style={{ fontSize: '15px', fontWeight: '700', color: '#111111', margin: 0 }}>
-                      B.Tech in Artificial Intelligence &amp; Data Science
-                    </h4>
-                    <span style={{ fontSize: '13.5px', color: '#555558' }}>Ramachandra College of Engineering, JNTUK</span>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                  
+                  {/* B.Tech */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', padding: '18px 20px', background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '12px' }}>
+                    <div>
+                      <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#111111', margin: '0 0 4px 0' }}>
+                        Bachelor of Technology (B.Tech) &mdash; Artificial Intelligence and Data Science
+                      </h4>
+                      <div style={{ fontSize: '14px', color: '#333333', fontWeight: '550' }}>
+                        Ramachandra College of Engineering, Eluru
+                      </div>
+                      <div style={{ fontSize: '13px', color: '#86868b', marginTop: '2px' }}>
+                        Affiliated to Jawaharlal Nehru Technological University Kakinada (JNTUK)
+                      </div>
+                    </div>
+                    <div style={{ textAlign: 'right' }}>
+                      <span style={{ fontSize: '13px', color: '#86868b', fontWeight: '700', display: 'block' }}>2022 &ndash; 2026</span>
+                      <span style={{ fontSize: '13px', color: '#0071E3', fontWeight: '700' }}>CGPA 7.5 / 10 (CMM: 7.57 / 10 First Class)</span>
+                    </div>
                   </div>
-                  <span style={{ fontSize: '13px', color: '#86868b', fontWeight: '600' }}>2022 &ndash; 2026</span>
+
+                  {/* Intermediate */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', padding: '18px 20px', background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '12px' }}>
+                    <div>
+                      <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#111111', margin: '0 0 4px 0' }}>
+                        Intermediate &mdash; MPC (Mathematics, Physics, Chemistry)
+                      </h4>
+                      <div style={{ fontSize: '14px', color: '#333333', fontWeight: '550' }}>
+                        Sri Vidya Junior College, Gudivada
+                      </div>
+                      <div style={{ fontSize: '13px', color: '#86868b', marginTop: '2px' }}>
+                        Board of Intermediate Education, Andhra Pradesh (BIEAP)
+                      </div>
+                    </div>
+                    <div style={{ textAlign: 'right' }}>
+                      <span style={{ fontSize: '13px', color: '#86868b', fontWeight: '700', display: 'block' }}>2020 &ndash; 2022</span>
+                      <span style={{ fontSize: '13px', color: '#34c759', fontWeight: '700' }}>78% (784 / 1000 Marks &bull; Grade A)</span>
+                    </div>
+                  </div>
+
+                  {/* SSC */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px', padding: '18px 20px', background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '12px' }}>
+                    <div>
+                      <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#111111', margin: '0 0 4px 0' }}>
+                        Secondary School Certificate (Class X)
+                      </h4>
+                      <div style={{ fontSize: '14px', color: '#333333', fontWeight: '550' }}>
+                        Montessori High School (EM), Gudivada, Krishna District
+                      </div>
+                      <div style={{ fontSize: '13px', color: '#86868b', marginTop: '2px' }}>
+                        Board of Secondary Education, Andhra Pradesh (BSEAP)
+                      </div>
+                    </div>
+                    <div style={{ textAlign: 'right' }}>
+                      <span style={{ fontSize: '13px', color: '#86868b', fontWeight: '700', display: 'block' }}>2019 &ndash; 2020</span>
+                      <span style={{ fontSize: '13px', color: '#34c759', fontWeight: '700' }}>95% (546 / 600 Marks &bull; First Division)</span>
+                    </div>
+                  </div>
+
                 </div>
               </div>
 

@@ -6,7 +6,7 @@ import logoImg from "../assets/logo.png";
 import "../styles/Navbar.css";
 
 // ─────────────────────────────────────────────
-// DIRECT NAVIGATION ARCHITECTURE
+// DIRECT NAVIGATION ARCHITECTURE (7 DESTINATIONS)
 // ─────────────────────────────────────────────
 const PRIMARY_NAV = [
   { label: "Overview",       path: "/" },
@@ -19,24 +19,24 @@ const PRIMARY_NAV = [
 ];
 
 // ─────────────────────────────────────────────
-// SEARCH INDEX — complete portfolio surface
+// SEARCH INDEX — Complete Portfolio Surface
 // ─────────────────────────────────────────────
 const SEARCH_PAGES = [
-  { title: "Overview",                  path: "/",                  keywords: "home about profile introduction hero bio software engineer" },
-  { title: "Projects",                  path: "/work",              keywords: "projects work portfolio careeros aurabot veritas voltdrive agrivision assessment flagship" },
-  { title: "DV Assessment Platform",    path: "/work/data-valley-assessment-platform", keywords: "datavalley assessment enterprise evaluation nextjs react mongodb" },
+  { title: "Overview",                  path: "/",                  keywords: "home about profile introduction hero bio software engineer ai data science" },
+  { title: "Selected Work & Systems",   path: "/work",              keywords: "projects work portfolio dv labs assessment careeros aurabot veritas voltdrive agrivision flagship" },
+  { title: "DV Labs Platform",          path: "/work/dv-labs-platform", keywords: "dv labs company project milestone locked viva defense enterprise platform" },
+  { title: "DV Labs Assessment Engine", path: "/work/data-valley-assessment-platform", keywords: "datavalley assessment enterprise evaluation nextjs react mongodb 40 questions timer" },
   { title: "CareerOS",                  path: "/work/careeros",      keywords: "careeros intelligence system career trajectory ai resume parsing" },
   { title: "AuraOS",                    path: "/work/auraos",        keywords: "auraos spatial ai os memory context chatbot generative" },
   { title: "VERITAS",                   path: "/work/veritas",       keywords: "veritas explainable intelligence fact tracing reasoning verification" },
   { title: "VoltDrive - EV Experience", path: "/work/voltdrive",     keywords: "voltdrive electric vehicle ev showroom automotive 3d threejs" },
-  { title: "Experience",                path: "/experience",        keywords: "experience career timeline data valley technical trainer blackbucks studyowl pbr vits" },
-  { title: "Innovation",                path: "/innovation",        keywords: "innovation research engineering lab vegacode experiments patents" },
-  { title: "Certifications",           path: "/credentials",       keywords: "certifications awards credentials google aws infosys ibm academic" },
+  { title: "Experience & Timeline",     path: "/experience",        keywords: "experience career timeline data valley technical trainer blackbucks studyowl pbr vits" },
+  { title: "Vision & Philosophy",       path: "/vision",            keywords: "future goals mission direction roadmap perspective philosophy thesis" },
+  { title: "Innovation & Labs",         path: "/innovation",        keywords: "innovation research engineering lab vegacode experiments patents" },
+  { title: "Credentials & Awards",      path: "/credentials",       keywords: "certifications awards credentials google aws infosys ibm academic" },
   { title: "Academic Archive",          path: "/academic-archive",   keywords: "education university degree btech cmm provisional marks transcripts" },
-  { title: "Technology Ecosystem",      path: "/ecosystem",         keywords: "stack architecture tools python react node fastapi layers system design" },
-  { title: "Resume",                    path: "/resume",            keywords: "resume cv download pdf curriculum vitae profile summary" },
-  { title: "Vision",                    path: "/vision",            keywords: "future goals mission direction roadmap perspective philosophy thesis" },
-  { title: "Connect",                   path: "/connect",           keywords: "contact email message hire collaboration social github linkedin" },
+  { title: "Resume & Documents",        path: "/resume",            keywords: "resume cv download pdf curriculum vitae profile summary" },
+  { title: "Connect & Collaboration",   path: "/connect",           keywords: "contact email message hire collaboration social github linkedin" },
   { title: "Engineering Journal",       path: "/journal",           keywords: "blog articles engineering journal writing insights systems architecture" },
   { title: "Signal",                    path: "/signal",            keywords: "signal observing workflow tools reading desk current thinking" },
 ];
@@ -47,18 +47,17 @@ const QUICK_LINKS = [
   { label: "Vision",            path: "/vision" },
   { label: "Innovation",        path: "/innovation" },
   { label: "Credentials",       path: "/credentials" },
-  { label: "Ecosystem",         path: "/ecosystem" },
   { label: "Resume",            path: "/resume" },
   { label: "Connect",           path: "/connect" },
 ];
 
-// Precision Search SVG Symbol
-const SearchSVG = ({ size = 15 }) => (
-  <svg width={size} height={size} viewBox="0 0 18 18" fill="none" aria-hidden="true">
+// Minimal Precision Apple Search SVG Icon (14px)
+const SearchSVG = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none" aria-hidden="true">
     <path
-      d="M16.5 16.5L12.875 12.875M14.8333 8.16667C14.8333 11.8486 11.8486 14.8333 8.16667 14.8333C4.48477 14.8333 1.5 11.8486 1.5 8.16667C1.5 4.48477 4.48477 1.5 8.16667 1.5C11.8486 1.5 14.8333 4.48477 14.8333 8.16667Z"
+      d="M14.5 14.5L11.2 11.2M12.8 6.9C12.8 10.1585 10.1585 12.8 6.9 12.8C3.64152 12.8 1 10.1585 1 6.9C1 3.64152 3.64152 1 6.9 1C10.1585 1 12.8 3.64152 12.8 6.9Z"
       stroke="currentColor"
-      strokeWidth="1.8"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
@@ -80,7 +79,7 @@ export default function Navbar() {
   // ── Scroll elevation detection ──
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 8);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -271,15 +270,15 @@ export default function Navbar() {
   const shellClassName = [
     "nav-shell",
     activeNavTheme === "dark" && !mobileOpen ? "nav-dark-mode" : "",
-    scrolled && !searchOpen ? "scrolled" : "",
+    scrolled ? "scrolled" : "",
     searchOpen ? "panel-open" : "",
   ]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <LayoutGroup id="bhagavan-navigation">
-      {/* ── Spotlight Search Command Palette ── */}
+    <LayoutGroup id="apple-nav-system">
+      {/* ── Apple Spotlight Search Command Palette ── */}
       <AnimatePresence>
         {searchOpen && (
           <>
@@ -288,17 +287,17 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.18 }}
+              transition={{ duration: 0.16 }}
               onClick={() => setSearchOpen(false)}
               aria-hidden="true"
             />
             <div className="nav-search-modal-container">
               <m.div
                 className="nav-search-modal"
-                initial={{ opacity: 0, scale: 0.98, y: -10 }}
+                initial={{ opacity: 0, scale: 0.98, y: -8 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.98, y: -10 }}
-                transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                exit={{ opacity: 0, scale: 0.98, y: -8 }}
+                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 role="dialog"
                 aria-modal="true"
                 aria-label="Search Portfolio"
@@ -306,7 +305,7 @@ export default function Navbar() {
                 {/* Search Input Bar */}
                 <div className="nav-search-input-wrap">
                   <span className="nav-search-input-icon">
-                    <SearchSVG size={16} />
+                    <SearchSVG size={15} />
                   </span>
                   <input
                     ref={searchInputRef}
@@ -384,15 +383,15 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* ── Refined Mobile Menu Sheet ── */}
+      {/* ── Apple-Grade Mobile Menu Sheet ── */}
       <AnimatePresence>
         {mobileOpen && (
           <m.div
             className="nav-mobile-sheet"
-            initial={{ opacity: 0, y: -12 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
             role="dialog"
             aria-modal="true"
             aria-label="Navigation Menu"
@@ -402,12 +401,12 @@ export default function Navbar() {
               <button
                 className="nav-brand"
                 onClick={() => go("/")}
-                aria-label="Bhagavan — Home"
+                aria-label="TheNameIsBhagavan — Home"
               >
                 <div className="nav-brand-mark">
                   <img src={logoImg} alt="" aria-hidden="true" />
                 </div>
-                <span className="nav-brand-text">Bhagavan</span>
+                <span className="nav-brand-text">TheNameIsBhagavan</span>
               </button>
 
               <button
@@ -415,11 +414,11 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 aria-label="Close navigation menu"
               >
-                <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                   <path
                     d="M3 3L13 13M13 3L3 13"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="1.8"
                     strokeLinecap="round"
                   />
                 </svg>
@@ -437,7 +436,7 @@ export default function Navbar() {
                 }}
                 aria-label="Open search dialog"
               >
-                <SearchSVG size={15} />
+                <SearchSVG size={14} />
                 <span style={{ flex: 1 }}>Search portfolio...</span>
                 <kbd className="nav-search-kbd">⌘K</kbd>
               </button>
@@ -451,11 +450,11 @@ export default function Navbar() {
                       key={item.label}
                       className={`nav-mobile-nav-link ${itemIsActive ? "active" : ""}`}
                       onClick={() => go(item.path)}
-                      initial={{ opacity: 0, x: -10 }}
+                      initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{
-                        delay: idx * 0.03 + 0.04,
-                        duration: 0.24,
+                        delay: idx * 0.025 + 0.04,
+                        duration: 0.2,
                         ease: [0.16, 1, 0.3, 1],
                       }}
                       aria-current={itemIsActive ? "page" : undefined}
@@ -467,16 +466,16 @@ export default function Navbar() {
                 })}
               </div>
 
-              {/* Mobile Footer with Document Action CTA */}
+              {/* Mobile Footer with Refined Document Action */}
               <div className="nav-mobile-footer">
                 <button
                   className="nav-mobile-resume-btn"
                   onClick={() => go("/resume")}
                   aria-label="View Resume document"
                 >
-                  <FileText size={15} strokeWidth={2} className="nav-resume-icon" />
-                  <span>Resume & Credentials</span>
-                  <ArrowRight size={13} strokeWidth={2.2} className="nav-resume-arrow" />
+                  <FileText size={14} strokeWidth={2} className="nav-resume-icon" />
+                  <span>View Resume & Credentials</span>
+                  <ArrowRight size={13} strokeWidth={2} className="nav-resume-arrow" />
                 </button>
               </div>
             </div>
@@ -484,23 +483,26 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* ── Primary Navigation Bar ── */}
+      {/* ── Primary Global Navigation Bar (Apple.com Precision System) ── */}
       <header className={shellClassName} role="banner">
-        <nav className="nav-inner" aria-label="Primary Navigation">
-          {/* Left: Brand Identity (B Logo + Wordmark) */}
-          <button
-            className="nav-brand"
-            onClick={() => go("/")}
-            aria-label="Bhagavan — Overview (Home)"
-          >
-            <div className="nav-brand-mark">
-              <img src={logoImg} alt="TheNameIsBhagavan logo" />
-            </div>
-            <span className="nav-brand-text">Bhagavan</span>
-          </button>
+        <nav className="nav-inner" aria-label="Global Navigation">
+          
+          {/* ZONE 1 (LEFT): Brand Identity (Red B Logo + TheNameIsBhagavan Wordmark) */}
+          <div className="nav-zone-left">
+            <button
+              className="nav-brand"
+              onClick={() => go("/")}
+              aria-label="TheNameIsBhagavan — Overview (Home)"
+            >
+              <div className="nav-brand-mark">
+                <img src={logoImg} alt="TheNameIsBhagavan" />
+              </div>
+              <span className="nav-brand-text">TheNameIsBhagavan</span>
+            </button>
+          </div>
 
-          {/* Center: Desktop Navigation Destinations */}
-          <div className="nav-links-container" role="menubar">
+          {/* ZONE 2 (CENTER): Primary Navigation Links (Mathematically Centered) */}
+          <div className="nav-zone-center" role="menubar">
             {PRIMARY_NAV.map((item) => {
               const itemIsActive = isActive(item.path);
               return (
@@ -514,9 +516,9 @@ export default function Navbar() {
                     <span>{item.label}</span>
                     {itemIsActive && (
                       <m.div
-                        layoutId="navActiveIndicator"
+                        layoutId="appleNavActiveIndicator"
                         className="nav-active-indicator"
-                        transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                        transition={{ type: "spring", stiffness: 450, damping: 36 }}
                       />
                     )}
                   </button>
@@ -525,47 +527,42 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Right: Actions (Search + Resume CTA + Mobile Menu Toggle) */}
-          <div className="nav-actions">
-            {/* Search Icon Control (40px clickable area) */}
+          {/* ZONE 3 (RIGHT): Minimal Search + Refined Apple-Style Resume Action */}
+          <div className="nav-zone-right">
+            {/* Minimal Search Control */}
             <button
               className="nav-search-btn"
               onClick={() => setSearchOpen(true)}
               aria-label="Search portfolio (Press ⌘K or /)"
               title="Search (⌘K)"
             >
-              <SearchSVG size={16} />
+              <SearchSVG size={14} />
             </button>
 
-            {/* Document-Action Resume CTA (40px high) */}
+            {/* Refined Apple-Style Resume Action Pill */}
             <button
               className="nav-resume-cta"
               onClick={() => go("/resume")}
               aria-label="View Resume document"
               title="Resume"
             >
-              <FileText className="nav-resume-icon" size={14} strokeWidth={2} />
+              <FileText className="nav-resume-icon" size={11} strokeWidth={2} />
               <span className="nav-resume-label">Resume</span>
-              <ArrowRight className="nav-resume-arrow" size={11.5} strokeWidth={2.2} />
+              <ArrowRight className="nav-resume-arrow" size={10} strokeWidth={2.2} />
             </button>
 
-            {/* Mobile Menu Toggle (40px touch target) */}
+            {/* Minimal Apple 2-Line Mobile Menu Control */}
             <button
-              className="nav-mobile-toggle"
+              className={`nav-mobile-toggle ${mobileOpen ? "is-open" : ""}`}
               onClick={() => setMobileOpen((prev) => !prev)}
               aria-label={mobileOpen ? "Close menu" : "Open navigation menu"}
               aria-expanded={mobileOpen}
             >
-              <svg width="20" height="20" viewBox="0 0 18 18" fill="none">
-                <path
-                  d="M2.5 5.5H15.5M2.5 12.5H15.5"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <span className="nav-toggle-bar bar-1" aria-hidden="true"></span>
+              <span className="nav-toggle-bar bar-2" aria-hidden="true"></span>
             </button>
           </div>
+
         </nav>
       </header>
     </LayoutGroup>

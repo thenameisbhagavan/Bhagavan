@@ -277,26 +277,30 @@ export default function AcademicArchive() {
             <div className="aa-ch-meta">
               <div className="aa-ch-meta-row">
                 <span className="aa-ch-meta-key">Year</span>
-                <span className="aa-ch-meta-val">2020</span>
+                <span className="aa-ch-meta-val">{ssc.year}</span>
+              </div>
+              <div className="aa-ch-meta-row">
+                <span className="aa-ch-meta-key">Institution</span>
+                <span className="aa-ch-meta-val">{ssc.institution}</span>
               </div>
               <div className="aa-ch-meta-row">
                 <span className="aa-ch-meta-key">Board</span>
                 <span className="aa-ch-meta-val">{ssc.board}</span>
               </div>
               <div className="aa-ch-meta-row">
-                <span className="aa-ch-meta-key">State</span>
-                <span className="aa-ch-meta-val">{ssc.state}</span>
+                <span className="aa-ch-meta-key">Performance</span>
+                <span className="aa-ch-meta-val">{ssc.percentage} &bull; {ssc.division}</span>
               </div>
               <div className="aa-ch-meta-row">
-                <span className="aa-ch-meta-key">Record</span>
-                <span className="aa-ch-meta-val">Secondary School Certificate</span>
+                <span className="aa-ch-meta-key">Official Record</span>
+                <span className="aa-ch-meta-val">Marks: {ssc.marks} (Maths: 98/100)</span>
               </div>
             </div>
           </motion.div>
           <motion.div {...reveal(0.22)}>
             <Artifact
               image={ssc.primaryImage}
-              alt="SSC Certificate"
+              alt="Montessori High School SSC Certificate"
               onClick={() => openDocument('ssc')}
             />
           </motion.div>
@@ -316,18 +320,20 @@ export default function AcademicArchive() {
           <motion.div {...reveal(0.12)}>
             <Artifact
               image={inter.primaryImage}
-              alt="Intermediate Certificate"
+              alt="Sri Vidya Junior College Intermediate Certificate"
               onClick={() => openDocument('inter')}
             />
           </motion.div>
           <motion.div {...reveal(0.18)}>
             <div className="aa-meta-stack">
-              <strong>MPC</strong>
-              <div>Mathematics</div>
-              <div>Physics</div>
-              <div>Chemistry</div>
+              <strong>MPC &bull; Intermediate</strong>
+              <div style={{ fontSize: '15px', color: '#111111', fontWeight: '600', margin: '4px 0' }}>
+                {inter.institution}
+              </div>
+              <div>Mathematics &bull; Physics &bull; Chemistry</div>
               <div className="aa-meta-stack-sub">
-                {inter.board}<br />{inter.state}<br />2020 — 2022
+                {inter.board}<br />
+                {inter.year} &bull; Score: {inter.percentage} ({inter.marks} &bull; {inter.division})
               </div>
             </div>
           </motion.div>

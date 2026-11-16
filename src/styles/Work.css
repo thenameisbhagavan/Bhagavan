@@ -668,3 +668,168 @@
     justify-content: center;
   }
 }
+
+/* ============================================================
+   DV LABS CHAPTER STYLING (APPLE-GRADE EDITORIAL)
+   ============================================================ */
+.work-dvlabs-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  background: rgba(52, 199, 89, 0.1);
+  border: 1px solid rgba(52, 199, 89, 0.3);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #1b8738;
+  text-transform: uppercase;
+}
+
+.work-dvlabs-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34c759;
+  box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.6);
+  animation: work-live-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes work-live-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.6); }
+  70% { box-shadow: 0 0 0 7px rgba(52, 199, 89, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0); }
+}
+
+.work-dvlabs-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.work-dvlabs-brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #e62e2d;
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 18px;
+  font-family: var(--font-display, sans-serif);
+  line-height: 1;
+}
+
+.work-dvlabs-title-text {
+  font-family: var(--font-display, sans-serif);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  color: #111111;
+  letter-spacing: -0.02em;
+}
+
+.work-dvlabs-title-text .serif-accent {
+  font-family: "New York", "Charter", "Georgia", "Baskerville", serif;
+  font-style: italic;
+  font-weight: 400;
+  margin-left: 6px;
+}
+
+.work-dvlabs-tagline-quote {
+  font-family: "New York", "Charter", "Georgia", "Baskerville", serif;
+  font-style: italic;
+  font-size: clamp(22px, 3vw, 32px);
+  line-height: 1.35;
+  color: #1d1d1f;
+  margin: 16px 0 10px 0;
+}
+
+.work-dvlabs-subline-text {
+  font-size: 16px;
+  color: #555558;
+  line-height: 1.6;
+  max-width: 820px;
+  margin-bottom: 28px;
+}
+
+.work-dvlabs-media-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 860px) {
+  .work-dvlabs-media-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.work-dvlabs-media-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.work-dvlabs-media-header {
+  padding: 12px 18px;
+  background: #f7f7f9;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #666668;
+  text-transform: uppercase;
+}
+
+.work-dvlabs-media-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .work-dvlabs-media-img {
+    height: 200px;
+  }
+}
+
+.work-dvlabs-contrib-ribbon {
+  padding: 16px 20px;
+  background: rgba(0, 122, 255, 0.04);
+  border: 1px solid rgba(0, 122, 255, 0.14);
+  border-radius: 14px;
+  margin-bottom: 36px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.work-dvlabs-contrib-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #007aff;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.work-dvlabs-contrib-desc {
+  font-size: 13px;
+  color: #444448;
+  line-height: 1.55;
+  margin: 0;
+}

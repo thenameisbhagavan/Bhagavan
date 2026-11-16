@@ -1,7 +1,7 @@
 import SEO from "../components/SEO";
 import React, { useState, useEffect } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ArrowDown } from 'lucide-react';
+import { ArrowRight, ArrowDown, GraduationCap, Award, Briefcase, CheckCircle2, FileText, Sparkles } from 'lucide-react';
 import BrandSignature from "../components/BrandSignature";
 import '../styles/Credentials.css';
 import { Link } from 'react-router-dom';
@@ -601,6 +601,244 @@ export default function Credentials() {
                 </div>
               </div>
             </m.div>
+
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════
+            8.5. FORMAL EDUCATION TIMELINE & PROFESSIONAL DISTINCTION
+        ══════════════════════════════════════════════════════ */}
+        <section id="education-timeline" className="cred-education-section" data-nav-theme="light" style={{ padding: '100px 0 60px', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+          <div className="cred-bounds">
+            
+            <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={fadeUp} style={{ marginBottom: '48px' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', borderRadius: '999px', background: 'rgba(0,113,227,0.08)', color: '#0071E3', fontSize: '11px', fontWeight: '700', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px' }}>
+                <GraduationCap size={14} />
+                <span>FORMAL EDUCATION TIMELINE</span>
+              </div>
+              <h2 style={{ fontFamily: 'var(--font-display, "SF Pro Display", sans-serif)', fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: '700', letterSpacing: '-0.025em', color: '#111111', margin: '0 0 16px 0', lineHeight: 1.15 }}>
+                Academic Foundations in AI &amp; Data Science
+              </h2>
+              <p style={{ fontSize: '16px', color: '#6e6e73', lineHeight: 1.6, maxWidth: '780px', margin: 0 }}>
+                An authentic, verifiable institutional record. Formal academic education establishes mathematical and algorithmic baselines, distinguished from continuous professional certifications and active industry application.
+              </p>
+            </m.div>
+
+            {/* Professional Distinction: 3-Pillar Matrix */}
+            <m.div 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true, margin: "-60px" }} 
+              variants={fadeUp}
+              style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '56px' }}
+            >
+              <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 2px 12px rgba(0,0,0,0.03)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0071E3', marginBottom: '10px' }}>
+                  <GraduationCap size={18} />
+                  <span style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', textTransform: 'uppercase' }}>01 / FORMAL EDUCATION</span>
+                </div>
+                <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 8px 0' }}>Institutional Theory</h3>
+                <p style={{ fontSize: '13.5px', color: '#666666', lineHeight: 1.55, margin: 0 }}>
+                  Accredited university degrees establishing core mathematics, algorithmic foundations, computer networks, and formal computer science principles.
+                </p>
+              </div>
+
+              <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 2px 12px rgba(0,0,0,0.03)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ff9500', marginBottom: '10px' }}>
+                  <Award size={18} />
+                  <span style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', textTransform: 'uppercase' }}>02 / INDUSTRY CREDENTIALS</span>
+                </div>
+                <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 8px 0' }}>Professional Upskilling</h3>
+                <p style={{ fontSize: '13.5px', color: '#666666', lineHeight: 1.55, margin: 0 }}>
+                  Continuous targeted certifications across Google, IBM, Infosys, and AWS validating expertise in modern LLM frameworks, cloud architectures, and MLOps.
+                </p>
+              </div>
+
+              <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 2px 12px rgba(0,0,0,0.03)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#34c759', marginBottom: '10px' }}>
+                  <Briefcase size={18} />
+                  <span style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', textTransform: 'uppercase' }}>03 / APPLIED PRACTICE</span>
+                </div>
+                <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 8px 0' }}>Production Solutions</h3>
+                <p style={{ fontSize: '13.5px', color: '#666666', lineHeight: 1.55, margin: 0 }}>
+                  End-to-end web engineering, AI application development, and technical education delivery at Data Valley AI Tech Solutions and academic workshops.
+                </p>
+              </div>
+            </m.div>
+
+            {/* The Verified Academic Timeline: B.Tech → Intermediate → SSC */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+              
+              {/* Stage 01: B.Tech */}
+              <m.div 
+                initial="hidden" 
+                whileInView="visible" 
+                viewport={{ once: true, margin: "-60px" }} 
+                variants={fadeUp}
+                style={{ 
+                  background: '#ffffff', 
+                  border: '1px solid rgba(0,0,0,0.08)', 
+                  borderRadius: '24px', 
+                  padding: 'clamp(28px, 4vw, 40px)',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                  gap: '32px',
+                  alignItems: 'center'
+                }}
+              >
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#0071E3', letterSpacing: '0.08em' }}>2022 &ndash; 2026</span>
+                    <span style={{ fontSize: '11px', color: '#86868b', background: '#f5f5f7', padding: '2px 8px', borderRadius: '4px', fontWeight: '600' }}>UNDERGRADUATE</span>
+                  </div>
+                  <h3 style={{ fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: '700', color: '#111111', margin: '0 0 8px 0', letterSpacing: '-0.02em' }}>
+                    B.Tech &mdash; Artificial Intelligence and Data Science
+                  </h3>
+                  <div style={{ fontSize: '15px', color: '#333333', fontWeight: '600', marginBottom: '6px' }}>
+                    Ramachandra College of Engineering, Eluru
+                  </div>
+                  <div style={{ fontSize: '13.5px', color: '#86868b', marginBottom: '16px' }}>
+                    Affiliated to Jawaharlal Nehru Technological University Kakinada (JNTUK)
+                  </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    <span style={{ fontSize: '12px', color: '#555558', background: '#f5f5f7', padding: '4px 10px', borderRadius: '6px' }}>Machine Learning</span>
+                    <span style={{ fontSize: '12px', color: '#555558', background: '#f5f5f7', padding: '4px 10px', borderRadius: '6px' }}>Deep Learning</span>
+                    <span style={{ fontSize: '12px', color: '#555558', background: '#f5f5f7', padding: '4px 10px', borderRadius: '6px' }}>Data Mining</span>
+                    <span style={{ fontSize: '12px', color: '#555558', background: '#f5f5f7', padding: '4px 10px', borderRadius: '6px' }}>Cloud Computing</span>
+                  </div>
+                </div>
+
+                <div style={{ background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '18px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <div>
+                    <span style={{ fontSize: '11px', fontWeight: '700', color: '#86868b', letterSpacing: '0.08em', textTransform: 'uppercase' }}>VERIFIED PERFORMANCE</span>
+                    <div style={{ fontSize: '28px', fontWeight: '800', color: '#111111', letterSpacing: '-0.02em', marginTop: '4px' }}>
+                      CGPA 7.5 <span style={{ fontSize: '16px', color: '#86868b', fontWeight: '500' }}>/ 10</span>
+                    </div>
+                    <span style={{ fontSize: '12.5px', color: '#0071E3', fontWeight: '600' }}>Official CMM Record: 7.57 / 10 &bull; First Class</span>
+                  </div>
+                  <div style={{ borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '14px' }}>
+                    <Link to="/academic-archive" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: '600', color: '#0071E3', textDecoration: 'none' }}>
+                      <span>Inspect CMM &amp; Provisional Certificate</span>
+                      <ArrowRight size={13} />
+                    </Link>
+                  </div>
+                </div>
+              </m.div>
+
+              {/* Stage 02: Intermediate */}
+              <m.div 
+                initial="hidden" 
+                whileInView="visible" 
+                viewport={{ once: true, margin: "-60px" }} 
+                variants={fadeUp}
+                style={{ 
+                  background: '#ffffff', 
+                  border: '1px solid rgba(0,0,0,0.08)', 
+                  borderRadius: '24px', 
+                  padding: 'clamp(28px, 4vw, 40px)',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                  gap: '32px',
+                  alignItems: 'center'
+                }}
+              >
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#0071E3', letterSpacing: '0.08em' }}>2020 &ndash; 2022</span>
+                    <span style={{ fontSize: '11px', color: '#86868b', background: '#f5f5f7', padding: '2px 8px', borderRadius: '4px', fontWeight: '600' }}>HIGHER SECONDARY</span>
+                  </div>
+                  <h3 style={{ fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: '700', color: '#111111', margin: '0 0 8px 0', letterSpacing: '-0.02em' }}>
+                    Intermediate &mdash; MPC
+                  </h3>
+                  <div style={{ fontSize: '15px', color: '#333333', fontWeight: '600', marginBottom: '6px' }}>
+                    Sri Vidya Junior College, Gudivada
+                  </div>
+                  <div style={{ fontSize: '13.5px', color: '#86868b', marginBottom: '16px' }}>
+                    Board of Intermediate Education, Andhra Pradesh (BIEAP)
+                  </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    <span style={{ fontSize: '12px', color: '#555558', background: '#f5f5f7', padding: '4px 10px', borderRadius: '6px' }}>Mathematics (Paper A &amp; B)</span>
+                    <span style={{ fontSize: '12px', color: '#555558', background: '#f5f5f7', padding: '4px 10px', borderRadius: '6px' }}>Physics</span>
+                    <span style={{ fontSize: '12px', color: '#555558', background: '#f5f5f7', padding: '4px 10px', borderRadius: '6px' }}>Chemistry</span>
+                  </div>
+                </div>
+
+                <div style={{ background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '18px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <div>
+                    <span style={{ fontSize: '11px', fontWeight: '700', color: '#86868b', letterSpacing: '0.08em', textTransform: 'uppercase' }}>VERIFIED PERFORMANCE</span>
+                    <div style={{ fontSize: '28px', fontWeight: '800', color: '#111111', letterSpacing: '-0.02em', marginTop: '4px' }}>
+                      78% <span style={{ fontSize: '16px', color: '#86868b', fontWeight: '500' }}>/ 100%</span>
+                    </div>
+                    <span style={{ fontSize: '12.5px', color: '#34c759', fontWeight: '600' }}>Official Pass Record: 784 / 1000 Marks &bull; Grade A</span>
+                  </div>
+                  <div style={{ borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '14px' }}>
+                    <Link to="/academic-archive" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: '600', color: '#0071E3', textDecoration: 'none' }}>
+                      <span>Inspect Pass &amp; Conduct Certificates</span>
+                      <ArrowRight size={13} />
+                    </Link>
+                  </div>
+                </div>
+              </m.div>
+
+              {/* Stage 03: SSC */}
+              <m.div 
+                initial="hidden" 
+                whileInView="visible" 
+                viewport={{ once: true, margin: "-60px" }} 
+                variants={fadeUp}
+                style={{ 
+                  background: '#ffffff', 
+                  border: '1px solid rgba(0,0,0,0.08)', 
+                  borderRadius: '24px', 
+                  padding: 'clamp(28px, 4vw, 40px)',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                  gap: '32px',
+                  alignItems: 'center'
+                }}
+              >
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#0071E3', letterSpacing: '0.08em' }}>2019 &ndash; 2020</span>
+                    <span style={{ fontSize: '11px', color: '#86868b', background: '#f5f5f7', padding: '2px 8px', borderRadius: '4px', fontWeight: '600' }}>SECONDARY EDUCATION</span>
+                  </div>
+                  <h3 style={{ fontSize: 'clamp(20px, 2.5vw, 26px)', fontWeight: '700', color: '#111111', margin: '0 0 8px 0', letterSpacing: '-0.02em' }}>
+                    Secondary School Certificate (Class X)
+                  </h3>
+                  <div style={{ fontSize: '15px', color: '#333333', fontWeight: '600', marginBottom: '6px' }}>
+                    Montessori High School (EM), Gudivada
+                  </div>
+                  <div style={{ fontSize: '13.5px', color: '#86868b', marginBottom: '16px' }}>
+                    Board of Secondary Education, Andhra Pradesh (BSEAP) &bull; Krishna District
+                  </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    <span style={{ fontSize: '12px', color: '#555558', background: '#f5f5f7', padding: '4px 10px', borderRadius: '6px' }}>Mathematics (98/100)</span>
+                    <span style={{ fontSize: '12px', color: '#555558', background: '#f5f5f7', padding: '4px 10px', borderRadius: '6px' }}>General Science</span>
+                    <span style={{ fontSize: '12px', color: '#555558', background: '#f5f5f7', padding: '4px 10px', borderRadius: '6px' }}>English Medium</span>
+                  </div>
+                </div>
+
+                <div style={{ background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '18px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <div>
+                    <span style={{ fontSize: '11px', fontWeight: '700', color: '#86868b', letterSpacing: '0.08em', textTransform: 'uppercase' }}>VERIFIED PERFORMANCE</span>
+                    <div style={{ fontSize: '28px', fontWeight: '800', color: '#111111', letterSpacing: '-0.02em', marginTop: '4px' }}>
+                      95% <span style={{ fontSize: '16px', color: '#86868b', fontWeight: '500' }}>/ 100%</span>
+                    </div>
+                    <span style={{ fontSize: '12.5px', color: '#34c759', fontWeight: '600' }}>Official Pass Record: 546 / 600 Marks &bull; First Division</span>
+                  </div>
+                  <div style={{ borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '14px' }}>
+                    <Link to="/academic-archive" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: '600', color: '#0071E3', textDecoration: 'none' }}>
+                      <span>Inspect Official SSC Certificate</span>
+                      <ArrowRight size={13} />
+                    </Link>
+                  </div>
+                </div>
+              </m.div>
+
+            </div>
 
           </div>
         </section>

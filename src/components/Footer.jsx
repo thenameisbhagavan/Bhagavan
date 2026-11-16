@@ -5,6 +5,7 @@ import { ArrowUpRight, ArrowRight, Mail } from "lucide-react";
 import { socialLinks } from "../constants/socialLinks";
 
 // System preview assets & logo
+import dvLabsHeroImg from "../assets/dvlabs-hero.jpg";
 import dvAssessmentImg from "../assets/datavalley-assessment-platform.png";
 import careerOsImg from "../assets/careeros-new.jpg";
 import auraOsImg from "../assets/aurabot-new.png";
@@ -28,9 +29,11 @@ const Footer = memo(function Footer() {
 
   const navLinks = [
     { name: "Overview",       path: "/" },
-    { name: "Projects",       path: "/work" },
+    { name: "Work",           path: "/work" },
     { name: "Experience",     path: "/experience" },
+    { name: "Vision",         path: "/vision" },
     { name: "Innovation",     path: "/innovation" },
+    { name: "Credentials",    path: "/credentials" },
     { name: "Connect",        path: "/connect" },
     { name: "Resume",         path: "/resume" }
   ];
@@ -38,41 +41,49 @@ const Footer = memo(function Footer() {
   const systems = [
     {
       id: "01",
-      name: "DV Assessments",
-      desc: "Enterprise Assessment Platform",
-      tag: "Next.js · Enterprise",
+      name: "DV Labs Platform",
+      desc: "Milestone-Locked Engineering Ecosystem",
+      tag: "Company · Ongoing",
+      url: "https://dvlabs.datavalley.ai/",
+      img: dvLabsHeroImg
+    },
+    {
+      id: "02",
+      name: "DV Labs Assessment Platform",
+      desc: "Candidate Evaluation & Testing Canvas",
+      tag: "Company · In Dev",
       url: "https://dv-assesments.vercel.app/",
       img: dvAssessmentImg
     },
     {
-      id: "02",
+      id: "03",
       name: "CareerOS",
       desc: "AI Career Intelligence Platform",
-      tag: "FastAPI · Intelligence",
+      tag: "Personal · Intelligence",
       url: "https://careeros-thenameisbhagavan.vercel.app/",
       img: careerOsImg
     },
     {
-      id: "03",
+      id: "04",
       name: "AuraOS",
       desc: "Spatial AI OS & Memory Workspace",
-      tag: "React · Context OS",
+      tag: "Personal · Context OS",
       url: "https://aura-os-thenameisbhagavan.vercel.app/",
       img: auraOsImg
     },
     {
-      id: "04",
+      id: "05",
       name: "VERITAS",
       desc: "AI Trust & Fact Tracing Pipeline",
-      tag: "Python · Explainable AI",
+      tag: "Personal · Explainable AI",
       url: "https://veritas-thenameisbhagavan.vercel.app/",
       img: veritasImg
     },
     {
-      id: "05",
+      id: "06",
       name: "VoltDrive",
       desc: "EV Telemetry & Digital Showroom",
-      tag: "Telemetry · 3D Showroom",
+      tag: "Personal · 3D Showroom",
       url: "https://voltdrive-thenameisbhagavan.vercel.app/",
       img: voltDriveImg
     }
@@ -121,7 +132,7 @@ const Footer = memo(function Footer() {
         <section className="fsig-zone fsig-work-zone" aria-label="Selected Systems">
           <div className="fsig-section-head">
             <span className="fsig-section-label">SELECTED WORK</span>
-            <span className="fsig-section-counter">05 SYSTEMS IN PRODUCTION</span>
+            <span className="fsig-section-counter">06 SELECTED SYSTEMS</span>
           </div>
 
           <div className="fsig-work-layout">

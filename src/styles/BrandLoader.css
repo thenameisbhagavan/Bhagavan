@@ -1,0 +1,343 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE NAME IS BHAGAVAN — SIGNATURE BRAND LOADER EXPERIENCE
+   Apple-Inspired Minimalism · Precision Motion · Pristine Brand Identity
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --loader-bg: #F7F7F5;
+  --loader-red: #E50914;
+  --loader-red-glow: rgba(229, 9, 20, 0.16);
+  --loader-red-accent: rgba(229, 9, 20, 0.38);
+  --loader-track: rgba(0, 0, 0, 0.06);
+  --loader-label: rgba(0, 0, 0, 0.40);
+  --loader-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --loader-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+}
+
+/* ── Fullscreen Overlay Shield ── */
+.brand-loader-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  height: 100dvh;
+  z-index: 999999;
+  background-color: var(--loader-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+  will-change: opacity, transform;
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+
+.brand-loader-overlay.is-exiting {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--loader-ease);
+}
+
+/* ── Accessible Screen-Reader Announcement ── */
+.brand-loader-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Central Stage Composition ── */
+.brand-loader-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+}
+
+/* ── Ambient Radial Red Glow (Phase 2 Breathing) ── */
+.brand-loader-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(140px, 26vw, 220px);
+  height: clamp(140px, 26vw, 220px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--loader-red-glow) 0%, rgba(229, 9, 20, 0.04) 45%, transparent 70%);
+  pointer-events: none;
+  filter: blur(12px);
+  -webkit-filter: blur(12px);
+  will-change: transform, opacity;
+  animation: loaderGlowBreathe 2.8s ease-in-out infinite;
+}
+
+/* ── Orbital Accent Ring (Delicate rotating sweep around the logo) ── */
+.brand-loader-orbital-wrap {
+  position: relative;
+  width: clamp(84px, 14vw, 116px);
+  height: clamp(84px, 14vw, 116px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-loader-orbital-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform-origin: center center;
+  animation: loaderOrbitalRotate 2.6s linear infinite;
+  will-change: transform;
+}
+
+.brand-loader-orbital-track {
+  stroke: var(--loader-track);
+}
+
+.brand-loader-orbital-arc {
+  stroke: var(--loader-red);
+  stroke-linecap: round;
+}
+
+/* ── Genuine Bhagavan Red Logo Symbol ── */
+.brand-loader-logo-wrap {
+  position: relative;
+  z-index: 2;
+  width: clamp(44px, 7vw, 62px);
+  height: clamp(44px, 7vw, 62px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  animation: loaderLogoBreathe 3.2s ease-in-out infinite;
+}
+
+.brand-loader-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  /* Ensure logo renders with pin-sharp clarity */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* ── Feedback Section (Progress Track & Editorial Label) ── */
+.brand-loader-feedback {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: clamp(24px, 4vh, 32px);
+  gap: 12px;
+}
+
+/* ── Hairline Apple-Grade Indeterminate Progress Track ── */
+.brand-loader-progress-track {
+  position: relative;
+  width: clamp(84px, 12vw, 110px);
+  height: 2px;
+  background-color: var(--loader-track);
+  border-radius: 980px;
+  overflow: hidden;
+  box-shadow: inset 0 0.5px 1px rgba(0, 0, 0, 0.04);
+}
+
+.brand-loader-progress-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 32%;
+  background: linear-gradient(90deg, rgba(229, 9, 20, 0.4) 0%, var(--loader-red) 50%, rgba(229, 9, 20, 0.4) 100%);
+  border-radius: 980px;
+  will-change: transform;
+  animation: loaderProgressIndeterminate 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ── Minimal Editorial Identity Label ── */
+.brand-loader-label {
+  font-family: var(--loader-font);
+  font-size: clamp(9.5px, 1.2vw, 11px);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--loader-label);
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  opacity: 0.85;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHTWEIGHT ROUTE TRANSITION SUSPENSE MODE (.mode-route)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.brand-loader-overlay.mode-route {
+  background-color: var(--loader-bg);
+  /* Route mode appears instantly with zero layout shift */
+}
+
+.brand-loader-overlay.mode-route .brand-loader-orbital-wrap {
+  width: clamp(68px, 10vw, 88px);
+  height: clamp(68px, 10vw, 88px);
+}
+
+.brand-loader-overlay.mode-route .brand-loader-logo-wrap {
+  width: clamp(38px, 5.5vw, 48px);
+  height: clamp(38px, 5.5vw, 48px);
+}
+
+.brand-loader-overlay.mode-route .brand-loader-feedback {
+  margin-top: clamp(16px, 2.5vh, 22px);
+  gap: 8px;
+}
+
+.brand-loader-overlay.mode-route .brand-loader-progress-track {
+  width: clamp(64px, 8vw, 80px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   KEYFRAME ANIMATIONS (HIGH-PERFORMANCE GPU COMPOSITED)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Subtle ambient red breathing */
+@keyframes loaderGlowBreathe {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.95;
+  }
+}
+
+/* Restrained logo breathing (Never spinning or rotating the logo itself!) */
+@keyframes loaderLogoBreathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Smooth continuous orbital rotation */
+@keyframes loaderOrbitalRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Apple-style smooth sliding indeterminate progress bar */
+@keyframes loaderProgressIndeterminate {
+  0% {
+    left: -35%;
+    width: 25%;
+  }
+  50% {
+    left: 40%;
+    width: 38%;
+  }
+  100% {
+    left: 105%;
+    width: 25%;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE DEVICE TUNING (DESKTOP, TABLET, MOBILE)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Tablet (Portrait & Landscape: 768px – 1024px) */
+@media (max-width: 1024px) {
+  .brand-loader-orbital-wrap {
+    width: 96px;
+    height: 96px;
+  }
+  .brand-loader-logo-wrap {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+/* Mobile Devices (<= 640px) */
+@media (max-width: 640px) {
+  .brand-loader-ambient-glow {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+  }
+  .brand-loader-orbital-wrap {
+    width: 80px;
+    height: 80px;
+  }
+  .brand-loader-logo-wrap {
+    width: 44px;
+    height: 44px;
+  }
+  .brand-loader-feedback {
+    margin-top: 20px;
+    gap: 10px;
+  }
+  .brand-loader-progress-track {
+    width: 80px;
+  }
+  .brand-loader-label {
+    font-size: 9.5px;
+    letter-spacing: 0.20em;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY: PREFERS-REDUCED-MOTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .brand-loader-ambient-glow,
+  .brand-loader-orbital-svg,
+  .brand-loader-logo-wrap,
+  .brand-loader-progress-bar {
+    animation: none !important;
+  }
+
+  .brand-loader-ambient-glow {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .brand-loader-orbital-svg {
+    transform: rotate(45deg);
+  }
+
+  .brand-loader-progress-bar {
+    left: 0;
+    width: 100%;
+    background: var(--loader-red);
+    opacity: 0.75;
+  }
+
+  .brand-loader-overlay.is-exiting {
+    transition: opacity 0.15s linear;
+  }
+}
