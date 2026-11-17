@@ -110,8 +110,8 @@ export default function Experience() {
     <>
       <SEO 
         title="Experience | TheNameIsBhagavan"
-        description="Professional engineering & technical training experience of Bhagavan (TheNameIsBhagavan). Software Developer & Technical Trainer at Data Valley AI Tech Solutions. Software development, AI/ML systems, Generative AI, and technical training."
-        keywords="TheNameIsBhagavan, Bhagavan Experience, Developer Technical Trainer, Data Valley AI Tech Solutions, AI ML Developer, Generative AI, Technical Education, Software Engineering"
+        description="Professional engineering & technical training experience of Siva Satya Sai Bhagavan Gopalajosyula (TheNameIsBhagavan). Software Engineer & AI/Data Science Trainer at Data Valley Training, Placements & IT Solutions. Software development, AI/ML systems, Generative AI, and technical training."
+        keywords="TheNameIsBhagavan, Bhagavan Experience, Software Engineer, AI Data Science Trainer, Data Valley Training Placements IT Solutions, AI ML Developer, Generative AI, Technical Education, Software Engineering"
       />
       
       <ArtifactViewer 
@@ -156,7 +156,7 @@ export default function Experience() {
             
             <Reveal y={16} duration={0.8}>
               <div className="hero-eyebrow">
-                <span className="hero-badge">PROFESSIONAL PRACTICE &middot; DATA VALLEY AI TECH SOLUTIONS</span>
+                <span className="hero-badge">PROFESSIONAL PRACTICE &middot; DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS</span>
               </div>
             </Reveal>
 
@@ -169,7 +169,7 @@ export default function Experience() {
 
             <Reveal y={20} duration={0.9} delay={0.3}>
               <p className="hero-sub">
-                A dual professional practice grounded in production software engineering and applied AI systems, complemented by high-impact technical training across Python, Data Science, Machine Learning, and Generative AI at Data Valley AI Tech Solutions.
+                Working across software engineering, AI application development, and technical education, combining practical system development with industry-oriented technical training at Data Valley Training, Placements &amp; IT Solutions.
               </p>
             </Reveal>
 
@@ -205,7 +205,7 @@ export default function Experience() {
                 <h2 className="company-name">AI SOLUTIONS ENGINEERING</h2>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.15}>
-                <span className="role-title highlight-role">AI Solutions Developer &middot; Data Valley AI Tech Solutions</span>
+                <span className="role-title highlight-role">Software Engineer &amp; AI/Data Science Trainer &middot; Data Valley Training, Placements &amp; IT Solutions</span>
                 <span style={{ display: 'block', fontSize: '12px', fontWeight: '600', color: '#86868b', marginTop: '4px', letterSpacing: '0.04em' }}>
                   JUNE 2024 &ndash; PRESENT &bull; VIJAYAWADA, ANDHRA PRADESH
                 </span>
@@ -220,7 +220,7 @@ export default function Experience() {
 
             <Reveal y={20} duration={0.9} delay={0.3}>
               <p className="chapter-desc">
-                Engineering software applications, backend microservices, and applied AI systems at Data Valley AI Tech Solutions in Vijayawada. I design and build production-grade web applications, Python backend services, database architectures, and secure API gateways that interface modern web frontends with intelligent machine learning models.
+                Working across software engineering, AI application development, and technical education at Data Valley Training, Placements &amp; IT Solutions in Vijayawada. I design and build production-grade web applications, Python backend services, database architectures, and secure API gateways that interface modern web frontends with intelligent machine learning models.
               </p>
             </Reveal>
 
@@ -253,7 +253,7 @@ export default function Experience() {
                       <span className="exp-dvlabs-pulse-dot" aria-hidden="true"></span>
                       COMPANY PROJECT &middot; ONGOING DEVELOPMENT
                     </span>
-                    <span className="exp-dvlabs-company-tag">DATA VALLEY AI TECH SOLUTIONS</span>
+                    <span className="exp-dvlabs-company-tag">DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS</span>
                   </div>
 
                   <div className="exp-dvlabs-brand-title">
@@ -267,7 +267,7 @@ export default function Experience() {
                     "Where vision meets execution."
                   </h4>
                   <p className="exp-dvlabs-subline">
-                    Milestone-locked projects. Defended in viva. Built for the real world. A flagship company engineering platform at Data Valley AI Tech Solutions bridging academic learning with production engineering rigor.
+                    A Data Valley company development initiative designed to transform engineering capstone development through AI-powered mentorship, research intelligence, structured project engineering, technical evaluation, and career readiness.
                   </p>
                 </div>
 
@@ -332,8 +332,8 @@ export default function Experience() {
                     <div className="exp-dvlabs-contrib-box">
                       <div className="exp-dvlabs-contrib-title">My Technical Contribution</div>
                       <p className="exp-dvlabs-contrib-text">
-                        <strong>Role:</strong> AI Solutions Developer | Full-Stack Development &amp; AI Systems.<br />
-                        I engineered the full-stack web application end-to-end (Next.js App Router, React 19, TypeScript, MongoDB Atlas), designed the state persistence and background sync pipeline, implemented deterministic server-side evaluation, and architected the AI viva questioning workflows.
+                        <strong>Role:</strong> Software Engineer | Data Valley Engineering Team.<br />
+                        Part of the engineering team developing the DV Labs platform and assessment workflows. Engineered full-stack modules (Next.js App Router, React 19, TypeScript, MongoDB Atlas), designed state persistence and background sync pipelines, implemented deterministic server-side evaluation, and architected AI viva defense workflows.
                       </p>
                     </div>
                   </div>
@@ -342,7 +342,7 @@ export default function Experience() {
                 <div className="exp-dvlabs-footer">
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666668', fontSize: '13px' }}>
                     <CheckCircle2 size={15} style={{ color: '#34c759' }} />
-                    <span>Proprietary Company Project of Data Valley AI Tech Solutions &middot; Actively Maintained</span>
+                    <span>Proprietary Company Project of Data Valley Training, Placements &amp; IT Solutions &middot; Actively Maintained</span>
                   </div>
 
                   <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
@@ -452,7 +452,7 @@ export default function Experience() {
             <Reveal y={24} duration={0.9} delay={0.5}>
               <div className="artifact-card-container">
                 <div className="ac-top-meta">
-                  <span className="ac-badge">PRODUCTION DEPLOYMENT &middot; DATA VALLEY AI TECH SOLUTIONS</span>
+                  <span className="ac-badge">PRODUCTION DEPLOYMENT &middot; DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS</span>
                   <span className="ac-doc-num">LIVE SYSTEM</span>
                 </div>
                 <div style={{ padding: '20px', background: '#f5f5f7', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
@@ -490,7 +490,7 @@ export default function Experience() {
                 <h2 className="company-name">TECHNICAL TRAINING &amp; MENTORSHIP</h2>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.15}>
-                <span className="role-title highlight-role">Technical Trainer &middot; Data Valley AI Tech Solutions</span>
+                <span className="role-title highlight-role">Software Engineer &amp; AI/Data Science Trainer &middot; Data Valley Training, Placements &amp; IT Solutions</span>
                 <span style={{ display: 'block', fontSize: '12px', fontWeight: '600', color: '#86868b', marginTop: '4px', letterSpacing: '0.04em' }}>
                   JUNE 2024 &ndash; PRESENT &bull; VIJAYAWADA, ANDHRA PRADESH
                 </span>
@@ -505,7 +505,7 @@ export default function Experience() {
 
             <Reveal y={20} duration={0.9} delay={0.3}>
               <p className="chapter-desc">
-                Serving as Technical Trainer at Data Valley AI Tech Solutions since June 2024, delivering comprehensive technical instruction, designing progressive curricula, and conducting hands-on workshops across Data Science, Machine Learning, Python, and Generative AI for students and trainees.
+                Serving as Software Engineer &amp; AI/Data Science Trainer at Data Valley Training, Placements &amp; IT Solutions since June 2024, delivering comprehensive technical instruction, designing progressive curricula, and conducting hands-on workshops across Data Science, Machine Learning, Python, and Generative AI for students and trainees.
               </p>
             </Reveal>
 
@@ -653,14 +653,14 @@ export default function Experience() {
               <div className="artifact-card-container">
                 <div className="ac-top-meta">
                   <span className="ac-badge">DOCUMENTED ENGAGEMENT</span>
-                  <span className="ac-doc-num">Technical Mentorship &middot; Data Valley AI Tech Solutions</span>
+                  <span className="ac-doc-num">Technical Mentorship &middot; Data Valley Training, Placements &amp; IT Solutions</span>
                 </div>
                 <button 
                   className="artifact-preview-btn"
-                  onClick={() => openViewer(datavalleyImg, "Technical training and mentorship session at Data Valley AI Tech Solutions")}
+                  onClick={() => openViewer(datavalleyImg, "Technical training and mentorship session at Data Valley Training, Placements & IT Solutions")}
                   style={{ background: '#f5f5f7', padding: 0 }}
                 >
-                  <img src={datavalleyImg} alt="Technical mentorship session at Data Valley AI Tech Solutions" className="artifact-img" loading="lazy" style={{ objectFit: 'cover', height: 'auto', maxHeight: '500px', width: '100%' }} />
+                  <img src={datavalleyImg} alt="Technical mentorship session at Data Valley Training, Placements & IT Solutions" className="artifact-img" loading="lazy" style={{ objectFit: 'cover', height: 'auto', maxHeight: '500px', width: '100%' }} />
                   <div className="artifact-hover-overlay">
                     <span>VIEW IMAGE ↗</span>
                   </div>

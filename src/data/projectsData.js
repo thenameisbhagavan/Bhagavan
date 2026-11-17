@@ -19,23 +19,23 @@ export const PROJECT_CATEGORIES = {
 
 export const ALL_PROJECTS = [
   // ============================================================
-  // TIER 1: COMPANY PROJECTS (DATA VALLEY AI TECH SOLUTIONS / DV LABS)
+  // TIER 1: COMPANY PROJECTS (DATA VALLEY TRAINING, PLACEMENTS & IT SOLUTIONS / DV LABS)
   // ============================================================
   {
     id: "dv-labs-platform",
-    title: "DV Labs Platform",
+    title: "DV Labs — AI-Guided Capstone-to-Career Platform",
     shortTitle: "DV Labs",
     category: PROJECT_CATEGORIES.COMPANY,
     categoryPriority: 1,
     displayOrder: 1,
-    organization: "Data Valley AI Tech Solutions / DV Labs",
-    ownership: "Data Valley AI Tech Solutions",
+    organization: "Data Valley Training, Placements & IT Solutions / DV Labs",
+    ownership: "Data Valley Training, Placements & IT Solutions",
     status: "ONGOING",
     statusBadge: "COMPANY PROJECT · ONGOING",
     tagline: "Where vision meets execution.",
     subline: "Milestone-locked projects. Defended in viva. Built for the real world.",
-    description: "An advanced company engineering ecosystem designed to bridge academic coursework with production engineering rigor through stage-gated milestones, automated AI viva defenses, and verifiable deliverables.",
-    contribution: "AI Solutions Developer | Full-Stack Development & AI Systems. Engineered full-stack web application, AI viva questioning workflows, stage-gated milestone progress models, and speech processing integrations.",
+    description: "A Data Valley company development initiative designed to transform engineering capstone development through AI-powered mentorship, research intelligence, structured project engineering, technical evaluation, and career readiness.",
+    contribution: "Software Engineer | Data Valley Engineering Team. Developed web application features, AI evaluation workflows, stage-gated milestone progress models, and assessment integrations as part of the Data Valley engineering team.",
     technologyStack: [
       "Next.js App Router",
       "React 19",
@@ -73,14 +73,14 @@ export const ALL_PROJECTS = [
     category: PROJECT_CATEGORIES.COMPANY,
     categoryPriority: 1,
     displayOrder: 2,
-    organization: "Data Valley AI Tech Solutions",
-    ownership: "Data Valley AI Tech Solutions",
+    organization: "Data Valley Training, Placements & IT Solutions",
+    ownership: "Data Valley Training, Placements & IT Solutions",
     status: "ONGOING / IN DEVELOPMENT",
     statusBadge: "COMPANY PROJECT · IN DEVELOPMENT",
     tagline: "Candidate assessment platform with secure sessions, live timers, and server-side evaluation.",
     subline: "40 structured technical challenges with synchronized countdown timers, background delta auto-sync, and 100% tamper-proof server-side scoring.",
-    description: "An end-to-end technical evaluation application built for Data Valley AI Tech Solutions. Combines authenticated candidate workflows, synchronized countdown timers, background auto-save sync, deterministic server scoring, and proctoring telemetry.",
-    contribution: "End-to-End Application Developer. Designed and developed candidate authentication with HTTP-only cookies, continuous auto-sync via /api/assessment/sync, 100% server-side scoring via /api/assessment/submit, MongoDB Atlas schemas, and integrity event logging.",
+    description: "An end-to-end technical evaluation application built for Data Valley Training, Placements & IT Solutions. Combines authenticated candidate workflows, synchronized countdown timers, background auto-save sync, deterministic server scoring, and proctoring telemetry.",
+    contribution: "Software Engineer | Data Valley Engineering Team. Designed and developed candidate authentication with HTTP-only cookies, continuous auto-sync via /api/assessment/sync, 100% server-side scoring via /api/assessment/submit, MongoDB Atlas schemas, and integrity event logging.",
     technologyStack: [
       "Next.js App Router",
       "React 19",

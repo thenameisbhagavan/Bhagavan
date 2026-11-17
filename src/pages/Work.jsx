@@ -29,7 +29,7 @@ export const FLAGSHIP_PROJECTS = [
     category: "COMPANY PROJECT · ONGOING",
     categoryType: "company",
     tagline: "Where vision meets execution.",
-    desc: "Milestone-locked projects. Defended in viva. Built for the real world. Flagship company engineering ecosystem for Data Valley AI Tech Solutions.",
+    desc: "A Data Valley company development initiative designed to transform engineering capstone development through AI-powered mentorship, research intelligence, structured project engineering, technical evaluation, and career readiness.",
     img: dvLabsHeroImg,
     link: "/work/dv-labs-platform",
     live: "https://dvlabs.datavalley.ai/"
@@ -103,8 +103,8 @@ export default function Work() {
     <>
       <SEO 
         title="Work | TheNameIsBhagavan"
-        description="Engineering exhibition by Bhagavan (TheNameIsBhagavan) — Software Developer, AI Engineer, and Technical Trainer. Explore DV Labs Platform, Data Valley Assessment Platform, CareerOS, AuraOS, VERITAS, VoltDrive, AgriVision AI, and ATS Resume Builder."
-        keywords="TheNameIsBhagavan, Bhagavan Projects, DV Labs, Data Valley Engineering Assessment Platform, Software Developer, AI Systems Engineering, CareerOS, AuraOS, VERITAS, VoltDrive, AgriVision AI, Technical Trainer"
+        description="Engineering exhibition by Siva Satya Sai Bhagavan Gopalajosyula (TheNameIsBhagavan) — Software Engineer & AI/Data Science Trainer at Data Valley Training, Placements & IT Solutions. Explore DV Labs Platform, Data Valley Assessment Platform, CareerOS, AuraOS, VERITAS, VoltDrive, and AgriVision AI."
+        keywords="TheNameIsBhagavan, Bhagavan Projects, DV Labs, Data Valley Training Placements IT Solutions, Software Engineer, AI Systems Engineering, CareerOS, AuraOS, VERITAS, VoltDrive, AgriVision AI, Technical Trainer"
       />
       <div className="work-exhibition-page">
 
@@ -230,7 +230,7 @@ export default function Work() {
                     <span className="work-dvlabs-pulse-dot" aria-hidden="true"></span>
                     COMPANY PROJECT &middot; ONGOING
                   </span>
-                  <span className="chapter-badge">DATA VALLEY AI TECH SOLUTIONS &middot; 01 / 09</span>
+                  <span className="chapter-badge">DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS &middot; 01 / 09</span>
                 </div>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>
@@ -251,7 +251,7 @@ export default function Work() {
 
             <Reveal y={20} duration={0.85} delay={0.25}>
               <p className="work-dvlabs-subline-text">
-                Milestone-locked projects. Defended in viva. Built for the real world. A flagship company engineering platform at Data Valley AI Tech Solutions bridging academic learning with production engineering rigor.
+                A Data Valley company development initiative designed to transform engineering capstone development through AI-powered mentorship, research intelligence, structured project engineering, technical evaluation, and career readiness at Data Valley Training, Placements &amp; IT Solutions.
               </p>
             </Reveal>
 
@@ -260,7 +260,7 @@ export default function Work() {
               <div className="work-dvlabs-contrib-ribbon">
                 <span className="work-dvlabs-contrib-badge">MY CONTRIBUTION:</span>
                 <p className="work-dvlabs-contrib-desc">
-                  <strong>AI Solutions Developer | Full-Stack Architecture &amp; AI Systems:</strong> Architected full-stack web application (Next.js App Router, React 19, TypeScript, MongoDB Atlas). Designed stage-gated milestone progression models, AI viva defense workflows, and speech evaluation integrations.
+                  <strong>Software Engineer | Data Valley Engineering Team:</strong> Part of the engineering team developing the platform. Engineered full-stack modules (Next.js App Router, React 19, TypeScript, MongoDB Atlas), state persistence and background sync pipelines, and AI viva defense workflows.
                 </p>
               </div>
             </Reveal>
@@ -275,7 +275,7 @@ export default function Work() {
                   loading="lazy" 
                 />
                 <div style={{ position: 'absolute', bottom: '16px', left: '16px', background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', padding: '6px 14px', borderRadius: '8px', fontSize: '11.5px', fontWeight: '700', color: '#1d1d1f' }}>
-                  OFFICIAL DV LABS PRODUCT ENVIRONMENT &middot; DATA VALLEY AI TECH SOLUTIONS
+                  OFFICIAL DV LABS PRODUCT ENVIRONMENT &middot; DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS
                 </div>
               </div>
             </ScaleReveal>
@@ -333,7 +333,7 @@ export default function Work() {
                     <span className="work-dvlabs-pulse-dot" aria-hidden="true"></span>
                     COMPANY PROJECT &middot; IN DEVELOPMENT
                   </span>
-                  <span className="chapter-badge">DATA VALLEY AI TECH SOLUTIONS &middot; 02 / 09</span>
+                  <span className="chapter-badge">DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS &middot; 02 / 09</span>
                 </div>
               </Reveal>
               <Reveal y={16} duration={0.8} delay={0.1}>

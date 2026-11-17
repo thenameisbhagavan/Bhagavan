@@ -71,14 +71,14 @@ export default function DVLabsPlatform() {
         "operatingSystem": "All modern browsers",
         "creator": {
           "@type": "Person",
-          "name": "Gopala Josyula Siva Satya Sai Bhagavan",
+          "name": "Siva Satya Sai Bhagavan Gopalajosyula",
           "alternateName": "TheNameIsBhagavan",
-          "jobTitle": "AI Solutions Developer | Full-Stack Development & AI Systems",
+          "jobTitle": "Software Engineer & AI/Data Science Trainer",
           "url": "https://thenameisbhagavan.in/"
         },
         "publisher": {
           "@type": "Organization",
-          "name": "Data Valley AI Tech Solutions",
+          "name": "Data Valley Training, Placements & IT Solutions",
           "url": "https://dvlabs.datavalley.ai/"
         },
         "url": canonicalUrl,
@@ -113,16 +113,16 @@ export default function DVLabsPlatform() {
   return (
     <div className="dva-case-study">
       <Helmet>
-        <title>DV Labs Platform — Milestone-Locked Projects & AI Viva Defense | TheNameIsBhagavan</title>
+        <title>DV Labs Platform — AI-Guided Capstone-to-Career Platform | TheNameIsBhagavan</title>
         <meta
           name="description"
-          content="Official engineering case study of DV Labs Platform at Data Valley AI Tech Solutions: milestone-locked projects, AI viva defense systems, and production engineering verification."
+          content="Official engineering case study of DV Labs Platform at Data Valley Training, Placements & IT Solutions: milestone-locked projects, AI viva defense systems, and production engineering verification."
         />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:title" content="DV Labs Platform — Where Vision Meets Execution" />
         <meta
           property="og:description"
-          content="Milestone-locked projects. Defended in viva. Built for the real world. Flagship company engineering initiative at Data Valley AI Tech Solutions."
+          content="Milestone-locked projects. Defended in viva. Built for the real world. A Data Valley company development initiative at Data Valley Training, Placements & IT Solutions."
         />
         <meta property="og:image" content="https://thenameisbhagavan.in/images/work/dvlabs-hero.jpg" />
         <meta property="og:type" content="article" />
@@ -140,8 +140,8 @@ export default function DVLabsPlatform() {
           </div>
 
           <div className="dva-hero-meta-row">
-            <span className="dva-badge-org">COMPANY PROJECT &middot; DATA VALLEY AI TECH SOLUTIONS</span>
-            <span className="dva-badge-role">CONTRIBUTION: FULL-STACK &amp; AI SYSTEMS</span>
+            <span className="dva-badge-org">COMPANY PROJECT &middot; DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS</span>
+            <span className="dva-badge-role">CONTRIBUTION: SOFTWARE ENGINEER | DATA VALLEY ENGINEERING TEAM</span>
             <span className="dva-badge-live">
               <span className="dva-live-dot"></span>
               ONGOING DEVELOPMENT &middot; COMPANY PLATFORM
@@ -164,7 +164,7 @@ export default function DVLabsPlatform() {
           <Reveal y={20} duration={0.9} delay={0.2}>
             <p className="dva-hero-sub">
               <strong>Milestone-locked projects. Defended in viva. Built for the real world.</strong><br />
-              An advanced engineering and project defense ecosystem developed at Data Valley AI Tech Solutions. DV Labs transforms engineering education by enforcing stage-gated milestone delivery and automated AI-driven oral viva interrogations.
+              A Data Valley company development initiative designed to transform engineering capstone development through AI-powered mentorship, research intelligence, structured project engineering, technical evaluation, and career readiness at Data Valley Training, Placements &amp; IT Solutions.
             </p>
           </Reveal>
 
@@ -199,7 +199,7 @@ export default function DVLabsPlatform() {
           <div className="dva-facts-grid">
             <div className="dva-fact-item">
               <span className="dva-fact-label">PRODUCT OWNERSHIP</span>
-              <span className="dva-fact-value">Data Valley AI Tech Solutions</span>
+              <span className="dva-fact-value">Data Valley Training, Placements &amp; IT Solutions</span>
             </div>
             <div className="dva-fact-item">
               <span className="dva-fact-label">PROJECT STATUS</span>
@@ -209,7 +209,7 @@ export default function DVLabsPlatform() {
             </div>
             <div className="dva-fact-item">
               <span className="dva-fact-label">MY ROLE</span>
-              <span className="dva-fact-value">AI Solutions Developer (Full-Stack &amp; AI)</span>
+              <span className="dva-fact-value">Software Engineer | Data Valley Engineering Team</span>
             </div>
             <div className="dva-fact-item">
               <span className="dva-fact-label">CORE ARCHITECTURE</span>
@@ -270,7 +270,7 @@ export default function DVLabsPlatform() {
                   <strong>Figure 1.0:</strong> Official DV Labs product environment — mountain sunrise workspace capturing the brand identity: <em>"Where vision meets execution. Milestone-locked projects. Defended in viva. Built for the real world."</em>
                 </span>
                 <span style={{ fontSize: "11px", fontWeight: "600", color: "#e62e2d" }}>
-                  OFFICIAL BRAND ARTIFACT &middot; DATA VALLEY LABS
+                  OFFICIAL BRAND ARTIFACT &middot; DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS
                 </span>
               </div>
             </div>
@@ -288,7 +288,7 @@ export default function DVLabsPlatform() {
 
           <Reveal y={20} duration={0.9} delay={0.15}>
             <p className="dva-body-p">
-              <strong>DV Labs</strong> is a flagship engineering and project defense platform developed at <strong>Data Valley AI Tech Solutions</strong>. It tackles one of the greatest challenges in contemporary technical education: the chasm between textbook programming exercises and real-world engineering rigor.
+              <strong>DV Labs</strong> is a company development initiative developed at <strong>Data Valley Training, Placements &amp; IT Solutions</strong>. It tackles one of the greatest challenges in contemporary technical education: the chasm between textbook programming exercises and real-world engineering rigor.
             </p>
             <p className="dva-body-p">
               In typical learning environments, students build superficial tutorial clones that fall apart when tested with boundary conditions, schema migrations, or oral interview questions. DV Labs restructures the entire project lifecycle into <strong>sequential, verifiable engineering gates</strong> paired with <strong>automated AI viva interrogations</strong>.
@@ -347,12 +347,12 @@ export default function DVLabsPlatform() {
         <div className="dva-bounds">
           <Reveal y={20} duration={0.9}>
             <span className="dva-section-label">SECTION 03 · MY CONTRIBUTIONS</span>
-            <h2 className="dva-section-title">What I Engineered as AI Solutions Developer</h2>
+            <h2 className="dva-section-title">What I Engineered as Software Engineer</h2>
           </Reveal>
 
           <Reveal y={20} duration={0.9} delay={0.15}>
             <p className="dva-body-p">
-              As an <strong>AI Solutions Developer | Full-Stack Development &amp; AI Systems</strong> at Data Valley AI Tech Solutions, my technical contributions to DV Labs include:
+              As a <strong>Software Engineer (Data Valley Engineering Team)</strong> at Data Valley Training, Placements &amp; IT Solutions, my technical contributions to DV Labs include:
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginTop: '24px' }}>
               <div style={{ padding: '22px', background: '#ffffff', borderRadius: '14px', border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 16px rgba(0,0,0,0.02)' }}>
@@ -428,7 +428,7 @@ export default function DVLabsPlatform() {
               <div>
                 <h4 className="dva-ownership-title">COMPANY INTELLECTUAL PROPERTY NOTICE</h4>
                 <p className="dva-ownership-text">
-                  <strong>DV LABS</strong> is a proprietary product and engineering platform owned by <strong>Data Valley AI Tech Solutions</strong>. All branding, terminology ("Where vision meets execution", "Milestone-locked projects", "Defended in viva"), trademarks, and corporate assets belong exclusively to the company. My presentation on this portfolio documents my verified engineering contributions as an <strong>AI Solutions Developer | Full-Stack Development &amp; AI Systems</strong>.
+                  <strong>DV LABS</strong> is a proprietary product and engineering platform owned by <strong>Data Valley Training, Placements &amp; IT Solutions</strong>. All branding, terminology ("Where vision meets execution", "Milestone-locked projects", "Defended in viva"), trademarks, and corporate assets belong exclusively to the company. My presentation on this portfolio documents my verified engineering contributions as a <strong>Software Engineer | Data Valley Engineering Team</strong>.
                 </p>
               </div>
             </div>
@@ -445,7 +445,7 @@ export default function DVLabsPlatform() {
                 COMPANY PROJECT &middot; ONGOING DEVELOPMENT
               </span>
               <h3 style={{ fontSize: "22px", fontWeight: "700", color: "#1d1d1f", margin: "4px 0 0" }}>
-                DV Labs &middot; Data Valley AI Tech Solutions
+                DV Labs &middot; Data Valley Training, Placements &amp; IT Solutions
               </h3>
             </div>
 
@@ -482,7 +482,7 @@ export default function DVLabsPlatform() {
           <div className="dva-modal-dialog" onClick={(e) => e.stopPropagation()}>
             <div className="dva-modal-header">
               <span className="dva-modal-title">
-                DV Labs — Official Product Environment &middot; Data Valley AI Tech Solutions
+                DV Labs — Official Product Environment &middot; Data Valley Training, Placements &amp; IT Solutions
               </span>
               <button
                 className="dva-modal-close-btn"

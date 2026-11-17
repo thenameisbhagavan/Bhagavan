@@ -143,8 +143,8 @@ export default function Overview() {
   return (
     <>
       <SEO
-        description="Official portfolio of Bhagavan (TheNameIsBhagavan) — AI & Data Science Professional, Technical Trainer, and AI Solutions Developer at Data Valley AI Tech Solutions. Practical AI implementation, Python engineering, Generative AI, and technical education."
-        keywords="TheNameIsBhagavan, Bhagavan, AI Data Science Professional, Technical Trainer, AI Solutions Developer, Data Valley AI Tech Solutions, Machine Learning, Generative AI, Prompt Engineering, Agentic AI, CareerOS, AuraOS, VERITAS, VoltDrive"
+        description="Official portfolio of Bhagavan (TheNameIsBhagavan) — Software Engineer and AI Solutions Developer at Data Valley Training, Placements & IT Solutions. Working across software engineering, intelligent application development, and Artificial Intelligence."
+        keywords="TheNameIsBhagavan, Bhagavan, Software Engineer, AI Data Science Trainer, AI Solutions Developer, Data Valley Training Placements & IT Solutions, Machine Learning, Generative AI, Prompt Engineering, Agentic AI, DV Labs, CareerOS, AuraOS, VERITAS, VoltDrive"
       />
 
       <div className="engineering-surface">
@@ -157,31 +157,53 @@ export default function Overview() {
 
             {/* LEFT COLUMN: EDITORIAL CONTENT */}
             <div className="es-hero-left">
-              {/* Professional Identity Eyebrow Stack */}
-              <div className="es-hero-eyebrow-stack">
+              {/* Professional Identity Eyebrow Stack (Desktop) */}
+              <div className="es-hero-eyebrow-stack es-hero-eyebrow-desktop">
                 <span className="es-hero-primary-identity">
-                  AI &amp; DATA SCIENCE PROFESSIONAL <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> AI SOLUTIONS DEVELOPER
+                  SOFTWARE ENGINEER <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> AI SOLUTIONS DEVELOPER
                 </span>
                 <span className="es-hero-secondary-identity">
                   TECHNICAL TRAINER <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span> AI &amp; DATA SCIENCE EDUCATOR
                 </span>
               </div>
 
-              {/* Primary Headline — Rock-solid visible line mask reveal */}
-              <div className="es-hero-title-group">
-                <h1 className="es-hero-headline" aria-label="I Build Intelligent Digital Experiences.">
+              {/* Professional Identity Stack (Mobile) */}
+              <div className="es-hero-mobile-identity" aria-label="Professional Roles">
+                <span className="es-mobile-id-badge">AI &amp; DATA SCIENCE PROFESSIONAL</span>
+                <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span>
+                <span className="es-mobile-id-badge">AI SOLUTIONS DEVELOPER</span>
+                <span className="es-hero-eyebrow-sep" aria-hidden="true">&bull;</span>
+                <span className="es-mobile-id-badge">TECHNICAL TRAINER</span>
+              </div>
+
+              {/* Primary Headline — Rock-solid visible line mask reveal (Desktop) */}
+              <div className="es-hero-title-group es-hero-title-desktop">
+                <h1 className="es-hero-headline" aria-label="Engineering Intelligent Systems. Building Practical AI Solutions.">
                   <span className="es-hero-hl-mask">
-                    <span className="es-hero-hl-line line-1">I Build Intelligent</span>
+                    <span className="es-hero-hl-line line-1">Engineering Intelligent Systems.</span>
                   </span>
                   <span className="es-hero-hl-mask">
-                    <span className="es-hero-hl-line line-2">Digital Experiences.</span>
+                    <span className="es-hero-hl-line line-2">Building Practical AI Solutions.</span>
                   </span>
                 </h1>
               </div>
 
-              {/* Supporting Editorial Description */}
-              <p className="es-hero-sub">
-                Engineering practical AI solutions, resilient backend architectures, and production applications. Developer &amp; Technical Trainer at Data Valley AI Tech Solutions, combining active systems development with real-world technical education across Python, Data Science, Machine Learning, and Generative AI.
+              {/* Primary Headline — Apple-Inspired Typography (Mobile) */}
+              <div className="es-hero-title-group es-hero-title-mobile">
+                <h1 className="es-hero-headline-mobile" aria-label="I Build Intelligent Digital Experiences.">
+                  <span className="es-hero-mobile-hl-line line-1">I Build Intelligent</span>
+                  <span className="es-hero-mobile-hl-line line-2">Digital Experiences.</span>
+                </h1>
+              </div>
+
+              {/* Supporting Editorial Description (Desktop) */}
+              <p className="es-hero-sub es-hero-sub-desktop">
+                Software Engineer and AI Solutions Developer at Data Valley Training, Placements &amp; IT Solutions, working across software engineering, intelligent application development, and Artificial Intelligence. Alongside development, I deliver practical technical training in Python, Data Science, Machine Learning, and Generative AI, connecting engineering concepts with real-world implementation.
+              </p>
+
+              {/* Supporting Editorial Description (Mobile Concise) */}
+              <p className="es-hero-sub-mobile">
+                Building practical AI solutions, intelligent applications, and reliable backend systems. Developer and Technical Trainer at Data Valley, working across Python, Data Science, Machine Learning, and Generative AI.
               </p>
 
               {/* Mobile Portrait (Appears between description and CTAs on mobile viewport) */}
@@ -189,7 +211,7 @@ export default function Overview() {
                 <div className="es-hero-portrait-frame">
                   <img
                     src={profileHeroImg}
-                    alt="Bhagavan — AI & Data Science Professional, Technical Trainer & AI Solutions Developer"
+                    alt="Siva Satya Sai Bhagavan Gopalajosyula — Software Engineer &amp; AI Solutions Developer"
                     loading="eager"
                     fetchpriority="high"
                     className="es-hero-portrait-img"
@@ -198,8 +220,8 @@ export default function Overview() {
                 </div>
               </div>
 
-              {/* Interactive CTAs */}
-              <div className="es-hero-actions-group">
+              {/* Interactive CTAs (Desktop) */}
+              <div className="es-hero-actions-group es-hero-actions-desktop">
                 <MagneticLink strength={0.2}>
                   <button
                     className="es-hero-btn-primary apple-pressable"
@@ -232,6 +254,26 @@ export default function Overview() {
                   </button>
                 </MagneticLink>
               </div>
+
+              {/* Interactive CTAs (Mobile) */}
+              <div className="es-hero-actions-group-mobile">
+                <button
+                  className="es-mobile-btn-primary apple-pressable"
+                  onClick={() => navigate('/work')}
+                  aria-label="View My Work"
+                >
+                  <span>View My Work</span>
+                  <ArrowRight size={15} className="es-hero-btn-arrow" strokeWidth={2.2} />
+                </button>
+
+                <button
+                  className="es-mobile-btn-secondary apple-pressable"
+                  onClick={() => navigate('/connect')}
+                  aria-label="Get in Touch"
+                >
+                  <span>Get in Touch</span>
+                </button>
+              </div>
             </div>
 
             {/* RIGHT COLUMN: DESKTOP PORTRAIT */}
@@ -240,7 +282,7 @@ export default function Overview() {
                 <div className="es-hero-portrait-frame">
                   <img
                     src={profileHeroImg}
-                    alt="Bhagavan — AI & Data Science Professional, Technical Trainer & AI Solutions Developer"
+                    alt="Bhagavan — Software Engineer &amp; AI/Data Science Trainer"
                     loading="eager"
                     fetchpriority="high"
                     className="es-hero-portrait-img"
@@ -363,7 +405,7 @@ export default function Overview() {
 
 
         {/* ============================================================
-            SECTION 02 — SELECTED COMPANY WORK (DATA VALLEY AI TECH SOLUTIONS)
+            SECTION 02 — SELECTED COMPANY WORK (DATA VALLEY TRAINING, PLACEMENTS & IT SOLUTIONS)
             ============================================================ */}
         <section id="company-work" className="es-company-work-section" data-nav-theme="light">
           <div className="es-bounds">
@@ -376,7 +418,7 @@ export default function Overview() {
                     <span className="es-cw-pulse-dot" aria-hidden="true"></span>
                     COMPANY PROJECT &middot; ONGOING
                   </span>
-                  <span className="es-cw-company-badge">DATA VALLEY AI TECH SOLUTIONS</span>
+                  <span className="es-cw-company-badge">DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS</span>
                 </div>
               </Reveal>
 
@@ -391,7 +433,7 @@ export default function Overview() {
 
               <Reveal y={20} duration={0.9} delay={0.18}>
                 <p className="es-cw-lead">
-                  A selection of AI-powered platforms, assessment systems, and digital products developed through my professional work at Data Valley AI Tech Solutions.
+                  A selection of AI-powered platforms, assessment systems, and digital products developed through my professional work at Data Valley Training, Placements &amp; IT Solutions.
                 </p>
               </Reveal>
             </div>
@@ -412,7 +454,7 @@ export default function Overview() {
                         COMPANY PROJECT &middot; ONGOING
                       </span>
                       <span style={{ fontSize: '11.5px', fontWeight: '700', color: '#86868b', letterSpacing: '0.04em' }}>
-                        DATA VALLEY AI TECH SOLUTIONS
+                        DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS
                       </span>
                     </div>
 
@@ -459,7 +501,7 @@ export default function Overview() {
                         Milestone-locked projects. Defended in viva. Built for the real world.
                       </p>
                       <p className="es-cw-desc">
-                        An advanced company engineering ecosystem designed to bridge academic coursework with production engineering rigor through stage-gated milestones, automated AI viva defenses, and verifiable deliverables.
+                        A Data Valley company development initiative designed to transform engineering capstone development through AI-powered mentorship, research intelligence, structured project engineering, technical evaluation, and career readiness.
                       </p>
                     </div>
 
@@ -467,7 +509,7 @@ export default function Overview() {
                       <div className="es-cw-contrib-box">
                         <div className="es-cw-contrib-label">MY CONTRIBUTION</div>
                         <p className="es-cw-contrib-text">
-                          <strong>AI Solutions Developer | Full-Stack &amp; AI Systems:</strong> Engineered full-stack web application, AI viva questioning workflows, stage-gated milestone progress models, and speech processing integrations.
+                          <strong>Software Engineer | Data Valley Engineering Team:</strong> Developed web application features, AI evaluation workflows, stage-gated milestone progress models, and assessment integrations as part of the Data Valley engineering team.
                         </p>
                       </div>
 
@@ -512,7 +554,7 @@ export default function Overview() {
                   </div>
 
                   <div className="es-cw-dvlabs-caption-strip">
-                    <span>FIGURE 1.0: OFFICIAL DV LABS PLATFORM ENVIRONMENT &middot; DATA VALLEY AI TECH SOLUTIONS</span>
+                    <span>FIGURE 1.0: OFFICIAL DV LABS PLATFORM ENVIRONMENT &middot; DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS</span>
                     <span style={{ color: '#007aff', fontWeight: '600' }}>ACTIVE COMPANY PRODUCT</span>
                   </div>
                 </div>
@@ -561,7 +603,7 @@ export default function Overview() {
                         COMPANY PROJECT &middot; IN DEVELOPMENT
                       </span>
                       <span style={{ fontSize: '11.5px', fontWeight: '700', color: '#86868b', letterSpacing: '0.04em' }}>
-                        DATA VALLEY AI TECH SOLUTIONS
+                        DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS
                       </span>
                     </div>
 
@@ -574,7 +616,7 @@ export default function Overview() {
                     </p>
 
                     <p className="es-cw-desc">
-                      An end-to-end technical evaluation application built for Data Valley AI Tech Solutions. Combines authenticated candidate workflows, synchronized countdown timers, background auto-save sync, deterministic server scoring, and proctoring telemetry.
+                      An end-to-end technical evaluation application built for Data Valley Training, Placements &amp; IT Solutions. Combines authenticated candidate workflows, synchronized countdown timers, background auto-save sync, deterministic server scoring, and proctoring telemetry.
                     </p>
 
                     {/* 4 Architectural Capability Boxes */}
@@ -862,7 +904,7 @@ export default function Overview() {
                 },
                 {
                   num: "03",
-                  name: "Data Valley AI Curricula",
+                  name: "Data Valley Training Curricula",
                   category: "TECHNICAL EDUCATION",
                   desc: "Designing hands-on Generative AI and Data Science training modules for student cohorts in Vijayawada.",
                   status: "DELIVERING",
@@ -899,9 +941,9 @@ export default function Overview() {
             <div className="es-ee-layout">
               <div className="es-ee-left">
                 <ScaleReveal className="es-ee-image-wrap" style={{ position: 'relative' }}>
-                  <img src={datavalleyImg} alt="Technical training and mentorship session at Data Valley AI Tech Solutions" className="es-ee-image" loading="lazy" style={{ borderRadius: '16px' }} />
+                  <img src={datavalleyImg} alt="Technical training and mentorship session at Data Valley Training, Placements & IT Solutions" className="es-ee-image" loading="lazy" style={{ borderRadius: '16px' }} />
                   <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                    <span style={{ fontSize: '11px', fontWeight: '600', letterSpacing: '0.05em', color: '#111111', textTransform: 'uppercase' }}>Technical Mentorship &bull; Data Valley AI Tech Solutions</span>
+                    <span style={{ fontSize: '11px', fontWeight: '600', letterSpacing: '0.05em', color: '#111111', textTransform: 'uppercase' }}>Technical Mentorship &bull; Data Valley Training, Placements &amp; IT Solutions</span>
                     <span style={{ fontSize: '12px', color: '#666666', lineHeight: '1.4' }}>Practical instruction in Python, Data Science, and Machine Learning workflows.</span>
                   </div>
                 </ScaleReveal>
@@ -918,14 +960,14 @@ export default function Overview() {
 
                 <Reveal y={20} duration={0.9} delay={0.2}>
                   <p className="es-ee-story">
-                    At Data Valley AI Tech Solutions, I divide my time between hands-on engineering and technical education. I develop Python backend services, data processing pipelines, and applied AI applications while mentoring students and running workshops across Data Science, Machine Learning, and Generative AI.
+                    At Data Valley Training, Placements &amp; IT Solutions, I divide my time between hands-on engineering and technical education. I develop software applications, data processing pipelines, and applied AI systems while mentoring students and running workshops across Python, Data Science, Machine Learning, and Generative AI.
                   </p>
                 </Reveal>
 
                 <Reveal y={20} duration={0.9} delay={0.3}>
                   <div className="es-ee-marker" style={{ margin: '32px 0', paddingLeft: '16px', borderLeft: '2px solid rgba(0,0,0,0.1)' }}>
-                    <div style={{ fontSize: '12px', fontWeight: '600', letterSpacing: '0.08em', color: '#111111', marginBottom: '4px' }}>DATA VALLEY AI TECH SOLUTIONS</div>
-                    <div style={{ fontSize: '15px', fontWeight: '500', color: '#333333' }}>Developer & Technical Trainer</div>
+                    <div style={{ fontSize: '12px', fontWeight: '600', letterSpacing: '0.08em', color: '#111111', marginBottom: '4px' }}>DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS</div>
+                    <div style={{ fontSize: '15px', fontWeight: '500', color: '#333333' }}>Software Engineer &amp; AI/Data Science Trainer</div>
                     <div style={{ fontSize: '13px', color: '#666666', marginTop: '2px' }}>Vijayawada &middot; Current Engagement</div>
                   </div>
                 </Reveal>
@@ -1096,7 +1138,7 @@ export default function Overview() {
                     { year: "2022", stage: "FOUNDATION", desc: "B.Tech in Artificial Intelligence & Data Science · Strong CS & ML Foundations" },
                     { year: "2024", stage: "ENGINEERING", desc: "Software Development & Applied ML across StudyOwl, SmartBridge, Blackbucks & Helson" },
                     { year: "2024", stage: "SYSTEMS", desc: "Architected & Shipped CareerOS · VERITAS · AuraOS · VoltDrive · AgriVision" },
-                    { year: "NOW", stage: "PRODUCTION & TRAINING", desc: "Software Developer & Technical Trainer at Data Valley AI Tech Solutions" }
+                    { year: "NOW", stage: "PRODUCTION & TRAINING", desc: "Software Engineer & AI/Data Science Trainer at Data Valley Training, Placements & IT Solutions" }
                   ].map((node, i) => (
                     <Reveal key={node.year} x={20} duration={0.8} delay={i * 0.15} className="es-timeline-node-container">
                       <div className="es-timeline-node">

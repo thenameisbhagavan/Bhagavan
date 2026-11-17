@@ -69,19 +69,19 @@ export default function DataValleyAssessment() {
         "name": "DV Labs Assessment Platform",
         "alternateName": "Data Valley Engineering Assessment Platform",
         "headline": "Engineering Assessment Web Application with Server Scoring and Auto-Sync",
-        "description": "An end-to-end technical evaluation platform engineered for Data Valley AI Tech Solutions, featuring candidate authentication, timed evaluations, continuous answer persistence, server-side scoring, and administrative result management.",
+        "description": "An end-to-end technical evaluation platform engineered for Data Valley Training, Placements & IT Solutions, featuring candidate authentication, timed evaluations, continuous answer persistence, server-side scoring, and administrative result management.",
         "applicationCategory": "WebApplication",
         "operatingSystem": "All modern browsers",
         "creator": {
           "@type": "Person",
-          "name": "Gopala Josyula Siva Satya Sai Bhagavan",
+          "name": "Siva Satya Sai Bhagavan Gopalajosyula",
           "alternateName": "TheNameIsBhagavan",
-          "jobTitle": "End-to-End Application Developer",
+          "jobTitle": "Software Engineer & AI/Data Science Trainer",
           "url": "https://thenameisbhagavan.in/"
         },
         "publisher": {
           "@type": "Organization",
-          "name": "Data Valley AI Tech Solutions",
+          "name": "Data Valley Training, Placements & IT Solutions",
           "url": "https://dv-assesments.vercel.app/"
         },
         "url": canonicalUrl,
@@ -125,7 +125,7 @@ export default function DataValleyAssessment() {
         <meta property="og:title" content="DV Labs Assessment Platform — Technical Case Study" />
         <meta
           property="og:description"
-          content="End-to-end full-stack web application developed for Data Valley AI Tech Solutions with Next.js App Router, TypeScript, and MongoDB Atlas."
+          content="End-to-end full-stack web application developed for Data Valley Training, Placements & IT Solutions with Next.js App Router, TypeScript, and MongoDB Atlas."
         />
         <meta property="og:image" content="https://thenameisbhagavan.in/images/work/datavalley-assessment-platform.png" />
         <meta property="og:type" content="article" />
@@ -143,8 +143,8 @@ export default function DataValleyAssessment() {
           </div>
 
           <div className="dva-hero-meta-row">
-            <span className="dva-badge-org">COMPANY PROJECT &middot; DATA VALLEY AI TECH SOLUTIONS</span>
-            <span className="dva-badge-role">END-TO-END APPLICATION DEVELOPER</span>
+            <span className="dva-badge-org">COMPANY PROJECT &middot; DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS</span>
+            <span className="dva-badge-role">CONTRIBUTION: SOFTWARE ENGINEER | DATA VALLEY ENGINEERING TEAM</span>
             <span className="dva-badge-live">
               <span className="dva-live-dot"></span>
               ONGOING / IN DEVELOPMENT &middot; PRODUCTION SYSTEM
@@ -159,7 +159,7 @@ export default function DataValleyAssessment() {
 
           <Reveal y={20} duration={0.9} delay={0.2}>
             <p className="dva-hero-sub">
-              An engineering assessment web application developed end to end for <strong>Data Valley AI Tech Solutions</strong>, bringing authenticated candidate workflows, timed challenge delivery, answer persistence, and server-side evaluation into a unified system.
+              An engineering assessment web application developed end to end for <strong>Data Valley Training, Placements &amp; IT Solutions</strong>, bringing authenticated candidate workflows, timed challenge delivery, answer persistence, and server-side evaluation into a unified system.
             </p>
           </Reveal>
 
@@ -194,11 +194,11 @@ export default function DataValleyAssessment() {
           <div className="dva-facts-grid">
             <div className="dva-fact-item">
               <span className="dva-fact-label">ORGANIZATION</span>
-              <span className="dva-fact-value">Data Valley AI Tech Solutions</span>
+              <span className="dva-fact-value">Data Valley Training, Placements &amp; IT Solutions</span>
             </div>
             <div className="dva-fact-item">
               <span className="dva-fact-label">MY CONTRIBUTION</span>
-              <span className="dva-fact-value">End-to-End Application Developer</span>
+              <span className="dva-fact-value">Software Engineer | Data Valley Engineering Team</span>
             </div>
             <div className="dva-fact-item">
               <span className="dva-fact-label">ARCHITECTURE</span>
@@ -277,7 +277,7 @@ export default function DataValleyAssessment() {
 
           <Reveal y={20} duration={0.9} delay={0.15}>
             <p className="dva-body-p">
-              The <strong>DV Labs Assessment Platform</strong> is a dedicated web application engineered to evaluate technical candidates across practical programming, algorithmic reasoning, and computer science fundamentals. Developed end to end for <strong>Data Valley AI Tech Solutions</strong>, the system replaces manual forms and scattered testing links with a unified, state-persistent, authenticated evaluation engine.
+              The <strong>DV Labs Assessment Platform</strong> is a dedicated web application engineered to evaluate technical candidates across practical programming, algorithmic reasoning, and computer science fundamentals. Developed end to end for <strong>Data Valley Training, Placements &amp; IT Solutions</strong>, the system replaces manual forms and scattered testing links with a unified, state-persistent, authenticated evaluation engine.
             </p>
             <p className="dva-body-p">
               My engineering ownership encompassed the complete application lifecycle: architecting the Next.js App Router structure, designing the component interface with responsive ergonomics, engineering state synchronization to protect candidates from accidental data loss, writing server-side scoring handlers to eliminate client tampering, and provisioning MongoDB Atlas schemas for persistent record keeping.
@@ -528,7 +528,7 @@ export default function DataValleyAssessment() {
                 <span className="dva-next-label">EXPLORE COMPANION SYSTEM</span>
                 <h3 className="dva-next-title">DV Labs Platform — Where Vision Meets Execution &rarr;</h3>
                 <p style={{ color: "#6e6e73", margin: "6px 0 0", fontSize: "14.5px" }}>
-                  Milestone-locked projects. Defended in viva. Built for the real world. Flagship company engineering initiative at Data Valley AI Tech Solutions.
+                  Milestone-locked projects. Defended in viva. Built for the real world. A Data Valley company development initiative at Data Valley Training, Placements &amp; IT Solutions.
                 </p>
               </Link>
             </div>
@@ -552,7 +552,7 @@ export default function DataValleyAssessment() {
               <div>
                 <h4 className="dva-ownership-title">COMPANY INTELLECTUAL PROPERTY NOTICE</h4>
                 <p className="dva-ownership-text">
-                  The <strong>DV Labs Assessment Platform</strong> is a proprietary engineering asset of <strong>Data Valley AI Tech Solutions</strong>. All application rights, trademarks, candidate data, and testing infrastructure belong exclusively to the company. My documentation here reflects my authentic technical contributions as an <strong>End-to-End Application Developer</strong> during my ongoing tenure.
+                  The <strong>DV Labs Assessment Platform</strong> is a proprietary engineering asset of <strong>Data Valley Training, Placements &amp; IT Solutions</strong>. All application rights, trademarks, candidate data, and testing infrastructure belong exclusively to the company. My documentation here reflects my authentic technical contributions as a <strong>Software Engineer within the Data Valley engineering team</strong> during my ongoing tenure.
                 </p>
               </div>
             </div>
@@ -566,7 +566,7 @@ export default function DataValleyAssessment() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "24px", marginBottom: "40px" }}>
             <div>
               <span style={{ fontSize: "11px", fontWeight: "700", letterSpacing: "0.1em", color: "#86868b", textTransform: "uppercase" }}>
-                COMPANY PROJECT &middot; DATA VALLEY AI TECH SOLUTIONS
+                COMPANY PROJECT &middot; DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS
               </span>
               <h3 style={{ fontSize: "22px", fontWeight: "700", color: "#1d1d1f", margin: "4px 0 0" }}>
                 DV Labs Assessment Platform

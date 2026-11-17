@@ -82,6 +82,9 @@ function LiveResumeModal({ isOpen, onClose, imgSrc, pdfSrc }) {
           <a href={pdfSrc} download="Bhagavan_Resume.pdf" className="lrv-btn-icon" title="Download PDF Resume">
             <Download size={18} />
           </a>
+          <a href={imgSrc} download="Bhagavan_Resume.jpg" className="lrv-btn-icon" title="Download Resume Image (JPG)">
+            <Download size={18} style={{ color: '#0071e3' }} />
+          </a>
         </div>
       </div>
 
@@ -114,8 +117,8 @@ export default function Resume() {
     <>
       <SEO 
         title="Resume | TheNameIsBhagavan"
-        description="Official professional record of Bhagavan (TheNameIsBhagavan) — Software Developer, AI/ML & Generative AI practitioner, and Technical Trainer at Data Valley AI Tech Solutions."
-        keywords="Bhagavan Resume, TheNameIsBhagavan Resume, Software Developer CV, AI/ML, Generative AI, Technical Trainer, Data Valley AI Tech Solutions, Python Developer Resume"
+        description="Official professional record of Siva Satya Sai Bhagavan Gopalajosyula (TheNameIsBhagavan) — Software Engineer & AI/Data Science Trainer at Data Valley Training, Placements & IT Solutions."
+        keywords="Bhagavan Resume, TheNameIsBhagavan Resume, Software Engineer CV, AI Data Science Trainer, Generative AI, Data Valley Training Placements IT Solutions, Python Developer Resume"
       />
 
       <LiveResumeModal 
@@ -241,6 +244,19 @@ export default function Resume() {
                   </a>
                 </MagneticLink>
               </Reveal>
+
+              <Reveal y={20} duration={0.9} delay={0.25}>
+                <MagneticLink strength={0.3}>
+                  <a 
+                    href={resumeImage} 
+                    download="Bhagavan_Resume.jpg" 
+                    className="res-btn-secondary apple-pressable"
+                  >
+                    <span>DOWNLOAD AS IMAGE (JPG)</span>
+                    <Download size={16} />
+                  </a>
+                </MagneticLink>
+              </Reveal>
             </div>
           </div>
         </section>
@@ -286,7 +302,7 @@ export default function Resume() {
                   PROFESSIONAL SUMMARY
                 </h3>
                 <p style={{ fontSize: '15px', color: '#333333', lineHeight: '1.65', margin: 0 }}>
-                  AI &amp; Data Science Professional, Technical Trainer, and AI Solutions Developer with practical experience engineering applied machine learning systems, Python backend services, and production web applications. Developer and Technical Trainer at Data Valley AI Tech Solutions since June 2024, architecting production systems (DV Labs &amp; Data Valley Assessment Platform, CareerOS, AuraOS, VERITAS, AgriVision AI) while designing curricula and delivering hands-on instruction in Python, Data Science, Machine Learning, Generative AI, and Agentic Workflows.
+                  Software Engineer and AI Solutions Developer at Data Valley Training, Placements &amp; IT Solutions, working across software engineering, intelligent application development, and Artificial Intelligence. Alongside development, I deliver practical technical training in Python, Data Science, Machine Learning, and Generative AI, connecting engineering concepts with real-world implementation.
                 </p>
               </div>
 
@@ -349,7 +365,7 @@ export default function Resume() {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
                     <div>
                       <h4 style={{ fontSize: '17px', fontWeight: '700', color: '#111111', margin: 0 }}>
-                        Data Valley AI Tech Solutions &mdash; Technical Trainer &amp; AI Solutions Developer
+                        Data Valley Training, Placements &amp; IT Solutions &mdash; Software Engineer &amp; AI/Data Science Trainer
                       </h4>
                       <span style={{ fontSize: '13px', color: '#0071E3', fontWeight: '600' }}>Vijayawada, Andhra Pradesh, India</span>
                     </div>
@@ -393,7 +409,55 @@ export default function Resume() {
                 </div>
               </div>
 
-              {/* 4. Verified Institutional Education Timeline */}
+              {/* 4. Featured Production Projects (Directly from Resume) */}
+              <div style={{ marginBottom: '36px' }}>
+                <h3 style={{ fontSize: '14px', fontWeight: '700', letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase', marginBottom: '20px' }}>
+                  FEATURED ENGINEERING PROJECTS
+                </h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+                  {/* VoltDrive */}
+                  <div style={{ padding: '20px', background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '6px' }}>
+                      <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#111111', margin: 0 }}>VoltDrive &mdash; Interactive Automotive Experience</h4>
+                      <span style={{ fontSize: '12px', fontWeight: '700', color: '#86868b' }}>2026</span>
+                    </div>
+                    <span style={{ fontSize: '12px', color: '#0071E3', fontWeight: '600', display: 'block', marginBottom: '8px' }}>React 19 &middot; Three.js &middot; React Three Fiber &middot; GSAP &middot; Framer Motion</span>
+                    <p style={{ fontSize: '13px', color: '#555558', lineHeight: 1.55, margin: 0 }}>Developed an interactive automotive website featuring 3D vehicle visualization, camera animations, and responsive design.</p>
+                  </div>
+
+                  {/* CareerOS */}
+                  <div style={{ padding: '20px', background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '6px' }}>
+                      <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#111111', margin: 0 }}>CareerOS &mdash; AI Career Intelligence Platform</h4>
+                      <span style={{ fontSize: '12px', fontWeight: '700', color: '#86868b' }}>2025 &ndash; PRESENT</span>
+                    </div>
+                    <span style={{ fontSize: '12px', color: '#0071E3', fontWeight: '600', display: 'block', marginBottom: '8px' }}>React.js &middot; FastAPI &middot; Python &middot; MongoDB &middot; Gemini API &middot; GitHub API</span>
+                    <p style={{ fontSize: '13px', color: '#555558', lineHeight: 1.55, margin: 0 }}>Developed an AI-powered career platform for resume analysis, GitHub activity insights, skill-gap analysis, and career trajectory mapping.</p>
+                  </div>
+
+                  {/* VERITAS */}
+                  <div style={{ padding: '20px', background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '6px' }}>
+                      <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#111111', margin: 0 }}>VERITAS &mdash; Explainable Intelligence Platform</h4>
+                      <span style={{ fontSize: '12px', fontWeight: '700', color: '#86868b' }}>2026 &ndash; PRESENT</span>
+                    </div>
+                    <span style={{ fontSize: '12px', color: '#0071E3', fontWeight: '600', display: 'block', marginBottom: '8px' }}>React.js &middot; FastAPI &middot; Python &middot; spaCy &middot; Transformers &middot; scikit-learn</span>
+                    <p style={{ fontSize: '13px', color: '#555558', lineHeight: 1.55, margin: 0 }}>Developed an NLP-based platform for document analysis, claim extraction, evidence processing, and credibility assessment.</p>
+                  </div>
+
+                  {/* AI Leave Automation */}
+                  <div style={{ padding: '20px', background: '#fbfbfd', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '6px' }}>
+                      <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#111111', margin: 0 }}>AI-Powered Leave Application &amp; Approval Automation</h4>
+                      <span style={{ fontSize: '12px', fontWeight: '700', color: '#86868b' }}>2025 &ndash; 2026</span>
+                    </div>
+                    <span style={{ fontSize: '12px', color: '#0071E3', fontWeight: '600', display: 'block', marginBottom: '8px' }}>Microsoft Power Platform &middot; Power Apps &middot; Power Automate</span>
+                    <p style={{ fontSize: '13px', color: '#555558', lineHeight: 1.55, margin: 0 }}>Developed a team-based leave management system with AI-assisted processing and automated approval workflows.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 5. Verified Institutional Education Timeline */}
               <div>
                 <h3 style={{ fontSize: '14px', fontWeight: '700', letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase', marginBottom: '20px' }}>
                   INSTITUTIONAL EDUCATION TIMELINE
@@ -461,6 +525,18 @@ export default function Resume() {
                 </div>
               </div>
 
+              {/* 6. Key Verified Achievements (Directly from Resume) */}
+              <div style={{ marginTop: '36px' }}>
+                <h3 style={{ fontSize: '14px', fontWeight: '700', letterSpacing: '0.1em', color: '#86868b', textTransform: 'uppercase', marginBottom: '16px' }}>
+                  KEY ACHIEVEMENTS &amp; RECOGNITIONS
+                </h3>
+                <ul style={{ paddingLeft: '20px', margin: 0, fontSize: '14px', color: '#444444', lineHeight: '1.7', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <li>Delivered a hands-on workshop on Generative AI and Prompt Engineering to 150+ students at PACE College of Engineering, Ongole.</li>
+                  <li>Delivered an invited technical talk on "AI Innovation and Startup Opportunities" to IV-year engineering students at P.B.R. Visvodaya Institute of Technology &amp; Science (Autonomous), Kavali (October 2026).</li>
+                  <li>Built and published personal engineering portfolio at <a href="https://www.thenameisbhagavan.in" target="_blank" rel="noopener noreferrer" style={{ color: '#0071E3', textDecoration: 'none' }}>thenameisbhagavan.in</a>.</li>
+                </ul>
+              </div>
+
             </div>
 
           </div>
@@ -495,7 +571,7 @@ export default function Resume() {
                   </div>
                   <div className="rec-signal-item">
                     <span className="sig-key">CURRENT ROLE:</span>
-                    <span className="sig-val">Developer &amp; Technical Trainer &mdash; Data Valley AI Tech Solutions (2024 &ndash; Present)</span>
+                    <span className="sig-val">Software Engineer &amp; AI/Data Science Trainer &mdash; Data Valley Training, Placements &amp; IT Solutions (June 2024 &ndash; Present)</span>
                   </div>
                   <div className="rec-signal-item">
                     <span className="sig-key">CORE DISCIPLINES:</span>

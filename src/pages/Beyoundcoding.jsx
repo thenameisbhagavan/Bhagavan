@@ -853,7 +853,7 @@ export default function BeyondCoding() {
                 <div style={{maxWidth:"540px"}}>
                   <div style={{display:"inline-flex",alignItems:"center",gap:"6px",padding:"5px 12px",borderRadius:"999px",background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.12)",marginBottom:"20px",opacity:fV?1:0,animation:fV?`_rtl ${MS.slow} ${E} 0.05s both`:"none"}}>
                     <div style={{width:"5px",height:"5px",borderRadius:"50%",background:"rgba(255,255,255,0.85)",animation:"_pulse 2.2s ease-in-out infinite"}}/>
-                    <ML color="rgba(255,255,255,0.65)">Technical AI/ML & Data Science Trainer · Data Valley · 2024</ML>
+                    <ML color="rgba(255,255,255,0.65)">Software Engineer &amp; AI/Data Science Trainer · Data Valley Training, Placements &amp; IT Solutions</ML>
                   </div>
                   <h2 style={{fontFamily:"'Dancing Script',cursive",fontSize:"clamp(3rem,6vw,5.5rem)",fontWeight:700,color:"#FFFFFF",lineHeight:1.04,letterSpacing:"-0.03em",marginBottom:"14px",opacity:fV?1:0,animation:fV?`_rtl ${MS.reveal} ${E} 0.12s both`:"none"}}>
                     Build a Legendary Life
@@ -909,7 +909,7 @@ export default function BeyondCoding() {
                   {lb:"Email",    v:"thenameisbhagavan@gmail.com"},
                   {lb:"Phone",    v:"+91 7569205626"},
                   {lb:"Location", v:"Andhra Pradesh, IN"},
-                  {lb:"Status",   v:"Currently at Data Valley",bright:true},
+                  {lb:"Status",   v:"Currently at Data Valley Training, Placements & IT Solutions",bright:true},
                 ].map((c,i)=>(
                   <div key={i} style={{marginBottom:"14px"}}>
                     <ML color="rgba(255,255,255,0.20)" style={{fontSize:"9px",marginBottom:"3px"}}>{c.lb}</ML>

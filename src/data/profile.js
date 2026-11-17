@@ -3,24 +3,25 @@
 
 export const CANONICAL_PROFILE = {
   brand: "TheNameIsBhagavan",
-  fullName: "Gopala Josyula Siva Satya Sai Bhagavan",
+  fullName: "Siva Satya Sai Bhagavan Gopalajosyula",
   displayName: "Bhagavan",
   website: "https://thenameisbhagavan.in/",
   email: "thenameisbhagavan@gmail.com",
   location: "Vijayawada, Andhra Pradesh, India",
 
   // Core Positioning
-  headline: "AI & Data Science Professional | Technical Trainer | AI Solutions Developer",
-  shortHeadline: "AI & Data Science Professional & Technical Trainer",
+  headline: "Software Engineer & AI/Data Science Trainer",
+  shortHeadline: "Software Engineer & AI/Data Science Trainer",
 
   currentRole: {
-    title: "Technical Trainer & AI Solutions Developer",
-    organization: "Data Valley AI Tech Solutions",
+    title: "Software Engineer & AI/Data Science Trainer",
+    organization: "Data Valley Training, Placements & IT Solutions",
     shortOrg: "Data Valley",
     location: "Vijayawada, Andhra Pradesh, India",
     status: "Active Engagement · Currently Working",
     period: "June 2024 — Present",
-    flaggedDetails: "Technical Trainer and AI Solutions Developer since June 2024, leading instructional cohorts across Python, Data Science, and Machine Learning while actively engineering full-stack architectures, assessment engines, and AI viva defense systems for DV LABS at Data Valley AI Tech Solutions."
+    experience: "2+ Years",
+    flaggedDetails: "Software Engineer and AI/Data Science Trainer since June 2024 at Data Valley Training, Placements & IT Solutions, working across software engineering, AI application development, and technical education, combining practical system development with industry-oriented technical training."
   },
 
   // Verified Institutional Education Timeline
@@ -80,17 +81,16 @@ export const CANONICAL_PROFILE = {
 
   // Narrative Summaries
   hero: {
-    eyebrow: "AI & DATA SCIENCE PROFESSIONAL &bull; TECHNICAL TRAINER &bull; AI SOLUTIONS DEVELOPER",
-    headlineLine1: "Engineering intelligent systems.",
-    headlineLine2: "Teaching how they work.",
-    headlineLine3: "Built with clarity.",
-    subtext: "AI & Data Science Professional, Technical Trainer, and AI Solutions Developer at Data Valley AI Tech Solutions. I engineer practical AI systems, Python backends, and full-stack solutions while training engineers in Data Science, Machine Learning, Generative AI, and Agentic Workflows."
+    eyebrow: "SOFTWARE ENGINEER · AI SOLUTIONS DEVELOPER • TECHNICAL TRAINER · AI & DATA SCIENCE EDUCATOR",
+    headlineLine1: "Engineering Intelligent Systems.",
+    headlineLine2: "Building Practical AI Solutions.",
+    subtext: "Software Engineer and AI Solutions Developer at Data Valley Training, Placements & IT Solutions, working across software engineering, intelligent application development, and Artificial Intelligence. Alongside development, I deliver practical technical training in Python, Data Science, Machine Learning, and Generative AI, connecting engineering concepts with real-world implementation."
   },
 
   about: {
-    lead: "I work at the active intersection of software engineering and technical education.",
-    statement: "Building software teaches you what works in practice. Teaching technology forces you to deconstruct complexity until every layer is transparent.",
-    fullBio: "At Data Valley AI Tech Solutions, I divide my time between hands-on engineering and technical instruction. On the development side, I design and build Python-powered backend services, REST APIs, and applied AI systems spanning machine learning classification, natural language processing, and generative AI interfaces. On the education side, I design curriculum, conduct hands-on workshops, and mentor students through real-world data science and machine learning workflows."
+    lead: "I work at the intersection of software engineering, artificial intelligence, and technical education.",
+    statement: "As a Software Engineer and AI/Data Science Trainer at Data Valley Training, Placements & IT Solutions, my work involves developing practical software applications, exploring intelligent AI architectures, and delivering hands-on technical education.",
+    fullBio: "I work at the intersection of software engineering, artificial intelligence, and technical education. As a Software Engineer and AI/Data Science Trainer at Data Valley Training, Placements & IT Solutions, my work involves developing practical software applications, exploring intelligent AI architectures, and delivering hands-on technical education. My technical interests span Python, Machine Learning, Deep Learning, Generative AI, Large Language Models, RAG systems, Vector Databases, and Agentic AI. I focus on connecting engineering fundamentals with practical implementation, building intelligent applications, and helping aspiring engineers develop industry-relevant technical capabilities."
   },
 
   // Technical & Training Domains
@@ -98,62 +98,55 @@ export const CANONICAL_PROFILE = {
     {
       id: "software",
       title: "Software Engineering & Backend",
-      skills: ["Python", "JavaScript", "FastAPI", "Flask", "Node.js", "Express.js", "REST APIs", "System Architecture"]
+      skills: ["Application Development", "Backend Engineering", "API Development", "Full-Stack Systems", "Python", "FastAPI", "React", "Node.js"]
     },
     {
       id: "datascience",
-      title: "Data Science & Analytics",
-      skills: ["Pandas", "NumPy", "Data Preprocessing", "Feature Engineering", "Exploratory Data Analysis", "SQL", "Data Pipelines"]
-    },
-    {
-      id: "aiml",
-      title: "Artificial Intelligence & Machine Learning",
-      skills: ["Scikit-learn", "TensorFlow", "Keras", "Supervised Learning", "Classification & Regression", "Computer Vision basics", "NLP"]
+      title: "Data Science & Machine Learning",
+      skills: ["Python", "Machine Learning", "Deep Learning", "NLP", "Computer Vision", "Data Science", "Pandas", "NumPy", "SQL"]
     },
     {
       id: "genai",
-      title: "Generative AI & LLM Workflows",
-      skills: ["Prompt Engineering", "Gemini API", "LLM Orchestration", "Stateless API Bridges", "Structured Output", "RAG Concepts"]
+      title: "Generative AI & LLM Systems",
+      skills: ["LLMs", "Prompt Engineering", "Embeddings", "RAG", "Vector Databases", "Structured Output"]
+    },
+    {
+      id: "agentic",
+      title: "Agentic AI & Intelligent Workflows",
+      skills: ["AI Agents", "Multi-Agent Systems", "Tool Calling", "Intelligent Workflows"]
     },
     {
       id: "training",
-      title: "Technical Training & Curriculum",
-      skills: ["Live Coding Demonstrations", "Hands-on Lab Design", "Algorithm Simplification", "Student Mentorship", "Interactive Workshops"]
+      title: "Technical Training & Mentorship",
+      skills: ["Python & Advanced Python", "Data Science & Machine Learning", "Deep Learning & AI", "Generative AI & LLMs", "Hands-on Workshops", "College Programs", "Project Guidance"]
     }
   ],
 
-  // Data Valley Detailed Responsibilities (Organized into 4 verified categories)
+  // Data Valley Detailed Responsibilities (Development & Training)
   dataValleyResponsibilities: [
     {
-      category: "Software Development & Python Engineering",
+      category: "Development Responsibilities",
       points: [
-        "Architecting backend services and REST APIs with Python (Flask / FastAPI) for application integration.",
-        "Building modular components, utility libraries, and data ingestion pipelines for analytical tools.",
-        "Establishing clean code practices, testing workflows, and API documentation for maintainability."
+        "Software application development and implementation.",
+        "Backend engineering and API development.",
+        "Full-stack application development.",
+        "AI-powered applications and intelligent workflows.",
+        "LLM integrations, RAG systems, and AI agents.",
+        "NLP and Computer Vision applications.",
+        "Generative AI and automation solutions.",
+        "Technical problem-solving and project implementation."
       ]
     },
     {
-      category: "Data Science & Applied AI/ML",
+      category: "Training Responsibilities",
       points: [
-        "Developing end-to-end data preprocessing, feature transformation, and exploratory analysis pipelines.",
-        "Training and evaluating machine learning models using Scikit-learn with rigorous cross-validation.",
-        "Guiding students through real-world datasets, statistical baselines, and model performance metrics."
-      ]
-    },
-    {
-      category: "Generative AI & Modern AI Engineering",
-      points: [
-        "Designing practical exercises for prompt engineering, token optimization, and zero/few-shot techniques.",
-        "Implementing secure backend proxies to interface frontends with LLM APIs (e.g., Gemini) without client key exposure.",
-        "Teaching concepts of Retrieval-Augmented Generation (RAG), vector representations, and agentic workflows."
-      ]
-    },
-    {
-      category: "Technical Training & Curriculum Development",
-      points: [
-        "Delivering comprehensive technical training cohorts in Data Science, Python, and Machine Learning.",
-        "Designing structured syllabi, progressive problem sets, coding assignments, and project rubrics.",
-        "Mentoring students through technical doubts, code reviews, and capstone project implementations."
+        "Python and Advanced Python.",
+        "Data Science and Machine Learning.",
+        "Deep Learning and Artificial Intelligence.",
+        "Generative AI and LLM technologies.",
+        "Hands-on technical workshops.",
+        "College-level training programs.",
+        "Student mentoring and real-world project guidance."
       ]
     }
   ],
@@ -173,7 +166,7 @@ export const CANONICAL_PROFILE = {
     },
     {
       id: "datavalley-mentorship",
-      venue: "Data Valley AI Tech Solutions, Vijayawada",
+      venue: "Data Valley Training, Placements & IT Solutions, Vijayawada",
       program: "Data Science & Applied Machine Learning Cohort",
       audience: "Internship trainees and engineering students",
       focus: "Python for Data Science, Scikit-learn pipelines, Feature engineering, Model deployment",
@@ -227,15 +220,15 @@ export const CANONICAL_PROFILE = {
   dvLabs: {
     id: "dv-labs",
     name: "DV LABS",
-    fullName: "DV Labs (Data Valley Labs)",
-    organization: "Data Valley AI Tech Solutions",
-    ownership: "Data Valley AI Tech Solutions",
-    role: "AI Solutions Developer | Full-Stack Development & AI Systems",
+    fullName: "DV Labs — AI-Guided Capstone-to-Career Platform",
+    organization: "Data Valley Training, Placements & IT Solutions",
+    ownership: "Data Valley Training, Placements & IT Solutions",
+    role: "Software Engineer | Data Valley Engineering Team",
     status: "Active / Ongoing Development",
-    nature: "Company Project (Data Valley AI Tech Solutions) · Ongoing Development",
+    nature: "Company Development Initiative (Data Valley Training, Placements & IT Solutions) · Ongoing",
     headline: "Where vision meets execution.",
     subTagline: "Milestone-locked projects. Defended in viva. Built for the real world.",
-    description: "An advanced engineering project and assessment ecosystem developed at Data Valley AI Tech Solutions. DV Labs bridges academic learning and industry execution through structured milestone locks, AI-conducted oral viva defenses, and production-grade timed assessment architectures.",
+    description: "A Data Valley company development initiative designed to transform engineering capstone development through AI-powered mentorship, research intelligence, structured project engineering, technical evaluation, and career readiness.",
     brandMark: "DV Labs",
     heroImage: "/images/work/dvlabs-hero.jpg",
     liveUrl: "https://dv-assesments.vercel.app/",
@@ -283,14 +276,14 @@ export const CANONICAL_PROFILE = {
     id: "data-valley-assessment-platform",
     name: "Data Valley Engineering Assessment Platform",
     shortName: "DV Engineering Assessment",
-    organization: "Data Valley AI Tech Solutions",
-    ownership: "Data Valley AI Tech Solutions",
-    role: "End-to-End Application Developer",
+    organization: "Data Valley Training, Placements & IT Solutions",
+    ownership: "Data Valley Training, Placements & IT Solutions",
+    role: "Software Engineer | Data Valley Engineering Team",
     status: "Company Project · Ongoing Development",
     category: "Full-Stack Development · Engineering Assessments · Web Application Engineering",
     eyebrow: "COMPANY PROJECT · ONGOING DEVELOPMENT",
     tagline: "Candidate assessment platform with secure sessions, live timers, and server-side evaluation",
-    description: "An engineering assessment platform engineered end to end for Data Valley AI Tech Solutions, bringing candidate workflows, technical evaluation, and assessment result management into a unified web application.",
+    description: "An engineering assessment platform engineered for Data Valley Training, Placements & IT Solutions, bringing candidate workflows, technical evaluation, and assessment result management into a unified web application.",
     liveUrl: "https://dv-assesments.vercel.app/",
     caseStudyUrl: "/work/data-valley-assessment-platform",
     screenshotUrl: "/images/work/datavalley-assessment-platform.png",
@@ -332,15 +325,15 @@ export const CANONICAL_PROFILE = {
       id: "dv-labs",
       legacyId: "data-valley-assessment-platform",
       name: "DV LABS",
-      fullName: "DV Labs — Engineering Assessment & Project Defense Platform",
-      eyebrow: "COMPANY PROJECT (DATA VALLEY AI TECH SOLUTIONS) · ONGOING",
+      fullName: "DV Labs — AI-Guided Capstone-to-Career Platform",
+      eyebrow: "COMPANY PROJECT (DATA VALLEY TRAINING, PLACEMENTS & IT SOLUTIONS) · ONGOING",
       tagline: "Where vision meets execution.",
       subTagline: "Milestone-locked projects. Defended in viva. Built for the real world.",
-      description: "Flagship engineering ecosystem built for Data Valley AI Tech Solutions. Combines milestone-locked project delivery, AI viva defense interrogations, and a live production-grade technical assessment engine.",
+      description: "A Data Valley company development initiative designed to transform engineering capstone development through AI-powered mentorship, research intelligence, structured project engineering, technical evaluation, and career readiness.",
       architecture: "Next.js App Router with React 19, TypeScript, and MongoDB Atlas; server-side scoring, state synchronization route handlers, and AI viva orchestration.",
       tradeoffs: "Enforced strict server-side score calculation and continuous answer synchronization to eliminate candidate tampering and data loss.",
       status: "Ongoing Development · Production Deployment",
-      nature: "Company Project (Data Valley AI Tech Solutions) · Ongoing",
+      nature: "Company Project (Data Valley Training, Placements & IT Solutions) · Ongoing",
       url: "/work/data-valley-assessment-platform",
       liveUrl: "https://dv-assesments.vercel.app/",
       githubUrl: null

@@ -13,7 +13,7 @@ export const PROFILE = {
   phone: '+91 7569205626',
   github: 'https://github.com/thenameisbhagavan',
   linkedin: 'https://www.linkedin.com/in/thenameisbhagavan/',
-  objective: 'Software Developer & AI Engineer | Technical Trainer at Data Valley AI Tech Solutions. Building production-oriented software applications, Python backend services, and applied AI systems while delivering hands-on technical education across Python, Data Science, and Machine Learning.',
+  objective: 'Software Engineer & AI/Data Science Trainer at Data Valley Training, Placements & IT Solutions. Working across software engineering, intelligent application development, and Artificial Intelligence, while delivering practical technical training in Python, Data Science, Machine Learning, and Generative AI.',
   internships: [
     { title: 'Software Development Intern', company: 'StudyOwl Education Pvt Ltd', period: '2024', detail: ['Contributed to React frontend and Node.js backend integration.', 'Built reusable components and integrated REST APIs.'] },
     { title: 'Software Engineering Intern', company: 'SmartBridge', period: '2024', detail: ['Developed CNN-based image classification models using TensorFlow and Keras.', 'Deployed trained models using Flask.'] },
@@ -34,7 +34,7 @@ export const PROJECTS = [
   {
     id: 0,
     title: "Data Valley Engineering Assessment Platform",
-    tagline: "End-to-End Application Engineering · Data Valley AI Tech Solutions",
+    tagline: "End-to-End Application Engineering · Data Valley Training, Placements & IT Solutions",
     subtitle: "Engineering assessment web application with authenticated candidate workflows, timed evaluations, and server-side scoring",
     github: null,
     live: "https://dv-assesments.vercel.app/",
@@ -42,7 +42,7 @@ export const PROJECTS = [
     year: "2026",
     duration: "Production Application",
     problem: "Technical assessment pipelines need a secure, synchronized environment to deliver timed coding challenges, persist answers reliably across interruptions, and evaluate candidate performance without client-side tampering.",
-    solution: "Engineered an end-to-end assessment platform for Data Valley AI Tech Solutions using Next.js App Router, React 19, TypeScript, and MongoDB Atlas, featuring continuous answer syncing, countdown timer orchestration, and server-side score calculation.",
+    solution: "Engineered an end-to-end assessment platform for Data Valley Training, Placements & IT Solutions using Next.js App Router, React 19, TypeScript, and MongoDB Atlas, featuring continuous answer syncing, countdown timer orchestration, and server-side score calculation.",
     impact: [
       { label: "Questions Delivered", value: 40, suffix: "/session" },
       { label: "Answer Syncing", value: 100, suffix: "% server-verified" },
@@ -114,11 +114,11 @@ export const PROJECTS = [
 
 export const JOURNEY = [
   {
-    year: "Current",
-    title: "Developer & Technical Trainer",
-    entity: "Data Valley AI Tech Solutions, Vijayawada, India",
+    year: "June 2024 — Present",
+    title: "Software Engineer & AI/Data Science Trainer",
+    entity: "Data Valley Training, Placements & IT Solutions, Vijayawada, India",
     type: "Professional",
-    description: "Developing software applications, Python backend services, and practical AI systems while mentoring students and delivering curriculum across Data Science, Python, Machine Learning, and Generative AI."
+    description: "Working across software engineering, AI application development, and technical education, combining practical system development with industry-oriented technical training."
   },
   {
     year: "2024",

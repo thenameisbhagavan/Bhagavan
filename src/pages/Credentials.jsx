@@ -661,7 +661,7 @@ export default function Credentials() {
                 </div>
                 <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 8px 0' }}>Production Solutions</h3>
                 <p style={{ fontSize: '13.5px', color: '#666666', lineHeight: 1.55, margin: 0 }}>
-                  End-to-end web engineering, AI application development, and technical education delivery at Data Valley AI Tech Solutions and academic workshops.
+                  End-to-end web engineering, AI application development, and technical education delivery at Data Valley Training, Placements & IT Solutions and academic workshops.
                 </p>
               </div>
             </m.div>

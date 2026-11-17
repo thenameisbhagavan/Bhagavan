@@ -144,7 +144,7 @@ export default function HeroSection({ profileImg, resumePdf, navigate, isMobile,
             {/* Availability signal */}
             <m.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, ease, delay: .15 }} style={{ marginBottom: '1.4rem', display: 'flex', alignItems: 'center', gap: '.55rem' }}>
               <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'rgba(74,222,128,.8)', animation: 'heroPulse 2s ease infinite', flexShrink: 0 }} />
-              <span style={{ fontSize: '.64rem', color: 'rgba(74,222,128,.6)', letterSpacing: '.06em', fontFamily: 'monospace' }}>Technical AI/ML & Data Science Trainer at Data Valley · Building AI Systems</span>
+              <span style={{ fontSize: '.64rem', color: 'rgba(74,222,128,.6)', letterSpacing: '.06em', fontFamily: 'monospace' }}>Software Engineer &amp; AI/Data Science Trainer at Data Valley Training, Placements &amp; IT Solutions</span>
             </m.div>
 
             {/* Tagline */}

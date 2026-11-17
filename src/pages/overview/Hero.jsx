@@ -24,7 +24,7 @@ export default function Hero() {
           <div className="es-hero-badge-wrap">
             <div className="es-live-badge">
               <span className="es-live-dot"></span>
-              <span className="es-live-text">TECHNICAL AI/ML & DATA SCIENCE TRAINER @ DATA VALLEY</span>
+              <span className="es-live-text">SOFTWARE ENGINEER &amp; AI/DATA SCIENCE TRAINER @ DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS</span>
             </div>
           </div>
 
@@ -33,7 +33,7 @@ export default function Hero() {
           </h1>
 
           <p className="es-hero-sub-2col">
-            Hi, I'm <strong>TheNameIsBhagavan</strong> (Gopala Josyula Siva Satya Sai Bhagavan)—Technical AI/ML & Data Science Trainer at Data Valley and AI Product Engineer. I develop creative web designs while growing as an AI/ML developer & trainer.
+            Hi, I'm <strong>TheNameIsBhagavan</strong> (Siva Satya Sai Bhagavan Gopalajosyula)—Software Engineer &amp; AI/Data Science Trainer at Data Valley Training, Placements &amp; IT Solutions. Software Engineer and AI Solutions Developer working across software engineering, intelligent application development, and practical technical training.
           </p>
 
           {/* Action Buttons */}

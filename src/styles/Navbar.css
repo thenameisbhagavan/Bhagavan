@@ -22,17 +22,17 @@
   --nav-border-scrolled: rgba(0, 0, 0, 0.12);
   --nav-shadow-scrolled: 0 1px 4px rgba(0, 0, 0, 0.03);
 
-  --nav-text-primary: #1d1d1f;
-  --nav-text-link: rgba(0, 0, 0, 0.72);
+  --nav-text-primary: #000000;
+  --nav-text-link: #111111;
   --nav-text-hover: #000000;
   --nav-text-active: #000000;
 
-  --nav-ctrl-hover-bg: rgba(0, 0, 0, 0.045);
-  --nav-ctrl-active-bg: rgba(0, 0, 0, 0.08);
+  --nav-ctrl-hover-bg: rgba(0, 0, 0, 0.06);
+  --nav-ctrl-active-bg: rgba(0, 0, 0, 0.1);
 
-  --nav-resume-bg: rgba(0, 0, 0, 0.04);
-  --nav-resume-border: rgba(0, 0, 0, 0.08);
-  --nav-resume-text: #1d1d1f;
+  --nav-resume-bg: rgba(0, 0, 0, 0.05);
+  --nav-resume-border: rgba(0, 0, 0, 0.14);
+  --nav-resume-text: #000000;
   --nav-resume-hover-bg: rgba(229, 9, 20, 0.06);
   --nav-resume-hover-border: rgba(229, 9, 20, 0.28);
   --nav-resume-hover-text: #e50914;
@@ -201,15 +201,15 @@
   height: 100%;
   background: none;
   border: none;
-  padding: 0 2px;
+  padding: 0 3px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: var(--nav-font-system);
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 13px;
+  font-weight: 500;
   color: var(--nav-text-link);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   cursor: pointer;
   white-space: nowrap;
   position: relative;
@@ -226,7 +226,7 @@
 
 .nav-link-btn.active {
   color: var(--nav-text-active);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .nav-link-btn:focus-visible {
@@ -414,7 +414,8 @@
     gap: 18px;
   }
   .nav-link-btn {
-    font-size: 11.5px;
+    font-size: 12.5px;
+    font-weight: 500;
   }
 }
 
