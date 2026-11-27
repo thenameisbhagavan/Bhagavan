@@ -88,7 +88,7 @@ export default function AcademicArchive() {
       id: 'ssc',
       image: ssc.primaryImage,
       title: "Secondary School Certificate",
-      subtitle: "2020",
+      subtitle: "2019 — 2020",
     });
 
     docs.push({
@@ -215,7 +215,7 @@ export default function AcademicArchive() {
             <motion.div className="aa-opening-title" {...enter(0.25)}>
               The Academic{"\n"}Archive
             </motion.div>
-            <motion.div className="aa-opening-year" {...enter(0.4)}>2020 — 2026</motion.div>
+            <motion.div className="aa-opening-year" {...enter(0.4)}>2019 — 2026</motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -237,7 +237,7 @@ export default function AcademicArchive() {
       <section className="aa-hero">
         <div className="aa-hero-text">
           <motion.div className="aa-hero-eyebrow" {...enter(0.6)}>Academic Archive</motion.div>
-          <motion.div className="aa-hero-date" {...enter(0.7)}>2020 — 2026</motion.div>
+          <motion.div className="aa-hero-date" {...enter(0.7)}>2019 — 2026</motion.div>
           <motion.h1 className="aa-hero-statement" {...enter(0.8)}>
             The Foundation{"\n"}Behind the Engineer.
           </motion.h1>
@@ -482,7 +482,7 @@ export default function AcademicArchive() {
           The direction is engineering.
         </motion.div>
         <motion.div className="aa-ending-tags" {...reveal(0.16)}>
-          <span>2020 — 2026</span>
+          <span>2019 — 2026</span>
           <span>Academic Foundation</span>
           <span>AI & Data Science</span>
           <span>Engineering</span>

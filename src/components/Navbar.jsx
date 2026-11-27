@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { m, AnimatePresence, LayoutGroup } from "framer-motion";
+import { m as Motion, AnimatePresence } from "framer-motion";
 import { FileText, ArrowRight } from "lucide-react";
 import logoImg from "../assets/logo.png";
 import "../styles/Navbar.css";
@@ -218,50 +218,66 @@ export default function Navbar() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      const sections = Array.from(document.querySelectorAll("[data-nav-theme]"));
+      const allThemed = Array.from(document.querySelectorAll("[data-nav-theme]"));
+      const pageThemed = allThemed.filter((el) => el.tagName !== "FOOTER");
 
-      if (sections.length === 0) {
-        const isDark =
-          location.pathname.startsWith("/work/voltdrive") ||
-          location.pathname.startsWith("/work/careeros") ||
-          location.pathname.startsWith("/work/auraos") ||
-          location.pathname.startsWith("/work/veritas") ||
-          location.pathname === "/journal";
-        setActiveNavTheme(isDark ? "dark" : "light");
+      const defaultIsDark =
+        location.pathname.startsWith("/work/voltdrive") ||
+        location.pathname.startsWith("/work/careeros") ||
+        location.pathname.startsWith("/work/auraos") ||
+        location.pathname.startsWith("/work/veritas") ||
+        location.pathname === "/journal";
+      const fallbackTheme = defaultIsDark ? "dark" : "light";
+
+      if (pageThemed.length === 0) {
+        setActiveNavTheme(fallbackTheme);
         return;
       }
 
-      let initialTheme = "light";
-      for (const section of sections) {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-          initialTheme = section.getAttribute("data-nav-theme");
-          break;
-        }
-      }
-      setActiveNavTheme(initialTheme);
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const visibleEntries = entries.filter((e) => e.isIntersecting);
-          if (visibleEntries.length === 0) return;
-
-          visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-          const topEntry = visibleEntries[0];
-
-          if (topEntry.intersectionRatio > 0) {
-            setActiveNavTheme(topEntry.target.getAttribute("data-nav-theme") || "light");
+      const resolveThemeAtNavbar = () => {
+        if (pageThemed.length === 0) {
+          const footerEl = document.querySelector("footer[data-nav-theme]");
+          if (footerEl) {
+            const fRect = footerEl.getBoundingClientRect();
+            if (fRect.top <= 24 && fRect.bottom >= 24) {
+              setActiveNavTheme(footerEl.getAttribute("data-nav-theme") || fallbackTheme);
+              return;
+            }
           }
-        },
-        {
-          root: null,
-          rootMargin: "-20% 0px -20% 0px",
-          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+          setActiveNavTheme(fallbackTheme);
+          return;
         }
-      );
 
-      sections.forEach((s) => observer.observe(s));
-      return () => observer.disconnect();
+        const probeY = 24;
+        for (let i = allThemed.length - 1; i >= 0; i--) {
+          const rect = allThemed[i].getBoundingClientRect();
+          if (rect.top <= probeY && rect.bottom >= probeY) {
+            setActiveNavTheme(allThemed[i].getAttribute("data-nav-theme") || fallbackTheme);
+            return;
+          }
+        }
+        setActiveNavTheme(fallbackTheme);
+      };
+
+      resolveThemeAtNavbar();
+
+      let themeRaf = null;
+      const onThemeScroll = () => {
+        if (themeRaf) return;
+        themeRaf = requestAnimationFrame(() => {
+          themeRaf = null;
+          resolveThemeAtNavbar();
+        });
+      };
+
+      window.addEventListener("scroll", onThemeScroll, { passive: true });
+      window.addEventListener("resize", onThemeScroll, { passive: true });
+
+      return () => {
+        window.removeEventListener("scroll", onThemeScroll);
+        window.removeEventListener("resize", onThemeScroll);
+        if (themeRaf) cancelAnimationFrame(themeRaf);
+      };
     }, 100);
 
     return () => clearTimeout(timer);
@@ -277,12 +293,12 @@ export default function Navbar() {
     .join(" ");
 
   return (
-    <LayoutGroup id="apple-nav-system">
+    <>
       {/* ── Apple Spotlight Search Command Palette ── */}
       <AnimatePresence>
         {searchOpen && (
           <>
-            <m.div
+            <Motion.div
               className="nav-search-backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -292,7 +308,7 @@ export default function Navbar() {
               aria-hidden="true"
             />
             <div className="nav-search-modal-container">
-              <m.div
+              <Motion.div
                 className="nav-search-modal"
                 initial={{ opacity: 0, scale: 0.98, y: -8 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -377,7 +393,7 @@ export default function Navbar() {
                     </div>
                   )}
                 </div>
-              </m.div>
+              </Motion.div>
             </div>
           </>
         )}
@@ -386,7 +402,7 @@ export default function Navbar() {
       {/* ── Apple-Grade Mobile Menu Sheet ── */}
       <AnimatePresence>
         {mobileOpen && (
-          <m.div
+          <Motion.div
             className="nav-mobile-sheet"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -406,7 +422,7 @@ export default function Navbar() {
                 <div className="nav-brand-mark">
                   <img src={logoImg} alt="" aria-hidden="true" />
                 </div>
-                <span className="nav-brand-text">TheNameIsBhagavan</span>
+                <span className="nav-brand-text">THE NAME IS BHAGAVAN</span>
               </button>
 
               <button
@@ -446,7 +462,7 @@ export default function Navbar() {
                 {PRIMARY_NAV.map((item, idx) => {
                   const itemIsActive = isActive(item.path);
                   return (
-                    <m.button
+                    <Motion.button
                       key={item.label}
                       className={`nav-mobile-nav-link ${itemIsActive ? "active" : ""}`}
                       onClick={() => go(item.path)}
@@ -461,7 +477,7 @@ export default function Navbar() {
                     >
                       <span>{item.label}</span>
                       {itemIsActive && <div className="nav-mobile-nav-link-dot" />}
-                    </m.button>
+                    </Motion.button>
                   );
                 })}
               </div>
@@ -479,7 +495,7 @@ export default function Navbar() {
                 </button>
               </div>
             </div>
-          </m.div>
+          </Motion.div>
         )}
       </AnimatePresence>
 
@@ -492,12 +508,12 @@ export default function Navbar() {
             <button
               className="nav-brand"
               onClick={() => go("/")}
-              aria-label="TheNameIsBhagavan — Overview (Home)"
+              aria-label="THE NAME IS BHAGAVAN — Overview (Home)"
             >
               <div className="nav-brand-mark">
-                <img src={logoImg} alt="TheNameIsBhagavan" />
+                <img src={logoImg} alt="THE NAME IS BHAGAVAN" />
               </div>
-              <span className="nav-brand-text">TheNameIsBhagavan</span>
+              <span className="nav-brand-text">THE NAME IS BHAGAVAN</span>
             </button>
           </div>
 
@@ -514,13 +530,6 @@ export default function Navbar() {
                     aria-current={itemIsActive ? "page" : undefined}
                   >
                     <span>{item.label}</span>
-                    {itemIsActive && (
-                      <m.div
-                        layoutId="appleNavActiveIndicator"
-                        className="nav-active-indicator"
-                        transition={{ type: "spring", stiffness: 450, damping: 36 }}
-                      />
-                    )}
                   </button>
                 </div>
               );
@@ -565,6 +574,6 @@ export default function Navbar() {
 
         </nav>
       </header>
-    </LayoutGroup>
+    </>
   );
 }

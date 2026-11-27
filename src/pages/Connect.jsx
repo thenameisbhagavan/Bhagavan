@@ -1,11 +1,11 @@
 import SEO from "../components/SEO";
 import React, { useState, useEffect } from 'react';
-import { m, AnimatePresence } from 'framer-motion';
+import { m as Motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
 import BrandSignature from "../components/BrandSignature";
 import MagneticLink from "../components/motion/MagneticLink";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Copy } from "lucide-react";
 import '../styles/Connect.css';
 import resumePdf from '../assets/Bhagavan_Resume.pdf';
 
@@ -16,6 +16,44 @@ const EMAILJS_SERVICE_ID = "service_8pg8cek";
 const EMAILJS_NOTIFICATION_TEMPLATE_ID = "template_8v4b864";
 const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_bdwrdmc";
 const EMAILJS_PUBLIC_KEY = "GOTwySQukEpQEuRa5";
+
+const CONVERSATION_ROUTES = [
+  {
+    id: 'build',
+    num: '01',
+    title: 'BUILD',
+    desc: 'Turn a technical problem into a working system.',
+    subject: 'Engineering Collaboration — System Build'
+  },
+  {
+    id: 'collaborate',
+    num: '02',
+    title: 'COLLABORATE',
+    desc: 'Bring engineering, product, or AI work together.',
+    subject: 'AI & Product Collaboration Inquiry'
+  },
+  {
+    id: 'discuss',
+    num: '03',
+    title: 'DISCUSS',
+    desc: 'Talk through an idea, architecture, or direction.',
+    subject: 'Technical Workshop / Architecture Discussion'
+  },
+  {
+    id: 'connect',
+    num: '04',
+    title: 'CONNECT',
+    desc: 'Start a conversation.',
+    subject: 'General Introduction & Networking'
+  }
+];
+
+const QUICK_TOPICS = [
+  'Software Engineering Role',
+  'AI / Voice Agent Project',
+  'GenAI Workshop / Talk',
+  'Architecture Review'
+];
 
 // ─── Motion ───────────────────────────────────────────────────────────────────
 const appleEase = [0.22, 1, 0.36, 1];
@@ -43,6 +81,7 @@ export default function Connect() {
   
   const [status, setStatus] = useState('idle');
   const [copied, setCopied] = useState(false);
+  const [activeRoute, setActiveRoute] = useState('build');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -93,7 +132,14 @@ export default function Connect() {
     }
   };
 
-  const handleScrollToForm = () => {
+  const handleScrollToForm = (route = null) => {
+    if (route) {
+      setActiveRoute(route.id);
+      setFormData((prev) => ({
+        ...prev,
+        subject: route.subject
+      }));
+    }
     const formSection = document.getElementById('conversation-form-section');
     if (formSection) {
       formSection.scrollIntoView({ behavior: 'smooth' });
@@ -120,24 +166,24 @@ export default function Connect() {
         {/* PRESERVED NOTIFICATIONS */}
         <AnimatePresence>
           {status === 'success' && (
-            <m.div 
+            <Motion.div 
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 16 }}
               transition={{ duration: 0.4, ease: appleEase }}
               className="con-toast con-toast--success"
             >
               <div className="con-toast-title">MESSAGE DELIVERED</div>
               <div className="con-toast-desc">Thank you for reaching out. I will respond as soon as possible.</div>
-            </m.div>
+            </Motion.div>
           )}
           {status === 'error' && (
-            <m.div 
+            <Motion.div 
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 16 }}
               transition={{ duration: 0.4, ease: appleEase }}
               className="con-toast con-toast--error"
             >
               <div className="con-toast-title">DELIVERY FAILED — TRY DIRECT EMAIL</div>
               <div className="con-toast-desc">There was an issue sending your message. Please try connecting via LinkedIn or email directly.</div>
-            </m.div>
+            </Motion.div>
           )}
         </AnimatePresence>
 
@@ -149,7 +195,7 @@ export default function Connect() {
           <section className="ch-section" data-nav-theme="light">
             <div className="ch-grid">
               
-              <m.div className="ch-left" initial="hidden" animate="visible" variants={fadeUp}>
+              <Motion.div className="ch-left" initial="hidden" animate="visible" variants={fadeUp}>
                 <div className="c-label">OPEN CHANNEL / 2024 &ndash; PRESENT</div>
                 <h1 className="ch-headline">
                   Open to<br/>learning.
@@ -157,9 +203,9 @@ export default function Connect() {
                 <p className="ch-sub">
                   If you're building software, evaluating AI applications in production, or exploring practical technical training &mdash; I'd love to connect.
                 </p>
-              </m.div>
+              </Motion.div>
 
-              <m.div className="ch-right" initial="hidden" animate="visible" variants={fadeUp}>
+              <Motion.div className="ch-right" initial="hidden" animate="visible" variants={fadeUp}>
                 <div className="c-label">CURRENT STATUS</div>
                 <div className="ch-availability">
                   <div className="cha-item">
@@ -183,7 +229,7 @@ export default function Connect() {
                     <span className="cha-value">OPEN TO CONVERSATIONS</span>
                   </div>
                 </div>
-              </m.div>
+              </Motion.div>
 
             </div>
           </section>
@@ -192,43 +238,32 @@ export default function Connect() {
               2. CONVERSATION ROUTES
           ══════════════════════════════════════════════════════ */}
           <section className="cr-section" data-nav-theme="light">
-            <m.div className="c-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              CHOOSE A ROUTE
-            </m.div>
+            <Motion.div className="c-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              CHOOSE A ROUTE TO PREFILL CONTEXT
+            </Motion.div>
 
-            <m.div className="cr-list" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={stagger}>
-              <button className="cr-row" onClick={handleScrollToForm}>
-                <span className="cr-num">01</span>
-                <span className="cr-title">BUILD</span>
-                <span className="cr-desc">Turn a technical problem into a working system.</span>
-                <ArrowUpRight size={20} className="cr-arrow" />
-              </button>
-              <button className="cr-row" onClick={handleScrollToForm}>
-                <span className="cr-num">02</span>
-                <span className="cr-title">COLLABORATE</span>
-                <span className="cr-desc">Bring engineering, product, or AI work together.</span>
-                <ArrowUpRight size={20} className="cr-arrow" />
-              </button>
-              <button className="cr-row" onClick={handleScrollToForm}>
-                <span className="cr-num">03</span>
-                <span className="cr-title">DISCUSS</span>
-                <span className="cr-desc">Talk through an idea, architecture, or direction.</span>
-                <ArrowUpRight size={20} className="cr-arrow" />
-              </button>
-              <button className="cr-row" onClick={handleScrollToForm}>
-                <span className="cr-num">04</span>
-                <span className="cr-title">CONNECT</span>
-                <span className="cr-desc">Start a conversation.</span>
-                <ArrowUpRight size={20} className="cr-arrow" />
-              </button>
-            </m.div>
+            <Motion.div className="cr-list" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={stagger}>
+              {CONVERSATION_ROUTES.map((route) => (
+                <button
+                  key={route.id}
+                  type="button"
+                  className={`cr-row ${activeRoute === route.id ? 'is-active' : ''}`}
+                  onClick={() => handleScrollToForm(route)}
+                >
+                  <span className="cr-num">{route.num}</span>
+                  <span className="cr-title">{route.title}</span>
+                  <span className="cr-desc">{route.desc}</span>
+                  <ArrowUpRight size={20} className="cr-arrow" />
+                </button>
+              ))}
+            </Motion.div>
           </section>
 
           {/* ══════════════════════════════════════════════════════
               3. PRIMARY CONTACT
           ══════════════════════════════════════════════════════ */}
           <section className="cp-section" data-nav-theme="light">
-            <m.div className="cp-container" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <Motion.div className="cp-container" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <div className="c-label">PRIMARY CHANNEL</div>
               
               <div className="cp-email-row">
@@ -237,11 +272,13 @@ export default function Connect() {
                 </a>
                 <MagneticLink strength={0.25}>
                   <button 
+                    type="button"
                     className={`cp-copy-btn apple-pressable ${copied ? 'copied' : ''}`} 
                     onClick={handleCopyEmail}
                     aria-label="Copy email address"
                   >
-                    {copied ? 'COPIED' : 'COPY'}
+                    {copied ? <Check size={14} style={{ marginRight: 6 }} /> : <Copy size={14} style={{ marginRight: 6 }} />}
+                    {copied ? 'COPIED' : 'COPY EMAIL'}
                   </button>
                 </MagneticLink>
               </div>
@@ -249,7 +286,7 @@ export default function Connect() {
               <div className="cp-note">
                 Email is the fastest way to start a conversation.
               </div>
-            </m.div>
+            </Motion.div>
           </section>
 
           {/* ══════════════════════════════════════════════════════
@@ -258,8 +295,21 @@ export default function Connect() {
           <section id="conversation-form-section" className="cf-section" data-nav-theme="light">
             <div className="cf-grid">
               
-              <m.div className="cf-form-wrapper" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <Motion.div className="cf-form-wrapper" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <div className="c-label">START A CONVERSATION</div>
+
+                <div className="cf-subject-pills" role="group" aria-label="Quick Subject Selection">
+                  {QUICK_TOPICS.map((topic) => (
+                    <button
+                      key={topic}
+                      type="button"
+                      className={`cf-subject-pill ${formData.subject === topic ? 'is-active' : ''}`}
+                      onClick={() => setFormData((prev) => ({ ...prev, subject: topic }))}
+                    >
+                      {topic}
+                    </button>
+                  ))}
+                </div>
                 
                 <form className="cf-form" onSubmit={handleSubmit}>
                   <div className="cf-field">
@@ -296,9 +346,9 @@ export default function Connect() {
                     </MagneticLink>
                   </div>
                 </form>
-              </m.div>
+              </Motion.div>
 
-              <m.div className="cf-guidance" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <Motion.div className="cf-guidance" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <div className="c-label">GOOD CONVERSATIONS USUALLY HAVE:</div>
                 <div className="cg-list">
                   <div className="cg-item">
@@ -318,7 +368,7 @@ export default function Connect() {
                     <div className="cg-desc">What would you like to discuss?</div>
                   </div>
                 </div>
-              </m.div>
+              </Motion.div>
 
             </div>
           </section>
@@ -329,7 +379,7 @@ export default function Connect() {
           <section className="cs-section" data-nav-theme="light">
             <div className="cs-grid">
               
-              <m.div className="cs-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <Motion.div className="cs-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <div className="c-label">OTHER CHANNELS</div>
                 <div className="cs-list">
                   <a href="https://github.com/thenameisbhagavan" target="_blank" rel="noopener noreferrer" className="cs-row">
@@ -353,9 +403,9 @@ export default function Connect() {
                     <ArrowRight size={16} className="cs-row-icon" />
                   </Link>
                 </div>
-              </m.div>
+              </Motion.div>
 
-              <m.div className="cs-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <Motion.div className="cs-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <div className="c-label">CURRENT SIGNAL</div>
                 <div className="csig-list">
                   <div className="csig-item">
@@ -387,7 +437,7 @@ export default function Connect() {
                     </div>
                   </div>
                 </div>
-              </m.div>
+              </Motion.div>
 
             </div>
           </section>
@@ -398,16 +448,16 @@ export default function Connect() {
           <section className="cx-section" data-nav-theme="light">
             <div className="cx-grid">
               
-              <m.div className="cx-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <Motion.div className="cx-left" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <div className="cx-human">
                   I don't have all the answers, but I know how to find them. I build, I break things, and I learn fast.
                 </div>
                 <div className="cx-human-sub">
                   Let's figure out the next problem together.
                 </div>
-              </m.div>
+              </Motion.div>
 
-              <m.div className="cx-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+              <Motion.div className="cx-right" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
                 <div className="c-label">RESPONSE</div>
                 <div className="cx-response">
                   <div className="cxr-item">
@@ -423,18 +473,18 @@ export default function Connect() {
                     <span className="cxr-value">As soon as reasonably possible</span>
                   </div>
                 </div>
-              </m.div>
+              </Motion.div>
               
             </div>
 
-            <m.div className="cx-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <Motion.div className="cx-cta" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <div className="cx-cta-title">Want to talk?</div>
-              <button className="cx-cta-link" onClick={handleScrollToForm}>
+              <button type="button" className="cx-cta-link" onClick={() => handleScrollToForm()}>
                 START THE CONVERSATION <ArrowRight size={16} />
               </button>
-            </m.div>
+            </Motion.div>
 
-            <m.div className="cx-explore" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <Motion.div className="cx-explore" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <div className="c-label">EXPLORE THE SYSTEMS →</div>
               <div className="cxe-links">
                 <Link to="/work/data-valley-assessment-platform" className="cxe-link">DV Assessments</Link>
@@ -443,15 +493,15 @@ export default function Connect() {
                 <Link to="/work/veritas" className="cxe-link">VERITAS</Link>
                 <Link to="/work/voltdrive" className="cxe-link">VoltDrive</Link>
               </div>
-            </m.div>
+            </Motion.div>
 
-            <m.div className="cx-signature" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <Motion.div className="cx-signature" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
               <div className="cxs-status">
                 <span>CHANNEL STATUS / OPEN</span>
                 <span>SYSTEM SIGNATURE / TNB — 2024</span>
               </div>
               <BrandSignature />
-            </m.div>
+            </Motion.div>
 
           </section>
 

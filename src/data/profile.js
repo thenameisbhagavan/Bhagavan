@@ -19,9 +19,9 @@ export const CANONICAL_PROFILE = {
     shortOrg: "Data Valley",
     location: "Vijayawada, Andhra Pradesh, India",
     status: "Active Engagement · Currently Working",
-    period: "June 2024 — Present",
-    experience: "2+ Years",
-    flaggedDetails: "Software Engineer and AI/Data Science Trainer since June 2024 at Data Valley Training, Placements & IT Solutions, working across software engineering, AI application development, and technical education, combining practical system development with industry-oriented technical training."
+    period: "August 2026 — Present",
+    experience: "Active Engagement",
+    flaggedDetails: "Software Engineer and AI/Data Science Trainer since August 2026 at Data Valley Training, Placements & IT Solutions, working across software engineering, AI application development, and technical education, combining practical system development with industry-oriented technical training."
   },
 
   // Verified Institutional Education Timeline
@@ -415,14 +415,14 @@ export const CANONICAL_PROFILE = {
     {
       company: "StudyOwl",
       title: "Software Development Intern",
-      period: "2024",
+      period: "Jan — Apr 2025",
       focus: "React frontend development, REST API integration, and full-stack component construction.",
       certKey: "studyOwlCert"
     },
     {
       company: "Blackbucks",
       title: "Machine Learning Intern",
-      period: "2024",
+      period: "May — Jun 2024",
       focus: "Data preprocessing, feature engineering, and model training pipelines with Scikit-learn.",
       certKey: "blackbucksCert"
     }

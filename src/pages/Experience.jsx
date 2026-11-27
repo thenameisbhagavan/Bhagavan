@@ -1,17 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { X, ArrowRight, ExternalLink, FileText, CheckCircle2, Terminal, Code2, Server, Database, Brain, Sparkles, ShieldCheck, Clock } from "lucide-react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { m as Motion, AnimatePresence } from "framer-motion";
+import {
+  X,
+  ArrowRight,
+  ArrowUpRight,
+  ExternalLink,
+  FileText,
+  Terminal,
+  Brain,
+  ShieldCheck,
+  Sparkles,
+  Award,
+  Users,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import BrandSignature from "../components/BrandSignature";
 import Reveal from "../components/motion/Reveal";
-import MaskReveal from "../components/motion/MaskReveal";
-import ScaleReveal from "../components/motion/ScaleReveal";
-import Parallax from "../components/motion/Parallax";
 import MagneticLink from "../components/motion/MagneticLink";
 import AppreciationLetterModal from "../components/AppreciationLetterModal";
 import "../styles/Experience.css";
 
-// ─── Certificate Artifacts & Assets ───────────────────────────────────────────
 import studyOwlCert from "../assets/cert-studyowl.png";
 import blackbucksCert from "../assets/cert-blackbucks.png";
 import smartBridgeCert from "../assets/cert-smartbridge.png";
@@ -23,7 +32,156 @@ import pbrLetterImg from "../assets/pbr-vits-appreciation-letter.png";
 import dvAssessmentImg from "../assets/datavalley-assessment-platform.png";
 import dvLabsHeroImg from "../assets/dvlabs-hero.jpg";
 
-// ─── Artifact Viewer Modal ────────────────────────────────────────────────────
+const ROLE_PILLARS = [
+  {
+    id: "01",
+    tab: "Engineering",
+    title: "DV Labs Product Engineering",
+    role: "Developer & AI Solutions · Data Valley",
+    desc: "Designing and engineering full-stack web modules with Next.js App Router, React 19, TypeScript, and MongoDB Atlas, powering milestone-locked capstone pipelines and AI viva defense.",
+    telemetry: "NEXT.JS 15 · MONGODB ATLAS · VIVA WORKFLOWS",
+    img: dvLabsHeroImg,
+    stack: ["Next.js", "React 19", "TypeScript", "MongoDB Atlas"],
+  },
+  {
+    id: "02",
+    tab: "Assessment",
+    title: "Assessment & Evaluation Canvas",
+    role: "End-to-End Platform Architect",
+    desc: "Built 40-question synchronized testing UI, HTTP-only JWT session binding, continuous background delta auto-sync (/api/assessment/sync), and server-authoritative evaluation.",
+    telemetry: "DELTA SYNC · PROCTORED · SERVER SCORING",
+    img: dvAssessmentImg,
+    stack: ["JWT Auth", "REST Sync", "Next.js", "Server Scoring"],
+  },
+  {
+    id: "03",
+    tab: "Training",
+    title: "Data Science & Applied AI Cohorts",
+    role: "Technical Educator · Data Valley",
+    desc: "Delivering project-based engineering cohorts across Python, Pandas, NumPy, Scikit-learn, Deep Learning, NLP, RAG architectures, and Generative AI workflows.",
+    telemetry: "PYTHON · ML / DL · GENERATIVE AI",
+    img: datavalleyImg,
+    stack: ["Python", "Scikit-learn", "Deep Learning", "Generative AI"],
+  },
+  {
+    id: "04",
+    tab: "Outreach",
+    title: "Campus Keynotes & Workshops",
+    role: "Invited Technical Speaker",
+    desc: "Leading intensive campus training workshops (150–300+ students at PACE Ongole) and technical sessions on AI innovation (PBR VITS Kavali, honored by IQAC letter).",
+    telemetry: "300+ STUDENTS · IQAC APPRECIATED",
+    img: pbrTalkPhoto,
+    stack: ["Prompt Engineering", "Agentic AI", "System Architecture"],
+  },
+];
+
+const FIELD_STAGES = [
+  {
+    id: "pbr",
+    badge: "STAGE 01 · INVITED TECHNICAL TALK",
+    institution: "P.B.R. Visvodaya Institute of Technology & Science (Autonomous)",
+    location: "Kavali · October 2026",
+    headline: "AI Innovation & Startup Opportunities",
+    summary:
+      "Addressed final-year CSE (AI/ML & Data Science) cohorts on applied RAG architectures, LLM deployment economics, and building resilient startup systems—recognized via official IQAC Letter of Appreciation.",
+    metrics: [
+      { label: "AUDIENCE", value: "IV-Year CSE & AI" },
+      { label: "RECOGNITION", value: "Official IQAC Letter" },
+    ],
+    img: pbrTalkPhoto,
+    imgAlt: "Technical talk at PBR VITS Kavali",
+    docImg: pbrLetterImg,
+    hasLetterModal: true,
+    pillars: [
+      "Real-World AI Innovation & Startup Viability",
+      "Applied ML/NLP & RAG System Economics",
+      "Career Architecture & Portfolio Signals",
+      "Production Deployment Beyond Tutorials",
+    ],
+  },
+  {
+    id: "pace",
+    badge: "STAGE 02 · ONE-WEEK HANDS-ON WORKSHOP",
+    institution: "PACE Institute of Technology & Sciences",
+    location: "Ongole, Andhra Pradesh",
+    headline: "Generative AI & Prompt Engineering Bootcamp",
+    summary:
+      "Led an intensive week-long applied workshop for 150–300+ engineering students covering structured prompting, RAG context retrieval, AI agent workflows, and rapid product prototyping.",
+    metrics: [
+      { label: "COHORT SCALE", value: "150–300+ Students" },
+      { label: "FORMAT", value: "Hands-On Labs" },
+    ],
+    img: paceImg,
+    imgAlt: "Generative AI workshop at PACE Ongole",
+    docImg: null,
+    hasLetterModal: false,
+    pillars: [
+      "Deterministic Prompt Frameworks",
+      "Tool Calling & Multi-Step Agent Loops",
+      "Live Python & LLM API Integration",
+      "Student Capstone Concept Validation",
+    ],
+  },
+  {
+    id: "dv",
+    badge: "STAGE 03 · INDUSTRY TRAINING PRACTICE",
+    institution: "Data Valley Training, Placements & IT Solutions",
+    location: "Vijayawada · Aug 2026 – Present",
+    headline: "Full-Stack Engineering & Applied Data Science Mentorship",
+    summary:
+      "Bridging software development and structured cohort delivery—guiding students through Python backends, MongoDB schemas, machine learning baselines, and capstone viva defenses.",
+    metrics: [
+      { label: "TENURE", value: "Aug 2026 – Present" },
+      { label: "FOCUS", value: "Code + AI Cohorts" },
+    ],
+    img: datavalleyImg,
+    imgAlt: "Data Valley Data Science and AI batch completion",
+    docImg: null,
+    hasLetterModal: false,
+    pillars: [
+      "Python, Pandas & Feature Engineering",
+      "FastAPI, Flask & React Full-Stack Labs",
+      "Capstone Milestone Reviews & Debugging",
+      "Technical Interview Readiness",
+    ],
+  },
+];
+
+const INTERNSHIPS = [
+  {
+    company: "StudyOwl Education Pvt. Ltd.",
+    role: "Software Development Intern",
+    period: "Jan – Apr 2025",
+    desc: "Developed RESTful APIs, authentication modules, and backend services using Node.js, Express.js, and MongoDB alongside reusable frontend UI.",
+    cert: studyOwlCert,
+    label: "StudyOwl Software Development Internship Certificate",
+  },
+  {
+    company: "Blackbucks",
+    role: "Machine Learning Intern (Remote)",
+    period: "May – Jun 2024",
+    desc: "Built structured Python data preprocessing, cleaning, and feature engineering pipelines with Pandas, NumPy, and Scikit-learn.",
+    cert: blackbucksCert,
+    label: "Blackbucks Machine Learning Internship Certificate",
+  },
+  {
+    company: "SmartBridge",
+    role: "Software Engineering Intern",
+    period: "2024",
+    desc: "Engineered CNN computer vision models with TensorFlow/Keras and exposed inference endpoints through Flask.",
+    cert: smartBridgeCert,
+    label: "SmartBridge Software Engineering Internship Certificate",
+  },
+  {
+    company: "Helson",
+    role: "Enterprise Automation Intern",
+    period: "2024",
+    desc: "Built automated multi-step organizational workflow systems with Microsoft PowerApps and Power Automate.",
+    cert: helsonCert,
+    label: "Helson Enterprise Automation Certificate",
+  },
+];
+
 function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -34,91 +192,68 @@ function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
   }, [isOpen, onClose]);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
       document.body.style.overflow = "";
-    }
+    };
   }, [isOpen]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="artifact-modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label="Artifact Viewer">
+    <div className="artifact-modal-overlay" onClick={onClose} role="dialog" aria-modal="true">
       <button className="am-close-btn" onClick={onClose} aria-label="Close viewer">
-        <X size={24} strokeWidth={1.5} />
+        <X size={22} />
       </button>
       <div className="am-modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="am-modal-header">VERIFIED ARTIFACT</div>
-        <img src={imgSrc} alt={imgAlt} className="am-modal-img" loading="lazy" />
+        <img src={imgSrc} alt={imgAlt} className="am-modal-img" />
       </div>
     </div>
   );
 }
 
-// ─── Main Experience Page Component ───────────────────────────────────────────
 export default function Experience() {
+  const heroRef = useRef(null);
+  const darkConsoleRef = useRef(null);
+
+  const [activeIdentity, setActiveIdentity] = useState("dual");
+  const [activePillarIdx, setActivePillarIdx] = useState(0);
+  const [activeFieldIdx, setActiveFieldIdx] = useState(0);
   const [viewerState, setViewerState] = useState({ isOpen: false, src: "", alt: "" });
-  const [activeStage, setActiveStage] = useState("01");
   const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
-  const openViewer = (src, alt) => setViewerState({ isOpen: true, src, alt });
-  const closeViewer = () => setViewerState((prev) => ({ ...prev, isOpen: false }));
-
-  // Update active stage indicator on scroll with rAF batching
-  useEffect(() => {
-    let rafId = null;
-    const stages = ["software-dev", "technical-training", "pbr-vits", "pace-ongole", "internships"];
-
-    const handleScroll = () => {
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
-        rafId = null;
-        const scrollPos = window.scrollY + window.innerHeight * 0.35;
-
-        for (let i = stages.length - 1; i >= 0; i--) {
-          const el = document.getElementById(stages[i]);
-          if (el && el.offsetTop <= scrollPos) {
-            const nextKey = `0${i + 1}`;
-            setActiveStage((prev) => (prev !== nextKey ? nextKey : prev));
-            break;
-          }
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
+  const handleSpotlight = useCallback((ref, varX, varY) => (e) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    ref.current.style.setProperty(varX, `${e.clientX - rect.left}px`);
+    ref.current.style.setProperty(varY, `${e.clientY - rect.top}px`);
   }, []);
 
-  const scrollToStage = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const openViewer = (src, alt) => setViewerState({ isOpen: true, src, alt });
+  const closeViewer = () => setViewerState((prev) => ({ ...prev, isOpen: false }));
+  const scrollToStage = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
+  const currentPillar = ROLE_PILLARS[activePillarIdx];
+  const currentField = FIELD_STAGES[activeFieldIdx];
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Experience | TheNameIsBhagavan"
-        description="Professional engineering & technical training experience of Siva Satya Sai Bhagavan Gopalajosyula (TheNameIsBhagavan). Software Engineer & AI/Data Science Trainer at Data Valley Training, Placements & IT Solutions. Software development, AI/ML systems, Generative AI, and technical training."
-        keywords="TheNameIsBhagavan, Bhagavan Experience, Software Engineer, AI Data Science Trainer, Data Valley Training Placements IT Solutions, AI ML Developer, Generative AI, Technical Education, Software Engineering"
+        description="Professional engineering & technical training experience of Siva Satya Sai Bhagavan Gopalajosyula (TheNameIsBhagavan) at Data Valley Training, Placements & IT Solutions."
+        keywords="Bhagavan Experience, Developer and Data Science Trainer, Data Valley, PBR VITS, PACE Ongole"
       />
-      
-      <ArtifactViewer 
-        isOpen={viewerState.isOpen} 
-        onClose={closeViewer} 
-        imgSrc={viewerState.src} 
-        imgAlt={viewerState.alt} 
+
+      <ArtifactViewer
+        isOpen={viewerState.isOpen}
+        onClose={closeViewer}
+        imgSrc={viewerState.src}
+        imgAlt={viewerState.alt}
       />
 
       <AppreciationLetterModal
@@ -127,910 +262,386 @@ export default function Experience() {
       />
 
       <div className="exp-evolution-page">
+        {/* ============================================================
+            ACT 01 — APPLE PEARL EXPERIENCE HERO & TELEMETRY
+            ============================================================ */}
+        <section
+          ref={heroRef}
+          onMouseMove={handleSpotlight(heroRef, "--emx", "--emy")}
+          className="exp-evolution-hero"
+          data-nav-theme="light"
+        >
+          <div className="exp-hero-spotlight" aria-hidden="true" />
+          <div className="evo-bounds">
+            <Reveal y={14} duration={0.7}>
+              <div className="hero-badge">
+                <span className="exp-live-dot" aria-hidden="true" />
+                DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS &middot; VIJAYAWADA
+              </div>
+            </Reveal>
 
-        {/* FLOATING SPATIAL STAGE RAIL */}
-        <div className="exp-sticky-rail">
+            <Motion.h1
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="hero-headline"
+            >
+              Engineering Real Systems.<br />
+              <span className="exp-hl-muted">Teaching How They Work.</span>
+            </Motion.h1>
+
+            <p className="hero-sub">
+              Combining full-stack product engineering (DV Labs, FastAPI, Next.js 15, MongoDB) with structured cohort instruction in Python, Machine Learning, and Generative AI.
+            </p>
+
+            {/* Dual-Identity Switcher */}
+            <div className="exp-identity-bar">
+              {[
+                { id: "dual", label: "Combined Practice" },
+                { id: "eng", label: "Software & AI Engineering" },
+                { id: "edu", label: "Technical Education" },
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => {
+                    setActiveIdentity(item.id);
+                    if (item.id === "eng") setActivePillarIdx(0);
+                    if (item.id === "edu") setActivePillarIdx(2);
+                  }}
+                  className={`exp-id-pill ${activeIdentity === item.id ? "active" : ""}`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="exp-kpi-grid">
+              <div className="exp-kpi-card">
+                <Terminal size={16} color="#0071e3" />
+                <div>
+                  <span className="exp-kpi-val">Aug 2026 &ndash; Present</span>
+                  <span className="exp-kpi-label">DEVELOPER &amp; TRAINER · DATA VALLEY</span>
+                </div>
+              </div>
+              <div className="exp-kpi-card">
+                <Users size={16} color="#0071e3" />
+                <div>
+                  <span className="exp-kpi-val">300+ Students</span>
+                  <span className="exp-kpi-label">CAMPUS BOOTCAMPS &amp; TALKS</span>
+                </div>
+              </div>
+              <div className="exp-kpi-card">
+                <Award size={16} color="#34c759" />
+                <div>
+                  <span className="exp-kpi-val">IQAC Recognized</span>
+                  <span className="exp-kpi-label">PBR VITS INVITED AI SESSION</span>
+                </div>
+              </div>
+              <div className="exp-kpi-card">
+                <Brain size={16} color="#0071e3" />
+                <div>
+                  <span className="exp-kpi-val">04 Internships</span>
+                  <span className="exp-kpi-label">STUDYOwl · BLACKBUCKS · HELSON · SB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Sticky Quick-Jump Dock */}
+        <div className="apple-mobile-dock" role="navigation" aria-label="Experience Stages">
           {[
-            { id: "01", label: "SOFTWARE DEV", target: "software-dev" },
-            { id: "02", label: "TECH TRAINING", target: "technical-training" },
-            { id: "03", label: "PBR VITS TALK", target: "pbr-vits" },
-            { id: "04", label: "PACE WORKSHOP", target: "pace-ongole" },
-            { id: "05", label: "INTERNSHIPS", target: "internships" }
+            { id: "01", label: "Role Console", target: "role-console" },
+            { id: "02", label: "Field Proof", target: "field-theater" },
+            { id: "03", label: "Internships", target: "internships" },
           ].map((st) => (
             <button
               key={st.id}
-              className={`exp-rail-item ${activeStage === st.id ? "active" : ""}`}
+              type="button"
+              className="apple-dock-chip"
               onClick={() => scrollToStage(st.target)}
             >
-              <span className="rail-num">{st.id}</span>
-              <span className="rail-label">{st.label}</span>
+              <span className="apple-dock-chip-num">{st.id}</span>
+              <span>{st.label}</span>
             </button>
           ))}
         </div>
 
         {/* ============================================================
-            ACT 01 — HERO (ENGINEERING & TRAINING DUAL IDENTITY)
+            ACT 02 — DARK TITANIUM ACTIVE ROLE CONSOLE
             ============================================================ */}
-        <section className="exp-evolution-hero" data-nav-theme="light">
-          <div className="evo-bounds">
-            
-            <Reveal y={16} duration={0.8}>
-              <div className="hero-eyebrow">
-                <span className="hero-badge">PROFESSIONAL PRACTICE &middot; DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS</span>
-              </div>
-            </Reveal>
-
-            <MaskReveal duration={1.1} delay={0.1}>
-              <h1 className="hero-headline">
-                Engineering Real Systems.<br />
-                Teaching How They Work.
-              </h1>
-            </MaskReveal>
-
-            <Reveal y={20} duration={0.9} delay={0.3}>
-              <p className="hero-sub">
-                Working across software engineering, AI application development, and technical education, combining practical system development with industry-oriented technical training at Data Valley Training, Placements &amp; IT Solutions.
+        <section
+          id="role-console"
+          ref={darkConsoleRef}
+          onMouseMove={handleSpotlight(darkConsoleRef, "--dmx", "--dmy")}
+          className="exp-titanium-console"
+          data-nav-theme="dark"
+        >
+          <div className="exp-console-spotlight" aria-hidden="true" />
+          <div className="evo-bounds exp-console-inner">
+            <div className="exp-console-header">
+              <span className="exp-console-eyebrow">01 &middot; PRIMARY PRACTICE STAGE</span>
+              <h2 className="exp-console-title">
+                Developer &amp; Data Science Trainer.
+              </h2>
+              <p className="exp-console-sub">
+                Data Valley Training, Placements &amp; IT Solutions, Vijayawada &middot; August 2026 &ndash; Present
               </p>
-            </Reveal>
-
-            {/* Stage Path Roadmap Bar */}
-            <Reveal y={16} duration={0.8} delay={0.5}>
-              <div className="hero-stage-roadmap">
-                <span className="rm-current">01 / SOFTWARE DEVELOPMENT</span>
-                <span className="rm-arrow">&rarr;</span>
-                <span>02 / TECHNICAL TRAINING</span>
-                <span className="rm-arrow">&rarr;</span>
-                <span>03 / ACADEMIC TALKS</span>
-                <span className="rm-arrow">&rarr;</span>
-                <span>04 / FIELD WORKSHOPS</span>
-                <span className="rm-arrow">&rarr;</span>
-                <span>05 / INTERNSHIP ARCHIVE</span>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-
-        {/* ============================================================
-            ACT 02 — PILLAR 01: SOFTWARE DEVELOPMENT (PRIMARY DIRECTION)
-            ============================================================ */}
-        <section id="software-dev" className="evo-chapter" data-nav-theme="light">
-          <div className="evo-bounds">
-            
-            <div className="chapter-header-bar">
-              <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge badge-active">PRIMARY PROFESSIONAL DIRECTION &middot; SOFTWARE DEVELOPMENT</span>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="company-name">AI SOLUTIONS ENGINEERING</h2>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.15}>
-                <span className="role-title highlight-role">Software Engineer &amp; AI/Data Science Trainer &middot; Data Valley Training, Placements &amp; IT Solutions</span>
-                <span style={{ display: 'block', fontSize: '12px', fontWeight: '600', color: '#86868b', marginTop: '4px', letterSpacing: '0.04em' }}>
-                  JUNE 2024 &ndash; PRESENT &bull; VIJAYAWADA, ANDHRA PRADESH
-                </span>
-              </Reveal>
             </div>
 
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="chapter-statement">
-                "Production software requires resilient architecture, deterministic behavior, and zero client-side compromises."
-              </blockquote>
-            </Reveal>
-
-            <Reveal y={20} duration={0.9} delay={0.3}>
-              <p className="chapter-desc">
-                Working across software engineering, AI application development, and technical education at Data Valley Training, Placements &amp; IT Solutions in Vijayawada. I design and build production-grade web applications, Python backend services, database architectures, and secure API gateways that interface modern web frontends with intelligent machine learning models.
-              </p>
-            </Reveal>
-
-            {/* Engineering Signal */}
-            <Reveal y={20} duration={0.8} delay={0.35}>
-              <div className="engineering-signal-bar">
-                <span className="signal-label">CORE ENGINEERING SIGNAL:</span>
-                <div className="signal-tags">
-                  <span>ARCHITECTURE</span>
-                  <span className="sig-sep">&rarr;</span>
-                  <span>PYTHON BACKEND</span>
-                  <span className="sig-sep">&rarr;</span>
-                  <span>REACT 19 / NEXT.JS</span>
-                  <span className="sig-sep">&rarr;</span>
-                  <span>DATABASE PERSISTENCE</span>
-                  <span className="sig-sep">&rarr;</span>
-                  <span>AI GATEWAYS</span>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* ============================================================
-                DV LABS — ONGOING FLAGSHIP COMPANY PROJECT SHOWCASE
-                ============================================================ */}
-            <Reveal y={24} duration={0.9} delay={0.4}>
-              <div className="exp-dvlabs-showcase">
-                <div className="exp-dvlabs-header">
-                  <div className="exp-dvlabs-meta-row">
-                    <span className="exp-dvlabs-live-badge">
-                      <span className="exp-dvlabs-pulse-dot" aria-hidden="true"></span>
-                      COMPANY PROJECT &middot; ONGOING DEVELOPMENT
-                    </span>
-                    <span className="exp-dvlabs-company-tag">DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS</span>
-                  </div>
-
-                  <div className="exp-dvlabs-brand-title">
-                    <span className="exp-dvlabs-brand-mark" aria-hidden="true">D</span>
-                    <h3 className="exp-dvlabs-name">
-                      DV <span className="serif-accent">Labs</span>
-                    </h3>
-                  </div>
-
-                  <h4 className="exp-dvlabs-tagline">
-                    "Where vision meets execution."
-                  </h4>
-                  <p className="exp-dvlabs-subline">
-                    A Data Valley company development initiative designed to transform engineering capstone development through AI-powered mentorship, research intelligence, structured project engineering, technical evaluation, and career readiness.
-                  </p>
-                </div>
-
-                <div className="exp-dvlabs-content-grid">
-                  {/* Left Column: Atmospheric Brand Visual from Landing Page */}
-                  <div className="exp-dvlabs-visual-container">
-                    <img
-                      src={dvLabsHeroImg}
-                      alt="DV Labs — Where vision meets execution. Milestone-locked projects defended in viva."
-                      className="exp-dvlabs-visual-img"
-                      loading="lazy"
-                    />
-                    <div className="exp-dvlabs-visual-overlay">
-                      <div className="exp-dvlabs-visual-label">PRODUCTION ECOSYSTEM &middot; DATA VALLEY LABS</div>
-                      <p className="exp-dvlabs-visual-caption">
-                        Milestone-gated project progression &middot; AI-powered oral viva defense &middot; Timed assessment delivery
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Right Column: Core Product Pillars & Contributions */}
-                  <div className="exp-dvlabs-details-col">
-                    <div className="exp-dvlabs-pill-list">
-                      <div className="exp-dvlabs-pill-item">
-                        <div className="exp-dvlabs-pill-icon">
-                          <ShieldCheck size={16} />
-                        </div>
-                        <div>
-                          <h5 className="exp-dvlabs-pill-title">Milestone-Locked Engineering</h5>
-                          <p className="exp-dvlabs-pill-desc">
-                            Structured project phases gated by automated verification; subsequent architectural tiers unlock only after code requirements pass.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="exp-dvlabs-pill-item">
-                        <div className="exp-dvlabs-pill-icon">
-                          <Brain size={16} />
-                        </div>
-                        <div>
-                          <h5 className="exp-dvlabs-pill-title">AI Viva Defense System</h5>
-                          <p className="exp-dvlabs-pill-desc">
-                            Automated oral defense interrogations testing candidates on their architectural decisions, algorithm trade-offs, and code mechanics.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="exp-dvlabs-pill-item">
-                        <div className="exp-dvlabs-pill-icon">
-                          <Clock size={16} />
-                        </div>
-                        <div>
-                          <h5 className="exp-dvlabs-pill-title">Practical Assessment Engine</h5>
-                          <p className="exp-dvlabs-pill-desc">
-                            40-question technical challenge canvas with live countdown timer, auto-sync answer persistence, and tamper-proof server-side scoring.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Verified Contribution Attribution */}
-                    <div className="exp-dvlabs-contrib-box">
-                      <div className="exp-dvlabs-contrib-title">My Technical Contribution</div>
-                      <p className="exp-dvlabs-contrib-text">
-                        <strong>Role:</strong> Software Engineer | Data Valley Engineering Team.<br />
-                        Part of the engineering team developing the DV Labs platform and assessment workflows. Engineered full-stack modules (Next.js App Router, React 19, TypeScript, MongoDB Atlas), designed state persistence and background sync pipelines, implemented deterministic server-side evaluation, and architected AI viva defense workflows.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="exp-dvlabs-footer">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#666668', fontSize: '13px' }}>
-                    <CheckCircle2 size={15} style={{ color: '#34c759' }} />
-                    <span>Proprietary Company Project of Data Valley Training, Placements &amp; IT Solutions &middot; Actively Maintained</span>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                    <Link to="/work/dv-labs-platform" className="work-btn-primary" style={{ padding: '8px 16px', fontSize: '12.5px' }}>
-                      <span>DV LABS PLATFORM &rarr;</span>
-                    </Link>
-                    <Link to="/work/data-valley-assessment-platform" className="work-btn-secondary" style={{ padding: '8px 16px', fontSize: '12.5px' }}>
-                      <span>ASSESSMENT CASE STUDY &rarr;</span>
-                    </Link>
-                    <a
-                      href="https://dv-assesments.vercel.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="work-btn-secondary"
-                      style={{ padding: '8px 16px', fontSize: '12.5px' }}
+            <div className="exp-console-grid">
+              <div className="exp-console-rail" role="tablist" aria-label="Role Pillars">
+                {ROLE_PILLARS.map((pillar, idx) => {
+                  const isActive = activePillarIdx === idx;
+                  return (
+                    <button
+                      key={pillar.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      onClick={() => setActivePillarIdx(idx)}
+                      className={`exp-rail-btn ${isActive ? "active" : ""}`}
                     >
-                      <span>LIVE ENGINE &#8599;</span>
-                    </a>
-                  </div>
-                </div>
+                      <span className="exp-rb-num">{pillar.id}</span>
+                      <div className="exp-rb-text">
+                        <span className="exp-rb-title">{pillar.title}</span>
+                        <span className="exp-rb-role">{pillar.role}</span>
+                      </div>
+                      <ArrowRight size={14} className="exp-rb-arrow" />
+                    </button>
+                  );
+                })}
               </div>
-            </Reveal>
 
-            {/* Core Development Responsibilities Grid */}
-            <Reveal y={24} duration={0.9} delay={0.45}>
-              <div style={{ marginTop: '36px', marginBottom: '40px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
-                
-                {/* 1. Enterprise Web App */}
-                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '26px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#007aff', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    01 / Application Engineering
-                  </div>
-                  <h3 style={{ fontSize: '17px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Data Valley Assessment Platform</h3>
-                  <p style={{ fontSize: '14px', color: '#555558', lineHeight: '1.6', marginBottom: '14px' }}>
-                    Engineered an end-to-end technical assessment web application (<a href="https://dv-assesments.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ color: '#007aff', textDecoration: 'none', fontWeight: '600' }}>dv-assesments.vercel.app</a>) using Next.js App Router, React 19, TypeScript, and MongoDB Atlas.
-                  </p>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#007aff' }}>&bull;</span>
-                      <span>Secure HTTP-only session binding directly to assessment instances.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#007aff' }}>&bull;</span>
-                      <span>Continuous background answer synchronization via <code>/api/assessment/sync</code>.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#007aff' }}>&bull;</span>
-                      <span>100% server-side deterministic score calculation preventing client-side tampering.</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* 2. Python Backend & APIs */}
-                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '26px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#34c759', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    02 / Backend Engineering
-                  </div>
-                  <h3 style={{ fontSize: '17px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Python Backend Services &amp; REST APIs</h3>
-                  <p style={{ fontSize: '14px', color: '#555558', lineHeight: '1.6', marginBottom: '14px' }}>
-                    Architected modular backend services using FastAPI and Flask, constructing high-throughput API endpoints, middleware validation, and structured request routing.
-                  </p>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#34c759' }}>&bull;</span>
-                      <span>Built data ingestion pipelines and ETL processing utilities with Pandas and NumPy.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#34c759' }}>&bull;</span>
-                      <span>Configured MongoDB Atlas and MySQL schemas for reliable data persistence.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#34c759' }}>&bull;</span>
-                      <span>Established automated testing, error recovery protocols, and clean API docs.</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* 3. AI Gateway & LLM Orchestration */}
-                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '26px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#af52de', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    03 / Applied AI Systems
-                  </div>
-                  <h3 style={{ fontSize: '17px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>AI Gateway &amp; Model Integration</h3>
-                  <p style={{ fontSize: '14px', color: '#555558', lineHeight: '1.6', marginBottom: '14px' }}>
-                    Implemented secure stateless proxy architectures bridging client frontends with upstream LLM APIs (Google Gemini API) without exposing secrets to client bundles.
-                  </p>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#af52de' }}>&bull;</span>
-                      <span>Structured output schemas, prompt token optimization, and zero/few-shot conditioning.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#af52de' }}>&bull;</span>
-                      <span>Context preservation, session memory management, and deterministic fallbacks.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#af52de' }}>&bull;</span>
-                      <span>Scikit-learn classification pipelines cross-validated on benchmark datasets.</span>
-                    </li>
-                  </ul>
-                </div>
-
-              </div>
-            </Reveal>
-
-            {/* Featured System Link & Evidence Card */}
-            <Reveal y={24} duration={0.9} delay={0.5}>
-              <div className="artifact-card-container">
-                <div className="ac-top-meta">
-                  <span className="ac-badge">PRODUCTION DEPLOYMENT &middot; DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS</span>
-                  <span className="ac-doc-num">LIVE SYSTEM</span>
-                </div>
-                <div style={{ padding: '20px', background: '#f5f5f7', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
-                  <div>
-                    <h4 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 4px 0' }}>Data Valley Engineering Assessment Platform</h4>
-                    <p style={{ fontSize: '13.5px', color: '#666666', margin: 0 }}>Next.js App Router &middot; React 19 &middot; TypeScript &middot; MongoDB Atlas &middot; Server Scoring</p>
-                  </div>
-                  <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                    <Link to="/work/data-valley-assessment-platform" className="work-btn-primary" style={{ padding: '8px 16px', fontSize: '13px' }}>
-                      <span>CASE STUDY ↗</span>
-                    </Link>
-                    <a href="https://dv-assesments.vercel.app/" target="_blank" rel="noopener noreferrer" className="work-btn-secondary" style={{ padding: '8px 16px', fontSize: '13px' }}>
-                      <span>LIVE APPLICATION ↗</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-          </div>
-        </section>
-
-
-        {/* ============================================================
-            ACT 03 — PILLAR 02: TECHNICAL TRAINING & EDUCATION
-            ============================================================ */}
-        <section id="technical-training" className="evo-chapter" data-nav-theme="light">
-          <div className="evo-bounds">
-            
-            <div className="chapter-header-bar">
-              <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge badge-active">SECONDARY PROFESSIONAL DIRECTION &middot; TECHNICAL EDUCATION</span>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="company-name">TECHNICAL TRAINING &amp; MENTORSHIP</h2>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.15}>
-                <span className="role-title highlight-role">Software Engineer &amp; AI/Data Science Trainer &middot; Data Valley Training, Placements &amp; IT Solutions</span>
-                <span style={{ display: 'block', fontSize: '12px', fontWeight: '600', color: '#86868b', marginTop: '4px', letterSpacing: '0.04em' }}>
-                  JUNE 2024 &ndash; PRESENT &bull; VIJAYAWADA, ANDHRA PRADESH
-                </span>
-              </Reveal>
-            </div>
-
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="chapter-statement">
-                "Teaching technology forces you to deconstruct complexity until every layer is transparent."
-              </blockquote>
-            </Reveal>
-
-            <Reveal y={20} duration={0.9} delay={0.3}>
-              <p className="chapter-desc">
-                Serving as Software Engineer &amp; AI/Data Science Trainer at Data Valley Training, Placements &amp; IT Solutions since June 2024, delivering comprehensive technical instruction, designing progressive curricula, and conducting hands-on workshops across Data Science, Machine Learning, Python, and Generative AI for students and trainees.
-              </p>
-            </Reveal>
-
-            {/* Categorized Training Responsibilities Grid (6 Core Verified Areas) */}
-            <Reveal y={20} duration={0.8} delay={0.4}>
-              <div style={{ marginTop: '36px', marginBottom: '40px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
-                
-                {/* 1. Python & Core Programming */}
-                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#ff9500', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    01 / Python &amp; Programming Instruction
-                  </div>
-                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Python &amp; Core Engineering</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#ff9500' }}>&bull;</span>
-                      <span>Structured cohorts covering Python fundamentals, OOP, data structures, and algorithmic logic.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#ff9500' }}>&bull;</span>
-                      <span>Live coding sessions demonstrating modular package design and clean refactoring principles.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#ff9500' }}>&bull;</span>
-                      <span>Instilling automated unit testing, PEP-8 compliance, and defensive programming habits.</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* 2. Data Science & Applied AI/ML */}
-                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#34c759', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    02 / Data Science &amp; Machine Learning
-                  </div>
-                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Data Science &amp; Applied ML</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#34c759' }}>&bull;</span>
-                      <span>Hands-on training in Pandas, NumPy, and Scikit-learn exploratory analysis pipelines.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#34c759' }}>&bull;</span>
-                      <span>Supervised learning models (classification, regression) with mathematical cross-validation.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#34c759' }}>&bull;</span>
-                      <span>Feature transformation, outlier mitigation, and statistical performance benchmarking.</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* 3. Generative AI & Agentic AI */}
-                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#af52de', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    03 / Generative &amp; Agentic AI
-                  </div>
-                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Generative AI &amp; Agentic Systems</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#af52de' }}>&bull;</span>
-                      <span>Designing prompt construction patterns, structured JSON extraction, and few-shot conditioning.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#af52de' }}>&bull;</span>
-                      <span>Teaching practical LLM API integration (Gemini API) and secure backend proxy bridges.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#af52de' }}>&bull;</span>
-                      <span>Explaining Retrieval-Augmented Generation (RAG), vector embeddings, and agent tool execution.</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* 4. Curriculum Planning & Content */}
-                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#007aff', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    04 / Curriculum Architecture
-                  </div>
-                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Curriculum Planning &amp; Content</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#007aff' }}>&bull;</span>
-                      <span>Authoring structured course modules, step-by-step laboratory guides, and progressive code repos.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#007aff' }}>&bull;</span>
-                      <span>Aligning instructional syllabi with real-world developer requirements and industry expectations.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#007aff' }}>&bull;</span>
-                      <span>Developing standardized assessment rubrics and practical coding evaluation benchmarks.</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* 5. Student Mentorship & Guidance */}
-                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#5856d6', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    05 / Practical Mentorship
-                  </div>
-                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>Student Mentoring &amp; Guidance</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#5856d6' }}>&bull;</span>
-                      <span>One-on-one technical debugging assistance, code reviews, and architectural problem-solving.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#5856d6' }}>&bull;</span>
-                      <span>Guiding students through real-world capstone projects from data acquisition to working demo.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#5856d6' }}>&bull;</span>
-                      <span>Bridging classroom theory with engineering portfolios, interview readiness, and systems thinking.</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* 6. AI Demos & Live Workshops */}
-                <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', padding: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                  <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '0.08em', color: '#e50914', textTransform: 'uppercase', marginBottom: '12px' }}>
-                    06 / Applied Demonstrations
-                  </div>
-                  <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#111111', margin: '0 0 12px 0' }}>AI Application Demonstrations</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#e50914' }}>&bull;</span>
-                      <span>Conducting live technical workshops and demonstrations of intelligent tools and NLP pipelines.</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#e50914' }}>&bull;</span>
-                      <span>Demonstrating end-to-end applications (e.g. Data Valley Assessment Platform, CareerOS, AuraOS).</span>
-                    </li>
-                    <li style={{ fontSize: '13.5px', color: '#444444', lineHeight: '1.5', display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#e50914' }}>&bull;</span>
-                      <span>Inspiring engineering cohorts to build production-oriented AI systems rather than shallow wrappers.</span>
-                    </li>
-                  </ul>
-                </div>
-
-              </div>
-            </Reveal>
-
-            {/* Documented Session Photo Card */}
-            <Reveal y={24} duration={0.9} delay={0.5}>
-              <div className="artifact-card-container">
-                <div className="ac-top-meta">
-                  <span className="ac-badge">DOCUMENTED ENGAGEMENT</span>
-                  <span className="ac-doc-num">Technical Mentorship &middot; Data Valley Training, Placements &amp; IT Solutions</span>
-                </div>
-                <button 
-                  className="artifact-preview-btn"
-                  onClick={() => openViewer(datavalleyImg, "Technical training and mentorship session at Data Valley Training, Placements & IT Solutions")}
-                  style={{ background: '#f5f5f7', padding: 0 }}
-                >
-                  <img src={datavalleyImg} alt="Technical mentorship session at Data Valley Training, Placements & IT Solutions" className="artifact-img" loading="lazy" style={{ objectFit: 'cover', height: 'auto', maxHeight: '500px', width: '100%' }} />
-                  <div className="artifact-hover-overlay">
-                    <span>VIEW IMAGE ↗</span>
-                  </div>
-                </button>
-              </div>
-            </Reveal>
-
-          </div>
-        </section>
-
-
-        {/* ============================================================
-            ACT 04 — CASE STUDY 01: PBR VITS, KAVALI (TECHNICAL TALK)
-            ============================================================ */}
-        <section id="pbr-vits" className="evo-chapter pbr-case-chapter" data-nav-theme="light">
-          <div className="evo-bounds">
-            
-            <div className="chapter-header-bar">
-              <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">ACADEMIC TECHNICAL TALK &middot; PBR VITS, KAVALI</span>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="company-name">PBR VITS, KAVALI</h2>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.15}>
-                <span className="role-title highlight-role">AI Innovation and Startup Opportunities</span>
-              </Reveal>
-            </div>
-
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="chapter-statement">
-                "Simplifying complex AI concepts into practical systems thinking and startup opportunities for graduating engineers."
-              </blockquote>
-            </Reveal>
-
-            <Reveal y={20} duration={0.9} delay={0.3}>
-              <p className="chapter-desc">
-                Invited by the Internal Quality Assurance Cell (IQAC) of Parvathareddy Babul Reddy Visvodaya Institute of Technology &amp; Science (Autonomous), Kavali, to deliver a specialized technical session for IV-Year students in the Department of Artificial Intelligence and Machine Learning (AIML).
-              </p>
-            </Reveal>
-
-            {/* Event Overview Grid */}
-            <Reveal y={20} duration={0.8} delay={0.35}>
-              <div className="pbr-fact-grid">
-                <div className="pbr-fact-card">
-                  <span className="pbr-fact-label">Institution</span>
-                  <span className="pbr-fact-value">PBR VITS (Autonomous), Kavali</span>
-                </div>
-                <div className="pbr-fact-card">
-                  <span className="pbr-fact-label">Department</span>
-                  <span className="pbr-fact-value">Artificial Intelligence &amp; Machine Learning</span>
-                </div>
-                <div className="pbr-fact-card">
-                  <span className="pbr-fact-label">Audience</span>
-                  <span className="pbr-fact-value">IV-Year B.Tech AIML Students &amp; Faculty</span>
-                </div>
-                <div className="pbr-fact-card">
-                  <span className="pbr-fact-label">Date &amp; Scope</span>
-                  <span className="pbr-fact-value">October 10, 2026 &middot; Technical Talk</span>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Core Themes Covered */}
-            <Reveal y={24} duration={0.9} delay={0.4}>
-              <div className="pbr-themes-grid">
-                <div className="pbr-theme-card">
-                  <span className="pbr-theme-num">THEME 01</span>
-                  <h3 className="pbr-theme-title">Practical AI Translation</h3>
-                  <p className="pbr-theme-desc">
-                    Moving from isolated academic models toward production-ready REST APIs, data ingestion pipelines, and resilient system boundaries.
-                  </p>
-                </div>
-                <div className="pbr-theme-card">
-                  <span className="pbr-theme-num">THEME 02</span>
-                  <h3 className="pbr-theme-title">AI Startup Opportunities</h3>
-                  <p className="pbr-theme-desc">
-                    Identifying real domain friction in enterprise workflows and consumer software where focused AI applications create defensible value.
-                  </p>
-                </div>
-                <div className="pbr-theme-card">
-                  <span className="pbr-theme-num">THEME 03</span>
-                  <h3 className="pbr-theme-title">Concept Simplification</h3>
-                  <p className="pbr-theme-desc">
-                    Demystifying neural network behaviors, prompt engineering patterns, and generative AI APIs into transparent, actionable engineering steps.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Dual Evidence Showcase: Event Photo + Appreciation Letter */}
-            <div className="pbr-evidence-dual-grid">
-              
-              {/* Event Photograph */}
-              <Reveal y={24} duration={0.9} delay={0.45} className="pbr-media-card">
-                <div className="pbr-media-card-header">
-                  <span className="pbr-badge-blue">AUTHENTIC EVENT EVIDENCE</span>
-                  <span style={{ fontSize: '11px', color: '#86868b', fontWeight: '600' }}>SEMINAR HALL &bull; PBR VITS</span>
-                </div>
-                <button 
-                  className="pbr-media-container"
-                  onClick={() => openViewer(pbrTalkPhoto, "Students attending the AI Innovation and Startup Opportunities technical talk at PBR VITS, Kavali")}
-                  type="button"
-                  aria-label="Enlarge event photograph"
-                >
-                  <img 
-                    src={pbrTalkPhoto} 
-                    alt="Students attending the AI Innovation and Startup Opportunities technical talk at PBR VITS, Kavali, on October 10, 2026." 
-                    className="pbr-media-img" 
-                    loading="lazy" 
-                  />
-                  <div className="artifact-hover-overlay">
-                    <span>ENLARGE PHOTO ↗</span>
-                  </div>
-                </button>
-                <div className="pbr-media-caption">
-                  <span>Interactive technical talk with IV-year AIML students in the college seminar hall.</span>
-                  <button 
-                    className="pbr-doc-action-btn"
-                    onClick={() => openViewer(pbrTalkPhoto, "Students attending the AI Innovation and Startup Opportunities technical talk at PBR VITS, Kavali")}
-                    type="button"
+              <div className="exp-console-stage">
+                <AnimatePresence mode="wait">
+                  <Motion.div
+                    key={currentPillar.id}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                    className="exp-stage-card"
                   >
-                    <span>View Fullscreen</span>
+                    <div className="exp-stage-media">
+                      <img
+                        src={currentPillar.img}
+                        alt={currentPillar.title}
+                        className="exp-stage-img"
+                      />
+                      <div className="exp-stage-hud">
+                        <span className="exp-blue-dot" aria-hidden="true" />
+                        <span>{currentPillar.telemetry}</span>
+                      </div>
+                    </div>
+
+                    <div className="exp-stage-body">
+                      <h3 className="exp-stage-title">{currentPillar.title}</h3>
+                      <p className="exp-stage-desc">{currentPillar.desc}</p>
+
+                      <div className="exp-stage-stack">
+                        {currentPillar.stack.map((tech) => (
+                          <span key={tech} className="exp-stage-chip">{tech}</span>
+                        ))}
+                      </div>
+
+                      <div className="exp-stage-actions">
+                        <Link to="/work/dv-labs-platform" className="exp-white-pill">
+                          <span>Inspect DV Labs</span>
+                          <ArrowRight size={14} />
+                        </Link>
+                        <a
+                          href="https://dvlabs.datavalley.ai/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="exp-ghost-pill"
+                        >
+                          <span>Visit Platform</span>
+                          <ArrowUpRight size={14} />
+                        </a>
+                      </div>
+                    </div>
+                  </Motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            ACT 03 — INTERACTIVE FIELD IMPACT THEATER (PBR VITS & PACE)
+            ============================================================ */}
+        <section id="field-theater" className="exp-theater-section" data-nav-theme="light">
+          <div className="evo-bounds">
+            <div className="exp-theater-top">
+              <div>
+                <span className="exp-pearl-eyebrow">02 &middot; ACADEMIC OUTREACH &amp; DOCUMENTED IMPACT</span>
+                <h2 className="exp-pearl-title">Evidence across institutions.</h2>
+              </div>
+
+              <div className="exp-theater-tabs" role="tablist" aria-label="Field Stage Selector">
+                {FIELD_STAGES.map((st, idx) => (
+                  <button
+                    key={st.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeFieldIdx === idx}
+                    onClick={() => setActiveFieldIdx(idx)}
+                    className={`exp-tab-pill ${activeFieldIdx === idx ? "active" : ""}`}
+                  >
+                    {idx === 0 ? "PBR VITS Talk" : idx === 1 ? "PACE Workshop" : "Data Valley Batch"}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <AnimatePresence mode="wait">
+              <Motion.div
+                key={currentField.id}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="exp-theater-bento"
+              >
+                <div className="exp-tb-media">
+                  <button
+                    type="button"
+                    className="exp-tb-photo-btn"
+                    onClick={() => openViewer(currentField.img, currentField.imgAlt)}
+                    aria-label={`Inspect ${currentField.institution} photo`}
+                  >
+                    <img
+                      src={currentField.img}
+                      alt={currentField.imgAlt}
+                      className="exp-tb-img"
+                    />
+                    <span className="exp-tb-zoom-pill">VIEW PHOTO ↗</span>
                   </button>
                 </div>
-              </Reveal>
 
-              {/* Official Appreciation Letter */}
-              <Reveal y={24} duration={0.9} delay={0.5} className="pbr-media-card">
-                <div className="pbr-media-card-header">
-                  <span className="pbr-badge-green">OFFICIAL RECOGNITION</span>
-                  <span style={{ fontSize: '11px', color: '#86868b', fontWeight: '600' }}>IQAC &bull; OCT 10, 2026</span>
-                </div>
-                <button 
-                  className="pbr-media-container"
-                  onClick={() => setIsLetterModalOpen(true)}
-                  type="button"
-                  aria-label="Inspect official Letter of Appreciation in document viewer"
-                >
-                  <img 
-                    src={pbrLetterImg} 
-                    alt="Appreciation letter issued by the Internal Quality Assurance Cell of PBR VITS for the AI Innovation and Startup Opportunities technical talk." 
-                    className="pbr-doc-img" 
-                    loading="lazy" 
-                  />
-                  <div className="artifact-hover-overlay">
-                    <span>INSPECT DOCUMENT ↗</span>
+                <div className="exp-tb-details">
+                  <span className="exp-tb-badge">{currentField.badge}</span>
+                  <h3 className="exp-tb-title">{currentField.headline}</h3>
+                  <p className="exp-tb-org">
+                    {currentField.institution} &middot; {currentField.location}
+                  </p>
+                  <p className="exp-tb-summary">{currentField.summary}</p>
+
+                  <div className="exp-tb-metrics">
+                    {currentField.metrics.map((mItem) => (
+                      <div key={mItem.label} className="exp-tb-metric-box">
+                        <span className="exp-tbm-val">{mItem.value}</span>
+                        <span className="exp-tbm-label">{mItem.label}</span>
+                      </div>
+                    ))}
                   </div>
-                </button>
-                <div className="pbr-media-caption">
-                  <span>Formal Letter of Appreciation from IQAC, signed by the Principal.</span>
-                  <button 
-                    className="pbr-doc-action-btn"
-                    onClick={() => setIsLetterModalOpen(true)}
+
+                  <div className="exp-tb-pillars">
+                    {currentField.pillars.map((p) => (
+                      <span key={p} className="exp-tb-pillar-chip">
+                        <ShieldCheck size={12} color="#0071e3" />
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+
+                  {currentField.hasLetterModal && (
+                    <div className="exp-tb-doc-actions">
+                      <button
+                        type="button"
+                        onClick={() => setIsLetterModalOpen(true)}
+                        className="exp-black-pill apple-pressable"
+                      >
+                        <FileText size={14} />
+                        <span>View IQAC Appreciation Letter</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => openViewer(currentField.docImg, "Official PBR VITS Letter")}
+                        className="exp-outline-pill apple-pressable"
+                      >
+                        <span>Inspect Document</span>
+                        <ExternalLink size={13} />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </Motion.div>
+            </AnimatePresence>
+          </div>
+        </section>
+
+        {/* ============================================================
+            ACT 04 — VERIFIED INTERNSHIP BENTO ARCHIVE
+            ============================================================ */}
+        <section id="internships" className="exp-internships-section" data-nav-theme="light">
+          <div className="evo-bounds">
+            <div className="exp-int-header">
+              <span className="exp-pearl-eyebrow">03 &middot; FOUNDATIONAL INDUSTRY INTERNSHIPS (2024 &ndash; 2025)</span>
+              <h2 className="exp-pearl-title">Verified Engineering Credentials.</h2>
+            </div>
+
+            <div className="exp-int-grid">
+              {INTERNSHIPS.map((item) => (
+                <div key={item.company} className="artifact-card-container">
+                  <div className="ac-top-meta">
+                    <span className="ac-badge">{item.role.toUpperCase()}</span>
+                    <span className="ac-doc-num">{item.period}</span>
+                  </div>
+                  <h3 className="exp-int-company">{item.company}</h3>
+                  <p className="exp-int-desc">{item.desc}</p>
+                  <button
                     type="button"
+                    className="artifact-preview-btn"
+                    onClick={() => openViewer(item.cert, item.label)}
+                    aria-label={`Inspect ${item.label}`}
                   >
-                    <FileText size={12} />
-                    <span>QuickLook Document</span>
+                    <img src={item.cert} alt={item.label} className="artifact-img" loading="lazy" />
+                    <div className="artifact-hover-overlay">
+                      <span>VIEW CERTIFICATE ↗</span>
+                    </div>
                   </button>
                 </div>
-              </Reveal>
-
+              ))}
             </div>
-
           </div>
         </section>
 
-
         {/* ============================================================
-            ACT 05 — CASE STUDY 02: PACE COLLEGE OF ENGINEERING, ONGOLE
-            ============================================================ */}
-        <section id="pace-ongole" className="evo-chapter pace-case-chapter" data-nav-theme="light">
-          <div className="evo-bounds">
-            
-            <div className="chapter-header-bar">
-              <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">TECHNICAL WORKSHOP CASE STUDY &middot; PACE INSTITUTE OF TECHNOLOGY &amp; SCIENCES</span>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="company-name">PACE INSTITUTE OF TECHNOLOGY &amp; SCIENCES</h2>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.15}>
-                <span className="role-title highlight-role">Prompt Engineering &times; Generative AI (300-Student Workshop)</span>
-              </Reveal>
-            </div>
-
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="chapter-statement">
-                "Teaching AI is not just explaining models. It is teaching engineers how to reason, construct prompts, and build applications with them."
-              </blockquote>
-            </Reveal>
-
-            <Reveal y={20} duration={0.9} delay={0.3}>
-              <p className="chapter-desc">
-                Conducted an intensive hands-on technical workshop for <strong>300 undergraduate engineering students</strong> across Computer Science &amp; Engineering (CSE), Artificial Intelligence &amp; Data Science (AI&amp;DS), and Artificial Intelligence &amp; Machine Learning (AI&amp;ML) departments at PACE Institute of Technology &amp; Sciences in Ongole. Delivered structured instruction on prompt construction patterns, zero-shot and few-shot conditioning, LLM API integration techniques, and real-world failure mode mitigation.
-              </p>
-            </Reveal>
-
-            <ScaleReveal className="pace-image-wrapper">
-              <img src={paceImg} alt="Generative AI & Prompt Engineering Workshop for 300 students at PACE Institute of Technology and Sciences, Ongole" className="pace-image" loading="lazy" />
-            </ScaleReveal>
-
-            <Reveal y={20} duration={0.8} delay={0.4}>
-              <div className="pace-meta-row">
-                <span className="pm-tag">300-STUDENT AUDIENCE</span>
-                <span className="pm-tag">CSE &middot; AI&amp;DS &middot; AI&amp;ML DEPARTMENTS</span>
-                <span className="pm-tag">PROMPT ENGINEERING TAXONOMIES</span>
-                <span className="pm-tag">GENERATIVE AI APIS &amp; PROXIES</span>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-
-        {/* ============================================================
-            ACT 06 — DOCUMENTED INTERNSHIPS ARCHIVE
-            ============================================================ */}
-        <section id="internships" className="evo-chapter" data-nav-theme="light">
-          <div className="evo-bounds">
-            
-            <div className="chapter-header-bar">
-              <Reveal y={16} duration={0.8}>
-                <span className="chapter-badge">FOUNDATIONAL ENGINEERING ARCHIVE &middot; 2024</span>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="company-name">ENGINEERING INTERNSHIPS</h2>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.15}>
-                <span className="role-title">Verified Technical Contributions &amp; Artifacts</span>
-              </Reveal>
-            </div>
-
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="chapter-statement">
-                "Early technical internships established strong discipline in data pipelines, full-stack product development, neural networks, and business automation."
-              </blockquote>
-            </Reveal>
-
-            {/* 4 Internships Cards Grid with QuickLook */}
-            <div style={{ marginTop: '40px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
-              
-              {/* StudyOwl */}
-              <Reveal y={24} duration={0.8} className="artifact-card-container">
-                <div className="ac-top-meta">
-                  <span className="ac-badge">SOFTWARE DEVELOPMENT INTERN</span>
-                  <span className="ac-doc-num">2024</span>
-                </div>
-                <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#111111', margin: '12px 0 6px 0' }}>StudyOwl Education</h3>
-                <p style={{ fontSize: '13.5px', color: '#666666', lineHeight: '1.5', margin: '0 0 16px 0' }}>
-                  Contributed to React frontend and Node.js backend integration. Built reusable UI components and integrated RESTful APIs.
-                </p>
-                <button 
-                  className="artifact-preview-btn"
-                  onClick={() => openViewer(studyOwlCert, "StudyOwl Software Development Internship Certificate")}
-                  style={{ background: '#f5f5f7' }}
-                >
-                  <img src={studyOwlCert} alt="StudyOwl Certificate" className="artifact-img" loading="lazy" />
-                  <div className="artifact-hover-overlay">
-                    <span>VIEW CERTIFICATE ↗</span>
-                  </div>
-                </button>
-              </Reveal>
-
-              {/* SmartBridge */}
-              <Reveal y={24} duration={0.8} delay={0.1} className="artifact-card-container">
-                <div className="ac-top-meta">
-                  <span className="ac-badge">SOFTWARE ENGINEERING INTERN</span>
-                  <span className="ac-doc-num">2024</span>
-                </div>
-                <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#111111', margin: '12px 0 6px 0' }}>SmartBridge</h3>
-                <p style={{ fontSize: '13.5px', color: '#666666', lineHeight: '1.5', margin: '0 0 16px 0' }}>
-                  Developed CNN-based image classification models using TensorFlow and Keras. Deployed trained models via Flask microservices.
-                </p>
-                <button 
-                  className="artifact-preview-btn"
-                  onClick={() => openViewer(smartBridgeCert, "SmartBridge Software Engineering Certificate")}
-                  style={{ background: '#f5f5f7' }}
-                >
-                  <img src={smartBridgeCert} alt="SmartBridge Certificate" className="artifact-img" loading="lazy" />
-                  <div className="artifact-hover-overlay">
-                    <span>VIEW CERTIFICATE ↗</span>
-                  </div>
-                </button>
-              </Reveal>
-
-              {/* Blackbucks */}
-              <Reveal y={24} duration={0.8} delay={0.15} className="artifact-card-container">
-                <div className="ac-top-meta">
-                  <span className="ac-badge">MACHINE LEARNING INTERN</span>
-                  <span className="ac-doc-num">2024</span>
-                </div>
-                <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#111111', margin: '12px 0 6px 0' }}>Blackbucks</h3>
-                <p style={{ fontSize: '13.5px', color: '#666666', lineHeight: '1.5', margin: '0 0 16px 0' }}>
-                  Performed data preprocessing, feature engineering, and model training pipelines with Scikit-learn on structured datasets.
-                </p>
-                <button 
-                  className="artifact-preview-btn"
-                  onClick={() => openViewer(blackbucksCert, "Blackbucks Machine Learning Internship Certificate")}
-                  style={{ background: '#f5f5f7' }}
-                >
-                  <img src={blackbucksCert} alt="Blackbucks Certificate" className="artifact-img" loading="lazy" />
-                  <div className="artifact-hover-overlay">
-                    <span>VIEW CERTIFICATE ↗</span>
-                  </div>
-                </button>
-              </Reveal>
-
-              {/* Helson */}
-              <Reveal y={24} duration={0.8} delay={0.2} className="artifact-card-container">
-                <div className="ac-top-meta">
-                  <span className="ac-badge">ENTERPRISE AUTOMATION INTERN</span>
-                  <span className="ac-doc-num">2024</span>
-                </div>
-                <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#111111', margin: '12px 0 6px 0' }}>Helson</h3>
-                <p style={{ fontSize: '13.5px', color: '#666666', lineHeight: '1.5', margin: '0 0 16px 0' }}>
-                  Constructed business process workflows and enterprise automation systems using Microsoft PowerApps and Power Automate.
-                </p>
-                <button 
-                  className="artifact-preview-btn"
-                  onClick={() => openViewer(helsonCert, "Helson Enterprise Automation Certificate")}
-                  style={{ background: '#f5f5f7' }}
-                >
-                  <img src={helsonCert} alt="Helson Certificate" className="artifact-img" loading="lazy" />
-                  <div className="artifact-hover-overlay">
-                    <span>VIEW CERTIFICATE ↗</span>
-                  </div>
-                </button>
-              </Reveal>
-
-            </div>
-
-          </div>
-        </section>
-
-
-        {/* ============================================================
-            ACT 07 — MINIMAL CLOSING
+            ACT 05 — CLOSING STUDIO SUMMARY
             ============================================================ */}
         <section className="exp-closing-section" data-nav-theme="light">
           <div className="evo-bounds text-center">
-            
-            <Reveal y={24} duration={1.0}>
-              <h2 className="closing-headline">
-                Engineering Depth.<br />
-                Educational Rigor.
-              </h2>
-            </Reveal>
-
-            <Reveal y={20} duration={0.9} delay={0.2}>
-              <div className="closing-stage-path">
-                <span>SYSTEM ARCHITECTURE</span>
-                <span className="csp-arrow">&rarr;</span>
-                <span>PRODUCTION DEPLOYMENTS</span>
-                <span className="csp-arrow">&rarr;</span>
-                <span className="csp-highlight">DEVELOPMENT + TECHNICAL EDUCATION</span>
-              </div>
-            </Reveal>
-
-            <Reveal y={20} duration={0.9} delay={0.35}>
-              <p className="closing-subtext">
-                Still building software. Still teaching engineers.
-              </p>
-            </Reveal>
-
-            <Reveal y={20} duration={0.9} delay={0.5}>
-              <div className="closing-signature-meta">
-                THE NAME IS BHAGAVAN<br />
-                PROFESSIONAL PRACTICE &middot; 2024 — PRESENT
-              </div>
-            </Reveal>
+            <h2 className="closing-headline">
+              Engineering Depth.<br />
+              Educational Rigor.
+            </h2>
+            <div className="closing-stage-path">
+              <span>SYSTEM ARCHITECTURE</span>
+              <span className="csp-arrow">&rarr;</span>
+              <span>PRODUCTION DEPLOYMENTS</span>
+              <span className="csp-arrow">&rarr;</span>
+              <span className="csp-highlight">DEVELOPMENT + TECHNICAL EDUCATION</span>
+            </div>
+            <p className="closing-subtext">
+              Still building software. Still mentoring the next generation of builders.
+            </p>
+            <div className="exp-closing-ctas">
+              <MagneticLink strength={0.2}>
+                <Link to="/work" className="exp-black-pill">
+                  <span>Explore Systems</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </MagneticLink>
+              <MagneticLink strength={0.2}>
+                <Link to="/resume" className="exp-outline-pill">
+                  <Sparkles size={14} />
+                  <span>View Resume</span>
+                </Link>
+              </MagneticLink>
+            </div>
           </div>
         </section>
 

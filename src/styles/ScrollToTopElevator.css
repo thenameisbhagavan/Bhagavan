@@ -1,15 +1,15 @@
 /* ==========================================================================
-   APPLE 2024 HUMAN INTERFACE SYSTEM - VISIONOS SCROLL ELEVATOR
+   APPLE LIQUID-GLASS SCROLL ELEVATOR (ADAPTIVE PEARL & DARK TITANIUM)
    ========================================================================== */
 
 .apple-scroll-elevator {
   position: fixed;
-  bottom: 32px;
-  right: 32px;
+  bottom: 24px;
+  right: 24px;
   z-index: 99990;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
@@ -21,121 +21,176 @@
 
 @media (max-width: 767px) {
   .apple-scroll-elevator {
-    bottom: 24px;
-    right: 20px;
+    bottom: 18px;
+    right: 16px;
   }
 }
 
-.scroll-elevator-wrapper {
+/* Flush 44px Liquid-Glass Medallion */
+.scroll-elevator-medallion {
   position: relative;
-  width: 52px;
-  height: 52px;
-  display: flex;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (max-width: 767px) {
-  .scroll-elevator-wrapper {
-    width: 48px;
-    height: 48px;
+/* Pearl Liquid-Glass Mode (over light sections/cards) */
+.apple-scroll-elevator.theme-pearl-glass .scroll-elevator-medallion {
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #1d1d1f;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.apple-scroll-elevator.theme-pearl-glass .scroll-ring-track {
+  stroke: rgba(0, 0, 0, 0.06);
+}
+
+.apple-scroll-elevator.theme-pearl-glass .scroll-ring-progress {
+  stroke: #0071e3;
+}
+
+/* Dark Titanium Liquid-Glass Mode (over dark sections & footer) */
+.apple-scroll-elevator.theme-dark-glass .scroll-elevator-medallion {
+  background: rgba(20, 22, 27, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f5f5f7;
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.apple-scroll-elevator.theme-dark-glass .scroll-ring-track {
+  stroke: rgba(255, 255, 255, 0.1);
+}
+
+.apple-scroll-elevator.theme-dark-glass .scroll-ring-progress {
+  stroke: #2997ff;
+}
+
+/* Hover & Elevation */
+@media (hover: hover) {
+  .apple-scroll-elevator:hover .scroll-elevator-medallion {
+    transform: translateY(-2px) scale(1.05);
+  }
+
+  .apple-scroll-elevator.theme-pearl-glass:hover .scroll-elevator-medallion {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(0, 113, 227, 0.25);
+    box-shadow:
+      0 12px 30px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
+
+  .apple-scroll-elevator.theme-dark-glass:hover .scroll-elevator-medallion {
+    background: rgba(28, 30, 36, 0.92);
+    border-color: rgba(41, 151, 255, 0.4);
   }
 }
 
-/* Circular SVG Progress Ring */
+.apple-scroll-elevator:focus-visible .scroll-elevator-medallion {
+  outline: 2px solid #0071e3;
+  outline-offset: 3px;
+}
+
+/* Flush Perimeter SVG Progress Ring */
 .scroll-progress-ring {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  inset: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
   transform: rotate(-90deg);
   pointer-events: none;
   overflow: visible;
 }
 
-.scroll-progress-ring circle {
-  transition: stroke-dashoffset 0.15s ease-out;
+.scroll-ring-progress {
+  transition: stroke-dashoffset 0.14s ease-out;
 }
 
-/* Apple 2024 High-Contrast Floating Elevator Button */
-.scroll-elevator-btn {
-  position: relative;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: #1d1d1f;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.22),
-    0 4px 12px rgba(0, 0, 0, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  transition: 
-    background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@media (max-width: 767px) {
-  .scroll-elevator-btn {
-    width: 38px;
-    height: 38px;
-  }
-}
-
-/* Ambient blue glow under the button */
-.scroll-elevator-glow {
-  position: absolute;
-  inset: 0px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 113, 227, 0.55) 0%, transparent 70%);
-  filter: blur(14px);
-  opacity: 0.7;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Hover & Active States */
-.apple-scroll-elevator:hover .scroll-elevator-btn {
-  background: #000000;
-  box-shadow: 
-    0 14px 38px rgba(0, 0, 0, 0.3),
-    0 6px 16px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.apple-scroll-elevator:hover .scroll-elevator-glow {
-  opacity: 1;
-}
-
-.apple-scroll-elevator:active .scroll-elevator-btn {
-  background: #333336;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-}
-
-/* Arrow Icon Motion */
+/* Crisp Center Arrow */
 .scroll-elevator-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.apple-scroll-elevator:hover .scroll-elevator-icon {
-  transform: translateY(-3px);
+@media (hover: hover) {
+  .apple-scroll-elevator:hover .scroll-elevator-icon {
+    transform: translateY(-2px);
+  }
 }
 
-/* Dark Mode adaptation */
-:root[data-theme="dark"] .scroll-elevator-btn,
-.apple-overview[data-theme="dark"] .scroll-elevator-btn {
-  background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(255, 255, 255, 0.4);
+/* Subtle Sliding Hover Micro-Pill ("Top · XX%") */
+.scroll-elevator-label {
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-family: var(--font-system, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(8px);
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-scroll-elevator.theme-pearl-glass .scroll-elevator-label {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   color: #1d1d1f;
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.apple-scroll-elevator.theme-dark-glass .scroll-elevator-label {
+  background: rgba(20, 22, 27, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f5f5f7;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+
+@media (hover: hover) {
+  .apple-scroll-elevator:hover .scroll-elevator-label,
+  .apple-scroll-elevator:focus-visible .scroll-elevator-label {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .scroll-elevator-medallion {
+    width: 40px;
+    height: 40px;
+  }
+
+  .scroll-elevator-label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-elevator-medallion,
+  .scroll-elevator-icon,
+  .scroll-elevator-label,
+  .scroll-ring-progress {
+    transition-duration: 0.01ms !important;
+    transform: none !important;
+  }
 }

@@ -84,7 +84,7 @@ export default function VerificationCenter() {
                 </div>
                 <div className="vc-trust-meta-item">
                   <span className="vc-trust-meta-label">Last Updated</span>
-                  <span className="vc-trust-meta-value">August 2024</span>
+                  <span className="vc-trust-meta-value">August 2026</span>
                 </div>
               </div>
               <p className="vc-trust-text">
@@ -101,14 +101,14 @@ export default function VerificationCenter() {
             
             <m.article className="vc-timeline-item" variants={vcFadeUp} role="listitem">
               <h5 className="vc-timeline-org">Ramachandra College of Engineering</h5>
-              <div className="vc-timeline-loc">Eluru</div>
+              <div className="vc-timeline-loc">Eluru &bull; 2022 &ndash; 2026</div>
               <div className="vc-timeline-degree">Bachelor of Technology</div>
               <div className="vc-timeline-major">Artificial Intelligence & Data Science</div>
               <div className="vc-timeline-meta">JNTUK (R20)</div>
               
               <dl className="vc-timeline-dl">
                 <dt className="vc-timeline-dt">CGPA</dt>
-                <dd className="vc-timeline-dd">7.8 / 10</dd>
+                <dd className="vc-timeline-dd">7.5 / 10 (CMM: 7.57 / 10)</dd>
                 <dt className="vc-timeline-dt">Status</dt>
                 <dd className="vc-timeline-dd vc-status-badge vc-status-verified">VERIFIED</dd>
               </dl>
@@ -116,10 +116,12 @@ export default function VerificationCenter() {
 
             <m.article className="vc-timeline-item" variants={vcFadeUp} role="listitem">
               <h5 className="vc-timeline-org">Sri Vidhya Junior College</h5>
-              <div className="vc-timeline-loc">Gudivada</div>
+              <div className="vc-timeline-loc">Gudivada &bull; 2020 &ndash; 2022</div>
               <div className="vc-timeline-degree">Intermediate (MPC)</div>
               
               <dl className="vc-timeline-dl">
+                <dt className="vc-timeline-dt">Score</dt>
+                <dd className="vc-timeline-dd">78% (Grade A)</dd>
                 <dt className="vc-timeline-dt">Status</dt>
                 <dd className="vc-timeline-dd vc-status-badge vc-status-verified">VERIFIED</dd>
               </dl>
@@ -127,10 +129,12 @@ export default function VerificationCenter() {
 
             <m.article className="vc-timeline-item" variants={vcFadeUp} role="listitem">
               <h5 className="vc-timeline-org">Montessori English Medium High School</h5>
-              <div className="vc-timeline-loc">Gudivada</div>
+              <div className="vc-timeline-loc">Gudivada &bull; 2019 &ndash; 2020</div>
               <div className="vc-timeline-degree">Secondary School Certificate (SSC)</div>
               
               <dl className="vc-timeline-dl">
+                <dt className="vc-timeline-dt">Score</dt>
+                <dd className="vc-timeline-dd">95% (First Division)</dd>
                 <dt className="vc-timeline-dt">Status</dt>
                 <dd className="vc-timeline-dd vc-status-badge vc-status-verified">VERIFIED</dd>
               </dl>

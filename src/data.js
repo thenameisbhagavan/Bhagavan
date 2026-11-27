@@ -15,9 +15,9 @@ export const PROFILE = {
   linkedin: 'https://www.linkedin.com/in/thenameisbhagavan/',
   objective: 'Software Engineer & AI/Data Science Trainer at Data Valley Training, Placements & IT Solutions. Working across software engineering, intelligent application development, and Artificial Intelligence, while delivering practical technical training in Python, Data Science, Machine Learning, and Generative AI.',
   internships: [
-    { title: 'Software Development Intern', company: 'StudyOwl Education Pvt Ltd', period: '2024', detail: ['Contributed to React frontend and Node.js backend integration.', 'Built reusable components and integrated REST APIs.'] },
+    { title: 'Software Development Intern', company: 'StudyOwl Education Pvt Ltd', period: 'Jan — Apr 2025', detail: ['Contributed to React frontend and Node.js backend integration.', 'Built reusable components and integrated REST APIs.'] },
     { title: 'Software Engineering Intern', company: 'SmartBridge', period: '2024', detail: ['Developed CNN-based image classification models using TensorFlow and Keras.', 'Deployed trained models using Flask.'] },
-    { title: 'Machine Learning Intern', company: 'Blackbucks', period: '2024', detail: ['Performed data preprocessing and feature engineering.', 'Developed model training pipelines using Scikit-learn.'] },
+    { title: 'Machine Learning Intern', company: 'Blackbucks', period: 'May — Jun 2024', detail: ['Performed data preprocessing and feature engineering.', 'Developed model training pipelines using Scikit-learn.'] },
     { title: 'Enterprise Automation Intern', company: 'Helson', period: '2024', detail: ['Worked with business process workflows and enterprise automation systems.'] },
   ],
   skills: { 
@@ -114,11 +114,18 @@ export const PROJECTS = [
 
 export const JOURNEY = [
   {
-    year: "June 2024 — Present",
+    year: "August 2026 — Present",
     title: "Software Engineer & AI/Data Science Trainer",
     entity: "Data Valley Training, Placements & IT Solutions, Vijayawada, India",
     type: "Professional",
     description: "Working across software engineering, AI application development, and technical education, combining practical system development with industry-oriented technical training."
+  },
+  {
+    year: "Jan — Apr 2025",
+    title: "Software Development Intern",
+    entity: "StudyOwl Education Pvt Ltd",
+    type: "Internship",
+    description: "Contributed to React frontend and Node.js backend integration. Built reusable components and integrated REST APIs."
   },
   {
     year: "2024",
@@ -129,30 +136,37 @@ export const JOURNEY = [
   },
   {
     year: "2024",
-    title: "Software Development Intern",
-    entity: "StudyOwl Education Pvt Ltd",
-    type: "Internship",
-    description: "Contributed to React frontend and Node.js backend integration. Built reusable components and integrated REST APIs."
-  },
-  {
-    year: "2024",
     title: "Software Engineering Intern",
     entity: "SmartBridge",
     type: "Internship",
     description: "Developed CNN-based image classification models using TensorFlow and Keras. Deployed trained models using Flask."
   },
   {
-    year: "2024",
+    year: "May — Jun 2024",
     title: "Machine Learning Intern",
     entity: "Blackbucks",
     type: "Internship",
     description: "Performed data preprocessing and feature engineering. Developed model training pipelines using Scikit-learn."
   },
   {
-    year: "2022-2026",
-    title: "B.Tech in AI & Data Science",
+    year: "2022 — 2026",
+    title: "B.Tech in Artificial Intelligence & Data Science",
     entity: "Ramachandra College of Engineering, JNTUK",
     type: "Education",
     description: "Comprehensive study of data structures, algorithms, databases, operating systems, machine learning, and artificial intelligence."
+  },
+  {
+    year: "2020 — 2022",
+    title: "Intermediate (MPC)",
+    entity: "Sri Vidya Junior College, Gudivada (BIEAP)",
+    type: "Education",
+    description: "Higher Secondary education in Mathematics, Physics, and Chemistry (78% · Grade A)."
+  },
+  {
+    year: "2019 — 2020",
+    title: "Secondary School Certificate (Class X)",
+    entity: "Montessori High School (EM), Gudivada (BSEAP)",
+    type: "Education",
+    description: "Secondary School Certificate with 95% marks (First Division with Distinction, Maths: 98/100)."
   }
 ];

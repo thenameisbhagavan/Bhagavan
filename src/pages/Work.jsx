@@ -1,17 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { m as Motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ExternalLink,
+  Plus,
+  X,
+  Cpu,
+  ShieldCheck,
+  Sparkles,
+  Layers,
+} from "lucide-react";
 import SEO from "../components/SEO";
 import BrandSignature from "../components/BrandSignature";
 import Reveal from "../components/motion/Reveal";
-import MaskReveal from "../components/motion/MaskReveal";
 import ScaleReveal from "../components/motion/ScaleReveal";
-import Parallax from "../components/motion/Parallax";
+import SpringTilt from "../components/motion/SpringTilt";
 import MagneticLink from "../components/motion/MagneticLink";
 import { socialLinks } from "../constants/socialLinks";
 import "../styles/Work.css";
 
-// ─── Images ───────────────────────────────────────────────────────────────────
 import careerOSImg from "../assets/careeros-new.jpg";
 import voltDriveImg from "../assets/ev.png";
 import chatImg from "../assets/aurabot-new.png";
@@ -19,10 +28,11 @@ import fakeImg from "../assets/fake.jpg";
 import agrivisionImg from "../assets/agrivision.png";
 import dvAssessmentImg from "../assets/datavalley-assessment-platform.png";
 import dvLabsHeroImg from "../assets/dvlabs-hero.jpg";
+import dheergayushHeroImg from "../assets/dheergayush-hero.jpg";
 import atsResumeImg from "../assets/resume.jpg";
 import chatProxyImg from "../assets/chat.jpeg";
 
-export const FLAGSHIP_PROJECTS = [
+const FLAGSHIP_PROJECTS = [
   {
     id: "dv-labs-platform",
     name: "DV Labs Platform",
@@ -32,7 +42,7 @@ export const FLAGSHIP_PROJECTS = [
     desc: "A Data Valley company development initiative designed to transform engineering capstone development through AI-powered mentorship, research intelligence, structured project engineering, technical evaluation, and career readiness.",
     img: dvLabsHeroImg,
     link: "/work/dv-labs-platform",
-    live: "https://dvlabs.datavalley.ai/"
+    live: "https://dvlabs.datavalley.ai/",
   },
   {
     id: "data-valley-assessment-platform",
@@ -43,7 +53,7 @@ export const FLAGSHIP_PROJECTS = [
     desc: "40 structured technical challenges with synchronized countdown timers, background delta auto-sync, and 100% tamper-proof server-side scoring.",
     img: dvAssessmentImg,
     link: "/work/data-valley-assessment-platform",
-    live: "https://dv-assesments.vercel.app/"
+    live: "https://dv-assesments.vercel.app/",
   },
   { id: "careeros", name: "CareerOS", category: "PERSONAL PROJECT", categoryType: "personal", eyebrow: "Career Intelligence Platform", desc: "An intelligence layer for career trajectory.", img: careerOSImg, link: "/work/careeros", live: "https://careeros-thenameisbhagavan.vercel.app/" },
   { id: "auraos", name: "AuraOS", category: "PERSONAL PROJECT", categoryType: "personal", eyebrow: "Personal Intelligence OS", desc: "A chatbot that actually remembers context.", img: chatImg, link: "/work/auraos", live: "https://aura-os-thenameisbhagavan.vercel.app/" },
@@ -51,870 +61,837 @@ export const FLAGSHIP_PROJECTS = [
   { id: "voltdrive", name: "VoltDrive", category: "PERSONAL PROJECT", categoryType: "personal", eyebrow: "Automotive Digital Showroom", desc: "A frontend experience built to feel alive.", img: voltDriveImg, link: "/work/voltdrive", live: "https://voltdrive-thenameisbhagavan.vercel.app/" },
   { id: "agrivision", name: "AgriVision AI", category: "PERSONAL PROJECT", categoryType: "personal", eyebrow: "Intelligent Crop Diagnostics", desc: "From Crop Image to Explainable AI Insight.", img: agrivisionImg, link: "#agrivision", live: "https://github.com/thenameisbhagavan/Plant-disease-detection" },
   { id: "ats-resume", name: "ATS Resume Builder", category: "PERSONAL PROJECT", categoryType: "personal", eyebrow: "Full-Stack Web Platform", desc: "MERN application optimizing resumes against ATS filters with keyword extraction algorithms.", img: atsResumeImg, link: "#ats-resume", live: "https://github.com/thenameisbhagavan/Resumebuilderwebapp" },
-  { id: "ai-chat", name: "AI Chat Proxy", category: "PERSONAL PROJECT", categoryType: "personal", eyebrow: "Secure LLM Gateway", desc: "Stateless backend bridge securing Gemini API interactions without browser key leakage.", img: chatProxyImg, link: "#ai-chat", live: "https://github.com/thenameisbhagavan/chatbotwebapp" }
+  { id: "ai-chat", name: "AI Chat Proxy", category: "PERSONAL PROJECT", categoryType: "personal", eyebrow: "Secure LLM Gateway", desc: "Stateless backend bridge securing Gemini API interactions without browser key leakage.", img: chatProxyImg, link: "#ai-chat", live: "https://github.com/thenameisbhagavan/chatbotwebapp" },
+];
+
+const DV_LABS_LAYERS = [
+  {
+    num: "01",
+    title: "Six-Stage Bilingual Video Tracks",
+    desc: "Coordinates Telugu narration and AI avatar interactions guiding students from problem framing through architecture and viva defense.",
+    telemetry: "BILINGUAL · 6-STAGE WORKFLOW",
+    img: dvLabsHeroImg,
+  },
+  {
+    num: "02",
+    title: "Milestone-Locked Sprint Execution",
+    desc: "Stage-gated checkpoints require passing automated verification baselines before unlocking subsequent implementation phases.",
+    telemetry: "NEXT.JS 15 · TYPESCRIPT · MONGODB ATLAS",
+    img: dvLabsHeroImg,
+  },
+  {
+    num: "03",
+    title: "600-Question Assessment & Viva Canvas",
+    desc: "Integrated vision-based proctoring, delta answer sync, faculty dashboards, automated certificates, and AI Viva Voce defense.",
+    telemetry: "PROCTORED · SERVER-SIDE SCORING",
+    img: dvAssessmentImg,
+  },
+];
+
+const DHEERGAYUSH_LAYERS = [
+  {
+    num: "01",
+    title: "Real-Time 2D Doctor Lip-Sync",
+    desc: "Custom audio-driven facial rigging, viseme amplitude synchronization, gestures, and zero-jank conversational animations.",
+    telemetry: "WEB AUDIO API · REACT 19",
+  },
+  {
+    num: "02",
+    title: "Telugu, English & Tanglish Voice Loop",
+    desc: "Seamless multilingual speech recognition, GPT-4o-mini reasoning with Gemini fallback, and SHA-256 cached low-latency TTS.",
+    telemetry: "GPT-4O-MINI · TTS CACHING",
+  },
+  {
+    num: "03",
+    title: "Lexical Clinical RAG & Emergency Safety",
+    desc: "70 curated clinical knowledge records, 24 structured FAQs, 48 bilingual audio clips, and deterministic emergency escalation.",
+    telemetry: "RAG OVER 70 RECORDS · SAFE ROUTING",
+  },
+];
+
+const INDEPENDENT_SYSTEMS = [
+  {
+    id: "01",
+    anchor: "careeros",
+    filterKey: "ai",
+    category: "CAREER INTELLIGENCE",
+    name: "CareerOS",
+    tagline: "Career decisions unified in one graph.",
+    desc: "Parses resumes, analyzes GitHub commit velocity, benchmarks real-time role requirements, and generates execution roadmaps.",
+    challenge: "Job seekers juggle fragmented resume scanners, GitHub stats, and skill sheets without unified role readiness signals.",
+    solution: "Engineered a full-stack React + FastAPI + Gemini intelligence pipeline unifying skill extraction, repository telemetry, and career mapping.",
+    domain: "careeros-thenameisbhagavan.vercel.app",
+    img: careerOSImg,
+    route: "/work/careeros",
+    live: "https://careeros-thenameisbhagavan.vercel.app/",
+    source: `${socialLinks.github.url}/careeros`,
+    stack: ["React", "FastAPI", "Python", "Gemini API", "MongoDB"],
+    steps: ["01 Discover Context", "02 Evaluate Signals", "03 Reveal Skill Gaps", "04 Accelerate Path"],
+  },
+  {
+    id: "02",
+    anchor: "veritas",
+    filterKey: "ai",
+    category: "EXPLAINABLE NLP",
+    name: "VERITAS",
+    tagline: "AI that exposes its verification math.",
+    desc: "Deterministic NLP credibility analysis decomposing claims, extracting verifiable signals, and auditing linguistic confidence.",
+    challenge: "Opaque LLM veracity scores fail critical workflows because claims aren't traced back to auditable linguistic evidence.",
+    solution: "Built a FastAPI + spaCy + Transformers verification pipeline exposing per-claim feature scores, evidence citations, and credibility bounds.",
+    domain: "veritas-thenameisbhagavan.vercel.app",
+    img: fakeImg,
+    route: "/work/veritas",
+    live: "https://veritas-thenameisbhagavan.vercel.app/",
+    source: `${socialLinks.github.url}/veritas`,
+    stack: ["React", "FastAPI", "spaCy", "Transformers", "scikit-learn"],
+    steps: ["01 Claim Extraction", "02 Feature Attribution", "03 Evidence Tracing", "04 Transparent Audit"],
+  },
+  {
+    id: "03",
+    anchor: "auraos",
+    filterKey: "ai",
+    category: "CONTEXT OPERATING LAYER",
+    name: "AuraOS",
+    tagline: "Conversations that remember why they started.",
+    desc: "Spatial AI workspace fusing persistent memory graphs, vector retrieval, and connected multi-session reasoning.",
+    challenge: "Stateless LLM chat interfaces lose architectural context every session, forcing repetitive user prompting.",
+    solution: "Constructed a semantic session-state graph with vector recall and RAG orchestration so past constraints inform present actions.",
+    domain: "aura-os-thenameisbhagavan.vercel.app",
+    img: chatImg,
+    route: "/work/auraos",
+    live: "https://aura-os-thenameisbhagavan.vercel.app/",
+    source: `${socialLinks.github.url}/auraos`,
+    stack: ["React", "Flask", "RAG", "Vector Search", "State Graphs"],
+    steps: ["01 Memory Capture", "02 Semantic Recall", "03 Reasoning Fusion"],
+  },
+  {
+    id: "04",
+    anchor: "voltdrive",
+    filterKey: "spatial",
+    category: "3D AUTOMOTIVE SHOWROOM",
+    name: "VoltDrive",
+    tagline: "Spatial WebGL choreography at 60 FPS.",
+    desc: "Interactive electric vehicle digital showroom built with Three.js, React Three Fiber, GSAP camera paths, and telemetry UI.",
+    challenge: "Interactive 3D showcase sites frequently stutter on mid-tier hardware due to heavy shaders and synchronous state updates.",
+    solution: "Paired GPU-friendly PBR lighting, GSAP scroll-camera keyframes, and Framer Motion spring HUDs into an effortless product experience.",
+    domain: "voltdrive-thenameisbhagavan.vercel.app",
+    img: voltDriveImg,
+    route: "/work/voltdrive",
+    live: "https://voltdrive-thenameisbhagavan.vercel.app/",
+    source: `${socialLinks.github.url}/voltdrive`,
+    stack: ["React 19", "Three.js", "React Three Fiber", "GSAP"],
+    steps: ["01 GLTF Pipeline", "02 Camera Curves", "03 Hardware Physics", "04 Telemetry UI"],
+  },
+  {
+    id: "05",
+    anchor: "agrivision",
+    filterKey: "ai",
+    category: "COMPUTER VISION & XAI",
+    name: "AgriVision AI",
+    tagline: "Visible Grad-CAM attribution for agriculture.",
+    desc: "MobileNetV2 plant pathology engine highlighting leaf lesions with Grad-CAM overlays so farmers see why a diagnosis occurred.",
+    challenge: "Crop classification models give raw labels without explaining whether predictions inspect real disease lesions or background clutter.",
+    solution: "Combined MobileNetV2 inference with FastAPI Grad-CAM heatmap generation to visualize model attention directly over field images.",
+    domain: "github.com/thenameisbhagavan",
+    img: agrivisionImg,
+    route: null,
+    live: null,
+    source: "https://github.com/thenameisbhagavan/Plant-disease-detection",
+    stack: ["React", "FastAPI", "TensorFlow", "MobileNetV2", "Grad-CAM"],
+    steps: ["01 Leaf Capture", "02 CNN Classification", "03 Grad-CAM Masking"],
+  },
+  {
+    id: "06",
+    anchor: "ats-resume",
+    filterKey: "spatial",
+    category: "FULL-STACK PARSER",
+    name: "ATS Resume Builder",
+    tagline: "Lexical overlap & semantic resume validation.",
+    desc: "MERN web platform scoring candidate resumes against role descriptions, auditing parser hygiene, and exporting clean formats.",
+    challenge: "Candidates lose visibility to automated parser rejection without knowing which structure or keyword signals fail matching.",
+    solution: "Engineered deterministic keyword matching, single-column semantic formatting rules, and authenticated PDF/JSON generation.",
+    domain: "github.com/thenameisbhagavan",
+    img: atsResumeImg,
+    route: null,
+    live: null,
+    source: "https://github.com/thenameisbhagavan/Resumebuilderwebapp",
+    stack: ["React", "Node.js", "Express", "MongoDB", "OAuth"],
+    steps: ["01 Role Tokenize", "02 Overlap Match", "03 Parser Audit", "04 Clean Export"],
+  },
+  {
+    id: "07",
+    anchor: "ai-chat",
+    filterKey: "ai",
+    category: "STATELESS LLM BRIDGE",
+    name: "AI Chat Gateway",
+    tagline: "Zero browser-exposed upstream API secrets.",
+    desc: "Python & Flask proxy server enforcing secret isolation, rate limiting, timeout handling, and clean streaming markdown delivery.",
+    challenge: "Prototype web interfaces often embed upstream LLM API keys directly in client bundles, creating immediate credential exposure.",
+    solution: "Built a hardened stateless proxy gateway isolating Gemini keys server-side with CORS guardrails and streaming recovery.",
+    domain: "github.com/thenameisbhagavan",
+    img: chatProxyImg,
+    route: null,
+    live: null,
+    source: "https://github.com/thenameisbhagavan/chatbotwebapp",
+    stack: ["Python", "Flask", "Gemini API", "React", "REST Proxy"],
+    steps: ["01 Key Isolation", "02 Timeout Guards", "03 Streaming Client"],
+  },
 ];
 
 export default function Work() {
   const navigate = useNavigate();
-  const [activeProject, setActiveProject] = useState("01");
+  const heroRef = useRef(null);
+  const darkConsoleRef = useRef(null);
+  const dheerCardRef = useRef(null);
+
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeDvLayerIdx, setActiveDvLayerIdx] = useState(0);
+  const [activeDheerLayerIdx, setActiveDheerLayerIdx] = useState(0);
+  const [activeConsoleIdx, setActiveConsoleIdx] = useState(0);
+  const [inspectSpec, setInspectSpec] = useState(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
-  // Update active project rail on scroll with rAF batching
   useEffect(() => {
-    let rafId = null;
-    const sections = ["dv-labs-platform", "data-valley-assessment", "careeros", "auraos", "veritas", "voltdrive", "agrivision", "ats-resume", "ai-chat"];
-
-    const handleScroll = () => {
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
-        rafId = null;
-        const scrollPos = window.scrollY + window.innerHeight * 0.35;
-
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const el = document.getElementById(sections[i]);
-          if (el && el.offsetTop <= scrollPos) {
-            const nextKey = `0${i + 1}`;
-            setActiveProject((prev) => (prev !== nextKey ? nextKey : prev));
-            break;
-          }
-        }
-      });
+    const onKey = (e) => {
+      if (e.key === "Escape") setInspectSpec(null);
     };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
+  const handleSpotlight = useCallback((ref, varX = "--wmx", varY = "--wmy") => (e) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    ref.current.style.setProperty(varX, `${e.clientX - rect.left}px`);
+    ref.current.style.setProperty(varY, `${e.clientY - rect.top}px`);
   }, []);
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
+
+  const activeDvLayer = DV_LABS_LAYERS[activeDvLayerIdx];
+  const activeDheerLayer = DHEERGAYUSH_LAYERS[activeDheerLayerIdx];
+  const activeConsoleSys = INDEPENDENT_SYSTEMS[activeConsoleIdx];
+
+  const filteredGridSystems = INDEPENDENT_SYSTEMS.filter((s) =>
+    activeFilter === "all" ? true : s.filterKey === activeFilter
+  );
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Work | TheNameIsBhagavan"
-        description="Engineering exhibition by Siva Satya Sai Bhagavan Gopalajosyula (TheNameIsBhagavan) — Software Engineer & AI/Data Science Trainer at Data Valley Training, Placements & IT Solutions. Explore DV Labs Platform, Data Valley Assessment Platform, CareerOS, AuraOS, VERITAS, VoltDrive, and AgriVision AI."
-        keywords="TheNameIsBhagavan, Bhagavan Projects, DV Labs, Data Valley Training Placements IT Solutions, Software Engineer, AI Systems Engineering, CareerOS, AuraOS, VERITAS, VoltDrive, AgriVision AI, Technical Trainer"
+        description="Engineering exhibition by Siva Satya Sai Bhagavan Gopalajosyula (TheNameIsBhagavan) — Software Engineer & AI/Data Science Trainer. Explore DV Labs Platform, DHEERGAYUSH, CareerOS, AuraOS, VERITAS, VoltDrive, and AgriVision AI."
+        keywords="TheNameIsBhagavan, Bhagavan Projects, DV Labs, DHEERGAYUSH, CareerOS, AuraOS, VERITAS, VoltDrive, AgriVision AI"
       />
-      <div className="work-exhibition-page">
 
-        {/* FLOATING SPATIAL PROJECT RAIL */}
-        <div className="work-sticky-rail">
+      <div className="work-exhibition-page">
+        {/* ============================================================
+            ACT 01 — APPLE PEARL EXHIBITION HERO & JUMP BAR
+            ============================================================ */}
+        <section
+          ref={heroRef}
+          onMouseMove={handleSpotlight(heroRef)}
+          className="work-exhibition-hero"
+          data-nav-theme="light"
+        >
+          <div className="wk-hero-spotlight" aria-hidden="true" />
+          <div className="exhibition-bounds">
+            <Reveal y={14} duration={0.7}>
+              <div className="work-hero-eyebrow">
+                <span className="work-eyebrow-badge">
+                  <span className="wk-live-dot" aria-hidden="true" />
+                  ENGINEERING EXHIBITION &middot; 10 SHIPPED ARCHITECTURES
+                </span>
+              </div>
+            </Reveal>
+
+            <Motion.h1
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="work-hero-headline"
+            >
+              Systems engineered for{" "}
+              <span className="wk-hl-muted">real-world precision.</span>
+            </Motion.h1>
+
+            <Reveal y={16} duration={0.8} delay={0.12}>
+              <p className="work-hero-sub-para">
+                Production software platforms, bilingual clinical voice AI, explainable NLP pipelines, and spatial 3D interfaces built across Data Valley and independent research.
+              </p>
+            </Reveal>
+
+            {/* Quick Section Jump Pills (Works cleanly across any viewport size) */}
+            <div className="wk-jump-pills" role="navigation" aria-label="Work Categories">
+              <button
+                type="button"
+                className="wk-jump-btn primary apple-pressable"
+                onClick={() => scrollToSection("flagships")}
+              >
+                <Sparkles size={14} />
+                <span>Flagship Systems (03)</span>
+              </button>
+              <button
+                type="button"
+                className="wk-jump-btn apple-pressable"
+                onClick={() => scrollToSection("systems-console")}
+              >
+                <Cpu size={14} />
+                <span>Independent Console (07)</span>
+              </button>
+              <button
+                type="button"
+                className="wk-jump-btn apple-pressable"
+                onClick={() => scrollToSection("lessons-titanium")}
+              >
+                <Layers size={14} />
+                <span>Architectural Lessons</span>
+              </button>
+            </div>
+
+            <div className="wk-telemetry-strip">
+              <div className="wk-tel-item">
+                <span className="wk-tel-val">DV Labs + DHEERGAYUSH</span>
+                <span className="wk-tel-key">PRODUCTION FLAGSHIPS</span>
+              </div>
+              <div className="wk-tel-item">
+                <span className="wk-tel-val">Next.js 15 &middot; FastAPI &middot; Python</span>
+                <span className="wk-tel-key">CORE RUNTIME STACK</span>
+              </div>
+              <div className="wk-tel-item">
+                <span className="wk-tel-val">OpenAI &middot; Gemini &middot; Web Audio</span>
+                <span className="wk-tel-key">APPLIED AI LAYER</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Sticky Multi-Device Jump Dock */}
+        <div className="apple-mobile-dock" role="navigation" aria-label="Systems Quick Jump">
           {[
-            { id: "01", name: "DV LABS PLATFORM", target: "dv-labs-platform" },
-            { id: "02", name: "DV ASSESSMENT", target: "data-valley-assessment" },
-            { id: "03", name: "CAREEROS", target: "careeros" },
-            { id: "04", name: "AURAOS", target: "auraos" },
-            { id: "05", name: "VERITAS", target: "veritas" },
-            { id: "06", name: "VOLTDRIVE", target: "voltdrive" },
-            { id: "07", name: "AGRIVISION AI", target: "agrivision" },
-            { id: "08", name: "ATS RESUME", target: "ats-resume" },
-            { id: "09", name: "AI PROXY", target: "ai-chat" }
+            { id: "01", name: "DV Labs", target: "dv-labs-platform" },
+            { id: "02", name: "Dheergayush", target: "dheergayush-work" },
+            { id: "03", name: "Assessment", target: "data-valley-assessment" },
+            { id: "04", name: "Console", target: "systems-console" },
+            { id: "05", name: "Lessons", target: "lessons-titanium" },
           ].map((item) => (
             <button
               key={item.id}
-              className={`work-rail-item ${activeProject === item.id ? "active" : ""}`}
+              type="button"
+              className="apple-dock-chip"
               onClick={() => scrollToSection(item.target)}
             >
-              <span className="rail-num">{item.id}</span>
-              <span className="rail-name">{item.name}</span>
+              <span className="apple-dock-chip-num">{item.id}</span>
+              <span>{item.name}</span>
             </button>
           ))}
         </div>
 
         {/* ============================================================
-            ACT 01 — HERO (EXHIBITION OPENING)
+            ACT 02 — INTERACTIVE APPLE DUO & TRIO FLAGSHIP STAGES
             ============================================================ */}
-        <section className="work-exhibition-hero" data-nav-theme="light">
+        <section id="flagships" className="wk-flagships-section" data-nav-theme="light">
           <div className="exhibition-bounds">
-            
-            <Reveal y={16} duration={0.8}>
-              <div className="work-hero-eyebrow">
-                <span className="work-eyebrow-badge">SYSTEMS / 09</span>
-              </div>
-            </Reveal>
+            <div className="wk-section-header">
+              <span className="wk-eyebrow">01 &middot; PRODUCTION &amp; CLINICAL FLAGSHIPS</span>
+              <h2 className="wk-section-title">Flagship engineering initiatives.</h2>
+            </div>
 
-            <MaskReveal duration={1.1} delay={0.1}>
-              <h1 className="work-hero-headline">
-                Systems I built<br />
-                to understand<br />
-                what technology can become.
-              </h1>
-            </MaskReveal>
+            <div className="wk-duo-stack">
+              {/* FLAGSHIP 01: DV LABS (PEARL INTERACTIVE 2-COL) */}
+              <ScaleReveal id="dv-labs-platform" className="wk-duo-card theme-pearl">
+                <div className="wk-duo-grid">
+                  <div className="wk-duo-content">
+                    <div className="wk-duo-meta">
+                      <span className="wk-duo-eyebrow">DATA VALLEY &middot; PRODUCTION PLATFORM</span>
+                      <span className="wk-status-badge green">
+                        <span className="wk-live-dot" aria-hidden="true" />
+                        ACTIVE SYSTEM
+                      </span>
+                    </div>
 
-            <Reveal y={20} duration={0.9} delay={0.3}>
-              <p className="work-hero-sub">
-                COMPANY SYSTEMS &middot; INDEPENDENT PLATFORMS &middot; INTELLIGENT INTERFACES
-              </p>
-            </Reveal>
+                    <h3 className="wk-duo-title">
+                      DV Labs<span className="wk-dot">.</span>
+                    </h3>
+                    <p className="wk-duo-quote">Where vision meets execution.</p>
+                    <p className="wk-duo-desc">
+                      AI-guided capstone-to-career engineering platform with bilingual video tracks, milestone-locked sprints, 600-question proctored assessments, and automated AI viva defense.
+                    </p>
 
-            {/* Category Discovery Pills */}
-            <Reveal y={16} duration={0.8} delay={0.4}>
-              <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '24px' }}>
-                <button
-                  onClick={() => scrollToSection("dv-labs-platform")}
-                  className="apple-pressable"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '8px 16px',
-                    borderRadius: '980px',
-                    background: '#ffffff',
-                    border: '1px solid #d2d2d7',
-                    fontSize: '12px',
-                    fontWeight: '700',
-                    color: '#1d1d1f',
-                    cursor: 'pointer',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
-                  }}
+                    <div className="wk-layer-tabs" role="tablist" aria-label="DV Labs Capabilities">
+                      {DV_LABS_LAYERS.map((layer, idx) => {
+                        const isSelected = activeDvLayerIdx === idx;
+                        return (
+                          <button
+                            key={layer.num}
+                            type="button"
+                            role="tab"
+                            aria-selected={isSelected}
+                            onClick={() => setActiveDvLayerIdx(idx)}
+                            className={`wk-layer-btn ${isSelected ? "active" : ""}`}
+                          >
+                            <div className="wk-lb-head">
+                              <span className="wk-lb-num">{layer.num}</span>
+                              <span className="wk-lb-title">{layer.title}</span>
+                              <ArrowRight size={13} className="wk-lb-arrow" />
+                            </div>
+                            {isSelected && <p className="wk-lb-desc">{layer.desc}</p>}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="wk-duo-actions">
+                      <MagneticLink strength={0.2}>
+                        <Link
+                          to={
+                            activeDvLayerIdx === 2
+                              ? "/work/data-valley-assessment-platform"
+                              : "/work/dv-labs-platform"
+                          }
+                          className="work-btn-primary"
+                        >
+                          <span>Explore Case Study</span>
+                          <ArrowRight size={14} />
+                        </Link>
+                      </MagneticLink>
+                      <MagneticLink strength={0.2}>
+                        <a
+                          href={
+                            activeDvLayerIdx === 2
+                              ? "https://dv-assesments.vercel.app/"
+                              : "https://dvlabs.datavalley.ai/"
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="work-btn-secondary"
+                        >
+                          <span>Visit Platform</span>
+                          <ArrowUpRight size={14} />
+                        </a>
+                      </MagneticLink>
+                    </div>
+                  </div>
+
+                  <div className="wk-duo-visual">
+                    <SpringTilt maxTilt={2.2} scale={1.01} className="wk-tilt-box">
+                      <div className="wk-visual-frame">
+                        <AnimatePresence mode="wait">
+                          <Motion.img
+                            key={activeDvLayer.num}
+                            src={activeDvLayer.img}
+                            alt="DV Labs Production Environment"
+                            initial={{ opacity: 0, scale: 1.02 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.99 }}
+                            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                            className="wk-visual-img"
+                          />
+                        </AnimatePresence>
+                        <div className="wk-visual-hud">
+                          <span className="wk-live-dot" aria-hidden="true" />
+                          <span>{activeDvLayer.telemetry}</span>
+                        </div>
+                      </div>
+                    </SpringTilt>
+                  </div>
+                </div>
+              </ScaleReveal>
+
+              {/* FLAGSHIP 02: DHEERGAYUSH (DARK OBSIDIAN TITANIUM 2-COL) */}
+              <ScaleReveal id="dheergayush-work" className="wk-duo-card theme-obsidian">
+                <div
+                  ref={dheerCardRef}
+                  onMouseMove={handleSpotlight(dheerCardRef, "--dmx", "--dmy")}
+                  className="wk-obsidian-inner"
                 >
-                  <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#007aff' }}></span>
-                  <span>Company Work (02)</span>
-                </button>
+                  <div className="wk-obsidian-spotlight" aria-hidden="true" />
+                  <div className="wk-duo-grid reversed">
+                    <div className="wk-duo-content">
+                      <div className="wk-duo-meta">
+                        <span className="wk-duo-eyebrow dark">
+                          CLINICAL VOICE AI &middot; DHEERGAYUSH.COM
+                        </span>
+                        <span className="wk-status-badge blue">
+                          <span className="wk-blue-dot" aria-hidden="true" />
+                          VOICE &amp; 2D AVATAR
+                        </span>
+                      </div>
 
-                <button
-                  onClick={() => scrollToSection("careeros")}
-                  className="apple-pressable"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '8px 16px',
-                    borderRadius: '980px',
-                    background: '#ffffff',
-                    border: '1px solid #d2d2d7',
-                    fontSize: '12px',
-                    fontWeight: '700',
-                    color: '#6e6e73',
-                    cursor: 'pointer',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
-                  }}
-                >
-                  <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#86868b' }}></span>
-                  <span>Personal Projects (07)</span>
-                </button>
-              </div>
-            </Reveal>
-            
-            <Reveal y={16} duration={0.8} delay={0.5}>
-              <div className="work-scroll-indicator">
-                <span className="scroll-dot"></span>
-                <span>SCROLL TO EXPLORE EXHIBITION</span>
-              </div>
-            </Reveal>
+                      <h3 className="wk-duo-title dark">
+                        DHEERGAYUSH<span className="wk-dot">.</span>
+                      </h3>
+                      <p className="wk-duo-quote dark">Healthcare interaction. In every language.</p>
+                      <p className="wk-duo-desc dark">
+                        End-to-end 2D interactive doctor avatar powered by GPT-4o-mini, Gemini fallback, SHA-256 TTS audio caching, facial lip-sync, and Telugu/English/Tanglish voice interaction.
+                      </p>
+
+                      <div className="wk-layer-tabs" role="tablist" aria-label="Dheergayush Capabilities">
+                        {DHEERGAYUSH_LAYERS.map((layer, idx) => {
+                          const isSelected = activeDheerLayerIdx === idx;
+                          return (
+                            <button
+                              key={layer.num}
+                              type="button"
+                              role="tab"
+                              aria-selected={isSelected}
+                              onClick={() => setActiveDheerLayerIdx(idx)}
+                              className={`wk-layer-btn dark ${isSelected ? "active" : ""}`}
+                            >
+                              <div className="wk-lb-head">
+                                <span className="wk-lb-num dark">{layer.num}</span>
+                                <span className="wk-lb-title dark">{layer.title}</span>
+                                <ArrowRight size={13} className="wk-lb-arrow" />
+                              </div>
+                              {isSelected && <p className="wk-lb-desc dark">{layer.desc}</p>}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <div className="wk-duo-actions">
+                        <a
+                          href="https://dheergayush.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="wk-btn-white-pill apple-pressable"
+                        >
+                          <span>Visit dheergayush.com</span>
+                          <ArrowUpRight size={14} />
+                        </a>
+                        <button
+                          type="button"
+                          className="wk-btn-dark-ghost apple-pressable"
+                          onClick={() => scrollToSection("systems-console")}
+                        >
+                          <span>Compare Architecture</span>
+                          <ArrowRight size={14} />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="wk-duo-visual">
+                      <SpringTilt maxTilt={2.2} scale={1.01} className="wk-tilt-box">
+                        <div className="wk-visual-frame dark">
+                          <img
+                            src={dheergayushHeroImg}
+                            alt="Dheergayush Clinical Telemedicine Platform"
+                            className="wk-visual-img"
+                            loading="lazy"
+                          />
+                          <div className="wk-visual-hud dark">
+                            <span className="wk-blue-dot" aria-hidden="true" />
+                            <span>{activeDheerLayer.telemetry}</span>
+                          </div>
+                        </div>
+                      </SpringTilt>
+                    </div>
+                  </div>
+                </div>
+              </ScaleReveal>
+
+              {/* FLAGSHIP 03: DV LABS ASSESSMENT PLATFORM */}
+              <ScaleReveal id="data-valley-assessment" className="wk-duo-card theme-pearl">
+                <div className="wk-duo-grid">
+                  <div className="wk-duo-content">
+                    <div className="wk-duo-meta">
+                      <span className="wk-duo-eyebrow">ENTERPRISE ASSESSMENT ENGINE</span>
+                      <span className="wk-status-badge green">
+                        <ShieldCheck size={12} />
+                        ZERO DATA LOSS
+                      </span>
+                    </div>
+
+                    <h3 className="wk-duo-title">
+                      DV Assessments<span className="wk-dot">.</span>
+                    </h3>
+                    <p className="wk-duo-quote">40 challenges. Server-authoritative integrity.</p>
+                    <p className="wk-duo-desc">
+                      Architected HTTP-only JWT cookie binding, continuous background delta sync (`/api/assessment/sync`), blur/focus integrity telemetry, and tamper-proof scoring (`/api/assessment/submit`).
+                    </p>
+
+                    <div className="wk-spec-chips">
+                      {["Next.js App Router", "React 19", "TypeScript", "MongoDB Atlas", "JWT Cookies"].map((t) => (
+                        <span key={t} className="wk-spec-chip">{t}</span>
+                      ))}
+                    </div>
+
+                    <div className="wk-duo-actions">
+                      <Link to="/work/data-valley-assessment-platform" className="work-btn-primary">
+                        <span>Explore Case Study</span>
+                        <ArrowRight size={14} />
+                      </Link>
+                      <a
+                        href="https://dv-assesments.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="work-btn-secondary"
+                      >
+                        <span>Launch Assessment</span>
+                        <ArrowUpRight size={14} />
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="wk-duo-visual">
+                    <div className="wk-visual-frame">
+                      <img
+                        src={dvAssessmentImg}
+                        alt="Data Valley Engineering Assessment Platform"
+                        className="wk-visual-img"
+                        loading="lazy"
+                      />
+                      <div className="wk-visual-hud">
+                        <span className="wk-live-dot" aria-hidden="true" />
+                        <span>40 QUESTIONS &middot; DELTA AUTO-SYNC</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScaleReveal>
+            </div>
           </div>
         </section>
 
-
         {/* ============================================================
-            ACT 02 — CHAPTER 01: DV LABS PLATFORM (COMPANY PROJECT · ONGOING)
+            ACT 03 — DARK TITANIUM INTERACTIVE SYSTEMS CONSOLE (07 PLATFORMS)
             ============================================================ */}
-        <section id="dv-labs-platform" className="work-chapter chapter-dv-labs" data-nav-theme="light">
-          <div className="exhibition-bounds">
-            
-            <div className="chapter-header-row">
-              <Reveal y={16} duration={0.8}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '8px' }}>
-                  <span className="work-dvlabs-live-pill">
-                    <span className="work-dvlabs-pulse-dot" aria-hidden="true"></span>
-                    COMPANY PROJECT &middot; ONGOING
-                  </span>
-                  <span className="chapter-badge">DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS &middot; 01 / 09</span>
-                </div>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <div className="work-dvlabs-brand-row">
-                  <span className="work-dvlabs-brand-mark" aria-hidden="true">D</span>
-                  <h2 className="work-dvlabs-title-text">
-                    DV <span className="serif-accent">Labs</span>
-                  </h2>
-                </div>
-              </Reveal>
-            </div>
-
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="work-dvlabs-tagline-quote">
-                "Where vision meets execution."
-              </blockquote>
-            </Reveal>
-
-            <Reveal y={20} duration={0.85} delay={0.25}>
-              <p className="work-dvlabs-subline-text">
-                A Data Valley company development initiative designed to transform engineering capstone development through AI-powered mentorship, research intelligence, structured project engineering, technical evaluation, and career readiness at Data Valley Training, Placements &amp; IT Solutions.
+        <section
+          id="systems-console"
+          ref={darkConsoleRef}
+          onMouseMove={handleSpotlight(darkConsoleRef, "--cmx", "--cmy")}
+          className="wk-console-section"
+          data-nav-theme="dark"
+        >
+          <div className="wk-console-spotlight" aria-hidden="true" />
+          <div className="exhibition-bounds wk-console-inner">
+            <div className="wk-console-header">
+              <span className="wk-console-eyebrow">02 &middot; INTERACTIVE SYSTEMS CONSOLE</span>
+              <h2 className="wk-console-headline">
+                Seven independent architectures.<br />One interactive inspector.
+              </h2>
+              <p className="wk-console-lead">
+                Select any system from the engineering rail to inspect its runtime stage, pipeline architecture, and live deployment.
               </p>
-            </Reveal>
-
-            {/* Contribution Ribbon */}
-            <Reveal y={20} duration={0.8} delay={0.3}>
-              <div className="work-dvlabs-contrib-ribbon">
-                <span className="work-dvlabs-contrib-badge">MY CONTRIBUTION:</span>
-                <p className="work-dvlabs-contrib-desc">
-                  <strong>Software Engineer | Data Valley Engineering Team:</strong> Part of the engineering team developing the platform. Engineered full-stack modules (Next.js App Router, React 19, TypeScript, MongoDB Atlas), state persistence and background sync pipelines, and AI viva defense workflows.
-                </p>
-              </div>
-            </Reveal>
-
-            {/* Product Environment Showcase */}
-            <ScaleReveal className="chapter-hero-image-wrap" style={{ marginTop: '36px' }}>
-              <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '18px', border: '1px solid #e5e5ea', boxShadow: '0 20px 48px rgba(0,0,0,0.08)' }}>
-                <img 
-                  src={dvLabsHeroImg} 
-                  alt="DV Labs — Where vision meets execution. Milestone-locked projects defended in viva." 
-                  className="chapter-hero-img" 
-                  loading="lazy" 
-                />
-                <div style={{ position: 'absolute', bottom: '16px', left: '16px', background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', padding: '6px 14px', borderRadius: '8px', fontSize: '11.5px', fontWeight: '700', color: '#1d1d1f' }}>
-                  OFFICIAL DV LABS PRODUCT ENVIRONMENT &middot; DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS
-                </div>
-              </div>
-            </ScaleReveal>
-
-            {/* 4-Step System Architecture */}
-            <div className="chapter-steps-grid">
-              {[
-                { step: "01", title: "MILESTONE LOCKS", desc: "Stage-gated engineering workflows where code checkpoints must satisfy strict automated test baselines before subsequent phases unlock." },
-                { step: "02", title: "VIVA DEFENSE", desc: "AI-driven oral defense interrogating candidates in real-time on architectural decisions, algorithm trade-offs, and code mechanics." },
-                { step: "03", title: "INDUSTRY BASELINES", desc: "Replacing generic tutorial clones with enterprise code standards, robust documentation, and authentic deliverables." },
-                { step: "04", title: "VERIFIABLE EXECUTION", desc: "Automated verification pipelines proving candidate mastery and system reliability in production conditions." }
-              ].map((st, idx) => (
-                <Reveal key={st.step} y={24} duration={0.8} delay={idx * 0.1} className="chapter-step-card">
-                  <span className="step-num">{st.step}</span>
-                  <h3 className="step-title">{st.title}</h3>
-                  <p className="step-desc">{st.desc}</p>
-                </Reveal>
-              ))}
             </div>
 
-            {/* Engineering Signal & Actions */}
-            <div className="chapter-footer-bar">
-              <div className="chapter-tech-stack">
-                <span className="tech-label">ENGINEERING STACK:</span>
-                <span className="tech-val">NEXT.JS APP ROUTER &middot; REACT 19 &middot; TYPESCRIPT &middot; NODE.JS &middot; MONGODB ATLAS &middot; AI VIVA ENGINE</span>
+            <div className="wk-console-stage">
+              <div className="wk-console-rail" role="tablist" aria-label="Independent Platforms">
+                {INDEPENDENT_SYSTEMS.map((sys, idx) => {
+                  const isActive = activeConsoleIdx === idx;
+                  return (
+                    <button
+                      key={sys.id}
+                      id={sys.anchor}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      onClick={() => setActiveConsoleIdx(idx)}
+                      className={`wk-rail-btn ${isActive ? "active" : ""}`}
+                    >
+                      <span className="wk-rb-num">{sys.id}</span>
+                      <div className="wk-rb-copy">
+                        <span className="wk-rb-name">{sys.name}</span>
+                        <span className="wk-rb-cat">{sys.category}</span>
+                      </div>
+                      <ArrowRight size={14} className="wk-rb-arrow" />
+                    </button>
+                  );
+                })}
               </div>
 
-              <div className="chapter-actions">
-                <MagneticLink strength={0.2}>
-                  <Link to="/work/dv-labs-platform" className="work-btn-primary">
-                    <span>EXPLORE DV LABS CASE STUDY ↗</span>
-                  </Link>
-                </MagneticLink>
-                <MagneticLink strength={0.2}>
-                  <a href="https://dvlabs.datavalley.ai/" target="_blank" rel="noopener noreferrer" className="work-btn-secondary">
-                    <span>VISIT ENVIRONMENT ↗</span>
-                  </a>
-                </MagneticLink>
+              <div className="wk-console-viewport">
+                <AnimatePresence mode="wait">
+                  <Motion.div
+                    key={activeConsoleSys.id}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                    className="wk-console-panel"
+                  >
+                    <div className="wk-cp-chrome">
+                      <div className="wk-cp-dots" aria-hidden="true">
+                        <span />
+                        <span />
+                        <span />
+                      </div>
+                      <span className="wk-cp-domain">{activeConsoleSys.domain}</span>
+                      <span className="wk-cp-tag">{activeConsoleSys.category}</span>
+                    </div>
+
+                    <div className="wk-cp-media">
+                      <img
+                        src={activeConsoleSys.img}
+                        alt={activeConsoleSys.name}
+                        className="wk-cp-img"
+                      />
+                    </div>
+
+                    <div className="wk-cp-body">
+                      <h3 className="wk-cp-title">{activeConsoleSys.name}</h3>
+                      <p className="wk-cp-tagline">{activeConsoleSys.tagline}</p>
+                      <p className="wk-cp-desc">{activeConsoleSys.desc}</p>
+
+                      <div className="wk-cp-steps">
+                        {activeConsoleSys.steps.map((st) => (
+                          <span key={st} className="wk-cp-step-pill">{st}</span>
+                        ))}
+                      </div>
+
+                      <div className="wk-cp-footer">
+                        <div className="wk-cp-stack">
+                          {activeConsoleSys.stack.map((tech) => (
+                            <span key={tech} className="wk-cp-stack-chip">{tech}</span>
+                          ))}
+                        </div>
+
+                        <div className="wk-cp-actions">
+                          {activeConsoleSys.route && (
+                            <button
+                              type="button"
+                              className="wk-btn-white-pill"
+                              onClick={() => navigate(activeConsoleSys.route)}
+                            >
+                              <span>Case Study</span>
+                              <ArrowRight size={14} />
+                            </button>
+                          )}
+                          {activeConsoleSys.live && (
+                            <a
+                              href={activeConsoleSys.live}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="wk-btn-dark-ghost"
+                            >
+                              <span>Live</span>
+                              <ArrowUpRight size={14} />
+                            </a>
+                          )}
+                          {activeConsoleSys.source && (
+                            <a
+                              href={activeConsoleSys.source}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="wk-btn-dark-ghost"
+                            >
+                              <span>Source</span>
+                              <ExternalLink size={13} />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </Motion.div>
+                </AnimatePresence>
               </div>
             </div>
           </div>
         </section>
 
-
         {/* ============================================================
-            ACT 03 — CHAPTER 02: DATA VALLEY ASSESSMENT PLATFORM (COMPANY PROJECT · IN DEVELOPMENT)
+            ACT 04 — INTERACTIVE FILTERABLE EXHIBITION CARDS + MODAL
             ============================================================ */}
-        <section id="data-valley-assessment" className="work-chapter chapter-dv-assessments" data-nav-theme="light">
+        <section className="wk-gallery-section" data-nav-theme="light">
           <div className="exhibition-bounds">
-            
-            <div className="chapter-header-row">
-              <Reveal y={16} duration={0.8}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '8px' }}>
-                  <span className="work-dvlabs-live-pill">
-                    <span className="work-dvlabs-pulse-dot" aria-hidden="true"></span>
-                    COMPANY PROJECT &middot; IN DEVELOPMENT
-                  </span>
-                  <span className="chapter-badge">DATA VALLEY TRAINING, PLACEMENTS &amp; IT SOLUTIONS &middot; 02 / 09</span>
-                </div>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="chapter-title" style={{ fontSize: 'clamp(26px, 4vw, 42px)', letterSpacing: '-0.03em' }}>
-                  DATA VALLEY ASSESSMENT PLATFORM
-                </h2>
-              </Reveal>
+            <div className="wk-gallery-top">
+              <div>
+                <span className="wk-eyebrow">03 &middot; ALL INDEPENDENT BUILDS</span>
+                <h2 className="wk-section-title">Inspect every architecture card.</h2>
+              </div>
+
+              <div className="wk-filter-segmented" role="tablist" aria-label="Filter projects">
+                {[
+                  { id: "all", label: "All Systems (07)" },
+                  { id: "ai", label: "Applied AI & NLP (05)" },
+                  { id: "spatial", label: "3D & Full-Stack (02)" },
+                ].map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeFilter === f.id}
+                    onClick={() => setActiveFilter(f.id)}
+                    className={`wk-seg-btn ${activeFilter === f.id ? "active" : ""}`}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="work-dvlabs-tagline-quote">
-                "Candidate assessment platform with secure sessions, live timers, and server-side evaluation."
-              </blockquote>
-            </Reveal>
+            <div className="wk-bento-grid">
+              {filteredGridSystems.map((item) => (
+                <div key={item.id} className="wk-bento-card">
+                  <div className="wk-bc-head">
+                    <div>
+                      <span className="wk-bc-cat">{item.id} &middot; {item.category}</span>
+                      <h3 className="wk-bc-title">{item.name}</h3>
+                    </div>
+                    <button
+                      type="button"
+                      className="wk-bc-plus"
+                      onClick={() => setInspectSpec(item)}
+                      aria-label={`Inspect ${item.name} specification`}
+                      title="Quick Inspect Specification"
+                    >
+                      <Plus size={16} />
+                    </button>
+                  </div>
 
-            <Reveal y={20} duration={0.85} delay={0.25}>
-              <p className="work-dvlabs-subline-text">
-                40 structured technical challenges with synchronized countdown timers, background delta auto-sync, and 100% tamper-proof server-side scoring.
-              </p>
-            </Reveal>
+                  <div className="wk-bc-visual" onClick={() => setInspectSpec(item)}>
+                    <img src={item.img} alt={item.name} className="wk-bc-img" loading="lazy" />
+                  </div>
 
-            {/* Contribution Ribbon */}
-            <Reveal y={20} duration={0.8} delay={0.3}>
-              <div className="work-dvlabs-contrib-ribbon">
-                <span className="work-dvlabs-contrib-badge">MY CONTRIBUTION:</span>
-                <p className="work-dvlabs-contrib-desc">
-                  <strong>End-to-End Application Developer:</strong> Architected candidate authentication via HTTP-only cookies, real-time 40-question delivery engine, background delta auto-sync via <code>/api/assessment/sync</code>, deterministic server-side evaluation via <code>/api/assessment/submit</code>, and integrity event telemetry.
-                </p>
-              </div>
-            </Reveal>
-
-            {/* Live Testing Canvas Showcase */}
-            <ScaleReveal className="chapter-hero-image-wrap" style={{ marginTop: '36px' }}>
-              <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '18px', border: '1px solid #e5e5ea', boxShadow: '0 20px 48px rgba(0,0,0,0.08)' }}>
-                <img 
-                  src={dvAssessmentImg} 
-                  alt="Data Valley Engineering Assessment Platform — 40 questions, live countdown timer, and interactive question palette" 
-                  className="chapter-hero-img" 
-                  loading="lazy" 
-                />
-                <div style={{ position: 'absolute', bottom: '16px', left: '16px', background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(12px)', padding: '6px 14px', borderRadius: '8px', fontSize: '11.5px', fontWeight: '700', color: '#1d1d1f' }}>
-                  FIGURE 2.0: SYNCHRONIZED CANDIDATE TESTING CANVAS (40 QUESTIONS)
+                  <div className="wk-bc-foot">
+                    <p className="wk-bc-tagline">{item.tagline}</p>
+                    <div className="wk-bc-links">
+                      {item.route ? (
+                        <Link to={item.route} className="wk-bc-link-primary">
+                          <span>Case Study</span>
+                          <ArrowRight size={13} />
+                        </Link>
+                      ) : (
+                        <a
+                          href={item.source}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="wk-bc-link-primary"
+                        >
+                          <span>Repository</span>
+                          <ArrowUpRight size={13} />
+                        </a>
+                      )}
+                      {item.live && (
+                        <a
+                          href={item.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="wk-bc-link-ghost"
+                        >
+                          <span>Live ↗</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </ScaleReveal>
-
-            {/* 4 Architectural Engine Pillars */}
-            <div className="chapter-steps-grid">
-              {[
-                { step: "01", title: "SESSION TOKEN BINDING", desc: "JWT in secure HTTP-only cookies prevents duplicate logins and unauthorized access during active tests." },
-                { step: "02", title: "40-QUESTION TIMED CANVAS", desc: "Synchronized countdown timer engine with interactive question palette, flags, and persistent answer states." },
-                { step: "03", title: "DELTA AUTO-SAVE ENGINE", desc: "Continuous background sync via /api/assessment/sync prevents data loss on network drops." },
-                { step: "04", title: "DETERMINISTIC EVAL", desc: "100% server-side scoring via /api/assessment/submit eliminates client-side tampering completely." }
-              ].map((st, idx) => (
-                <Reveal key={st.step} y={24} duration={0.8} delay={idx * 0.1} className="chapter-step-card">
-                  <span className="step-num">{st.step}</span>
-                  <h3 className="step-title">{st.title}</h3>
-                  <p className="step-desc">{st.desc}</p>
-                </Reveal>
               ))}
-            </div>
-
-            {/* Transparent Proctoring Status Strip */}
-            <Reveal y={16} duration={0.8} delay={0.2}>
-              <div style={{ background: '#f5f5f7', border: '1px solid #e5e5ea', borderRadius: '12px', padding: '16px 20px', marginTop: '24px', display: 'flex', gap: '24px', flexWrap: 'wrap', alignItems: 'center' }}>
-                <span style={{ fontSize: '11px', fontWeight: '800', letterSpacing: '0.08em', color: '#86868b', textTransform: 'uppercase' }}>PROCTORING CAPABILITIES:</span>
-                <span style={{ fontSize: '12px', color: '#1d1d1f' }}><strong style={{ color: '#34c759' }}>● IMPLEMENTED:</strong> Window blur / focus loss telemetry, session token binding, idempotency keys</span>
-                <span style={{ fontSize: '12px', color: '#1d1d1f' }}><strong style={{ color: '#007aff' }}>● TESTED:</strong> Timer resynchronization on reconnection</span>
-                <span style={{ fontSize: '12px', color: '#666668' }}><strong style={{ color: '#ff9500' }}>● IN PROGRESS:</strong> Speech-to-text viva response evaluation, Wasm execution sandbox</span>
-              </div>
-            </Reveal>
-
-            {/* Engineering Signal & Actions */}
-            <div className="chapter-footer-bar">
-              <div className="chapter-tech-stack">
-                <span className="tech-label">ENGINEERING STACK:</span>
-                <span className="tech-val">NEXT.JS APP ROUTER &middot; REACT 19 &middot; TYPESCRIPT &middot; MONGODB ATLAS &middot; JWT / COOKIES &middot; BCRYPT</span>
-              </div>
-
-              <div className="chapter-actions">
-                <MagneticLink strength={0.2}>
-                  <Link to="/work/data-valley-assessment-platform" className="work-btn-primary">
-                    <span>EXPLORE ASSESSMENT CASE STUDY ↗</span>
-                  </Link>
-                </MagneticLink>
-                <MagneticLink strength={0.2}>
-                  <a href="https://dv-assesments.vercel.app/" target="_blank" rel="noopener noreferrer" className="work-btn-secondary">
-                    <span>LAUNCH ASSESSMENT ENGINE ↗</span>
-                  </a>
-                </MagneticLink>
-              </div>
             </div>
           </div>
         </section>
 
-
         {/* ============================================================
-            ACT 04 — CAREEROS (CHAPTER 03 / 09)
-            ============================================================ */}
-        <section id="careeros" className="work-chapter chapter-careeros" data-nav-theme="light">
-          <div className="exhibition-bounds">
-            
-            <div className="chapter-header-row">
-              <Reveal y={16} duration={0.8}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '10.5px', fontWeight: '800', letterSpacing: '0.08em', padding: '3px 8px', borderRadius: '4px', background: '#f5f5f7', color: '#555558', border: '1px solid #e5e5ea' }}>
-                    PERSONAL PROJECT
-                  </span>
-                  <span className="chapter-badge">CAREER INTELLIGENCE SYSTEM &middot; 03 / 09</span>
-                </div>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="chapter-title">CAREEROS</h2>
-              </Reveal>
-            </div>
-
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="chapter-opening-q">
-                "Career decisions happen in fragments. No system connects them."
-              </blockquote>
-            </Reveal>
-
-            <ScaleReveal className="chapter-hero-image-wrap">
-              <img src={careerOSImg} alt="CareerOS System" className="chapter-hero-img" loading="lazy" />
-            </ScaleReveal>
-
-            {/* 4-Step System Architecture */}
-            <div className="chapter-steps-grid">
-              {[
-                { step: "01", title: "DISCOVER", desc: "Captures academic & professional data into a unified context profile." },
-                { step: "02", title: "EVALUATE", desc: "Analyzes skill sets against real-time market demands & benchmark roles." },
-                { step: "03", title: "REVEAL", desc: "Generates tailored career opportunities and explicit skill gaps." },
-                { step: "04", title: "ACCELERATE", desc: "Provides AI-powered roadmaps for immediate execution." }
-              ].map((st, idx) => (
-                <Reveal key={st.step} y={24} duration={0.8} delay={idx * 0.1} className="chapter-step-card">
-                  <span className="step-num">{st.step}</span>
-                  <h3 className="step-title">{st.title}</h3>
-                  <p className="step-desc">{st.desc}</p>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Engineering Signal & Actions */}
-            <div className="chapter-footer-bar">
-              <div className="chapter-tech-stack">
-                <span className="tech-label">ENGINEERING LAYER:</span>
-                <span className="tech-val">AI / PRODUCT &middot; REACT &middot; NODE.JS &middot; ANALYTICAL MODELS</span>
-              </div>
-
-              <div className="chapter-actions">
-                <MagneticLink strength={0.2}>
-                  <a href={`${socialLinks.github.url}/careeros`} target="_blank" rel="noopener noreferrer" className="work-btn-primary">
-                    <span>SOURCE CODE ↗</span>
-                  </a>
-                </MagneticLink>
-                <MagneticLink strength={0.2}>
-                  <a href="https://careeros-thenameisbhagavan.vercel.app/" target="_blank" rel="noopener noreferrer" className="work-btn-secondary">
-                    <span>LIVE SYSTEM ↗</span>
-                  </a>
-                </MagneticLink>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        {/* ============================================================
-            ACT 05 — AURAOS (CHAPTER 04 / 09)
-            ============================================================ */}
-        <section id="auraos" className="work-chapter chapter-auraos" data-nav-theme="light">
-          <div className="exhibition-bounds">
-            
-            <div className="chapter-header-row">
-              <Reveal y={16} duration={0.8}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '10.5px', fontWeight: '800', letterSpacing: '0.08em', padding: '3px 8px', borderRadius: '4px', background: '#f5f5f7', color: '#555558', border: '1px solid #e5e5ea' }}>
-                    PERSONAL PROJECT
-                  </span>
-                  <span className="chapter-badge">PERSONAL INTELLIGENCE OS &middot; 04 / 09</span>
-                </div>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="chapter-title">AURAOS</h2>
-              </Reveal>
-            </div>
-
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="chapter-opening-q">
-                "What if a chatbot actually remembered?"
-              </blockquote>
-            </Reveal>
-
-            <Parallax speed={-0.05} className="chapter-hero-image-wrap">
-              <img src={chatImg} alt="AuraOS Memory System" className="chapter-hero-img" loading="lazy" />
-            </Parallax>
-
-            {/* Context Memory Flow */}
-            <div className="chapter-steps-grid steps-3col">
-              {[
-                { label: "MEMORY", title: "PERSISTENT CONTEXT", desc: "Creates a continuous memory graph across multi-turn sessions." },
-                { label: "RETRIEVAL", title: "RELEVANT HISTORY", desc: "Pulls exact historical facts & user preferences instantly." },
-                { label: "REASONING", title: "CONNECTED CONTEXT", desc: "Connects separate conversations into unified intelligence." }
-              ].map((st, idx) => (
-                <Reveal key={st.label} y={24} duration={0.8} delay={idx * 0.12} className="chapter-step-card">
-                  <span className="step-label-badge">{st.label}</span>
-                  <h3 className="step-title">{st.title}</h3>
-                  <p className="step-desc">{st.desc}</p>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Engineering Signal & Actions */}
-            <div className="chapter-footer-bar">
-              <div className="chapter-tech-stack">
-                <span className="tech-label">ENGINEERING LAYER:</span>
-                <span className="tech-val">RAG &middot; VECTOR DBs &middot; SEMANTIC SEARCH &middot; SESSION STATE GRAPH</span>
-              </div>
-
-              <div className="chapter-actions">
-                <MagneticLink strength={0.2}>
-                  <a href={`${socialLinks.github.url}/auraos`} target="_blank" rel="noopener noreferrer" className="work-btn-primary">
-                    <span>SOURCE CODE ↗</span>
-                  </a>
-                </MagneticLink>
-                <MagneticLink strength={0.2}>
-                  <a href="https://aura-os-thenameisbhagavan.vercel.app/" target="_blank" rel="noopener noreferrer" className="work-btn-secondary">
-                    <span>LIVE SYSTEM ↗</span>
-                  </a>
-                </MagneticLink>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        {/* ============================================================
-            ACT 06 — VERITAS (CHAPTER 05 / 09)
-            ============================================================ */}
-        <section id="veritas" className="work-chapter chapter-veritas" data-nav-theme="light">
-          <div className="exhibition-bounds">
-            
-            <div className="chapter-header-row">
-              <Reveal y={16} duration={0.8}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '10.5px', fontWeight: '800', letterSpacing: '0.08em', padding: '3px 8px', borderRadius: '4px', background: '#f5f5f7', color: '#555558', border: '1px solid #e5e5ea' }}>
-                    PERSONAL PROJECT
-                  </span>
-                  <span className="chapter-badge">EXPLAINABLE INTELLIGENCE &middot; 05 / 09</span>
-                </div>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="chapter-title">VERITAS</h2>
-              </Reveal>
-            </div>
-
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="chapter-opening-q">
-                "AI gives answers. Can it show why?"
-              </blockquote>
-            </Reveal>
-
-            <ScaleReveal className="chapter-hero-image-wrap">
-              <img src={fakeImg} alt="VERITAS Fact Tracing" className="chapter-hero-img" loading="lazy" />
-            </ScaleReveal>
-
-            {/* Verification Pipeline */}
-            <div className="chapter-steps-grid steps-3col">
-              {[
-                { label: "EXTRACT", title: "CLAIM DECONSTRUCTION", desc: "Parses raw text into verifiable structured assertions." },
-                { label: "ANALYZE", title: "EVIDENCE SCORING", desc: "Evaluates assertions against deterministic credibility baselines." },
-                { label: "TRACE", title: "PROVENANCE PATH", desc: "Maps exact reasoning graph from input text to final judgment." }
-              ].map((st, idx) => (
-                <Reveal key={st.label} y={24} duration={0.8} delay={idx * 0.12} className="chapter-step-card">
-                  <span className="step-label-badge badge-green">{st.label}</span>
-                  <h3 className="step-title">{st.title}</h3>
-                  <p className="step-desc">{st.desc}</p>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Engineering Signal & Actions */}
-            <div className="chapter-footer-bar">
-              <div className="chapter-tech-stack">
-                <span className="tech-label">ENGINEERING LAYER:</span>
-                <span className="tech-val">DETERMINISTIC NLP &middot; FASTAPI &middot; FACT GRAPH &middot; CREDIBILITY SCHEMAS</span>
-              </div>
-
-              <div className="chapter-actions">
-                <MagneticLink strength={0.2}>
-                  <a href={`${socialLinks.github.url}/News-detector`} target="_blank" rel="noopener noreferrer" className="work-btn-primary">
-                    <span>SOURCE CODE ↗</span>
-                  </a>
-                </MagneticLink>
-                <MagneticLink strength={0.2}>
-                  <a href="https://veritas-thenameisbhagavan.vercel.app/" target="_blank" rel="noopener noreferrer" className="work-btn-secondary">
-                    <span>LIVE SYSTEM ↗</span>
-                  </a>
-                </MagneticLink>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        {/* ============================================================
-            ACT 07 — VOLTDRIVE (CHAPTER 06 / 09)
-            ============================================================ */}
-        <section id="voltdrive" className="work-chapter chapter-voltdrive" data-nav-theme="light">
-          <div className="exhibition-bounds">
-            
-            <div className="chapter-header-row">
-              <Reveal y={16} duration={0.8}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '10.5px', fontWeight: '800', letterSpacing: '0.08em', padding: '3px 8px', borderRadius: '4px', background: '#f5f5f7', color: '#555558', border: '1px solid #e5e5ea' }}>
-                    PERSONAL PROJECT
-                  </span>
-                  <span className="chapter-badge">DIGITAL PRODUCT EXPERIENCE &middot; 06 / 09</span>
-                </div>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="chapter-title">VOLTDRIVE</h2>
-              </Reveal>
-            </div>
-
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="chapter-opening-q">
-                "Engineering is also what the user feels."
-              </blockquote>
-            </Reveal>
-
-            <Parallax speed={0.06} className="chapter-hero-image-wrap">
-              <img src={voltDriveImg} alt="VoltDrive Experience" className="chapter-hero-img" loading="lazy" />
-            </Parallax>
-
-            {/* Automotive Product Experience Steps */}
-            <div className="chapter-steps-grid">
-              {[
-                { step: "01", title: "DISCOVER", desc: "Storytelling luxury electric mobility interface." },
-                { step: "02", title: "EXPERIENCE", desc: "Hardware-accelerated 60fps interaction physics." },
-                { step: "03", title: "CONFIGURE", desc: "Real-time vehicle telemetry configurator." },
-                { step: "04", title: "DRIVE", desc: "Production-quality automotive product delivery." }
-              ].map((st, idx) => (
-                <Reveal key={st.step} y={24} duration={0.8} delay={idx * 0.1} className="chapter-step-card">
-                  <span className="step-num num-amber">{st.step}</span>
-                  <h3 className="step-title">{st.title}</h3>
-                  <p className="step-desc">{st.desc}</p>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Engineering Signal & Actions */}
-            <div className="chapter-footer-bar">
-              <div className="chapter-tech-stack">
-                <span className="tech-label">ENGINEERING LAYER:</span>
-                <span className="tech-val">REACT &middot; THREE.JS &middot; MOTION PHYSICS &middot; 60FPS HARDWARE ENGINE</span>
-              </div>
-
-              <div className="chapter-actions">
-                <MagneticLink strength={0.2}>
-                  <a href="https://github.com/thenameisbhagavan/voltdrive" target="_blank" rel="noopener noreferrer" className="work-btn-primary">
-                    <span>SOURCE CODE ↗</span>
-                  </a>
-                </MagneticLink>
-                <MagneticLink strength={0.2}>
-                  <a href="https://voltdrive-thenameisbhagavan.vercel.app/" target="_blank" rel="noopener noreferrer" className="work-btn-secondary">
-                    <span>LIVE SYSTEM ↗</span>
-                  </a>
-                </MagneticLink>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        {/* ============================================================
-            ACT 08 — AGRIVISION AI (CHAPTER 07 / 09)
-            ============================================================ */}
-        <section id="agrivision" className="work-chapter chapter-agrivision" data-nav-theme="light">
-          <div className="exhibition-bounds">
-            
-            <div className="chapter-header-row">
-              <Reveal y={16} duration={0.8}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '10.5px', fontWeight: '800', letterSpacing: '0.08em', padding: '3px 8px', borderRadius: '4px', background: '#f5f5f7', color: '#555558', border: '1px solid #e5e5ea' }}>
-                    PERSONAL PROJECT
-                  </span>
-                  <span className="chapter-badge">INTELLIGENT CROP DIAGNOSTICS &middot; 07 / 09</span>
-                </div>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="chapter-title">AGRIVISION AI</h2>
-              </Reveal>
-            </div>
-
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="chapter-opening-q">
-                "From Crop Image to Explainable AI Insight."
-              </blockquote>
-            </Reveal>
-            
-            <Reveal y={24} duration={0.9} delay={0.3}>
-              <p style={{ fontFamily: 'var(--font-system, "SF Pro Text", sans-serif)', fontSize: 'clamp(14px, 2.5vw, 18px)', lineHeight: '1.6', color: '#6B6B6B', maxWidth: '800px', margin: '0 auto 60px', textAlign: 'center' }}>
-                AgriVision AI brings computer vision, deep learning, and explainability together in a production-oriented crop analysis experience.
-              </p>
-            </Reveal>
-
-            <Parallax speed={0.06} className="chapter-hero-image-wrap">
-              <img src={agrivisionImg} alt="AgriVision AI System" className="chapter-hero-img" loading="lazy" />
-            </Parallax>
-
-            {/* AI Diagnostics Steps */}
-            <div className="chapter-steps-grid">
-              {[
-                { step: "01", title: "DEEP LEARNING VISION", desc: "MobileNetV2 transfer learning for 30 crop/health-condition classes." },
-                { step: "02", title: "EXPLAINABLE AI", desc: "Grad-CAM visualizations expose the image regions contributing to the model's prediction." },
-                { step: "03", title: "SECURE AUTH", desc: "Firebase Authentication with backend-side ID-token verification." },
-                { step: "04", title: "PERSISTENCE", desc: "Persistent prediction history and user dashboards via MongoDB Atlas." }
-              ].map((st, idx) => (
-                <Reveal key={st.step} y={24} duration={0.8} delay={idx * 0.1} className="chapter-step-card">
-                  <span className="step-num num-green" style={{ color: '#34C759' }}>{st.step}</span>
-                  <h3 className="step-title">{st.title}</h3>
-                  <p className="step-desc">{st.desc}</p>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Engineering Signal & Actions */}
-            <div className="chapter-footer-bar">
-              <div className="chapter-tech-stack">
-                <span className="tech-label">ENGINEERING LAYER:</span>
-                <span className="tech-val">FASTAPI &middot; MOBILENETV2 &middot; GRAD-CAM &middot; MONGODB ATLAS &middot; REACT</span>
-              </div>
-
-              <div className="chapter-actions">
-                <MagneticLink strength={0.2}>
-                  <a href={`${socialLinks.github.url}/Plant-disease-detection`} target="_blank" rel="noopener noreferrer" className="work-btn-primary">
-                    <span>SOURCE CODE ↗</span>
-                  </a>
-                </MagneticLink>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        {/* ============================================================
-            ACT 09 — ATS RESUME BUILDER (CHAPTER 08 / 09)
-            ============================================================ */}
-        <section id="ats-resume" className="work-chapter chapter-ats-resume" data-nav-theme="light">
-          <div className="exhibition-bounds">
-            
-            <div className="chapter-header-row">
-              <Reveal y={16} duration={0.8}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '10.5px', fontWeight: '800', letterSpacing: '0.08em', padding: '3px 8px', borderRadius: '4px', background: '#f5f5f7', color: '#555558', border: '1px solid #e5e5ea' }}>
-                    PERSONAL PROJECT
-                  </span>
-                  <span className="chapter-badge">FULL-STACK APPLICATION &middot; 08 / 09</span>
-                </div>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="chapter-title">ATS RESUME BUILDER</h2>
-              </Reveal>
-            </div>
-
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="chapter-opening-q">
-                "Applicant Tracking Systems filter candidates silently. Transparency gives applicants leverage."
-              </blockquote>
-            </Reveal>
-
-            <ScaleReveal className="chapter-hero-image-wrap">
-              <img src={atsResumeImg} alt="ATS-Based Resume Builder Platform" className="chapter-hero-img" loading="lazy" />
-            </ScaleReveal>
-
-            {/* 4-Step Engineering Architecture */}
-            <div className="chapter-steps-grid">
-              {[
-                { step: "01", title: "KEYWORD EXTRACTION", desc: "Extracts role requirements and critical skill tokens directly from targeted job descriptions." },
-                { step: "02", title: "MATCH SCORING", desc: "Computes lexical and semantic overlap between candidate resume sections and target requisitions." },
-                { step: "03", title: "FORMAT VALIDATION", desc: "Enforces single-column semantic markup optimized for machine parsers and OCR readers." },
-                { step: "04", title: "SECURE EXPORT", desc: "Generates clean PDF and JSON resumes with OAuth authentication and REST API integration." }
-              ].map((st, idx) => (
-                <Reveal key={st.step} y={24} duration={0.8} delay={idx * 0.1} className="chapter-step-card">
-                  <span className="step-num">{st.step}</span>
-                  <h3 className="step-title">{st.title}</h3>
-                  <p className="step-desc">{st.desc}</p>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Engineering Signal & Actions */}
-            <div className="chapter-footer-bar">
-              <div className="chapter-tech-stack">
-                <span className="tech-label">ENGINEERING LAYER:</span>
-                <span className="tech-val">REACT &middot; NODE.JS &middot; EXPRESS &middot; MONGODB &middot; OAUTH &middot; REST APIS</span>
-              </div>
-
-              <div className="chapter-actions">
-                <MagneticLink strength={0.2}>
-                  <a href="https://github.com/thenameisbhagavan/Resumebuilderwebapp" target="_blank" rel="noopener noreferrer" className="work-btn-primary">
-                    <span>SOURCE CODE ↗</span>
-                  </a>
-                </MagneticLink>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        {/* ============================================================
-            ACT 10 — AI CONVERSATIONAL CHATBOT GATEWAY (CHAPTER 09 / 09)
-            ============================================================ */}
-        <section id="ai-chat" className="work-chapter chapter-ai-chat" data-nav-theme="light">
-          <div className="exhibition-bounds">
-            
-            <div className="chapter-header-row">
-              <Reveal y={16} duration={0.8}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '8px' }}>
-                  <span style={{ fontSize: '10.5px', fontWeight: '800', letterSpacing: '0.08em', padding: '3px 8px', borderRadius: '4px', background: '#f5f5f7', color: '#555558', border: '1px solid #e5e5ea' }}>
-                    PERSONAL PROJECT
-                  </span>
-                  <span className="chapter-badge">AI SYSTEMS ARCHITECTURE &middot; 09 / 09</span>
-                </div>
-              </Reveal>
-              <Reveal y={16} duration={0.8} delay={0.1}>
-                <h2 className="chapter-title">AI CHAT GATEWAY</h2>
-              </Reveal>
-            </div>
-
-            <Reveal y={24} duration={0.9} delay={0.2}>
-              <blockquote className="chapter-opening-q">
-                "Production AI frontends must never expose API keys to the browser client."
-              </blockquote>
-            </Reveal>
-
-            <Parallax speed={-0.04} className="chapter-hero-image-wrap">
-              <img src={chatProxyImg} alt="AI Chatbot Web Application" className="chapter-hero-img" loading="lazy" />
-            </Parallax>
-
-            {/* Pipeline Steps */}
-            <div className="chapter-steps-grid steps-3col">
-              {[
-                { label: "SECURITY", title: "STATELESS PROXY BRIDGE", desc: "Isolates upstream Gemini API secrets inside a hardened Python/Flask backend bridge." },
-                { label: "ORCHESTRATION", title: "STREAMING & TIMEOUTS", desc: "Manages session conversation history, rate limits, and client error recovery." },
-                { label: "INTERFACE", title: "RESPONSIVE CLIENT", desc: "Renders real-time conversational streaming and structured markdown responses." }
-              ].map((st, idx) => (
-                <Reveal key={st.label} y={24} duration={0.8} delay={idx * 0.12} className="chapter-step-card">
-                  <span className="step-label-badge badge-green">{st.label}</span>
-                  <h3 className="step-title">{st.title}</h3>
-                  <p className="step-desc">{st.desc}</p>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Engineering Signal & Actions */}
-            <div className="chapter-footer-bar">
-              <div className="chapter-tech-stack">
-                <span className="tech-label">ENGINEERING LAYER:</span>
-                <span className="tech-val">PYTHON &middot; FLASK &middot; GEMINI API &middot; REACT &middot; REST APIS &middot; CORS GUARD</span>
-              </div>
-
-              <div className="chapter-actions">
-                <MagneticLink strength={0.2}>
-                  <a href="https://github.com/thenameisbhagavan/chatbotwebapp" target="_blank" rel="noopener noreferrer" className="work-btn-primary">
-                    <span>SOURCE CODE ↗</span>
-                  </a>
-                </MagneticLink>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-        {/* ============================================================
-            ACT 07 — EARLIER EXPERIMENTS (COMPACT HORIZONTAL ARCHIVE)
+            ACT 05 — HISTORICAL PROGRESSION ARCHIVE
             ============================================================ */}
         <section className="work-archive-section" data-nav-theme="light">
           <div className="exhibition-bounds">
-            
-            <Reveal y={20} duration={0.9}>
+            <Reveal y={16} duration={0.7}>
               <div className="archive-header">
                 <span className="archive-badge">HISTORICAL PROGRESSION</span>
                 <h2 className="archive-title">Earlier Experiments</h2>
@@ -922,7 +899,7 @@ export default function Work() {
             </Reveal>
 
             <div className="archive-grid">
-              <Reveal y={24} duration={0.8} className="archive-card">
+              <div className="archive-card">
                 <div className="arc-top">
                   <span className="arc-tag">MACHINE LEARNING</span>
                   <h3 className="arc-name">Health Prediction</h3>
@@ -932,14 +909,19 @@ export default function Work() {
                 </p>
                 <div className="arc-footer">
                   <span className="arc-tech">Python &middot; Flask &middot; Scikit-Learn</span>
-                  <a href={`${socialLinks.github.url}/Heart-Disease-Prediction`} target="_blank" rel="noopener noreferrer" className="arc-link">
+                  <a
+                    href={`${socialLinks.github.url}/Heart-Disease-Prediction`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="arc-link"
+                  >
                     <span>Source</span>
                     <ExternalLink size={12} />
                   </a>
                 </div>
-              </Reveal>
+              </div>
 
-              <Reveal y={24} duration={0.8} delay={0.1} className="archive-card">
+              <div className="archive-card">
                 <div className="arc-top">
                   <span className="arc-tag">ENTERPRISE AUTOMATION</span>
                   <h3 className="arc-name">Smart Leave</h3>
@@ -951,87 +933,169 @@ export default function Work() {
                   <span className="arc-tech">Power Automate &middot; Power Platform</span>
                   <span className="arc-meta">Internal System</span>
                 </div>
-              </Reveal>
+              </div>
             </div>
           </div>
         </section>
 
-
         {/* ============================================================
-            ACT 08 — WHAT THE WORK TAUGHT ME (EDITORIAL LESSONS)
+            ACT 06 — DARK TITANIUM EDITORIAL LESSONS
             ============================================================ */}
-        <section className="work-lessons-section" data-nav-theme="light">
+        <section id="lessons-titanium" className="work-lessons-section" data-nav-theme="dark">
           <div className="exhibition-bounds">
-            
-            <Reveal y={20} duration={0.9}>
-              <span className="lessons-label">EDITORIAL LESSONS</span>
+            <Reveal y={16} duration={0.8}>
+              <span className="lessons-label">ARCHITECTURAL SYNTHESIS</span>
               <h2 className="lessons-headline">What the work taught me.</h2>
             </Reveal>
 
             <div className="lessons-grid">
               {[
-                { 
-                  num: "01", 
-                  title: "INTELLIGENCE NEEDS CONTEXT", 
-                  desc: "A standalone model is just a starting point. Real engineering happens in memory layers, context systems, and reasoning pipelines that make the model aware of the user's situation.",
-                  ref: "AuraOS / CareerOS"
+                {
+                  num: "01",
+                  title: "INTELLIGENCE NEEDS CONTEXT",
+                  desc: "A standalone model is only a starting point. Real engineering lives in memory layers, lexical RAG indexes, and state pipelines that ground outputs in the user's real constraints.",
+                  ref: "AuraOS / Dheergayush",
                 },
-                { 
-                  num: "02", 
-                  title: "SYSTEMS NEED STRUCTURE", 
-                  desc: "Generative outputs are only useful if you can trace how they got there. Deterministic verification pipelines force clarity on fact-tracing and reliability.",
-                  ref: "VERITAS"
+                {
+                  num: "02",
+                  title: "SYSTEMS NEED STRUCTURE",
+                  desc: "Generative outputs are only trustworthy when traceably backed. Deterministic verification stages enforce strict clarity on scoring, claims, and failure boundaries.",
+                  ref: "VERITAS / DV Assessments",
                 },
-                { 
-                  num: "03", 
-                  title: "PRODUCTS NEED EXPERIENCE", 
-                  desc: "Backend complexity should never leak into the user experience. Motion, spatial composition, and performance turn a technical project into something people actually use.",
-                  ref: "VoltDrive"
-                }
-              ].map((ls, idx) => (
-                <Reveal key={ls.num} y={28} duration={0.9} delay={idx * 0.12} className="lesson-card">
-                  <span className="lesson-num">— {ls.num}</span>
+                {
+                  num: "03",
+                  title: "PRODUCTS NEED EXPERIENCE",
+                  desc: "Backend complexity should never leak into the interface. Fluid motion, clean framing, and immediate feedback turn heavy architectures into software people enjoy using.",
+                  ref: "VoltDrive / DV Labs",
+                },
+              ].map((ls) => (
+                <div key={ls.num} className="lesson-card">
+                  <span className="lesson-num">&mdash; {ls.num}</span>
                   <h3 className="lesson-title">{ls.title}</h3>
                   <p className="lesson-desc">{ls.desc}</p>
                   <span className="lesson-ref">APPLIED IN {ls.ref}</span>
-                </Reveal>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-
         {/* ============================================================
-            ACT 09 — CLOSING (CONTINUING QUESTION)
+            ACT 07 — CLOSING STUDIO INVITATION
             ============================================================ */}
         <section className="work-closing-section" data-nav-theme="light">
           <div className="exhibition-bounds text-center">
-            
-            <Reveal y={24} duration={1.0}>
-              <h2 className="closing-statement-main">
-                Eight systems.<br />
-                One continuing question.
-              </h2>
-            </Reveal>
-
-            <Reveal y={20} duration={0.9} delay={0.2}>
-              <p className="closing-question-sub">
-                How do you turn intelligence into something people can use?
-              </p>
-            </Reveal>
-
-            <Reveal y={20} duration={0.9} delay={0.4}>
-              <MagneticLink strength={0.3}>
-                <button className="work-btn-cta apple-pressable" onClick={() => navigate("/experience")}>
-                  <span>EXPLORE THE ENGINEERING JOURNEY</span>
-                  <ArrowRight size={16} />
-                </button>
-              </MagneticLink>
-            </Reveal>
+            <h2 className="closing-statement-main">
+              Ten architectures.<br />One continuing question.
+            </h2>
+            <p className="closing-question-sub">
+              How do you turn intelligence into resilient systems people trust every day?
+            </p>
+            <MagneticLink strength={0.25}>
+              <button
+                type="button"
+                className="work-btn-cta apple-pressable"
+                onClick={() => navigate("/experience")}
+              >
+                <span>Explore Engineering Experience</span>
+                <ArrowRight size={15} />
+              </button>
+            </MagneticLink>
           </div>
         </section>
 
         <BrandSignature />
+
+        {/* Quick-Inspect Architecture Modal */}
+        <AnimatePresence>
+          {inspectSpec && (
+            <Motion.div
+              className="wk-modal-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setInspectSpec(null)}
+            >
+              <Motion.div
+                className="wk-modal-card"
+                role="dialog"
+                aria-modal="true"
+                aria-label={`${inspectSpec.name} architecture specification`}
+                initial={{ opacity: 0, scale: 0.95, y: 16 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.97, y: 12 }}
+                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="wk-modal-head">
+                  <div>
+                    <span className="wk-modal-cat">{inspectSpec.id} &middot; {inspectSpec.category}</span>
+                    <h3 className="wk-modal-title">{inspectSpec.name}</h3>
+                  </div>
+                  <button
+                    type="button"
+                    className="wk-modal-close"
+                    onClick={() => setInspectSpec(null)}
+                    aria-label="Close modal"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+
+                <div className="wk-modal-visual">
+                  <img src={inspectSpec.img} alt={inspectSpec.name} />
+                </div>
+
+                <div className="wk-modal-body">
+                  <div className="wk-modal-grid">
+                    <div>
+                      <span className="wk-modal-label">CHALLENGE</span>
+                      <p>{inspectSpec.challenge}</p>
+                    </div>
+                    <div>
+                      <span className="wk-modal-label">ARCHITECTURE</span>
+                      <p>{inspectSpec.solution}</p>
+                    </div>
+                  </div>
+
+                  <div className="wk-cp-stack" style={{ marginBottom: "20px" }}>
+                    {inspectSpec.stack.map((t) => (
+                      <span key={t} className="wk-spec-chip">{t}</span>
+                    ))}
+                  </div>
+
+                  <div className="wk-duo-actions">
+                    {inspectSpec.route && (
+                      <button
+                        type="button"
+                        className="work-btn-primary"
+                        onClick={() => {
+                          const target = inspectSpec.route;
+                          setInspectSpec(null);
+                          navigate(target);
+                        }}
+                      >
+                        <span>Open Case Study</span>
+                        <ArrowRight size={14} />
+                      </button>
+                    )}
+                    {inspectSpec.live && (
+                      <a
+                        href={inspectSpec.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="work-btn-secondary"
+                      >
+                        <span>Visit Live System</span>
+                        <ArrowUpRight size={14} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </Motion.div>
+            </Motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );

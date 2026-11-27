@@ -1,32 +1,59 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { m, AnimatePresence } from 'framer-motion';
-import { ArrowUp } from 'lucide-react';
-import '../styles/ScrollToTopElevator.css';
+import React, { useState, useEffect, useRef } from "react";
+import { m as Motion, AnimatePresence } from "framer-motion";
+import { ArrowUp } from "lucide-react";
+import "../styles/ScrollToTopElevator.css";
 
 export default function ScrollToTopElevator() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isOverDark, setIsOverDark] = useState(false);
+  const [scrollPct, setScrollPct] = useState(0);
   const circleRef = useRef(null);
   const rafRef = useRef(null);
   const isVisibleRef = useRef(false);
+  const isDarkRef = useRef(false);
+  const lastPctRef = useRef(0);
 
-  const radius = 23;
+  const radius = 20.5;
   const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
     const updateProgress = () => {
-      const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+      const currentScrollY =
+        window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      
-      const shouldBeVisible = currentScrollY > 80;
+
+      const shouldBeVisible = currentScrollY > 120;
       if (shouldBeVisible !== isVisibleRef.current) {
         isVisibleRef.current = shouldBeVisible;
         setIsVisible(shouldBeVisible);
       }
 
-      if (circleRef.current && scrollHeight > 0) {
+      if (scrollHeight > 0) {
         const progress = Math.min(100, Math.max(0, (currentScrollY / scrollHeight) * 100));
-        const offset = circumference - (progress / 100) * circumference;
-        circleRef.current.style.strokeDashoffset = offset;
+        if (circleRef.current) {
+          const offset = circumference - (progress / 100) * circumference;
+          circleRef.current.style.strokeDashoffset = offset;
+        }
+        const rounded = Math.round(progress);
+        if (rounded !== lastPctRef.current) {
+          lastPctRef.current = rounded;
+          setScrollPct(rounded);
+        }
+      }
+
+      // Detect whether bottom-right elevator sits over a dark section/footer
+      const probeY = window.innerHeight - 44;
+      const themedNodes = document.querySelectorAll("[data-nav-theme]");
+      let darkUnderneath = false;
+      for (let i = 0; i < themedNodes.length; i++) {
+        const rect = themedNodes[i].getBoundingClientRect();
+        if (rect.top <= probeY && rect.bottom >= probeY) {
+          darkUnderneath = themedNodes[i].getAttribute("data-nav-theme") === "dark";
+        }
+      }
+      if (darkUnderneath !== isDarkRef.current) {
+        isDarkRef.current = darkUnderneath;
+        setIsOverDark(darkUnderneath);
       }
     };
 
@@ -38,11 +65,13 @@ export default function ScrollToTopElevator() {
       });
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
     updateProgress();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [circumference]);
@@ -50,67 +79,62 @@ export default function ScrollToTopElevator() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
   return (
     <AnimatePresence>
       {isVisible && (
-        <m.button
-          className="apple-scroll-elevator apple-pressable"
+        <Motion.button
+          type="button"
+          className={`apple-scroll-elevator ${isOverDark ? "theme-dark-glass" : "theme-pearl-glass"}`}
           onClick={scrollToTop}
-          initial={{ opacity: 0, scale: 0.6, y: 20 }}
+          initial={{ opacity: 0, scale: 0.72, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.6, y: 20 }}
+          exit={{ opacity: 0, scale: 0.72, y: 16 }}
           transition={{
             type: "spring",
-            stiffness: 400,
-            damping: 26
+            stiffness: 420,
+            damping: 28,
           }}
-          whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
-          aria-label="Scroll to top of page"
-          title="Scroll to Top"
+          aria-label="Scroll back to top"
+          title={`Back to top (${scrollPct}%)`}
         >
-          <div className="scroll-elevator-wrapper">
-            {/* Ambient Glow behind elevator */}
-            <div className="scroll-elevator-glow" />
+          <span className="scroll-elevator-label" aria-hidden="true">
+            Top &middot; {scrollPct}%
+          </span>
 
-            {/* Circular Scroll Progress Ring (2024 Apple VisionOS style) */}
-            <svg className="scroll-progress-ring" viewBox="0 0 52 52">
-              {/* Background Track */}
+          <span className="scroll-elevator-medallion">
+            <svg className="scroll-progress-ring" viewBox="0 0 44 44" aria-hidden="true">
               <circle
-                cx="26"
-                cy="26"
+                className="scroll-ring-track"
+                cx="22"
+                cy="22"
                 r={radius}
                 fill="none"
-                stroke="rgba(0, 0, 0, 0.1)"
-                strokeWidth="2"
+                strokeWidth="1.5"
               />
-              {/* Animated Progress Stroke */}
               <circle
                 ref={circleRef}
-                cx="26"
-                cy="26"
+                className="scroll-ring-progress"
+                cx="22"
+                cy="22"
                 r={radius}
                 fill="none"
-                stroke="#0071E3"
-                strokeWidth="2.5"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeDasharray={circumference}
                 strokeDashoffset={circumference}
               />
             </svg>
 
-            {/* High-Contrast Apple VisionOS Capsule Button */}
-            <div className="scroll-elevator-btn">
-              <span className="scroll-elevator-icon">
-                <ArrowUp size={20} strokeWidth={2.5} />
-              </span>
-            </div>
-          </div>
-        </m.button>
+            <span className="scroll-elevator-icon">
+              <ArrowUp size={16} strokeWidth={2.25} />
+            </span>
+          </span>
+        </Motion.button>
       )}
     </AnimatePresence>
   );

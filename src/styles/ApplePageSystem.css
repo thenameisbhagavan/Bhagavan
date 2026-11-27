@@ -1,0 +1,175 @@
+/* ==========================================================================
+   APPLE PAGE SYSTEM — UNIVERSAL DESIGN TOKENS & MULTI-ASPECT RESPONSIVENESS
+   Covers: 320px Ultra-Compact Phones, 390–430px Tall Smartphones (19.5:9–21:9),
+           Foldables (540–767px), Tablets (768–1180px), Landscape Phones, Ultrawides
+   ========================================================================== */
+
+:root {
+  --apple-pearl: #f7f7f5;
+  --apple-pearl-alt: #f5f5f7;
+  --apple-white: #ffffff;
+  --apple-obsidian: #050507;
+  --apple-obsidian-card: #0d0f14;
+  --apple-ink: #1d1d1f;
+  --apple-muted: #6e6e73;
+  --apple-subtle: #86868b;
+  --apple-blue: #0071e3;
+  --apple-blue-bright: #2997ff;
+  --apple-green: #34c759;
+  --apple-hairline-light: rgba(0, 0, 0, 0.075);
+  --apple-hairline-dark: rgba(255, 255, 255, 0.09);
+  --apple-shadow-bento: 0 12px 36px rgba(0, 0, 0, 0.045), 0 2px 8px rgba(0, 0, 0, 0.025);
+  --apple-shadow-bento-hover: 0 22px 54px rgba(0, 0, 0, 0.085), 0 4px 14px rgba(0, 0, 0, 0.04);
+  --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Safe-area & Overflow Guard across all viewport ratios */
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: clip;
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+/* Consistent Word Wrapping & Typographic Resilience on Narrow Phones */
+h1, h2, h3, h4, p, a, span, blockquote {
+  overflow-wrap: break-word;
+}
+
+/* Minimum 44px Touch Ergonomics on coarse pointers */
+@media (pointer: coarse) {
+  button,
+  a[class*="btn"],
+  a[class*="pill"],
+  .nav-link,
+  .nav-menu-item {
+    min-height: 44px;
+  }
+}
+
+/* Shared Apple Dot-Matrix Hero Texture Helper */
+.apple-hero-dotgrid {
+  position: relative;
+}
+
+.apple-hero-dotgrid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 35%, black 20%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 35%, black 20%, transparent 78%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Responsive Sticky Quick-Jump Pill Dock for Secondary Pages */
+.apple-mobile-dock {
+  display: none;
+}
+
+@media (max-width: 1400px) {
+  .apple-mobile-dock {
+    position: sticky;
+    top: 44px;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 10px clamp(16px, 4.5vw, 48px);
+    background: rgba(247, 247, 245, 0.86);
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .apple-mobile-dock::-webkit-scrollbar {
+    display: none;
+  }
+
+  .apple-dock-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    background: rgba(255, 255, 255, 0.9);
+    color: #1d1d1f;
+    font-size: 11.5px;
+    font-weight: 650;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s var(--apple-ease);
+  }
+
+  .apple-dock-chip.active {
+    background: #1d1d1f;
+    color: #ffffff;
+    border-color: #1d1d1f;
+  }
+
+  .apple-dock-chip-num {
+    font-family: var(--font-mono, monospace);
+    font-size: 10px;
+    opacity: 0.65;
+  }
+}
+
+/* Case Study Pages Global Multi-Aspect Safety */
+@media (max-width: 767px) {
+  .cs-hero,
+  .vd-hero,
+  .ao-hero,
+  .vr-hero,
+  .dva-hero {
+    padding-top: clamp(78px, 12svh, 110px) !important;
+    padding-bottom: clamp(44px, 7svh, 72px) !important;
+    min-height: auto !important;
+  }
+
+  .cs-hero-img-wrap,
+  .vd-hero-media,
+  .ao-hero-visual,
+  .vr-hero-visual,
+  .dva-hero-media {
+    border-radius: 18px !important;
+  }
+}
+
+/* Landscape Smartphone Optimization (short heights 320px–500px) */
+@media (orientation: landscape) and (max-height: 540px) {
+  .es-hero,
+  .j-hero-2024,
+  .vision-hero,
+  .aa-hero {
+    min-height: auto !important;
+    padding-top: 72px !important;
+    padding-bottom: 48px !important;
+  }
+
+  .es-hero-portrait-frame {
+    max-height: 76svh !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  .es-hero-scroll-indicator {
+    display: none !important;
+  }
+}

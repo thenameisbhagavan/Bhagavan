@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap');
-
 /* ═══════════════════════════════════════════════════════════════════════════
    THE NAME IS BHAGAVAN — APPLE.COM-INSPIRED GLOBAL NAVIGATION SYSTEM
    Minimalism · Precision · Confidence · Premium Engineering
@@ -12,15 +10,14 @@
   --nav-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --nav-font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
   --nav-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
-  --nav-font-script: "Dancing Script", cursive, -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Light Theme (Apple.com Signature Resting & Scrolled) */
-  --nav-bg-resting: rgba(250, 250, 252, 0.82);
-  --nav-bg-scrolled: rgba(250, 250, 252, 0.92);
-  --nav-bg-sheet: rgba(250, 250, 252, 0.98);
-  --nav-border-color: rgba(0, 0, 0, 0.08);
-  --nav-border-scrolled: rgba(0, 0, 0, 0.12);
-  --nav-shadow-scrolled: 0 1px 4px rgba(0, 0, 0, 0.03);
+  /* Light Theme (Apple.com Signature Resting & Scrolled — Seamless Borderless Dissolve) */
+  --nav-bg-resting: rgba(247, 247, 245, 0);
+  --nav-bg-scrolled: rgba(247, 247, 245, 0.82);
+  --nav-bg-sheet: rgba(247, 247, 245, 0.98);
+  --nav-border-color: transparent;
+  --nav-border-scrolled: transparent;
+  --nav-shadow-scrolled: none;
 
   --nav-text-primary: #000000;
   --nav-text-link: #111111;
@@ -40,12 +37,12 @@
 
 /* ── Dark Route Theme Overrides (Dynamic Detection) ── */
 .nav-shell.nav-dark-mode {
-  --nav-bg-resting: rgba(18, 18, 20, 0.82);
-  --nav-bg-scrolled: rgba(18, 18, 20, 0.92);
+  --nav-bg-resting: rgba(10, 10, 12, 0);
+  --nav-bg-scrolled: rgba(10, 10, 12, 0.82);
   --nav-bg-sheet: rgba(18, 18, 20, 0.98);
-  --nav-border-color: rgba(255, 255, 255, 0.08);
-  --nav-border-scrolled: rgba(255, 255, 255, 0.12);
-  --nav-shadow-scrolled: 0 1px 12px rgba(0, 0, 0, 0.5);
+  --nav-border-color: transparent;
+  --nav-border-scrolled: transparent;
+  --nav-shadow-scrolled: none;
 
   --nav-text-primary: #f5f5f7;
   --nav-text-link: rgba(255, 255, 255, 0.72);
@@ -76,33 +73,32 @@
   background: var(--nav-bg-resting);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid var(--nav-border-color);
+  border-bottom: none;
   transition: background-color 0.24s var(--nav-ease),
-              border-color 0.24s var(--nav-ease),
               box-shadow 0.24s var(--nav-ease);
-  will-change: background-color, border-color;
+  will-change: background-color;
 }
 
 .nav-shell.scrolled {
   background: var(--nav-bg-scrolled);
   backdrop-filter: saturate(190%) blur(24px);
   -webkit-backdrop-filter: saturate(190%) blur(24px);
-  border-bottom-color: var(--nav-border-scrolled);
+  border-bottom: none;
   box-shadow: var(--nav-shadow-scrolled);
 }
 
 .nav-shell.panel-open {
   background: var(--nav-bg-sheet);
-  border-bottom-color: var(--nav-border-scrolled);
+  border-bottom: none;
 }
 
-/* ── Precision 3-Zone Balanced Grid ── */
+/* ── Precision 3-Zone Balanced Grid (Edge-to-Edge Aligned) ── */
 .nav-inner {
   width: 100%;
-  max-width: 1024px;
+  max-width: 100%;
   height: 100%;
-  margin: 0 auto;
-  padding: 0 22px;
+  margin: 0;
+  padding: 0 clamp(20px, 3.5vw, 48px);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -164,16 +160,16 @@
 }
 
 .nav-brand-text {
-  font-family: var(--nav-font-script);
-  font-size: 19px;
+  font-family: var(--nav-font-display);
+  font-size: 12.5px;
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   line-height: 1;
   color: var(--nav-text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  transform: translateY(-0.5px);
   display: inline-block;
   white-space: nowrap;
 }
@@ -226,25 +222,13 @@
 
 .nav-link-btn.active {
   color: var(--nav-text-active);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .nav-link-btn:focus-visible {
   outline: 2px solid var(--nav-brand-red);
   outline-offset: -2px;
   border-radius: 3px;
-}
-
-/* Restrained Apple Active Indicator (Slim 12px Micro-Pill Resting Below Text) */
-.nav-active-indicator {
-  position: absolute;
-  bottom: 6px;
-  left: calc(50% - 6px);
-  width: 12px;
-  height: 1.5px;
-  background-color: var(--nav-brand-red);
-  border-radius: 980px;
-  pointer-events: none;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -851,7 +835,6 @@ body.nav-locked {
   .nav-resume-cta,
   .nav-mobile-toggle,
   .nav-resume-arrow,
-  .nav-active-indicator,
   .nav-search-item,
   .nav-mobile-nav-link,
   .nav-toggle-bar {

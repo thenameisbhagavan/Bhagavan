@@ -1,335 +1,339 @@
-/* =========================================
-   TECHNOLOGY ECOSYSTEM PAGE (2024 ARCHITECTURE)
-   ========================================= */
+/* ==========================================================================
+   TECHNOLOGY ECOSYSTEM PAGE — APPLE ARCHITECTURAL LAYERS & TITANIUM TRACE
+   ========================================================================== */
 
 .eco-page {
-  background-color: #F7F7F5;
+  background-color: #f7f7f5;
   color: #111111;
-  font-family: var(--font-system, 'SF Pro Text', -apple-system, sans-serif);
+  font-family: var(--font-system, "SF Pro Text", -apple-system, sans-serif);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
 
 .eco-bounds {
-  max-width: 1440px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: 0 6vw;
+  padding: 0 clamp(16px, 4.5vw, 56px);
 }
 
-@media (min-width: 960px) {
-  .eco-bounds {
-    padding: 0 max(6vw, 40px);
-  }
-}
-
-/* ── Global Label ── */
 .eco-label {
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: #86868b;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #0071e3;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 
-/* ==================== 1. HERO ==================== */
+/* ==================== 1. PEARL HERO ==================== */
 .eco-hero {
-  padding: 20vh 0 15vh 0;
+  position: relative;
+  padding: clamp(90px, 12svh, 136px) 0 clamp(48px, 7svh, 80px);
+  overflow: hidden;
+  background: #f7f7f5;
+}
+
+.eco-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 80% 75% at 50% 40%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 75% at 50% 40%, black 20%, transparent 80%);
+  pointer-events: none;
+}
+
+.eco-hero .eco-bounds {
+  position: relative;
+  z-index: 2;
 }
 
 .eco-hero-eyebrow {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: #a1a1a6;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #1d1d1f;
   text-transform: uppercase;
-  margin-bottom: 40px;
+  margin-bottom: 22px;
 }
 
 .eco-hero-headline {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(40px, 6vw, 96px);
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  font-family: var(--font-display, "SF Pro Display", -apple-system, sans-serif);
+  font-size: clamp(32px, 6vw, 84px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
   line-height: 1.05;
   color: #1d1d1f;
-  margin: 0 0 40px 0;
-  max-width: 800px;
+  margin: 0 0 24px;
+  max-width: 840px;
 }
 
 .eco-hero-sub {
-  font-size: clamp(16px, 2vw, 24px);
+  font-size: clamp(16px, 1.9vw, 22px);
   font-weight: 500;
-  color: #86868b;
+  color: #6e6e73;
   line-height: 1.5;
-  max-width: 600px;
+  max-width: 620px;
 }
 
 /* ==================== 2. ARCHITECTURE LAYERS ==================== */
 .eco-layers {
-  padding: 10vh 0;
+  padding: clamp(56px, 8svh, 96px) 0;
+  background: #ffffff;
 }
 
 .eco-layer-stack {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  margin-top: 60px;
+  gap: 16px;
+  margin-top: 28px;
 }
 
 .layer-row {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 48px 0;
-  border-top: 1px solid rgba(0,0,0,0.06);
-  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  gap: 20px;
+  padding: clamp(20px, 3vw, 32px);
+  background: #f5f5f7;
+  border: 1px solid rgba(0, 0, 0, 0.065);
+  border-radius: 24px;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.28s ease,
+              border-color 0.28s ease;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 860px) {
   .layer-row {
     flex-direction: row;
-    align-items: baseline;
-    gap: 40px;
+    align-items: center;
+    gap: 36px;
   }
 }
 
-.layer-row:last-child {
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-
 .layer-row:hover {
-  border-top-color: rgba(0,0,0,0.15);
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 16px;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-.layer-row:hover + .layer-row {
-  border-top-color: rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+  border-color: rgba(0, 113, 227, 0.28);
+  background: #ffffff;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.05);
 }
 
 .layer-num {
-  font-size: 14px;
-  font-weight: 600;
-  color: #a1a1a6;
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  font-weight: 700;
+  color: #0071e3;
   min-width: 32px;
 }
 
 .layer-info {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   min-width: 240px;
 }
 
-@media (min-width: 768px) {
-  .layer-info {
-    min-width: 280px;
-  }
-}
-
 .layer-title {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(24px, 3.5vw, 40px);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display, "SF Pro Display", -apple-system, sans-serif);
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 750;
+  letter-spacing: -0.02em;
   color: #1d1d1f;
 }
 
 .layer-desc {
   font-size: 14px;
-  color: #86868b;
+  color: #6e6e73;
   line-height: 1.5;
 }
 
 .layer-techs {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 24px;
-  align-items: baseline;
+  gap: 10px;
+  align-items: center;
+  flex: 1;
 }
 
 .layer-tech-item {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 18px;
-  font-weight: 500;
-  color: #86868b;
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d1d1f;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  padding: 8px 15px;
+  border-radius: 999px;
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
 }
 
 .layer-tech-item:hover {
-  color: #1d1d1f;
-  transform: translateX(4px);
-}
-
-@media (min-width: 768px) {
-  .layer-tech-item {
-    font-size: 22px;
-  }
+  border-color: #0071e3;
+  color: #0071e3;
+  transform: translateY(-2px);
 }
 
 .layer-tech-arrow {
-  font-size: 14px;
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  color: #a1a1a6;
+  font-size: 12px;
+  opacity: 0.45;
+  color: #0071e3;
 }
 
-.layer-tech-item:hover .layer-tech-arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* ==================== 3. SYSTEM TRACE ==================== */
+/* ==================== 3. DARK TITANIUM SYSTEM TRACE ==================== */
 .eco-trace {
-  padding: 15vh 0;
-  background-color: #1d1d1f;
-  color: #fbfbfd;
+  position: relative;
+  padding: clamp(64px, 9svh, 112px) 0;
+  background-color: #050507;
+  color: #f5f5f7;
+  overflow: hidden;
+}
+
+.eco-trace::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 65% 50% at 50% 0%, rgba(41, 151, 255, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.eco-trace .eco-bounds {
+  position: relative;
+  z-index: 2;
 }
 
 .eco-trace .eco-label {
-  color: #a1a1a6;
+  color: #2997ff;
 }
 
 .trace-headline {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(32px, 5vw, 64px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 80px;
+  font-family: var(--font-display, "SF Pro Display", -apple-system, sans-serif);
+  font-size: clamp(28px, 4.5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: clamp(28px, 4vw, 48px);
 }
 
 .trace-flow {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-}
-
-.trace-step {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 16px;
-  position: relative;
 }
 
 @media (min-width: 768px) {
   .trace-flow {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 24px;
-  }
-
-  .trace-step {
-    flex: 1;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
 }
 
+.trace-step {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 22px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .ts-title {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: #86868b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #2997ff;
   text-transform: uppercase;
 }
 
 .ts-techs {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .ts-tech {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(20px, 2.5vw, 28px);
-  font-weight: 600;
-  color: #fbfbfd;
+  font-family: var(--font-display, "SF Pro Display", sans-serif);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 700;
+  color: #ffffff;
 }
 
 .ts-arrow {
-  color: #86868b;
-  font-size: 20px;
-  padding: 8px 0;
-}
-
-@media (min-width: 768px) {
-  .ts-arrow {
-    display: none;
-  }
+  display: none;
 }
 
 /* ==================== 4. SYSTEM CONNECTIONS ==================== */
 .eco-systems {
-  padding: 15vh 0;
+  padding: clamp(56px, 8svh, 96px) 0;
+  background: #ffffff;
 }
 
 .systems-headline {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(32px, 5vw, 64px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display, "SF Pro Display", -apple-system, sans-serif);
+  font-size: clamp(28px, 4.5vw, 54px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: #1d1d1f;
-  margin-bottom: 80px;
-  max-width: 800px;
+  margin-bottom: clamp(28px, 4vw, 48px);
+  max-width: 780px;
 }
 
 .systems-stack {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 16px;
 }
 
 .system-row {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 40px 0;
-  border-top: 1px solid rgba(0,0,0,0.06);
-  transition: all 0.4s ease;
+  gap: 18px;
+  padding: clamp(20px, 3vw, 28px);
+  background: #f5f5f7;
+  border: 1px solid rgba(0, 0, 0, 0.065);
+  border-radius: 24px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 @media (min-width: 960px) {
   .system-row {
     flex-direction: row;
     align-items: center;
-    gap: 60px;
+    gap: 48px;
   }
 }
 
-.system-row:last-child {
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-
 .system-row:hover {
-  background-color: rgba(0,0,0,0.015);
+  transform: translateY(-2px);
+  border-color: rgba(0, 113, 227, 0.25);
 }
 
 .sr-meta {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  min-width: 240px;
+  gap: 6px;
+  min-width: 220px;
 }
 
 .sr-name {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(24px, 3vw, 32px);
-  font-weight: 600;
+  font-family: var(--font-display, "SF Pro Display", sans-serif);
+  font-size: clamp(22px, 2.8vw, 30px);
+  font-weight: 750;
   color: #1d1d1f;
 }
 
 .sr-focus {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 11.5px;
+  font-weight: 700;
   letter-spacing: 0.1em;
-  color: #86868b;
+  color: #0071e3;
   text-transform: uppercase;
 }
 
@@ -337,60 +341,296 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex: 1;
 }
 
 .srt-node {
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 13.5px;
+  font-weight: 600;
   color: #1d1d1f;
-  background: #f5f5f7;
-  padding: 8px 16px;
-  border-radius: 4px;
-  transition: all 0.4s ease;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  padding: 7px 15px;
+  border-radius: 999px;
+  transition: all 0.24s ease;
 }
 
 .system-row:hover .srt-node {
-  background: #1d1d1f;
-  color: #fbfbfd;
+  border-color: rgba(0, 113, 227, 0.3);
 }
 
 .srt-arrow {
-  color: #a1a1a6;
-  font-size: 14px;
+  color: #0071e3;
+  font-size: 13px;
 }
 
 /* ==================== 5. PRINCIPLE ==================== */
 .eco-principle {
-  padding: 20vh 0;
-  background-color: #f5f5f7;
+  padding: clamp(56px, 8svh, 96px) 0;
+  background-color: #f7f7f5;
 }
 
 .ep-primary {
-  font-family: var(--font-display, 'SF Pro Display', -apple-system, sans-serif);
-  font-size: clamp(32px, 5vw, 64px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-family: var(--font-display, "SF Pro Display", sans-serif);
+  font-size: clamp(28px, 4.6vw, 58px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.09;
   color: #1d1d1f;
-  margin-bottom: 60px;
-  max-width: 900px;
+  margin-bottom: 24px;
+  max-width: 880px;
 }
 
 .ep-secondary {
-  font-size: clamp(20px, 3vw, 32px);
+  font-size: clamp(16.5px, 2.2vw, 24px);
   font-weight: 500;
-  color: #86868b;
-  line-height: 1.4;
+  color: #6e6e73;
+  line-height: 1.48;
   max-width: 600px;
 }
 
-/* ==================== REDUCED MOTION ==================== */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  .layer-row,
+  .system-row,
+  .layer-tech-item {
     transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    transform: none !important;
   }
+}
+
+.eco-layers-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.eco-layers-header .eco-label {
+  margin-bottom: 0;
+}
+
+.eco-view-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: #f5f5f7;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #1d1d1f;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.eco-view-toggle:hover,
+.eco-view-toggle.is-active {
+  background: #1d1d1f;
+  color: #ffffff;
+  border-color: #1d1d1f;
+}
+
+.eco-console-shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+@media (min-width: 960px) {
+  .eco-console-shell {
+    grid-template-columns: 300px 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+}
+
+.eco-layer-rail {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 8px;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 960px) {
+  .eco-layer-rail {
+    flex-direction: column;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+}
+
+.eco-rail-pill {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 14px;
+  background: #f5f5f7;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #424245;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.eco-rail-pill:hover {
+  border-color: rgba(0, 113, 227, 0.35);
+  color: #1d1d1f;
+}
+
+.eco-rail-pill.is-active {
+  background: #1d1d1f;
+  border-color: #1d1d1f;
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.eco-rail-num {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  color: #0071e3;
+}
+
+.eco-rail-pill.is-active .eco-rail-num {
+  color: #66b2ff;
+}
+
+.eco-rail-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.eco-stage-card {
+  background: #fbfbfd;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 26px;
+  padding: clamp(24px, 4vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.04);
+}
+
+.eco-stage-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.eco-stage-steppers {
+  display: flex;
+  gap: 8px;
+}
+
+.eco-step-btn {
+  min-height: 34px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #1d1d1f;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.eco-step-btn:hover {
+  border-color: #0071e3;
+  color: #0071e3;
+}
+
+.eco-stage-title {
+  font-family: var(--font-display, "SF Pro Display", sans-serif);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+.eco-stage-desc {
+  font-size: 16px;
+  line-height: 1.55;
+  color: #424245;
+  margin: 0 0 8px;
+}
+
+.eco-trace-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.eco-trace-tab {
+  min-height: 40px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #d1d1d6;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.eco-trace-tab:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.eco-trace-tab.is-active {
+  background: #2997ff;
+  border-color: #2997ff;
+  color: #ffffff;
+}
+
+.eco-trace-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.eco-trace-sys-focus {
+  font-size: 14px;
+  font-weight: 600;
+  color: #a1a1a6;
+}
+
+.eco-trace-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(41, 151, 255, 0.14);
+  border: 1px solid rgba(41, 151, 255, 0.32);
+  color: #66b2ff;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.eco-trace-link:hover {
+  background: #2997ff;
+  color: #ffffff;
 }

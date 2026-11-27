@@ -1,382 +1,363 @@
 import SEO from "../components/SEO";
-import React, { useEffect } from 'react';
-import { m, useScroll, useTransform } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowDown } from 'lucide-react';
+import React, { useEffect, useState, useRef, useCallback } from "react";
+import { m as Motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { ArrowRight, Sparkles, Compass, Cpu, ShieldCheck, Layers } from "lucide-react";
 import BrandSignature from "../components/BrandSignature";
-import '../styles/Vision.css';
+import MagneticLink from "../components/motion/MagneticLink";
+import "../styles/Vision.css";
 
-// ─── Motion ───────────────────────────────────────────────────────────────────
-const appleEase = [0.22, 1, 0.36, 1];
+const PROGRESSION_STAGES = [
+  {
+    id: "01",
+    label: "INFORMATION",
+    title: "Structured Signals Before Models",
+    desc: "Raw telemetry, clinical records, and academic archives remain unusable until cleanly normalized, indexed, and stripped of noise.",
+    system: "DHEERGAYUSH Lexical Index · 70 Verified Records",
+  },
+  {
+    id: "02",
+    label: "UNDERSTANDING",
+    title: "Domain Context Over Raw Tokens",
+    desc: "Systems only reason accurately when memory, role expectations, or patient phrasing persist across interactions rather than resetting per turn.",
+    system: "AuraOS Persistent Context Graph · CareerOS",
+  },
+  {
+    id: "03",
+    label: "INTELLIGENCE",
+    title: "Deterministic Reasoning + Fallback Safety",
+    desc: "LLMs become trustworthy inside engineering boundaries: fallback routing, SHA-256 cached synthesis, and explainable feature tracing.",
+    system: "VERITAS Fact Tracing · GPT-4o-mini + Gemini Bridge",
+  },
+  {
+    id: "04",
+    label: "CAPABILITY",
+    title: "Software That Unlocks Execution",
+    desc: "Intelligence stops being an impressive demo only when it accelerates real work—defending code in viva or screening candidates reliably.",
+    system: "DV Labs Capstone Platform · Assessment Canvas",
+  },
+  {
+    id: "05",
+    label: "HUMAN POTENTIAL",
+    title: "Clarity That Expands Human Agency",
+    desc: "The final metric of engineering is what students, doctors, or engineers accomplish faster and more confidently than before.",
+    system: "THE NAME IS BHAGAVAN · Core Engineering Standard",
+  },
+];
 
-const fadeUp = {
-  hidden:  { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.4, ease: appleEase } },
-};
-
-const fadeUpSlow = {
-  hidden:  { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.8, ease: appleEase } },
-};
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
 const PRINCIPLES = [
   {
     num: "01",
+    icon: Layers,
     title: "REDUCE FRICTION",
-    desc: "Good software removes unnecessary cognitive and operational complexity."
+    desc: "Good software eliminates unnecessary operational and cognitive complexity instead of surfacing raw mechanics.",
   },
   {
     num: "02",
+    icon: Compass,
     title: "CREATE CLARITY",
-    desc: "Intelligence should help people understand what matters."
+    desc: "Intelligence should trace its evidence clearly so people understand why an output occurred.",
   },
   {
     num: "03",
+    icon: Cpu,
     title: "EXTEND CAPABILITY",
-    desc: "Systems should allow people to accomplish things that were previously difficult."
+    desc: "Systems should empower builders, clinicians, and learners to execute workflows once out of reach.",
   },
   {
     num: "04",
-    title: "RESPECT HUMAN AGENCY",
-    desc: "Automation should increase control, not quietly take it away."
-  }
+    icon: ShieldCheck,
+    title: "RESPECT AGENCY",
+    desc: "Automation should amplify judgment and human control rather than concealing decisions inside black boxes.",
+  },
 ];
 
 const TRANSFORMATION = [
-  {
-    label: "QUESTION",
-    desc: "What problem actually matters?"
-  },
-  {
-    label: "PRINCIPLE",
-    desc: "What should the system optimize for?"
-  },
-  {
-    label: "SYSTEM",
-    desc: "How should intelligence, memory, reasoning, and software interact?"
-  },
-  {
-    label: "PRODUCT",
-    desc: "How should that complexity become understandable?"
-  },
-  {
-    label: "IMPACT",
-    desc: "What becomes possible for the person using it?"
-  }
+  { num: "01", label: "QUESTION", desc: "Isolate what problem genuinely constrains the person using the tool." },
+  { num: "02", label: "PRINCIPLE", desc: "Define deterministic baselines for accuracy, latency, and safety first." },
+  { num: "03", label: "SYSTEM", desc: "Connect API gateways, storage engines, and AI inference cleanly." },
+  { num: "04", label: "PRODUCT", desc: "Craft tactile UI motion so system power feels effortless on any screen." },
+  { num: "05", label: "IMPACT", desc: "Measure real adoption in classrooms, clinics, and production software." },
 ];
 
 const PROOF = [
-  { name: "CareerOS", desc: "Intelligence for better career decisions." },
-  { name: "AuraOS", desc: "Memory and context for persistent assistance." },
-  { name: "VERITAS", desc: "Reasoning and evidence for clearer information." },
-  { name: "VoltDrive", desc: "Product experience built around interaction." }
+  { name: "DV Labs", tag: "Capstone & Viva", desc: "Six-stage bilingual guidance & 600-question proctored assessment delivery." },
+  { name: "DHEERGAYUSH", tag: "Voice & Clinical AI", desc: "Telugu/English/Tanglish 2D avatar bridging clinical communication barriers." },
+  { name: "CareerOS", tag: "Career Intelligence", desc: "Unified resume, GitHub, and skill-gap mapping for engineering graduates." },
+  { name: "VERITAS", tag: "Explainable NLP", desc: "Transparent claim extraction and linguistic verification telemetry." },
+  { name: "VoltDrive", tag: "3D WebGL UI", desc: "60 FPS tactile automotive configuration balancing geometry and polish." },
 ];
 
 const FUTURE_INDEX = [
-  { num: "01", title: "INTELLIGENT SYSTEMS", desc: "Systems that can reason, remember, and use tools." },
-  { num: "02", title: "HUMAN-CENTERED AI", desc: "Intelligence designed around human decisions and agency." },
-  { num: "03", title: "PRODUCT INTELLIGENCE", desc: "AI capabilities embedded into useful product experiences." },
-  { num: "04", title: "ENGINEERING DEPTH", desc: "Stronger architectures, infrastructure, evaluation, reliability, and deployment." },
-  { num: "05", title: "HUMAN POTENTIAL", desc: "The ultimate objective behind the technology." }
+  { num: "01", title: "INTELLIGENT SYSTEMS", desc: "Hybrid architectures uniting LLMs with deterministic scoring and tool execution." },
+  { num: "02", title: "BILINGUAL ACCESSIBILITY", desc: "Voice and vernacular clinical/educational interfaces accessible beyond English-only UI." },
+  { num: "03", title: "PRODUCT CRAFT", desc: "FastAPI + Next.js ecosystems engineered with crisp visual interaction on any aspect ratio." },
+  { num: "04", title: "TECHNICAL RIGOR", desc: "Production fault tolerance, server authority, clean caching, and resilient deployments." },
 ];
 
-// ─── Page Component ───────────────────────────────────────────────────────────
 export default function Vision() {
-  const { scrollYProgress } = useScroll();
-  
-  // Subtle scroll-driven color highlights for the Shift sequence
-  const shift1 = useTransform(scrollYProgress, [0.15, 0.25], ["rgba(255,255,255,0.1)", "#fbfbfd"]);
-  const shift2 = useTransform(scrollYProgress, [0.18, 0.28], ["rgba(255,255,255,0.1)", "#fbfbfd"]);
-  const shift3 = useTransform(scrollYProgress, [0.21, 0.31], ["rgba(255,255,255,0.1)", "#fbfbfd"]);
-  const shift4 = useTransform(scrollYProgress, [0.24, 0.34], ["rgba(255,255,255,0.1)", "#fbfbfd"]);
-  const shift5 = useTransform(scrollYProgress, [0.27, 0.37], ["rgba(255,255,255,0.1)", "#fbfbfd"]);
+  const heroRef = useRef(null);
+  const shiftRef = useRef(null);
+  const [activeStageIdx, setActiveStageIdx] = useState(0);
+  const [activePipelineIdx, setActivePipelineIdx] = useState(0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const handleSpotlight = useCallback((ref, varX, varY) => (e) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    ref.current.style.setProperty(varX, `${e.clientX - rect.left}px`);
+    ref.current.style.setProperty(varY, `${e.clientY - rect.top}px`);
+  }, []);
+
+  const activeStage = PROGRESSION_STAGES[activeStageIdx];
+  const activeStep = TRANSFORMATION[activePipelineIdx];
+
   return (
     <>
-      <SEO 
-        description="Engineering vision and product philosophy by Bhagavan (TheNameIsBhagavan). Thoughts on AI systems, machine learning, and the future of software engineering." 
-        keywords="Bhagavan Vision, AI Philosophy, Engineering Vision, Product Engineering, AI Systems, Data Science" 
+      <SEO
+        title="Vision | TheNameIsBhagavan"
+        description="Engineering vision and product philosophy by Bhagavan (TheNameIsBhagavan). Thoughts on AI systems, machine learning, and human-centered software architecture."
+        keywords="Bhagavan Vision, AI Philosophy, Engineering Vision, Product Engineering, AI Systems"
       />
 
       <div className="vision-page">
-        
-        {/* ══════════════════════════════════════════════════════
-            1. THE QUESTION (HERO)
-        ══════════════════════════════════════════════════════ */}
-        <section className="vision-hero" data-nav-theme="light">
+        {/* ============================================================
+            01 — APPLE PEARL KEYNOTE HERO
+            ============================================================ */}
+        <section
+          ref={heroRef}
+          onMouseMove={handleSpotlight(heroRef, "--vmx", "--vmy")}
+          className="vision-hero"
+          data-nav-theme="light"
+        >
+          <div className="vs-hero-spotlight" aria-hidden="true" />
           <div className="vision-bounds">
-            <m.div className="vision-hero-eyebrow" initial="hidden" animate="visible" variants={fadeUp}>
-              ENGINEERING THESIS &middot; THE NAME IS BHAGAVAN
-            </m.div>
-            <m.h1 className="vision-hero-headline" initial="hidden" animate="visible" variants={fadeUpSlow}>
-              How I think about<br/>what I'm building.
-            </m.h1>
-            <m.p className="vision-hero-sub" initial="hidden" animate="visible" variants={fadeUpSlow}>
-              These are observations, not conclusions. They change as I learn.
-            </m.p>
-          </div>
-        </section>
+            <div className="vision-hero-eyebrow">
+              <Sparkles size={13} color="#0071e3" />
+              <span>ENGINEERING THESIS &middot; THE NAME IS BHAGAVAN</span>
+            </div>
 
-        {/* ══════════════════════════════════════════════════════
-            2. THE BELIEF
-        ══════════════════════════════════════════════════════ */}
-        <section className="vision-belief" data-nav-theme="light">
-          <div className="vision-bounds">
-            <m.div className="vision-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              01 — THE BELIEF
-            </m.div>
+            <Motion.h1
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="vision-hero-headline"
+            >
+              How I think about{" "}
+              <span className="vs-hl-muted">what I&apos;m building.</span>
+            </Motion.h1>
 
-            <m.h2 className="vb-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              More intelligence isn't automatically useful.
-            </m.h2>
+            <p className="vision-hero-sub">
+              More intelligence is never automatically useful. Useful software turns raw model capability into clarity, control, and everyday utility.
+            </p>
 
-            <m.h3 className="vb-secondary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              I'm more interested in useful AI than impressive AI.
-            </m.h3>
-
-            <m.p className="vb-explanation" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              A prototype that someone can actually use teaches me more than a perfect benchmark.<br/><br/>
-              The harder problem is always turning capability into something clear, contextual, and genuinely helpful.
-            </m.p>
-          </div>
-        </section>
-
-        {/* ══════════════════════════════════════════════════════
-            3. THE SHIFT
-        ══════════════════════════════════════════════════════ */}
-        <section className="vision-shift" data-nav-theme="dark">
-          <div className="vision-bounds">
-            <div className="vision-label">THE PROGRESSION</div>
-            
-            <div className="vs-sequence">
-              <m.div className="vs-word" style={{ color: shift1 }}>INFORMATION</m.div>
-              <ArrowDown className="vs-arrow" style={{ margin: '0 auto' }} />
-              
-              <m.div className="vs-word" style={{ color: shift2 }}>UNDERSTANDING</m.div>
-              <ArrowDown className="vs-arrow" style={{ margin: '0 auto' }} />
-              
-              <m.div className="vs-word" style={{ color: shift3 }}>INTELLIGENCE</m.div>
-              <ArrowDown className="vs-arrow" style={{ margin: '0 auto' }} />
-              
-              <m.div className="vs-word" style={{ color: shift4 }}>CAPABILITY</m.div>
-              <ArrowDown className="vs-arrow" style={{ margin: '0 auto' }} />
-              
-              <m.div className="vs-word" style={{ color: shift5 }}>HUMAN POTENTIAL</m.div>
+            <div className="vs-belief-pills">
+              <div className="vs-belief-card">
+                <span className="vs-bc-num">THESIS 01</span>
+                <p className="vs-bc-text">Working software built for real people teaches faster than benchmark slides.</p>
+              </div>
+              <div className="vs-belief-card">
+                <span className="vs-bc-num">THESIS 02</span>
+                <p className="vs-bc-text">Clear architecture, resilient fallbacks, and accessible UI matter equally.</p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            4. WHAT I BELIEVE SOFTWARE SHOULD DO
-        ══════════════════════════════════════════════════════ */}
+        {/* ============================================================
+            02 — DARK TITANIUM INTERACTIVE PROGRESSION CONSOLE
+            ============================================================ */}
+        <section
+          ref={shiftRef}
+          onMouseMove={handleSpotlight(shiftRef, "--smx", "--smy")}
+          className="vision-shift"
+          data-nav-theme="dark"
+        >
+          <div className="vs-shift-spotlight" aria-hidden="true" />
+          <div className="vision-bounds vs-shift-inner">
+            <div className="vs-shift-header">
+              <span className="vs-titanium-eyebrow">01 &middot; THE PROGRESSION</span>
+              <h2 className="vs-shift-title">From raw signal to human capability.</h2>
+              <p className="vs-shift-sub">
+                Select any architectural layer below to inspect how intelligence compounds into real capability.
+              </p>
+            </div>
+
+            <div className="vs-console-grid">
+              <div className="vs-console-rail" role="tablist" aria-label="Progression Stages">
+                {PROGRESSION_STAGES.map((st, idx) => {
+                  const isActive = activeStageIdx === idx;
+                  return (
+                    <button
+                      key={st.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      onClick={() => setActiveStageIdx(idx)}
+                      className={`vs-stage-btn ${isActive ? "active" : ""}`}
+                    >
+                      <span className="vs-sb-num">{st.id}</span>
+                      <span className="vs-sb-word">{st.label}</span>
+                      <ArrowRight size={14} className="vs-sb-arrow" />
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="vs-console-display">
+                <AnimatePresence mode="wait">
+                  <Motion.div
+                    key={activeStage.id}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                    className="vs-display-card"
+                  >
+                    <div className="vs-dc-top">
+                      <span className="vs-dc-badge">STAGE {activeStage.id} / 05</span>
+                      <span className="vs-dc-sys">{activeStage.system}</span>
+                    </div>
+                    <h3 className="vs-dc-word">{activeStage.label}</h3>
+                    <h4 className="vs-dc-title">{activeStage.title}</h4>
+                    <p className="vs-dc-desc">{activeStage.desc}</p>
+                  </Motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            03 — PRINCIPLES BENTO GRID
+            ============================================================ */}
         <section className="vision-principles" data-nav-theme="light">
           <div className="vision-bounds">
-            <m.h2 className="vp-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              What software should do.
-            </m.h2>
+            <span className="vision-label">02 &middot; ENGINEERING PRINCIPLES</span>
+            <h2 className="vp-headline">What software should do.</h2>
 
             <div className="vp-grid">
-              {PRINCIPLES.map((p, i) => (
-                <m.div 
-                  key={i} 
-                  className="vp-item"
-                  initial="hidden" 
-                  whileInView="visible" 
-                  viewport={{ once: true, margin: "-100px" }} 
-                  variants={fadeUp}
-                >
-                  <div className="vp-num">{p.num}</div>
-                  <h3 className="vp-title">{p.title}</h3>
-                  <p className="vp-desc">{p.desc}</p>
-                </m.div>
-              ))}
+              {PRINCIPLES.map((p) => {
+                const Icon = p.icon;
+                return (
+                  <div key={p.num} className="vp-item">
+                    <div className="vp-head">
+                      <span className="vp-num">{p.num}</span>
+                      <div className="vp-icon-badge">
+                        <Icon size={18} />
+                      </div>
+                    </div>
+                    <h3 className="vp-title">{p.title}</h3>
+                    <p className="vp-desc">{p.desc}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            5. THE HUMAN SIDE
-        ══════════════════════════════════════════════════════ */}
-        <section className="vision-human" data-nav-theme="light">
-          <div className="vision-bounds">
-            <m.h2 className="vh-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              Technology should feel human.
-            </m.h2>
-
-            <div className="vh-list">
-              <m.p className="vh-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                Complexity should disappear into the experience.
-              </m.p>
-              <m.p className="vh-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                Intelligence should remain understandable.
-              </m.p>
-              <m.p className="vh-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                Power should remain useful.
-              </m.p>
-              <m.p className="vh-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                People should remain in control.
-              </m.p>
-            </div>
-          </div>
-        </section>
-
-        {/* ══════════════════════════════════════════════════════
-            6. FROM BELIEF TO BUILDING
-        ══════════════════════════════════════════════════════ */}
+        {/* ============================================================
+            04 — INTERACTIVE METHODOLOGY PIPELINE
+            ============================================================ */}
         <section className="vision-building" data-nav-theme="light">
           <div className="vision-bounds">
-            <m.div className="vision-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              ENGINEERING METHODOLOGY
-            </m.div>
+            <span className="vision-label">03 &middot; METHODOLOGY EXPLORER</span>
+            <h2 className="vp-headline">From belief to production system.</h2>
 
-            <div className="vb-transform">
-              {TRANSFORMATION.map((step, i) => (
-                <React.Fragment key={i}>
-                  <m.div 
-                    className="vbt-step"
-                    initial="hidden" 
-                    whileInView="visible" 
-                    viewport={{ once: true, margin: "-100px" }} 
-                    variants={fadeUp}
-                  >
-                    <div className="vbt-label">{step.label}</div>
-                    <div className="vbt-desc">{step.desc}</div>
-                  </m.div>
-                  {i < TRANSFORMATION.length - 1 && (
-                    <m.div 
-                      style={{ display: 'flex', alignItems: 'center' }}
-                      initial="hidden" 
-                      whileInView="visible" 
-                      viewport={{ once: true, margin: "-100px" }} 
-                      variants={fadeUp}
-                    >
-                      <ArrowRight size={16} color="#a1a1a6" className="vbt-arrow-desktop" />
-                    </m.div>
-                  )}
-                </React.Fragment>
+            <div className="vs-pipe-tabs" role="tablist" aria-label="Engineering Methodology">
+              {TRANSFORMATION.map((step, idx) => (
+                <button
+                  key={step.label}
+                  type="button"
+                  role="tab"
+                  aria-selected={activePipelineIdx === idx}
+                  onClick={() => setActivePipelineIdx(idx)}
+                  className={`vs-pipe-btn ${activePipelineIdx === idx ? "active" : ""}`}
+                >
+                  <span className="vs-pb-num">{step.num}</span>
+                  <span>{step.label}</span>
+                </button>
               ))}
             </div>
+
+            <AnimatePresence mode="wait">
+              <Motion.div
+                key={activeStep.num}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.25 }}
+                className="vs-pipe-stage"
+              >
+                <span className="vbt-label">PHASE {activeStep.num} &middot; {activeStep.label}</span>
+                <p className="vs-pipe-desc">{activeStep.desc}</p>
+              </Motion.div>
+            </AnimatePresence>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            7. PROOF WITHOUT SHOWCASING
-        ══════════════════════════════════════════════════════ */}
+        {/* ============================================================
+            05 — PHILOSOPHY IN PRACTICE (BENTO PROOF)
+            ============================================================ */}
         <section className="vision-proof" data-nav-theme="light">
           <div className="vision-bounds">
-            <m.h2 className="vpr-headline" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              Philosophy in practice.
-            </m.h2>
+            <span className="vision-label">04 &middot; PHILOSOPHY IN PRACTICE</span>
+            <h2 className="vpr-headline">Systems shaped by this thesis.</h2>
 
             <div className="vpr-list">
-              {PROOF.map((item, i) => (
-                <m.div 
-                  key={i} 
-                  className="vpr-item"
-                  initial="hidden" 
-                  whileInView="visible" 
-                  viewport={{ once: true, margin: "-100px" }} 
-                  variants={fadeUp}
-                >
-                  <div className="vpr-name">{item.name}</div>
+              {PROOF.map((item) => (
+                <div key={item.name} className="vpr-item">
+                  <div className="vpr-left">
+                    <span className="vpr-tag">{item.tag}</span>
+                    <div className="vpr-name">{item.name}</div>
+                  </div>
                   <div className="vpr-desc">{item.desc}</div>
-                </m.div>
+                </div>
               ))}
             </div>
-
-            <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              <Link to="/work" className="vpr-link">
-                See the systems <ArrowRight size={16} />
-              </Link>
-            </m.div>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            8. THE LONG VIEW & 9. WHAT I AM BUILDING TOWARD
-        ══════════════════════════════════════════════════════ */}
-        <section className="vision-future" data-nav-theme="light">
+        {/* ============================================================
+            06 — DARK TITANIUM LONG VIEW
+            ============================================================ */}
+        <section className="vision-future" data-nav-theme="dark">
           <div className="vision-bounds">
-            <m.div className="vision-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              THE LONG VIEW
-            </m.div>
-
-            <m.h2 className="vf-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              I'm not trying to build more software.
-            </m.h2>
-
-            <m.h3 className="vf-reveal" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              I'm trying to build better systems.
-            </m.h3>
-
-            <div className="vf-list">
-              <m.div className="vf-list-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                Systems that understand context.
-              </m.div>
-              <m.div className="vf-list-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                Systems that reason before acting.
-              </m.div>
-              <m.div className="vf-list-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                Systems that remember.
-              </m.div>
-              <m.div className="vf-list-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                Systems that adapt.
-              </m.div>
-              <m.div className="vf-list-item" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-                Systems that make complexity easier to navigate.
-              </m.div>
-            </div>
+            <span className="vs-titanium-eyebrow">05 &middot; THE LONG VIEW</span>
+            <h2 className="vf-primary">I&apos;m not trying to build more apps.</h2>
+            <h3 className="vf-reveal">I&apos;m trying to engineer enduring systems.</h3>
 
             <div className="vf-index">
-              {FUTURE_INDEX.map((item, i) => (
-                <m.div 
-                  key={i} 
-                  className="vfi-item"
-                  initial="hidden" 
-                  whileInView="visible" 
-                  viewport={{ once: true, margin: "-100px" }} 
-                  variants={fadeUp}
-                >
+              {FUTURE_INDEX.map((item) => (
+                <div key={item.num} className="vfi-item">
                   <div className="vfi-num">{item.num}</div>
                   <div className="vfi-title">{item.title}</div>
                   <div className="vfi-desc">{item.desc}</div>
-                </m.div>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════════════════════
-            10. FINAL THESIS
-        ══════════════════════════════════════════════════════ */}
+        {/* ============================================================
+            07 — FINAL THESIS CLOSING
+            ============================================================ */}
         <section className="vision-closing" data-nav-theme="light">
           <div className="vision-bounds">
-            <m.div className="vision-label" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              THE VISION / CONTINUING
-            </m.div>
-
-            <m.h2 className="vc-primary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              Technology should help people do things they couldn't do before.
-            </m.h2>
-
-            <m.h3 className="vc-secondary" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpSlow}>
-              Not replace it.
-            </m.h3>
-
-            <m.p className="vc-final" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
-              That's the kind of work I want to spend my career on.
-            </m.p>
-
-            <m.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}>
+            <span className="vision-label">THE VISION &middot; CONTINUING</span>
+            <h2 className="vc-primary">
+              Technology should unlock capability people didn&apos;t have before.
+            </h2>
+            <p className="vc-final">That standard shapes everything I build and teach next.</p>
+            <MagneticLink strength={0.2}>
               <Link to="/work" className="vc-cta">
-                See what I'm building. <ArrowRight size={16} />
+                <span>See What I&apos;m Building</span>
+                <ArrowRight size={15} />
               </Link>
-            </m.div>
+            </MagneticLink>
           </div>
         </section>
 

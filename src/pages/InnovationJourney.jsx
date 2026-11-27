@@ -1,104 +1,157 @@
-import React, { useState, useEffect } from "react";
-import { m, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { m as Motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { X, ArrowRight, ArrowUpRight } from "lucide-react";
+import { X, ArrowRight, ArrowUpRight, Sparkles, Clock, Terminal } from "lucide-react";
 import SEO from "../components/SEO";
 import BrandSignature from "../components/BrandSignature";
 import Reveal from "../components/motion/Reveal";
-import MaskReveal from "../components/motion/MaskReveal";
 import ScaleReveal from "../components/motion/ScaleReveal";
 import MagneticLink from "../components/motion/MagneticLink";
 import SpatialArchitectureCore from "../components/spatial/SpatialArchitectureCore";
 import "../styles/Innovation.css";
 
-// ─── Core Artifact Assets ──────────────────────────────────────────────────────
 import vegacodeImg from "../assets/cert-vegacode.png";
 import githubImg from "../assets/profile-github.png";
 import leetcodeImg from "../assets/profile-leetcode.png";
 import linkedInProfileImg from "../assets/link.png";
 import trainingCert from "../assets/training.png";
 
-// ─── Workshop Artifact Assets ──────────────────────────────────────────────────
 import aimlWorkshopImg from "../assets/cert-aiml-workshop.jpg";
 import mobileWorkshopImg from "../assets/cert-mobile-workshop.jpg";
 import webWorkshopImg from "../assets/cert-web-workshop.jpg";
 import pythonWorkshopImg from "../assets/cert-ds-workshop.jpg";
 import powerWorkshopImg from "../assets/cert-power-workshop.jpg";
 
-const appleEase = [0.22, 1, 0.36, 1];
+const LOOP_STAGES = [
+  {
+    id: "01",
+    step: "QUESTION",
+    micro: "Isolate the real friction constraint.",
+    detail: "Every build starts with what repeatedly slows real workflows down—fragmented career evaluation, bilingual medical barriers, or unverified LLM outputs.",
+    example: "CareerOS · DHEERGAYUSH",
+  },
+  {
+    id: "02",
+    step: "EXPERIMENT",
+    micro: "Prototype minimal working mechanics.",
+    detail: "Ship narrow vertical slices in Python, FastAPI, or React first under realistic timeouts, API failures, and data edge cases.",
+    example: "VegaCode 24-Hour Build",
+  },
+  {
+    id: "03",
+    step: "OBSERVE",
+    micro: "Audit actual failure modes.",
+    detail: "Measure frame drops, cold-start latency, voice recognition misses in Tanglish, or parser blind spots instead of guessing.",
+    example: "SHA-256 TTS Cache · Delta Sync",
+  },
+  {
+    id: "04",
+    step: "REFINE",
+    micro: "Replace hacks with clean invariants.",
+    detail: "Lock contracts using TypeScript schemas, stateless API secret bridges, HTTP-only JWT tokens, and deterministic fallbacks.",
+    example: "AI Chat Gateway · VERITAS",
+  },
+  {
+    id: "05",
+    step: "BUILD",
+    micro: "Elevate verified experiments into products.",
+    detail: "Once core reliability holds under load, wrap it inside responsive tactile motion and deploy it cleanly for daily users.",
+    example: "DV Labs · VoltDrive",
+  },
+];
 
-// ─── Artifact Viewer Modal ────────────────────────────────────────────────────
+const ARCHIVE_ITEMS = [
+  { id: "01", filter: "ai", category: "AI / ML", title: "Artificial Intelligence Workshop", img: aimlWorkshopImg, alt: "AI/ML Workshop Certificate" },
+  { id: "02", filter: "ai", category: "DATA SCIENCE", title: "Python & Data Science Workshop", img: pythonWorkshopImg, alt: "Python & Data Science Workshop Certificate" },
+  { id: "03", filter: "web", category: "WEB SYSTEMS", title: "Web Systems Workshop", img: webWorkshopImg, alt: "Web Development Workshop Certificate" },
+  { id: "04", filter: "web", category: "MOBILE UI", title: "Mobile Systems Workshop", img: mobileWorkshopImg, alt: "Mobile Development Workshop Certificate" },
+  { id: "05", filter: "core", category: "AUTOMATION", title: "Power & Automation Workshop", img: powerWorkshopImg, alt: "Power & Automation Workshop Certificate" },
+  { id: "06", filter: "core", category: "FOUNDATION", title: "Technical Training Foundation", img: trainingCert, alt: "Comprehensive Professional Training Certificate" },
+];
+
 function ArtifactViewer({ isOpen, onClose, imgSrc, imgAlt }) {
   useEffect(() => {
-    const handleKey = (e) => { if (e.key === "Escape") onClose(); };
+    const handleKey = (e) => {
+      if (e.key === "Escape") onClose();
+    };
     if (isOpen) window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, [isOpen, onClose]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <m.div
+        <Motion.div
           className="lab-modal-overlay"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.35, ease: appleEase }}
+          transition={{ duration: 0.25 }}
           onClick={onClose}
           role="dialog"
           aria-modal="true"
           aria-label="Artifact Viewer"
         >
           <button className="lab-modal-close" onClick={onClose} aria-label="Close viewer">
-            <X size={22} strokeWidth={1.5} />
+            <X size={20} />
           </button>
-          <m.div
+          <Motion.div
             className="lab-modal-content"
-            initial={{ scale: 0.98, opacity: 0 }}
+            initial={{ scale: 0.96, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.98, opacity: 0 }}
-            transition={{ duration: 0.4, ease: appleEase }}
+            exit={{ scale: 0.96, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="lab-modal-header">VERIFIED ARTIFACT</div>
-            <img src={imgSrc} alt={imgAlt} className="lab-modal-img" loading="eager" />
-          </m.div>
-        </m.div>
+            <div className="lab-modal-header">VERIFIED EXPERIMENT ARTIFACT</div>
+            <img src={imgSrc} alt={imgAlt} className="lab-modal-img" />
+          </Motion.div>
+        </Motion.div>
       )}
     </AnimatePresence>
   );
 }
 
-// ─── Innovation Journey Page ──────────────────────────────────────────────────
 export default function InnovationJourney() {
+  const heroRef = useRef(null);
+  const darkLoopRef = useRef(null);
+
+  const [activeLoopIdx, setActiveLoopIdx] = useState(0);
+  const [archiveFilter, setArchiveFilter] = useState("all");
   const [viewer, setViewer] = useState({ isOpen: false, src: "", alt: "" });
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
+  const handleSpotlight = useCallback((ref, varX, varY) => (e) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    ref.current.style.setProperty(varX, `${e.clientX - rect.left}px`);
+    ref.current.style.setProperty(varY, `${e.clientY - rect.top}px`);
+  }, []);
+
   const openViewer = (src, alt) => setViewer({ isOpen: true, src, alt });
   const closeViewer = () => setViewer((prev) => ({ ...prev, isOpen: false }));
 
-  // Archive items array
-  const archiveItems = [
-    { id: "01", category: "AI / ML", title: "Artificial Intelligence Workshop", img: aimlWorkshopImg, alt: "AI/ML Workshop Certificate" },
-    { id: "02", category: "SOFTWARE", title: "Python & Data Science Workshop", img: pythonWorkshopImg, alt: "Python & Data Science Workshop Certificate" },
-    { id: "03", category: "WEB", title: "Web Systems Workshop", img: webWorkshopImg, alt: "Web Development Workshop Certificate" },
-    { id: "04", category: "MOBILE", title: "Mobile Systems Workshop", img: mobileWorkshopImg, alt: "Mobile Development Workshop Certificate" },
-    { id: "05", category: "AUTOMATION", title: "Power & Automation Workshop", img: powerWorkshopImg, alt: "Power & Automation Workshop Certificate" },
-    { id: "06", category: "FOUNDATION", title: "Technical Training Foundation", img: trainingCert, alt: "Comprehensive Professional Training Certificate" },
-  ];
+  const activeLoop = LOOP_STAGES[activeLoopIdx];
+  const visibleArchive = ARCHIVE_ITEMS.filter((item) =>
+    archiveFilter === "all" ? true : item.filter === archiveFilter
+  );
 
   return (
     <>
       <SEO
-        description="The experimental layer of Bhagavan (TheNameIsBhagavan). Documenting curiosity, hackathon constraints, public evidence, and experimental archives that shape AI products."
-        keywords="Bhagavan Innovation, Experimental Layer, VegaCode Hackathon, AI Systems, Technical Experiments, LeetCode, GitHub, Evidence Archive"
+        title="Innovation | TheNameIsBhagavan"
+        description="The experimental layer of Bhagavan (TheNameIsBhagavan). Documenting curiosity, hackathon constraints, public evidence, and experimental archives."
+        keywords="Bhagavan Innovation, Experimental Layer, VegaCode Hackathon, AI Systems, GitHub, LeetCode"
       />
 
       <ArtifactViewer
@@ -109,338 +162,302 @@ export default function InnovationJourney() {
       />
 
       <div className="lab-page">
-
         {/* ============================================================
-            ACT 01 — HERO (CURIOSITY IS WHERE THE SYSTEM BEGINS.)
+            ACT 01 — APPLE LAB HERO + 3D CORE STAGE
             ============================================================ */}
-        <section className="lab-hero" data-nav-theme="light">
+        <section
+          ref={heroRef}
+          onMouseMove={handleSpotlight(heroRef, "--imx", "--imy")}
+          className="lab-hero"
+          data-nav-theme="light"
+        >
+          <div className="lab-hero-spotlight" aria-hidden="true" />
           <div className="lab-bounds">
             <div className="lab-hero-grid">
               <div>
-                <Reveal y={16} duration={0.8}>
-                  <div className="lab-hero-meta">
-                    <span>LAB / 01</span>
-                    <span>&middot;</span>
-                    <span>INNOVATION &amp; EXPERIMENTATION</span>
-                    <span>&middot;</span>
-                    <span>AI RESEARCH</span>
-                  </div>
-                </Reveal>
+                <div className="lab-hero-meta">
+                  <Sparkles size={12} color="#0071e3" />
+                  <span>LAB / 01 &middot; INNOVATION &amp; RESEARCH LAYER</span>
+                </div>
 
-                <MaskReveal duration={1.1} delay={0.1}>
-                  <h1 className="lab-hero-headline">
-                    CURIOSITY IS WHERE<br />
-                    THE SYSTEM BEGINS.
-                  </h1>
-                </MaskReveal>
+                <Motion.h1
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                  className="lab-hero-headline"
+                >
+                  Curiosity starts{" "}
+                  <span className="lab-hl-muted">the architecture.</span>
+                </Motion.h1>
 
-                <Reveal y={20} duration={0.9} delay={0.25}>
-                  <p className="lab-hero-sub">
-                    Experiments, constraints and evidence shape what I build next.
-                  </p>
-                </Reveal>
+                <p className="lab-hero-sub">
+                  Experiments, tight constraints, and public engineering signals shape every product I take into production.
+                </p>
 
-                <Reveal y={16} duration={0.8} delay={0.4}>
-                  <div className="lab-hero-tag">
-                    <span>RESEARCH</span>
-                    <span className="tag-dot">&middot;</span>
-                    <span>EXPERIMENTATION</span>
-                    <span className="tag-dot">&middot;</span>
-                    <span>SYSTEMS</span>
-                  </div>
-                </Reveal>
+                <div className="lab-hero-tag">
+                  <span>RESEARCH</span>
+                  <span className="tag-dot">&middot;</span>
+                  <span>24H CONSTRAINTS</span>
+                  <span className="tag-dot">&middot;</span>
+                  <span>SYSTEMS ENGINEERING</span>
+                </div>
               </div>
 
-              {/* 3D Spatial Architecture Core Model */}
-              <Reveal y={24} duration={1.0} delay={0.2}>
-                <div style={{ height: "420px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div className="lab-spatial-bento">
+                <div className="lab-spatial-head">
+                  <span className="lab-spatial-dot" aria-hidden="true" />
+                  <span>SELECTED SYSTEM ARCHITECTURES &middot; LIVE ARCHIVE</span>
+                </div>
+                <div className="lab-spatial-stage">
                   <SpatialArchitectureCore />
                 </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================
-            ACT 02 — THE EXPERIMENT LOOP (SCROLL PROGRESSION METAPHOR)
-            ============================================================ */}
-        <section className="lab-loop-section" data-nav-theme="light">
-          <div className="lab-bounds">
-            <Reveal y={16} duration={0.8}>
-              <span className="lab-section-label">THE EXPERIMENT LOOP</span>
-            </Reveal>
-
-            <div className="lab-loop-container">
-              {/* Continuous Vertical Experiment Line */}
-              <div className="lab-experiment-line" />
-
-              <div className="lab-loop-steps">
-                {[
-                  { step: "QUESTION", micro: "what am I trying to understand?" },
-                  { step: "EXPERIMENT", micro: "what can I test?" },
-                  { step: "OBSERVE", micro: "what actually happened?" },
-                  { step: "REFINE", micro: "what changes?" },
-                  { step: "BUILD", micro: "what deserves to become a system?" },
-                ].map((item, index) => (
-                  <Reveal y={24} duration={0.8} delay={index * 0.1} key={item.step} className="loop-step-item">
-                    <div className="loop-step-node">
-                      <span className="loop-step-dot" />
-                    </div>
-                    <div className="loop-step-content">
-                      <span className="loop-step-word">{item.step}</span>
-                      <span className="loop-step-arrow">&rarr;</span>
-                      <span className="loop-step-micro">{item.micro}</span>
-                    </div>
-                  </Reveal>
-                ))}
               </div>
             </div>
           </div>
         </section>
 
         {/* ============================================================
-            ACT 03 — EXPERIMENT / 01 — VEGACODE
+            ACT 02 — DARK TITANIUM EXPERIMENT LOOP CONSOLE
+            ============================================================ */}
+        <section
+          ref={darkLoopRef}
+          onMouseMove={handleSpotlight(darkLoopRef, "--lmx", "--lmy")}
+          className="lab-loop-titanium"
+          data-nav-theme="dark"
+        >
+          <div className="lab-loop-spotlight" aria-hidden="true" />
+          <div className="lab-bounds lab-loop-inner">
+            <div className="lab-loop-header">
+              <span className="lab-titanium-eyebrow">01 &middot; ITERATION MODEL</span>
+              <h2 className="lab-titanium-title">How experiments mature into systems.</h2>
+            </div>
+
+            <div className="lab-loop-console">
+              <div className="lab-loop-rail" role="tablist" aria-label="Experiment Loop">
+                {LOOP_STAGES.map((item, idx) => {
+                  const isActive = activeLoopIdx === idx;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      onClick={() => setActiveLoopIdx(idx)}
+                      className={`lab-loop-btn ${isActive ? "active" : ""}`}
+                    >
+                      <span className="lab-lb-num">{item.id}</span>
+                      <span className="lab-lb-word">{item.step}</span>
+                      <ArrowRight size={14} className="lab-lb-arrow" />
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="lab-loop-display">
+                <AnimatePresence mode="wait">
+                  <Motion.div
+                    key={activeLoop.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.26 }}
+                    className="lab-loop-card"
+                  >
+                    <div className="lab-lc-meta">
+                      <span className="lab-lc-phase">STEP {activeLoop.id} / 05</span>
+                      <span className="lab-lc-ex">{activeLoop.example}</span>
+                    </div>
+                    <h3 className="lab-lc-word">{activeLoop.step}</h3>
+                    <p className="lab-lc-micro">{activeLoop.micro}</p>
+                    <p className="lab-lc-detail">{activeLoop.detail}</p>
+                  </Motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            ACT 03 — VEGACODE 24-HOUR CONSTRAINT SPOTLIGHT
             ============================================================ */}
         <section className="lab-constraint-section" data-nav-theme="light">
           <div className="lab-bounds">
-            <Reveal y={16} duration={0.8}>
-              <span className="lab-section-label">EXPERIMENT / 01</span>
-            </Reveal>
+            <div className="lab-vega-bento">
+              <div className="lab-vega-copy">
+                <span className="lab-section-label">
+                  <Clock size={12} style={{ marginRight: "6px", verticalAlign: "middle" }} />
+                  02 &middot; EXPERIMENT BENCHMARK
+                </span>
+                <h2 className="vegacode-big-time">24 HOURS</h2>
+                <blockquote className="constraint-thesis">
+                  &ldquo;Constraints sharpen engineering decisions.&rdquo;
+                </blockquote>
 
-            <MaskReveal duration={1.0} delay={0.1}>
-              <h2 className="vegacode-big-time">24 HOURS</h2>
-            </MaskReveal>
-
-            <Reveal y={20} duration={0.9} delay={0.2}>
-              <blockquote className="constraint-thesis">
-                "Constraints change the way engineers think."
-              </blockquote>
-            </Reveal>
-
-            {/* Restrained Metadata Row */}
-            <Reveal y={16} duration={0.8} delay={0.3} className="vegacode-meta-row">
-              <div className="vm-item">
-                <span className="vm-key">TIME</span>
-                <span className="vm-val">24 HOURS</span>
-              </div>
-              <div className="vm-item">
-                <span className="vm-key">MODE</span>
-                <span className="vm-val">NATIONAL HACKATHON</span>
-              </div>
-              <div className="vm-item">
-                <span className="vm-key">SIGNAL</span>
-                <span className="vm-val">RAPID DECISION-MAKING &middot; COLLABORATION &middot; EXECUTION</span>
-              </div>
-            </Reveal>
-
-            {/* VegaCode Certificate Artifact Object */}
-            <ScaleReveal className="vegacode-artifact-wrapper">
-              <button
-                className="lab-artifact-btn artifact-primary"
-                onClick={() => openViewer(vegacodeImg, "VegaCode National Hackathon Certificate")}
-                aria-label="View VegaCode National Hackathon Certificate"
-              >
-                <img src={vegacodeImg} alt="VegaCode National Hackathon Certificate" loading="lazy" />
-                <div className="lab-artifact-hover">
-                  <span>VIEW EXPERIMENT EVIDENCE</span>
-                  <ArrowUpRight size={16} />
-                </div>
-              </button>
-              <div className="ca-footer">
-                <span>VEGACODE NATIONAL HACKATHON</span>
-                <span>EVIDENCE / 01</span>
-              </div>
-            </ScaleReveal>
-          </div>
-        </section>
-
-        {/* ============================================================
-            ACT 04 — PUBLIC SIGNAL
-            ============================================================ */}
-        <section className="lab-public-section" data-nav-theme="light">
-          <div className="lab-bounds">
-            <Reveal y={16} duration={0.8}>
-              <span className="lab-section-label">PUBLIC SIGNAL</span>
-              <h2 className="lab-sub-headline">Some of the work leaves a public trace.</h2>
-            </Reveal>
-
-            <div className="pub-archive-grid">
-              <Reveal y={24} duration={0.9} className="pub-card">
-                <div className="pub-card-head">
-                  <span className="pub-card-num">01 / CODE</span>
-                  <div className="pub-card-title-row">
-                    <h3 className="pub-card-title">GitHub</h3>
-                    <a 
-                      href="https://github.com/thenameisbhagavan" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="pub-ext-link"
-                      title="Open GitHub Profile"
-                    >
-                      <span>LIVE PROFILE</span>
-                      <ArrowUpRight size={14} />
-                    </a>
+                <div className="vegacode-meta-row">
+                  <div className="vm-item">
+                    <span className="vm-key">EVENT</span>
+                    <span className="vm-val">VegaCode National Hackathon</span>
+                  </div>
+                  <div className="vm-item">
+                    <span className="vm-key">SIGNAL</span>
+                    <span className="vm-val">Rapid Scoping &middot; Teamwork &middot; Execution</span>
                   </div>
                 </div>
-                <button 
-                  className="lab-artifact-btn pub-artifact-btn"
-                  onClick={() => openViewer(githubImg, "Siva Satya Sai Bhagavan - GitHub Profile")}
-                  aria-label="View GitHub Profile Evidence"
-                >
-                  <img src={githubImg} alt="Siva Satya Sai Bhagavan GitHub Profile Screenshot" loading="lazy" />
-                  <div className="lab-artifact-hover">VIEW ARTIFACT ↗</div>
-                </button>
-              </Reveal>
+              </div>
 
-              <Reveal y={24} duration={0.9} delay={0.15} className="pub-card">
-                <div className="pub-card-head">
-                  <span className="pub-card-num">02 / DISCIPLINE</span>
-                  <div className="pub-card-title-row">
-                    <h3 className="pub-card-title">LeetCode</h3>
-                    <a 
-                      href="https://leetcode.com/u/AxZsDhEeto/" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="pub-ext-link"
-                      title="Open LeetCode Profile"
-                    >
-                      <span>LIVE PROFILE</span>
-                      <ArrowUpRight size={14} />
-                    </a>
-                  </div>
-                </div>
-                <button 
-                  className="lab-artifact-btn pub-artifact-btn"
-                  onClick={() => openViewer(leetcodeImg, "Siva Satya Sai Bhagavan - LeetCode Profile")}
-                  aria-label="View LeetCode Profile Evidence"
+              <ScaleReveal className="vegacode-artifact-wrapper">
+                <button
+                  type="button"
+                  className="lab-artifact-btn"
+                  onClick={() => openViewer(vegacodeImg, "VegaCode National Hackathon Certificate")}
+                  aria-label="View VegaCode National Hackathon Certificate"
                 >
-                  <img src={leetcodeImg} alt="Siva Satya Sai Bhagavan LeetCode Profile Screenshot" loading="lazy" />
-                  <div className="lab-artifact-hover">VIEW ARTIFACT ↗</div>
-                </button>
-              </Reveal>
-
-              <Reveal y={24} duration={0.9} delay={0.3} className="pub-card">
-                <div className="pub-card-head">
-                  <span className="pub-card-num">03 / PROFESSIONAL</span>
-                  <div className="pub-card-title-row">
-                    <h3 className="pub-card-title">LinkedIn</h3>
-                    <a 
-                      href="https://www.linkedin.com/in/thenameisbhagavan" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="pub-ext-link"
-                      title="Open LinkedIn Profile"
-                    >
-                      <span>LIVE PROFILE</span>
-                      <ArrowUpRight size={14} />
-                    </a>
+                  <img src={vegacodeImg} alt="VegaCode National Hackathon Certificate" loading="lazy" />
+                  <div className="lab-artifact-hover">
+                    <span>INSPECT CERTIFICATE ↗</span>
                   </div>
-                </div>
-                <button 
-                  className="lab-artifact-btn pub-artifact-btn"
-                  onClick={() => openViewer(linkedInProfileImg, "Siva Satya Sai Bhagavan - LinkedIn Profile")}
-                  aria-label="View LinkedIn Profile Evidence"
-                >
-                  <img src={linkedInProfileImg} alt="Siva Satya Sai Bhagavan LinkedIn Profile Screenshot" loading="lazy" />
-                  <div className="lab-artifact-hover">VIEW ARTIFACT ↗</div>
                 </button>
-              </Reveal>
+              </ScaleReveal>
             </div>
           </div>
         </section>
 
         {/* ============================================================
-            ACT 05 — EXPERIMENTAL ARCHIVE
+            ACT 04 — PUBLIC SIGNAL EVIDENCE
+            ============================================================ */}
+        <section className="lab-public-section" data-nav-theme="light">
+          <div className="lab-bounds">
+            <Reveal y={14} duration={0.7}>
+              <span className="lab-section-label">03 &middot; PUBLIC TELEMETRY</span>
+              <h2 className="lab-sub-headline">Work that leaves a public trail.</h2>
+            </Reveal>
+
+            <div className="pub-archive-grid">
+              {[
+                {
+                  num: "01 / CODE",
+                  title: "GitHub",
+                  url: "https://github.com/thenameisbhagavan",
+                  img: githubImg,
+                  alt: "GitHub Profile Screenshot",
+                },
+                {
+                  num: "02 / ALGORITHMS",
+                  title: "LeetCode",
+                  url: "https://leetcode.com/u/AxZsDhEeto/",
+                  img: leetcodeImg,
+                  alt: "LeetCode Profile Screenshot",
+                },
+                {
+                  num: "03 / NETWORK",
+                  title: "LinkedIn",
+                  url: "https://www.linkedin.com/in/thenameisbhagavan",
+                  img: linkedInProfileImg,
+                  alt: "LinkedIn Profile Screenshot",
+                },
+              ].map((card) => (
+                <div key={card.num} className="pub-card">
+                  <div className="pub-card-head">
+                    <span className="pub-card-num">{card.num}</span>
+                    <div className="pub-card-title-row">
+                      <h3 className="pub-card-title">{card.title}</h3>
+                      <a
+                        href={card.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="pub-ext-link"
+                      >
+                        <span>LIVE PROFILE</span>
+                        <ArrowUpRight size={13} />
+                      </a>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    className="lab-artifact-btn pub-artifact-btn"
+                    onClick={() => openViewer(card.img, card.alt)}
+                  >
+                    <img src={card.img} alt={card.alt} loading="lazy" />
+                    <div className="lab-artifact-hover">INSPECT SNAPSHOT ↗</div>
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            ACT 05 — FILTERABLE EXPERIMENTAL ARCHIVE
             ============================================================ */}
         <section className="lab-archive-section" data-nav-theme="light">
           <div className="lab-bounds">
-            <Reveal y={16} duration={0.8}>
-              <span className="lab-section-label">EXPERIMENTAL ARCHIVE</span>
-              <h2 className="lab-sub-headline">Compact evidence across technical disciplines.</h2>
-            </Reveal>
+            <div className="lab-arch-top">
+              <div>
+                <span className="lab-section-label">04 &middot; EXPERIMENTAL VAULT</span>
+                <h2 className="lab-sub-headline">Workshops across disciplines.</h2>
+              </div>
+
+              <div className="lab-filter-tabs" role="tablist" aria-label="Filter workshop archive">
+                {[
+                  { id: "all", label: "All (06)" },
+                  { id: "ai", label: "AI & Data (02)" },
+                  { id: "web", label: "Web & Mobile (02)" },
+                  { id: "core", label: "Automation & Core (02)" },
+                ].map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={archiveFilter === f.id}
+                    onClick={() => setArchiveFilter(f.id)}
+                    className={`lab-filter-btn ${archiveFilter === f.id ? "active" : ""}`}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <div className="archive-list-grid">
-              {archiveItems.map((item, idx) => (
-                <Reveal y={20} duration={0.8} delay={idx * 0.08} key={item.id} className="archive-item-card">
+              {visibleArchive.map((item) => (
+                <div key={item.id} className="archive-item-card">
                   <div className="arc-header">
                     <span className="arc-num">{item.id}</span>
                     <span className="arc-cat">{item.category}</span>
                   </div>
                   <h3 className="arc-title">{item.title}</h3>
-                  <button 
+                  <button
+                    type="button"
                     className="arc-view-btn"
                     onClick={() => openViewer(item.img, item.alt)}
-                    aria-label={`View ${item.title}`}
                   >
-                    <span>VIEW EVIDENCE</span>
-                    <ArrowUpRight size={14} />
+                    <span>VIEW CERTIFICATE</span>
+                    <ArrowUpRight size={13} />
                   </button>
-                </Reveal>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
         {/* ============================================================
-            ACT 06 — CURRENT EXPLORATION
-            ============================================================ */}
-        <section className="lab-exploration-section" data-nav-theme="light">
-          <div className="lab-bounds">
-            <Reveal y={16} duration={0.8}>
-              <div className="exploring-badge-row">
-                <span className="exploring-dot" />
-                <span className="lab-section-label" style={{ margin: 0 }}>EXPLORING</span>
-              </div>
-              <h2 className="lab-sub-headline" style={{ marginTop: 12 }}>Current Exploration</h2>
-            </Reveal>
-
-            <div className="exploration-fields-grid">
-              {[
-                { area: "AI ENGINEERING & ML", tags: "Deterministic Pipelines &middot; Feature Attribution &middot; Scikit-learn" },
-                { area: "GENERATIVE AI & LLMs", tags: "Prompt Taxonomies &middot; Structured Output &middot; Gemini API Proxies" },
-                { area: "AGENTIC AI & AUTOMATION", tags: "Tool Calling &middot; Multi-Step Reasoning &middot; Context Graphs" },
-                { area: "FULL-STACK ENGINEERING", tags: "Next.js App Router &middot; React 19 &middot; FastAPI &middot; MongoDB Atlas" },
-                { area: "INTELLIGENT SYSTEMS", tags: "CareerOS &middot; VERITAS &middot; AuraOS &middot; AgriVision AI" },
-                { area: "TECHNICAL WRITING & SPEECH", tags: "PBR VITS Talk &middot; PACE Ongole Workshop &middot; Systems Architecture" }
-              ].map((field, idx) => (
-                <Reveal y={20} duration={0.8} delay={idx * 0.1} key={field.area} className="exploration-field-card">
-                  <span className="efc-area">{field.area}</span>
-                  <span className="efc-tags" dangerouslySetInnerHTML={{ __html: field.tags }} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================
-            ACT 07 — FINAL STATEMENT & PORTFOLIO CONNECTION
+            ACT 06 — FINAL CTA
             ============================================================ */}
         <section className="lab-final-section" data-nav-theme="light">
           <div className="lab-bounds text-center">
-            <MaskReveal duration={1.1}>
-              <h2 className="lab-final-headline">
-                NOT EVERY EXPERIMENT<br />
-                BECOMES A PRODUCT.
-              </h2>
-            </MaskReveal>
-
-            <Reveal y={20} duration={1.0} delay={0.25}>
-              <p className="lab-final-sub">
-                BUT EVERY GOOD EXPERIMENT<br />
-                CHANGES WHAT GETS BUILT NEXT.
-              </p>
-            </Reveal>
-
-            <Reveal y={20} duration={0.9} delay={0.4}>
-              <div className="lab-final-cta-wrap">
-                <MagneticLink strength={0.3}>
-                  <Link to="/work" className="lab-cta-button apple-pressable">
-                    <span>EXPLORE THE SYSTEMS</span>
-                    <ArrowRight size={16} />
-                  </Link>
-                </MagneticLink>
-              </div>
-            </Reveal>
+            <h2 className="lab-final-headline">
+              Not every experiment becomes a product.
+            </h2>
+            <p className="lab-final-sub">
+              Every serious experiment upgrades what gets built next.
+            </p>
+            <MagneticLink strength={0.2}>
+              <Link to="/work" className="lab-cta-button apple-pressable">
+                <Terminal size={15} />
+                <span>Explore Production Systems</span>
+                <ArrowRight size={15} />
+              </Link>
+            </MagneticLink>
           </div>
         </section>
 
